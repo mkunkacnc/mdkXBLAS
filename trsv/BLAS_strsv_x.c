@@ -505,11 +505,11 @@ void BLAS_strsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   /* Compute double-double = double-double * double. */
                   double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                  con = head_temp3 * split;
+                  con = head_temp3 * SPLIT;
                   a11 = con - head_temp3;
                   a11 = con - a11;
                   a21 = head_temp3 - a11;
-                  con = dt * split;
+                  con = dt * SPLIT;
                   b1 = con - dt;
                   b1 = con - b1;
                   b2 = dt - b1;
@@ -538,11 +538,11 @@ void BLAS_strsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_temp3 * split;
+                    con = head_temp3 * SPLIT;
                     a11 = con - head_temp3;
                     a11 = con - a11;
                     a21 = head_temp3 - a11;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - dt;
                     b1 = con - b1;
                     b2 = dt - b1;
@@ -612,10 +612,10 @@ void BLAS_strsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                     /* Split t1 and b into two parts with at most 26 bits each,
                        using the Dekker-Veltkamp method. */
-                    con = t1 * split;
+                    con = t1 * SPLIT;
                     t11 = con - (con - t1);
                     t21 = t1 - t11;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - (con - dt);
                     b2 = dt - b1;
 
@@ -666,11 +666,11 @@ void BLAS_strsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   /* Compute double-double = double-double * double. */
                   double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                  con = head_temp3 * split;
+                  con = head_temp3 * SPLIT;
                   a11 = con - head_temp3;
                   a11 = con - a11;
                   a21 = head_temp3 - a11;
-                  con = dt * split;
+                  con = dt * SPLIT;
                   b1 = con - dt;
                   b1 = con - b1;
                   b2 = dt - b1;
@@ -699,11 +699,11 @@ void BLAS_strsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_temp3 * split;
+                    con = head_temp3 * SPLIT;
                     a11 = con - head_temp3;
                     a11 = con - a11;
                     a21 = head_temp3 - a11;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - dt;
                     b1 = con - b1;
                     b2 = dt - b1;
@@ -773,10 +773,10 @@ void BLAS_strsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                     /* Split t1 and b into two parts with at most 26 bits each,
                        using the Dekker-Veltkamp method. */
-                    con = t1 * split;
+                    con = t1 * SPLIT;
                     t11 = con - (con - t1);
                     t21 = t1 - t11;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - (con - dt);
                     b2 = dt - b1;
 
@@ -826,11 +826,11 @@ void BLAS_strsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   /* Compute double-double = double-double * double. */
                   double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                  con = head_temp3 * split;
+                  con = head_temp3 * SPLIT;
                   a11 = con - head_temp3;
                   a11 = con - a11;
                   a21 = head_temp3 - a11;
-                  con = dt * split;
+                  con = dt * SPLIT;
                   b1 = con - dt;
                   b1 = con - b1;
                   b2 = dt - b1;
@@ -859,11 +859,11 @@ void BLAS_strsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_temp3 * split;
+                    con = head_temp3 * SPLIT;
                     a11 = con - head_temp3;
                     a11 = con - a11;
                     a21 = head_temp3 - a11;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - dt;
                     b1 = con - b1;
                     b2 = dt - b1;
@@ -933,10 +933,10 @@ void BLAS_strsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                     /* Split t1 and b into two parts with at most 26 bits each,
                        using the Dekker-Veltkamp method. */
-                    con = t1 * split;
+                    con = t1 * SPLIT;
                     t11 = con - (con - t1);
                     t21 = t1 - t11;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - (con - dt);
                     b2 = dt - b1;
 
@@ -987,11 +987,11 @@ void BLAS_strsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   /* Compute double-double = double-double * double. */
                   double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                  con = head_temp3 * split;
+                  con = head_temp3 * SPLIT;
                   a11 = con - head_temp3;
                   a11 = con - a11;
                   a21 = head_temp3 - a11;
-                  con = dt * split;
+                  con = dt * SPLIT;
                   b1 = con - dt;
                   b1 = con - b1;
                   b2 = dt - b1;
@@ -1020,11 +1020,11 @@ void BLAS_strsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_temp3 * split;
+                    con = head_temp3 * SPLIT;
                     a11 = con - head_temp3;
                     a11 = con - a11;
                     a21 = head_temp3 - a11;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - dt;
                     b1 = con - b1;
                     b2 = dt - b1;
@@ -1094,10 +1094,10 @@ void BLAS_strsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                     /* Split t1 and b into two parts with at most 26 bits each,
                        using the Dekker-Veltkamp method. */
-                    con = t1 * split;
+                    con = t1 * SPLIT;
                     t11 = con - (con - t1);
                     t21 = t1 - t11;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - (con - dt);
                     b2 = dt - b1;
 

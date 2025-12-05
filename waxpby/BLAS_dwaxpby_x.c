@@ -161,11 +161,11 @@ void BLAS_dwaxpby_x(int n, double alpha, const double *x, int incx,
           /* Compute double_double = double * double. */
           double a1, a2, b1, b2, con;
 
-          con = alpha_i * split;
+          con = alpha_i * SPLIT;
           a1 = con - alpha_i;
           a1 = con - a1;
           a2 = alpha_i - a1;
-          con = x_ii * split;
+          con = x_ii * SPLIT;
           b1 = con - x_ii;
           b1 = con - b1;
           b2 = x_ii - b1;
@@ -177,11 +177,11 @@ void BLAS_dwaxpby_x(int n, double alpha, const double *x, int incx,
           /* Compute double_double = double * double. */
           double a1, a2, b1, b2, con;
 
-          con = beta_i * split;
+          con = beta_i * SPLIT;
           a1 = con - beta_i;
           a1 = con - a1;
           a2 = beta_i - a1;
-          con = y_ii * split;
+          con = y_ii * SPLIT;
           b1 = con - y_ii;
           b1 = con - b1;
           b2 = y_ii - b1;

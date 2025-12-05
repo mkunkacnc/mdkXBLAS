@@ -585,11 +585,11 @@ void BLAS_ctbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - dt;
                     b1 = con - b1;
                     b2 = dt - b1;
@@ -611,11 +611,11 @@ void BLAS_ctbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - dt;
                     b1 = con - b1;
                     b2 = dt - b1;
@@ -736,10 +736,10 @@ void BLAS_ctbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                   /* Split t1 and b into two parts with at most 26 bits each,
                      using the Dekker-Veltkamp method. */
-                  con = t1 * split;
+                  con = t1 * SPLIT;
                   t11 = con - (con - t1);
                   t21 = t1 - t11;
-                  con = T_element * split;
+                  con = T_element * SPLIT;
                   b1 = con - (con - T_element);
                   b2 = T_element - b1;
 
@@ -773,10 +773,10 @@ void BLAS_ctbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                   /* Split t1 and b into two parts with at most 26 bits each,
                      using the Dekker-Veltkamp method. */
-                  con = t1 * split;
+                  con = t1 * SPLIT;
                   t11 = con - (con - t1);
                   t21 = t1 - t11;
-                  con = T_element * split;
+                  con = T_element * SPLIT;
                   b1 = con - (con - T_element);
                   b2 = T_element - b1;
 
@@ -893,11 +893,11 @@ void BLAS_ctbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - dt;
                     b1 = con - b1;
                     b2 = dt - b1;
@@ -919,11 +919,11 @@ void BLAS_ctbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - dt;
                     b1 = con - b1;
                     b2 = dt - b1;
@@ -1045,11 +1045,11 @@ void BLAS_ctbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - dt;
                     b1 = con - b1;
                     b2 = dt - b1;
@@ -1071,11 +1071,11 @@ void BLAS_ctbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - dt;
                     b1 = con - b1;
                     b2 = dt - b1;
@@ -1196,10 +1196,10 @@ void BLAS_ctbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                   /* Split t1 and b into two parts with at most 26 bits each,
                      using the Dekker-Veltkamp method. */
-                  con = t1 * split;
+                  con = t1 * SPLIT;
                   t11 = con - (con - t1);
                   t21 = t1 - t11;
-                  con = T_element * split;
+                  con = T_element * SPLIT;
                   b1 = con - (con - T_element);
                   b2 = T_element - b1;
 
@@ -1233,10 +1233,10 @@ void BLAS_ctbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                   /* Split t1 and b into two parts with at most 26 bits each,
                      using the Dekker-Veltkamp method. */
-                  con = t1 * split;
+                  con = t1 * SPLIT;
                   t11 = con - (con - t1);
                   t21 = t1 - t11;
-                  con = T_element * split;
+                  con = T_element * SPLIT;
                   b1 = con - (con - T_element);
                   b2 = T_element - b1;
 

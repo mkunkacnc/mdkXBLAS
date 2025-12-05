@@ -165,11 +165,11 @@ void BLAS_ddot_d_s_x(enum blas_conj_type conj, int n, double alpha,
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
 
-            con = x_ii * split;
+            con = x_ii * SPLIT;
             a1 = con - x_ii;
             a1 = con - a1;
             a2 = x_ii - a1;
-            con = dt * split;
+            con = dt * SPLIT;
             b1 = con - dt;
             b1 = con - b1;
             b2 = dt - b1;
@@ -215,11 +215,11 @@ void BLAS_ddot_d_s_x(enum blas_conj_type conj, int n, double alpha,
         /* Compute double-double = double-double * double. */
         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-        con = head_sum * split;
+        con = head_sum * SPLIT;
         a11 = con - head_sum;
         a11 = con - a11;
         a21 = head_sum - a11;
-        con = alpha_i * split;
+        con = alpha_i * SPLIT;
         b1 = con - alpha_i;
         b1 = con - b1;
         b2 = alpha_i - b1;
@@ -238,11 +238,11 @@ void BLAS_ddot_d_s_x(enum blas_conj_type conj, int n, double alpha,
         /* Compute double_double = double * double. */
         double a1, a2, b1, b2, con;
 
-        con = r_v * split;
+        con = r_v * SPLIT;
         a1 = con - r_v;
         a1 = con - a1;
         a2 = r_v - a1;
-        con = beta_i * split;
+        con = beta_i * SPLIT;
         b1 = con - beta_i;
         b1 = con - b1;
         b2 = beta_i - b1;

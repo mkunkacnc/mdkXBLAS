@@ -1,5 +1,30 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
+
+/* compute c = a * b; */
+void compute_doubledouble_eq_double_mul_double(double* head_c,
+                                               double* tail_c,
+                                               double a,
+                                               double b)
+{
+    /* Compute double_double = double * double. */
+    double a1, a2, b1, b2, con;
+
+#define SPLIT_VAR(a)    \
+    con = a * SPLIT;    \
+    a##1 = con - a;     \
+    a##1 = con - a##1;  \
+    a##2 = a - a##1;
+
+    SPLIT_VAR(a)
+    SPLIT_VAR(b)
+
+#undef SPLIT_VAR
+
+    *head_c = a * b;
+    *tail_c = (((a1 * b1 - *head_c) + a1 * b2) + a2 * b1) + a2 * b2;
+}
+
 void BLAS_daxpby_s_x(int n, double alpha, const float *x, int incx,
                      double beta, double *y,
                      int incy, enum blas_prec_type prec)
@@ -130,17 +155,20 @@ void BLAS_daxpby_s_x(int n, double alpha, const float *x, int incx,
       for (i = 0; i < n; ++i) {
         x_ii = x_i[ix];
         y_ii = y_i[iy];
+        compute_doubledouble_eq_double_mul_double(&head_tmpx, &tail_tmpx, (double)x_ii, alpha_i);
+        compute_doubledouble_eq_double_mul_double(&head_tmpy, &tail_tmpy,         y_ii, beta_i);
+#if 0
         {
           double dt = (double) x_ii;
           {
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
 
-            con = alpha_i * split;
+            con = alpha_i * SPLIT;
             a1 = con - alpha_i;
             a1 = con - a1;
             a2 = alpha_i - a1;
-            con = dt * split;
+            con = dt * SPLIT;
             b1 = con - dt;
             b1 = con - b1;
             b2 = dt - b1;
@@ -154,11 +182,11 @@ void BLAS_daxpby_s_x(int n, double alpha, const float *x, int incx,
           /* Compute double_double = double * double. */
           double a1, a2, b1, b2, con;
 
-          con = beta_i * split;
+          con = beta_i * SPLIT;
           a1 = con - beta_i;
           a1 = con - a1;
           a2 = beta_i - a1;
-          con = y_ii * split;
+          con = y_ii * SPLIT;
           b1 = con - y_ii;
           b1 = con - b1;
           b2 = y_ii - b1;
@@ -166,6 +194,7 @@ void BLAS_daxpby_s_x(int n, double alpha, const float *x, int incx,
           head_tmpy = beta_i * y_ii;
           tail_tmpy = (((a1 * b1 - head_tmpy) + a1 * b2) + a2 * b1) + a2 * b2;
         }                        /* tmpy = beta * y[iy] */
+#endif
         {
           /* Compute double-double = double-double + double-double. */
           double bv;

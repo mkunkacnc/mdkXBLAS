@@ -1081,11 +1081,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -1105,11 +1105,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -1161,11 +1161,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -1185,11 +1185,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -1261,11 +1261,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -1285,11 +1285,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -1341,11 +1341,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -1365,11 +1365,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -1542,10 +1542,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -1583,10 +1583,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -1635,11 +1635,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -1662,11 +1662,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -1703,11 +1703,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[1] * split;
+                        con = T_element[1] * SPLIT;
                         b1 = con - T_element[1];
                         b1 = con - b1;
                         b2 = T_element[1] - b1;
@@ -1737,11 +1737,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -1799,8 +1799,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -1847,7 +1847,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -1905,11 +1905,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -1972,8 +1972,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -2020,7 +2020,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -2078,11 +2078,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[0] * split;
+                        con = T_element[0] * SPLIT;
                         b1 = con - T_element[0];
                         b1 = con - b1;
                         b2 = T_element[0] - b1;
@@ -2112,11 +2112,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -2174,8 +2174,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -2222,7 +2222,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -2280,11 +2280,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -2347,8 +2347,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -2395,7 +2395,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -2467,11 +2467,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a0 * split;
+                        con = head_a0 * SPLIT;
                         a11 = con - head_a0;
                         a11 = con - a11;
                         a21 = head_a0 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;
@@ -2494,11 +2494,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a1 * split;
+                        con = head_a1 * SPLIT;
                         a11 = con - head_a1;
                         a11 = con - a11;
                         a21 = head_a1 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;
@@ -2557,11 +2557,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -2581,11 +2581,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -2637,11 +2637,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -2661,11 +2661,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -2737,11 +2737,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -2761,11 +2761,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -2817,11 +2817,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -2841,11 +2841,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -3018,10 +3018,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -3059,10 +3059,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -3111,11 +3111,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -3138,11 +3138,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -3179,11 +3179,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[1] * split;
+                        con = T_element[1] * SPLIT;
                         b1 = con - T_element[1];
                         b1 = con - b1;
                         b2 = T_element[1] - b1;
@@ -3213,11 +3213,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -3275,8 +3275,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -3323,7 +3323,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -3381,11 +3381,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -3448,8 +3448,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -3496,7 +3496,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -3554,11 +3554,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[0] * split;
+                        con = T_element[0] * SPLIT;
                         b1 = con - T_element[0];
                         b1 = con - b1;
                         b2 = T_element[0] - b1;
@@ -3588,11 +3588,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -3650,8 +3650,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -3698,7 +3698,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -3756,11 +3756,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -3823,8 +3823,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -3871,7 +3871,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -3943,11 +3943,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a0 * split;
+                        con = head_a0 * SPLIT;
                         a11 = con - head_a0;
                         a11 = con - a11;
                         a21 = head_a0 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;
@@ -3970,11 +3970,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a1 * split;
+                        con = head_a1 * SPLIT;
                         a11 = con - head_a1;
                         a11 = con - a11;
                         a21 = head_a1 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;
@@ -4038,11 +4038,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -4062,11 +4062,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -4118,11 +4118,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -4142,11 +4142,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -4218,11 +4218,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -4242,11 +4242,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -4298,11 +4298,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -4322,11 +4322,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -4499,10 +4499,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -4540,10 +4540,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -4592,11 +4592,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -4619,11 +4619,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -4660,11 +4660,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[1] * split;
+                        con = T_element[1] * SPLIT;
                         b1 = con - T_element[1];
                         b1 = con - b1;
                         b2 = T_element[1] - b1;
@@ -4694,11 +4694,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -4756,8 +4756,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -4804,7 +4804,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -4862,11 +4862,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -4929,8 +4929,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -4977,7 +4977,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -5035,11 +5035,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[0] * split;
+                        con = T_element[0] * SPLIT;
                         b1 = con - T_element[0];
                         b1 = con - b1;
                         b2 = T_element[0] - b1;
@@ -5069,11 +5069,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -5131,8 +5131,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -5179,7 +5179,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -5237,11 +5237,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -5304,8 +5304,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -5352,7 +5352,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -5424,11 +5424,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a0 * split;
+                        con = head_a0 * SPLIT;
                         a11 = con - head_a0;
                         a11 = con - a11;
                         a21 = head_a0 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;
@@ -5451,11 +5451,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a1 * split;
+                        con = head_a1 * SPLIT;
                         a11 = con - head_a1;
                         a11 = con - a11;
                         a21 = head_a1 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;
@@ -5513,11 +5513,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -5537,11 +5537,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -5593,11 +5593,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -5617,11 +5617,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -5693,11 +5693,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -5717,11 +5717,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -5773,11 +5773,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -5797,11 +5797,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -5974,10 +5974,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -6015,10 +6015,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -6067,11 +6067,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -6094,11 +6094,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -6135,11 +6135,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[1] * split;
+                        con = T_element[1] * SPLIT;
                         b1 = con - T_element[1];
                         b1 = con - b1;
                         b2 = T_element[1] - b1;
@@ -6169,11 +6169,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -6231,8 +6231,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -6279,7 +6279,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -6337,11 +6337,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -6404,8 +6404,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -6452,7 +6452,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -6510,11 +6510,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[0] * split;
+                        con = T_element[0] * SPLIT;
                         b1 = con - T_element[0];
                         b1 = con - b1;
                         b2 = T_element[0] - b1;
@@ -6544,11 +6544,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -6606,8 +6606,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -6654,7 +6654,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -6712,11 +6712,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -6779,8 +6779,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -6827,7 +6827,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -6899,11 +6899,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a0 * split;
+                        con = head_a0 * SPLIT;
                         a11 = con - head_a0;
                         a11 = con - a11;
                         a21 = head_a0 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;
@@ -6926,11 +6926,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a1 * split;
+                        con = head_a1 * SPLIT;
                         a11 = con - head_a1;
                         a11 = con - a11;
                         a21 = head_a1 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;
@@ -6993,11 +6993,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -7017,11 +7017,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -7073,11 +7073,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -7097,11 +7097,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -7173,11 +7173,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -7197,11 +7197,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -7253,11 +7253,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -7277,11 +7277,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -7454,10 +7454,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -7495,10 +7495,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -7547,11 +7547,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -7574,11 +7574,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -7615,11 +7615,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[1] * split;
+                        con = T_element[1] * SPLIT;
                         b1 = con - T_element[1];
                         b1 = con - b1;
                         b2 = T_element[1] - b1;
@@ -7649,11 +7649,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -7711,8 +7711,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -7759,7 +7759,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -7817,11 +7817,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -7884,8 +7884,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -7932,7 +7932,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -7990,11 +7990,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[0] * split;
+                        con = T_element[0] * SPLIT;
                         b1 = con - T_element[0];
                         b1 = con - b1;
                         b2 = T_element[0] - b1;
@@ -8024,11 +8024,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -8086,8 +8086,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -8134,7 +8134,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -8192,11 +8192,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -8259,8 +8259,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -8307,7 +8307,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -8379,11 +8379,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a0 * split;
+                        con = head_a0 * SPLIT;
                         a11 = con - head_a0;
                         a11 = con - a11;
                         a21 = head_a0 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;
@@ -8406,11 +8406,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a1 * split;
+                        con = head_a1 * SPLIT;
                         a11 = con - head_a1;
                         a11 = con - a11;
                         a21 = head_a1 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;
@@ -8469,11 +8469,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -8493,11 +8493,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -8549,11 +8549,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -8573,11 +8573,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -8649,11 +8649,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -8673,11 +8673,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -8729,11 +8729,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -8753,11 +8753,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -8930,10 +8930,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -8971,10 +8971,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -9023,11 +9023,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -9050,11 +9050,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -9091,11 +9091,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[1] * split;
+                        con = T_element[1] * SPLIT;
                         b1 = con - T_element[1];
                         b1 = con - b1;
                         b2 = T_element[1] - b1;
@@ -9125,11 +9125,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -9187,8 +9187,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -9235,7 +9235,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -9293,11 +9293,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -9360,8 +9360,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -9408,7 +9408,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -9466,11 +9466,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[0] * split;
+                        con = T_element[0] * SPLIT;
                         b1 = con - T_element[0];
                         b1 = con - b1;
                         b2 = T_element[0] - b1;
@@ -9500,11 +9500,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -9562,8 +9562,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -9610,7 +9610,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -9668,11 +9668,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -9735,8 +9735,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -9783,7 +9783,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -9855,11 +9855,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a0 * split;
+                        con = head_a0 * SPLIT;
                         a11 = con - head_a0;
                         a11 = con - a11;
                         a21 = head_a0 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;
@@ -9882,11 +9882,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a1 * split;
+                        con = head_a1 * SPLIT;
                         a11 = con - head_a1;
                         a11 = con - a11;
                         a21 = head_a1 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;
@@ -9950,11 +9950,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -9974,11 +9974,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -10030,11 +10030,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -10054,11 +10054,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -10130,11 +10130,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -10154,11 +10154,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -10210,11 +10210,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -10234,11 +10234,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -10411,10 +10411,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -10452,10 +10452,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -10504,11 +10504,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -10531,11 +10531,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -10572,11 +10572,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[1] * split;
+                        con = T_element[1] * SPLIT;
                         b1 = con - T_element[1];
                         b1 = con - b1;
                         b2 = T_element[1] - b1;
@@ -10606,11 +10606,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -10668,8 +10668,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -10716,7 +10716,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -10774,11 +10774,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -10841,8 +10841,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -10889,7 +10889,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -10947,11 +10947,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[0] * split;
+                        con = T_element[0] * SPLIT;
                         b1 = con - T_element[0];
                         b1 = con - b1;
                         b2 = T_element[0] - b1;
@@ -10981,11 +10981,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -11043,8 +11043,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -11091,7 +11091,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -11149,11 +11149,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -11216,8 +11216,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -11264,7 +11264,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -11336,11 +11336,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a0 * split;
+                        con = head_a0 * SPLIT;
                         a11 = con - head_a0;
                         a11 = con - a11;
                         a21 = head_a0 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;
@@ -11363,11 +11363,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a1 * split;
+                        con = head_a1 * SPLIT;
                         a11 = con - head_a1;
                         a11 = con - a11;
                         a21 = head_a1 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;
@@ -11425,11 +11425,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -11449,11 +11449,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -11505,11 +11505,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a1 * split;
+                    con = head_a1 * SPLIT;
                     a11 = con - head_a1;
                     a11 = con - a11;
                     a21 = head_a1 - a11;
-                    con = alpha_i[0] * split;
+                    con = alpha_i[0] * SPLIT;
                     b1 = con - alpha_i[0];
                     b1 = con - b1;
                     b2 = alpha_i[0] - b1;
@@ -11529,11 +11529,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                    con = head_a0 * split;
+                    con = head_a0 * SPLIT;
                     a11 = con - head_a0;
                     a11 = con - a11;
                     a21 = head_a0 - a11;
-                    con = alpha_i[1] * split;
+                    con = alpha_i[1] * SPLIT;
                     b1 = con - alpha_i[1];
                     b1 = con - b1;
                     b2 = alpha_i[1] - b1;
@@ -11605,11 +11605,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -11629,11 +11629,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -11685,11 +11685,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a1 * split;
+                      con = head_a1 * SPLIT;
                       a11 = con - head_a1;
                       a11 = con - a11;
                       a21 = head_a1 - a11;
-                      con = T_element[0] * split;
+                      con = T_element[0] * SPLIT;
                       b1 = con - T_element[0];
                       b1 = con - b1;
                       b2 = T_element[0] - b1;
@@ -11709,11 +11709,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                      con = head_a0 * split;
+                      con = head_a0 * SPLIT;
                       a11 = con - head_a0;
                       a11 = con - a11;
                       a21 = head_a0 - a11;
-                      con = T_element[1] * split;
+                      con = T_element[1] * SPLIT;
                       b1 = con - T_element[1];
                       b1 = con - b1;
                       b2 = T_element[1] - b1;
@@ -11886,10 +11886,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -11927,10 +11927,10 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
                           /* Split t1 and b into two parts with at most 26 bits each,
                              using the Dekker-Veltkamp method. */
-                          con = t1 * split;
+                          con = t1 * SPLIT;
                           t11 = con - (con - t1);
                           t21 = t1 - t11;
-                          con = 16.0 * split;
+                          con = 16.0 * SPLIT;
                           b1 = con - (con - 16.0);
                           b2 = 16.0 - b1;
 
@@ -11979,11 +11979,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -12006,11 +12006,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = s * split;
+                          con = s * SPLIT;
                           b1 = con - s;
                           b1 = con - b1;
                           b2 = s - b1;
@@ -12047,11 +12047,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[1] * split;
+                        con = T_element[1] * SPLIT;
                         b1 = con - T_element[1];
                         b1 = con - b1;
                         b2 = T_element[1] - b1;
@@ -12081,11 +12081,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -12143,8 +12143,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -12191,7 +12191,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -12249,11 +12249,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -12316,8 +12316,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -12364,7 +12364,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -12422,11 +12422,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
 
-                        con = r * split;
+                        con = r * SPLIT;
                         a1 = con - r;
                         a1 = con - a1;
                         a2 = r - a1;
-                        con = T_element[0] * split;
+                        con = T_element[0] * SPLIT;
                         b1 = con - T_element[0];
                         b1 = con - b1;
                         b2 = T_element[0] - b1;
@@ -12456,11 +12456,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -12518,8 +12518,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -12566,7 +12566,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -12624,11 +12624,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_t1 * split;
+                        con = head_t1 * SPLIT;
                         a11 = con - head_t1;
                         a11 = con - a11;
                         a21 = head_t1 - a11;
-                        con = r * split;
+                        con = r * SPLIT;
                         b1 = con - r;
                         b1 = con - b1;
                         b2 = r - b1;
@@ -12691,8 +12691,8 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         q1 = head_t2 / head_t;        /*  approximate quotient */
 
                         /*  Compute  q1 * b  */
-                        cona = q1 * split;
-                        conb = head_t * split;
+                        cona = q1 * SPLIT;
+                        conb = head_t * SPLIT;
                         a1 = cona - (cona - q1);
                         b1 = conb - (conb - head_t);
                         a2 = q1 - a1;
@@ -12739,7 +12739,7 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
                         /*  Compute residual   r1 - q2 * b          */
-                        cona = q2 * split;
+                        cona = q2 * SPLIT;
                         a1 = cona - (cona - q2);
                         a2 = q2 - a1;
 
@@ -12811,11 +12811,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a0 * split;
+                        con = head_a0 * SPLIT;
                         a11 = con - head_a0;
                         a11 = con - a11;
                         a21 = head_a0 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;
@@ -12838,11 +12838,11 @@ void BLAS_ztrsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         /* Compute double-double = double-double * double. */
                         double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                        con = head_a1 * split;
+                        con = head_a1 * SPLIT;
                         a11 = con - head_a1;
                         a11 = con - a11;
                         a21 = head_a1 - a11;
-                        con = S * split;
+                        con = S * SPLIT;
                         b1 = con - S;
                         b1 = con - b1;
                         b2 = S - b1;

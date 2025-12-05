@@ -517,11 +517,11 @@ void BLAS_dgemm_d_s_x(enum blas_order_type order, enum blas_trans_type transa,
               /* Compute double_double = double * double. */
               double a1, a2, b1, b2, con;
 
-              con = c_elem * split;
+              con = c_elem * SPLIT;
               a1 = con - c_elem;
               a1 = con - a1;
               a2 = c_elem - a1;
-              con = beta_i * split;
+              con = beta_i * SPLIT;
               b1 = con - beta_i;
               b1 = con - b1;
               b2 = beta_i - b1;
@@ -570,11 +570,11 @@ void BLAS_dgemm_d_s_x(enum blas_order_type order, enum blas_trans_type transa,
                     /* Compute double_double = double * double. */
                     double a1, a2, b1, b2, con;
 
-                    con = a_elem * split;
+                    con = a_elem * SPLIT;
                     a1 = con - a_elem;
                     a1 = con - a1;
                     a2 = a_elem - a1;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - dt;
                     b1 = con - b1;
                     b2 = dt - b1;
@@ -649,11 +649,11 @@ void BLAS_dgemm_d_s_x(enum blas_order_type order, enum blas_trans_type transa,
                     /* Compute double_double = double * double. */
                     double a1, a2, b1, b2, con;
 
-                    con = a_elem * split;
+                    con = a_elem * SPLIT;
                     a1 = con - a_elem;
                     a1 = con - a1;
                     a2 = a_elem - a1;
-                    con = dt * split;
+                    con = dt * SPLIT;
                     b1 = con - dt;
                     b1 = con - b1;
                     b2 = dt - b1;
@@ -697,11 +697,11 @@ void BLAS_dgemm_d_s_x(enum blas_order_type order, enum blas_trans_type transa,
                 /* Compute double_double = double * double. */
                 double a1, a2, b1, b2, con;
 
-                con = c_elem * split;
+                con = c_elem * SPLIT;
                 a1 = con - c_elem;
                 a1 = con - a1;
                 a2 = c_elem - a1;
-                con = beta_i * split;
+                con = beta_i * SPLIT;
                 b1 = con - beta_i;
                 b1 = con - b1;
                 b2 = beta_i - b1;
@@ -776,11 +776,11 @@ void BLAS_dgemm_d_s_x(enum blas_order_type order, enum blas_trans_type transa,
                   /* Compute double_double = double * double. */
                   double a1, a2, b1, b2, con;
 
-                  con = a_elem * split;
+                  con = a_elem * SPLIT;
                   a1 = con - a_elem;
                   a1 = con - a1;
                   a2 = a_elem - a1;
-                  con = dt * split;
+                  con = dt * SPLIT;
                   b1 = con - dt;
                   b1 = con - b1;
                   b2 = dt - b1;
@@ -823,11 +823,11 @@ void BLAS_dgemm_d_s_x(enum blas_order_type order, enum blas_trans_type transa,
               /* Compute double-double = double-double * double. */
               double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-              con = head_sum * split;
+              con = head_sum * SPLIT;
               a11 = con - head_sum;
               a11 = con - a11;
               a21 = head_sum - a11;
-              con = alpha_i * split;
+              con = alpha_i * SPLIT;
               b1 = con - alpha_i;
               b1 = con - b1;
               b2 = alpha_i - b1;
@@ -847,11 +847,11 @@ void BLAS_dgemm_d_s_x(enum blas_order_type order, enum blas_trans_type transa,
               /* Compute double_double = double * double. */
               double a1, a2, b1, b2, con;
 
-              con = c_elem * split;
+              con = c_elem * SPLIT;
               a1 = con - c_elem;
               a1 = con - a1;
               a2 = c_elem - a1;
-              con = beta_i * split;
+              con = beta_i * SPLIT;
               b1 = con - beta_i;
               b1 = con - b1;
               b2 = beta_i - b1;

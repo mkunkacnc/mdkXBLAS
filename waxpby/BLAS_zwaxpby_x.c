@@ -182,11 +182,11 @@ void BLAS_zwaxpby_x(int n, const void *alpha, const void *x, int incx,
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
 
-            con = alpha_i[0] * split;
+            con = alpha_i[0] * SPLIT;
             a1 = con - alpha_i[0];
             a1 = con - a1;
             a2 = alpha_i[0] - a1;
-            con = x_ii[0] * split;
+            con = x_ii[0] * SPLIT;
             b1 = con - x_ii[0];
             b1 = con - b1;
             b2 = x_ii[0] - b1;
@@ -198,11 +198,11 @@ void BLAS_zwaxpby_x(int n, const void *alpha, const void *x, int incx,
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
 
-            con = alpha_i[1] * split;
+            con = alpha_i[1] * SPLIT;
             a1 = con - alpha_i[1];
             a1 = con - a1;
             a2 = alpha_i[1] - a1;
-            con = x_ii[1] * split;
+            con = x_ii[1] * SPLIT;
             b1 = con - x_ii[1];
             b1 = con - b1;
             b2 = x_ii[1] - b1;
@@ -246,11 +246,11 @@ void BLAS_zwaxpby_x(int n, const void *alpha, const void *x, int incx,
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
 
-            con = alpha_i[1] * split;
+            con = alpha_i[1] * SPLIT;
             a1 = con - alpha_i[1];
             a1 = con - a1;
             a2 = alpha_i[1] - a1;
-            con = x_ii[0] * split;
+            con = x_ii[0] * SPLIT;
             b1 = con - x_ii[0];
             b1 = con - b1;
             b2 = x_ii[0] - b1;
@@ -262,11 +262,11 @@ void BLAS_zwaxpby_x(int n, const void *alpha, const void *x, int incx,
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
 
-            con = alpha_i[0] * split;
+            con = alpha_i[0] * SPLIT;
             a1 = con - alpha_i[0];
             a1 = con - a1;
             a2 = alpha_i[0] - a1;
-            con = x_ii[1] * split;
+            con = x_ii[1] * SPLIT;
             b1 = con - x_ii[1];
             b1 = con - b1;
             b2 = x_ii[1] - b1;
@@ -313,11 +313,11 @@ void BLAS_zwaxpby_x(int n, const void *alpha, const void *x, int incx,
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
 
-            con = beta_i[0] * split;
+            con = beta_i[0] * SPLIT;
             a1 = con - beta_i[0];
             a1 = con - a1;
             a2 = beta_i[0] - a1;
-            con = y_ii[0] * split;
+            con = y_ii[0] * SPLIT;
             b1 = con - y_ii[0];
             b1 = con - b1;
             b2 = y_ii[0] - b1;
@@ -329,11 +329,11 @@ void BLAS_zwaxpby_x(int n, const void *alpha, const void *x, int incx,
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
 
-            con = beta_i[1] * split;
+            con = beta_i[1] * SPLIT;
             a1 = con - beta_i[1];
             a1 = con - a1;
             a2 = beta_i[1] - a1;
-            con = y_ii[1] * split;
+            con = y_ii[1] * SPLIT;
             b1 = con - y_ii[1];
             b1 = con - b1;
             b2 = y_ii[1] - b1;
@@ -377,11 +377,11 @@ void BLAS_zwaxpby_x(int n, const void *alpha, const void *x, int incx,
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
 
-            con = beta_i[1] * split;
+            con = beta_i[1] * SPLIT;
             a1 = con - beta_i[1];
             a1 = con - a1;
             a2 = beta_i[1] - a1;
-            con = y_ii[0] * split;
+            con = y_ii[0] * SPLIT;
             b1 = con - y_ii[0];
             b1 = con - b1;
             b2 = y_ii[0] - b1;
@@ -393,11 +393,11 @@ void BLAS_zwaxpby_x(int n, const void *alpha, const void *x, int incx,
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
 
-            con = beta_i[0] * split;
+            con = beta_i[0] * SPLIT;
             a1 = con - beta_i[0];
             a1 = con - a1;
             a2 = beta_i[0] - a1;
-            con = y_ii[1] * split;
+            con = y_ii[1] * SPLIT;
             b1 = con - y_ii[1];
             b1 = con - b1;
             b2 = y_ii[1] - b1;

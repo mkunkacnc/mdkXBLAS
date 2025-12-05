@@ -926,11 +926,11 @@ void BLAS_cgemv2_s_s_x(enum blas_order_type order, enum blas_trans_type trans,
                   /* Compute double-double = double-double * double. */
                   double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                  con = head_sum * split;
+                  con = head_sum * SPLIT;
                   a11 = con - head_sum;
                   a11 = con - a11;
                   a21 = head_sum - a11;
-                  con = dt * split;
+                  con = dt * SPLIT;
                   b1 = con - dt;
                   b1 = con - b1;
                   b2 = dt - b1;
@@ -952,11 +952,11 @@ void BLAS_cgemv2_s_s_x(enum blas_order_type order, enum blas_trans_type trans,
                   /* Compute double-double = double-double * double. */
                   double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                  con = head_sum * split;
+                  con = head_sum * SPLIT;
                   a11 = con - head_sum;
                   a11 = con - a11;
                   a21 = head_sum - a11;
-                  con = dt * split;
+                  con = dt * SPLIT;
                   b1 = con - dt;
                   b1 = con - b1;
                   b2 = dt - b1;
@@ -982,11 +982,11 @@ void BLAS_cgemv2_s_s_x(enum blas_order_type order, enum blas_trans_type trans,
                   /* Compute double-double = double-double * double. */
                   double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                  con = head_sum2 * split;
+                  con = head_sum2 * SPLIT;
                   a11 = con - head_sum2;
                   a11 = con - a11;
                   a21 = head_sum2 - a11;
-                  con = dt * split;
+                  con = dt * SPLIT;
                   b1 = con - dt;
                   b1 = con - b1;
                   b2 = dt - b1;
@@ -1008,11 +1008,11 @@ void BLAS_cgemv2_s_s_x(enum blas_order_type order, enum blas_trans_type trans,
                   /* Compute double-double = double-double * double. */
                   double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                  con = head_sum2 * split;
+                  con = head_sum2 * SPLIT;
                   a11 = con - head_sum2;
                   a11 = con - a11;
                   a21 = head_sum2 - a11;
-                  con = dt * split;
+                  con = dt * SPLIT;
                   b1 = con - dt;
                   b1 = con - b1;
                   b2 = dt - b1;
@@ -1419,11 +1419,11 @@ void BLAS_cgemv2_s_s_x(enum blas_order_type order, enum blas_trans_type trans,
                   /* Compute double-double = double-double * double. */
                   double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                  con = head_sum * split;
+                  con = head_sum * SPLIT;
                   a11 = con - head_sum;
                   a11 = con - a11;
                   a21 = head_sum - a11;
-                  con = dt * split;
+                  con = dt * SPLIT;
                   b1 = con - dt;
                   b1 = con - b1;
                   b2 = dt - b1;
@@ -1445,11 +1445,11 @@ void BLAS_cgemv2_s_s_x(enum blas_order_type order, enum blas_trans_type trans,
                   /* Compute double-double = double-double * double. */
                   double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                  con = head_sum * split;
+                  con = head_sum * SPLIT;
                   a11 = con - head_sum;
                   a11 = con - a11;
                   a21 = head_sum - a11;
-                  con = dt * split;
+                  con = dt * SPLIT;
                   b1 = con - dt;
                   b1 = con - b1;
                   b2 = dt - b1;
@@ -1475,11 +1475,11 @@ void BLAS_cgemv2_s_s_x(enum blas_order_type order, enum blas_trans_type trans,
                   /* Compute double-double = double-double * double. */
                   double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                  con = head_sum2 * split;
+                  con = head_sum2 * SPLIT;
                   a11 = con - head_sum2;
                   a11 = con - a11;
                   a21 = head_sum2 - a11;
-                  con = dt * split;
+                  con = dt * SPLIT;
                   b1 = con - dt;
                   b1 = con - b1;
                   b2 = dt - b1;
@@ -1501,11 +1501,11 @@ void BLAS_cgemv2_s_s_x(enum blas_order_type order, enum blas_trans_type trans,
                   /* Compute double-double = double-double * double. */
                   double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                  con = head_sum2 * split;
+                  con = head_sum2 * SPLIT;
                   a11 = con - head_sum2;
                   a11 = con - a11;
                   a21 = head_sum2 - a11;
-                  con = dt * split;
+                  con = dt * SPLIT;
                   b1 = con - dt;
                   b1 = con - b1;
                   b2 = dt - b1;

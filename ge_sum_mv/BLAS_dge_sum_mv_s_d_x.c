@@ -491,11 +491,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
                   /* Compute double_double = double * double. */
                   double a1, a2, b1, b2, con;
 
-                  con = dt * split;
+                  con = dt * SPLIT;
                   a1 = con - dt;
                   a1 = con - a1;
                   a2 = dt - a1;
-                  con = x_elem * split;
+                  con = x_elem * SPLIT;
                   b1 = con - x_elem;
                   b1 = con - b1;
                   b2 = x_elem - b1;
@@ -558,11 +558,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
                   /* Compute double_double = double * double. */
                   double a1, a2, b1, b2, con;
 
-                  con = dt * split;
+                  con = dt * SPLIT;
                   a1 = con - dt;
                   a1 = con - a1;
                   a2 = dt - a1;
-                  con = x_elem * split;
+                  con = x_elem * SPLIT;
                   b1 = con - x_elem;
                   b1 = con - b1;
                   b2 = x_elem - b1;
@@ -606,11 +606,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
               /* Compute double-double = double-double * double. */
               double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-              con = head_sumB * split;
+              con = head_sumB * SPLIT;
               a11 = con - head_sumB;
               a11 = con - a11;
               a21 = head_sumB - a11;
-              con = beta_i * split;
+              con = beta_i * SPLIT;
               b1 = con - beta_i;
               b1 = con - b1;
               b2 = beta_i - b1;
@@ -649,11 +649,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
                   /* Compute double_double = double * double. */
                   double a1, a2, b1, b2, con;
 
-                  con = dt * split;
+                  con = dt * SPLIT;
                   a1 = con - dt;
                   a1 = con - a1;
                   a2 = dt - a1;
-                  con = x_elem * split;
+                  con = x_elem * SPLIT;
                   b1 = con - x_elem;
                   b1 = con - b1;
                   b2 = x_elem - b1;
@@ -717,11 +717,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
                   /* Compute double_double = double * double. */
                   double a1, a2, b1, b2, con;
 
-                  con = dt * split;
+                  con = dt * SPLIT;
                   a1 = con - dt;
                   a1 = con - a1;
                   a2 = dt - a1;
-                  con = x_elem * split;
+                  con = x_elem * SPLIT;
                   b1 = con - x_elem;
                   b1 = con - b1;
                   b2 = x_elem - b1;
@@ -766,11 +766,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
                   /* Compute double_double = double * double. */
                   double a1, a2, b1, b2, con;
 
-                  con = dt * split;
+                  con = dt * SPLIT;
                   a1 = con - dt;
                   a1 = con - a1;
                   a2 = dt - a1;
-                  con = x_elem * split;
+                  con = x_elem * SPLIT;
                   b1 = con - x_elem;
                   b1 = con - b1;
                   b2 = x_elem - b1;
@@ -864,11 +864,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
                   /* Compute double_double = double * double. */
                   double a1, a2, b1, b2, con;
 
-                  con = dt * split;
+                  con = dt * SPLIT;
                   a1 = con - dt;
                   a1 = con - a1;
                   a2 = dt - a1;
-                  con = x_elem * split;
+                  con = x_elem * SPLIT;
                   b1 = con - x_elem;
                   b1 = con - b1;
                   b2 = x_elem - b1;
@@ -913,11 +913,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
                   /* Compute double_double = double * double. */
                   double a1, a2, b1, b2, con;
 
-                  con = dt * split;
+                  con = dt * SPLIT;
                   a1 = con - dt;
                   a1 = con - a1;
                   a2 = dt - a1;
-                  con = x_elem * split;
+                  con = x_elem * SPLIT;
                   b1 = con - x_elem;
                   b1 = con - b1;
                   b2 = x_elem - b1;
@@ -963,11 +963,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
               /* Compute double-double = double-double * double. */
               double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-              con = head_sumB * split;
+              con = head_sumB * SPLIT;
               a11 = con - head_sumB;
               a11 = con - a11;
               a21 = head_sumB - a11;
-              con = beta_i * split;
+              con = beta_i * SPLIT;
               b1 = con - beta_i;
               b1 = con - b1;
               b2 = beta_i - b1;
@@ -1033,11 +1033,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
                   /* Compute double_double = double * double. */
                   double a1, a2, b1, b2, con;
 
-                  con = dt * split;
+                  con = dt * SPLIT;
                   a1 = con - dt;
                   a1 = con - a1;
                   a2 = dt - a1;
-                  con = x_elem * split;
+                  con = x_elem * SPLIT;
                   b1 = con - x_elem;
                   b1 = con - b1;
                   b2 = x_elem - b1;
@@ -1082,11 +1082,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
               /* Compute double-double = double-double * double. */
               double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-              con = head_sumA * split;
+              con = head_sumA * SPLIT;
               a11 = con - head_sumA;
               a11 = con - a11;
               a21 = head_sumA - a11;
-              con = alpha_i * split;
+              con = alpha_i * SPLIT;
               b1 = con - alpha_i;
               b1 = con - b1;
               b2 = alpha_i - b1;
@@ -1124,11 +1124,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
                   /* Compute double_double = double * double. */
                   double a1, a2, b1, b2, con;
 
-                  con = dt * split;
+                  con = dt * SPLIT;
                   a1 = con - dt;
                   a1 = con - a1;
                   a2 = dt - a1;
-                  con = x_elem * split;
+                  con = x_elem * SPLIT;
                   b1 = con - x_elem;
                   b1 = con - b1;
                   b2 = x_elem - b1;
@@ -1173,11 +1173,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
                   /* Compute double_double = double * double. */
                   double a1, a2, b1, b2, con;
 
-                  con = dt * split;
+                  con = dt * SPLIT;
                   a1 = con - dt;
                   a1 = con - a1;
                   a2 = dt - a1;
-                  con = x_elem * split;
+                  con = x_elem * SPLIT;
                   b1 = con - x_elem;
                   b1 = con - b1;
                   b2 = x_elem - b1;
@@ -1221,11 +1221,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
               /* Compute double-double = double-double * double. */
               double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-              con = head_sumA * split;
+              con = head_sumA * SPLIT;
               a11 = con - head_sumA;
               a11 = con - a11;
               a21 = head_sumA - a11;
-              con = alpha_i * split;
+              con = alpha_i * SPLIT;
               b1 = con - alpha_i;
               b1 = con - b1;
               b2 = alpha_i - b1;
@@ -1292,11 +1292,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
                   /* Compute double_double = double * double. */
                   double a1, a2, b1, b2, con;
 
-                  con = dt * split;
+                  con = dt * SPLIT;
                   a1 = con - dt;
                   a1 = con - a1;
                   a2 = dt - a1;
-                  con = x_elem * split;
+                  con = x_elem * SPLIT;
                   b1 = con - x_elem;
                   b1 = con - b1;
                   b2 = x_elem - b1;
@@ -1341,11 +1341,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
                   /* Compute double_double = double * double. */
                   double a1, a2, b1, b2, con;
 
-                  con = dt * split;
+                  con = dt * SPLIT;
                   a1 = con - dt;
                   a1 = con - a1;
                   a2 = dt - a1;
-                  con = x_elem * split;
+                  con = x_elem * SPLIT;
                   b1 = con - x_elem;
                   b1 = con - b1;
                   b2 = x_elem - b1;
@@ -1389,11 +1389,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
               /* Compute double-double = double-double * double. */
               double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-              con = head_sumA * split;
+              con = head_sumA * SPLIT;
               a11 = con - head_sumA;
               a11 = con - a11;
               a21 = head_sumA - a11;
-              con = alpha_i * split;
+              con = alpha_i * SPLIT;
               b1 = con - alpha_i;
               b1 = con - b1;
               b2 = alpha_i - b1;
@@ -1412,11 +1412,11 @@ void BLAS_dge_sum_mv_s_d_x(enum blas_order_type order, int m, int n,
               /* Compute double-double = double-double * double. */
               double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-              con = head_sumB * split;
+              con = head_sumB * SPLIT;
               a11 = con - head_sumB;
               a11 = con - a11;
               a21 = head_sumB - a11;
-              con = beta_i * split;
+              con = beta_i * SPLIT;
               b1 = con - beta_i;
               b1 = con - b1;
               b2 = beta_i - b1;

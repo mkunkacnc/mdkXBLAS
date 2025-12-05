@@ -1911,11 +1911,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = cd[0] * split;
+                          con = cd[0] * SPLIT;
                           b1 = con - cd[0];
                           b1 = con - b1;
                           b2 = cd[0] - b1;
@@ -1936,11 +1936,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = cd[1] * split;
+                          con = cd[1] * SPLIT;
                           b1 = con - cd[1];
                           b1 = con - b1;
                           b2 = cd[1] - b1;
@@ -1993,11 +1993,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = cd[0] * split;
+                          con = cd[0] * SPLIT;
                           b1 = con - cd[0];
                           b1 = con - b1;
                           b2 = cd[0] - b1;
@@ -2018,11 +2018,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = cd[1] * split;
+                          con = cd[1] * SPLIT;
                           b1 = con - cd[1];
                           b1 = con - b1;
                           b2 = cd[1] - b1;
@@ -2282,11 +2282,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = cd[0] * split;
+                          con = cd[0] * SPLIT;
                           b1 = con - cd[0];
                           b1 = con - b1;
                           b2 = cd[0] - b1;
@@ -2307,11 +2307,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = cd[1] * split;
+                          con = cd[1] * SPLIT;
                           b1 = con - cd[1];
                           b1 = con - b1;
                           b2 = cd[1] - b1;
@@ -2364,11 +2364,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = cd[0] * split;
+                          con = cd[0] * SPLIT;
                           b1 = con - cd[0];
                           b1 = con - b1;
                           b2 = cd[0] - b1;
@@ -2389,11 +2389,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = cd[1] * split;
+                          con = cd[1] * SPLIT;
                           b1 = con - cd[1];
                           b1 = con - b1;
                           b2 = cd[1] - b1;
@@ -3275,11 +3275,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = cd[0] * split;
+                          con = cd[0] * SPLIT;
                           b1 = con - cd[0];
                           b1 = con - b1;
                           b2 = cd[0] - b1;
@@ -3300,11 +3300,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = cd[1] * split;
+                          con = cd[1] * SPLIT;
                           b1 = con - cd[1];
                           b1 = con - b1;
                           b2 = cd[1] - b1;
@@ -3357,11 +3357,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = cd[0] * split;
+                          con = cd[0] * SPLIT;
                           b1 = con - cd[0];
                           b1 = con - b1;
                           b2 = cd[0] - b1;
@@ -3382,11 +3382,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = cd[1] * split;
+                          con = cd[1] * SPLIT;
                           b1 = con - cd[1];
                           b1 = con - b1;
                           b2 = cd[1] - b1;
@@ -3646,11 +3646,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = cd[0] * split;
+                          con = cd[0] * SPLIT;
                           b1 = con - cd[0];
                           b1 = con - b1;
                           b2 = cd[0] - b1;
@@ -3671,11 +3671,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = cd[1] * split;
+                          con = cd[1] * SPLIT;
                           b1 = con - cd[1];
                           b1 = con - b1;
                           b2 = cd[1] - b1;
@@ -3728,11 +3728,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a1 * split;
+                          con = head_a1 * SPLIT;
                           a11 = con - head_a1;
                           a11 = con - a11;
                           a21 = head_a1 - a11;
-                          con = cd[0] * split;
+                          con = cd[0] * SPLIT;
                           b1 = con - cd[0];
                           b1 = con - b1;
                           b2 = cd[0] - b1;
@@ -3753,11 +3753,11 @@ void BLAS_cspmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           /* Compute double-double = double-double * double. */
                           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-                          con = head_a0 * split;
+                          con = head_a0 * SPLIT;
                           a11 = con - head_a0;
                           a11 = con - a11;
                           a21 = head_a0 - a11;
-                          con = cd[1] * split;
+                          con = cd[1] * SPLIT;
                           b1 = con - cd[1];
                           b1 = con - b1;
                           b2 = cd[1] - b1;
