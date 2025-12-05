@@ -1,11 +1,11 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 void BLAS_dsymm_d_s(enum blas_order_type order, enum blas_side_type side,
-		    enum blas_uplo_type uplo, int m, int n,
-		    double alpha, const double *a, int lda,
-		    const float *b, int ldb, double beta, double *c, int ldc)
+                    enum blas_uplo_type uplo, int m, int n,
+                    double alpha, const double *a, int lda,
+                    const float *b, int ldb, double beta, double *c, int ldc)
 
-/* 
+/*
  * Purpose
  * =======
  *
@@ -13,7 +13,7 @@ void BLAS_dsymm_d_s(enum blas_order_type order, enum blas_side_type side,
  *
  *     C  <-  alpha * A * B  +  beta * C
  *     C  <-  alpha * B * A  +  beta * C
- * 
+ *
  * where A is a symmetric matrix.
  *
  * Arguments
@@ -21,7 +21,7 @@ void BLAS_dsymm_d_s(enum blas_order_type order, enum blas_side_type side,
  *
  * order   (input) enum blas_order_type
  *         Storage format of input matrices A, B, and C.
- * 
+ *
  * side    (input) enum blas_side_type
  *         Determines which side of matrix B is matrix A is multiplied.
  *
@@ -31,12 +31,12 @@ void BLAS_dsymm_d_s(enum blas_order_type order, enum blas_side_type side,
  *
  * m n     (input) int
  *         Size of matrices A, B, and C.
- *         Matrix A is m-by-m if it is multiplied on the left, 
+ *         Matrix A is m-by-m if it is multiplied on the left,
  *                     n-by-n otherwise.
  *         Matrices B and C are m-by-n.
  *
  * alpha   (input) double
- * 
+ *
  * a       (input) const double*
  *         Matrix A.
  *
@@ -45,15 +45,15 @@ void BLAS_dsymm_d_s(enum blas_order_type order, enum blas_side_type side,
  *
  * b       (input) const float*
  *         Matrix B.
- *   
+ *
  * ldb     (input) int
  *         Leading dimension of matrix B.
  *
  * beta    (input) double
- * 
+ *
  * c       (input/output) double*
  *         Matrix C.
- * 
+ *
  * ldc     (input) int
  *         Leading dimension of matrix C.
  *
@@ -164,9 +164,9 @@ void BLAS_dsymm_d_s(enum blas_order_type order, enum blas_side_type side,
   if (alpha_i == 0.0) {
     for (i = 0, ci = 0; i < m_i; i++, ci += incci) {
       for (j = 0, cij = ci; j < n_i; j++, cij += inccij) {
-	c_elem = c_i[cij];
-	tmp1 = c_elem * beta_i;
-	c_i[cij] = tmp1;
+        c_elem = c_i[cij];
+        tmp1 = c_elem * beta_i;
+        c_i[cij] = tmp1;
       }
     }
   } else if (alpha_i == 1.0) {
@@ -176,87 +176,87 @@ void BLAS_dsymm_d_s(enum blas_order_type order, enum blas_side_type side,
     if (beta_i == 0.0) {
       /* Case alpha = 1, beta = 0.  We compute  C <--- A * B   or  B * A */
       for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
-	for (j = 0, cij = ci, bj = 0; j < n_i;
-	     j++, cij += inccij, bj += incbj) {
+        for (j = 0, cij = ci, bj = 0; j < n_i;
+             j++, cij += inccij, bj += incbj) {
 
-	  sum = 0.0;
+          sum = 0.0;
 
-	  for (k = 0, aik = ai, bkj = bj; k < i;
-	       k++, aik += incaik1, bkj += incbkj) {
-	    a_elem = a_i[aik];
-	    b_elem = b_i[bkj];
-	    prod = a_elem * b_elem;
-	    sum = sum + prod;
-	  }
-	  for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-	    a_elem = a_i[aik];
-	    b_elem = b_i[bkj];
-	    prod = a_elem * b_elem;
-	    sum = sum + prod;
-	  }
-	  c_i[cij] = sum;
-	}
+          for (k = 0, aik = ai, bkj = bj; k < i;
+               k++, aik += incaik1, bkj += incbkj) {
+            a_elem = a_i[aik];
+            b_elem = b_i[bkj];
+            prod = a_elem * b_elem;
+            sum = sum + prod;
+          }
+          for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
+            a_elem = a_i[aik];
+            b_elem = b_i[bkj];
+            prod = a_elem * b_elem;
+            sum = sum + prod;
+          }
+          c_i[cij] = sum;
+        }
       }
     } else {
-      /* Case alpha = 1, but beta != 0. 
-         We compute  C  <--- A * B + beta * C 
+      /* Case alpha = 1, but beta != 0.
+         We compute  C  <--- A * B + beta * C
          or  C  <--- B * A + beta * C  */
 
       for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
-	for (j = 0, cij = ci, bj = 0; j < n_i;
-	     j++, cij += inccij, bj += incbj) {
+        for (j = 0, cij = ci, bj = 0; j < n_i;
+             j++, cij += inccij, bj += incbj) {
 
-	  sum = 0.0;
+          sum = 0.0;
 
-	  for (k = 0, aik = ai, bkj = bj; k < i;
-	       k++, aik += incaik1, bkj += incbkj) {
-	    a_elem = a_i[aik];
-	    b_elem = b_i[bkj];
-	    prod = a_elem * b_elem;
-	    sum = sum + prod;
-	  }
-	  for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-	    a_elem = a_i[aik];
-	    b_elem = b_i[bkj];
-	    prod = a_elem * b_elem;
-	    sum = sum + prod;
-	  }
-	  c_elem = c_i[cij];
-	  tmp2 = c_elem * beta_i;
-	  tmp1 = sum;
-	  tmp1 = tmp2 + tmp1;
-	  c_i[cij] = tmp1;
-	}
+          for (k = 0, aik = ai, bkj = bj; k < i;
+               k++, aik += incaik1, bkj += incbkj) {
+            a_elem = a_i[aik];
+            b_elem = b_i[bkj];
+            prod = a_elem * b_elem;
+            sum = sum + prod;
+          }
+          for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
+            a_elem = a_i[aik];
+            b_elem = b_i[bkj];
+            prod = a_elem * b_elem;
+            sum = sum + prod;
+          }
+          c_elem = c_i[cij];
+          tmp2 = c_elem * beta_i;
+          tmp1 = sum;
+          tmp1 = tmp2 + tmp1;
+          c_i[cij] = tmp1;
+        }
       }
     }
 
   } else {
-    /* The most general form,   C <--- alpha * A * B + beta * C  
+    /* The most general form,   C <--- alpha * A * B + beta * C
        or   C <--- alpha * B * A + beta * C  */
 
     for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
       for (j = 0, cij = ci, bj = 0; j < n_i; j++, cij += inccij, bj += incbj) {
 
-	sum = 0.0;
+        sum = 0.0;
 
-	for (k = 0, aik = ai, bkj = bj; k < i;
-	     k++, aik += incaik1, bkj += incbkj) {
-	  a_elem = a_i[aik];
-	  b_elem = b_i[bkj];
-	  prod = a_elem * b_elem;
-	  sum = sum + prod;
-	}
-	for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-	  a_elem = a_i[aik];
-	  b_elem = b_i[bkj];
-	  prod = a_elem * b_elem;
-	  sum = sum + prod;
-	}
-	tmp1 = sum * alpha_i;
-	c_elem = c_i[cij];
-	tmp2 = c_elem * beta_i;
-	tmp1 = tmp1 + tmp2;
-	c_i[cij] = tmp1;
+        for (k = 0, aik = ai, bkj = bj; k < i;
+             k++, aik += incaik1, bkj += incbkj) {
+          a_elem = a_i[aik];
+          b_elem = b_i[bkj];
+          prod = a_elem * b_elem;
+          sum = sum + prod;
+        }
+        for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
+          a_elem = a_i[aik];
+          b_elem = b_i[bkj];
+          prod = a_elem * b_elem;
+          sum = sum + prod;
+        }
+        tmp1 = sum * alpha_i;
+        c_elem = c_i[cij];
+        tmp2 = c_elem * beta_i;
+        tmp1 = tmp1 + tmp2;
+        c_i[cij] = tmp1;
       }
     }
   }

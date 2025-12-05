@@ -1,22 +1,22 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 void BLAS_zgbmv_z_c(enum blas_order_type order, enum blas_trans_type trans,
-		    int m, int n, int kl, int ku, const void *alpha,
-		    const void *a, int lda, const void *x, int incx,
-		    const void *beta, void *y, int incy)
+                    int m, int n, int kl, int ku, const void *alpha,
+                    const void *a, int lda, const void *x, int incx,
+                    const void *beta, void *y, int incy)
 
-/*           
+/*
  * Purpose
  * =======
  *
- *  gbmv computes y = alpha * A * x + beta * y, where 
+ *  gbmv computes y = alpha * A * x + beta * y, where
  *
  *  A is a m x n banded matrix
  *  x is a n x 1 vector
  *  y is a m x 1 vector
- *  alpha and beta are scalars 
+ *  alpha and beta are scalars
  *
- *   
+ *
  * Arguments
  * =========
  *
@@ -24,7 +24,7 @@ void BLAS_zgbmv_z_c(enum blas_order_type order, enum blas_trans_type trans,
  *              Order of AP; row or column major
  *
  * trans        (input) blas_trans_type
- *              Transpose of AB; no trans, 
+ *              Transpose of AB; no trans,
  *              trans, or conjugate trans
  *
  * m            (input) int
@@ -33,22 +33,22 @@ void BLAS_zgbmv_z_c(enum blas_order_type order, enum blas_trans_type trans,
  * n            (input) int
  *              Dimension of AB and the length of vector x
  *
- * kl           (input) int 
+ * kl           (input) int
  *              Number of lower diagnols of AB
  *
  * ku           (input) int
  *              Number of upper diagnols of AB
  *
  * alpha        (input) const void*
- *              
+ *
  * AB           (input) void*
  *
- * lda          (input) int 
+ * lda          (input) int
  *              Leading dimension of AB
  *              lda >= ku + kl + 1
  *
  * x            (input) void*
- * 
+ *
  * incx         (input) int
  *              The stride for vector x.
  *
@@ -58,32 +58,32 @@ void BLAS_zgbmv_z_c(enum blas_order_type order, enum blas_trans_type trans,
  *
  * incy         (input) int
  *              The stride for vector y.
- * 
  *
- * LOCAL VARIABLES 
+ *
+ * LOCAL VARIABLES
  * ===============
- * 
- *  As an example, these variables are described on the mxn, column 
- *  major, banded matrix described in section 2.2.3 of the specification  
+ *
+ *  As an example, these variables are described on the mxn, column
+ *  major, banded matrix described in section 2.2.3 of the specification
  *
  *  astart      indexes first element in A where computation begins
  *
  *  incai1      indexes first element in row where row is less than lbound
- * 
+ *
  *  incai2      indexes first element in row where row exceeds lbound
- *   
- *  lbound      denotes the number of rows before  first element shifts 
+ *
+ *  lbound      denotes the number of rows before  first element shifts
  *
  *  rbound      denotes the columns where there is blank space
- *   
+ *
  *  ra          index of the rightmost element for a given row
- *  
+ *
  *  la          index of leftmost  elements for a given row
  *
  *  ra - la     width of a row
  *
- *                        rbound 
- *            la   ra    ____|_____ 
+ *                        rbound
+ *            la   ra    ____|_____
  *             |    |   |          |
  *         |  a00  a01   *    *   *
  * lbound -|  a10  a11  a12   *   *
@@ -92,7 +92,7 @@ void BLAS_zgbmv_z_c(enum blas_order_type order, enum blas_trans_type trans,
  *             *    *   a42  a43 a44
  *
  *  Varations on order and transpose have been implemented by modifying these
- *  local variables. 
+ *  local variables.
  *
  */
 {
@@ -138,13 +138,13 @@ void BLAS_zgbmv_z_c(enum blas_order_type order, enum blas_trans_type trans,
 
   if ((m == 0) || (n == 0) ||
       (((alpha_i[0] == 0.0 && alpha_i[1] == 0.0)
-	&& ((beta_i[0] == 1.0 && beta_i[1] == 0.0)))))
+        && ((beta_i[0] == 1.0 && beta_i[1] == 0.0)))))
     return;
 
   if (trans == blas_no_trans) {
     lenx = n;
     leny = m;
-  } else {			/* change back */
+  } else {                        /* change back */
     lenx = m;
     leny = n;
   }
@@ -188,7 +188,7 @@ void BLAS_zgbmv_z_c(enum blas_order_type order, enum blas_trans_type trans,
     lbound = kl;
     rbound = n - ku - 1;
     ra = ku;
-  } else {			/* rowmajor and blas_trans */
+  } else {                        /* rowmajor and blas_trans */
     astart = kl;
     incai1 = 1;
     incai2 = lda;
@@ -215,39 +215,39 @@ void BLAS_zgbmv_z_c(enum blas_order_type order, enum blas_trans_type trans,
     jx = kx;
     if (trans != blas_conj_trans) {
       for (j = ra - la; j >= 0; j--) {
-	x_elem[0] = x_i[jx];
-	x_elem[1] = x_i[jx + 1];
-	a_elem[0] = a_i[aij];
-	a_elem[1] = a_i[aij + 1];
-	{
-	  prod[0] =
-	    (double) x_elem[0] * a_elem[0] - (double) x_elem[1] * a_elem[1];
-	  prod[1] =
-	    (double) x_elem[0] * a_elem[1] + (double) x_elem[1] * a_elem[0];
-	}
-	sum[0] = sum[0] + prod[0];
-	sum[1] = sum[1] + prod[1];
-	aij += incaij;
-	jx += incx;
+        x_elem[0] = x_i[jx];
+        x_elem[1] = x_i[jx + 1];
+        a_elem[0] = a_i[aij];
+        a_elem[1] = a_i[aij + 1];
+        {
+          prod[0] =
+            (double) x_elem[0] * a_elem[0] - (double) x_elem[1] * a_elem[1];
+          prod[1] =
+            (double) x_elem[0] * a_elem[1] + (double) x_elem[1] * a_elem[0];
+        }
+        sum[0] = sum[0] + prod[0];
+        sum[1] = sum[1] + prod[1];
+        aij += incaij;
+        jx += incx;
       }
 
     } else {
       for (j = ra - la; j >= 0; j--) {
-	x_elem[0] = x_i[jx];
-	x_elem[1] = x_i[jx + 1];
-	a_elem[0] = a_i[aij];
-	a_elem[1] = a_i[aij + 1];
-	a_elem[1] = -a_elem[1];
-	{
-	  prod[0] =
-	    (double) x_elem[0] * a_elem[0] - (double) x_elem[1] * a_elem[1];
-	  prod[1] =
-	    (double) x_elem[0] * a_elem[1] + (double) x_elem[1] * a_elem[0];
-	}
-	sum[0] = sum[0] + prod[0];
-	sum[1] = sum[1] + prod[1];
-	aij += incaij;
-	jx += incx;
+        x_elem[0] = x_i[jx];
+        x_elem[1] = x_i[jx + 1];
+        a_elem[0] = a_i[aij];
+        a_elem[1] = a_i[aij + 1];
+        a_elem[1] = -a_elem[1];
+        {
+          prod[0] =
+            (double) x_elem[0] * a_elem[0] - (double) x_elem[1] * a_elem[1];
+          prod[1] =
+            (double) x_elem[0] * a_elem[1] + (double) x_elem[1] * a_elem[0];
+        }
+        sum[0] = sum[0] + prod[0];
+        sum[1] = sum[1] + prod[1];
+        aij += incaij;
+        jx += incx;
       }
     }
 
@@ -259,9 +259,9 @@ void BLAS_zgbmv_z_c(enum blas_order_type order, enum blas_trans_type trans,
     y_elem[1] = y_i[iy + 1];
     {
       tmp2[0] =
-	(double) beta_i[0] * y_elem[0] - (double) beta_i[1] * y_elem[1];
+        (double) beta_i[0] * y_elem[0] - (double) beta_i[1] * y_elem[1];
       tmp2[1] =
-	(double) beta_i[0] * y_elem[1] + (double) beta_i[1] * y_elem[0];
+        (double) beta_i[0] * y_elem[1] + (double) beta_i[1] * y_elem[0];
     }
     result[0] = tmp1[0] + tmp2[0];
     result[1] = tmp1[1] + tmp2[1];
@@ -282,4 +282,4 @@ void BLAS_zgbmv_z_c(enum blas_order_type order, enum blas_trans_type trans,
 
 
 
-}				/* end GEMV_NAME(z, z, c, ) */
+}                                /* end GEMV_NAME(z, z, c, ) */

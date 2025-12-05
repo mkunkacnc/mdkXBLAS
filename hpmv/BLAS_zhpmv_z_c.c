@@ -21,11 +21,11 @@
  *              Dimension of ap and the length of vector x
  *
  * alpha        (input) const void*
- *              
+ *
  * ap           (input) void*
  *
  * x            (input) void*
- * 
+ *
  * incx         (input) int
  *              The stride for vector x.
  *
@@ -38,9 +38,9 @@
  *
  */
 void BLAS_zhpmv_z_c(enum blas_order_type order, enum blas_uplo_type uplo,
-		    int n, const void *alpha, const void *ap,
-		    const void *x, int incx, const void *beta, void *y,
-		    int incy)
+                    int n, const void *alpha, const void *ap,
+                    const void *x, int incx, const void *beta, void *y,
+                    int incy)
 {
   static const char routine_name[] = "BLAS_zhpmv_z_c";
 
@@ -67,7 +67,7 @@ void BLAS_zhpmv_z_c(enum blas_order_type order, enum blas_uplo_type uplo,
     if (n < 1)
       return;
     if (alpha_i[0] == 0.0 && alpha_i[1] == 0.0
-	&& (beta_i[0] == 1.0 && beta_i[1] == 0.0))
+        && (beta_i[0] == 1.0 && beta_i[1] == 0.0))
       return;
 
     /* Check for error conditions. */
@@ -104,1238 +104,1238 @@ void BLAS_zhpmv_z_c(enum blas_order_type order, enum blas_uplo_type uplo,
 
     if (alpha_i[0] == 0.0 && alpha_i[1] == 0.0) {
       {
-	y_index = y_start;
-	for (matrix_row = 0; matrix_row < n; matrix_row++) {
-	  resval[0] = y_i[y_index];
-	  resval[1] = y_i[y_index + 1];
+        y_index = y_start;
+        for (matrix_row = 0; matrix_row < n; matrix_row++) {
+          resval[0] = y_i[y_index];
+          resval[1] = y_i[y_index + 1];
 
-	  {
-	    tmp2[0] =
-	      (double) beta_i[0] * resval[0] - (double) beta_i[1] * resval[1];
-	    tmp2[1] =
-	      (double) beta_i[0] * resval[1] + (double) beta_i[1] * resval[0];
-	  }
+          {
+            tmp2[0] =
+              (double) beta_i[0] * resval[0] - (double) beta_i[1] * resval[1];
+            tmp2[1] =
+              (double) beta_i[0] * resval[1] + (double) beta_i[1] * resval[0];
+          }
 
-	  y_i[y_index] = tmp2[0];
-	  y_i[y_index + 1] = tmp2[1];
-	  y_index += incy;
-	}
+          y_i[y_index] = tmp2[0];
+          y_i[y_index + 1] = tmp2[1];
+          y_index += incy;
+        }
       }
     } else {
       if (order_i == blas_rowmajor) {
-	if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
-	  if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      if (uplo == blas_upper) {
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (n - step - 1) * incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+        if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
+          if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              if (uplo == blas_upper) {
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (n - step - 1) * incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  tmp1[0] = rowsum[0];
-		  tmp1[1] = rowsum[1];
-		  y_i[y_index] = tmp1[0];
-		  y_i[y_index + 1] = tmp1[1];
-		  y_index += incy;
-		  ap_start += incap;
-		}
-	      } else {		/* if uplo == ... */
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  tmp1[0] = rowsum[0];
+                  tmp1[1] = rowsum[1];
+                  y_i[y_index] = tmp1[0];
+                  y_i[y_index + 1] = tmp1[1];
+                  y_index += incy;
+                  ap_start += incap;
+                }
+              } else {                /* if uplo == ... */
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (n - step - 1) * incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  tmp1[0] = rowsum[0];
-		  tmp1[1] = rowsum[1];
-		  y_i[y_index] = tmp1[0];
-		  y_i[y_index + 1] = tmp1[1];
-		  y_index += incy;
-		  ap_start += incap;
-		}
-	      }			/* end if uplo == blas_upper ... */
-	    }
-	  } else {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      if (uplo == blas_upper) {
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (n - step - 1) * incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (n - step - 1) * incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  tmp1[0] = rowsum[0];
+                  tmp1[1] = rowsum[1];
+                  y_i[y_index] = tmp1[0];
+                  y_i[y_index + 1] = tmp1[1];
+                  y_index += incy;
+                  ap_start += incap;
+                }
+              }                        /* end if uplo == blas_upper ... */
+            }
+          } else {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              if (uplo == blas_upper) {
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (n - step - 1) * incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  resval[0] = y_i[y_index];
-		  resval[1] = y_i[y_index + 1];
-		  tmp1[0] = rowsum[0];
-		  tmp1[1] = rowsum[1];
-		  {
-		    tmp2[0] =
-		      (double) beta_i[0] * resval[0] -
-		      (double) beta_i[1] * resval[1];
-		    tmp2[1] =
-		      (double) beta_i[0] * resval[1] +
-		      (double) beta_i[1] * resval[0];
-		  }
-		  tmp2[0] = tmp1[0] + tmp2[0];
-		  tmp2[1] = tmp1[1] + tmp2[1];
-		  y_i[y_index] = tmp2[0];
-		  y_i[y_index + 1] = tmp2[1];
-		  y_index += incy;
-		  ap_start += incap;
-		}
-	      } else {		/* if uplo == ... */
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  resval[0] = y_i[y_index];
+                  resval[1] = y_i[y_index + 1];
+                  tmp1[0] = rowsum[0];
+                  tmp1[1] = rowsum[1];
+                  {
+                    tmp2[0] =
+                      (double) beta_i[0] * resval[0] -
+                      (double) beta_i[1] * resval[1];
+                    tmp2[1] =
+                      (double) beta_i[0] * resval[1] +
+                      (double) beta_i[1] * resval[0];
+                  }
+                  tmp2[0] = tmp1[0] + tmp2[0];
+                  tmp2[1] = tmp1[1] + tmp2[1];
+                  y_i[y_index] = tmp2[0];
+                  y_i[y_index + 1] = tmp2[1];
+                  y_index += incy;
+                  ap_start += incap;
+                }
+              } else {                /* if uplo == ... */
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (n - step - 1) * incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  resval[0] = y_i[y_index];
-		  resval[1] = y_i[y_index + 1];
-		  tmp1[0] = rowsum[0];
-		  tmp1[1] = rowsum[1];
-		  {
-		    tmp2[0] =
-		      (double) beta_i[0] * resval[0] -
-		      (double) beta_i[1] * resval[1];
-		    tmp2[1] =
-		      (double) beta_i[0] * resval[1] +
-		      (double) beta_i[1] * resval[0];
-		  }
-		  tmp2[0] = tmp1[0] + tmp2[0];
-		  tmp2[1] = tmp1[1] + tmp2[1];
-		  y_i[y_index] = tmp2[0];
-		  y_i[y_index + 1] = tmp2[1];
-		  y_index += incy;
-		  ap_start += incap;
-		}
-	      }			/* end if uplo == blas_upper ... */
-	    }
-	  }
-	} else {
-	  if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      if (uplo == blas_upper) {
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (n - step - 1) * incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (n - step - 1) * incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  resval[0] = y_i[y_index];
+                  resval[1] = y_i[y_index + 1];
+                  tmp1[0] = rowsum[0];
+                  tmp1[1] = rowsum[1];
+                  {
+                    tmp2[0] =
+                      (double) beta_i[0] * resval[0] -
+                      (double) beta_i[1] * resval[1];
+                    tmp2[1] =
+                      (double) beta_i[0] * resval[1] +
+                      (double) beta_i[1] * resval[0];
+                  }
+                  tmp2[0] = tmp1[0] + tmp2[0];
+                  tmp2[1] = tmp1[1] + tmp2[1];
+                  y_i[y_index] = tmp2[0];
+                  y_i[y_index + 1] = tmp2[1];
+                  y_index += incy;
+                  ap_start += incap;
+                }
+              }                        /* end if uplo == blas_upper ... */
+            }
+          }
+        } else {
+          if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              if (uplo == blas_upper) {
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (n - step - 1) * incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  {
-		    tmp1[0] =
-		      (double) rowsum[0] * alpha_i[0] -
-		      (double) rowsum[1] * alpha_i[1];
-		    tmp1[1] =
-		      (double) rowsum[0] * alpha_i[1] +
-		      (double) rowsum[1] * alpha_i[0];
-		  }
-		  y_i[y_index] = tmp1[0];
-		  y_i[y_index + 1] = tmp1[1];
-		  y_index += incy;
-		  ap_start += incap;
-		}
-	      } else {		/* if uplo == ... */
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  {
+                    tmp1[0] =
+                      (double) rowsum[0] * alpha_i[0] -
+                      (double) rowsum[1] * alpha_i[1];
+                    tmp1[1] =
+                      (double) rowsum[0] * alpha_i[1] +
+                      (double) rowsum[1] * alpha_i[0];
+                  }
+                  y_i[y_index] = tmp1[0];
+                  y_i[y_index + 1] = tmp1[1];
+                  y_index += incy;
+                  ap_start += incap;
+                }
+              } else {                /* if uplo == ... */
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (n - step - 1) * incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  {
-		    tmp1[0] =
-		      (double) rowsum[0] * alpha_i[0] -
-		      (double) rowsum[1] * alpha_i[1];
-		    tmp1[1] =
-		      (double) rowsum[0] * alpha_i[1] +
-		      (double) rowsum[1] * alpha_i[0];
-		  }
-		  y_i[y_index] = tmp1[0];
-		  y_i[y_index + 1] = tmp1[1];
-		  y_index += incy;
-		  ap_start += incap;
-		}
-	      }			/* end if uplo == blas_upper ... */
-	    }
-	  } else {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      if (uplo == blas_upper) {
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (n - step - 1) * incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (n - step - 1) * incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  {
+                    tmp1[0] =
+                      (double) rowsum[0] * alpha_i[0] -
+                      (double) rowsum[1] * alpha_i[1];
+                    tmp1[1] =
+                      (double) rowsum[0] * alpha_i[1] +
+                      (double) rowsum[1] * alpha_i[0];
+                  }
+                  y_i[y_index] = tmp1[0];
+                  y_i[y_index + 1] = tmp1[1];
+                  y_index += incy;
+                  ap_start += incap;
+                }
+              }                        /* end if uplo == blas_upper ... */
+            }
+          } else {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              if (uplo == blas_upper) {
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (n - step - 1) * incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  resval[0] = y_i[y_index];
-		  resval[1] = y_i[y_index + 1];
-		  {
-		    tmp1[0] =
-		      (double) rowsum[0] * alpha_i[0] -
-		      (double) rowsum[1] * alpha_i[1];
-		    tmp1[1] =
-		      (double) rowsum[0] * alpha_i[1] +
-		      (double) rowsum[1] * alpha_i[0];
-		  }
-		  {
-		    tmp2[0] =
-		      (double) beta_i[0] * resval[0] -
-		      (double) beta_i[1] * resval[1];
-		    tmp2[1] =
-		      (double) beta_i[0] * resval[1] +
-		      (double) beta_i[1] * resval[0];
-		  }
-		  tmp2[0] = tmp1[0] + tmp2[0];
-		  tmp2[1] = tmp1[1] + tmp2[1];
-		  y_i[y_index] = tmp2[0];
-		  y_i[y_index + 1] = tmp2[1];
-		  y_index += incy;
-		  ap_start += incap;
-		}
-	      } else {		/* if uplo == ... */
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  resval[0] = y_i[y_index];
+                  resval[1] = y_i[y_index + 1];
+                  {
+                    tmp1[0] =
+                      (double) rowsum[0] * alpha_i[0] -
+                      (double) rowsum[1] * alpha_i[1];
+                    tmp1[1] =
+                      (double) rowsum[0] * alpha_i[1] +
+                      (double) rowsum[1] * alpha_i[0];
+                  }
+                  {
+                    tmp2[0] =
+                      (double) beta_i[0] * resval[0] -
+                      (double) beta_i[1] * resval[1];
+                    tmp2[1] =
+                      (double) beta_i[0] * resval[1] +
+                      (double) beta_i[1] * resval[0];
+                  }
+                  tmp2[0] = tmp1[0] + tmp2[0];
+                  tmp2[1] = tmp1[1] + tmp2[1];
+                  y_i[y_index] = tmp2[0];
+                  y_i[y_index + 1] = tmp2[1];
+                  y_index += incy;
+                  ap_start += incap;
+                }
+              } else {                /* if uplo == ... */
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (n - step - 1) * incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  resval[0] = y_i[y_index];
-		  resval[1] = y_i[y_index + 1];
-		  {
-		    tmp1[0] =
-		      (double) rowsum[0] * alpha_i[0] -
-		      (double) rowsum[1] * alpha_i[1];
-		    tmp1[1] =
-		      (double) rowsum[0] * alpha_i[1] +
-		      (double) rowsum[1] * alpha_i[0];
-		  }
-		  {
-		    tmp2[0] =
-		      (double) beta_i[0] * resval[0] -
-		      (double) beta_i[1] * resval[1];
-		    tmp2[1] =
-		      (double) beta_i[0] * resval[1] +
-		      (double) beta_i[1] * resval[0];
-		  }
-		  tmp2[0] = tmp1[0] + tmp2[0];
-		  tmp2[1] = tmp1[1] + tmp2[1];
-		  y_i[y_index] = tmp2[0];
-		  y_i[y_index + 1] = tmp2[1];
-		  y_index += incy;
-		  ap_start += incap;
-		}
-	      }			/* end if uplo == blas_upper ... */
-	    }
-	  }
-	}
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (n - step - 1) * incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  resval[0] = y_i[y_index];
+                  resval[1] = y_i[y_index + 1];
+                  {
+                    tmp1[0] =
+                      (double) rowsum[0] * alpha_i[0] -
+                      (double) rowsum[1] * alpha_i[1];
+                    tmp1[1] =
+                      (double) rowsum[0] * alpha_i[1] +
+                      (double) rowsum[1] * alpha_i[0];
+                  }
+                  {
+                    tmp2[0] =
+                      (double) beta_i[0] * resval[0] -
+                      (double) beta_i[1] * resval[1];
+                    tmp2[1] =
+                      (double) beta_i[0] * resval[1] +
+                      (double) beta_i[1] * resval[0];
+                  }
+                  tmp2[0] = tmp1[0] + tmp2[0];
+                  tmp2[1] = tmp1[1] + tmp2[1];
+                  y_i[y_index] = tmp2[0];
+                  y_i[y_index + 1] = tmp2[1];
+                  y_index += incy;
+                  ap_start += incap;
+                }
+              }                        /* end if uplo == blas_upper ... */
+            }
+          }
+        }
       } else {
-	if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
-	  if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      if (uplo == blas_upper) {
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (step + 1) * incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+        if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
+          if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              if (uplo == blas_upper) {
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (step + 1) * incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (step + 1) * incap;
-		    x_index += incx;
-		  }
-		  tmp1[0] = rowsum[0];
-		  tmp1[1] = rowsum[1];
-		  y_i[y_index] = tmp1[0];
-		  y_i[y_index + 1] = tmp1[1];
-		  y_index += incy;
-		  ap_start += (matrix_row + 1) * incap;
-		}
-	      } else {		/* if uplo == ... */
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (step + 1) * incap;
+                    x_index += incx;
+                  }
+                  tmp1[0] = rowsum[0];
+                  tmp1[1] = rowsum[1];
+                  y_i[y_index] = tmp1[0];
+                  y_i[y_index + 1] = tmp1[1];
+                  y_index += incy;
+                  ap_start += (matrix_row + 1) * incap;
+                }
+              } else {                /* if uplo == ... */
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (step + 1) * incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (step + 1) * incap;
-		    x_index += incx;
-		  }
-		  tmp1[0] = rowsum[0];
-		  tmp1[1] = rowsum[1];
-		  y_i[y_index] = tmp1[0];
-		  y_i[y_index + 1] = tmp1[1];
-		  y_index += incy;
-		  ap_start += (matrix_row + 1) * incap;
-		}
-	      }			/* end if uplo == blas_upper ... */
-	    }
-	  } else {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      if (uplo == blas_upper) {
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (step + 1) * incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (step + 1) * incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (step + 1) * incap;
+                    x_index += incx;
+                  }
+                  tmp1[0] = rowsum[0];
+                  tmp1[1] = rowsum[1];
+                  y_i[y_index] = tmp1[0];
+                  y_i[y_index + 1] = tmp1[1];
+                  y_index += incy;
+                  ap_start += (matrix_row + 1) * incap;
+                }
+              }                        /* end if uplo == blas_upper ... */
+            }
+          } else {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              if (uplo == blas_upper) {
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (step + 1) * incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (step + 1) * incap;
-		    x_index += incx;
-		  }
-		  resval[0] = y_i[y_index];
-		  resval[1] = y_i[y_index + 1];
-		  tmp1[0] = rowsum[0];
-		  tmp1[1] = rowsum[1];
-		  {
-		    tmp2[0] =
-		      (double) beta_i[0] * resval[0] -
-		      (double) beta_i[1] * resval[1];
-		    tmp2[1] =
-		      (double) beta_i[0] * resval[1] +
-		      (double) beta_i[1] * resval[0];
-		  }
-		  tmp2[0] = tmp1[0] + tmp2[0];
-		  tmp2[1] = tmp1[1] + tmp2[1];
-		  y_i[y_index] = tmp2[0];
-		  y_i[y_index + 1] = tmp2[1];
-		  y_index += incy;
-		  ap_start += (matrix_row + 1) * incap;
-		}
-	      } else {		/* if uplo == ... */
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (step + 1) * incap;
+                    x_index += incx;
+                  }
+                  resval[0] = y_i[y_index];
+                  resval[1] = y_i[y_index + 1];
+                  tmp1[0] = rowsum[0];
+                  tmp1[1] = rowsum[1];
+                  {
+                    tmp2[0] =
+                      (double) beta_i[0] * resval[0] -
+                      (double) beta_i[1] * resval[1];
+                    tmp2[1] =
+                      (double) beta_i[0] * resval[1] +
+                      (double) beta_i[1] * resval[0];
+                  }
+                  tmp2[0] = tmp1[0] + tmp2[0];
+                  tmp2[1] = tmp1[1] + tmp2[1];
+                  y_i[y_index] = tmp2[0];
+                  y_i[y_index + 1] = tmp2[1];
+                  y_index += incy;
+                  ap_start += (matrix_row + 1) * incap;
+                }
+              } else {                /* if uplo == ... */
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (step + 1) * incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (step + 1) * incap;
-		    x_index += incx;
-		  }
-		  resval[0] = y_i[y_index];
-		  resval[1] = y_i[y_index + 1];
-		  tmp1[0] = rowsum[0];
-		  tmp1[1] = rowsum[1];
-		  {
-		    tmp2[0] =
-		      (double) beta_i[0] * resval[0] -
-		      (double) beta_i[1] * resval[1];
-		    tmp2[1] =
-		      (double) beta_i[0] * resval[1] +
-		      (double) beta_i[1] * resval[0];
-		  }
-		  tmp2[0] = tmp1[0] + tmp2[0];
-		  tmp2[1] = tmp1[1] + tmp2[1];
-		  y_i[y_index] = tmp2[0];
-		  y_i[y_index + 1] = tmp2[1];
-		  y_index += incy;
-		  ap_start += (matrix_row + 1) * incap;
-		}
-	      }			/* end if uplo == blas_upper ... */
-	    }
-	  }
-	} else {
-	  if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      if (uplo == blas_upper) {
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (step + 1) * incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (step + 1) * incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (step + 1) * incap;
+                    x_index += incx;
+                  }
+                  resval[0] = y_i[y_index];
+                  resval[1] = y_i[y_index + 1];
+                  tmp1[0] = rowsum[0];
+                  tmp1[1] = rowsum[1];
+                  {
+                    tmp2[0] =
+                      (double) beta_i[0] * resval[0] -
+                      (double) beta_i[1] * resval[1];
+                    tmp2[1] =
+                      (double) beta_i[0] * resval[1] +
+                      (double) beta_i[1] * resval[0];
+                  }
+                  tmp2[0] = tmp1[0] + tmp2[0];
+                  tmp2[1] = tmp1[1] + tmp2[1];
+                  y_i[y_index] = tmp2[0];
+                  y_i[y_index + 1] = tmp2[1];
+                  y_index += incy;
+                  ap_start += (matrix_row + 1) * incap;
+                }
+              }                        /* end if uplo == blas_upper ... */
+            }
+          }
+        } else {
+          if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              if (uplo == blas_upper) {
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (step + 1) * incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (step + 1) * incap;
-		    x_index += incx;
-		  }
-		  {
-		    tmp1[0] =
-		      (double) rowsum[0] * alpha_i[0] -
-		      (double) rowsum[1] * alpha_i[1];
-		    tmp1[1] =
-		      (double) rowsum[0] * alpha_i[1] +
-		      (double) rowsum[1] * alpha_i[0];
-		  }
-		  y_i[y_index] = tmp1[0];
-		  y_i[y_index + 1] = tmp1[1];
-		  y_index += incy;
-		  ap_start += (matrix_row + 1) * incap;
-		}
-	      } else {		/* if uplo == ... */
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (step + 1) * incap;
+                    x_index += incx;
+                  }
+                  {
+                    tmp1[0] =
+                      (double) rowsum[0] * alpha_i[0] -
+                      (double) rowsum[1] * alpha_i[1];
+                    tmp1[1] =
+                      (double) rowsum[0] * alpha_i[1] +
+                      (double) rowsum[1] * alpha_i[0];
+                  }
+                  y_i[y_index] = tmp1[0];
+                  y_i[y_index + 1] = tmp1[1];
+                  y_index += incy;
+                  ap_start += (matrix_row + 1) * incap;
+                }
+              } else {                /* if uplo == ... */
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (step + 1) * incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (step + 1) * incap;
-		    x_index += incx;
-		  }
-		  {
-		    tmp1[0] =
-		      (double) rowsum[0] * alpha_i[0] -
-		      (double) rowsum[1] * alpha_i[1];
-		    tmp1[1] =
-		      (double) rowsum[0] * alpha_i[1] +
-		      (double) rowsum[1] * alpha_i[0];
-		  }
-		  y_i[y_index] = tmp1[0];
-		  y_i[y_index + 1] = tmp1[1];
-		  y_index += incy;
-		  ap_start += (matrix_row + 1) * incap;
-		}
-	      }			/* end if uplo == blas_upper ... */
-	    }
-	  } else {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      if (uplo == blas_upper) {
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (step + 1) * incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (step + 1) * incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (step + 1) * incap;
+                    x_index += incx;
+                  }
+                  {
+                    tmp1[0] =
+                      (double) rowsum[0] * alpha_i[0] -
+                      (double) rowsum[1] * alpha_i[1];
+                    tmp1[1] =
+                      (double) rowsum[0] * alpha_i[1] +
+                      (double) rowsum[1] * alpha_i[0];
+                  }
+                  y_i[y_index] = tmp1[0];
+                  y_i[y_index + 1] = tmp1[1];
+                  y_index += incy;
+                  ap_start += (matrix_row + 1) * incap;
+                }
+              }                        /* end if uplo == blas_upper ... */
+            }
+          } else {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              if (uplo == blas_upper) {
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (step + 1) * incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (step + 1) * incap;
-		    x_index += incx;
-		  }
-		  resval[0] = y_i[y_index];
-		  resval[1] = y_i[y_index + 1];
-		  {
-		    tmp1[0] =
-		      (double) rowsum[0] * alpha_i[0] -
-		      (double) rowsum[1] * alpha_i[1];
-		    tmp1[1] =
-		      (double) rowsum[0] * alpha_i[1] +
-		      (double) rowsum[1] * alpha_i[0];
-		  }
-		  {
-		    tmp2[0] =
-		      (double) beta_i[0] * resval[0] -
-		      (double) beta_i[1] * resval[1];
-		    tmp2[1] =
-		      (double) beta_i[0] * resval[1] +
-		      (double) beta_i[1] * resval[0];
-		  }
-		  tmp2[0] = tmp1[0] + tmp2[0];
-		  tmp2[1] = tmp1[1] + tmp2[1];
-		  y_i[y_index] = tmp2[0];
-		  y_i[y_index + 1] = tmp2[1];
-		  y_index += incy;
-		  ap_start += (matrix_row + 1) * incap;
-		}
-	      } else {		/* if uplo == ... */
-		for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		  x_index = x_start;
-		  ap_index = ap_start;
-		  rowsum[0] = rowsum[1] = 0.0;
-		  rowtmp[0] = rowtmp[1] = 0.0;
-		  for (step = 0; step < matrix_row; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (step + 1) * incap;
+                    x_index += incx;
+                  }
+                  resval[0] = y_i[y_index];
+                  resval[1] = y_i[y_index + 1];
+                  {
+                    tmp1[0] =
+                      (double) rowsum[0] * alpha_i[0] -
+                      (double) rowsum[1] * alpha_i[1];
+                    tmp1[1] =
+                      (double) rowsum[0] * alpha_i[1] +
+                      (double) rowsum[1] * alpha_i[0];
+                  }
+                  {
+                    tmp2[0] =
+                      (double) beta_i[0] * resval[0] -
+                      (double) beta_i[1] * resval[1];
+                    tmp2[1] =
+                      (double) beta_i[0] * resval[1] +
+                      (double) beta_i[1] * resval[0];
+                  }
+                  tmp2[0] = tmp1[0] + tmp2[0];
+                  tmp2[1] = tmp1[1] + tmp2[1];
+                  y_i[y_index] = tmp2[0];
+                  y_i[y_index + 1] = tmp2[1];
+                  y_index += incy;
+                  ap_start += (matrix_row + 1) * incap;
+                }
+              } else {                /* if uplo == ... */
+                for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                  x_index = x_start;
+                  ap_index = ap_start;
+                  rowsum[0] = rowsum[1] = 0.0;
+                  rowtmp[0] = rowtmp[1] = 0.0;
+                  for (step = 0; step < matrix_row; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
 
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += incap;
-		    x_index += incx;
-		  }
-		  /* need to do diagonal element without referencing the imaginary part */
-		  matval[0] = ap_i[ap_index];
-		  vecval[0] = x_i[x_index];
-		  vecval[1] = x_i[x_index + 1];
-		  {
-		    rowtmp[0] = vecval[0] * matval[0];
-		    rowtmp[1] = vecval[1] * matval[0];
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (step + 1) * incap;
-		  x_index += incx;
-		  for (step = matrix_row + 1; step < n; step++) {
-		    matval[0] = ap_i[ap_index];
-		    matval[1] = ap_i[ap_index + 1];
-		    vecval[0] = x_i[x_index];
-		    vecval[1] = x_i[x_index + 1];
-		    matval[1] = -matval[1];
-		    {
-		      rowtmp[0] =
-			(double) matval[0] * vecval[0] -
-			(double) matval[1] * vecval[1];
-		      rowtmp[1] =
-			(double) matval[0] * vecval[1] +
-			(double) matval[1] * vecval[0];
-		    }
-		    rowsum[0] = rowsum[0] + rowtmp[0];
-		    rowsum[1] = rowsum[1] + rowtmp[1];
-		    ap_index += (step + 1) * incap;
-		    x_index += incx;
-		  }
-		  resval[0] = y_i[y_index];
-		  resval[1] = y_i[y_index + 1];
-		  {
-		    tmp1[0] =
-		      (double) rowsum[0] * alpha_i[0] -
-		      (double) rowsum[1] * alpha_i[1];
-		    tmp1[1] =
-		      (double) rowsum[0] * alpha_i[1] +
-		      (double) rowsum[1] * alpha_i[0];
-		  }
-		  {
-		    tmp2[0] =
-		      (double) beta_i[0] * resval[0] -
-		      (double) beta_i[1] * resval[1];
-		    tmp2[1] =
-		      (double) beta_i[0] * resval[1] +
-		      (double) beta_i[1] * resval[0];
-		  }
-		  tmp2[0] = tmp1[0] + tmp2[0];
-		  tmp2[1] = tmp1[1] + tmp2[1];
-		  y_i[y_index] = tmp2[0];
-		  y_i[y_index + 1] = tmp2[1];
-		  y_index += incy;
-		  ap_start += (matrix_row + 1) * incap;
-		}
-	      }			/* end if uplo == blas_upper ... */
-	    }
-	  }
-	}
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += incap;
+                    x_index += incx;
+                  }
+                  /* need to do diagonal element without referencing the imaginary part */
+                  matval[0] = ap_i[ap_index];
+                  vecval[0] = x_i[x_index];
+                  vecval[1] = x_i[x_index + 1];
+                  {
+                    rowtmp[0] = vecval[0] * matval[0];
+                    rowtmp[1] = vecval[1] * matval[0];
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (step + 1) * incap;
+                  x_index += incx;
+                  for (step = matrix_row + 1; step < n; step++) {
+                    matval[0] = ap_i[ap_index];
+                    matval[1] = ap_i[ap_index + 1];
+                    vecval[0] = x_i[x_index];
+                    vecval[1] = x_i[x_index + 1];
+                    matval[1] = -matval[1];
+                    {
+                      rowtmp[0] =
+                        (double) matval[0] * vecval[0] -
+                        (double) matval[1] * vecval[1];
+                      rowtmp[1] =
+                        (double) matval[0] * vecval[1] +
+                        (double) matval[1] * vecval[0];
+                    }
+                    rowsum[0] = rowsum[0] + rowtmp[0];
+                    rowsum[1] = rowsum[1] + rowtmp[1];
+                    ap_index += (step + 1) * incap;
+                    x_index += incx;
+                  }
+                  resval[0] = y_i[y_index];
+                  resval[1] = y_i[y_index + 1];
+                  {
+                    tmp1[0] =
+                      (double) rowsum[0] * alpha_i[0] -
+                      (double) rowsum[1] * alpha_i[1];
+                    tmp1[1] =
+                      (double) rowsum[0] * alpha_i[1] +
+                      (double) rowsum[1] * alpha_i[0];
+                  }
+                  {
+                    tmp2[0] =
+                      (double) beta_i[0] * resval[0] -
+                      (double) beta_i[1] * resval[1];
+                    tmp2[1] =
+                      (double) beta_i[0] * resval[1] +
+                      (double) beta_i[1] * resval[0];
+                  }
+                  tmp2[0] = tmp1[0] + tmp2[0];
+                  tmp2[1] = tmp1[1] + tmp2[1];
+                  y_i[y_index] = tmp2[0];
+                  y_i[y_index + 1] = tmp2[1];
+                  y_index += incy;
+                  ap_start += (matrix_row + 1) * incap;
+                }
+              }                        /* end if uplo == blas_upper ... */
+            }
+          }
+        }
       }
-    }				/* end alpha != 0 */
+    }                                /* end alpha != 0 */
 
   }
 }

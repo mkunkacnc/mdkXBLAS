@@ -1,19 +1,19 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 void BLAS_dgemm_d_s(enum blas_order_type order, enum blas_trans_type transa,
-		    enum blas_trans_type transb, int m, int n, int k,
-		    double alpha, const double *a, int lda, const float *b,
-		    int ldb, double beta, double *c, int ldc)
+                    enum blas_trans_type transb, int m, int n, int k,
+                    double alpha, const double *a, int lda, const float *b,
+                    int ldb, double beta, double *c, int ldc)
 
-/* 
+/*
  * Purpose
  * =======
  *
  * This routine computes the matrix product:
  *
  *      C   <-  alpha * op(A) * op(B)  +  beta * C .
- * 
- * where op(M) represents either M, M transpose, 
+ *
+ * where op(M) represents either M, M transpose,
  * or M conjugate transpose.
  *
  * Arguments
@@ -29,23 +29,23 @@ void BLAS_dgemm_d_s(enum blas_order_type order, enum blas_trans_type transa,
  * transb  (input) enum blas_trans_type
  *         Operation to be done on matrix B before multiplication.
  *         Can be no operation, transposition, or conjugate transposition.
- * 
+ *
  * m n k   (input) int
  *         The dimensions of matrices A, B, and C.
  *         Matrix C is m-by-n matrix.
- *         Matrix A is m-by-k if A is not transposed, 
+ *         Matrix A is m-by-k if A is not transposed,
  *                     k-by-m otherwise.
- *         Matrix B is k-by-n if B is not transposed, 
+ *         Matrix B is k-by-n if B is not transposed,
  *                     n-by-k otherwise.
- *      
+ *
  * alpha   (input) double
  *
  * a       (input) const double*
  *         matrix A.
- * 
+ *
  * lda     (input) int
  *         leading dimension of A.
- * 
+ *
  * b       (input) const float*
  *         matrix B
  *
@@ -69,11 +69,11 @@ void BLAS_dgemm_d_s(enum blas_order_type order, enum blas_trans_type transa,
   int i, j, h;
 
   int ai, bj, ci;
-  int aih, bhj, cij;		/* Index into matrices a, b, c during multiply */
+  int aih, bhj, cij;                /* Index into matrices a, b, c during multiply */
 
-  int incai, incaih;		/* Index increments for matrix a */
-  int incbj, incbhj;		/* Index increments for matrix b */
-  int incci, inccij;		/* Index increments for matrix c */
+  int incai, incaih;                /* Index increments for matrix a */
+  int incbj, incbhj;                /* Index increments for matrix b */
+  int incci, inccij;                /* Index increments for matrix c */
 
   /* Input Matrices */
   const double *a_i = a;
@@ -112,18 +112,18 @@ void BLAS_dgemm_d_s(enum blas_order_type order, enum blas_trans_type transa,
 
     if (transa == blas_no_trans) {
       if (lda < m)
-	BLAS_error(routine_name, -9, lda, NULL);
+        BLAS_error(routine_name, -9, lda, NULL);
     } else {
       if (lda < k)
-	BLAS_error(routine_name, -9, lda, NULL);
+        BLAS_error(routine_name, -9, lda, NULL);
     }
 
     if (transb == blas_no_trans) {
       if (ldb < k)
-	BLAS_error(routine_name, -11, ldb, NULL);
+        BLAS_error(routine_name, -11, ldb, NULL);
     } else {
       if (ldb < n)
-	BLAS_error(routine_name, -11, ldb, NULL);
+        BLAS_error(routine_name, -11, ldb, NULL);
     }
 
   } else {
@@ -133,18 +133,18 @@ void BLAS_dgemm_d_s(enum blas_order_type order, enum blas_trans_type transa,
 
     if (transa == blas_no_trans) {
       if (lda < k)
-	BLAS_error(routine_name, -9, lda, NULL);
+        BLAS_error(routine_name, -9, lda, NULL);
     } else {
       if (lda < m)
-	BLAS_error(routine_name, -9, lda, NULL);
+        BLAS_error(routine_name, -9, lda, NULL);
     }
 
     if (transb == blas_no_trans) {
       if (ldb < n)
-	BLAS_error(routine_name, -11, ldb, NULL);
+        BLAS_error(routine_name, -11, ldb, NULL);
     } else {
       if (ldb < k)
-	BLAS_error(routine_name, -11, ldb, NULL);
+        BLAS_error(routine_name, -11, ldb, NULL);
     }
   }
 
@@ -216,9 +216,9 @@ void BLAS_dgemm_d_s(enum blas_order_type order, enum blas_trans_type transa,
     for (i = 0; i < m; i++, ci += incci) {
       cij = ci;
       for (j = 0; j < n; j++, cij += inccij) {
-	c_elem = c_i[cij];
-	tmp1 = c_elem * beta_i;
-	c_i[cij] = tmp1;
+        c_elem = c_i[cij];
+        tmp1 = c_elem * beta_i;
+        c_i[cij] = tmp1;
       }
     }
 
@@ -233,30 +233,30 @@ void BLAS_dgemm_d_s(enum blas_order_type order, enum blas_trans_type transa,
       ai = 0;
       for (i = 0; i < m; i++, ci += incci, ai += incai) {
 
-	cij = ci;
-	bj = 0;
+        cij = ci;
+        bj = 0;
 
-	for (j = 0; j < n; j++, cij += inccij, bj += incbj) {
+        for (j = 0; j < n; j++, cij += inccij, bj += incbj) {
 
-	  aih = ai;
-	  bhj = bj;
+          aih = ai;
+          bhj = bj;
 
-	  sum = 0.0;
+          sum = 0.0;
 
-	  for (h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
-	    a_elem = a_i[aih];
-	    b_elem = b_i[bhj];
-	    if (transa == blas_conj_trans) {
+          for (h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
+            a_elem = a_i[aih];
+            b_elem = b_i[bhj];
+            if (transa == blas_conj_trans) {
 
-	    }
-	    if (transb == blas_conj_trans) {
+            }
+            if (transb == blas_conj_trans) {
 
-	    }
-	    prod = a_elem * b_elem;
-	    sum = sum + prod;
-	  }
-	  c_i[cij] = sum;
-	}
+            }
+            prod = a_elem * b_elem;
+            sum = sum + prod;
+          }
+          c_i[cij] = sum;
+        }
       }
 
     } else {
@@ -267,35 +267,35 @@ void BLAS_dgemm_d_s(enum blas_order_type order, enum blas_trans_type transa,
       ai = 0;
       for (i = 0; i < m; i++, ci += incci, ai += incai) {
 
-	cij = ci;
-	bj = 0;
+        cij = ci;
+        bj = 0;
 
-	for (j = 0; j < n; j++, cij += inccij, bj += incbj) {
+        for (j = 0; j < n; j++, cij += inccij, bj += incbj) {
 
-	  aih = ai;
-	  bhj = bj;
+          aih = ai;
+          bhj = bj;
 
-	  sum = 0.0;
+          sum = 0.0;
 
-	  for (h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
-	    a_elem = a_i[aih];
-	    b_elem = b_i[bhj];
-	    if (transa == blas_conj_trans) {
+          for (h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
+            a_elem = a_i[aih];
+            b_elem = b_i[bhj];
+            if (transa == blas_conj_trans) {
 
-	    }
-	    if (transb == blas_conj_trans) {
+            }
+            if (transb == blas_conj_trans) {
 
-	    }
-	    prod = a_elem * b_elem;
-	    sum = sum + prod;
-	  }
+            }
+            prod = a_elem * b_elem;
+            sum = sum + prod;
+          }
 
-	  c_elem = c_i[cij];
-	  tmp2 = c_elem * beta_i;
-	  tmp1 = sum;
-	  tmp1 = tmp2 + tmp1;
-	  c_i[cij] = tmp1;
-	}
+          c_elem = c_i[cij];
+          tmp2 = c_elem * beta_i;
+          tmp1 = sum;
+          tmp1 = tmp2 + tmp1;
+          c_i[cij] = tmp1;
+        }
       }
     }
 
@@ -311,29 +311,29 @@ void BLAS_dgemm_d_s(enum blas_order_type order, enum blas_trans_type transa,
 
       for (j = 0; j < n; j++, cij += inccij, bj += incbj) {
 
-	aih = ai;
-	bhj = bj;
+        aih = ai;
+        bhj = bj;
 
-	sum = 0.0;
+        sum = 0.0;
 
-	for (h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
-	  a_elem = a_i[aih];
-	  b_elem = b_i[bhj];
-	  if (transa == blas_conj_trans) {
+        for (h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
+          a_elem = a_i[aih];
+          b_elem = b_i[bhj];
+          if (transa == blas_conj_trans) {
 
-	  }
-	  if (transb == blas_conj_trans) {
+          }
+          if (transb == blas_conj_trans) {
 
-	  }
-	  prod = a_elem * b_elem;
-	  sum = sum + prod;
-	}
+          }
+          prod = a_elem * b_elem;
+          sum = sum + prod;
+        }
 
-	tmp1 = sum * alpha_i;
-	c_elem = c_i[cij];
-	tmp2 = c_elem * beta_i;
-	tmp1 = tmp1 + tmp2;
-	c_i[cij] = tmp1;
+        tmp1 = sum * alpha_i;
+        c_elem = c_i[cij];
+        tmp2 = c_elem * beta_i;
+        tmp1 = tmp1 + tmp2;
+        c_i[cij] = tmp1;
       }
     }
 

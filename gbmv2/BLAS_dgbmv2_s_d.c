@@ -1,26 +1,26 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 void BLAS_dgbmv2_s_d(enum blas_order_type order, enum blas_trans_type trans,
-		     int m, int n, int kl, int ku, double alpha,
-		     const float *a, int lda, const double *head_x,
-		     const double *tail_x, int incx, double beta,
-		     double *y, int incy)
+                     int m, int n, int kl, int ku, double alpha,
+                     const float *a, int lda, const double *head_x,
+                     const double *tail_x, int incx, double beta,
+                     double *y, int incy)
 
-/*           
+/*
  * Purpose
  * =======
  *
  * This routines computes the matrix product:
  *
  *     y  <-  alpha * op(A) * (x_head + x_tail) + beta * y
- * 
- * where 
+ *
+ * where
  *
  *  A is a m x n banded matrix
  *  x is a n x 1 vector
  *  y is a m x 1 vector
- *  alpha and beta are scalars 
- *   
+ *  alpha and beta are scalars
+ *
  * Arguments
  * =========
  *
@@ -28,7 +28,7 @@ void BLAS_dgbmv2_s_d(enum blas_order_type order, enum blas_trans_type trans,
  *              Order of AB; row or column major
  *
  * trans        (input) blas_trans_type
- *              Transpose of AB; no trans, 
+ *              Transpose of AB; no trans,
  *              trans, or conjugate trans
  *
  * m            (input) int
@@ -37,23 +37,23 @@ void BLAS_dgbmv2_s_d(enum blas_order_type order, enum blas_trans_type trans,
  * n            (input) int
  *              Dimension of AB and the length of vector x and z
  *
- * kl           (input) int 
+ * kl           (input) int
  *              Number of lower diagnols of AB
  *
  * ku           (input) int
  *              Number of upper diagnols of AB
  *
  * alpha        (input) double
- *              
+ *
  * AB           (input) float*
  *
- * lda          (input) int 
+ * lda          (input) int
  *              Leading dimension of AB
  *              lda >= ku + kl + 1
  *
  * head_x
  * tail_x       (input) double*
- * 
+ *
  * incx         (input) int
  *              The stride for vector x.
  *
@@ -63,32 +63,32 @@ void BLAS_dgbmv2_s_d(enum blas_order_type order, enum blas_trans_type trans,
  *
  * incy         (input) int
  *              The stride for vector y.
- * 
  *
- * LOCAL VARIABLES 
+ *
+ * LOCAL VARIABLES
  * ===============
- * 
- *  As an example, these variables are described on the mxn, column 
- *  major, banded matrix described in section 2.2.3 of the specification  
+ *
+ *  As an example, these variables are described on the mxn, column
+ *  major, banded matrix described in section 2.2.3 of the specification
  *
  *  astart      indexes first element in A where computation begins
  *
  *  incai1      indexes first element in row where row is less than lbound
- * 
+ *
  *  incai2      indexes first element in row where row exceeds lbound
- *   
- *  lbound      denotes the number of rows before  first element shifts 
+ *
+ *  lbound      denotes the number of rows before  first element shifts
  *
  *  rbound      denotes the columns where there is blank space
- *   
+ *
  *  ra          index of the rightmost element for a given row
- *  
+ *
  *  la          index of leftmost  elements for a given row
  *
  *  ra - la     width of a row
  *
- *                        rbound 
- *            la   ra    ____|_____ 
+ *                        rbound
+ *            la   ra    ____|_____
  *             |    |   |          |
  *         |  a00  a01   *    *   *
  * lbound -|  a10  a11  a12   *   *
@@ -97,7 +97,7 @@ void BLAS_dgbmv2_s_d(enum blas_order_type order, enum blas_trans_type trans,
  *             *    *   a42  a43 a44
  *
  *  Varations on order and transpose have been implemented by modifying these
- *  local variables. 
+ *  local variables.
  *
  */
 {
@@ -188,7 +188,7 @@ void BLAS_dgbmv2_s_d(enum blas_order_type order, enum blas_trans_type trans,
     lbound = kl;
     rbound = n - ku - 1;
     ra = ku;
-  } else {			/* rowmajor and blas_trans */
+  } else {                        /* rowmajor and blas_trans */
     astart = kl;
     incai1 = 1;
     incai2 = lda;
@@ -251,4 +251,4 @@ void BLAS_dgbmv2_s_d(enum blas_order_type order, enum blas_trans_type trans,
 
 
 
-}				/* end BLAS_dgbmv2_s_d */
+}                                /* end BLAS_dgbmv2_s_d */

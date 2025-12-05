@@ -2,18 +2,18 @@
 #include <blas_extended_private.h>
 #include <blas_fpu.h>
 void BLAS_csymv2_c_s(enum blas_order_type order, enum blas_uplo_type uplo,
-		     int n, const void *alpha, const void *a, int lda,
-		     const float *x_head, const float *x_tail, int incx,
-		     const void *beta, void *y, int incy)
+                     int n, const void *alpha, const void *a, int lda,
+                     const float *x_head, const float *x_tail, int incx,
+                     const void *beta, void *y, int incy)
 
-/* 
+/*
  * Purpose
  * =======
  *
  * This routines computes the matrix product:
  *
  *     y  <-  alpha * A * (x_head + x_tail) + beta * y
- * 
+ *
  * where A is a symmetric matrix.
  *
  * Arguments
@@ -21,7 +21,7 @@ void BLAS_csymv2_c_s(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  * order   (input) enum blas_order_type
  *         Storage format of input symmetric matrix A.
- * 
+ *
  * uplo    (input) enum blas_uplo_type
  *         Determines which half of matrix A (upper or lower triangle)
  *         is accessed.
@@ -30,7 +30,7 @@ void BLAS_csymv2_c_s(enum blas_order_type order, enum blas_uplo_type uplo,
  *         Dimension of A and size of vectors x, y.
  *
  * alpha   (input) const void*
- * 
+ *
  * a       (input) void*
  *         Matrix A.
  *
@@ -42,12 +42,12 @@ void BLAS_csymv2_c_s(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  * x_tail  (input) float*
  *         Vector x_tail
- *   
+ *
  * incx    (input) int
  *         Stride for vector x.
  *
  * beta    (input) const void*
- * 
+ *
  * y       (input) float*
  *         Vector y.
  *
@@ -138,15 +138,15 @@ void BLAS_csymv2_c_s(enum blas_order_type order, enum blas_uplo_type uplo,
       a_elem[1] = a_i[aij + 1];
       x_elem = x_head_i[xi];
       {
-	prod1[0] = a_elem[0] * x_elem;
-	prod1[1] = a_elem[1] * x_elem;
+        prod1[0] = a_elem[0] * x_elem;
+        prod1[1] = a_elem[1] * x_elem;
       }
       sum1[0] = sum1[0] + prod1[0];
       sum1[1] = sum1[1] + prod1[1];
       x_elem = x_tail_i[xi];
       {
-	prod2[0] = a_elem[0] * x_elem;
-	prod2[1] = a_elem[1] * x_elem;
+        prod2[0] = a_elem[0] * x_elem;
+        prod2[1] = a_elem[1] * x_elem;
       }
       sum2[0] = sum2[0] + prod2[0];
       sum2[1] = sum2[1] + prod2[1];
@@ -156,15 +156,15 @@ void BLAS_csymv2_c_s(enum blas_order_type order, enum blas_uplo_type uplo,
       a_elem[1] = a_i[aij + 1];
       x_elem = x_head_i[xi];
       {
-	prod1[0] = a_elem[0] * x_elem;
-	prod1[1] = a_elem[1] * x_elem;
+        prod1[0] = a_elem[0] * x_elem;
+        prod1[1] = a_elem[1] * x_elem;
       }
       sum1[0] = sum1[0] + prod1[0];
       sum1[1] = sum1[1] + prod1[1];
       x_elem = x_tail_i[xi];
       {
-	prod2[0] = a_elem[0] * x_elem;
-	prod2[1] = a_elem[1] * x_elem;
+        prod2[0] = a_elem[0] * x_elem;
+        prod2[1] = a_elem[1] * x_elem;
       }
       sum2[0] = sum2[0] + prod2[0];
       sum2[1] = sum2[1] + prod2[1];
@@ -191,4 +191,4 @@ void BLAS_csymv2_c_s(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
 
-}				/* end BLAS_csymv2_c_s */
+}                                /* end BLAS_csymv2_c_s */

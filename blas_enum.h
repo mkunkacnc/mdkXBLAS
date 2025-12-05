@@ -91,9 +91,9 @@ enum blas_size_type {
 
 enum blas_handle_type{
             blas_invalid_handle = 261,
-			blas_new_handle     = 262,
-			blas_open_handle    = 263,
-			blas_closed_handle  = 264};
+                        blas_new_handle     = 262,
+                        blas_open_handle    = 263,
+                        blas_closed_handle  = 264};
 
 enum blas_sparsity_optimization_type {
             blas_regular       = 271,

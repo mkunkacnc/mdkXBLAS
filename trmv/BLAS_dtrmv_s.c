@@ -2,8 +2,8 @@
 #include "blas_extended_private.h"
 
 void BLAS_dtrmv_s(enum blas_order_type order, enum blas_uplo_type uplo,
-		  enum blas_trans_type trans, enum blas_diag_type diag, int n,
-		  double alpha, const float *T, int ldt, double *x, int incx)
+                  enum blas_trans_type trans, enum blas_diag_type diag, int n,
+                  double alpha, const float *T, int ldt, double *x, int incx)
 
 /*
  * Purpose
@@ -13,7 +13,7 @@ void BLAS_dtrmv_s(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  * Arguments
  * =========
- * 
+ *
  * order  (input) enum blas_order_type
  *        column major, row major
  *
@@ -22,24 +22,24 @@ void BLAS_dtrmv_s(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  * trans  (input) enum blas_trans_type
  *        no trans, trans, conj trans
- * 
+ *
  * diag   (input) enum blas_diag_type
  *        unit, non unit
  *
  * n      (input) int
  *        the dimension of T
- * 
+ *
  * alpha  (input) double
- * 
+ *
  * T      (input) float*
  *        Triangular matrix
  *
- * ldt    (input) int 
+ * ldt    (input) int
  *        Leading dimension of T
  *
  * x      (input) const double*
  *    Array of length n.
- * 
+ *
  * incx   (input) int
  *     The stride used to access components x[i].
  *
@@ -47,16 +47,16 @@ void BLAS_dtrmv_s(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   static const char routine_name[] = "BLAS_dtrmv_s";
 
-  int i, j;			/* used to idx matrix */
+  int i, j;                        /* used to idx matrix */
   int xj, xj0;
   int ti, tij, tij0;
 
   int inc_ti, inc_tij;
   int inc_x;
 
-  const float *T_i = T;		/* internal matrix T */
-  double *x_i = x;		/* internal x */
-  double alpha_i = alpha;	/* internal alpha */
+  const float *T_i = T;                /* internal matrix T */
+  double *x_i = x;                /* internal x */
+  double alpha_i = alpha;        /* internal alpha */
 
   float t_elem;
   double x_elem;
@@ -85,40 +85,40 @@ void BLAS_dtrmv_s(enum blas_order_type order, enum blas_uplo_type uplo,
     if (uplo == blas_upper) {
       inc_x = -incx;
       if (order == blas_rowmajor) {
-	inc_ti = ldt;
-	inc_tij = -1;
+        inc_ti = ldt;
+        inc_tij = -1;
       } else {
-	inc_ti = 1;
-	inc_tij = -ldt;
+        inc_ti = 1;
+        inc_tij = -ldt;
       }
     } else {
       inc_x = incx;
       if (order == blas_rowmajor) {
-	inc_ti = -ldt;
-	inc_tij = 1;
+        inc_ti = -ldt;
+        inc_tij = 1;
       } else {
-	inc_ti = -1;
-	inc_tij = ldt;
+        inc_ti = -1;
+        inc_tij = ldt;
       }
     }
   } else {
     if (uplo == blas_upper) {
       inc_x = incx;
       if (order == blas_rowmajor) {
-	inc_ti = -1;
-	inc_tij = ldt;
+        inc_ti = -1;
+        inc_tij = ldt;
       } else {
-	inc_ti = -ldt;
-	inc_tij = 1;
+        inc_ti = -ldt;
+        inc_tij = 1;
       }
     } else {
       inc_x = -incx;
       if (order == blas_rowmajor) {
-	inc_ti = 1;
-	inc_tij = -ldt;
+        inc_ti = 1;
+        inc_tij = -ldt;
       } else {
-	inc_ti = ldt;
-	inc_tij = -1;
+        inc_ti = ldt;
+        inc_tij = -1;
       }
     }
   }
@@ -143,33 +143,33 @@ void BLAS_dtrmv_s(enum blas_order_type order, enum blas_uplo_type uplo,
       tij0 = (inc_tij > 0 ? 0 : -(n - 1) * inc_tij);
       for (i = 0; i < n; i++) {
 
-	sum = 0.0;
+        sum = 0.0;
 
-	xj = xj0;
-	tij = ti + tij0;
-	for (j = i; j < (n - 1); j++) {
+        xj = xj0;
+        tij = ti + tij0;
+        for (j = i; j < (n - 1); j++) {
 
-	  t_elem = T_i[tij];
+          t_elem = T_i[tij];
 
-	  x_elem = x_i[xj];
-	  prod = x_elem * t_elem;
-	  sum = sum + prod;
+          x_elem = x_i[xj];
+          prod = x_elem * t_elem;
+          sum = sum + prod;
 
-	  xj += inc_x;
-	  tij += inc_tij;
-	}
+          xj += inc_x;
+          tij += inc_tij;
+        }
 
-	x_elem = x_i[xj];
-	sum = sum + x_elem;
+        x_elem = x_i[xj];
+        sum = sum + x_elem;
 
-	if (alpha_i == 1.0) {
-	  x_i[xj] = sum;
-	} else {
-	  tmp = sum * alpha_i;
-	  x_i[xj] = tmp;
-	}
+        if (alpha_i == 1.0) {
+          x_i[xj] = sum;
+        } else {
+          tmp = sum * alpha_i;
+          x_i[xj] = tmp;
+        }
 
-	ti += inc_ti;
+        ti += inc_ti;
       }
 
     } else {
@@ -179,30 +179,30 @@ void BLAS_dtrmv_s(enum blas_order_type order, enum blas_uplo_type uplo,
       tij0 = (inc_tij > 0 ? 0 : -(n - 1) * inc_tij);
       for (i = 0; i < n; i++) {
 
-	sum = 0.0;
+        sum = 0.0;
 
-	xj = xj0;
-	tij = ti + tij0;
-	for (j = i; j < n; j++) {
+        xj = xj0;
+        tij = ti + tij0;
+        for (j = i; j < n; j++) {
 
-	  t_elem = T_i[tij];
+          t_elem = T_i[tij];
 
-	  x_elem = x_i[xj];
-	  prod = x_elem * t_elem;
-	  sum = sum + prod;
+          x_elem = x_i[xj];
+          prod = x_elem * t_elem;
+          sum = sum + prod;
 
-	  xj += inc_x;
-	  tij += inc_tij;
-	}
+          xj += inc_x;
+          tij += inc_tij;
+        }
 
-	if (alpha_i == 1.0) {
-	  x_i[xj - inc_x] = sum;
-	} else {
-	  tmp = sum * alpha_i;
-	  x_i[xj - inc_x] = tmp;
-	}
+        if (alpha_i == 1.0) {
+          x_i[xj - inc_x] = sum;
+        } else {
+          tmp = sum * alpha_i;
+          x_i[xj - inc_x] = tmp;
+        }
 
-	ti += inc_ti;
+        ti += inc_ti;
       }
 
     }

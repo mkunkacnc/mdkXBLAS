@@ -2,8 +2,8 @@
 #include "blas_extended_private.h"
 
 void BLAS_dwaxpby_s_d(int n, double alpha, const float *x, int incx,
-		      double beta, const double *y, int incy, double *w,
-		      int incw)
+                      double beta, const double *y, int incy, double *w,
+                      int incw)
 
 /*
  * Purpose
@@ -12,18 +12,18 @@ void BLAS_dwaxpby_s_d(int n, double alpha, const float *x, int incx,
  * This routine computes:
  *
  *     w <- alpha * x + beta * y
- * 
+ *
  * Arguments
  * =========
  *
  * n     (input) int
  *       The length of vectors x, y, and w.
- * 
+ *
  * alpha (input) double
  *
  * x     (input) const float*
  *       Array of length n.
- * 
+ *
  * incx  (input) int
  *       The stride used to access components x[i].
  *
@@ -87,14 +87,14 @@ void BLAS_dwaxpby_s_d(int n, double alpha, const float *x, int incx,
   for (i = 0; i < n; ++i) {
     x_ii = x_i[ix];
     y_ii = y_i[iy];
-    tmpx = alpha_i * x_ii;	/* tmpx  = alpha * x[ix] */
-    tmpy = beta_i * y_ii;	/* tmpy = beta * y[iy] */
+    tmpx = alpha_i * x_ii;        /* tmpx  = alpha * x[ix] */
+    tmpy = beta_i * y_ii;        /* tmpy = beta * y[iy] */
     tmpy = tmpy + tmpx;
     w_i[iw] = tmpy;
     ix += incx;
     iy += incy;
     iw += incw;
-  }				/* endfor */
+  }                                /* endfor */
 
 
 

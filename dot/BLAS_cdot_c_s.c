@@ -1,32 +1,32 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 void BLAS_cdot_c_s(enum blas_conj_type conj, int n, const void *alpha,
-		   const void *x, int incx, const void *beta,
-		   const float *y, int incy, void *r)
+                   const void *x, int incx, const void *beta,
+                   const float *y, int incy, void *r)
 
 /*
  * Purpose
  * =======
- * 
+ *
  * This routine computes the inner product:
- * 
+ *
  *     r <- beta * r + alpha * SUM_{i=0, n-1} x[i] * y[i].
- * 
+ *
  * Arguments
  * =========
- *  
+ *
  * conj   (input) enum blas_conj_type
  *        When x and y are complex vectors, specifies whether vector
- *        components x[i] are used unconjugated or conjugated. 
- * 
+ *        components x[i] are used unconjugated or conjugated.
+ *
  * n      (input) int
  *        The length of vectors x and y.
- * 
+ *
  * alpha  (input) const void*
- * 
+ *
  * x      (input) const void*
  *        Array of length n.
- * 
+ *
  * incx   (input) int
  *        The stride used to access components x[i].
  *
@@ -34,12 +34,12 @@ void BLAS_cdot_c_s(enum blas_conj_type conj, int n, const void *alpha,
  *
  * y      (input) const float*
  *        Array of length n.
- *      
+ *
  * incy   (input) int
  *        The stride used to access components y[i].
  *
  * r      (input/output) void*
- * 
+ *
  */
 {
   static const char routine_name[] = "BLAS_cdot_c_s";
@@ -91,14 +91,14 @@ void BLAS_cdot_c_s(enum blas_conj_type conj, int n, const void *alpha,
       y_ii = y_i[iy];
       x_ii[1] = -x_ii[1];
       {
-	prod[0] = x_ii[0] * y_ii;
-	prod[1] = x_ii[1] * y_ii;
-      }				/* prod = x[i]*y[i] */
+        prod[0] = x_ii[0] * y_ii;
+        prod[1] = x_ii[1] * y_ii;
+      }                                /* prod = x[i]*y[i] */
       sum[0] = sum[0] + prod[0];
-      sum[1] = sum[1] + prod[1];	/* sum = sum+prod */
+      sum[1] = sum[1] + prod[1];        /* sum = sum+prod */
       ix += incx;
       iy += incy;
-    }				/* endfor */
+    }                                /* endfor */
   } else {
     /* do not conjugate */
 
@@ -108,14 +108,14 @@ void BLAS_cdot_c_s(enum blas_conj_type conj, int n, const void *alpha,
       y_ii = y_i[iy];
 
       {
-	prod[0] = x_ii[0] * y_ii;
-	prod[1] = x_ii[1] * y_ii;
-      }				/* prod = x[i]*y[i] */
+        prod[0] = x_ii[0] * y_ii;
+        prod[1] = x_ii[1] * y_ii;
+      }                                /* prod = x[i]*y[i] */
       sum[0] = sum[0] + prod[0];
-      sum[1] = sum[1] + prod[1];	/* sum = sum+prod */
+      sum[1] = sum[1] + prod[1];        /* sum = sum+prod */
       ix += incx;
       iy += incy;
-    }				/* endfor */
+    }                                /* endfor */
   }
 
   {
@@ -129,9 +129,9 @@ void BLAS_cdot_c_s(enum blas_conj_type conj, int n, const void *alpha,
   }
   /* tmp2 = r*beta */
   tmp1[0] = tmp1[0] + tmp2[0];
-  tmp1[1] = tmp1[1] + tmp2[1];	/* tmp1 = tmp1+tmp2 */
+  tmp1[1] = tmp1[1] + tmp2[1];        /* tmp1 = tmp1+tmp2 */
   ((float *) r)[0] = tmp1[0];
-  ((float *) r)[1] = tmp1[1];	/* r = tmp1 */
+  ((float *) r)[1] = tmp1[1];        /* r = tmp1 */
 
 
 

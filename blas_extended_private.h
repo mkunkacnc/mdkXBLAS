@@ -7,7 +7,7 @@
 #define BITS_E  106
 
 /* Split a double into 2 parts with at most 26 bits each. (2^27 + 1) */
-#define split 	(134217729.0)
+#define split         (134217729.0)
 
 /* macros */
 #define MAX(a,b) (((a) > (b)) ? (a) : (b))

@@ -1,9 +1,9 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 void BLAS_zgemv_z_c(enum blas_order_type order, enum blas_trans_type trans,
-		    int m, int n, const void *alpha, const void *a, int lda,
-		    const void *x, int incx, const void *beta, void *y,
-		    int incy)
+                    int m, int n, const void *alpha, const void *a, int lda,
+                    const void *x, int incx, const void *beta, void *y,
+                    int incy)
 
 /*
  * Purpose
@@ -18,7 +18,7 @@ void BLAS_zgemv_z_c(enum blas_order_type order, enum blas_trans_type trans,
  *              Order of AP; row or column major
  *
  * trans        (input) blas_trans_type
- *              Transpose of AB; no trans, 
+ *              Transpose of AB; no trans,
  *              trans, or conjugate trans
  *
  * m            (input) int
@@ -28,14 +28,14 @@ void BLAS_zgemv_z_c(enum blas_order_type order, enum blas_trans_type trans,
  *              Dimension of AB and the length of vector x
  *
  * alpha        (input) const void*
- *              
+ *
  * A            (input) const void*
  *
- * lda          (input) int 
+ * lda          (input) int
  *              Leading dimension of A
  *
  * x            (input) const void*
- * 
+ *
  * incx         (input) int
  *              The stride for vector x.
  *
@@ -45,7 +45,7 @@ void BLAS_zgemv_z_c(enum blas_order_type order, enum blas_trans_type trans,
  *
  * incy         (input) int
  *              The stride for vector y.
- * 
+ *
  */
 {
   static const char routine_name[] = "BLAS_zgemv_z_c";
@@ -95,7 +95,7 @@ void BLAS_zgemv_z_c(enum blas_order_type order, enum blas_trans_type trans,
     leny = m;
     incai = 1;
     incaij = lda;
-  } else {			/* colmajor and blas_trans */
+  } else {                        /* colmajor and blas_trans */
     lenx = m;
     leny = n;
     incai = lda;
@@ -126,24 +126,24 @@ void BLAS_zgemv_z_c(enum blas_order_type order, enum blas_trans_type trans,
     if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
       iy = ky;
       for (i = 0; i < leny; i++) {
-	y_i[iy] = 0.0;
-	y_i[iy + 1] = 0.0;
-	iy += incy;
+        y_i[iy] = 0.0;
+        y_i[iy + 1] = 0.0;
+        iy += incy;
       }
     } else if (!(beta_i[0] == 0.0 && beta_i[1] == 0.0)) {
       iy = ky;
       for (i = 0; i < leny; i++) {
-	y_elem[0] = y_i[iy];
-	y_elem[1] = y_i[iy + 1];
-	{
-	  tmp1[0] =
-	    (double) y_elem[0] * beta_i[0] - (double) y_elem[1] * beta_i[1];
-	  tmp1[1] =
-	    (double) y_elem[0] * beta_i[1] + (double) y_elem[1] * beta_i[0];
-	}
-	y_i[iy] = tmp1[0];
-	y_i[iy + 1] = tmp1[1];
-	iy += incy;
+        y_elem[0] = y_i[iy];
+        y_elem[1] = y_i[iy + 1];
+        {
+          tmp1[0] =
+            (double) y_elem[0] * beta_i[0] - (double) y_elem[1] * beta_i[1];
+          tmp1[1] =
+            (double) y_elem[0] * beta_i[1] + (double) y_elem[1] * beta_i[0];
+        }
+        y_i[iy] = tmp1[0];
+        y_i[iy + 1] = tmp1[1];
+        iy += incy;
       }
     }
   } else {
@@ -151,248 +151,248 @@ void BLAS_zgemv_z_c(enum blas_order_type order, enum blas_trans_type trans,
 
       /* if beta = 0, we can save m multiplies: y = alpha*A*x */
       if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	/* save m more multiplies if alpha = 1 */
-	if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
-	  ai = 0;
-	  iy = ky;
-	  for (i = 0; i < leny; i++) {
-	    sum[0] = sum[1] = 0.0;
-	    aij = ai;
-	    jx = kx;
-	    for (j = 0; j < lenx; j++) {
-	      a_elem[0] = a_i[aij];
-	      a_elem[1] = a_i[aij + 1];
-	      a_elem[1] = -a_elem[1];
-	      x_elem[0] = x_i[jx];
-	      x_elem[1] = x_i[jx + 1];
-	      {
-		prod[0] =
-		  (double) a_elem[0] * x_elem[0] -
-		  (double) a_elem[1] * x_elem[1];
-		prod[1] =
-		  (double) a_elem[0] * x_elem[1] +
-		  (double) a_elem[1] * x_elem[0];
-	      }
-	      sum[0] = sum[0] + prod[0];
-	      sum[1] = sum[1] + prod[1];
-	      aij += incaij;
-	      jx += incx;
-	    }
-	    y_i[iy] = sum[0];
-	    y_i[iy + 1] = sum[1];
-	    ai += incai;
-	    iy += incy;
-	  }
-	} else {
-	  ai = 0;
-	  iy = ky;
-	  for (i = 0; i < leny; i++) {
-	    sum[0] = sum[1] = 0.0;
-	    aij = ai;
-	    jx = kx;
-	    for (j = 0; j < lenx; j++) {
-	      a_elem[0] = a_i[aij];
-	      a_elem[1] = a_i[aij + 1];
-	      a_elem[1] = -a_elem[1];
-	      x_elem[0] = x_i[jx];
-	      x_elem[1] = x_i[jx + 1];
-	      {
-		prod[0] =
-		  (double) a_elem[0] * x_elem[0] -
-		  (double) a_elem[1] * x_elem[1];
-		prod[1] =
-		  (double) a_elem[0] * x_elem[1] +
-		  (double) a_elem[1] * x_elem[0];
-	      }
-	      sum[0] = sum[0] + prod[0];
-	      sum[1] = sum[1] + prod[1];
-	      aij += incaij;
-	      jx += incx;
-	    }
-	    {
-	      tmp1[0] =
-		(double) sum[0] * alpha_i[0] - (double) sum[1] * alpha_i[1];
-	      tmp1[1] =
-		(double) sum[0] * alpha_i[1] + (double) sum[1] * alpha_i[0];
-	    }
-	    y_i[iy] = tmp1[0];
-	    y_i[iy + 1] = tmp1[1];
-	    ai += incai;
-	    iy += incy;
-	  }
-	}
+        /* save m more multiplies if alpha = 1 */
+        if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
+          ai = 0;
+          iy = ky;
+          for (i = 0; i < leny; i++) {
+            sum[0] = sum[1] = 0.0;
+            aij = ai;
+            jx = kx;
+            for (j = 0; j < lenx; j++) {
+              a_elem[0] = a_i[aij];
+              a_elem[1] = a_i[aij + 1];
+              a_elem[1] = -a_elem[1];
+              x_elem[0] = x_i[jx];
+              x_elem[1] = x_i[jx + 1];
+              {
+                prod[0] =
+                  (double) a_elem[0] * x_elem[0] -
+                  (double) a_elem[1] * x_elem[1];
+                prod[1] =
+                  (double) a_elem[0] * x_elem[1] +
+                  (double) a_elem[1] * x_elem[0];
+              }
+              sum[0] = sum[0] + prod[0];
+              sum[1] = sum[1] + prod[1];
+              aij += incaij;
+              jx += incx;
+            }
+            y_i[iy] = sum[0];
+            y_i[iy + 1] = sum[1];
+            ai += incai;
+            iy += incy;
+          }
+        } else {
+          ai = 0;
+          iy = ky;
+          for (i = 0; i < leny; i++) {
+            sum[0] = sum[1] = 0.0;
+            aij = ai;
+            jx = kx;
+            for (j = 0; j < lenx; j++) {
+              a_elem[0] = a_i[aij];
+              a_elem[1] = a_i[aij + 1];
+              a_elem[1] = -a_elem[1];
+              x_elem[0] = x_i[jx];
+              x_elem[1] = x_i[jx + 1];
+              {
+                prod[0] =
+                  (double) a_elem[0] * x_elem[0] -
+                  (double) a_elem[1] * x_elem[1];
+                prod[1] =
+                  (double) a_elem[0] * x_elem[1] +
+                  (double) a_elem[1] * x_elem[0];
+              }
+              sum[0] = sum[0] + prod[0];
+              sum[1] = sum[1] + prod[1];
+              aij += incaij;
+              jx += incx;
+            }
+            {
+              tmp1[0] =
+                (double) sum[0] * alpha_i[0] - (double) sum[1] * alpha_i[1];
+              tmp1[1] =
+                (double) sum[0] * alpha_i[1] + (double) sum[1] * alpha_i[0];
+            }
+            y_i[iy] = tmp1[0];
+            y_i[iy + 1] = tmp1[1];
+            ai += incai;
+            iy += incy;
+          }
+        }
       } else {
-	/* the most general form, y = alpha*A*x + beta*y */
-	ai = 0;
-	iy = ky;
-	for (i = 0; i < leny; i++) {
-	  sum[0] = sum[1] = 0.0;;
-	  aij = ai;
-	  jx = kx;
-	  for (j = 0; j < lenx; j++) {
-	    a_elem[0] = a_i[aij];
-	    a_elem[1] = a_i[aij + 1];
-	    a_elem[1] = -a_elem[1];
-	    x_elem[0] = x_i[jx];
-	    x_elem[1] = x_i[jx + 1];
-	    {
-	      prod[0] =
-		(double) a_elem[0] * x_elem[0] -
-		(double) a_elem[1] * x_elem[1];
-	      prod[1] =
-		(double) a_elem[0] * x_elem[1] +
-		(double) a_elem[1] * x_elem[0];
-	    }
-	    sum[0] = sum[0] + prod[0];
-	    sum[1] = sum[1] + prod[1];
-	    aij += incaij;
-	    jx += incx;
-	  }
-	  {
-	    tmp1[0] =
-	      (double) sum[0] * alpha_i[0] - (double) sum[1] * alpha_i[1];
-	    tmp1[1] =
-	      (double) sum[0] * alpha_i[1] + (double) sum[1] * alpha_i[0];
-	  }
-	  y_elem[0] = y_i[iy];
-	  y_elem[1] = y_i[iy + 1];
-	  {
-	    tmp2[0] =
-	      (double) y_elem[0] * beta_i[0] - (double) y_elem[1] * beta_i[1];
-	    tmp2[1] =
-	      (double) y_elem[0] * beta_i[1] + (double) y_elem[1] * beta_i[0];
-	  }
-	  tmp1[0] = tmp1[0] + tmp2[0];
-	  tmp1[1] = tmp1[1] + tmp2[1];
-	  y_i[iy] = tmp1[0];
-	  y_i[iy + 1] = tmp1[1];
-	  ai += incai;
-	  iy += incy;
-	}
+        /* the most general form, y = alpha*A*x + beta*y */
+        ai = 0;
+        iy = ky;
+        for (i = 0; i < leny; i++) {
+          sum[0] = sum[1] = 0.0;;
+          aij = ai;
+          jx = kx;
+          for (j = 0; j < lenx; j++) {
+            a_elem[0] = a_i[aij];
+            a_elem[1] = a_i[aij + 1];
+            a_elem[1] = -a_elem[1];
+            x_elem[0] = x_i[jx];
+            x_elem[1] = x_i[jx + 1];
+            {
+              prod[0] =
+                (double) a_elem[0] * x_elem[0] -
+                (double) a_elem[1] * x_elem[1];
+              prod[1] =
+                (double) a_elem[0] * x_elem[1] +
+                (double) a_elem[1] * x_elem[0];
+            }
+            sum[0] = sum[0] + prod[0];
+            sum[1] = sum[1] + prod[1];
+            aij += incaij;
+            jx += incx;
+          }
+          {
+            tmp1[0] =
+              (double) sum[0] * alpha_i[0] - (double) sum[1] * alpha_i[1];
+            tmp1[1] =
+              (double) sum[0] * alpha_i[1] + (double) sum[1] * alpha_i[0];
+          }
+          y_elem[0] = y_i[iy];
+          y_elem[1] = y_i[iy + 1];
+          {
+            tmp2[0] =
+              (double) y_elem[0] * beta_i[0] - (double) y_elem[1] * beta_i[1];
+            tmp2[1] =
+              (double) y_elem[0] * beta_i[1] + (double) y_elem[1] * beta_i[0];
+          }
+          tmp1[0] = tmp1[0] + tmp2[0];
+          tmp1[1] = tmp1[1] + tmp2[1];
+          y_i[iy] = tmp1[0];
+          y_i[iy + 1] = tmp1[1];
+          ai += incai;
+          iy += incy;
+        }
       }
 
     } else {
 
       /* if beta = 0, we can save m multiplies: y = alpha*A*x */
       if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	/* save m more multiplies if alpha = 1 */
-	if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
-	  ai = 0;
-	  iy = ky;
-	  for (i = 0; i < leny; i++) {
-	    sum[0] = sum[1] = 0.0;
-	    aij = ai;
-	    jx = kx;
-	    for (j = 0; j < lenx; j++) {
-	      a_elem[0] = a_i[aij];
-	      a_elem[1] = a_i[aij + 1];
+        /* save m more multiplies if alpha = 1 */
+        if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
+          ai = 0;
+          iy = ky;
+          for (i = 0; i < leny; i++) {
+            sum[0] = sum[1] = 0.0;
+            aij = ai;
+            jx = kx;
+            for (j = 0; j < lenx; j++) {
+              a_elem[0] = a_i[aij];
+              a_elem[1] = a_i[aij + 1];
 
-	      x_elem[0] = x_i[jx];
-	      x_elem[1] = x_i[jx + 1];
-	      {
-		prod[0] =
-		  (double) a_elem[0] * x_elem[0] -
-		  (double) a_elem[1] * x_elem[1];
-		prod[1] =
-		  (double) a_elem[0] * x_elem[1] +
-		  (double) a_elem[1] * x_elem[0];
-	      }
-	      sum[0] = sum[0] + prod[0];
-	      sum[1] = sum[1] + prod[1];
-	      aij += incaij;
-	      jx += incx;
-	    }
-	    y_i[iy] = sum[0];
-	    y_i[iy + 1] = sum[1];
-	    ai += incai;
-	    iy += incy;
-	  }
-	} else {
-	  ai = 0;
-	  iy = ky;
-	  for (i = 0; i < leny; i++) {
-	    sum[0] = sum[1] = 0.0;
-	    aij = ai;
-	    jx = kx;
-	    for (j = 0; j < lenx; j++) {
-	      a_elem[0] = a_i[aij];
-	      a_elem[1] = a_i[aij + 1];
+              x_elem[0] = x_i[jx];
+              x_elem[1] = x_i[jx + 1];
+              {
+                prod[0] =
+                  (double) a_elem[0] * x_elem[0] -
+                  (double) a_elem[1] * x_elem[1];
+                prod[1] =
+                  (double) a_elem[0] * x_elem[1] +
+                  (double) a_elem[1] * x_elem[0];
+              }
+              sum[0] = sum[0] + prod[0];
+              sum[1] = sum[1] + prod[1];
+              aij += incaij;
+              jx += incx;
+            }
+            y_i[iy] = sum[0];
+            y_i[iy + 1] = sum[1];
+            ai += incai;
+            iy += incy;
+          }
+        } else {
+          ai = 0;
+          iy = ky;
+          for (i = 0; i < leny; i++) {
+            sum[0] = sum[1] = 0.0;
+            aij = ai;
+            jx = kx;
+            for (j = 0; j < lenx; j++) {
+              a_elem[0] = a_i[aij];
+              a_elem[1] = a_i[aij + 1];
 
-	      x_elem[0] = x_i[jx];
-	      x_elem[1] = x_i[jx + 1];
-	      {
-		prod[0] =
-		  (double) a_elem[0] * x_elem[0] -
-		  (double) a_elem[1] * x_elem[1];
-		prod[1] =
-		  (double) a_elem[0] * x_elem[1] +
-		  (double) a_elem[1] * x_elem[0];
-	      }
-	      sum[0] = sum[0] + prod[0];
-	      sum[1] = sum[1] + prod[1];
-	      aij += incaij;
-	      jx += incx;
-	    }
-	    {
-	      tmp1[0] =
-		(double) sum[0] * alpha_i[0] - (double) sum[1] * alpha_i[1];
-	      tmp1[1] =
-		(double) sum[0] * alpha_i[1] + (double) sum[1] * alpha_i[0];
-	    }
-	    y_i[iy] = tmp1[0];
-	    y_i[iy + 1] = tmp1[1];
-	    ai += incai;
-	    iy += incy;
-	  }
-	}
+              x_elem[0] = x_i[jx];
+              x_elem[1] = x_i[jx + 1];
+              {
+                prod[0] =
+                  (double) a_elem[0] * x_elem[0] -
+                  (double) a_elem[1] * x_elem[1];
+                prod[1] =
+                  (double) a_elem[0] * x_elem[1] +
+                  (double) a_elem[1] * x_elem[0];
+              }
+              sum[0] = sum[0] + prod[0];
+              sum[1] = sum[1] + prod[1];
+              aij += incaij;
+              jx += incx;
+            }
+            {
+              tmp1[0] =
+                (double) sum[0] * alpha_i[0] - (double) sum[1] * alpha_i[1];
+              tmp1[1] =
+                (double) sum[0] * alpha_i[1] + (double) sum[1] * alpha_i[0];
+            }
+            y_i[iy] = tmp1[0];
+            y_i[iy + 1] = tmp1[1];
+            ai += incai;
+            iy += incy;
+          }
+        }
       } else {
-	/* the most general form, y = alpha*A*x + beta*y */
-	ai = 0;
-	iy = ky;
-	for (i = 0; i < leny; i++) {
-	  sum[0] = sum[1] = 0.0;;
-	  aij = ai;
-	  jx = kx;
-	  for (j = 0; j < lenx; j++) {
-	    a_elem[0] = a_i[aij];
-	    a_elem[1] = a_i[aij + 1];
+        /* the most general form, y = alpha*A*x + beta*y */
+        ai = 0;
+        iy = ky;
+        for (i = 0; i < leny; i++) {
+          sum[0] = sum[1] = 0.0;;
+          aij = ai;
+          jx = kx;
+          for (j = 0; j < lenx; j++) {
+            a_elem[0] = a_i[aij];
+            a_elem[1] = a_i[aij + 1];
 
-	    x_elem[0] = x_i[jx];
-	    x_elem[1] = x_i[jx + 1];
-	    {
-	      prod[0] =
-		(double) a_elem[0] * x_elem[0] -
-		(double) a_elem[1] * x_elem[1];
-	      prod[1] =
-		(double) a_elem[0] * x_elem[1] +
-		(double) a_elem[1] * x_elem[0];
-	    }
-	    sum[0] = sum[0] + prod[0];
-	    sum[1] = sum[1] + prod[1];
-	    aij += incaij;
-	    jx += incx;
-	  }
-	  {
-	    tmp1[0] =
-	      (double) sum[0] * alpha_i[0] - (double) sum[1] * alpha_i[1];
-	    tmp1[1] =
-	      (double) sum[0] * alpha_i[1] + (double) sum[1] * alpha_i[0];
-	  }
-	  y_elem[0] = y_i[iy];
-	  y_elem[1] = y_i[iy + 1];
-	  {
-	    tmp2[0] =
-	      (double) y_elem[0] * beta_i[0] - (double) y_elem[1] * beta_i[1];
-	    tmp2[1] =
-	      (double) y_elem[0] * beta_i[1] + (double) y_elem[1] * beta_i[0];
-	  }
-	  tmp1[0] = tmp1[0] + tmp2[0];
-	  tmp1[1] = tmp1[1] + tmp2[1];
-	  y_i[iy] = tmp1[0];
-	  y_i[iy + 1] = tmp1[1];
-	  ai += incai;
-	  iy += incy;
-	}
+            x_elem[0] = x_i[jx];
+            x_elem[1] = x_i[jx + 1];
+            {
+              prod[0] =
+                (double) a_elem[0] * x_elem[0] -
+                (double) a_elem[1] * x_elem[1];
+              prod[1] =
+                (double) a_elem[0] * x_elem[1] +
+                (double) a_elem[1] * x_elem[0];
+            }
+            sum[0] = sum[0] + prod[0];
+            sum[1] = sum[1] + prod[1];
+            aij += incaij;
+            jx += incx;
+          }
+          {
+            tmp1[0] =
+              (double) sum[0] * alpha_i[0] - (double) sum[1] * alpha_i[1];
+            tmp1[1] =
+              (double) sum[0] * alpha_i[1] + (double) sum[1] * alpha_i[0];
+          }
+          y_elem[0] = y_i[iy];
+          y_elem[1] = y_i[iy + 1];
+          {
+            tmp2[0] =
+              (double) y_elem[0] * beta_i[0] - (double) y_elem[1] * beta_i[1];
+            tmp2[1] =
+              (double) y_elem[0] * beta_i[1] + (double) y_elem[1] * beta_i[0];
+          }
+          tmp1[0] = tmp1[0] + tmp2[0];
+          tmp1[1] = tmp1[1] + tmp2[1];
+          y_i[iy] = tmp1[0];
+          y_i[iy + 1] = tmp1[1];
+          ai += incai;
+          iy += incy;
+        }
       }
 
     }

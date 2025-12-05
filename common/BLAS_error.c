@@ -32,11 +32,11 @@ void BLAS_error(const char *rname, int iflag, int ival, char *form, ...)
       vfprintf(stderr, form, argptr);
     else if (iflag < 0)
       fprintf(stderr,
-	      "  Parameter number %d to routine %s had the illegal value %d\n",
-	      -iflag, rname, ival);
+              "  Parameter number %d to routine %s had the illegal value %d\n",
+              -iflag, rname, ival);
     else
       fprintf(stderr, "  Unknown error code %d from routine %s\n",
-	      iflag, rname);
+              iflag, rname);
     exit(iflag);
   }
 #else

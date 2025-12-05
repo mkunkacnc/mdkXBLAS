@@ -2,18 +2,18 @@
 #include <blas_extended_private.h>
 #include <blas_fpu.h>
 void BLAS_zsymv2_d_d(enum blas_order_type order, enum blas_uplo_type uplo,
-		     int n, const void *alpha, const double *a, int lda,
-		     const double *x_head, const double *x_tail, int incx,
-		     const void *beta, void *y, int incy)
+                     int n, const void *alpha, const double *a, int lda,
+                     const double *x_head, const double *x_tail, int incx,
+                     const void *beta, void *y, int incy)
 
-/* 
+/*
  * Purpose
  * =======
  *
  * This routines computes the matrix product:
  *
  *     y  <-  alpha * A * (x_head + x_tail) + beta * y
- * 
+ *
  * where A is a symmetric matrix.
  *
  * Arguments
@@ -21,7 +21,7 @@ void BLAS_zsymv2_d_d(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  * order   (input) enum blas_order_type
  *         Storage format of input symmetric matrix A.
- * 
+ *
  * uplo    (input) enum blas_uplo_type
  *         Determines which half of matrix A (upper or lower triangle)
  *         is accessed.
@@ -30,7 +30,7 @@ void BLAS_zsymv2_d_d(enum blas_order_type order, enum blas_uplo_type uplo,
  *         Dimension of A and size of vectors x, y.
  *
  * alpha   (input) const void*
- * 
+ *
  * a       (input) double*
  *         Matrix A.
  *
@@ -42,12 +42,12 @@ void BLAS_zsymv2_d_d(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  * x_tail  (input) double*
  *         Vector x_tail
- *   
+ *
  * incx    (input) int
  *         Stride for vector x.
  *
  * beta    (input) const void*
- * 
+ *
  * y       (input) double*
  *         Vector y.
  *
@@ -160,9 +160,9 @@ void BLAS_zsymv2_d_d(enum blas_order_type order, enum blas_uplo_type uplo,
     y_elem[1] = y_i[yi + 1];
     {
       tmp2[0] =
-	(double) y_elem[0] * beta_i[0] - (double) y_elem[1] * beta_i[1];
+        (double) y_elem[0] * beta_i[0] - (double) y_elem[1] * beta_i[1];
       tmp2[1] =
-	(double) y_elem[0] * beta_i[1] + (double) y_elem[1] * beta_i[0];
+        (double) y_elem[0] * beta_i[1] + (double) y_elem[1] * beta_i[0];
     }
     tmp3[0] = tmp1[0] + tmp2[0];
     tmp3[1] = tmp1[1] + tmp2[1];
@@ -172,4 +172,4 @@ void BLAS_zsymv2_d_d(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
 
-}				/* end BLAS_zsymv2_d_d */
+}                                /* end BLAS_zsymv2_d_d */

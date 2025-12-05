@@ -1,7 +1,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 void BLAS_daxpby_s(int n, double alpha, const float *x, int incx,
-		   double beta, double *y, int incy)
+                   double beta, double *y, int incy)
 
 /*
  * Purpose
@@ -13,10 +13,10 @@ void BLAS_daxpby_s(int n, double alpha, const float *x, int incx,
  *
  * Arguments
  * =========
- * 
+ *
  * n         (input) int
  *           The length of vectors x and y.
- * 
+ *
  * alpha     (input) double
  *
  * x         (input) const float*
@@ -24,12 +24,12 @@ void BLAS_daxpby_s(int n, double alpha, const float *x, int incx,
  *
  * incx      (input) int
  *           The stride used to access components x[i].
- * 
+ *
  * beta      (input) double
  *
  * y         (input) double*
  *           Array of length n.
- * 
+ *
  * incy      (input) int
  *           The stride used to access components y[i].
  *
@@ -70,14 +70,14 @@ void BLAS_daxpby_s(int n, double alpha, const float *x, int incx,
   for (i = 0; i < n; ++i) {
     x_ii = x_i[ix];
     y_ii = y_i[iy];
-    tmpx = alpha_i * x_ii;	/* tmpx  = alpha * x[ix] */
-    tmpy = beta_i * y_ii;	/* tmpy = beta * y[iy] */
+    tmpx = alpha_i * x_ii;        /* tmpx  = alpha * x[ix] */
+    tmpy = beta_i * y_ii;        /* tmpy = beta * y[iy] */
     tmpy = tmpy + tmpx;
     y_i[iy] = tmpy;
     ix += incx;
     iy += incy;
-  }				/* endfor */
+  }                                /* endfor */
 
 
 
-}				/* end BLAS_daxpby_s */
+}                                /* end BLAS_daxpby_s */

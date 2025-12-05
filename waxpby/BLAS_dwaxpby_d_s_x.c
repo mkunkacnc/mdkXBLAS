@@ -2,8 +2,8 @@
 #include "blas_extended_private.h"
 
 void BLAS_dwaxpby_d_s_x(int n, double alpha, const double *x, int incx,
-			double beta, const float *y, int incy, double *w,
-			int incw, enum blas_prec_type prec)
+                        double beta, const float *y, int incy, double *w,
+                        int incw, enum blas_prec_type prec)
 
 /*
  * Purpose
@@ -12,18 +12,18 @@ void BLAS_dwaxpby_d_s_x(int n, double alpha, const double *x, int incx,
  * This routine computes:
  *
  *     w <- alpha * x + beta * y
- * 
+ *
  * Arguments
  * =========
  *
  * n     (input) int
  *       The length of vectors x, y, and w.
- * 
+ *
  * alpha (input) double
  *
  * x     (input) const double*
  *       Array of length n.
- * 
+ *
  * incx  (input) int
  *       The stride used to access components x[i].
  *
@@ -72,16 +72,16 @@ void BLAS_dwaxpby_d_s_x(int n, double alpha, const double *x, int incx,
 
       /* Test the input parameters. */
       if (incx == 0)
-	BLAS_error(routine_name, -4, incx, NULL);
+        BLAS_error(routine_name, -4, incx, NULL);
       else if (incy == 0)
-	BLAS_error(routine_name, -7, incy, NULL);
+        BLAS_error(routine_name, -7, incy, NULL);
       else if (incw == 0)
-	BLAS_error(routine_name, -9, incw, NULL);
+        BLAS_error(routine_name, -9, incw, NULL);
 
 
       /* Immediate return */
       if (n <= 0) {
-	return;
+        return;
       }
 
 
@@ -90,23 +90,23 @@ void BLAS_dwaxpby_d_s_x(int n, double alpha, const double *x, int incx,
 
 
       if (incx < 0)
-	ix = (-n + 1) * incx;
+        ix = (-n + 1) * incx;
       if (incy < 0)
-	iy = (-n + 1) * incy;
+        iy = (-n + 1) * incy;
       if (incw < 0)
-	iw = (-n + 1) * incw;
+        iw = (-n + 1) * incw;
 
       for (i = 0; i < n; ++i) {
-	x_ii = x_i[ix];
-	y_ii = y_i[iy];
-	tmpx = alpha_i * x_ii;	/* tmpx  = alpha * x[ix] */
-	tmpy = beta_i * y_ii;	/* tmpy = beta * y[iy] */
-	tmpy = tmpy + tmpx;
-	w_i[iw] = tmpy;
-	ix += incx;
-	iy += incy;
-	iw += incw;
-      }				/* endfor */
+        x_ii = x_i[ix];
+        y_ii = y_i[iy];
+        tmpx = alpha_i * x_ii;        /* tmpx  = alpha * x[ix] */
+        tmpy = beta_i * y_ii;        /* tmpy = beta * y[iy] */
+        tmpy = tmpy + tmpx;
+        w_i[iw] = tmpy;
+        ix += incx;
+        iy += incy;
+        iw += incw;
+      }                                /* endfor */
 
 
 
@@ -130,16 +130,16 @@ void BLAS_dwaxpby_d_s_x(int n, double alpha, const double *x, int incx,
 
       /* Test the input parameters. */
       if (incx == 0)
-	BLAS_error(routine_name, -4, incx, NULL);
+        BLAS_error(routine_name, -4, incx, NULL);
       else if (incy == 0)
-	BLAS_error(routine_name, -7, incy, NULL);
+        BLAS_error(routine_name, -7, incy, NULL);
       else if (incw == 0)
-	BLAS_error(routine_name, -9, incw, NULL);
+        BLAS_error(routine_name, -9, incw, NULL);
 
 
       /* Immediate return */
       if (n <= 0) {
-	return;
+        return;
       }
 
       FPU_FIX_START;
@@ -148,83 +148,83 @@ void BLAS_dwaxpby_d_s_x(int n, double alpha, const double *x, int incx,
 
 
       if (incx < 0)
-	ix = (-n + 1) * incx;
+        ix = (-n + 1) * incx;
       if (incy < 0)
-	iy = (-n + 1) * incy;
+        iy = (-n + 1) * incy;
       if (incw < 0)
-	iw = (-n + 1) * incw;
+        iw = (-n + 1) * incw;
 
       for (i = 0; i < n; ++i) {
-	x_ii = x_i[ix];
-	y_ii = y_i[iy];
-	{
-	  /* Compute double_double = double * double. */
-	  double a1, a2, b1, b2, con;
+        x_ii = x_i[ix];
+        y_ii = y_i[iy];
+        {
+          /* Compute double_double = double * double. */
+          double a1, a2, b1, b2, con;
 
-	  con = alpha_i * split;
-	  a1 = con - alpha_i;
-	  a1 = con - a1;
-	  a2 = alpha_i - a1;
-	  con = x_ii * split;
-	  b1 = con - x_ii;
-	  b1 = con - b1;
-	  b2 = x_ii - b1;
+          con = alpha_i * split;
+          a1 = con - alpha_i;
+          a1 = con - a1;
+          a2 = alpha_i - a1;
+          con = x_ii * split;
+          b1 = con - x_ii;
+          b1 = con - b1;
+          b2 = x_ii - b1;
 
-	  head_tmpx = alpha_i * x_ii;
-	  tail_tmpx = (((a1 * b1 - head_tmpx) + a1 * b2) + a2 * b1) + a2 * b2;
-	}			/* tmpx  = alpha * x[ix] */
-	{
-	  double dt = (double) y_ii;
-	  {
-	    /* Compute double_double = double * double. */
-	    double a1, a2, b1, b2, con;
+          head_tmpx = alpha_i * x_ii;
+          tail_tmpx = (((a1 * b1 - head_tmpx) + a1 * b2) + a2 * b1) + a2 * b2;
+        }                        /* tmpx  = alpha * x[ix] */
+        {
+          double dt = (double) y_ii;
+          {
+            /* Compute double_double = double * double. */
+            double a1, a2, b1, b2, con;
 
-	    con = beta_i * split;
-	    a1 = con - beta_i;
-	    a1 = con - a1;
-	    a2 = beta_i - a1;
-	    con = dt * split;
-	    b1 = con - dt;
-	    b1 = con - b1;
-	    b2 = dt - b1;
+            con = beta_i * split;
+            a1 = con - beta_i;
+            a1 = con - a1;
+            a2 = beta_i - a1;
+            con = dt * split;
+            b1 = con - dt;
+            b1 = con - b1;
+            b2 = dt - b1;
 
-	    head_tmpy = beta_i * dt;
-	    tail_tmpy =
-	      (((a1 * b1 - head_tmpy) + a1 * b2) + a2 * b1) + a2 * b2;
-	  }
-	}			/* tmpy = beta * y[iy] */
-	{
-	  /* Compute double-double = double-double + double-double. */
-	  double bv;
-	  double s1, s2, t1, t2;
+            head_tmpy = beta_i * dt;
+            tail_tmpy =
+              (((a1 * b1 - head_tmpy) + a1 * b2) + a2 * b1) + a2 * b2;
+          }
+        }                        /* tmpy = beta * y[iy] */
+        {
+          /* Compute double-double = double-double + double-double. */
+          double bv;
+          double s1, s2, t1, t2;
 
-	  /* Add two hi words. */
-	  s1 = head_tmpy + head_tmpx;
-	  bv = s1 - head_tmpy;
-	  s2 = ((head_tmpx - bv) + (head_tmpy - (s1 - bv)));
+          /* Add two hi words. */
+          s1 = head_tmpy + head_tmpx;
+          bv = s1 - head_tmpy;
+          s2 = ((head_tmpx - bv) + (head_tmpy - (s1 - bv)));
 
-	  /* Add two lo words. */
-	  t1 = tail_tmpy + tail_tmpx;
-	  bv = t1 - tail_tmpy;
-	  t2 = ((tail_tmpx - bv) + (tail_tmpy - (t1 - bv)));
+          /* Add two lo words. */
+          t1 = tail_tmpy + tail_tmpx;
+          bv = t1 - tail_tmpy;
+          t2 = ((tail_tmpx - bv) + (tail_tmpy - (t1 - bv)));
 
-	  s2 += t1;
+          s2 += t1;
 
-	  /* Renormalize (s1, s2)  to  (t1, s2) */
-	  t1 = s1 + s2;
-	  s2 = s2 - (t1 - s1);
+          /* Renormalize (s1, s2)  to  (t1, s2) */
+          t1 = s1 + s2;
+          s2 = s2 - (t1 - s1);
 
-	  t2 += s2;
+          t2 += s2;
 
-	  /* Renormalize (t1, t2)  */
-	  head_tmpy = t1 + t2;
-	  tail_tmpy = t2 - (head_tmpy - t1);
-	}
-	w_i[iw] = head_tmpy;
-	ix += incx;
-	iy += incy;
-	iw += incw;
-      }				/* endfor */
+          /* Renormalize (t1, t2)  */
+          head_tmpy = t1 + t2;
+          tail_tmpy = t2 - (head_tmpy - t1);
+        }
+        w_i[iw] = head_tmpy;
+        ix += incx;
+        iy += incy;
+        iw += incw;
+      }                                /* endfor */
 
       FPU_FIX_STOP;
 

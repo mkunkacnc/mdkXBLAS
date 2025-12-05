@@ -1,7 +1,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 void BLAS_caxpby_s(int n, const void *alpha, const float *x, int incx,
-		   const void *beta, void *y, int incy)
+                   const void *beta, void *y, int incy)
 
 /*
  * Purpose
@@ -13,10 +13,10 @@ void BLAS_caxpby_s(int n, const void *alpha, const float *x, int incx,
  *
  * Arguments
  * =========
- * 
+ *
  * n         (input) int
  *           The length of vectors x and y.
- * 
+ *
  * alpha     (input) const void*
  *
  * x         (input) const float*
@@ -24,12 +24,12 @@ void BLAS_caxpby_s(int n, const void *alpha, const float *x, int incx,
  *
  * incx      (input) int
  *           The stride used to access components x[i].
- * 
+ *
  * beta      (input) const void*
  *
  * y         (input) void*
  *           Array of length n.
- * 
+ *
  * incy      (input) int
  *           The stride used to access components y[i].
  *
@@ -57,7 +57,7 @@ void BLAS_caxpby_s(int n, const void *alpha, const float *x, int incx,
   /* Immediate return */
   if (n <= 0
       || (alpha_i[0] == 0.0 && alpha_i[1] == 0.0
-	  && (beta_i[0] == 1.0 && beta_i[1] == 0.0)))
+          && (beta_i[0] == 1.0 && beta_i[1] == 0.0)))
     return;
 
 
@@ -76,7 +76,7 @@ void BLAS_caxpby_s(int n, const void *alpha, const float *x, int incx,
     {
       tmpx[0] = alpha_i[0] * x_ii;
       tmpx[1] = alpha_i[1] * x_ii;
-    }				/* tmpx  = alpha * x[ix] */
+    }                                /* tmpx  = alpha * x[ix] */
     {
       tmpy[0] = beta_i[0] * y_ii[0] - beta_i[1] * y_ii[1];
       tmpy[1] = beta_i[0] * y_ii[1] + beta_i[1] * y_ii[0];
@@ -88,8 +88,8 @@ void BLAS_caxpby_s(int n, const void *alpha, const float *x, int incx,
     y_i[iy + 1] = tmpy[1];
     ix += incx;
     iy += incy;
-  }				/* endfor */
+  }                                /* endfor */
 
 
 
-}				/* end BLAS_caxpby_s */
+}                                /* end BLAS_caxpby_s */

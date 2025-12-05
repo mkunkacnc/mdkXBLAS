@@ -2,9 +2,9 @@
 #include "blas_extended_private.h"
 
 void BLAS_ztrmv_d(enum blas_order_type order, enum blas_uplo_type uplo,
-		  enum blas_trans_type trans, enum blas_diag_type diag, int n,
-		  const void *alpha, const double *T, int ldt,
-		  void *x, int incx)
+                  enum blas_trans_type trans, enum blas_diag_type diag, int n,
+                  const void *alpha, const double *T, int ldt,
+                  void *x, int incx)
 
 /*
  * Purpose
@@ -14,7 +14,7 @@ void BLAS_ztrmv_d(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  * Arguments
  * =========
- * 
+ *
  * order  (input) enum blas_order_type
  *        column major, row major
  *
@@ -23,24 +23,24 @@ void BLAS_ztrmv_d(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  * trans  (input) enum blas_trans_type
  *        no trans, trans, conj trans
- * 
+ *
  * diag   (input) enum blas_diag_type
  *        unit, non unit
  *
  * n      (input) int
  *        the dimension of T
- * 
+ *
  * alpha  (input) const void*
- * 
+ *
  * T      (input) double*
  *        Triangular matrix
  *
- * ldt    (input) int 
+ * ldt    (input) int
  *        Leading dimension of T
  *
  * x      (input) const void*
  *    Array of length n.
- * 
+ *
  * incx   (input) int
  *     The stride used to access components x[i].
  *
@@ -48,16 +48,16 @@ void BLAS_ztrmv_d(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   static const char routine_name[] = "BLAS_ztrmv_d";
 
-  int i, j;			/* used to idx matrix */
+  int i, j;                        /* used to idx matrix */
   int xj, xj0;
   int ti, tij, tij0;
 
   int inc_ti, inc_tij;
   int inc_x;
 
-  const double *T_i = T;	/* internal matrix T */
-  double *x_i = (double *) x;	/* internal x */
-  double *alpha_i = (double *) alpha;	/* internal alpha */
+  const double *T_i = T;        /* internal matrix T */
+  double *x_i = (double *) x;        /* internal x */
+  double *alpha_i = (double *) alpha;        /* internal alpha */
 
   double t_elem;
   double x_elem[2];
@@ -86,40 +86,40 @@ void BLAS_ztrmv_d(enum blas_order_type order, enum blas_uplo_type uplo,
     if (uplo == blas_upper) {
       inc_x = -incx;
       if (order == blas_rowmajor) {
-	inc_ti = ldt;
-	inc_tij = -1;
+        inc_ti = ldt;
+        inc_tij = -1;
       } else {
-	inc_ti = 1;
-	inc_tij = -ldt;
+        inc_ti = 1;
+        inc_tij = -ldt;
       }
     } else {
       inc_x = incx;
       if (order == blas_rowmajor) {
-	inc_ti = -ldt;
-	inc_tij = 1;
+        inc_ti = -ldt;
+        inc_tij = 1;
       } else {
-	inc_ti = -1;
-	inc_tij = ldt;
+        inc_ti = -1;
+        inc_tij = ldt;
       }
     }
   } else {
     if (uplo == blas_upper) {
       inc_x = incx;
       if (order == blas_rowmajor) {
-	inc_ti = -1;
-	inc_tij = ldt;
+        inc_ti = -1;
+        inc_tij = ldt;
       } else {
-	inc_ti = -ldt;
-	inc_tij = 1;
+        inc_ti = -ldt;
+        inc_tij = 1;
       }
     } else {
       inc_x = -incx;
       if (order == blas_rowmajor) {
-	inc_ti = 1;
-	inc_tij = -ldt;
+        inc_ti = 1;
+        inc_tij = -ldt;
       } else {
-	inc_ti = ldt;
-	inc_tij = -1;
+        inc_ti = ldt;
+        inc_tij = -1;
       }
     }
   }
@@ -145,47 +145,47 @@ void BLAS_ztrmv_d(enum blas_order_type order, enum blas_uplo_type uplo,
       tij0 = (inc_tij > 0 ? 0 : -(n - 1) * inc_tij);
       for (i = 0; i < n; i++) {
 
-	sum[0] = sum[1] = 0.0;
+        sum[0] = sum[1] = 0.0;
 
-	xj = xj0;
-	tij = ti + tij0;
-	for (j = i; j < (n - 1); j++) {
+        xj = xj0;
+        tij = ti + tij0;
+        for (j = i; j < (n - 1); j++) {
 
-	  t_elem = T_i[tij];
+          t_elem = T_i[tij];
 
-	  x_elem[0] = x_i[xj];
-	  x_elem[1] = x_i[xj + 1];
-	  {
-	    prod[0] = x_elem[0] * t_elem;
-	    prod[1] = x_elem[1] * t_elem;
-	  }
-	  sum[0] = sum[0] + prod[0];
-	  sum[1] = sum[1] + prod[1];
+          x_elem[0] = x_i[xj];
+          x_elem[1] = x_i[xj + 1];
+          {
+            prod[0] = x_elem[0] * t_elem;
+            prod[1] = x_elem[1] * t_elem;
+          }
+          sum[0] = sum[0] + prod[0];
+          sum[1] = sum[1] + prod[1];
 
-	  xj += inc_x;
-	  tij += inc_tij;
-	}
+          xj += inc_x;
+          tij += inc_tij;
+        }
 
-	x_elem[0] = x_i[xj];
-	x_elem[1] = x_i[xj + 1];
-	sum[0] = sum[0] + x_elem[0];
-	sum[1] = sum[1] + x_elem[1];
+        x_elem[0] = x_i[xj];
+        x_elem[1] = x_i[xj + 1];
+        sum[0] = sum[0] + x_elem[0];
+        sum[1] = sum[1] + x_elem[1];
 
-	if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
-	  x_i[xj] = sum[0];
-	  x_i[xj + 1] = sum[1];
-	} else {
-	  {
-	    tmp[0] =
-	      (double) sum[0] * alpha_i[0] - (double) sum[1] * alpha_i[1];
-	    tmp[1] =
-	      (double) sum[0] * alpha_i[1] + (double) sum[1] * alpha_i[0];
-	  }
-	  x_i[xj] = tmp[0];
-	  x_i[xj + 1] = tmp[1];
-	}
+        if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
+          x_i[xj] = sum[0];
+          x_i[xj + 1] = sum[1];
+        } else {
+          {
+            tmp[0] =
+              (double) sum[0] * alpha_i[0] - (double) sum[1] * alpha_i[1];
+            tmp[1] =
+              (double) sum[0] * alpha_i[1] + (double) sum[1] * alpha_i[0];
+          }
+          x_i[xj] = tmp[0];
+          x_i[xj + 1] = tmp[1];
+        }
 
-	ti += inc_ti;
+        ti += inc_ti;
       }
 
     } else {
@@ -195,42 +195,42 @@ void BLAS_ztrmv_d(enum blas_order_type order, enum blas_uplo_type uplo,
       tij0 = (inc_tij > 0 ? 0 : -(n - 1) * inc_tij);
       for (i = 0; i < n; i++) {
 
-	sum[0] = sum[1] = 0.0;
+        sum[0] = sum[1] = 0.0;
 
-	xj = xj0;
-	tij = ti + tij0;
-	for (j = i; j < n; j++) {
+        xj = xj0;
+        tij = ti + tij0;
+        for (j = i; j < n; j++) {
 
-	  t_elem = T_i[tij];
+          t_elem = T_i[tij];
 
-	  x_elem[0] = x_i[xj];
-	  x_elem[1] = x_i[xj + 1];
-	  {
-	    prod[0] = x_elem[0] * t_elem;
-	    prod[1] = x_elem[1] * t_elem;
-	  }
-	  sum[0] = sum[0] + prod[0];
-	  sum[1] = sum[1] + prod[1];
+          x_elem[0] = x_i[xj];
+          x_elem[1] = x_i[xj + 1];
+          {
+            prod[0] = x_elem[0] * t_elem;
+            prod[1] = x_elem[1] * t_elem;
+          }
+          sum[0] = sum[0] + prod[0];
+          sum[1] = sum[1] + prod[1];
 
-	  xj += inc_x;
-	  tij += inc_tij;
-	}
+          xj += inc_x;
+          tij += inc_tij;
+        }
 
-	if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
-	  x_i[xj - inc_x] = sum[0];
-	  x_i[xj - inc_x + 1] = sum[1];
-	} else {
-	  {
-	    tmp[0] =
-	      (double) sum[0] * alpha_i[0] - (double) sum[1] * alpha_i[1];
-	    tmp[1] =
-	      (double) sum[0] * alpha_i[1] + (double) sum[1] * alpha_i[0];
-	  }
-	  x_i[xj - inc_x] = tmp[0];
-	  x_i[xj - inc_x + 1] = tmp[1];
-	}
+        if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
+          x_i[xj - inc_x] = sum[0];
+          x_i[xj - inc_x + 1] = sum[1];
+        } else {
+          {
+            tmp[0] =
+              (double) sum[0] * alpha_i[0] - (double) sum[1] * alpha_i[1];
+            tmp[1] =
+              (double) sum[0] * alpha_i[1] + (double) sum[1] * alpha_i[0];
+          }
+          x_i[xj - inc_x] = tmp[0];
+          x_i[xj - inc_x + 1] = tmp[1];
+        }
 
-	ti += inc_ti;
+        ti += inc_ti;
       }
 
     }

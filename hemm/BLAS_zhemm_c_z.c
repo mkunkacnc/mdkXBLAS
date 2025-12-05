@@ -1,12 +1,12 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 void BLAS_zhemm_c_z(enum blas_order_type order, enum blas_side_type side,
-		    enum blas_uplo_type uplo, int m, int n,
-		    const void *alpha, const void *a, int lda,
-		    const void *b, int ldb, const void *beta,
-		    void *c, int ldc)
+                    enum blas_uplo_type uplo, int m, int n,
+                    const void *alpha, const void *a, int lda,
+                    const void *b, int ldb, const void *beta,
+                    void *c, int ldc)
 
-/* 
+/*
  * Purpose
  * =======
  *
@@ -14,7 +14,7 @@ void BLAS_zhemm_c_z(enum blas_order_type order, enum blas_side_type side,
  *
  *     C  <-  alpha * A * B  +  beta * C
  *     C  <-  alpha * B * A  +  beta * C
- * 
+ *
  * where A is a hermitian matrix.
  *
  * Arguments
@@ -22,7 +22,7 @@ void BLAS_zhemm_c_z(enum blas_order_type order, enum blas_side_type side,
  *
  * order   (input) enum blas_order_type
  *         Storage format of input matrices A, B, and C.
- * 
+ *
  * side    (input) enum blas_side_type
  *         Determines which side of matrix B is matrix A is multiplied.
  *
@@ -32,12 +32,12 @@ void BLAS_zhemm_c_z(enum blas_order_type order, enum blas_side_type side,
  *
  * m n     (input) int
  *         Size of matrices A, B, and C.
- *         Matrix A is m-by-m if it is multiplied on the left, 
+ *         Matrix A is m-by-m if it is multiplied on the left,
  *                     n-by-n otherwise.
  *         Matrices B and C are m-by-n.
  *
  * alpha   (input) const void*
- * 
+ *
  * a       (input) const void*
  *         Matrix A.
  *
@@ -46,15 +46,15 @@ void BLAS_zhemm_c_z(enum blas_order_type order, enum blas_side_type side,
  *
  * b       (input) const void*
  *         Matrix B.
- *   
+ *
  * ldb     (input) int
  *         Leading dimension of matrix B.
  *
  * beta    (input) const void*
- * 
+ *
  * c       (input/output) void*
  *         Matrix C.
- * 
+ *
  * ldc     (input) int
  *         Leading dimension of matrix C.
  *
@@ -176,16 +176,16 @@ void BLAS_zhemm_c_z(enum blas_order_type order, enum blas_side_type side,
   if (alpha_i[0] == 0.0 && alpha_i[1] == 0.0) {
     for (i = 0, ci = 0; i < m_i; i++, ci += incci) {
       for (j = 0, cij = ci; j < n_i; j++, cij += inccij) {
-	c_elem[0] = c_i[cij];
-	c_elem[1] = c_i[cij + 1];
-	{
-	  tmp1[0] =
-	    (double) c_elem[0] * beta_i[0] - (double) c_elem[1] * beta_i[1];
-	  tmp1[1] =
-	    (double) c_elem[0] * beta_i[1] + (double) c_elem[1] * beta_i[0];
-	}
-	c_i[cij] = tmp1[0];
-	c_i[cij + 1] = tmp1[1];
+        c_elem[0] = c_i[cij];
+        c_elem[1] = c_i[cij + 1];
+        {
+          tmp1[0] =
+            (double) c_elem[0] * beta_i[0] - (double) c_elem[1] * beta_i[1];
+          tmp1[1] =
+            (double) c_elem[0] * beta_i[1] + (double) c_elem[1] * beta_i[0];
+        }
+        c_i[cij] = tmp1[0];
+        c_i[cij + 1] = tmp1[1];
       }
     }
   } else if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
@@ -195,184 +195,184 @@ void BLAS_zhemm_c_z(enum blas_order_type order, enum blas_side_type side,
     if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
       /* Case alpha = 1, beta = 0.  We compute  C <--- A * B   or  B * A */
       for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
-	for (j = 0, cij = ci, bj = 0; j < n_i;
-	     j++, cij += inccij, bj += incbj) {
+        for (j = 0, cij = ci, bj = 0; j < n_i;
+             j++, cij += inccij, bj += incbj) {
 
-	  sum[0] = sum[1] = 0.0;
+          sum[0] = sum[1] = 0.0;
 
-	  for (k = 0, aik = ai, bkj = bj; k < i;
-	       k++, aik += incaik1, bkj += incbkj) {
-	    a_elem[0] = a_i[aik];
-	    a_elem[1] = a_i[aik + 1];
-	    b_elem[0] = b_i[bkj];
-	    b_elem[1] = b_i[bkj + 1];
-	    if (conj_flag == 1) {
-	      a_elem[1] = -a_elem[1];
-	    }
-	    {
-	      prod[0] =
-		(double) a_elem[0] * b_elem[0] -
-		(double) a_elem[1] * b_elem[1];
-	      prod[1] =
-		(double) a_elem[0] * b_elem[1] +
-		(double) a_elem[1] * b_elem[0];
-	    }
-	    sum[0] = sum[0] + prod[0];
-	    sum[1] = sum[1] + prod[1];
-	  }
-	  for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-	    a_elem[0] = a_i[aik];
-	    a_elem[1] = a_i[aik + 1];
-	    b_elem[0] = b_i[bkj];
-	    b_elem[1] = b_i[bkj + 1];
-	    if (conj_flag == 0) {
-	      a_elem[1] = -a_elem[1];
-	    }
-	    {
-	      prod[0] =
-		(double) a_elem[0] * b_elem[0] -
-		(double) a_elem[1] * b_elem[1];
-	      prod[1] =
-		(double) a_elem[0] * b_elem[1] +
-		(double) a_elem[1] * b_elem[0];
-	    }
-	    sum[0] = sum[0] + prod[0];
-	    sum[1] = sum[1] + prod[1];
-	  }
-	  c_i[cij] = sum[0];
-	  c_i[cij + 1] = sum[1];
-	}
+          for (k = 0, aik = ai, bkj = bj; k < i;
+               k++, aik += incaik1, bkj += incbkj) {
+            a_elem[0] = a_i[aik];
+            a_elem[1] = a_i[aik + 1];
+            b_elem[0] = b_i[bkj];
+            b_elem[1] = b_i[bkj + 1];
+            if (conj_flag == 1) {
+              a_elem[1] = -a_elem[1];
+            }
+            {
+              prod[0] =
+                (double) a_elem[0] * b_elem[0] -
+                (double) a_elem[1] * b_elem[1];
+              prod[1] =
+                (double) a_elem[0] * b_elem[1] +
+                (double) a_elem[1] * b_elem[0];
+            }
+            sum[0] = sum[0] + prod[0];
+            sum[1] = sum[1] + prod[1];
+          }
+          for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
+            a_elem[0] = a_i[aik];
+            a_elem[1] = a_i[aik + 1];
+            b_elem[0] = b_i[bkj];
+            b_elem[1] = b_i[bkj + 1];
+            if (conj_flag == 0) {
+              a_elem[1] = -a_elem[1];
+            }
+            {
+              prod[0] =
+                (double) a_elem[0] * b_elem[0] -
+                (double) a_elem[1] * b_elem[1];
+              prod[1] =
+                (double) a_elem[0] * b_elem[1] +
+                (double) a_elem[1] * b_elem[0];
+            }
+            sum[0] = sum[0] + prod[0];
+            sum[1] = sum[1] + prod[1];
+          }
+          c_i[cij] = sum[0];
+          c_i[cij + 1] = sum[1];
+        }
       }
     } else {
-      /* Case alpha = 1, but beta != 0. 
-         We compute  C  <--- A * B + beta * C 
+      /* Case alpha = 1, but beta != 0.
+         We compute  C  <--- A * B + beta * C
          or  C  <--- B * A + beta * C  */
 
       for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
-	for (j = 0, cij = ci, bj = 0; j < n_i;
-	     j++, cij += inccij, bj += incbj) {
+        for (j = 0, cij = ci, bj = 0; j < n_i;
+             j++, cij += inccij, bj += incbj) {
 
-	  sum[0] = sum[1] = 0.0;
+          sum[0] = sum[1] = 0.0;
 
-	  for (k = 0, aik = ai, bkj = bj; k < i;
-	       k++, aik += incaik1, bkj += incbkj) {
-	    a_elem[0] = a_i[aik];
-	    a_elem[1] = a_i[aik + 1];
-	    b_elem[0] = b_i[bkj];
-	    b_elem[1] = b_i[bkj + 1];
-	    if (conj_flag == 1) {
-	      a_elem[1] = -a_elem[1];
-	    }
-	    {
-	      prod[0] =
-		(double) a_elem[0] * b_elem[0] -
-		(double) a_elem[1] * b_elem[1];
-	      prod[1] =
-		(double) a_elem[0] * b_elem[1] +
-		(double) a_elem[1] * b_elem[0];
-	    }
-	    sum[0] = sum[0] + prod[0];
-	    sum[1] = sum[1] + prod[1];
-	  }
-	  for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-	    a_elem[0] = a_i[aik];
-	    a_elem[1] = a_i[aik + 1];
-	    b_elem[0] = b_i[bkj];
-	    b_elem[1] = b_i[bkj + 1];
-	    if (conj_flag == 0) {
-	      a_elem[1] = -a_elem[1];
-	    }
-	    {
-	      prod[0] =
-		(double) a_elem[0] * b_elem[0] -
-		(double) a_elem[1] * b_elem[1];
-	      prod[1] =
-		(double) a_elem[0] * b_elem[1] +
-		(double) a_elem[1] * b_elem[0];
-	    }
-	    sum[0] = sum[0] + prod[0];
-	    sum[1] = sum[1] + prod[1];
-	  }
-	  c_elem[0] = c_i[cij];
-	  c_elem[1] = c_i[cij + 1];
-	  {
-	    tmp2[0] =
-	      (double) c_elem[0] * beta_i[0] - (double) c_elem[1] * beta_i[1];
-	    tmp2[1] =
-	      (double) c_elem[0] * beta_i[1] + (double) c_elem[1] * beta_i[0];
-	  }
-	  tmp1[0] = sum[0];
-	  tmp1[1] = sum[1];
-	  tmp1[0] = tmp2[0] + tmp1[0];
-	  tmp1[1] = tmp2[1] + tmp1[1];
-	  c_i[cij] = tmp1[0];
-	  c_i[cij + 1] = tmp1[1];
-	}
+          for (k = 0, aik = ai, bkj = bj; k < i;
+               k++, aik += incaik1, bkj += incbkj) {
+            a_elem[0] = a_i[aik];
+            a_elem[1] = a_i[aik + 1];
+            b_elem[0] = b_i[bkj];
+            b_elem[1] = b_i[bkj + 1];
+            if (conj_flag == 1) {
+              a_elem[1] = -a_elem[1];
+            }
+            {
+              prod[0] =
+                (double) a_elem[0] * b_elem[0] -
+                (double) a_elem[1] * b_elem[1];
+              prod[1] =
+                (double) a_elem[0] * b_elem[1] +
+                (double) a_elem[1] * b_elem[0];
+            }
+            sum[0] = sum[0] + prod[0];
+            sum[1] = sum[1] + prod[1];
+          }
+          for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
+            a_elem[0] = a_i[aik];
+            a_elem[1] = a_i[aik + 1];
+            b_elem[0] = b_i[bkj];
+            b_elem[1] = b_i[bkj + 1];
+            if (conj_flag == 0) {
+              a_elem[1] = -a_elem[1];
+            }
+            {
+              prod[0] =
+                (double) a_elem[0] * b_elem[0] -
+                (double) a_elem[1] * b_elem[1];
+              prod[1] =
+                (double) a_elem[0] * b_elem[1] +
+                (double) a_elem[1] * b_elem[0];
+            }
+            sum[0] = sum[0] + prod[0];
+            sum[1] = sum[1] + prod[1];
+          }
+          c_elem[0] = c_i[cij];
+          c_elem[1] = c_i[cij + 1];
+          {
+            tmp2[0] =
+              (double) c_elem[0] * beta_i[0] - (double) c_elem[1] * beta_i[1];
+            tmp2[1] =
+              (double) c_elem[0] * beta_i[1] + (double) c_elem[1] * beta_i[0];
+          }
+          tmp1[0] = sum[0];
+          tmp1[1] = sum[1];
+          tmp1[0] = tmp2[0] + tmp1[0];
+          tmp1[1] = tmp2[1] + tmp1[1];
+          c_i[cij] = tmp1[0];
+          c_i[cij + 1] = tmp1[1];
+        }
       }
     }
 
   } else {
-    /* The most general form,   C <--- alpha * A * B + beta * C  
+    /* The most general form,   C <--- alpha * A * B + beta * C
        or   C <--- alpha * B * A + beta * C  */
 
     for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
       for (j = 0, cij = ci, bj = 0; j < n_i; j++, cij += inccij, bj += incbj) {
 
-	sum[0] = sum[1] = 0.0;
+        sum[0] = sum[1] = 0.0;
 
-	for (k = 0, aik = ai, bkj = bj; k < i;
-	     k++, aik += incaik1, bkj += incbkj) {
-	  a_elem[0] = a_i[aik];
-	  a_elem[1] = a_i[aik + 1];
-	  b_elem[0] = b_i[bkj];
-	  b_elem[1] = b_i[bkj + 1];
-	  if (conj_flag == 1) {
-	    a_elem[1] = -a_elem[1];
-	  }
-	  {
-	    prod[0] =
-	      (double) a_elem[0] * b_elem[0] - (double) a_elem[1] * b_elem[1];
-	    prod[1] =
-	      (double) a_elem[0] * b_elem[1] + (double) a_elem[1] * b_elem[0];
-	  }
-	  sum[0] = sum[0] + prod[0];
-	  sum[1] = sum[1] + prod[1];
-	}
-	for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-	  a_elem[0] = a_i[aik];
-	  a_elem[1] = a_i[aik + 1];
-	  b_elem[0] = b_i[bkj];
-	  b_elem[1] = b_i[bkj + 1];
-	  if (conj_flag == 0) {
-	    a_elem[1] = -a_elem[1];
-	  }
-	  {
-	    prod[0] =
-	      (double) a_elem[0] * b_elem[0] - (double) a_elem[1] * b_elem[1];
-	    prod[1] =
-	      (double) a_elem[0] * b_elem[1] + (double) a_elem[1] * b_elem[0];
-	  }
-	  sum[0] = sum[0] + prod[0];
-	  sum[1] = sum[1] + prod[1];
-	}
-	{
-	  tmp1[0] =
-	    (double) sum[0] * alpha_i[0] - (double) sum[1] * alpha_i[1];
-	  tmp1[1] =
-	    (double) sum[0] * alpha_i[1] + (double) sum[1] * alpha_i[0];
-	}
-	c_elem[0] = c_i[cij];
-	c_elem[1] = c_i[cij + 1];
-	{
-	  tmp2[0] =
-	    (double) c_elem[0] * beta_i[0] - (double) c_elem[1] * beta_i[1];
-	  tmp2[1] =
-	    (double) c_elem[0] * beta_i[1] + (double) c_elem[1] * beta_i[0];
-	}
-	tmp1[0] = tmp1[0] + tmp2[0];
-	tmp1[1] = tmp1[1] + tmp2[1];
-	c_i[cij] = tmp1[0];
-	c_i[cij + 1] = tmp1[1];
+        for (k = 0, aik = ai, bkj = bj; k < i;
+             k++, aik += incaik1, bkj += incbkj) {
+          a_elem[0] = a_i[aik];
+          a_elem[1] = a_i[aik + 1];
+          b_elem[0] = b_i[bkj];
+          b_elem[1] = b_i[bkj + 1];
+          if (conj_flag == 1) {
+            a_elem[1] = -a_elem[1];
+          }
+          {
+            prod[0] =
+              (double) a_elem[0] * b_elem[0] - (double) a_elem[1] * b_elem[1];
+            prod[1] =
+              (double) a_elem[0] * b_elem[1] + (double) a_elem[1] * b_elem[0];
+          }
+          sum[0] = sum[0] + prod[0];
+          sum[1] = sum[1] + prod[1];
+        }
+        for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
+          a_elem[0] = a_i[aik];
+          a_elem[1] = a_i[aik + 1];
+          b_elem[0] = b_i[bkj];
+          b_elem[1] = b_i[bkj + 1];
+          if (conj_flag == 0) {
+            a_elem[1] = -a_elem[1];
+          }
+          {
+            prod[0] =
+              (double) a_elem[0] * b_elem[0] - (double) a_elem[1] * b_elem[1];
+            prod[1] =
+              (double) a_elem[0] * b_elem[1] + (double) a_elem[1] * b_elem[0];
+          }
+          sum[0] = sum[0] + prod[0];
+          sum[1] = sum[1] + prod[1];
+        }
+        {
+          tmp1[0] =
+            (double) sum[0] * alpha_i[0] - (double) sum[1] * alpha_i[1];
+          tmp1[1] =
+            (double) sum[0] * alpha_i[1] + (double) sum[1] * alpha_i[0];
+        }
+        c_elem[0] = c_i[cij];
+        c_elem[1] = c_i[cij + 1];
+        {
+          tmp2[0] =
+            (double) c_elem[0] * beta_i[0] - (double) c_elem[1] * beta_i[1];
+          tmp2[1] =
+            (double) c_elem[0] * beta_i[1] + (double) c_elem[1] * beta_i[0];
+        }
+        tmp1[0] = tmp1[0] + tmp2[0];
+        tmp1[1] = tmp1[1] + tmp2[1];
+        c_i[cij] = tmp1[0];
+        c_i[cij + 1] = tmp1[1];
       }
     }
   }

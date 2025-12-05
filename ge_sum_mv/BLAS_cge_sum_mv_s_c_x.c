@@ -1,16 +1,16 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 void BLAS_cge_sum_mv_s_c_x(enum blas_order_type order, int m, int n,
-			   const void *alpha, const float *a, int lda,
-			   const void *x, int incx,
-			   const void *beta, const float *b, int ldb,
-			   void *y, int incy, enum blas_prec_type prec)
+                           const void *alpha, const float *a, int lda,
+                           const void *x, int incx,
+                           const void *beta, const float *b, int ldb,
+                           void *y, int incy, enum blas_prec_type prec)
 
 /*
  * Purpose
  * =======
  *
- * Computes y = alpha * A * x + beta * B * y, 
+ * Computes y = alpha * A * x + beta * B * y,
  *     where A, B are general matricies.
  *
  * Arguments
@@ -26,14 +26,14 @@ void BLAS_cge_sum_mv_s_c_x(enum blas_order_type order, int m, int n,
  *              Column Dimension of A, B and the length of vector x
  *
  * alpha        (input) const void*
- *              
+ *
  * A            (input) const float*
  *
- * lda          (input) int 
+ * lda          (input) int
  *              Leading dimension of A
  *
  * x            (input) const void*
- * 
+ *
  * incx         (input) int
  *              The stride for vector x.
  *
@@ -41,14 +41,14 @@ void BLAS_cge_sum_mv_s_c_x(enum blas_order_type order, int m, int n,
  *
  * b            (input) const float*
  *
- * ldb          (input) int 
+ * ldb          (input) int
  *              Leading dimension of B
  *
  * y            (input/output) void*
  *
  * incy         (input) int
  *              The stride for vector y.
- * 
+ *
  * prec   (input) enum blas_prec_type
  *        Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
@@ -97,38 +97,38 @@ void BLAS_cge_sum_mv_s_c_x(enum blas_order_type order, int m, int n,
       /* n is number of columns */
 
       if (m == 0 || n == 0)
-	return;
+        return;
 
 
       /* all error calls */
       if (order == blas_rowmajor) {
-	lda_min = n;
-	incai = lda;		/* row stride */
-	incbi = ldb;
-	incbij = incaij = 1;	/* column stride */
+        lda_min = n;
+        incai = lda;                /* row stride */
+        incbi = ldb;
+        incbij = incaij = 1;        /* column stride */
       } else if (order == blas_colmajor) {
-	lda_min = m;
-	incai = incbi = 1;	/*row stride */
-	incaij = lda;		/* column stride */
-	incbij = ldb;
+        lda_min = m;
+        incai = incbi = 1;        /*row stride */
+        incaij = lda;                /* column stride */
+        incbij = ldb;
       } else {
-	/* error, order not blas_colmajor not blas_rowmajor */
-	BLAS_error(routine_name, -1, order, 0);
-	return;
+        /* error, order not blas_colmajor not blas_rowmajor */
+        BLAS_error(routine_name, -1, order, 0);
+        return;
       }
 
       if (m < 0)
-	BLAS_error(routine_name, -2, m, 0);
+        BLAS_error(routine_name, -2, m, 0);
       else if (n < 0)
-	BLAS_error(routine_name, -3, n, 0);
+        BLAS_error(routine_name, -3, n, 0);
       if (lda < lda_min)
-	BLAS_error(routine_name, -6, lda, 0);
+        BLAS_error(routine_name, -6, lda, 0);
       else if (ldb < lda_min)
-	BLAS_error(routine_name, -11, ldb, 0);
+        BLAS_error(routine_name, -11, ldb, 0);
       else if (incx == 0)
-	BLAS_error(routine_name, -8, incx, 0);
+        BLAS_error(routine_name, -8, incx, 0);
       else if (incy == 0)
-	BLAS_error(routine_name, -13, incy, 0);
+        BLAS_error(routine_name, -13, incy, 0);
 
       incxi = incx;
       incyi = incy;
@@ -140,331 +140,331 @@ void BLAS_cge_sum_mv_s_c_x(enum blas_order_type order, int m, int n,
 
 
       if (incxi > 0)
-	x_starti = 0;
+        x_starti = 0;
       else
-	x_starti = (1 - n) * incxi;
+        x_starti = (1 - n) * incxi;
 
       if (incyi > 0)
-	y_starti = 0;
+        y_starti = 0;
       else
-	y_starti = (1 - m) * incyi;
+        y_starti = (1 - m) * incyi;
 
 
 
       if (alpha_i[0] == 0.0 && alpha_i[1] == 0.0) {
-	if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	  /* alpha, beta are 0.0 */
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    y_i[yi] = 0.0;
-	    y_i[yi + 1] = 0.0;
-	  }
-	} else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
-	  /* alpha is 0.0, beta is 1.0 */
+        if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+          /* alpha, beta are 0.0 */
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            y_i[yi] = 0.0;
+            y_i[yi + 1] = 0.0;
+          }
+        } else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
+          /* alpha is 0.0, beta is 1.0 */
 
 
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
 
-	    sumB[0] = sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
+            sumB[0] = sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
 
-	      b_elem = b_i[bij];
-	      {
-		prod[0] = x_elem[0] * b_elem;
-		prod[1] = x_elem[1] * b_elem;
-	      }
-	      sumB[0] = sumB[0] + prod[0];
-	      sumB[1] = sumB[1] + prod[1];
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    y_i[yi] = sumB[0];
-	    y_i[yi + 1] = sumB[1];
+              b_elem = b_i[bij];
+              {
+                prod[0] = x_elem[0] * b_elem;
+                prod[1] = x_elem[1] * b_elem;
+              }
+              sumB[0] = sumB[0] + prod[0];
+              sumB[1] = sumB[1] + prod[1];
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            y_i[yi] = sumB[0];
+            y_i[yi + 1] = sumB[1];
 
-	    bi += incbi;
-	  }
-	} else {
-	  /* alpha is 0.0, beta not 1.0 nor 0.0 */
+            bi += incbi;
+          }
+        } else {
+          /* alpha is 0.0, beta not 1.0 nor 0.0 */
 
 
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
 
-	    sumB[0] = sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
+            sumB[0] = sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
 
-	      b_elem = b_i[bij];
-	      {
-		prod[0] = x_elem[0] * b_elem;
-		prod[1] = x_elem[1] * b_elem;
-	      }
-	      sumB[0] = sumB[0] + prod[0];
-	      sumB[1] = sumB[1] + prod[1];
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    {
-	      tmp1[0] = sumB[0] * beta_i[0] - sumB[1] * beta_i[1];
-	      tmp1[1] = sumB[0] * beta_i[1] + sumB[1] * beta_i[0];
-	    }
+              b_elem = b_i[bij];
+              {
+                prod[0] = x_elem[0] * b_elem;
+                prod[1] = x_elem[1] * b_elem;
+              }
+              sumB[0] = sumB[0] + prod[0];
+              sumB[1] = sumB[1] + prod[1];
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            {
+              tmp1[0] = sumB[0] * beta_i[0] - sumB[1] * beta_i[1];
+              tmp1[1] = sumB[0] * beta_i[1] + sumB[1] * beta_i[0];
+            }
 
-	    y_i[yi] = tmp1[0];
-	    y_i[yi + 1] = tmp1[1];
+            y_i[yi] = tmp1[0];
+            y_i[yi + 1] = tmp1[1];
 
-	    bi += incbi;
-	  }
-	}
+            bi += incbi;
+          }
+        }
       } else if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
-	if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	  /* alpha is 1.0, beta is 0.0 */
+        if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+          /* alpha is 1.0, beta is 0.0 */
 
-	  ai = 0;
+          ai = 0;
 
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    sumA[0] = sumA[1] = 0.0;
-	    aij = ai;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            sumA[0] = sumA[1] = 0.0;
+            aij = ai;
 
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		prod[0] = x_elem[0] * a_elem;
-		prod[1] = x_elem[1] * a_elem;
-	      }
-	      sumA[0] = sumA[0] + prod[0];
-	      sumA[1] = sumA[1] + prod[1];
-	      aij += incaij;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                prod[0] = x_elem[0] * a_elem;
+                prod[1] = x_elem[1] * a_elem;
+              }
+              sumA[0] = sumA[0] + prod[0];
+              sumA[1] = sumA[1] + prod[1];
+              aij += incaij;
 
-	    }
-	    /* now put the result into y_i */
-	    y_i[yi] = sumA[0];
-	    y_i[yi + 1] = sumA[1];
-	    ai += incai;
+            }
+            /* now put the result into y_i */
+            y_i[yi] = sumA[0];
+            y_i[yi + 1] = sumA[1];
+            ai += incai;
 
-	  }
-	} else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
-	  /* alpha is 1.0, beta is 1.0 */
+          }
+        } else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
+          /* alpha is 1.0, beta is 1.0 */
 
-	  ai = 0;
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    sumA[0] = sumA[1] = 0.0;
-	    aij = ai;
-	    sumB[0] = sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		prod[0] = x_elem[0] * a_elem;
-		prod[1] = x_elem[1] * a_elem;
-	      }
-	      sumA[0] = sumA[0] + prod[0];
-	      sumA[1] = sumA[1] + prod[1];
-	      aij += incaij;
-	      b_elem = b_i[bij];
-	      {
-		prod[0] = x_elem[0] * b_elem;
-		prod[1] = x_elem[1] * b_elem;
-	      }
-	      sumB[0] = sumB[0] + prod[0];
-	      sumB[1] = sumB[1] + prod[1];
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    tmp1[0] = sumA[0];
-	    tmp1[1] = sumA[1];
-	    tmp2[0] = sumB[0];
-	    tmp2[1] = sumB[1];
-	    tmp1[0] = tmp1[0] + tmp2[0];
-	    tmp1[1] = tmp1[1] + tmp2[1];
-	    y_i[yi] = tmp1[0];
-	    y_i[yi + 1] = tmp1[1];
-	    ai += incai;
-	    bi += incbi;
-	  }
-	} else {
-	  /* alpha is 1.0, beta is other */
+          ai = 0;
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            sumA[0] = sumA[1] = 0.0;
+            aij = ai;
+            sumB[0] = sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                prod[0] = x_elem[0] * a_elem;
+                prod[1] = x_elem[1] * a_elem;
+              }
+              sumA[0] = sumA[0] + prod[0];
+              sumA[1] = sumA[1] + prod[1];
+              aij += incaij;
+              b_elem = b_i[bij];
+              {
+                prod[0] = x_elem[0] * b_elem;
+                prod[1] = x_elem[1] * b_elem;
+              }
+              sumB[0] = sumB[0] + prod[0];
+              sumB[1] = sumB[1] + prod[1];
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            tmp1[0] = sumA[0];
+            tmp1[1] = sumA[1];
+            tmp2[0] = sumB[0];
+            tmp2[1] = sumB[1];
+            tmp1[0] = tmp1[0] + tmp2[0];
+            tmp1[1] = tmp1[1] + tmp2[1];
+            y_i[yi] = tmp1[0];
+            y_i[yi + 1] = tmp1[1];
+            ai += incai;
+            bi += incbi;
+          }
+        } else {
+          /* alpha is 1.0, beta is other */
 
-	  ai = 0;
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    sumA[0] = sumA[1] = 0.0;
-	    aij = ai;
-	    sumB[0] = sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		prod[0] = x_elem[0] * a_elem;
-		prod[1] = x_elem[1] * a_elem;
-	      }
-	      sumA[0] = sumA[0] + prod[0];
-	      sumA[1] = sumA[1] + prod[1];
-	      aij += incaij;
-	      b_elem = b_i[bij];
-	      {
-		prod[0] = x_elem[0] * b_elem;
-		prod[1] = x_elem[1] * b_elem;
-	      }
-	      sumB[0] = sumB[0] + prod[0];
-	      sumB[1] = sumB[1] + prod[1];
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    tmp1[0] = sumA[0];
-	    tmp1[1] = sumA[1];
-	    {
-	      tmp2[0] = sumB[0] * beta_i[0] - sumB[1] * beta_i[1];
-	      tmp2[1] = sumB[0] * beta_i[1] + sumB[1] * beta_i[0];
-	    }
+          ai = 0;
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            sumA[0] = sumA[1] = 0.0;
+            aij = ai;
+            sumB[0] = sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                prod[0] = x_elem[0] * a_elem;
+                prod[1] = x_elem[1] * a_elem;
+              }
+              sumA[0] = sumA[0] + prod[0];
+              sumA[1] = sumA[1] + prod[1];
+              aij += incaij;
+              b_elem = b_i[bij];
+              {
+                prod[0] = x_elem[0] * b_elem;
+                prod[1] = x_elem[1] * b_elem;
+              }
+              sumB[0] = sumB[0] + prod[0];
+              sumB[1] = sumB[1] + prod[1];
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            tmp1[0] = sumA[0];
+            tmp1[1] = sumA[1];
+            {
+              tmp2[0] = sumB[0] * beta_i[0] - sumB[1] * beta_i[1];
+              tmp2[1] = sumB[0] * beta_i[1] + sumB[1] * beta_i[0];
+            }
 
-	    tmp1[0] = tmp1[0] + tmp2[0];
-	    tmp1[1] = tmp1[1] + tmp2[1];
-	    y_i[yi] = tmp1[0];
-	    y_i[yi + 1] = tmp1[1];
-	    ai += incai;
-	    bi += incbi;
-	  }
-	}
+            tmp1[0] = tmp1[0] + tmp2[0];
+            tmp1[1] = tmp1[1] + tmp2[1];
+            y_i[yi] = tmp1[0];
+            y_i[yi + 1] = tmp1[1];
+            ai += incai;
+            bi += incbi;
+          }
+        }
       } else {
-	if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	  /* alpha is other, beta is 0.0 */
+        if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+          /* alpha is other, beta is 0.0 */
 
-	  ai = 0;
+          ai = 0;
 
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    sumA[0] = sumA[1] = 0.0;
-	    aij = ai;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            sumA[0] = sumA[1] = 0.0;
+            aij = ai;
 
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		prod[0] = x_elem[0] * a_elem;
-		prod[1] = x_elem[1] * a_elem;
-	      }
-	      sumA[0] = sumA[0] + prod[0];
-	      sumA[1] = sumA[1] + prod[1];
-	      aij += incaij;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                prod[0] = x_elem[0] * a_elem;
+                prod[1] = x_elem[1] * a_elem;
+              }
+              sumA[0] = sumA[0] + prod[0];
+              sumA[1] = sumA[1] + prod[1];
+              aij += incaij;
 
-	    }
-	    /* now put the result into y_i */
-	    {
-	      tmp1[0] = sumA[0] * alpha_i[0] - sumA[1] * alpha_i[1];
-	      tmp1[1] = sumA[0] * alpha_i[1] + sumA[1] * alpha_i[0];
-	    }
+            }
+            /* now put the result into y_i */
+            {
+              tmp1[0] = sumA[0] * alpha_i[0] - sumA[1] * alpha_i[1];
+              tmp1[1] = sumA[0] * alpha_i[1] + sumA[1] * alpha_i[0];
+            }
 
-	    y_i[yi] = tmp1[0];
-	    y_i[yi + 1] = tmp1[1];
-	    ai += incai;
+            y_i[yi] = tmp1[0];
+            y_i[yi + 1] = tmp1[1];
+            ai += incai;
 
-	  }
-	} else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
-	  /* alpha is other, beta is 1.0 */
+          }
+        } else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
+          /* alpha is other, beta is 1.0 */
 
-	  ai = 0;
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    sumA[0] = sumA[1] = 0.0;
-	    aij = ai;
-	    sumB[0] = sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		prod[0] = x_elem[0] * a_elem;
-		prod[1] = x_elem[1] * a_elem;
-	      }
-	      sumA[0] = sumA[0] + prod[0];
-	      sumA[1] = sumA[1] + prod[1];
-	      aij += incaij;
-	      b_elem = b_i[bij];
-	      {
-		prod[0] = x_elem[0] * b_elem;
-		prod[1] = x_elem[1] * b_elem;
-	      }
-	      sumB[0] = sumB[0] + prod[0];
-	      sumB[1] = sumB[1] + prod[1];
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    {
-	      tmp1[0] = sumA[0] * alpha_i[0] - sumA[1] * alpha_i[1];
-	      tmp1[1] = sumA[0] * alpha_i[1] + sumA[1] * alpha_i[0];
-	    }
+          ai = 0;
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            sumA[0] = sumA[1] = 0.0;
+            aij = ai;
+            sumB[0] = sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                prod[0] = x_elem[0] * a_elem;
+                prod[1] = x_elem[1] * a_elem;
+              }
+              sumA[0] = sumA[0] + prod[0];
+              sumA[1] = sumA[1] + prod[1];
+              aij += incaij;
+              b_elem = b_i[bij];
+              {
+                prod[0] = x_elem[0] * b_elem;
+                prod[1] = x_elem[1] * b_elem;
+              }
+              sumB[0] = sumB[0] + prod[0];
+              sumB[1] = sumB[1] + prod[1];
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            {
+              tmp1[0] = sumA[0] * alpha_i[0] - sumA[1] * alpha_i[1];
+              tmp1[1] = sumA[0] * alpha_i[1] + sumA[1] * alpha_i[0];
+            }
 
-	    tmp2[0] = sumB[0];
-	    tmp2[1] = sumB[1];
-	    tmp1[0] = tmp1[0] + tmp2[0];
-	    tmp1[1] = tmp1[1] + tmp2[1];
-	    y_i[yi] = tmp1[0];
-	    y_i[yi + 1] = tmp1[1];
-	    ai += incai;
-	    bi += incbi;
-	  }
-	} else {
-	  /* most general form, alpha, beta are other */
+            tmp2[0] = sumB[0];
+            tmp2[1] = sumB[1];
+            tmp1[0] = tmp1[0] + tmp2[0];
+            tmp1[1] = tmp1[1] + tmp2[1];
+            y_i[yi] = tmp1[0];
+            y_i[yi + 1] = tmp1[1];
+            ai += incai;
+            bi += incbi;
+          }
+        } else {
+          /* most general form, alpha, beta are other */
 
-	  ai = 0;
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    sumA[0] = sumA[1] = 0.0;
-	    aij = ai;
-	    sumB[0] = sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		prod[0] = x_elem[0] * a_elem;
-		prod[1] = x_elem[1] * a_elem;
-	      }
-	      sumA[0] = sumA[0] + prod[0];
-	      sumA[1] = sumA[1] + prod[1];
-	      aij += incaij;
-	      b_elem = b_i[bij];
-	      {
-		prod[0] = x_elem[0] * b_elem;
-		prod[1] = x_elem[1] * b_elem;
-	      }
-	      sumB[0] = sumB[0] + prod[0];
-	      sumB[1] = sumB[1] + prod[1];
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    {
-	      tmp1[0] = sumA[0] * alpha_i[0] - sumA[1] * alpha_i[1];
-	      tmp1[1] = sumA[0] * alpha_i[1] + sumA[1] * alpha_i[0];
-	    }
+          ai = 0;
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            sumA[0] = sumA[1] = 0.0;
+            aij = ai;
+            sumB[0] = sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                prod[0] = x_elem[0] * a_elem;
+                prod[1] = x_elem[1] * a_elem;
+              }
+              sumA[0] = sumA[0] + prod[0];
+              sumA[1] = sumA[1] + prod[1];
+              aij += incaij;
+              b_elem = b_i[bij];
+              {
+                prod[0] = x_elem[0] * b_elem;
+                prod[1] = x_elem[1] * b_elem;
+              }
+              sumB[0] = sumB[0] + prod[0];
+              sumB[1] = sumB[1] + prod[1];
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            {
+              tmp1[0] = sumA[0] * alpha_i[0] - sumA[1] * alpha_i[1];
+              tmp1[1] = sumA[0] * alpha_i[1] + sumA[1] * alpha_i[0];
+            }
 
-	    {
-	      tmp2[0] = sumB[0] * beta_i[0] - sumB[1] * beta_i[1];
-	      tmp2[1] = sumB[0] * beta_i[1] + sumB[1] * beta_i[0];
-	    }
+            {
+              tmp2[0] = sumB[0] * beta_i[0] - sumB[1] * beta_i[1];
+              tmp2[1] = sumB[0] * beta_i[1] + sumB[1] * beta_i[0];
+            }
 
-	    tmp1[0] = tmp1[0] + tmp2[0];
-	    tmp1[1] = tmp1[1] + tmp2[1];
-	    y_i[yi] = tmp1[0];
-	    y_i[yi + 1] = tmp1[1];
-	    ai += incai;
-	    bi += incbi;
-	  }
-	}
+            tmp1[0] = tmp1[0] + tmp2[0];
+            tmp1[1] = tmp1[1] + tmp2[1];
+            y_i[yi] = tmp1[0];
+            y_i[yi + 1] = tmp1[1];
+            ai += incai;
+            bi += incbi;
+          }
+        }
       }
 
 
@@ -507,38 +507,38 @@ void BLAS_cge_sum_mv_s_c_x(enum blas_order_type order, int m, int n,
       /* n is number of columns */
 
       if (m == 0 || n == 0)
-	return;
+        return;
 
 
       /* all error calls */
       if (order == blas_rowmajor) {
-	lda_min = n;
-	incai = lda;		/* row stride */
-	incbi = ldb;
-	incbij = incaij = 1;	/* column stride */
+        lda_min = n;
+        incai = lda;                /* row stride */
+        incbi = ldb;
+        incbij = incaij = 1;        /* column stride */
       } else if (order == blas_colmajor) {
-	lda_min = m;
-	incai = incbi = 1;	/*row stride */
-	incaij = lda;		/* column stride */
-	incbij = ldb;
+        lda_min = m;
+        incai = incbi = 1;        /*row stride */
+        incaij = lda;                /* column stride */
+        incbij = ldb;
       } else {
-	/* error, order not blas_colmajor not blas_rowmajor */
-	BLAS_error(routine_name, -1, order, 0);
-	return;
+        /* error, order not blas_colmajor not blas_rowmajor */
+        BLAS_error(routine_name, -1, order, 0);
+        return;
       }
 
       if (m < 0)
-	BLAS_error(routine_name, -2, m, 0);
+        BLAS_error(routine_name, -2, m, 0);
       else if (n < 0)
-	BLAS_error(routine_name, -3, n, 0);
+        BLAS_error(routine_name, -3, n, 0);
       if (lda < lda_min)
-	BLAS_error(routine_name, -6, lda, 0);
+        BLAS_error(routine_name, -6, lda, 0);
       else if (ldb < lda_min)
-	BLAS_error(routine_name, -11, ldb, 0);
+        BLAS_error(routine_name, -11, ldb, 0);
       else if (incx == 0)
-	BLAS_error(routine_name, -8, incx, 0);
+        BLAS_error(routine_name, -8, incx, 0);
       else if (incy == 0)
-	BLAS_error(routine_name, -13, incy, 0);
+        BLAS_error(routine_name, -13, incy, 0);
 
       incxi = incx;
       incyi = incy;
@@ -550,337 +550,337 @@ void BLAS_cge_sum_mv_s_c_x(enum blas_order_type order, int m, int n,
 
 
       if (incxi > 0)
-	x_starti = 0;
+        x_starti = 0;
       else
-	x_starti = (1 - n) * incxi;
+        x_starti = (1 - n) * incxi;
 
       if (incyi > 0)
-	y_starti = 0;
+        y_starti = 0;
       else
-	y_starti = (1 - m) * incyi;
+        y_starti = (1 - m) * incyi;
 
 
 
       if (alpha_i[0] == 0.0 && alpha_i[1] == 0.0) {
-	if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	  /* alpha, beta are 0.0 */
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    y_i[yi] = 0.0;
-	    y_i[yi + 1] = 0.0;
-	  }
-	} else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
-	  /* alpha is 0.0, beta is 1.0 */
+        if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+          /* alpha, beta are 0.0 */
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            y_i[yi] = 0.0;
+            y_i[yi + 1] = 0.0;
+          }
+        } else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
+          /* alpha is 0.0, beta is 1.0 */
 
 
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
 
-	    sumB[0] = sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
+            sumB[0] = sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
 
-	      b_elem = b_i[bij];
-	      {
-		prod[0] = (double) x_elem[0] * b_elem;
-		prod[1] = (double) x_elem[1] * b_elem;
-	      }
-	      sumB[0] = sumB[0] + prod[0];
-	      sumB[1] = sumB[1] + prod[1];
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    y_i[yi] = sumB[0];
-	    y_i[yi + 1] = sumB[1];
+              b_elem = b_i[bij];
+              {
+                prod[0] = (double) x_elem[0] * b_elem;
+                prod[1] = (double) x_elem[1] * b_elem;
+              }
+              sumB[0] = sumB[0] + prod[0];
+              sumB[1] = sumB[1] + prod[1];
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            y_i[yi] = sumB[0];
+            y_i[yi + 1] = sumB[1];
 
-	    bi += incbi;
-	  }
-	} else {
-	  /* alpha is 0.0, beta not 1.0 nor 0.0 */
+            bi += incbi;
+          }
+        } else {
+          /* alpha is 0.0, beta not 1.0 nor 0.0 */
 
 
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
 
-	    sumB[0] = sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
+            sumB[0] = sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
 
-	      b_elem = b_i[bij];
-	      {
-		prod[0] = (double) x_elem[0] * b_elem;
-		prod[1] = (double) x_elem[1] * b_elem;
-	      }
-	      sumB[0] = sumB[0] + prod[0];
-	      sumB[1] = sumB[1] + prod[1];
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    {
-	      tmp1[0] =
-		(double) sumB[0] * beta_i[0] - (double) sumB[1] * beta_i[1];
-	      tmp1[1] =
-		(double) sumB[0] * beta_i[1] + (double) sumB[1] * beta_i[0];
-	    }
-	    y_i[yi] = tmp1[0];
-	    y_i[yi + 1] = tmp1[1];
+              b_elem = b_i[bij];
+              {
+                prod[0] = (double) x_elem[0] * b_elem;
+                prod[1] = (double) x_elem[1] * b_elem;
+              }
+              sumB[0] = sumB[0] + prod[0];
+              sumB[1] = sumB[1] + prod[1];
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            {
+              tmp1[0] =
+                (double) sumB[0] * beta_i[0] - (double) sumB[1] * beta_i[1];
+              tmp1[1] =
+                (double) sumB[0] * beta_i[1] + (double) sumB[1] * beta_i[0];
+            }
+            y_i[yi] = tmp1[0];
+            y_i[yi + 1] = tmp1[1];
 
-	    bi += incbi;
-	  }
-	}
+            bi += incbi;
+          }
+        }
       } else if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
-	if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	  /* alpha is 1.0, beta is 0.0 */
+        if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+          /* alpha is 1.0, beta is 0.0 */
 
-	  ai = 0;
+          ai = 0;
 
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    sumA[0] = sumA[1] = 0.0;
-	    aij = ai;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            sumA[0] = sumA[1] = 0.0;
+            aij = ai;
 
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		prod[0] = (double) x_elem[0] * a_elem;
-		prod[1] = (double) x_elem[1] * a_elem;
-	      }
-	      sumA[0] = sumA[0] + prod[0];
-	      sumA[1] = sumA[1] + prod[1];
-	      aij += incaij;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                prod[0] = (double) x_elem[0] * a_elem;
+                prod[1] = (double) x_elem[1] * a_elem;
+              }
+              sumA[0] = sumA[0] + prod[0];
+              sumA[1] = sumA[1] + prod[1];
+              aij += incaij;
 
-	    }
-	    /* now put the result into y_i */
-	    y_i[yi] = sumA[0];
-	    y_i[yi + 1] = sumA[1];
-	    ai += incai;
+            }
+            /* now put the result into y_i */
+            y_i[yi] = sumA[0];
+            y_i[yi + 1] = sumA[1];
+            ai += incai;
 
-	  }
-	} else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
-	  /* alpha is 1.0, beta is 1.0 */
+          }
+        } else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
+          /* alpha is 1.0, beta is 1.0 */
 
-	  ai = 0;
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    sumA[0] = sumA[1] = 0.0;
-	    aij = ai;
-	    sumB[0] = sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		prod[0] = (double) x_elem[0] * a_elem;
-		prod[1] = (double) x_elem[1] * a_elem;
-	      }
-	      sumA[0] = sumA[0] + prod[0];
-	      sumA[1] = sumA[1] + prod[1];
-	      aij += incaij;
-	      b_elem = b_i[bij];
-	      {
-		prod[0] = (double) x_elem[0] * b_elem;
-		prod[1] = (double) x_elem[1] * b_elem;
-	      }
-	      sumB[0] = sumB[0] + prod[0];
-	      sumB[1] = sumB[1] + prod[1];
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    tmp1[0] = sumA[0];
-	    tmp1[1] = sumA[1];
-	    tmp2[0] = sumB[0];
-	    tmp2[1] = sumB[1];
-	    tmp1[0] = tmp1[0] + tmp2[0];
-	    tmp1[1] = tmp1[1] + tmp2[1];
-	    y_i[yi] = tmp1[0];
-	    y_i[yi + 1] = tmp1[1];
-	    ai += incai;
-	    bi += incbi;
-	  }
-	} else {
-	  /* alpha is 1.0, beta is other */
+          ai = 0;
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            sumA[0] = sumA[1] = 0.0;
+            aij = ai;
+            sumB[0] = sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                prod[0] = (double) x_elem[0] * a_elem;
+                prod[1] = (double) x_elem[1] * a_elem;
+              }
+              sumA[0] = sumA[0] + prod[0];
+              sumA[1] = sumA[1] + prod[1];
+              aij += incaij;
+              b_elem = b_i[bij];
+              {
+                prod[0] = (double) x_elem[0] * b_elem;
+                prod[1] = (double) x_elem[1] * b_elem;
+              }
+              sumB[0] = sumB[0] + prod[0];
+              sumB[1] = sumB[1] + prod[1];
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            tmp1[0] = sumA[0];
+            tmp1[1] = sumA[1];
+            tmp2[0] = sumB[0];
+            tmp2[1] = sumB[1];
+            tmp1[0] = tmp1[0] + tmp2[0];
+            tmp1[1] = tmp1[1] + tmp2[1];
+            y_i[yi] = tmp1[0];
+            y_i[yi + 1] = tmp1[1];
+            ai += incai;
+            bi += incbi;
+          }
+        } else {
+          /* alpha is 1.0, beta is other */
 
-	  ai = 0;
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    sumA[0] = sumA[1] = 0.0;
-	    aij = ai;
-	    sumB[0] = sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		prod[0] = (double) x_elem[0] * a_elem;
-		prod[1] = (double) x_elem[1] * a_elem;
-	      }
-	      sumA[0] = sumA[0] + prod[0];
-	      sumA[1] = sumA[1] + prod[1];
-	      aij += incaij;
-	      b_elem = b_i[bij];
-	      {
-		prod[0] = (double) x_elem[0] * b_elem;
-		prod[1] = (double) x_elem[1] * b_elem;
-	      }
-	      sumB[0] = sumB[0] + prod[0];
-	      sumB[1] = sumB[1] + prod[1];
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    tmp1[0] = sumA[0];
-	    tmp1[1] = sumA[1];
-	    {
-	      tmp2[0] =
-		(double) sumB[0] * beta_i[0] - (double) sumB[1] * beta_i[1];
-	      tmp2[1] =
-		(double) sumB[0] * beta_i[1] + (double) sumB[1] * beta_i[0];
-	    }
-	    tmp1[0] = tmp1[0] + tmp2[0];
-	    tmp1[1] = tmp1[1] + tmp2[1];
-	    y_i[yi] = tmp1[0];
-	    y_i[yi + 1] = tmp1[1];
-	    ai += incai;
-	    bi += incbi;
-	  }
-	}
+          ai = 0;
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            sumA[0] = sumA[1] = 0.0;
+            aij = ai;
+            sumB[0] = sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                prod[0] = (double) x_elem[0] * a_elem;
+                prod[1] = (double) x_elem[1] * a_elem;
+              }
+              sumA[0] = sumA[0] + prod[0];
+              sumA[1] = sumA[1] + prod[1];
+              aij += incaij;
+              b_elem = b_i[bij];
+              {
+                prod[0] = (double) x_elem[0] * b_elem;
+                prod[1] = (double) x_elem[1] * b_elem;
+              }
+              sumB[0] = sumB[0] + prod[0];
+              sumB[1] = sumB[1] + prod[1];
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            tmp1[0] = sumA[0];
+            tmp1[1] = sumA[1];
+            {
+              tmp2[0] =
+                (double) sumB[0] * beta_i[0] - (double) sumB[1] * beta_i[1];
+              tmp2[1] =
+                (double) sumB[0] * beta_i[1] + (double) sumB[1] * beta_i[0];
+            }
+            tmp1[0] = tmp1[0] + tmp2[0];
+            tmp1[1] = tmp1[1] + tmp2[1];
+            y_i[yi] = tmp1[0];
+            y_i[yi + 1] = tmp1[1];
+            ai += incai;
+            bi += incbi;
+          }
+        }
       } else {
-	if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	  /* alpha is other, beta is 0.0 */
+        if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+          /* alpha is other, beta is 0.0 */
 
-	  ai = 0;
+          ai = 0;
 
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    sumA[0] = sumA[1] = 0.0;
-	    aij = ai;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            sumA[0] = sumA[1] = 0.0;
+            aij = ai;
 
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		prod[0] = (double) x_elem[0] * a_elem;
-		prod[1] = (double) x_elem[1] * a_elem;
-	      }
-	      sumA[0] = sumA[0] + prod[0];
-	      sumA[1] = sumA[1] + prod[1];
-	      aij += incaij;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                prod[0] = (double) x_elem[0] * a_elem;
+                prod[1] = (double) x_elem[1] * a_elem;
+              }
+              sumA[0] = sumA[0] + prod[0];
+              sumA[1] = sumA[1] + prod[1];
+              aij += incaij;
 
-	    }
-	    /* now put the result into y_i */
-	    {
-	      tmp1[0] =
-		(double) sumA[0] * alpha_i[0] - (double) sumA[1] * alpha_i[1];
-	      tmp1[1] =
-		(double) sumA[0] * alpha_i[1] + (double) sumA[1] * alpha_i[0];
-	    }
-	    y_i[yi] = tmp1[0];
-	    y_i[yi + 1] = tmp1[1];
-	    ai += incai;
+            }
+            /* now put the result into y_i */
+            {
+              tmp1[0] =
+                (double) sumA[0] * alpha_i[0] - (double) sumA[1] * alpha_i[1];
+              tmp1[1] =
+                (double) sumA[0] * alpha_i[1] + (double) sumA[1] * alpha_i[0];
+            }
+            y_i[yi] = tmp1[0];
+            y_i[yi + 1] = tmp1[1];
+            ai += incai;
 
-	  }
-	} else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
-	  /* alpha is other, beta is 1.0 */
+          }
+        } else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
+          /* alpha is other, beta is 1.0 */
 
-	  ai = 0;
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    sumA[0] = sumA[1] = 0.0;
-	    aij = ai;
-	    sumB[0] = sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		prod[0] = (double) x_elem[0] * a_elem;
-		prod[1] = (double) x_elem[1] * a_elem;
-	      }
-	      sumA[0] = sumA[0] + prod[0];
-	      sumA[1] = sumA[1] + prod[1];
-	      aij += incaij;
-	      b_elem = b_i[bij];
-	      {
-		prod[0] = (double) x_elem[0] * b_elem;
-		prod[1] = (double) x_elem[1] * b_elem;
-	      }
-	      sumB[0] = sumB[0] + prod[0];
-	      sumB[1] = sumB[1] + prod[1];
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    {
-	      tmp1[0] =
-		(double) sumA[0] * alpha_i[0] - (double) sumA[1] * alpha_i[1];
-	      tmp1[1] =
-		(double) sumA[0] * alpha_i[1] + (double) sumA[1] * alpha_i[0];
-	    }
-	    tmp2[0] = sumB[0];
-	    tmp2[1] = sumB[1];
-	    tmp1[0] = tmp1[0] + tmp2[0];
-	    tmp1[1] = tmp1[1] + tmp2[1];
-	    y_i[yi] = tmp1[0];
-	    y_i[yi + 1] = tmp1[1];
-	    ai += incai;
-	    bi += incbi;
-	  }
-	} else {
-	  /* most general form, alpha, beta are other */
+          ai = 0;
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            sumA[0] = sumA[1] = 0.0;
+            aij = ai;
+            sumB[0] = sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                prod[0] = (double) x_elem[0] * a_elem;
+                prod[1] = (double) x_elem[1] * a_elem;
+              }
+              sumA[0] = sumA[0] + prod[0];
+              sumA[1] = sumA[1] + prod[1];
+              aij += incaij;
+              b_elem = b_i[bij];
+              {
+                prod[0] = (double) x_elem[0] * b_elem;
+                prod[1] = (double) x_elem[1] * b_elem;
+              }
+              sumB[0] = sumB[0] + prod[0];
+              sumB[1] = sumB[1] + prod[1];
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            {
+              tmp1[0] =
+                (double) sumA[0] * alpha_i[0] - (double) sumA[1] * alpha_i[1];
+              tmp1[1] =
+                (double) sumA[0] * alpha_i[1] + (double) sumA[1] * alpha_i[0];
+            }
+            tmp2[0] = sumB[0];
+            tmp2[1] = sumB[1];
+            tmp1[0] = tmp1[0] + tmp2[0];
+            tmp1[1] = tmp1[1] + tmp2[1];
+            y_i[yi] = tmp1[0];
+            y_i[yi + 1] = tmp1[1];
+            ai += incai;
+            bi += incbi;
+          }
+        } else {
+          /* most general form, alpha, beta are other */
 
-	  ai = 0;
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    sumA[0] = sumA[1] = 0.0;
-	    aij = ai;
-	    sumB[0] = sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		prod[0] = (double) x_elem[0] * a_elem;
-		prod[1] = (double) x_elem[1] * a_elem;
-	      }
-	      sumA[0] = sumA[0] + prod[0];
-	      sumA[1] = sumA[1] + prod[1];
-	      aij += incaij;
-	      b_elem = b_i[bij];
-	      {
-		prod[0] = (double) x_elem[0] * b_elem;
-		prod[1] = (double) x_elem[1] * b_elem;
-	      }
-	      sumB[0] = sumB[0] + prod[0];
-	      sumB[1] = sumB[1] + prod[1];
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    {
-	      tmp1[0] =
-		(double) sumA[0] * alpha_i[0] - (double) sumA[1] * alpha_i[1];
-	      tmp1[1] =
-		(double) sumA[0] * alpha_i[1] + (double) sumA[1] * alpha_i[0];
-	    }
-	    {
-	      tmp2[0] =
-		(double) sumB[0] * beta_i[0] - (double) sumB[1] * beta_i[1];
-	      tmp2[1] =
-		(double) sumB[0] * beta_i[1] + (double) sumB[1] * beta_i[0];
-	    }
-	    tmp1[0] = tmp1[0] + tmp2[0];
-	    tmp1[1] = tmp1[1] + tmp2[1];
-	    y_i[yi] = tmp1[0];
-	    y_i[yi + 1] = tmp1[1];
-	    ai += incai;
-	    bi += incbi;
-	  }
-	}
+          ai = 0;
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            sumA[0] = sumA[1] = 0.0;
+            aij = ai;
+            sumB[0] = sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                prod[0] = (double) x_elem[0] * a_elem;
+                prod[1] = (double) x_elem[1] * a_elem;
+              }
+              sumA[0] = sumA[0] + prod[0];
+              sumA[1] = sumA[1] + prod[1];
+              aij += incaij;
+              b_elem = b_i[bij];
+              {
+                prod[0] = (double) x_elem[0] * b_elem;
+                prod[1] = (double) x_elem[1] * b_elem;
+              }
+              sumB[0] = sumB[0] + prod[0];
+              sumB[1] = sumB[1] + prod[1];
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            {
+              tmp1[0] =
+                (double) sumA[0] * alpha_i[0] - (double) sumA[1] * alpha_i[1];
+              tmp1[1] =
+                (double) sumA[0] * alpha_i[1] + (double) sumA[1] * alpha_i[0];
+            }
+            {
+              tmp2[0] =
+                (double) sumB[0] * beta_i[0] - (double) sumB[1] * beta_i[1];
+              tmp2[1] =
+                (double) sumB[0] * beta_i[1] + (double) sumB[1] * beta_i[0];
+            }
+            tmp1[0] = tmp1[0] + tmp2[0];
+            tmp1[1] = tmp1[1] + tmp2[1];
+            y_i[yi] = tmp1[0];
+            y_i[yi + 1] = tmp1[1];
+            ai += incai;
+            bi += incbi;
+          }
+        }
       }
 
     }
@@ -922,38 +922,38 @@ void BLAS_cge_sum_mv_s_c_x(enum blas_order_type order, int m, int n,
       /* n is number of columns */
 
       if (m == 0 || n == 0)
-	return;
+        return;
 
 
       /* all error calls */
       if (order == blas_rowmajor) {
-	lda_min = n;
-	incai = lda;		/* row stride */
-	incbi = ldb;
-	incbij = incaij = 1;	/* column stride */
+        lda_min = n;
+        incai = lda;                /* row stride */
+        incbi = ldb;
+        incbij = incaij = 1;        /* column stride */
       } else if (order == blas_colmajor) {
-	lda_min = m;
-	incai = incbi = 1;	/*row stride */
-	incaij = lda;		/* column stride */
-	incbij = ldb;
+        lda_min = m;
+        incai = incbi = 1;        /*row stride */
+        incaij = lda;                /* column stride */
+        incbij = ldb;
       } else {
-	/* error, order not blas_colmajor not blas_rowmajor */
-	BLAS_error(routine_name, -1, order, 0);
-	return;
+        /* error, order not blas_colmajor not blas_rowmajor */
+        BLAS_error(routine_name, -1, order, 0);
+        return;
       }
 
       if (m < 0)
-	BLAS_error(routine_name, -2, m, 0);
+        BLAS_error(routine_name, -2, m, 0);
       else if (n < 0)
-	BLAS_error(routine_name, -3, n, 0);
+        BLAS_error(routine_name, -3, n, 0);
       if (lda < lda_min)
-	BLAS_error(routine_name, -6, lda, 0);
+        BLAS_error(routine_name, -6, lda, 0);
       else if (ldb < lda_min)
-	BLAS_error(routine_name, -11, ldb, 0);
+        BLAS_error(routine_name, -11, ldb, 0);
       else if (incx == 0)
-	BLAS_error(routine_name, -8, incx, 0);
+        BLAS_error(routine_name, -8, incx, 0);
       else if (incy == 0)
-	BLAS_error(routine_name, -13, incy, 0);
+        BLAS_error(routine_name, -13, incy, 0);
 
       incxi = incx;
       incyi = incy;
@@ -965,2495 +965,2495 @@ void BLAS_cge_sum_mv_s_c_x(enum blas_order_type order, int m, int n,
 
 
       if (incxi > 0)
-	x_starti = 0;
+        x_starti = 0;
       else
-	x_starti = (1 - n) * incxi;
+        x_starti = (1 - n) * incxi;
 
       if (incyi > 0)
-	y_starti = 0;
+        y_starti = 0;
       else
-	y_starti = (1 - m) * incyi;
+        y_starti = (1 - m) * incyi;
 
       FPU_FIX_START;
 
       if (alpha_i[0] == 0.0 && alpha_i[1] == 0.0) {
-	if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	  /* alpha, beta are 0.0 */
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    y_i[yi] = 0.0;
-	    y_i[yi + 1] = 0.0;
-	  }
-	} else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
-	  /* alpha is 0.0, beta is 1.0 */
+        if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+          /* alpha, beta are 0.0 */
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            y_i[yi] = 0.0;
+            y_i[yi + 1] = 0.0;
+          }
+        } else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
+          /* alpha is 0.0, beta is 1.0 */
 
 
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
 
-	    head_sumB[0] = head_sumB[1] = tail_sumB[0] = tail_sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
+            head_sumB[0] = head_sumB[1] = tail_sumB[0] = tail_sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
 
-	      b_elem = b_i[bij];
-	      {
-		head_prod[0] = (double) x_elem[0] * b_elem;
-		tail_prod[0] = 0.0;
-		head_prod[1] = (double) x_elem[1] * b_elem;
-		tail_prod[1] = 0.0;
-	      }
-	      {
-		double head_t, tail_t;
-		double head_a, tail_a;
-		double head_b, tail_b;
-		/* Real part */
-		head_a = head_sumB[0];
-		tail_a = tail_sumB[0];
-		head_b = head_prod[0];
-		tail_b = tail_prod[0];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
+              b_elem = b_i[bij];
+              {
+                head_prod[0] = (double) x_elem[0] * b_elem;
+                tail_prod[0] = 0.0;
+                head_prod[1] = (double) x_elem[1] * b_elem;
+                tail_prod[1] = 0.0;
+              }
+              {
+                double head_t, tail_t;
+                double head_a, tail_a;
+                double head_b, tail_b;
+                /* Real part */
+                head_a = head_sumB[0];
+                tail_a = tail_sumB[0];
+                head_b = head_prod[0];
+                tail_b = tail_prod[0];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
 
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
 
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
 
-		  s2 += t1;
+                  s2 += t1;
 
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
 
-		  t2 += s2;
+                  t2 += s2;
 
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumB[0] = head_t;
-		tail_sumB[0] = tail_t;
-		/* Imaginary part */
-		head_a = head_sumB[1];
-		tail_a = tail_sumB[1];
-		head_b = head_prod[1];
-		tail_b = tail_prod[1];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumB[0] = head_t;
+                tail_sumB[0] = tail_t;
+                /* Imaginary part */
+                head_a = head_sumB[1];
+                tail_a = tail_sumB[1];
+                head_b = head_prod[1];
+                tail_b = tail_prod[1];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
 
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
 
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
 
-		  s2 += t1;
+                  s2 += t1;
 
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
 
-		  t2 += s2;
+                  t2 += s2;
 
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumB[1] = head_t;
-		tail_sumB[1] = tail_t;
-	      }
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    y_i[yi] = head_sumB[0];
-	    y_i[yi + 1] = head_sumB[1];
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumB[1] = head_t;
+                tail_sumB[1] = tail_t;
+              }
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            y_i[yi] = head_sumB[0];
+            y_i[yi + 1] = head_sumB[1];
 
-	    bi += incbi;
-	  }
-	} else {
-	  /* alpha is 0.0, beta not 1.0 nor 0.0 */
+            bi += incbi;
+          }
+        } else {
+          /* alpha is 0.0, beta not 1.0 nor 0.0 */
 
 
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
 
-	    head_sumB[0] = head_sumB[1] = tail_sumB[0] = tail_sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
+            head_sumB[0] = head_sumB[1] = tail_sumB[0] = tail_sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
 
-	      b_elem = b_i[bij];
-	      {
-		head_prod[0] = (double) x_elem[0] * b_elem;
-		tail_prod[0] = 0.0;
-		head_prod[1] = (double) x_elem[1] * b_elem;
-		tail_prod[1] = 0.0;
-	      }
-	      {
-		double head_t, tail_t;
-		double head_a, tail_a;
-		double head_b, tail_b;
-		/* Real part */
-		head_a = head_sumB[0];
-		tail_a = tail_sumB[0];
-		head_b = head_prod[0];
-		tail_b = tail_prod[0];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
+              b_elem = b_i[bij];
+              {
+                head_prod[0] = (double) x_elem[0] * b_elem;
+                tail_prod[0] = 0.0;
+                head_prod[1] = (double) x_elem[1] * b_elem;
+                tail_prod[1] = 0.0;
+              }
+              {
+                double head_t, tail_t;
+                double head_a, tail_a;
+                double head_b, tail_b;
+                /* Real part */
+                head_a = head_sumB[0];
+                tail_a = tail_sumB[0];
+                head_b = head_prod[0];
+                tail_b = tail_prod[0];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
 
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
 
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
 
-		  s2 += t1;
+                  s2 += t1;
 
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
 
-		  t2 += s2;
+                  t2 += s2;
 
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumB[0] = head_t;
-		tail_sumB[0] = tail_t;
-		/* Imaginary part */
-		head_a = head_sumB[1];
-		tail_a = tail_sumB[1];
-		head_b = head_prod[1];
-		tail_b = tail_prod[1];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumB[0] = head_t;
+                tail_sumB[0] = tail_t;
+                /* Imaginary part */
+                head_a = head_sumB[1];
+                tail_a = tail_sumB[1];
+                head_b = head_prod[1];
+                tail_b = tail_prod[1];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
 
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
 
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
 
-		  s2 += t1;
+                  s2 += t1;
 
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
 
-		  t2 += s2;
+                  t2 += s2;
 
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumB[1] = head_t;
-		tail_sumB[1] = tail_t;
-	      }
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    {
-	      double cd[2];
-	      cd[0] = (double) beta_i[0];
-	      cd[1] = (double) beta_i[1];
-	      {
-		/* Compute complex-extra = complex-extra * complex-double. */
-		double head_a0, tail_a0;
-		double head_a1, tail_a1;
-		double head_t1, tail_t1;
-		double head_t2, tail_t2;
-		head_a0 = head_sumB[0];
-		tail_a0 = tail_sumB[0];
-		head_a1 = head_sumB[1];
-		tail_a1 = tail_sumB[1];
-		/* real part */
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumB[1] = head_t;
+                tail_sumB[1] = tail_t;
+              }
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            {
+              double cd[2];
+              cd[0] = (double) beta_i[0];
+              cd[1] = (double) beta_i[1];
+              {
+                /* Compute complex-extra = complex-extra * complex-double. */
+                double head_a0, tail_a0;
+                double head_a1, tail_a1;
+                double head_t1, tail_t1;
+                double head_t2, tail_t2;
+                head_a0 = head_sumB[0];
+                tail_a0 = tail_sumB[0];
+                head_a1 = head_sumB[1];
+                tail_a1 = tail_sumB[1];
+                /* real part */
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-		  con = head_a0 * split;
-		  a11 = con - head_a0;
-		  a11 = con - a11;
-		  a21 = head_a0 - a11;
-		  con = cd[0] * split;
-		  b1 = con - cd[0];
-		  b1 = con - b1;
-		  b2 = cd[0] - b1;
+                  con = head_a0 * split;
+                  a11 = con - head_a0;
+                  a11 = con - a11;
+                  a21 = head_a0 - a11;
+                  con = cd[0] * split;
+                  b1 = con - cd[0];
+                  b1 = con - b1;
+                  b2 = cd[0] - b1;
 
-		  c11 = head_a0 * cd[0];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+                  c11 = head_a0 * cd[0];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
 
-		  c2 = tail_a0 * cd[0];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
+                  c2 = tail_a0 * cd[0];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
 
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-		  con = head_a1 * split;
-		  a11 = con - head_a1;
-		  a11 = con - a11;
-		  a21 = head_a1 - a11;
-		  con = cd[1] * split;
-		  b1 = con - cd[1];
-		  b1 = con - b1;
-		  b2 = cd[1] - b1;
+                  con = head_a1 * split;
+                  a11 = con - head_a1;
+                  a11 = con - a11;
+                  a21 = head_a1 - a11;
+                  con = cd[1] * split;
+                  b1 = con - cd[1];
+                  b1 = con - b1;
+                  b2 = cd[1] - b1;
 
-		  c11 = head_a1 * cd[1];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+                  c11 = head_a1 * cd[1];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
 
-		  c2 = tail_a1 * cd[1];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
+                  c2 = tail_a1 * cd[1];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
 
-		  head_t2 = t1 + t2;
-		  tail_t2 = t2 - (head_t2 - t1);
-		}
-		head_t2 = -head_t2;
-		tail_t2 = -tail_t2;
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
+                  head_t2 = t1 + t2;
+                  tail_t2 = t2 - (head_t2 - t1);
+                }
+                head_t2 = -head_t2;
+                tail_t2 = -tail_t2;
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
 
-		  /* Add two hi words. */
-		  s1 = head_t1 + head_t2;
-		  bv = s1 - head_t1;
-		  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
+                  /* Add two hi words. */
+                  s1 = head_t1 + head_t2;
+                  bv = s1 - head_t1;
+                  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
 
-		  /* Add two lo words. */
-		  t1 = tail_t1 + tail_t2;
-		  bv = t1 - tail_t1;
-		  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
+                  /* Add two lo words. */
+                  t1 = tail_t1 + tail_t2;
+                  bv = t1 - tail_t1;
+                  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
 
-		  s2 += t1;
+                  s2 += t1;
 
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
 
-		  t2 += s2;
+                  t2 += s2;
 
-		  /* Renormalize (t1, t2)  */
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		head_tmp1[0] = head_t1;
-		tail_tmp1[0] = tail_t1;
-		/* imaginary part */
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  /* Renormalize (t1, t2)  */
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                head_tmp1[0] = head_t1;
+                tail_tmp1[0] = tail_t1;
+                /* imaginary part */
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-		  con = head_a1 * split;
-		  a11 = con - head_a1;
-		  a11 = con - a11;
-		  a21 = head_a1 - a11;
-		  con = cd[0] * split;
-		  b1 = con - cd[0];
-		  b1 = con - b1;
-		  b2 = cd[0] - b1;
+                  con = head_a1 * split;
+                  a11 = con - head_a1;
+                  a11 = con - a11;
+                  a21 = head_a1 - a11;
+                  con = cd[0] * split;
+                  b1 = con - cd[0];
+                  b1 = con - b1;
+                  b2 = cd[0] - b1;
 
-		  c11 = head_a1 * cd[0];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+                  c11 = head_a1 * cd[0];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
 
-		  c2 = tail_a1 * cd[0];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
+                  c2 = tail_a1 * cd[0];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
 
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-		  con = head_a0 * split;
-		  a11 = con - head_a0;
-		  a11 = con - a11;
-		  a21 = head_a0 - a11;
-		  con = cd[1] * split;
-		  b1 = con - cd[1];
-		  b1 = con - b1;
-		  b2 = cd[1] - b1;
+                  con = head_a0 * split;
+                  a11 = con - head_a0;
+                  a11 = con - a11;
+                  a21 = head_a0 - a11;
+                  con = cd[1] * split;
+                  b1 = con - cd[1];
+                  b1 = con - b1;
+                  b2 = cd[1] - b1;
 
-		  c11 = head_a0 * cd[1];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+                  c11 = head_a0 * cd[1];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
 
-		  c2 = tail_a0 * cd[1];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
+                  c2 = tail_a0 * cd[1];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
 
-		  head_t2 = t1 + t2;
-		  tail_t2 = t2 - (head_t2 - t1);
-		}
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
+                  head_t2 = t1 + t2;
+                  tail_t2 = t2 - (head_t2 - t1);
+                }
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
 
-		  /* Add two hi words. */
-		  s1 = head_t1 + head_t2;
-		  bv = s1 - head_t1;
-		  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
+                  /* Add two hi words. */
+                  s1 = head_t1 + head_t2;
+                  bv = s1 - head_t1;
+                  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
 
-		  /* Add two lo words. */
-		  t1 = tail_t1 + tail_t2;
-		  bv = t1 - tail_t1;
-		  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
+                  /* Add two lo words. */
+                  t1 = tail_t1 + tail_t2;
+                  bv = t1 - tail_t1;
+                  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
 
-		  s2 += t1;
+                  s2 += t1;
 
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
 
-		  t2 += s2;
+                  t2 += s2;
 
-		  /* Renormalize (t1, t2)  */
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		head_tmp1[1] = head_t1;
-		tail_tmp1[1] = tail_t1;
-	      }
+                  /* Renormalize (t1, t2)  */
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                head_tmp1[1] = head_t1;
+                tail_tmp1[1] = tail_t1;
+              }
 
-	    }
-	    y_i[yi] = head_tmp1[0];
-	    y_i[yi + 1] = head_tmp1[1];
+            }
+            y_i[yi] = head_tmp1[0];
+            y_i[yi + 1] = head_tmp1[1];
 
-	    bi += incbi;
-	  }
-	}
+            bi += incbi;
+          }
+        }
       } else if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
-	if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	  /* alpha is 1.0, beta is 0.0 */
-
-	  ai = 0;
-
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    head_sumA[0] = head_sumA[1] = tail_sumA[0] = tail_sumA[1] = 0.0;
-	    aij = ai;
-
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		head_prod[0] = (double) x_elem[0] * a_elem;
-		tail_prod[0] = 0.0;
-		head_prod[1] = (double) x_elem[1] * a_elem;
-		tail_prod[1] = 0.0;
-	      }
-	      {
-		double head_t, tail_t;
-		double head_a, tail_a;
-		double head_b, tail_b;
-		/* Real part */
-		head_a = head_sumA[0];
-		tail_a = tail_sumA[0];
-		head_b = head_prod[0];
-		tail_b = tail_prod[0];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumA[0] = head_t;
-		tail_sumA[0] = tail_t;
-		/* Imaginary part */
-		head_a = head_sumA[1];
-		tail_a = tail_sumA[1];
-		head_b = head_prod[1];
-		tail_b = tail_prod[1];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumA[1] = head_t;
-		tail_sumA[1] = tail_t;
-	      }
-	      aij += incaij;
-
-	    }
-	    /* now put the result into y_i */
-	    y_i[yi] = head_sumA[0];
-	    y_i[yi + 1] = head_sumA[1];
-	    ai += incai;
-
-	  }
-	} else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
-	  /* alpha is 1.0, beta is 1.0 */
-
-	  ai = 0;
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    head_sumA[0] = head_sumA[1] = tail_sumA[0] = tail_sumA[1] = 0.0;
-	    aij = ai;
-	    head_sumB[0] = head_sumB[1] = tail_sumB[0] = tail_sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		head_prod[0] = (double) x_elem[0] * a_elem;
-		tail_prod[0] = 0.0;
-		head_prod[1] = (double) x_elem[1] * a_elem;
-		tail_prod[1] = 0.0;
-	      }
-	      {
-		double head_t, tail_t;
-		double head_a, tail_a;
-		double head_b, tail_b;
-		/* Real part */
-		head_a = head_sumA[0];
-		tail_a = tail_sumA[0];
-		head_b = head_prod[0];
-		tail_b = tail_prod[0];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumA[0] = head_t;
-		tail_sumA[0] = tail_t;
-		/* Imaginary part */
-		head_a = head_sumA[1];
-		tail_a = tail_sumA[1];
-		head_b = head_prod[1];
-		tail_b = tail_prod[1];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumA[1] = head_t;
-		tail_sumA[1] = tail_t;
-	      }
-	      aij += incaij;
-	      b_elem = b_i[bij];
-	      {
-		head_prod[0] = (double) x_elem[0] * b_elem;
-		tail_prod[0] = 0.0;
-		head_prod[1] = (double) x_elem[1] * b_elem;
-		tail_prod[1] = 0.0;
-	      }
-	      {
-		double head_t, tail_t;
-		double head_a, tail_a;
-		double head_b, tail_b;
-		/* Real part */
-		head_a = head_sumB[0];
-		tail_a = tail_sumB[0];
-		head_b = head_prod[0];
-		tail_b = tail_prod[0];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumB[0] = head_t;
-		tail_sumB[0] = tail_t;
-		/* Imaginary part */
-		head_a = head_sumB[1];
-		tail_a = tail_sumB[1];
-		head_b = head_prod[1];
-		tail_b = tail_prod[1];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumB[1] = head_t;
-		tail_sumB[1] = tail_t;
-	      }
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    head_tmp1[0] = head_sumA[0];
-	    tail_tmp1[0] = tail_sumA[0];
-	    head_tmp1[1] = head_sumA[1];
-	    tail_tmp1[1] = tail_sumA[1];
-	    head_tmp2[0] = head_sumB[0];
-	    tail_tmp2[0] = tail_sumB[0];
-	    head_tmp2[1] = head_sumB[1];
-	    tail_tmp2[1] = tail_sumB[1];
-	    {
-	      double head_t, tail_t;
-	      double head_a, tail_a;
-	      double head_b, tail_b;
-	      /* Real part */
-	      head_a = head_tmp1[0];
-	      tail_a = tail_tmp1[0];
-	      head_b = head_tmp2[0];
-	      tail_b = tail_tmp2[0];
-	      {
-		/* Compute double-double = double-double + double-double. */
-		double bv;
-		double s1, s2, t1, t2;
-
-		/* Add two hi words. */
-		s1 = head_a + head_b;
-		bv = s1 - head_a;
-		s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		/* Add two lo words. */
-		t1 = tail_a + tail_b;
-		bv = t1 - tail_a;
-		t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		s2 += t1;
-
-		/* Renormalize (s1, s2)  to  (t1, s2) */
-		t1 = s1 + s2;
-		s2 = s2 - (t1 - s1);
-
-		t2 += s2;
-
-		/* Renormalize (t1, t2)  */
-		head_t = t1 + t2;
-		tail_t = t2 - (head_t - t1);
-	      }
-	      head_tmp1[0] = head_t;
-	      tail_tmp1[0] = tail_t;
-	      /* Imaginary part */
-	      head_a = head_tmp1[1];
-	      tail_a = tail_tmp1[1];
-	      head_b = head_tmp2[1];
-	      tail_b = tail_tmp2[1];
-	      {
-		/* Compute double-double = double-double + double-double. */
-		double bv;
-		double s1, s2, t1, t2;
-
-		/* Add two hi words. */
-		s1 = head_a + head_b;
-		bv = s1 - head_a;
-		s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		/* Add two lo words. */
-		t1 = tail_a + tail_b;
-		bv = t1 - tail_a;
-		t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		s2 += t1;
-
-		/* Renormalize (s1, s2)  to  (t1, s2) */
-		t1 = s1 + s2;
-		s2 = s2 - (t1 - s1);
-
-		t2 += s2;
-
-		/* Renormalize (t1, t2)  */
-		head_t = t1 + t2;
-		tail_t = t2 - (head_t - t1);
-	      }
-	      head_tmp1[1] = head_t;
-	      tail_tmp1[1] = tail_t;
-	    }
-	    y_i[yi] = head_tmp1[0];
-	    y_i[yi + 1] = head_tmp1[1];
-	    ai += incai;
-	    bi += incbi;
-	  }
-	} else {
-	  /* alpha is 1.0, beta is other */
-
-	  ai = 0;
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    head_sumA[0] = head_sumA[1] = tail_sumA[0] = tail_sumA[1] = 0.0;
-	    aij = ai;
-	    head_sumB[0] = head_sumB[1] = tail_sumB[0] = tail_sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		head_prod[0] = (double) x_elem[0] * a_elem;
-		tail_prod[0] = 0.0;
-		head_prod[1] = (double) x_elem[1] * a_elem;
-		tail_prod[1] = 0.0;
-	      }
-	      {
-		double head_t, tail_t;
-		double head_a, tail_a;
-		double head_b, tail_b;
-		/* Real part */
-		head_a = head_sumA[0];
-		tail_a = tail_sumA[0];
-		head_b = head_prod[0];
-		tail_b = tail_prod[0];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumA[0] = head_t;
-		tail_sumA[0] = tail_t;
-		/* Imaginary part */
-		head_a = head_sumA[1];
-		tail_a = tail_sumA[1];
-		head_b = head_prod[1];
-		tail_b = tail_prod[1];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumA[1] = head_t;
-		tail_sumA[1] = tail_t;
-	      }
-	      aij += incaij;
-	      b_elem = b_i[bij];
-	      {
-		head_prod[0] = (double) x_elem[0] * b_elem;
-		tail_prod[0] = 0.0;
-		head_prod[1] = (double) x_elem[1] * b_elem;
-		tail_prod[1] = 0.0;
-	      }
-	      {
-		double head_t, tail_t;
-		double head_a, tail_a;
-		double head_b, tail_b;
-		/* Real part */
-		head_a = head_sumB[0];
-		tail_a = tail_sumB[0];
-		head_b = head_prod[0];
-		tail_b = tail_prod[0];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumB[0] = head_t;
-		tail_sumB[0] = tail_t;
-		/* Imaginary part */
-		head_a = head_sumB[1];
-		tail_a = tail_sumB[1];
-		head_b = head_prod[1];
-		tail_b = tail_prod[1];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumB[1] = head_t;
-		tail_sumB[1] = tail_t;
-	      }
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    head_tmp1[0] = head_sumA[0];
-	    tail_tmp1[0] = tail_sumA[0];
-	    head_tmp1[1] = head_sumA[1];
-	    tail_tmp1[1] = tail_sumA[1];
-	    {
-	      double cd[2];
-	      cd[0] = (double) beta_i[0];
-	      cd[1] = (double) beta_i[1];
-	      {
-		/* Compute complex-extra = complex-extra * complex-double. */
-		double head_a0, tail_a0;
-		double head_a1, tail_a1;
-		double head_t1, tail_t1;
-		double head_t2, tail_t2;
-		head_a0 = head_sumB[0];
-		tail_a0 = tail_sumB[0];
-		head_a1 = head_sumB[1];
-		tail_a1 = tail_sumB[1];
-		/* real part */
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a0 * split;
-		  a11 = con - head_a0;
-		  a11 = con - a11;
-		  a21 = head_a0 - a11;
-		  con = cd[0] * split;
-		  b1 = con - cd[0];
-		  b1 = con - b1;
-		  b2 = cd[0] - b1;
-
-		  c11 = head_a0 * cd[0];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a0 * cd[0];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a1 * split;
-		  a11 = con - head_a1;
-		  a11 = con - a11;
-		  a21 = head_a1 - a11;
-		  con = cd[1] * split;
-		  b1 = con - cd[1];
-		  b1 = con - b1;
-		  b2 = cd[1] - b1;
-
-		  c11 = head_a1 * cd[1];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a1 * cd[1];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t2 = t1 + t2;
-		  tail_t2 = t2 - (head_t2 - t1);
-		}
-		head_t2 = -head_t2;
-		tail_t2 = -tail_t2;
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_t1 + head_t2;
-		  bv = s1 - head_t1;
-		  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_t1 + tail_t2;
-		  bv = t1 - tail_t1;
-		  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		head_tmp2[0] = head_t1;
-		tail_tmp2[0] = tail_t1;
-		/* imaginary part */
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a1 * split;
-		  a11 = con - head_a1;
-		  a11 = con - a11;
-		  a21 = head_a1 - a11;
-		  con = cd[0] * split;
-		  b1 = con - cd[0];
-		  b1 = con - b1;
-		  b2 = cd[0] - b1;
-
-		  c11 = head_a1 * cd[0];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a1 * cd[0];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a0 * split;
-		  a11 = con - head_a0;
-		  a11 = con - a11;
-		  a21 = head_a0 - a11;
-		  con = cd[1] * split;
-		  b1 = con - cd[1];
-		  b1 = con - b1;
-		  b2 = cd[1] - b1;
-
-		  c11 = head_a0 * cd[1];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a0 * cd[1];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t2 = t1 + t2;
-		  tail_t2 = t2 - (head_t2 - t1);
-		}
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_t1 + head_t2;
-		  bv = s1 - head_t1;
-		  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_t1 + tail_t2;
-		  bv = t1 - tail_t1;
-		  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		head_tmp2[1] = head_t1;
-		tail_tmp2[1] = tail_t1;
-	      }
-
-	    }
-	    {
-	      double head_t, tail_t;
-	      double head_a, tail_a;
-	      double head_b, tail_b;
-	      /* Real part */
-	      head_a = head_tmp1[0];
-	      tail_a = tail_tmp1[0];
-	      head_b = head_tmp2[0];
-	      tail_b = tail_tmp2[0];
-	      {
-		/* Compute double-double = double-double + double-double. */
-		double bv;
-		double s1, s2, t1, t2;
-
-		/* Add two hi words. */
-		s1 = head_a + head_b;
-		bv = s1 - head_a;
-		s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		/* Add two lo words. */
-		t1 = tail_a + tail_b;
-		bv = t1 - tail_a;
-		t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		s2 += t1;
-
-		/* Renormalize (s1, s2)  to  (t1, s2) */
-		t1 = s1 + s2;
-		s2 = s2 - (t1 - s1);
-
-		t2 += s2;
-
-		/* Renormalize (t1, t2)  */
-		head_t = t1 + t2;
-		tail_t = t2 - (head_t - t1);
-	      }
-	      head_tmp1[0] = head_t;
-	      tail_tmp1[0] = tail_t;
-	      /* Imaginary part */
-	      head_a = head_tmp1[1];
-	      tail_a = tail_tmp1[1];
-	      head_b = head_tmp2[1];
-	      tail_b = tail_tmp2[1];
-	      {
-		/* Compute double-double = double-double + double-double. */
-		double bv;
-		double s1, s2, t1, t2;
-
-		/* Add two hi words. */
-		s1 = head_a + head_b;
-		bv = s1 - head_a;
-		s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		/* Add two lo words. */
-		t1 = tail_a + tail_b;
-		bv = t1 - tail_a;
-		t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		s2 += t1;
-
-		/* Renormalize (s1, s2)  to  (t1, s2) */
-		t1 = s1 + s2;
-		s2 = s2 - (t1 - s1);
-
-		t2 += s2;
-
-		/* Renormalize (t1, t2)  */
-		head_t = t1 + t2;
-		tail_t = t2 - (head_t - t1);
-	      }
-	      head_tmp1[1] = head_t;
-	      tail_tmp1[1] = tail_t;
-	    }
-	    y_i[yi] = head_tmp1[0];
-	    y_i[yi + 1] = head_tmp1[1];
-	    ai += incai;
-	    bi += incbi;
-	  }
-	}
+        if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+          /* alpha is 1.0, beta is 0.0 */
+
+          ai = 0;
+
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            head_sumA[0] = head_sumA[1] = tail_sumA[0] = tail_sumA[1] = 0.0;
+            aij = ai;
+
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                head_prod[0] = (double) x_elem[0] * a_elem;
+                tail_prod[0] = 0.0;
+                head_prod[1] = (double) x_elem[1] * a_elem;
+                tail_prod[1] = 0.0;
+              }
+              {
+                double head_t, tail_t;
+                double head_a, tail_a;
+                double head_b, tail_b;
+                /* Real part */
+                head_a = head_sumA[0];
+                tail_a = tail_sumA[0];
+                head_b = head_prod[0];
+                tail_b = tail_prod[0];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumA[0] = head_t;
+                tail_sumA[0] = tail_t;
+                /* Imaginary part */
+                head_a = head_sumA[1];
+                tail_a = tail_sumA[1];
+                head_b = head_prod[1];
+                tail_b = tail_prod[1];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumA[1] = head_t;
+                tail_sumA[1] = tail_t;
+              }
+              aij += incaij;
+
+            }
+            /* now put the result into y_i */
+            y_i[yi] = head_sumA[0];
+            y_i[yi + 1] = head_sumA[1];
+            ai += incai;
+
+          }
+        } else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
+          /* alpha is 1.0, beta is 1.0 */
+
+          ai = 0;
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            head_sumA[0] = head_sumA[1] = tail_sumA[0] = tail_sumA[1] = 0.0;
+            aij = ai;
+            head_sumB[0] = head_sumB[1] = tail_sumB[0] = tail_sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                head_prod[0] = (double) x_elem[0] * a_elem;
+                tail_prod[0] = 0.0;
+                head_prod[1] = (double) x_elem[1] * a_elem;
+                tail_prod[1] = 0.0;
+              }
+              {
+                double head_t, tail_t;
+                double head_a, tail_a;
+                double head_b, tail_b;
+                /* Real part */
+                head_a = head_sumA[0];
+                tail_a = tail_sumA[0];
+                head_b = head_prod[0];
+                tail_b = tail_prod[0];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumA[0] = head_t;
+                tail_sumA[0] = tail_t;
+                /* Imaginary part */
+                head_a = head_sumA[1];
+                tail_a = tail_sumA[1];
+                head_b = head_prod[1];
+                tail_b = tail_prod[1];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumA[1] = head_t;
+                tail_sumA[1] = tail_t;
+              }
+              aij += incaij;
+              b_elem = b_i[bij];
+              {
+                head_prod[0] = (double) x_elem[0] * b_elem;
+                tail_prod[0] = 0.0;
+                head_prod[1] = (double) x_elem[1] * b_elem;
+                tail_prod[1] = 0.0;
+              }
+              {
+                double head_t, tail_t;
+                double head_a, tail_a;
+                double head_b, tail_b;
+                /* Real part */
+                head_a = head_sumB[0];
+                tail_a = tail_sumB[0];
+                head_b = head_prod[0];
+                tail_b = tail_prod[0];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumB[0] = head_t;
+                tail_sumB[0] = tail_t;
+                /* Imaginary part */
+                head_a = head_sumB[1];
+                tail_a = tail_sumB[1];
+                head_b = head_prod[1];
+                tail_b = tail_prod[1];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumB[1] = head_t;
+                tail_sumB[1] = tail_t;
+              }
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            head_tmp1[0] = head_sumA[0];
+            tail_tmp1[0] = tail_sumA[0];
+            head_tmp1[1] = head_sumA[1];
+            tail_tmp1[1] = tail_sumA[1];
+            head_tmp2[0] = head_sumB[0];
+            tail_tmp2[0] = tail_sumB[0];
+            head_tmp2[1] = head_sumB[1];
+            tail_tmp2[1] = tail_sumB[1];
+            {
+              double head_t, tail_t;
+              double head_a, tail_a;
+              double head_b, tail_b;
+              /* Real part */
+              head_a = head_tmp1[0];
+              tail_a = tail_tmp1[0];
+              head_b = head_tmp2[0];
+              tail_b = tail_tmp2[0];
+              {
+                /* Compute double-double = double-double + double-double. */
+                double bv;
+                double s1, s2, t1, t2;
+
+                /* Add two hi words. */
+                s1 = head_a + head_b;
+                bv = s1 - head_a;
+                s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                /* Add two lo words. */
+                t1 = tail_a + tail_b;
+                bv = t1 - tail_a;
+                t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                s2 += t1;
+
+                /* Renormalize (s1, s2)  to  (t1, s2) */
+                t1 = s1 + s2;
+                s2 = s2 - (t1 - s1);
+
+                t2 += s2;
+
+                /* Renormalize (t1, t2)  */
+                head_t = t1 + t2;
+                tail_t = t2 - (head_t - t1);
+              }
+              head_tmp1[0] = head_t;
+              tail_tmp1[0] = tail_t;
+              /* Imaginary part */
+              head_a = head_tmp1[1];
+              tail_a = tail_tmp1[1];
+              head_b = head_tmp2[1];
+              tail_b = tail_tmp2[1];
+              {
+                /* Compute double-double = double-double + double-double. */
+                double bv;
+                double s1, s2, t1, t2;
+
+                /* Add two hi words. */
+                s1 = head_a + head_b;
+                bv = s1 - head_a;
+                s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                /* Add two lo words. */
+                t1 = tail_a + tail_b;
+                bv = t1 - tail_a;
+                t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                s2 += t1;
+
+                /* Renormalize (s1, s2)  to  (t1, s2) */
+                t1 = s1 + s2;
+                s2 = s2 - (t1 - s1);
+
+                t2 += s2;
+
+                /* Renormalize (t1, t2)  */
+                head_t = t1 + t2;
+                tail_t = t2 - (head_t - t1);
+              }
+              head_tmp1[1] = head_t;
+              tail_tmp1[1] = tail_t;
+            }
+            y_i[yi] = head_tmp1[0];
+            y_i[yi + 1] = head_tmp1[1];
+            ai += incai;
+            bi += incbi;
+          }
+        } else {
+          /* alpha is 1.0, beta is other */
+
+          ai = 0;
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            head_sumA[0] = head_sumA[1] = tail_sumA[0] = tail_sumA[1] = 0.0;
+            aij = ai;
+            head_sumB[0] = head_sumB[1] = tail_sumB[0] = tail_sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                head_prod[0] = (double) x_elem[0] * a_elem;
+                tail_prod[0] = 0.0;
+                head_prod[1] = (double) x_elem[1] * a_elem;
+                tail_prod[1] = 0.0;
+              }
+              {
+                double head_t, tail_t;
+                double head_a, tail_a;
+                double head_b, tail_b;
+                /* Real part */
+                head_a = head_sumA[0];
+                tail_a = tail_sumA[0];
+                head_b = head_prod[0];
+                tail_b = tail_prod[0];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumA[0] = head_t;
+                tail_sumA[0] = tail_t;
+                /* Imaginary part */
+                head_a = head_sumA[1];
+                tail_a = tail_sumA[1];
+                head_b = head_prod[1];
+                tail_b = tail_prod[1];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumA[1] = head_t;
+                tail_sumA[1] = tail_t;
+              }
+              aij += incaij;
+              b_elem = b_i[bij];
+              {
+                head_prod[0] = (double) x_elem[0] * b_elem;
+                tail_prod[0] = 0.0;
+                head_prod[1] = (double) x_elem[1] * b_elem;
+                tail_prod[1] = 0.0;
+              }
+              {
+                double head_t, tail_t;
+                double head_a, tail_a;
+                double head_b, tail_b;
+                /* Real part */
+                head_a = head_sumB[0];
+                tail_a = tail_sumB[0];
+                head_b = head_prod[0];
+                tail_b = tail_prod[0];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumB[0] = head_t;
+                tail_sumB[0] = tail_t;
+                /* Imaginary part */
+                head_a = head_sumB[1];
+                tail_a = tail_sumB[1];
+                head_b = head_prod[1];
+                tail_b = tail_prod[1];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumB[1] = head_t;
+                tail_sumB[1] = tail_t;
+              }
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            head_tmp1[0] = head_sumA[0];
+            tail_tmp1[0] = tail_sumA[0];
+            head_tmp1[1] = head_sumA[1];
+            tail_tmp1[1] = tail_sumA[1];
+            {
+              double cd[2];
+              cd[0] = (double) beta_i[0];
+              cd[1] = (double) beta_i[1];
+              {
+                /* Compute complex-extra = complex-extra * complex-double. */
+                double head_a0, tail_a0;
+                double head_a1, tail_a1;
+                double head_t1, tail_t1;
+                double head_t2, tail_t2;
+                head_a0 = head_sumB[0];
+                tail_a0 = tail_sumB[0];
+                head_a1 = head_sumB[1];
+                tail_a1 = tail_sumB[1];
+                /* real part */
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a0 * split;
+                  a11 = con - head_a0;
+                  a11 = con - a11;
+                  a21 = head_a0 - a11;
+                  con = cd[0] * split;
+                  b1 = con - cd[0];
+                  b1 = con - b1;
+                  b2 = cd[0] - b1;
+
+                  c11 = head_a0 * cd[0];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a0 * cd[0];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a1 * split;
+                  a11 = con - head_a1;
+                  a11 = con - a11;
+                  a21 = head_a1 - a11;
+                  con = cd[1] * split;
+                  b1 = con - cd[1];
+                  b1 = con - b1;
+                  b2 = cd[1] - b1;
+
+                  c11 = head_a1 * cd[1];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a1 * cd[1];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t2 = t1 + t2;
+                  tail_t2 = t2 - (head_t2 - t1);
+                }
+                head_t2 = -head_t2;
+                tail_t2 = -tail_t2;
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_t1 + head_t2;
+                  bv = s1 - head_t1;
+                  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_t1 + tail_t2;
+                  bv = t1 - tail_t1;
+                  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                head_tmp2[0] = head_t1;
+                tail_tmp2[0] = tail_t1;
+                /* imaginary part */
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a1 * split;
+                  a11 = con - head_a1;
+                  a11 = con - a11;
+                  a21 = head_a1 - a11;
+                  con = cd[0] * split;
+                  b1 = con - cd[0];
+                  b1 = con - b1;
+                  b2 = cd[0] - b1;
+
+                  c11 = head_a1 * cd[0];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a1 * cd[0];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a0 * split;
+                  a11 = con - head_a0;
+                  a11 = con - a11;
+                  a21 = head_a0 - a11;
+                  con = cd[1] * split;
+                  b1 = con - cd[1];
+                  b1 = con - b1;
+                  b2 = cd[1] - b1;
+
+                  c11 = head_a0 * cd[1];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a0 * cd[1];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t2 = t1 + t2;
+                  tail_t2 = t2 - (head_t2 - t1);
+                }
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_t1 + head_t2;
+                  bv = s1 - head_t1;
+                  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_t1 + tail_t2;
+                  bv = t1 - tail_t1;
+                  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                head_tmp2[1] = head_t1;
+                tail_tmp2[1] = tail_t1;
+              }
+
+            }
+            {
+              double head_t, tail_t;
+              double head_a, tail_a;
+              double head_b, tail_b;
+              /* Real part */
+              head_a = head_tmp1[0];
+              tail_a = tail_tmp1[0];
+              head_b = head_tmp2[0];
+              tail_b = tail_tmp2[0];
+              {
+                /* Compute double-double = double-double + double-double. */
+                double bv;
+                double s1, s2, t1, t2;
+
+                /* Add two hi words. */
+                s1 = head_a + head_b;
+                bv = s1 - head_a;
+                s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                /* Add two lo words. */
+                t1 = tail_a + tail_b;
+                bv = t1 - tail_a;
+                t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                s2 += t1;
+
+                /* Renormalize (s1, s2)  to  (t1, s2) */
+                t1 = s1 + s2;
+                s2 = s2 - (t1 - s1);
+
+                t2 += s2;
+
+                /* Renormalize (t1, t2)  */
+                head_t = t1 + t2;
+                tail_t = t2 - (head_t - t1);
+              }
+              head_tmp1[0] = head_t;
+              tail_tmp1[0] = tail_t;
+              /* Imaginary part */
+              head_a = head_tmp1[1];
+              tail_a = tail_tmp1[1];
+              head_b = head_tmp2[1];
+              tail_b = tail_tmp2[1];
+              {
+                /* Compute double-double = double-double + double-double. */
+                double bv;
+                double s1, s2, t1, t2;
+
+                /* Add two hi words. */
+                s1 = head_a + head_b;
+                bv = s1 - head_a;
+                s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                /* Add two lo words. */
+                t1 = tail_a + tail_b;
+                bv = t1 - tail_a;
+                t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                s2 += t1;
+
+                /* Renormalize (s1, s2)  to  (t1, s2) */
+                t1 = s1 + s2;
+                s2 = s2 - (t1 - s1);
+
+                t2 += s2;
+
+                /* Renormalize (t1, t2)  */
+                head_t = t1 + t2;
+                tail_t = t2 - (head_t - t1);
+              }
+              head_tmp1[1] = head_t;
+              tail_tmp1[1] = tail_t;
+            }
+            y_i[yi] = head_tmp1[0];
+            y_i[yi + 1] = head_tmp1[1];
+            ai += incai;
+            bi += incbi;
+          }
+        }
       } else {
-	if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	  /* alpha is other, beta is 0.0 */
-
-	  ai = 0;
-
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    head_sumA[0] = head_sumA[1] = tail_sumA[0] = tail_sumA[1] = 0.0;
-	    aij = ai;
-
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		head_prod[0] = (double) x_elem[0] * a_elem;
-		tail_prod[0] = 0.0;
-		head_prod[1] = (double) x_elem[1] * a_elem;
-		tail_prod[1] = 0.0;
-	      }
-	      {
-		double head_t, tail_t;
-		double head_a, tail_a;
-		double head_b, tail_b;
-		/* Real part */
-		head_a = head_sumA[0];
-		tail_a = tail_sumA[0];
-		head_b = head_prod[0];
-		tail_b = tail_prod[0];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumA[0] = head_t;
-		tail_sumA[0] = tail_t;
-		/* Imaginary part */
-		head_a = head_sumA[1];
-		tail_a = tail_sumA[1];
-		head_b = head_prod[1];
-		tail_b = tail_prod[1];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumA[1] = head_t;
-		tail_sumA[1] = tail_t;
-	      }
-	      aij += incaij;
-
-	    }
-	    /* now put the result into y_i */
-	    {
-	      double cd[2];
-	      cd[0] = (double) alpha_i[0];
-	      cd[1] = (double) alpha_i[1];
-	      {
-		/* Compute complex-extra = complex-extra * complex-double. */
-		double head_a0, tail_a0;
-		double head_a1, tail_a1;
-		double head_t1, tail_t1;
-		double head_t2, tail_t2;
-		head_a0 = head_sumA[0];
-		tail_a0 = tail_sumA[0];
-		head_a1 = head_sumA[1];
-		tail_a1 = tail_sumA[1];
-		/* real part */
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a0 * split;
-		  a11 = con - head_a0;
-		  a11 = con - a11;
-		  a21 = head_a0 - a11;
-		  con = cd[0] * split;
-		  b1 = con - cd[0];
-		  b1 = con - b1;
-		  b2 = cd[0] - b1;
-
-		  c11 = head_a0 * cd[0];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a0 * cd[0];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a1 * split;
-		  a11 = con - head_a1;
-		  a11 = con - a11;
-		  a21 = head_a1 - a11;
-		  con = cd[1] * split;
-		  b1 = con - cd[1];
-		  b1 = con - b1;
-		  b2 = cd[1] - b1;
-
-		  c11 = head_a1 * cd[1];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a1 * cd[1];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t2 = t1 + t2;
-		  tail_t2 = t2 - (head_t2 - t1);
-		}
-		head_t2 = -head_t2;
-		tail_t2 = -tail_t2;
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_t1 + head_t2;
-		  bv = s1 - head_t1;
-		  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_t1 + tail_t2;
-		  bv = t1 - tail_t1;
-		  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		head_tmp1[0] = head_t1;
-		tail_tmp1[0] = tail_t1;
-		/* imaginary part */
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a1 * split;
-		  a11 = con - head_a1;
-		  a11 = con - a11;
-		  a21 = head_a1 - a11;
-		  con = cd[0] * split;
-		  b1 = con - cd[0];
-		  b1 = con - b1;
-		  b2 = cd[0] - b1;
-
-		  c11 = head_a1 * cd[0];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a1 * cd[0];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a0 * split;
-		  a11 = con - head_a0;
-		  a11 = con - a11;
-		  a21 = head_a0 - a11;
-		  con = cd[1] * split;
-		  b1 = con - cd[1];
-		  b1 = con - b1;
-		  b2 = cd[1] - b1;
-
-		  c11 = head_a0 * cd[1];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a0 * cd[1];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t2 = t1 + t2;
-		  tail_t2 = t2 - (head_t2 - t1);
-		}
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_t1 + head_t2;
-		  bv = s1 - head_t1;
-		  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_t1 + tail_t2;
-		  bv = t1 - tail_t1;
-		  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		head_tmp1[1] = head_t1;
-		tail_tmp1[1] = tail_t1;
-	      }
-
-	    }
-	    y_i[yi] = head_tmp1[0];
-	    y_i[yi + 1] = head_tmp1[1];
-	    ai += incai;
-
-	  }
-	} else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
-	  /* alpha is other, beta is 1.0 */
-
-	  ai = 0;
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    head_sumA[0] = head_sumA[1] = tail_sumA[0] = tail_sumA[1] = 0.0;
-	    aij = ai;
-	    head_sumB[0] = head_sumB[1] = tail_sumB[0] = tail_sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		head_prod[0] = (double) x_elem[0] * a_elem;
-		tail_prod[0] = 0.0;
-		head_prod[1] = (double) x_elem[1] * a_elem;
-		tail_prod[1] = 0.0;
-	      }
-	      {
-		double head_t, tail_t;
-		double head_a, tail_a;
-		double head_b, tail_b;
-		/* Real part */
-		head_a = head_sumA[0];
-		tail_a = tail_sumA[0];
-		head_b = head_prod[0];
-		tail_b = tail_prod[0];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumA[0] = head_t;
-		tail_sumA[0] = tail_t;
-		/* Imaginary part */
-		head_a = head_sumA[1];
-		tail_a = tail_sumA[1];
-		head_b = head_prod[1];
-		tail_b = tail_prod[1];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumA[1] = head_t;
-		tail_sumA[1] = tail_t;
-	      }
-	      aij += incaij;
-	      b_elem = b_i[bij];
-	      {
-		head_prod[0] = (double) x_elem[0] * b_elem;
-		tail_prod[0] = 0.0;
-		head_prod[1] = (double) x_elem[1] * b_elem;
-		tail_prod[1] = 0.0;
-	      }
-	      {
-		double head_t, tail_t;
-		double head_a, tail_a;
-		double head_b, tail_b;
-		/* Real part */
-		head_a = head_sumB[0];
-		tail_a = tail_sumB[0];
-		head_b = head_prod[0];
-		tail_b = tail_prod[0];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumB[0] = head_t;
-		tail_sumB[0] = tail_t;
-		/* Imaginary part */
-		head_a = head_sumB[1];
-		tail_a = tail_sumB[1];
-		head_b = head_prod[1];
-		tail_b = tail_prod[1];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumB[1] = head_t;
-		tail_sumB[1] = tail_t;
-	      }
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    {
-	      double cd[2];
-	      cd[0] = (double) alpha_i[0];
-	      cd[1] = (double) alpha_i[1];
-	      {
-		/* Compute complex-extra = complex-extra * complex-double. */
-		double head_a0, tail_a0;
-		double head_a1, tail_a1;
-		double head_t1, tail_t1;
-		double head_t2, tail_t2;
-		head_a0 = head_sumA[0];
-		tail_a0 = tail_sumA[0];
-		head_a1 = head_sumA[1];
-		tail_a1 = tail_sumA[1];
-		/* real part */
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a0 * split;
-		  a11 = con - head_a0;
-		  a11 = con - a11;
-		  a21 = head_a0 - a11;
-		  con = cd[0] * split;
-		  b1 = con - cd[0];
-		  b1 = con - b1;
-		  b2 = cd[0] - b1;
-
-		  c11 = head_a0 * cd[0];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a0 * cd[0];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a1 * split;
-		  a11 = con - head_a1;
-		  a11 = con - a11;
-		  a21 = head_a1 - a11;
-		  con = cd[1] * split;
-		  b1 = con - cd[1];
-		  b1 = con - b1;
-		  b2 = cd[1] - b1;
-
-		  c11 = head_a1 * cd[1];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a1 * cd[1];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t2 = t1 + t2;
-		  tail_t2 = t2 - (head_t2 - t1);
-		}
-		head_t2 = -head_t2;
-		tail_t2 = -tail_t2;
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_t1 + head_t2;
-		  bv = s1 - head_t1;
-		  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_t1 + tail_t2;
-		  bv = t1 - tail_t1;
-		  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		head_tmp1[0] = head_t1;
-		tail_tmp1[0] = tail_t1;
-		/* imaginary part */
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a1 * split;
-		  a11 = con - head_a1;
-		  a11 = con - a11;
-		  a21 = head_a1 - a11;
-		  con = cd[0] * split;
-		  b1 = con - cd[0];
-		  b1 = con - b1;
-		  b2 = cd[0] - b1;
-
-		  c11 = head_a1 * cd[0];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a1 * cd[0];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a0 * split;
-		  a11 = con - head_a0;
-		  a11 = con - a11;
-		  a21 = head_a0 - a11;
-		  con = cd[1] * split;
-		  b1 = con - cd[1];
-		  b1 = con - b1;
-		  b2 = cd[1] - b1;
-
-		  c11 = head_a0 * cd[1];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a0 * cd[1];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t2 = t1 + t2;
-		  tail_t2 = t2 - (head_t2 - t1);
-		}
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_t1 + head_t2;
-		  bv = s1 - head_t1;
-		  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_t1 + tail_t2;
-		  bv = t1 - tail_t1;
-		  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		head_tmp1[1] = head_t1;
-		tail_tmp1[1] = tail_t1;
-	      }
-
-	    }
-	    head_tmp2[0] = head_sumB[0];
-	    tail_tmp2[0] = tail_sumB[0];
-	    head_tmp2[1] = head_sumB[1];
-	    tail_tmp2[1] = tail_sumB[1];
-	    {
-	      double head_t, tail_t;
-	      double head_a, tail_a;
-	      double head_b, tail_b;
-	      /* Real part */
-	      head_a = head_tmp1[0];
-	      tail_a = tail_tmp1[0];
-	      head_b = head_tmp2[0];
-	      tail_b = tail_tmp2[0];
-	      {
-		/* Compute double-double = double-double + double-double. */
-		double bv;
-		double s1, s2, t1, t2;
-
-		/* Add two hi words. */
-		s1 = head_a + head_b;
-		bv = s1 - head_a;
-		s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		/* Add two lo words. */
-		t1 = tail_a + tail_b;
-		bv = t1 - tail_a;
-		t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		s2 += t1;
-
-		/* Renormalize (s1, s2)  to  (t1, s2) */
-		t1 = s1 + s2;
-		s2 = s2 - (t1 - s1);
-
-		t2 += s2;
-
-		/* Renormalize (t1, t2)  */
-		head_t = t1 + t2;
-		tail_t = t2 - (head_t - t1);
-	      }
-	      head_tmp1[0] = head_t;
-	      tail_tmp1[0] = tail_t;
-	      /* Imaginary part */
-	      head_a = head_tmp1[1];
-	      tail_a = tail_tmp1[1];
-	      head_b = head_tmp2[1];
-	      tail_b = tail_tmp2[1];
-	      {
-		/* Compute double-double = double-double + double-double. */
-		double bv;
-		double s1, s2, t1, t2;
-
-		/* Add two hi words. */
-		s1 = head_a + head_b;
-		bv = s1 - head_a;
-		s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		/* Add two lo words. */
-		t1 = tail_a + tail_b;
-		bv = t1 - tail_a;
-		t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		s2 += t1;
-
-		/* Renormalize (s1, s2)  to  (t1, s2) */
-		t1 = s1 + s2;
-		s2 = s2 - (t1 - s1);
-
-		t2 += s2;
-
-		/* Renormalize (t1, t2)  */
-		head_t = t1 + t2;
-		tail_t = t2 - (head_t - t1);
-	      }
-	      head_tmp1[1] = head_t;
-	      tail_tmp1[1] = tail_t;
-	    }
-	    y_i[yi] = head_tmp1[0];
-	    y_i[yi + 1] = head_tmp1[1];
-	    ai += incai;
-	    bi += incbi;
-	  }
-	} else {
-	  /* most general form, alpha, beta are other */
-
-	  ai = 0;
-	  bi = 0;
-	  for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-	    head_sumA[0] = head_sumA[1] = tail_sumA[0] = tail_sumA[1] = 0.0;
-	    aij = ai;
-	    head_sumB[0] = head_sumB[1] = tail_sumB[0] = tail_sumB[1] = 0.0;
-	    bij = bi;
-	    for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-	      x_elem[0] = x_i[xi];
-	      x_elem[1] = x_i[xi + 1];
-	      a_elem = a_i[aij];
-	      {
-		head_prod[0] = (double) x_elem[0] * a_elem;
-		tail_prod[0] = 0.0;
-		head_prod[1] = (double) x_elem[1] * a_elem;
-		tail_prod[1] = 0.0;
-	      }
-	      {
-		double head_t, tail_t;
-		double head_a, tail_a;
-		double head_b, tail_b;
-		/* Real part */
-		head_a = head_sumA[0];
-		tail_a = tail_sumA[0];
-		head_b = head_prod[0];
-		tail_b = tail_prod[0];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumA[0] = head_t;
-		tail_sumA[0] = tail_t;
-		/* Imaginary part */
-		head_a = head_sumA[1];
-		tail_a = tail_sumA[1];
-		head_b = head_prod[1];
-		tail_b = tail_prod[1];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumA[1] = head_t;
-		tail_sumA[1] = tail_t;
-	      }
-	      aij += incaij;
-	      b_elem = b_i[bij];
-	      {
-		head_prod[0] = (double) x_elem[0] * b_elem;
-		tail_prod[0] = 0.0;
-		head_prod[1] = (double) x_elem[1] * b_elem;
-		tail_prod[1] = 0.0;
-	      }
-	      {
-		double head_t, tail_t;
-		double head_a, tail_a;
-		double head_b, tail_b;
-		/* Real part */
-		head_a = head_sumB[0];
-		tail_a = tail_sumB[0];
-		head_b = head_prod[0];
-		tail_b = tail_prod[0];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumB[0] = head_t;
-		tail_sumB[0] = tail_t;
-		/* Imaginary part */
-		head_a = head_sumB[1];
-		tail_a = tail_sumB[1];
-		head_b = head_prod[1];
-		tail_b = tail_prod[1];
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_a + head_b;
-		  bv = s1 - head_a;
-		  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_a + tail_b;
-		  bv = t1 - tail_a;
-		  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t = t1 + t2;
-		  tail_t = t2 - (head_t - t1);
-		}
-		head_sumB[1] = head_t;
-		tail_sumB[1] = tail_t;
-	      }
-	      bij += incbij;
-	    }
-	    /* now put the result into y_i */
-	    {
-	      double cd[2];
-	      cd[0] = (double) alpha_i[0];
-	      cd[1] = (double) alpha_i[1];
-	      {
-		/* Compute complex-extra = complex-extra * complex-double. */
-		double head_a0, tail_a0;
-		double head_a1, tail_a1;
-		double head_t1, tail_t1;
-		double head_t2, tail_t2;
-		head_a0 = head_sumA[0];
-		tail_a0 = tail_sumA[0];
-		head_a1 = head_sumA[1];
-		tail_a1 = tail_sumA[1];
-		/* real part */
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a0 * split;
-		  a11 = con - head_a0;
-		  a11 = con - a11;
-		  a21 = head_a0 - a11;
-		  con = cd[0] * split;
-		  b1 = con - cd[0];
-		  b1 = con - b1;
-		  b2 = cd[0] - b1;
-
-		  c11 = head_a0 * cd[0];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a0 * cd[0];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a1 * split;
-		  a11 = con - head_a1;
-		  a11 = con - a11;
-		  a21 = head_a1 - a11;
-		  con = cd[1] * split;
-		  b1 = con - cd[1];
-		  b1 = con - b1;
-		  b2 = cd[1] - b1;
-
-		  c11 = head_a1 * cd[1];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a1 * cd[1];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t2 = t1 + t2;
-		  tail_t2 = t2 - (head_t2 - t1);
-		}
-		head_t2 = -head_t2;
-		tail_t2 = -tail_t2;
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_t1 + head_t2;
-		  bv = s1 - head_t1;
-		  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_t1 + tail_t2;
-		  bv = t1 - tail_t1;
-		  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		head_tmp1[0] = head_t1;
-		tail_tmp1[0] = tail_t1;
-		/* imaginary part */
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a1 * split;
-		  a11 = con - head_a1;
-		  a11 = con - a11;
-		  a21 = head_a1 - a11;
-		  con = cd[0] * split;
-		  b1 = con - cd[0];
-		  b1 = con - b1;
-		  b2 = cd[0] - b1;
-
-		  c11 = head_a1 * cd[0];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a1 * cd[0];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a0 * split;
-		  a11 = con - head_a0;
-		  a11 = con - a11;
-		  a21 = head_a0 - a11;
-		  con = cd[1] * split;
-		  b1 = con - cd[1];
-		  b1 = con - b1;
-		  b2 = cd[1] - b1;
-
-		  c11 = head_a0 * cd[1];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a0 * cd[1];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t2 = t1 + t2;
-		  tail_t2 = t2 - (head_t2 - t1);
-		}
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_t1 + head_t2;
-		  bv = s1 - head_t1;
-		  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_t1 + tail_t2;
-		  bv = t1 - tail_t1;
-		  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		head_tmp1[1] = head_t1;
-		tail_tmp1[1] = tail_t1;
-	      }
-
-	    }
-	    {
-	      double cd[2];
-	      cd[0] = (double) beta_i[0];
-	      cd[1] = (double) beta_i[1];
-	      {
-		/* Compute complex-extra = complex-extra * complex-double. */
-		double head_a0, tail_a0;
-		double head_a1, tail_a1;
-		double head_t1, tail_t1;
-		double head_t2, tail_t2;
-		head_a0 = head_sumB[0];
-		tail_a0 = tail_sumB[0];
-		head_a1 = head_sumB[1];
-		tail_a1 = tail_sumB[1];
-		/* real part */
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a0 * split;
-		  a11 = con - head_a0;
-		  a11 = con - a11;
-		  a21 = head_a0 - a11;
-		  con = cd[0] * split;
-		  b1 = con - cd[0];
-		  b1 = con - b1;
-		  b2 = cd[0] - b1;
-
-		  c11 = head_a0 * cd[0];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a0 * cd[0];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a1 * split;
-		  a11 = con - head_a1;
-		  a11 = con - a11;
-		  a21 = head_a1 - a11;
-		  con = cd[1] * split;
-		  b1 = con - cd[1];
-		  b1 = con - b1;
-		  b2 = cd[1] - b1;
-
-		  c11 = head_a1 * cd[1];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a1 * cd[1];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t2 = t1 + t2;
-		  tail_t2 = t2 - (head_t2 - t1);
-		}
-		head_t2 = -head_t2;
-		tail_t2 = -tail_t2;
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_t1 + head_t2;
-		  bv = s1 - head_t1;
-		  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_t1 + tail_t2;
-		  bv = t1 - tail_t1;
-		  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		head_tmp2[0] = head_t1;
-		tail_tmp2[0] = tail_t1;
-		/* imaginary part */
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a1 * split;
-		  a11 = con - head_a1;
-		  a11 = con - a11;
-		  a21 = head_a1 - a11;
-		  con = cd[0] * split;
-		  b1 = con - cd[0];
-		  b1 = con - b1;
-		  b2 = cd[0] - b1;
-
-		  c11 = head_a1 * cd[0];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a1 * cd[0];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		{
-		  /* Compute double-double = double-double * double. */
-		  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-		  con = head_a0 * split;
-		  a11 = con - head_a0;
-		  a11 = con - a11;
-		  a21 = head_a0 - a11;
-		  con = cd[1] * split;
-		  b1 = con - cd[1];
-		  b1 = con - b1;
-		  b2 = cd[1] - b1;
-
-		  c11 = head_a0 * cd[1];
-		  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-		  c2 = tail_a0 * cd[1];
-		  t1 = c11 + c2;
-		  t2 = (c2 - (t1 - c11)) + c21;
-
-		  head_t2 = t1 + t2;
-		  tail_t2 = t2 - (head_t2 - t1);
-		}
-		{
-		  /* Compute double-double = double-double + double-double. */
-		  double bv;
-		  double s1, s2, t1, t2;
-
-		  /* Add two hi words. */
-		  s1 = head_t1 + head_t2;
-		  bv = s1 - head_t1;
-		  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
-
-		  /* Add two lo words. */
-		  t1 = tail_t1 + tail_t2;
-		  bv = t1 - tail_t1;
-		  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
-
-		  s2 += t1;
-
-		  /* Renormalize (s1, s2)  to  (t1, s2) */
-		  t1 = s1 + s2;
-		  s2 = s2 - (t1 - s1);
-
-		  t2 += s2;
-
-		  /* Renormalize (t1, t2)  */
-		  head_t1 = t1 + t2;
-		  tail_t1 = t2 - (head_t1 - t1);
-		}
-		head_tmp2[1] = head_t1;
-		tail_tmp2[1] = tail_t1;
-	      }
-
-	    }
-	    {
-	      double head_t, tail_t;
-	      double head_a, tail_a;
-	      double head_b, tail_b;
-	      /* Real part */
-	      head_a = head_tmp1[0];
-	      tail_a = tail_tmp1[0];
-	      head_b = head_tmp2[0];
-	      tail_b = tail_tmp2[0];
-	      {
-		/* Compute double-double = double-double + double-double. */
-		double bv;
-		double s1, s2, t1, t2;
-
-		/* Add two hi words. */
-		s1 = head_a + head_b;
-		bv = s1 - head_a;
-		s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		/* Add two lo words. */
-		t1 = tail_a + tail_b;
-		bv = t1 - tail_a;
-		t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		s2 += t1;
-
-		/* Renormalize (s1, s2)  to  (t1, s2) */
-		t1 = s1 + s2;
-		s2 = s2 - (t1 - s1);
-
-		t2 += s2;
-
-		/* Renormalize (t1, t2)  */
-		head_t = t1 + t2;
-		tail_t = t2 - (head_t - t1);
-	      }
-	      head_tmp1[0] = head_t;
-	      tail_tmp1[0] = tail_t;
-	      /* Imaginary part */
-	      head_a = head_tmp1[1];
-	      tail_a = tail_tmp1[1];
-	      head_b = head_tmp2[1];
-	      tail_b = tail_tmp2[1];
-	      {
-		/* Compute double-double = double-double + double-double. */
-		double bv;
-		double s1, s2, t1, t2;
-
-		/* Add two hi words. */
-		s1 = head_a + head_b;
-		bv = s1 - head_a;
-		s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-		/* Add two lo words. */
-		t1 = tail_a + tail_b;
-		bv = t1 - tail_a;
-		t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-		s2 += t1;
-
-		/* Renormalize (s1, s2)  to  (t1, s2) */
-		t1 = s1 + s2;
-		s2 = s2 - (t1 - s1);
-
-		t2 += s2;
-
-		/* Renormalize (t1, t2)  */
-		head_t = t1 + t2;
-		tail_t = t2 - (head_t - t1);
-	      }
-	      head_tmp1[1] = head_t;
-	      tail_tmp1[1] = tail_t;
-	    }
-	    y_i[yi] = head_tmp1[0];
-	    y_i[yi + 1] = head_tmp1[1];
-	    ai += incai;
-	    bi += incbi;
-	  }
-	}
+        if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+          /* alpha is other, beta is 0.0 */
+
+          ai = 0;
+
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            head_sumA[0] = head_sumA[1] = tail_sumA[0] = tail_sumA[1] = 0.0;
+            aij = ai;
+
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                head_prod[0] = (double) x_elem[0] * a_elem;
+                tail_prod[0] = 0.0;
+                head_prod[1] = (double) x_elem[1] * a_elem;
+                tail_prod[1] = 0.0;
+              }
+              {
+                double head_t, tail_t;
+                double head_a, tail_a;
+                double head_b, tail_b;
+                /* Real part */
+                head_a = head_sumA[0];
+                tail_a = tail_sumA[0];
+                head_b = head_prod[0];
+                tail_b = tail_prod[0];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumA[0] = head_t;
+                tail_sumA[0] = tail_t;
+                /* Imaginary part */
+                head_a = head_sumA[1];
+                tail_a = tail_sumA[1];
+                head_b = head_prod[1];
+                tail_b = tail_prod[1];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumA[1] = head_t;
+                tail_sumA[1] = tail_t;
+              }
+              aij += incaij;
+
+            }
+            /* now put the result into y_i */
+            {
+              double cd[2];
+              cd[0] = (double) alpha_i[0];
+              cd[1] = (double) alpha_i[1];
+              {
+                /* Compute complex-extra = complex-extra * complex-double. */
+                double head_a0, tail_a0;
+                double head_a1, tail_a1;
+                double head_t1, tail_t1;
+                double head_t2, tail_t2;
+                head_a0 = head_sumA[0];
+                tail_a0 = tail_sumA[0];
+                head_a1 = head_sumA[1];
+                tail_a1 = tail_sumA[1];
+                /* real part */
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a0 * split;
+                  a11 = con - head_a0;
+                  a11 = con - a11;
+                  a21 = head_a0 - a11;
+                  con = cd[0] * split;
+                  b1 = con - cd[0];
+                  b1 = con - b1;
+                  b2 = cd[0] - b1;
+
+                  c11 = head_a0 * cd[0];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a0 * cd[0];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a1 * split;
+                  a11 = con - head_a1;
+                  a11 = con - a11;
+                  a21 = head_a1 - a11;
+                  con = cd[1] * split;
+                  b1 = con - cd[1];
+                  b1 = con - b1;
+                  b2 = cd[1] - b1;
+
+                  c11 = head_a1 * cd[1];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a1 * cd[1];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t2 = t1 + t2;
+                  tail_t2 = t2 - (head_t2 - t1);
+                }
+                head_t2 = -head_t2;
+                tail_t2 = -tail_t2;
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_t1 + head_t2;
+                  bv = s1 - head_t1;
+                  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_t1 + tail_t2;
+                  bv = t1 - tail_t1;
+                  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                head_tmp1[0] = head_t1;
+                tail_tmp1[0] = tail_t1;
+                /* imaginary part */
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a1 * split;
+                  a11 = con - head_a1;
+                  a11 = con - a11;
+                  a21 = head_a1 - a11;
+                  con = cd[0] * split;
+                  b1 = con - cd[0];
+                  b1 = con - b1;
+                  b2 = cd[0] - b1;
+
+                  c11 = head_a1 * cd[0];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a1 * cd[0];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a0 * split;
+                  a11 = con - head_a0;
+                  a11 = con - a11;
+                  a21 = head_a0 - a11;
+                  con = cd[1] * split;
+                  b1 = con - cd[1];
+                  b1 = con - b1;
+                  b2 = cd[1] - b1;
+
+                  c11 = head_a0 * cd[1];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a0 * cd[1];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t2 = t1 + t2;
+                  tail_t2 = t2 - (head_t2 - t1);
+                }
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_t1 + head_t2;
+                  bv = s1 - head_t1;
+                  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_t1 + tail_t2;
+                  bv = t1 - tail_t1;
+                  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                head_tmp1[1] = head_t1;
+                tail_tmp1[1] = tail_t1;
+              }
+
+            }
+            y_i[yi] = head_tmp1[0];
+            y_i[yi + 1] = head_tmp1[1];
+            ai += incai;
+
+          }
+        } else if ((beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
+          /* alpha is other, beta is 1.0 */
+
+          ai = 0;
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            head_sumA[0] = head_sumA[1] = tail_sumA[0] = tail_sumA[1] = 0.0;
+            aij = ai;
+            head_sumB[0] = head_sumB[1] = tail_sumB[0] = tail_sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                head_prod[0] = (double) x_elem[0] * a_elem;
+                tail_prod[0] = 0.0;
+                head_prod[1] = (double) x_elem[1] * a_elem;
+                tail_prod[1] = 0.0;
+              }
+              {
+                double head_t, tail_t;
+                double head_a, tail_a;
+                double head_b, tail_b;
+                /* Real part */
+                head_a = head_sumA[0];
+                tail_a = tail_sumA[0];
+                head_b = head_prod[0];
+                tail_b = tail_prod[0];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumA[0] = head_t;
+                tail_sumA[0] = tail_t;
+                /* Imaginary part */
+                head_a = head_sumA[1];
+                tail_a = tail_sumA[1];
+                head_b = head_prod[1];
+                tail_b = tail_prod[1];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumA[1] = head_t;
+                tail_sumA[1] = tail_t;
+              }
+              aij += incaij;
+              b_elem = b_i[bij];
+              {
+                head_prod[0] = (double) x_elem[0] * b_elem;
+                tail_prod[0] = 0.0;
+                head_prod[1] = (double) x_elem[1] * b_elem;
+                tail_prod[1] = 0.0;
+              }
+              {
+                double head_t, tail_t;
+                double head_a, tail_a;
+                double head_b, tail_b;
+                /* Real part */
+                head_a = head_sumB[0];
+                tail_a = tail_sumB[0];
+                head_b = head_prod[0];
+                tail_b = tail_prod[0];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumB[0] = head_t;
+                tail_sumB[0] = tail_t;
+                /* Imaginary part */
+                head_a = head_sumB[1];
+                tail_a = tail_sumB[1];
+                head_b = head_prod[1];
+                tail_b = tail_prod[1];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumB[1] = head_t;
+                tail_sumB[1] = tail_t;
+              }
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            {
+              double cd[2];
+              cd[0] = (double) alpha_i[0];
+              cd[1] = (double) alpha_i[1];
+              {
+                /* Compute complex-extra = complex-extra * complex-double. */
+                double head_a0, tail_a0;
+                double head_a1, tail_a1;
+                double head_t1, tail_t1;
+                double head_t2, tail_t2;
+                head_a0 = head_sumA[0];
+                tail_a0 = tail_sumA[0];
+                head_a1 = head_sumA[1];
+                tail_a1 = tail_sumA[1];
+                /* real part */
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a0 * split;
+                  a11 = con - head_a0;
+                  a11 = con - a11;
+                  a21 = head_a0 - a11;
+                  con = cd[0] * split;
+                  b1 = con - cd[0];
+                  b1 = con - b1;
+                  b2 = cd[0] - b1;
+
+                  c11 = head_a0 * cd[0];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a0 * cd[0];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a1 * split;
+                  a11 = con - head_a1;
+                  a11 = con - a11;
+                  a21 = head_a1 - a11;
+                  con = cd[1] * split;
+                  b1 = con - cd[1];
+                  b1 = con - b1;
+                  b2 = cd[1] - b1;
+
+                  c11 = head_a1 * cd[1];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a1 * cd[1];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t2 = t1 + t2;
+                  tail_t2 = t2 - (head_t2 - t1);
+                }
+                head_t2 = -head_t2;
+                tail_t2 = -tail_t2;
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_t1 + head_t2;
+                  bv = s1 - head_t1;
+                  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_t1 + tail_t2;
+                  bv = t1 - tail_t1;
+                  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                head_tmp1[0] = head_t1;
+                tail_tmp1[0] = tail_t1;
+                /* imaginary part */
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a1 * split;
+                  a11 = con - head_a1;
+                  a11 = con - a11;
+                  a21 = head_a1 - a11;
+                  con = cd[0] * split;
+                  b1 = con - cd[0];
+                  b1 = con - b1;
+                  b2 = cd[0] - b1;
+
+                  c11 = head_a1 * cd[0];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a1 * cd[0];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a0 * split;
+                  a11 = con - head_a0;
+                  a11 = con - a11;
+                  a21 = head_a0 - a11;
+                  con = cd[1] * split;
+                  b1 = con - cd[1];
+                  b1 = con - b1;
+                  b2 = cd[1] - b1;
+
+                  c11 = head_a0 * cd[1];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a0 * cd[1];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t2 = t1 + t2;
+                  tail_t2 = t2 - (head_t2 - t1);
+                }
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_t1 + head_t2;
+                  bv = s1 - head_t1;
+                  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_t1 + tail_t2;
+                  bv = t1 - tail_t1;
+                  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                head_tmp1[1] = head_t1;
+                tail_tmp1[1] = tail_t1;
+              }
+
+            }
+            head_tmp2[0] = head_sumB[0];
+            tail_tmp2[0] = tail_sumB[0];
+            head_tmp2[1] = head_sumB[1];
+            tail_tmp2[1] = tail_sumB[1];
+            {
+              double head_t, tail_t;
+              double head_a, tail_a;
+              double head_b, tail_b;
+              /* Real part */
+              head_a = head_tmp1[0];
+              tail_a = tail_tmp1[0];
+              head_b = head_tmp2[0];
+              tail_b = tail_tmp2[0];
+              {
+                /* Compute double-double = double-double + double-double. */
+                double bv;
+                double s1, s2, t1, t2;
+
+                /* Add two hi words. */
+                s1 = head_a + head_b;
+                bv = s1 - head_a;
+                s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                /* Add two lo words. */
+                t1 = tail_a + tail_b;
+                bv = t1 - tail_a;
+                t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                s2 += t1;
+
+                /* Renormalize (s1, s2)  to  (t1, s2) */
+                t1 = s1 + s2;
+                s2 = s2 - (t1 - s1);
+
+                t2 += s2;
+
+                /* Renormalize (t1, t2)  */
+                head_t = t1 + t2;
+                tail_t = t2 - (head_t - t1);
+              }
+              head_tmp1[0] = head_t;
+              tail_tmp1[0] = tail_t;
+              /* Imaginary part */
+              head_a = head_tmp1[1];
+              tail_a = tail_tmp1[1];
+              head_b = head_tmp2[1];
+              tail_b = tail_tmp2[1];
+              {
+                /* Compute double-double = double-double + double-double. */
+                double bv;
+                double s1, s2, t1, t2;
+
+                /* Add two hi words. */
+                s1 = head_a + head_b;
+                bv = s1 - head_a;
+                s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                /* Add two lo words. */
+                t1 = tail_a + tail_b;
+                bv = t1 - tail_a;
+                t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                s2 += t1;
+
+                /* Renormalize (s1, s2)  to  (t1, s2) */
+                t1 = s1 + s2;
+                s2 = s2 - (t1 - s1);
+
+                t2 += s2;
+
+                /* Renormalize (t1, t2)  */
+                head_t = t1 + t2;
+                tail_t = t2 - (head_t - t1);
+              }
+              head_tmp1[1] = head_t;
+              tail_tmp1[1] = tail_t;
+            }
+            y_i[yi] = head_tmp1[0];
+            y_i[yi + 1] = head_tmp1[1];
+            ai += incai;
+            bi += incbi;
+          }
+        } else {
+          /* most general form, alpha, beta are other */
+
+          ai = 0;
+          bi = 0;
+          for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+            head_sumA[0] = head_sumA[1] = tail_sumA[0] = tail_sumA[1] = 0.0;
+            aij = ai;
+            head_sumB[0] = head_sumB[1] = tail_sumB[0] = tail_sumB[1] = 0.0;
+            bij = bi;
+            for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+              x_elem[0] = x_i[xi];
+              x_elem[1] = x_i[xi + 1];
+              a_elem = a_i[aij];
+              {
+                head_prod[0] = (double) x_elem[0] * a_elem;
+                tail_prod[0] = 0.0;
+                head_prod[1] = (double) x_elem[1] * a_elem;
+                tail_prod[1] = 0.0;
+              }
+              {
+                double head_t, tail_t;
+                double head_a, tail_a;
+                double head_b, tail_b;
+                /* Real part */
+                head_a = head_sumA[0];
+                tail_a = tail_sumA[0];
+                head_b = head_prod[0];
+                tail_b = tail_prod[0];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumA[0] = head_t;
+                tail_sumA[0] = tail_t;
+                /* Imaginary part */
+                head_a = head_sumA[1];
+                tail_a = tail_sumA[1];
+                head_b = head_prod[1];
+                tail_b = tail_prod[1];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumA[1] = head_t;
+                tail_sumA[1] = tail_t;
+              }
+              aij += incaij;
+              b_elem = b_i[bij];
+              {
+                head_prod[0] = (double) x_elem[0] * b_elem;
+                tail_prod[0] = 0.0;
+                head_prod[1] = (double) x_elem[1] * b_elem;
+                tail_prod[1] = 0.0;
+              }
+              {
+                double head_t, tail_t;
+                double head_a, tail_a;
+                double head_b, tail_b;
+                /* Real part */
+                head_a = head_sumB[0];
+                tail_a = tail_sumB[0];
+                head_b = head_prod[0];
+                tail_b = tail_prod[0];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumB[0] = head_t;
+                tail_sumB[0] = tail_t;
+                /* Imaginary part */
+                head_a = head_sumB[1];
+                tail_a = tail_sumB[1];
+                head_b = head_prod[1];
+                tail_b = tail_prod[1];
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_a + head_b;
+                  bv = s1 - head_a;
+                  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_a + tail_b;
+                  bv = t1 - tail_a;
+                  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t = t1 + t2;
+                  tail_t = t2 - (head_t - t1);
+                }
+                head_sumB[1] = head_t;
+                tail_sumB[1] = tail_t;
+              }
+              bij += incbij;
+            }
+            /* now put the result into y_i */
+            {
+              double cd[2];
+              cd[0] = (double) alpha_i[0];
+              cd[1] = (double) alpha_i[1];
+              {
+                /* Compute complex-extra = complex-extra * complex-double. */
+                double head_a0, tail_a0;
+                double head_a1, tail_a1;
+                double head_t1, tail_t1;
+                double head_t2, tail_t2;
+                head_a0 = head_sumA[0];
+                tail_a0 = tail_sumA[0];
+                head_a1 = head_sumA[1];
+                tail_a1 = tail_sumA[1];
+                /* real part */
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a0 * split;
+                  a11 = con - head_a0;
+                  a11 = con - a11;
+                  a21 = head_a0 - a11;
+                  con = cd[0] * split;
+                  b1 = con - cd[0];
+                  b1 = con - b1;
+                  b2 = cd[0] - b1;
+
+                  c11 = head_a0 * cd[0];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a0 * cd[0];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a1 * split;
+                  a11 = con - head_a1;
+                  a11 = con - a11;
+                  a21 = head_a1 - a11;
+                  con = cd[1] * split;
+                  b1 = con - cd[1];
+                  b1 = con - b1;
+                  b2 = cd[1] - b1;
+
+                  c11 = head_a1 * cd[1];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a1 * cd[1];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t2 = t1 + t2;
+                  tail_t2 = t2 - (head_t2 - t1);
+                }
+                head_t2 = -head_t2;
+                tail_t2 = -tail_t2;
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_t1 + head_t2;
+                  bv = s1 - head_t1;
+                  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_t1 + tail_t2;
+                  bv = t1 - tail_t1;
+                  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                head_tmp1[0] = head_t1;
+                tail_tmp1[0] = tail_t1;
+                /* imaginary part */
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a1 * split;
+                  a11 = con - head_a1;
+                  a11 = con - a11;
+                  a21 = head_a1 - a11;
+                  con = cd[0] * split;
+                  b1 = con - cd[0];
+                  b1 = con - b1;
+                  b2 = cd[0] - b1;
+
+                  c11 = head_a1 * cd[0];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a1 * cd[0];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a0 * split;
+                  a11 = con - head_a0;
+                  a11 = con - a11;
+                  a21 = head_a0 - a11;
+                  con = cd[1] * split;
+                  b1 = con - cd[1];
+                  b1 = con - b1;
+                  b2 = cd[1] - b1;
+
+                  c11 = head_a0 * cd[1];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a0 * cd[1];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t2 = t1 + t2;
+                  tail_t2 = t2 - (head_t2 - t1);
+                }
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_t1 + head_t2;
+                  bv = s1 - head_t1;
+                  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_t1 + tail_t2;
+                  bv = t1 - tail_t1;
+                  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                head_tmp1[1] = head_t1;
+                tail_tmp1[1] = tail_t1;
+              }
+
+            }
+            {
+              double cd[2];
+              cd[0] = (double) beta_i[0];
+              cd[1] = (double) beta_i[1];
+              {
+                /* Compute complex-extra = complex-extra * complex-double. */
+                double head_a0, tail_a0;
+                double head_a1, tail_a1;
+                double head_t1, tail_t1;
+                double head_t2, tail_t2;
+                head_a0 = head_sumB[0];
+                tail_a0 = tail_sumB[0];
+                head_a1 = head_sumB[1];
+                tail_a1 = tail_sumB[1];
+                /* real part */
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a0 * split;
+                  a11 = con - head_a0;
+                  a11 = con - a11;
+                  a21 = head_a0 - a11;
+                  con = cd[0] * split;
+                  b1 = con - cd[0];
+                  b1 = con - b1;
+                  b2 = cd[0] - b1;
+
+                  c11 = head_a0 * cd[0];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a0 * cd[0];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a1 * split;
+                  a11 = con - head_a1;
+                  a11 = con - a11;
+                  a21 = head_a1 - a11;
+                  con = cd[1] * split;
+                  b1 = con - cd[1];
+                  b1 = con - b1;
+                  b2 = cd[1] - b1;
+
+                  c11 = head_a1 * cd[1];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a1 * cd[1];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t2 = t1 + t2;
+                  tail_t2 = t2 - (head_t2 - t1);
+                }
+                head_t2 = -head_t2;
+                tail_t2 = -tail_t2;
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_t1 + head_t2;
+                  bv = s1 - head_t1;
+                  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_t1 + tail_t2;
+                  bv = t1 - tail_t1;
+                  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                head_tmp2[0] = head_t1;
+                tail_tmp2[0] = tail_t1;
+                /* imaginary part */
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a1 * split;
+                  a11 = con - head_a1;
+                  a11 = con - a11;
+                  a21 = head_a1 - a11;
+                  con = cd[0] * split;
+                  b1 = con - cd[0];
+                  b1 = con - b1;
+                  b2 = cd[0] - b1;
+
+                  c11 = head_a1 * cd[0];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a1 * cd[0];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                {
+                  /* Compute double-double = double-double * double. */
+                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+                  con = head_a0 * split;
+                  a11 = con - head_a0;
+                  a11 = con - a11;
+                  a21 = head_a0 - a11;
+                  con = cd[1] * split;
+                  b1 = con - cd[1];
+                  b1 = con - b1;
+                  b2 = cd[1] - b1;
+
+                  c11 = head_a0 * cd[1];
+                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+                  c2 = tail_a0 * cd[1];
+                  t1 = c11 + c2;
+                  t2 = (c2 - (t1 - c11)) + c21;
+
+                  head_t2 = t1 + t2;
+                  tail_t2 = t2 - (head_t2 - t1);
+                }
+                {
+                  /* Compute double-double = double-double + double-double. */
+                  double bv;
+                  double s1, s2, t1, t2;
+
+                  /* Add two hi words. */
+                  s1 = head_t1 + head_t2;
+                  bv = s1 - head_t1;
+                  s2 = ((head_t2 - bv) + (head_t1 - (s1 - bv)));
+
+                  /* Add two lo words. */
+                  t1 = tail_t1 + tail_t2;
+                  bv = t1 - tail_t1;
+                  t2 = ((tail_t2 - bv) + (tail_t1 - (t1 - bv)));
+
+                  s2 += t1;
+
+                  /* Renormalize (s1, s2)  to  (t1, s2) */
+                  t1 = s1 + s2;
+                  s2 = s2 - (t1 - s1);
+
+                  t2 += s2;
+
+                  /* Renormalize (t1, t2)  */
+                  head_t1 = t1 + t2;
+                  tail_t1 = t2 - (head_t1 - t1);
+                }
+                head_tmp2[1] = head_t1;
+                tail_tmp2[1] = tail_t1;
+              }
+
+            }
+            {
+              double head_t, tail_t;
+              double head_a, tail_a;
+              double head_b, tail_b;
+              /* Real part */
+              head_a = head_tmp1[0];
+              tail_a = tail_tmp1[0];
+              head_b = head_tmp2[0];
+              tail_b = tail_tmp2[0];
+              {
+                /* Compute double-double = double-double + double-double. */
+                double bv;
+                double s1, s2, t1, t2;
+
+                /* Add two hi words. */
+                s1 = head_a + head_b;
+                bv = s1 - head_a;
+                s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                /* Add two lo words. */
+                t1 = tail_a + tail_b;
+                bv = t1 - tail_a;
+                t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                s2 += t1;
+
+                /* Renormalize (s1, s2)  to  (t1, s2) */
+                t1 = s1 + s2;
+                s2 = s2 - (t1 - s1);
+
+                t2 += s2;
+
+                /* Renormalize (t1, t2)  */
+                head_t = t1 + t2;
+                tail_t = t2 - (head_t - t1);
+              }
+              head_tmp1[0] = head_t;
+              tail_tmp1[0] = tail_t;
+              /* Imaginary part */
+              head_a = head_tmp1[1];
+              tail_a = tail_tmp1[1];
+              head_b = head_tmp2[1];
+              tail_b = tail_tmp2[1];
+              {
+                /* Compute double-double = double-double + double-double. */
+                double bv;
+                double s1, s2, t1, t2;
+
+                /* Add two hi words. */
+                s1 = head_a + head_b;
+                bv = s1 - head_a;
+                s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+                /* Add two lo words. */
+                t1 = tail_a + tail_b;
+                bv = t1 - tail_a;
+                t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+                s2 += t1;
+
+                /* Renormalize (s1, s2)  to  (t1, s2) */
+                t1 = s1 + s2;
+                s2 = s2 - (t1 - s1);
+
+                t2 += s2;
+
+                /* Renormalize (t1, t2)  */
+                head_t = t1 + t2;
+                tail_t = t2 - (head_t - t1);
+              }
+              head_tmp1[1] = head_t;
+              tail_tmp1[1] = tail_t;
+            }
+            y_i[yi] = head_tmp1[0];
+            y_i[yi + 1] = head_tmp1[1];
+            ai += incai;
+            bi += incbi;
+          }
+        }
       }
       FPU_FIX_STOP;
     }
@@ -3466,4 +3466,4 @@ void BLAS_cge_sum_mv_s_c_x(enum blas_order_type order, int m, int n,
     break;
   }
 
-}				/* end BLAS_cge_sum_mv_s_c */
+}                                /* end BLAS_cge_sum_mv_s_c */

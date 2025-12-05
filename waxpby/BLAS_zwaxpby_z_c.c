@@ -2,8 +2,8 @@
 #include "blas_extended_private.h"
 
 void BLAS_zwaxpby_z_c(int n, const void *alpha, const void *x, int incx,
-		      const void *beta, const void *y, int incy, void *w,
-		      int incw)
+                      const void *beta, const void *y, int incy, void *w,
+                      int incw)
 
 /*
  * Purpose
@@ -12,18 +12,18 @@ void BLAS_zwaxpby_z_c(int n, const void *alpha, const void *x, int incx,
  * This routine computes:
  *
  *     w <- alpha * x + beta * y
- * 
+ *
  * Arguments
  * =========
  *
  * n     (input) int
  *       The length of vectors x, y, and w.
- * 
+ *
  * alpha (input) const void*
  *
  * x     (input) const void*
  *       Array of length n.
- * 
+ *
  * incx  (input) int
  *       The stride used to access components x[i].
  *
@@ -92,11 +92,11 @@ void BLAS_zwaxpby_z_c(int n, const void *alpha, const void *x, int incx,
     {
       tmpx[0] = (double) alpha_i[0] * x_ii[0] - (double) alpha_i[1] * x_ii[1];
       tmpx[1] = (double) alpha_i[0] * x_ii[1] + (double) alpha_i[1] * x_ii[0];
-    }				/* tmpx  = alpha * x[ix] */
+    }                                /* tmpx  = alpha * x[ix] */
     {
       tmpy[0] = (double) beta_i[0] * y_ii[0] - (double) beta_i[1] * y_ii[1];
       tmpy[1] = (double) beta_i[0] * y_ii[1] + (double) beta_i[1] * y_ii[0];
-    }				/* tmpy = beta * y[iy] */
+    }                                /* tmpy = beta * y[iy] */
     tmpy[0] = tmpy[0] + tmpx[0];
     tmpy[1] = tmpy[1] + tmpx[1];
     w_i[iw] = tmpy[0];
@@ -104,7 +104,7 @@ void BLAS_zwaxpby_z_c(int n, const void *alpha, const void *x, int incx,
     ix += incx;
     iy += incy;
     iw += incw;
-  }				/* endfor */
+  }                                /* endfor */
 
 
 

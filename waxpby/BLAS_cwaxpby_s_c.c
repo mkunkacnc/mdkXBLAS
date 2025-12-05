@@ -2,8 +2,8 @@
 #include "blas_extended_private.h"
 
 void BLAS_cwaxpby_s_c(int n, const void *alpha, const float *x, int incx,
-		      const void *beta, const void *y, int incy, void *w,
-		      int incw)
+                      const void *beta, const void *y, int incy, void *w,
+                      int incw)
 
 /*
  * Purpose
@@ -12,18 +12,18 @@ void BLAS_cwaxpby_s_c(int n, const void *alpha, const float *x, int incx,
  * This routine computes:
  *
  *     w <- alpha * x + beta * y
- * 
+ *
  * Arguments
  * =========
  *
  * n     (input) int
  *       The length of vectors x, y, and w.
- * 
+ *
  * alpha (input) const void*
  *
  * x     (input) const float*
  *       Array of length n.
- * 
+ *
  * incx  (input) int
  *       The stride used to access components x[i].
  *
@@ -91,7 +91,7 @@ void BLAS_cwaxpby_s_c(int n, const void *alpha, const float *x, int incx,
     {
       tmpx[0] = alpha_i[0] * x_ii;
       tmpx[1] = alpha_i[1] * x_ii;
-    }				/* tmpx  = alpha * x[ix] */
+    }                                /* tmpx  = alpha * x[ix] */
     {
       tmpy[0] = beta_i[0] * y_ii[0] - beta_i[1] * y_ii[1];
       tmpy[1] = beta_i[0] * y_ii[1] + beta_i[1] * y_ii[0];
@@ -104,7 +104,7 @@ void BLAS_cwaxpby_s_c(int n, const void *alpha, const float *x, int incx,
     ix += incx;
     iy += incy;
     iw += incw;
-  }				/* endfor */
+  }                                /* endfor */
 
 
 

@@ -21,11 +21,11 @@
  *              Dimension of ap and the length of vector x
  *
  * alpha        (input) const void*
- *              
+ *
  * ap           (input) void*
  *
  * x            (input) double*
- * 
+ *
  * incx         (input) int
  *              The stride for vector x.
  *
@@ -38,9 +38,9 @@
  *
  */
 void BLAS_zspmv_z_d(enum blas_order_type order, enum blas_uplo_type uplo,
-		    int n, const void *alpha, const void *ap,
-		    const double *x, int incx, const void *beta,
-		    void *y, int incy)
+                    int n, const void *alpha, const void *ap,
+                    const double *x, int incx, const void *beta,
+                    void *y, int incy)
 {
   static const char routine_name[] = "BLAS_zspmv_z_d";
 
@@ -80,7 +80,7 @@ void BLAS_zspmv_z_d(enum blas_order_type order, enum blas_uplo_type uplo,
       return;
     }
     if (alpha_i[0] == 0.0 && alpha_i[1] == 0.0
-	&& (beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
+        && (beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
       return;
     }
 
@@ -102,465 +102,465 @@ void BLAS_zspmv_z_d(enum blas_order_type order, enum blas_uplo_type uplo,
 
     if (alpha_i[0] == 0.0 && alpha_i[1] == 0.0) {
       {
-	y_index = y_start;
-	for (matrix_row = 0; matrix_row < n; matrix_row++) {
-	  resval[0] = y_i[y_index];
-	  resval[1] = y_i[y_index + 1];
+        y_index = y_start;
+        for (matrix_row = 0; matrix_row < n; matrix_row++) {
+          resval[0] = y_i[y_index];
+          resval[1] = y_i[y_index + 1];
 
-	  {
-	    tmp2[0] =
-	      (double) beta_i[0] * resval[0] - (double) beta_i[1] * resval[1];
-	    tmp2[1] =
-	      (double) beta_i[0] * resval[1] + (double) beta_i[1] * resval[0];
-	  }
+          {
+            tmp2[0] =
+              (double) beta_i[0] * resval[0] - (double) beta_i[1] * resval[1];
+            tmp2[1] =
+              (double) beta_i[0] * resval[1] + (double) beta_i[1] * resval[0];
+          }
 
-	  y_i[y_index] = tmp2[0];
-	  y_i[y_index + 1] = tmp2[1];
+          y_i[y_index] = tmp2[0];
+          y_i[y_index + 1] = tmp2[1];
 
-	  y_index += incy;
-	}
+          y_index += incy;
+        }
       }
     } else {
       if (uplo == blas_lower)
-	order = (order == blas_rowmajor) ? blas_colmajor : blas_rowmajor;
+        order = (order == blas_rowmajor) ? blas_colmajor : blas_rowmajor;
       if (order == blas_rowmajor) {
-	if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
-	  if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		x_index = x_start;
-		ap_index = ap_start;
-		rowsum[0] = rowsum[1] = 0.0;
-		rowtmp[0] = rowtmp[1] = 0.0;
-		for (step = 0; step < matrix_row; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (n - step - 1) * incap;
-		  x_index += incx;
-		}
-		for (step = matrix_row; step < n; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		}
-		tmp1[0] = rowsum[0];
-		tmp1[1] = rowsum[1];
-		y_i[y_index] = tmp1[0];
-		y_i[y_index + 1] = tmp1[1];
+        if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
+          if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                x_index = x_start;
+                ap_index = ap_start;
+                rowsum[0] = rowsum[1] = 0.0;
+                rowtmp[0] = rowtmp[1] = 0.0;
+                for (step = 0; step < matrix_row; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (n - step - 1) * incap;
+                  x_index += incx;
+                }
+                for (step = matrix_row; step < n; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                }
+                tmp1[0] = rowsum[0];
+                tmp1[1] = rowsum[1];
+                y_i[y_index] = tmp1[0];
+                y_i[y_index + 1] = tmp1[1];
 
-		y_index += incy;
-		ap_start += incap;
-	      }
-	    }
-	  } else {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		x_index = x_start;
-		ap_index = ap_start;
-		rowsum[0] = rowsum[1] = 0.0;
-		rowtmp[0] = rowtmp[1] = 0.0;
-		for (step = 0; step < matrix_row; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (n - step - 1) * incap;
-		  x_index += incx;
-		}
-		for (step = matrix_row; step < n; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		}
-		resval[0] = y_i[y_index];
-		resval[1] = y_i[y_index + 1];
-		tmp1[0] = rowsum[0];
-		tmp1[1] = rowsum[1];
-		{
-		  tmp2[0] =
-		    (double) beta_i[0] * resval[0] -
-		    (double) beta_i[1] * resval[1];
-		  tmp2[1] =
-		    (double) beta_i[0] * resval[1] +
-		    (double) beta_i[1] * resval[0];
-		}
-		tmp2[0] = tmp1[0] + tmp2[0];
-		tmp2[1] = tmp1[1] + tmp2[1];
-		y_i[y_index] = tmp2[0];
-		y_i[y_index + 1] = tmp2[1];
+                y_index += incy;
+                ap_start += incap;
+              }
+            }
+          } else {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                x_index = x_start;
+                ap_index = ap_start;
+                rowsum[0] = rowsum[1] = 0.0;
+                rowtmp[0] = rowtmp[1] = 0.0;
+                for (step = 0; step < matrix_row; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (n - step - 1) * incap;
+                  x_index += incx;
+                }
+                for (step = matrix_row; step < n; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                }
+                resval[0] = y_i[y_index];
+                resval[1] = y_i[y_index + 1];
+                tmp1[0] = rowsum[0];
+                tmp1[1] = rowsum[1];
+                {
+                  tmp2[0] =
+                    (double) beta_i[0] * resval[0] -
+                    (double) beta_i[1] * resval[1];
+                  tmp2[1] =
+                    (double) beta_i[0] * resval[1] +
+                    (double) beta_i[1] * resval[0];
+                }
+                tmp2[0] = tmp1[0] + tmp2[0];
+                tmp2[1] = tmp1[1] + tmp2[1];
+                y_i[y_index] = tmp2[0];
+                y_i[y_index + 1] = tmp2[1];
 
-		y_index += incy;
-		ap_start += incap;
-	      }
-	    }
-	  }
-	} else {
-	  if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		x_index = x_start;
-		ap_index = ap_start;
-		rowsum[0] = rowsum[1] = 0.0;
-		rowtmp[0] = rowtmp[1] = 0.0;
-		for (step = 0; step < matrix_row; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (n - step - 1) * incap;
-		  x_index += incx;
-		}
-		for (step = matrix_row; step < n; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		}
-		{
-		  tmp1[0] =
-		    (double) rowsum[0] * alpha_i[0] -
-		    (double) rowsum[1] * alpha_i[1];
-		  tmp1[1] =
-		    (double) rowsum[0] * alpha_i[1] +
-		    (double) rowsum[1] * alpha_i[0];
-		}
-		y_i[y_index] = tmp1[0];
-		y_i[y_index + 1] = tmp1[1];
+                y_index += incy;
+                ap_start += incap;
+              }
+            }
+          }
+        } else {
+          if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                x_index = x_start;
+                ap_index = ap_start;
+                rowsum[0] = rowsum[1] = 0.0;
+                rowtmp[0] = rowtmp[1] = 0.0;
+                for (step = 0; step < matrix_row; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (n - step - 1) * incap;
+                  x_index += incx;
+                }
+                for (step = matrix_row; step < n; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                }
+                {
+                  tmp1[0] =
+                    (double) rowsum[0] * alpha_i[0] -
+                    (double) rowsum[1] * alpha_i[1];
+                  tmp1[1] =
+                    (double) rowsum[0] * alpha_i[1] +
+                    (double) rowsum[1] * alpha_i[0];
+                }
+                y_i[y_index] = tmp1[0];
+                y_i[y_index + 1] = tmp1[1];
 
-		y_index += incy;
-		ap_start += incap;
-	      }
-	    }
-	  } else {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		x_index = x_start;
-		ap_index = ap_start;
-		rowsum[0] = rowsum[1] = 0.0;
-		rowtmp[0] = rowtmp[1] = 0.0;
-		for (step = 0; step < matrix_row; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (n - step - 1) * incap;
-		  x_index += incx;
-		}
-		for (step = matrix_row; step < n; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		}
-		resval[0] = y_i[y_index];
-		resval[1] = y_i[y_index + 1];
-		{
-		  tmp1[0] =
-		    (double) rowsum[0] * alpha_i[0] -
-		    (double) rowsum[1] * alpha_i[1];
-		  tmp1[1] =
-		    (double) rowsum[0] * alpha_i[1] +
-		    (double) rowsum[1] * alpha_i[0];
-		}
-		{
-		  tmp2[0] =
-		    (double) beta_i[0] * resval[0] -
-		    (double) beta_i[1] * resval[1];
-		  tmp2[1] =
-		    (double) beta_i[0] * resval[1] +
-		    (double) beta_i[1] * resval[0];
-		}
-		tmp2[0] = tmp1[0] + tmp2[0];
-		tmp2[1] = tmp1[1] + tmp2[1];
-		y_i[y_index] = tmp2[0];
-		y_i[y_index + 1] = tmp2[1];
+                y_index += incy;
+                ap_start += incap;
+              }
+            }
+          } else {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                x_index = x_start;
+                ap_index = ap_start;
+                rowsum[0] = rowsum[1] = 0.0;
+                rowtmp[0] = rowtmp[1] = 0.0;
+                for (step = 0; step < matrix_row; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (n - step - 1) * incap;
+                  x_index += incx;
+                }
+                for (step = matrix_row; step < n; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                }
+                resval[0] = y_i[y_index];
+                resval[1] = y_i[y_index + 1];
+                {
+                  tmp1[0] =
+                    (double) rowsum[0] * alpha_i[0] -
+                    (double) rowsum[1] * alpha_i[1];
+                  tmp1[1] =
+                    (double) rowsum[0] * alpha_i[1] +
+                    (double) rowsum[1] * alpha_i[0];
+                }
+                {
+                  tmp2[0] =
+                    (double) beta_i[0] * resval[0] -
+                    (double) beta_i[1] * resval[1];
+                  tmp2[1] =
+                    (double) beta_i[0] * resval[1] +
+                    (double) beta_i[1] * resval[0];
+                }
+                tmp2[0] = tmp1[0] + tmp2[0];
+                tmp2[1] = tmp1[1] + tmp2[1];
+                y_i[y_index] = tmp2[0];
+                y_i[y_index + 1] = tmp2[1];
 
-		y_index += incy;
-		ap_start += incap;
-	      }
-	    }
-	  }
-	}
+                y_index += incy;
+                ap_start += incap;
+              }
+            }
+          }
+        }
       } else {
-	if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
-	  if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		x_index = x_start;
-		ap_index = ap_start;
-		rowsum[0] = rowsum[1] = 0.0;
-		rowtmp[0] = rowtmp[1] = 0.0;
-		for (step = 0; step < matrix_row; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		}
-		for (step = matrix_row; step < n; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (step + 1) * incap;
-		  x_index += incx;
-		}
-		tmp1[0] = rowsum[0];
-		tmp1[1] = rowsum[1];
-		y_i[y_index] = tmp1[0];
-		y_i[y_index + 1] = tmp1[1];
+        if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
+          if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                x_index = x_start;
+                ap_index = ap_start;
+                rowsum[0] = rowsum[1] = 0.0;
+                rowtmp[0] = rowtmp[1] = 0.0;
+                for (step = 0; step < matrix_row; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                }
+                for (step = matrix_row; step < n; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (step + 1) * incap;
+                  x_index += incx;
+                }
+                tmp1[0] = rowsum[0];
+                tmp1[1] = rowsum[1];
+                y_i[y_index] = tmp1[0];
+                y_i[y_index + 1] = tmp1[1];
 
-		y_index += incy;
-		ap_start += (matrix_row + 1) * incap;
-	      }
-	    }
-	  } else {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		x_index = x_start;
-		ap_index = ap_start;
-		rowsum[0] = rowsum[1] = 0.0;
-		rowtmp[0] = rowtmp[1] = 0.0;
-		for (step = 0; step < matrix_row; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		}
-		for (step = matrix_row; step < n; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (step + 1) * incap;
-		  x_index += incx;
-		}
-		resval[0] = y_i[y_index];
-		resval[1] = y_i[y_index + 1];
-		tmp1[0] = rowsum[0];
-		tmp1[1] = rowsum[1];
-		{
-		  tmp2[0] =
-		    (double) beta_i[0] * resval[0] -
-		    (double) beta_i[1] * resval[1];
-		  tmp2[1] =
-		    (double) beta_i[0] * resval[1] +
-		    (double) beta_i[1] * resval[0];
-		}
-		tmp2[0] = tmp1[0] + tmp2[0];
-		tmp2[1] = tmp1[1] + tmp2[1];
-		y_i[y_index] = tmp2[0];
-		y_i[y_index + 1] = tmp2[1];
+                y_index += incy;
+                ap_start += (matrix_row + 1) * incap;
+              }
+            }
+          } else {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                x_index = x_start;
+                ap_index = ap_start;
+                rowsum[0] = rowsum[1] = 0.0;
+                rowtmp[0] = rowtmp[1] = 0.0;
+                for (step = 0; step < matrix_row; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                }
+                for (step = matrix_row; step < n; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (step + 1) * incap;
+                  x_index += incx;
+                }
+                resval[0] = y_i[y_index];
+                resval[1] = y_i[y_index + 1];
+                tmp1[0] = rowsum[0];
+                tmp1[1] = rowsum[1];
+                {
+                  tmp2[0] =
+                    (double) beta_i[0] * resval[0] -
+                    (double) beta_i[1] * resval[1];
+                  tmp2[1] =
+                    (double) beta_i[0] * resval[1] +
+                    (double) beta_i[1] * resval[0];
+                }
+                tmp2[0] = tmp1[0] + tmp2[0];
+                tmp2[1] = tmp1[1] + tmp2[1];
+                y_i[y_index] = tmp2[0];
+                y_i[y_index + 1] = tmp2[1];
 
-		y_index += incy;
-		ap_start += (matrix_row + 1) * incap;
-	      }
-	    }
-	  }
-	} else {
-	  if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		x_index = x_start;
-		ap_index = ap_start;
-		rowsum[0] = rowsum[1] = 0.0;
-		rowtmp[0] = rowtmp[1] = 0.0;
-		for (step = 0; step < matrix_row; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		}
-		for (step = matrix_row; step < n; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (step + 1) * incap;
-		  x_index += incx;
-		}
-		{
-		  tmp1[0] =
-		    (double) rowsum[0] * alpha_i[0] -
-		    (double) rowsum[1] * alpha_i[1];
-		  tmp1[1] =
-		    (double) rowsum[0] * alpha_i[1] +
-		    (double) rowsum[1] * alpha_i[0];
-		}
-		y_i[y_index] = tmp1[0];
-		y_i[y_index + 1] = tmp1[1];
+                y_index += incy;
+                ap_start += (matrix_row + 1) * incap;
+              }
+            }
+          }
+        } else {
+          if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                x_index = x_start;
+                ap_index = ap_start;
+                rowsum[0] = rowsum[1] = 0.0;
+                rowtmp[0] = rowtmp[1] = 0.0;
+                for (step = 0; step < matrix_row; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                }
+                for (step = matrix_row; step < n; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (step + 1) * incap;
+                  x_index += incx;
+                }
+                {
+                  tmp1[0] =
+                    (double) rowsum[0] * alpha_i[0] -
+                    (double) rowsum[1] * alpha_i[1];
+                  tmp1[1] =
+                    (double) rowsum[0] * alpha_i[1] +
+                    (double) rowsum[1] * alpha_i[0];
+                }
+                y_i[y_index] = tmp1[0];
+                y_i[y_index + 1] = tmp1[1];
 
-		y_index += incy;
-		ap_start += (matrix_row + 1) * incap;
-	      }
-	    }
-	  } else {
-	    {
-	      y_index = y_start;
-	      ap_start = 0;
-	      for (matrix_row = 0; matrix_row < n; matrix_row++) {
-		x_index = x_start;
-		ap_index = ap_start;
-		rowsum[0] = rowsum[1] = 0.0;
-		rowtmp[0] = rowtmp[1] = 0.0;
-		for (step = 0; step < matrix_row; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += incap;
-		  x_index += incx;
-		}
-		for (step = matrix_row; step < n; step++) {
-		  matval[0] = ap_i[ap_index];
-		  matval[1] = ap_i[ap_index + 1];
-		  vecval = x_i[x_index];
-		  {
-		    rowtmp[0] = matval[0] * vecval;
-		    rowtmp[1] = matval[1] * vecval;
-		  }
-		  rowsum[0] = rowsum[0] + rowtmp[0];
-		  rowsum[1] = rowsum[1] + rowtmp[1];
-		  ap_index += (step + 1) * incap;
-		  x_index += incx;
-		}
-		resval[0] = y_i[y_index];
-		resval[1] = y_i[y_index + 1];
-		{
-		  tmp1[0] =
-		    (double) rowsum[0] * alpha_i[0] -
-		    (double) rowsum[1] * alpha_i[1];
-		  tmp1[1] =
-		    (double) rowsum[0] * alpha_i[1] +
-		    (double) rowsum[1] * alpha_i[0];
-		}
-		{
-		  tmp2[0] =
-		    (double) beta_i[0] * resval[0] -
-		    (double) beta_i[1] * resval[1];
-		  tmp2[1] =
-		    (double) beta_i[0] * resval[1] +
-		    (double) beta_i[1] * resval[0];
-		}
-		tmp2[0] = tmp1[0] + tmp2[0];
-		tmp2[1] = tmp1[1] + tmp2[1];
-		y_i[y_index] = tmp2[0];
-		y_i[y_index + 1] = tmp2[1];
+                y_index += incy;
+                ap_start += (matrix_row + 1) * incap;
+              }
+            }
+          } else {
+            {
+              y_index = y_start;
+              ap_start = 0;
+              for (matrix_row = 0; matrix_row < n; matrix_row++) {
+                x_index = x_start;
+                ap_index = ap_start;
+                rowsum[0] = rowsum[1] = 0.0;
+                rowtmp[0] = rowtmp[1] = 0.0;
+                for (step = 0; step < matrix_row; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += incap;
+                  x_index += incx;
+                }
+                for (step = matrix_row; step < n; step++) {
+                  matval[0] = ap_i[ap_index];
+                  matval[1] = ap_i[ap_index + 1];
+                  vecval = x_i[x_index];
+                  {
+                    rowtmp[0] = matval[0] * vecval;
+                    rowtmp[1] = matval[1] * vecval;
+                  }
+                  rowsum[0] = rowsum[0] + rowtmp[0];
+                  rowsum[1] = rowsum[1] + rowtmp[1];
+                  ap_index += (step + 1) * incap;
+                  x_index += incx;
+                }
+                resval[0] = y_i[y_index];
+                resval[1] = y_i[y_index + 1];
+                {
+                  tmp1[0] =
+                    (double) rowsum[0] * alpha_i[0] -
+                    (double) rowsum[1] * alpha_i[1];
+                  tmp1[1] =
+                    (double) rowsum[0] * alpha_i[1] +
+                    (double) rowsum[1] * alpha_i[0];
+                }
+                {
+                  tmp2[0] =
+                    (double) beta_i[0] * resval[0] -
+                    (double) beta_i[1] * resval[1];
+                  tmp2[1] =
+                    (double) beta_i[0] * resval[1] +
+                    (double) beta_i[1] * resval[0];
+                }
+                tmp2[0] = tmp1[0] + tmp2[0];
+                tmp2[1] = tmp1[1] + tmp2[1];
+                y_i[y_index] = tmp2[0];
+                y_i[y_index + 1] = tmp2[1];
 
-		y_index += incy;
-		ap_start += (matrix_row + 1) * incap;
-	      }
-	    }
-	  }
-	}
-      }				/* if order == ... */
-    }				/* alpha != 0 */
+                y_index += incy;
+                ap_start += (matrix_row + 1) * incap;
+              }
+            }
+          }
+        }
+      }                                /* if order == ... */
+    }                                /* alpha != 0 */
 
 
   }

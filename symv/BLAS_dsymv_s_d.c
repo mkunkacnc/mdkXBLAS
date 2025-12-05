@@ -1,18 +1,18 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 void BLAS_dsymv_s_d(enum blas_order_type order, enum blas_uplo_type uplo,
-		    int n, double alpha, const float *a, int lda,
-		    const double *x, int incx, double beta,
-		    double *y, int incy)
+                    int n, double alpha, const float *a, int lda,
+                    const double *x, int incx, double beta,
+                    double *y, int incy)
 
-/* 
+/*
  * Purpose
  * =======
  *
  * This routines computes the matrix product:
  *
  *     y  <-  alpha * A * x  +  beta * y
- * 
+ *
  * where A is a Symmetric matrix.
  *
  * Arguments
@@ -20,7 +20,7 @@ void BLAS_dsymv_s_d(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  * order   (input) enum blas_order_type
  *         Storage format of input symmetric matrix A.
- * 
+ *
  * uplo    (input) enum blas_uplo_type
  *         Determines which half of matrix A (upper or lower triangle)
  *         is accessed.
@@ -29,7 +29,7 @@ void BLAS_dsymv_s_d(enum blas_order_type order, enum blas_uplo_type uplo,
  *         Dimension of A and size of vectors x, y.
  *
  * alpha   (input) double
- * 
+ *
  * a       (input) float*
  *         Matrix A.
  *
@@ -38,17 +38,17 @@ void BLAS_dsymv_s_d(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  * x       (input) double*
  *         Vector x.
- *   
+ *
  * incx    (input) int
  *         Stride for vector x.
  *
  * beta    (input) double
- * 
+ *
  * y       (input/output) double*
  *         Vector y.
  *
  * incy    (input) int
- *         Stride for vector y. 
+ *         Stride for vector y.
  *
  */
 {
@@ -155,70 +155,70 @@ void BLAS_dsymv_s_d(enum blas_order_type order, enum blas_uplo_type uplo,
     if (beta_i == 0.0) {
       /* Case alpha = 1, beta = 0.  We compute  y <--- A * x */
       for (i = 0, yi = y_starti, astarti = 0;
-	   i < n_i; i++, yi += incy, astarti += incai) {
-	sum = 0.0;
+           i < n_i; i++, yi += incy, astarti += incai) {
+        sum = 0.0;
 
-	for (k = 0, aik = astarti, xi = x_starti; k < i;
-	     k++, aik += incaik, xi += incx) {
-	  a_elem = a_i[aik];
-	  x_elem = x_i[xi];
-	  prod = a_elem * x_elem;
-	  sum = sum + prod;
-	}
-	for (; k < n_i; k++, aik += incaik2, xi += incx) {
-	  a_elem = a_i[aik];
-	  x_elem = x_i[xi];
-	  prod = a_elem * x_elem;
-	  sum = sum + prod;
-	}
-	y_i[yi] = sum;
+        for (k = 0, aik = astarti, xi = x_starti; k < i;
+             k++, aik += incaik, xi += incx) {
+          a_elem = a_i[aik];
+          x_elem = x_i[xi];
+          prod = a_elem * x_elem;
+          sum = sum + prod;
+        }
+        for (; k < n_i; k++, aik += incaik2, xi += incx) {
+          a_elem = a_i[aik];
+          x_elem = x_i[xi];
+          prod = a_elem * x_elem;
+          sum = sum + prod;
+        }
+        y_i[yi] = sum;
       }
     } else {
-      /* Case alpha = 1, but beta != 0. 
+      /* Case alpha = 1, but beta != 0.
          We compute  y  <--- A * x + beta * y */
       for (i = 0, yi = y_starti, astarti = 0;
-	   i < n_i; i++, yi += incy, astarti += incai) {
-	sum = 0.0;
+           i < n_i; i++, yi += incy, astarti += incai) {
+        sum = 0.0;
 
-	for (k = 0, aik = astarti, xi = x_starti;
-	     k < i; k++, aik += incaik, xi += incx) {
-	  a_elem = a_i[aik];
-	  x_elem = x_i[xi];
-	  prod = a_elem * x_elem;
-	  sum = sum + prod;
-	}
-	for (; k < n_i; k++, aik += incaik2, xi += incx) {
-	  a_elem = a_i[aik];
-	  x_elem = x_i[xi];
-	  prod = a_elem * x_elem;
-	  sum = sum + prod;
-	}
-	y_elem = y_i[yi];
-	tmp2 = y_elem * beta_i;
-	tmp1 = sum;
-	tmp1 = tmp2 + tmp1;
-	y_i[yi] = tmp1;
+        for (k = 0, aik = astarti, xi = x_starti;
+             k < i; k++, aik += incaik, xi += incx) {
+          a_elem = a_i[aik];
+          x_elem = x_i[xi];
+          prod = a_elem * x_elem;
+          sum = sum + prod;
+        }
+        for (; k < n_i; k++, aik += incaik2, xi += incx) {
+          a_elem = a_i[aik];
+          x_elem = x_i[xi];
+          prod = a_elem * x_elem;
+          sum = sum + prod;
+        }
+        y_elem = y_i[yi];
+        tmp2 = y_elem * beta_i;
+        tmp1 = sum;
+        tmp1 = tmp2 + tmp1;
+        y_i[yi] = tmp1;
       }
     }
 
   } else {
     /* The most general form,   y <--- alpha * A * x + beta * y */
     for (i = 0, yi = y_starti, astarti = 0;
-	 i < n_i; i++, yi += incy, astarti += incai) {
+         i < n_i; i++, yi += incy, astarti += incai) {
       sum = 0.0;
 
       for (k = 0, aik = astarti, xi = x_starti;
-	   k < i; k++, aik += incaik, xi += incx) {
-	a_elem = a_i[aik];
-	x_elem = x_i[xi];
-	prod = a_elem * x_elem;
-	sum = sum + prod;
+           k < i; k++, aik += incaik, xi += incx) {
+        a_elem = a_i[aik];
+        x_elem = x_i[xi];
+        prod = a_elem * x_elem;
+        sum = sum + prod;
       }
       for (; k < n_i; k++, aik += incaik2, xi += incx) {
-	a_elem = a_i[aik];
-	x_elem = x_i[xi];
-	prod = a_elem * x_elem;
-	sum = sum + prod;
+        a_elem = a_i[aik];
+        x_elem = x_i[xi];
+        prod = a_elem * x_elem;
+        sum = sum + prod;
       }
       y_elem = y_i[yi];
       tmp2 = y_elem * beta_i;
@@ -230,4 +230,4 @@ void BLAS_dsymv_s_d(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
 
-}				/* end BLAS_dsymv_s_d */
+}                                /* end BLAS_dsymv_s_d */

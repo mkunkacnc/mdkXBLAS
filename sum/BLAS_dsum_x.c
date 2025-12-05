@@ -1,30 +1,30 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 void BLAS_dsum_x(int n, const double *x, int incx,
-		 double *sum, enum blas_prec_type prec)
+                 double *sum, enum blas_prec_type prec)
 
 /*
  * Purpose
  * =======
- * 
+ *
  * This routine computes the summation:
- * 
+ *
  *     sum <- SUM_{i=0, n-1} x[i].
- * 
+ *
  * Arguments
  * =========
  *
  * n      (input) int
  *        The length of vector x.
- * 
+ *
  * x      (input) const double*
  *        Array of length n.
- * 
+ *
  * incx   (input) int
  *        The stride used to access components x[i].
  *
  * sum    (output) double*
- * 
+ *
  * prec   (input) enum blas_prec_type
  *        Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
@@ -50,14 +50,14 @@ void BLAS_dsum_x(int n, const double *x, int incx,
 
       /* Test the input parameters. */
       if (n < 0)
-	BLAS_error(routine_name, -1, n, NULL);
+        BLAS_error(routine_name, -1, n, NULL);
       if (incx == 0)
-	BLAS_error(routine_name, -3, incx, NULL);
+        BLAS_error(routine_name, -3, incx, NULL);
 
       /* Immediate return. */
       if (n <= 0) {
-	*sum_i = 0.0;
-	return;
+        *sum_i = 0.0;
+        return;
       }
 
 
@@ -66,13 +66,13 @@ void BLAS_dsum_x(int n, const double *x, int incx,
 
 
       if (incx < 0)
-	xi = -(n - 1) * incx;
+        xi = -(n - 1) * incx;
       else
-	xi = 0;
+        xi = 0;
 
       for (i = 0; i < n; i++, xi += incx) {
-	x_elem = x_i[xi];
-	tmp = tmp + x_elem;
+        x_elem = x_i[xi];
+        tmp = tmp + x_elem;
       }
       *sum = tmp;
 
@@ -92,14 +92,14 @@ void BLAS_dsum_x(int n, const double *x, int incx,
 
       /* Test the input parameters. */
       if (n < 0)
-	BLAS_error(routine_name, -1, n, NULL);
+        BLAS_error(routine_name, -1, n, NULL);
       if (incx == 0)
-	BLAS_error(routine_name, -3, incx, NULL);
+        BLAS_error(routine_name, -3, incx, NULL);
 
       /* Immediate return. */
       if (n <= 0) {
-	*sum_i = 0.0;
-	return;
+        *sum_i = 0.0;
+        return;
       }
 
       FPU_FIX_START;
@@ -108,25 +108,25 @@ void BLAS_dsum_x(int n, const double *x, int incx,
 
 
       if (incx < 0)
-	xi = -(n - 1) * incx;
+        xi = -(n - 1) * incx;
       else
-	xi = 0;
+        xi = 0;
 
       for (i = 0; i < n; i++, xi += incx) {
-	x_elem = x_i[xi];
-	{
-	  /* Compute double-double = double-double + double. */
-	  double e, t1, t2;
+        x_elem = x_i[xi];
+        {
+          /* Compute double-double = double-double + double. */
+          double e, t1, t2;
 
-	  /* Knuth trick. */
-	  t1 = head_tmp + x_elem;
-	  e = t1 - head_tmp;
-	  t2 = ((x_elem - e) + (head_tmp - (t1 - e))) + tail_tmp;
+          /* Knuth trick. */
+          t1 = head_tmp + x_elem;
+          e = t1 - head_tmp;
+          t2 = ((x_elem - e) + (head_tmp - (t1 - e))) + tail_tmp;
 
-	  /* The result is t1 + t2, after normalization. */
-	  head_tmp = t1 + t2;
-	  tail_tmp = t2 - (head_tmp - t1);
-	}
+          /* The result is t1 + t2, after normalization. */
+          head_tmp = t1 + t2;
+          tail_tmp = t2 - (head_tmp - t1);
+        }
       }
       *sum = head_tmp;
 

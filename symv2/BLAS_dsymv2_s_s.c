@@ -2,18 +2,18 @@
 #include <blas_extended_private.h>
 #include <blas_fpu.h>
 void BLAS_dsymv2_s_s(enum blas_order_type order, enum blas_uplo_type uplo,
-		     int n, double alpha, const float *a, int lda,
-		     const float *x_head, const float *x_tail, int incx,
-		     double beta, double *y, int incy)
+                     int n, double alpha, const float *a, int lda,
+                     const float *x_head, const float *x_tail, int incx,
+                     double beta, double *y, int incy)
 
-/* 
+/*
  * Purpose
  * =======
  *
  * This routines computes the matrix product:
  *
  *     y  <-  alpha * A * (x_head + x_tail) + beta * y
- * 
+ *
  * where A is a symmetric matrix.
  *
  * Arguments
@@ -21,7 +21,7 @@ void BLAS_dsymv2_s_s(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  * order   (input) enum blas_order_type
  *         Storage format of input symmetric matrix A.
- * 
+ *
  * uplo    (input) enum blas_uplo_type
  *         Determines which half of matrix A (upper or lower triangle)
  *         is accessed.
@@ -30,7 +30,7 @@ void BLAS_dsymv2_s_s(enum blas_order_type order, enum blas_uplo_type uplo,
  *         Dimension of A and size of vectors x, y.
  *
  * alpha   (input) double
- * 
+ *
  * a       (input) float*
  *         Matrix A.
  *
@@ -42,12 +42,12 @@ void BLAS_dsymv2_s_s(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  * x_tail  (input) float*
  *         Vector x_tail
- *   
+ *
  * incx    (input) int
  *         Stride for vector x.
  *
  * beta    (input) double
- * 
+ *
  * y       (input) float*
  *         Vector y.
  *
@@ -160,4 +160,4 @@ void BLAS_dsymv2_s_s(enum blas_order_type order, enum blas_uplo_type uplo,
 
 
 
-}				/* end BLAS_dsymv2_s_s */
+}                                /* end BLAS_dsymv2_s_s */

@@ -1,9 +1,9 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 void BLAS_dgemv_s_d(enum blas_order_type order, enum blas_trans_type trans,
-		    int m, int n, double alpha, const float *a, int lda,
-		    const double *x, int incx, double beta, double *y,
-		    int incy)
+                    int m, int n, double alpha, const float *a, int lda,
+                    const double *x, int incx, double beta, double *y,
+                    int incy)
 
 /*
  * Purpose
@@ -18,7 +18,7 @@ void BLAS_dgemv_s_d(enum blas_order_type order, enum blas_trans_type trans,
  *              Order of AP; row or column major
  *
  * trans        (input) blas_trans_type
- *              Transpose of AB; no trans, 
+ *              Transpose of AB; no trans,
  *              trans, or conjugate trans
  *
  * m            (input) int
@@ -28,14 +28,14 @@ void BLAS_dgemv_s_d(enum blas_order_type order, enum blas_trans_type trans,
  *              Dimension of AB and the length of vector x
  *
  * alpha        (input) double
- *              
+ *
  * A            (input) const float*
  *
- * lda          (input) int 
+ * lda          (input) int
  *              Leading dimension of A
  *
  * x            (input) const double*
- * 
+ *
  * incx         (input) int
  *              The stride for vector x.
  *
@@ -45,7 +45,7 @@ void BLAS_dgemv_s_d(enum blas_order_type order, enum blas_trans_type trans,
  *
  * incy         (input) int
  *              The stride for vector y.
- * 
+ *
  */
 {
   static const char routine_name[] = "BLAS_dgemv_s_d";
@@ -95,7 +95,7 @@ void BLAS_dgemv_s_d(enum blas_order_type order, enum blas_trans_type trans,
     leny = m;
     incai = 1;
     incaij = lda;
-  } else {			/* colmajor and blas_trans */
+  } else {                        /* colmajor and blas_trans */
     lenx = m;
     leny = n;
     incai = lda;
@@ -126,16 +126,16 @@ void BLAS_dgemv_s_d(enum blas_order_type order, enum blas_trans_type trans,
     if (beta_i == 0.0) {
       iy = ky;
       for (i = 0; i < leny; i++) {
-	y_i[iy] = 0.0;
-	iy += incy;
+        y_i[iy] = 0.0;
+        iy += incy;
       }
     } else if (!(beta_i == 0.0)) {
       iy = ky;
       for (i = 0; i < leny; i++) {
-	y_elem = y_i[iy];
-	tmp1 = y_elem * beta_i;
-	y_i[iy] = tmp1;
-	iy += incy;
+        y_elem = y_i[iy];
+        tmp1 = y_elem * beta_i;
+        y_i[iy] = tmp1;
+        iy += incy;
       }
     }
   } else {
@@ -144,71 +144,71 @@ void BLAS_dgemv_s_d(enum blas_order_type order, enum blas_trans_type trans,
     if (beta_i == 0.0) {
       /* save m more multiplies if alpha = 1 */
       if (alpha_i == 1.0) {
-	ai = 0;
-	iy = ky;
-	for (i = 0; i < leny; i++) {
-	  sum = 0.0;
-	  aij = ai;
-	  jx = kx;
-	  for (j = 0; j < lenx; j++) {
-	    a_elem = a_i[aij];
+        ai = 0;
+        iy = ky;
+        for (i = 0; i < leny; i++) {
+          sum = 0.0;
+          aij = ai;
+          jx = kx;
+          for (j = 0; j < lenx; j++) {
+            a_elem = a_i[aij];
 
-	    x_elem = x_i[jx];
-	    prod = a_elem * x_elem;
-	    sum = sum + prod;
-	    aij += incaij;
-	    jx += incx;
-	  }
-	  y_i[iy] = sum;
-	  ai += incai;
-	  iy += incy;
-	}
+            x_elem = x_i[jx];
+            prod = a_elem * x_elem;
+            sum = sum + prod;
+            aij += incaij;
+            jx += incx;
+          }
+          y_i[iy] = sum;
+          ai += incai;
+          iy += incy;
+        }
       } else {
-	ai = 0;
-	iy = ky;
-	for (i = 0; i < leny; i++) {
-	  sum = 0.0;
-	  aij = ai;
-	  jx = kx;
-	  for (j = 0; j < lenx; j++) {
-	    a_elem = a_i[aij];
+        ai = 0;
+        iy = ky;
+        for (i = 0; i < leny; i++) {
+          sum = 0.0;
+          aij = ai;
+          jx = kx;
+          for (j = 0; j < lenx; j++) {
+            a_elem = a_i[aij];
 
-	    x_elem = x_i[jx];
-	    prod = a_elem * x_elem;
-	    sum = sum + prod;
-	    aij += incaij;
-	    jx += incx;
-	  }
-	  tmp1 = sum * alpha_i;
-	  y_i[iy] = tmp1;
-	  ai += incai;
-	  iy += incy;
-	}
+            x_elem = x_i[jx];
+            prod = a_elem * x_elem;
+            sum = sum + prod;
+            aij += incaij;
+            jx += incx;
+          }
+          tmp1 = sum * alpha_i;
+          y_i[iy] = tmp1;
+          ai += incai;
+          iy += incy;
+        }
       }
     } else {
       /* the most general form, y = alpha*A*x + beta*y */
       ai = 0;
       iy = ky;
       for (i = 0; i < leny; i++) {
-	sum = 0.0;;
-	aij = ai;
-	jx = kx;
-	for (j = 0; j < lenx; j++) {
-	  a_elem = a_i[aij];
+        sum = 0.0;;
+        aij = ai;
+        jx = kx;
+        for (j = 0; j < lenx; j++) {
+          a_elem = a_i[aij];
 
-	  x_elem = x_i[jx];
-	  prod = a_elem * x_elem;
-	  sum = sum + prod;
-	  aij += incaij;
-	  jx += incx;
-	}
-	tmp1 = sum * alpha_i;
-	y_elem = y_i[iy];
-	tmp2 = y_elem * beta_i;
-	tmp1 = tmp1 + tmp2;
-	y_i[iy] = tmp1;
-	ai += incai;
-	iy += incy;
+          x_elem = x_i[jx];
+          prod = a_elem * x_elem;
+          sum = sum + prod;
+          aij += incaij;
+          jx += incx;
+        }
+        tmp1 = sum * alpha_i;
+        y_elem = y_i[iy];
+        tmp2 = y_elem * beta_i;
+        tmp1 = tmp1 + tmp2;
+        y_i[iy] = tmp1;
+        ai += incai;
+        iy += incy;
       }
     }
 
