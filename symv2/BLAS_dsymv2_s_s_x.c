@@ -534,6 +534,8 @@ void BLAS_dsymv2_s_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
           tail_tmp1 = t2 - (head_tmp1 - t1);
         }
         y_elem = y_i[yi];
+        compute_doubledouble_eq_double_mul_double(&head_tmp2, &tail_tmp2, y_elem, beta_i);
+#if 0
         {
           /* Compute double_double = double * double. */
           double a1, a2, b1, b2, con;
@@ -550,6 +552,7 @@ void BLAS_dsymv2_s_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
           head_tmp2 = y_elem * beta_i;
           tail_tmp2 = (((a1 * b1 - head_tmp2) + a1 * b2) + a2 * b1) + a2 * b2;
         }
+#endif
         {
           /* Compute double-double = double-double + double-double. */
           double bv;

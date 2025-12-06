@@ -171,6 +171,8 @@ void BLAS_zdot_d_d_x(enum blas_conj_type conj, int n, const void *alpha,
         x_ii = x_i[ix];
         y_ii = y_i[iy];
 
+        compute_doubledouble_eq_double_mul_double(&head_prod, &tail_prod, x_ii, y_ii);
+#if 0
         {
           /* Compute double_double = double * double. */
           double a1, a2, b1, b2, con;
@@ -187,6 +189,7 @@ void BLAS_zdot_d_d_x(enum blas_conj_type conj, int n, const void *alpha,
           head_prod = x_ii * y_ii;
           tail_prod = (((a1 * b1 - head_prod) + a1 * b2) + a2 * b1) + a2 * b2;
         }                        /* prod = x[i]*y[i] */
+#endif
         {
           /* Compute double-double = double-double + double-double. */
           double bv;

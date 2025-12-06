@@ -384,6 +384,8 @@ void BLAS_dgbmv2_d_s_x(enum blas_order_type order, enum blas_trans_type trans,
           a_elem = a_i[aij];
           {
             double dt = (double) x_elem;
+            compute_doubledouble_eq_double_mul_double(&head_prod, &tail_prod, dt, a_elem);
+#if 0
             {
               /* Compute double_double = double * double. */
               double a1, a2, b1, b2, con;
@@ -401,6 +403,7 @@ void BLAS_dgbmv2_d_s_x(enum blas_order_type order, enum blas_trans_type trans,
               tail_prod =
                 (((a1 * b1 - head_prod) + a1 * b2) + a2 * b1) + a2 * b2;
             }
+#endif
           }
           {
             /* Compute double-double = double-double + double-double. */
@@ -432,6 +435,8 @@ void BLAS_dgbmv2_d_s_x(enum blas_order_type order, enum blas_trans_type trans,
           x_elem = tail_x_i[jx];
           {
             double dt = (double) x_elem;
+            compute_doubledouble_eq_double_mul_double(&head_prod, &tail_prod, dt, a_elem);
+#if 0
             {
               /* Compute double_double = double * double. */
               double a1, a2, b1, b2, con;
@@ -449,6 +454,7 @@ void BLAS_dgbmv2_d_s_x(enum blas_order_type order, enum blas_trans_type trans,
               tail_prod =
                 (((a1 * b1 - head_prod) + a1 * b2) + a2 * b1) + a2 * b2;
             }
+#endif
           }
           {
             /* Compute double-double = double-double + double-double. */
@@ -556,6 +562,8 @@ void BLAS_dgbmv2_d_s_x(enum blas_order_type order, enum blas_trans_type trans,
           tail_tmp3 = t2 - (head_tmp3 - t1);
         }
         y_elem = y_i[iy];
+        compute_doubledouble_eq_double_mul_double(&head_tmp4, &tail_tmp4, beta_i, y_elem);
+#if 0
         {
           /* Compute double_double = double * double. */
           double a1, a2, b1, b2, con;
@@ -572,6 +580,7 @@ void BLAS_dgbmv2_d_s_x(enum blas_order_type order, enum blas_trans_type trans,
           head_tmp4 = beta_i * y_elem;
           tail_tmp4 = (((a1 * b1 - head_tmp4) + a1 * b2) + a2 * b1) + a2 * b2;
         }
+#endif
         {
           /* Compute double-double = double-double + double-double. */
           double bv;

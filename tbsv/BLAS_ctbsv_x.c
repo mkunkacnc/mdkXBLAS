@@ -1795,6 +1795,8 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     r = T_element[1] / T_element[0];
                     {
                       double dt = (double) T_element[1];
+                      compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
+#if 0
                       {
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
@@ -1813,6 +1815,7 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) +
                           a2 * b2;
                       }
+#endif
                     }
                     {
                       double dt = (double) T_element[0];
@@ -2173,6 +2176,8 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     r = T_element[0] / T_element[1];
                     {
                       double dt = (double) T_element[0];
+                      compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
+#if 0
                       {
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
@@ -2191,6 +2196,7 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) +
                           a2 * b2;
                       }
+#endif
                     }
                     {
                       double dt = (double) T_element[1];
@@ -3419,6 +3425,8 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     r = T_element[1] / T_element[0];
                     {
                       double dt = (double) T_element[1];
+                      compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
+#if 0
                       {
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
@@ -3437,6 +3445,7 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) +
                           a2 * b2;
                       }
+#endif
                     }
                     {
                       double dt = (double) T_element[0];
@@ -3797,6 +3806,8 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     r = T_element[0] / T_element[1];
                     {
                       double dt = (double) T_element[0];
+                      compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
+#if 0
                       {
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
@@ -3815,6 +3826,7 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) +
                           a2 * b2;
                       }
+#endif
                     }
                     {
                       double dt = (double) T_element[1];
@@ -4787,6 +4799,8 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     r = T_element[1] / T_element[0];
                     {
                       double dt = (double) T_element[1];
+                      compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
+#if 0
                       {
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
@@ -4805,6 +4819,7 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) +
                           a2 * b2;
                       }
+#endif
                     }
                     {
                       double dt = (double) T_element[0];
@@ -5165,6 +5180,8 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     r = T_element[0] / T_element[1];
                     {
                       double dt = (double) T_element[0];
+                      compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
+#if 0
                       {
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
@@ -5183,6 +5200,7 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) +
                           a2 * b2;
                       }
+#endif
                     }
                     {
                       double dt = (double) T_element[1];
@@ -6411,6 +6429,8 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     r = T_element[1] / T_element[0];
                     {
                       double dt = (double) T_element[1];
+                      compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
+#if 0
                       {
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
@@ -6429,6 +6449,7 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) +
                           a2 * b2;
                       }
+#endif
                     }
                     {
                       double dt = (double) T_element[0];
@@ -6789,6 +6810,8 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     r = T_element[0] / T_element[1];
                     {
                       double dt = (double) T_element[0];
+                      compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
+#if 0
                       {
                         /* Compute double_double = double * double. */
                         double a1, a2, b1, b2, con;
@@ -6807,6 +6830,7 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                           (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) +
                           a2 * b2;
                       }
+#endif
                     }
                     {
                       double dt = (double) T_element[1];

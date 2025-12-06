@@ -309,6 +309,8 @@ void BLAS_dtbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
             x_elem = x_i[xi];
             /* preform the multiplication -
                in this implementation we do not seperate the alpha = 1 case */
+            compute_doubledouble_eq_double_mul_double(&head_temp1, &tail_temp1, x_elem, alpha_i);
+#if 0
             {
               /* Compute double_double = double * double. */
               double a1, a2, b1, b2, con;
@@ -326,6 +328,7 @@ void BLAS_dtbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
               tail_temp1 =
                 (((a1 * b1 - head_temp1) + a1 * b2) + a2 * b1) + a2 * b2;
             }
+#endif
 
             Tij = dot_start;
             dot_start += dot_start_inc1;
@@ -459,6 +462,8 @@ void BLAS_dtbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
 
             /* each time through loop, xi lands on next x to compute. */
             x_elem = x_i[xi];
+            compute_doubledouble_eq_double_mul_double(&head_temp1, &tail_temp1, x_elem, alpha_i);
+#if 0
             {
               /* Compute double_double = double * double. */
               double a1, a2, b1, b2, con;
@@ -476,6 +481,7 @@ void BLAS_dtbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
               tail_temp1 =
                 (((a1 * b1 - head_temp1) + a1 * b2) + a2 * b1) + a2 * b2;
             }
+#endif
 
 
             Tij = dot_start;

@@ -477,6 +477,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
             for (matrix_row = 0; matrix_row < n; matrix_row++) {
               resval = y_i[y_index];
 
+              compute_doubledouble_eq_double_mul_double(&head_tmp2, &tail_tmp2, beta_i, resval);
+#if 0
               {
                 /* Compute double_double = double * double. */
                 double a1, a2, b1, b2, con;
@@ -494,6 +496,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 tail_tmp2 =
                   (((a1 * b1 - head_tmp2) + a1 * b2) + a2 * b1) + a2 * b2;
               }
+#endif
 
               y_i[y_index] = head_tmp2;
 
@@ -519,6 +522,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -537,6 +542,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -573,6 +579,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -591,6 +599,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -644,6 +653,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -662,6 +673,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -698,6 +710,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -716,6 +730,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -750,6 +765,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     resval = y_i[y_index];
                     head_tmp1 = head_rowsum;
                     tail_tmp1 = tail_rowsum;
+                    compute_doubledouble_eq_double_mul_double(&head_tmp2, &tail_tmp2, beta_i, resval);
+#if 0
                     {
                       /* Compute double_double = double * double. */
                       double a1, a2, b1, b2, con;
@@ -768,6 +785,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         (((a1 * b1 - head_tmp2) + a1 * b2) + a2 * b1) +
                         a2 * b2;
                     }
+#endif
                     {
                       /* Compute double-double = double-double + double-double. */
                       double bv;
@@ -817,6 +835,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -835,6 +855,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -871,6 +892,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -889,6 +912,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -964,6 +988,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -982,6 +1008,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -1018,6 +1045,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -1036,6 +1065,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -1092,6 +1122,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       head_tmp1 = t1 + t2;
                       tail_tmp1 = t2 - (head_tmp1 - t1);
                     }
+                    compute_doubledouble_eq_double_mul_double(&head_tmp2, &tail_tmp2, beta_i, resval);
+#if 0
                     {
                       /* Compute double_double = double * double. */
                       double a1, a2, b1, b2, con;
@@ -1110,6 +1142,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         (((a1 * b1 - head_tmp2) + a1 * b2) + a2 * b1) +
                         a2 * b2;
                     }
+#endif
                     {
                       /* Compute double-double = double-double + double-double. */
                       double bv;
@@ -1161,6 +1194,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -1179,6 +1214,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -1215,6 +1251,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -1233,6 +1271,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -1286,6 +1325,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -1304,6 +1345,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -1340,6 +1382,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -1358,6 +1402,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -1392,6 +1437,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     resval = y_i[y_index];
                     head_tmp1 = head_rowsum;
                     tail_tmp1 = tail_rowsum;
+                    compute_doubledouble_eq_double_mul_double(&head_tmp2, &tail_tmp2, beta_i, resval);
+#if 0
                     {
                       /* Compute double_double = double * double. */
                       double a1, a2, b1, b2, con;
@@ -1410,6 +1457,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         (((a1 * b1 - head_tmp2) + a1 * b2) + a2 * b1) +
                         a2 * b2;
                     }
+#endif
                     {
                       /* Compute double-double = double-double + double-double. */
                       double bv;
@@ -1459,6 +1507,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -1477,6 +1527,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -1513,6 +1564,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -1531,6 +1584,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -1606,6 +1660,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -1624,6 +1680,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -1660,6 +1717,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       vecval = x_i[x_index];
                       {
                         double dt = (double) matval;
+                        compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, dt, vecval);
+#if 0
                         {
                           /* Compute double_double = double * double. */
                           double a1, a2, b1, b2, con;
@@ -1678,6 +1737,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                             (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
                             a2 * b2;
                         }
+#endif
                       }
                       {
                         /* Compute double-double = double-double + double-double. */
@@ -1734,6 +1794,8 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       head_tmp1 = t1 + t2;
                       tail_tmp1 = t2 - (head_tmp1 - t1);
                     }
+                    compute_doubledouble_eq_double_mul_double(&head_tmp2, &tail_tmp2, beta_i, resval);
+#if 0
                     {
                       /* Compute double_double = double * double. */
                       double a1, a2, b1, b2, con;
@@ -1752,6 +1814,7 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                         (((a1 * b1 - head_tmp2) + a1 * b2) + a2 * b1) +
                         a2 * b2;
                     }
+#endif
                     {
                       /* Compute double-double = double-double + double-double. */
                       double bv;

@@ -515,6 +515,8 @@ void BLAS_zgemv_d_d_x(enum blas_order_type order, enum blas_trans_type trans,
                 a_elem = a_i[aij];
 
                 x_elem = x_i[jx];
+                compute_doubledouble_eq_double_mul_double(&head_prod, &tail_prod, a_elem, x_elem);
+#if 0
                 {
                   /* Compute double_double = double * double. */
                   double a1, a2, b1, b2, con;
@@ -532,6 +534,7 @@ void BLAS_zgemv_d_d_x(enum blas_order_type order, enum blas_trans_type trans,
                   tail_prod =
                     (((a1 * b1 - head_prod) + a1 * b2) + a2 * b1) + a2 * b2;
                 }
+#endif
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
@@ -581,6 +584,8 @@ void BLAS_zgemv_d_d_x(enum blas_order_type order, enum blas_trans_type trans,
                 a_elem = a_i[aij];
 
                 x_elem = x_i[jx];
+                compute_doubledouble_eq_double_mul_double(&head_prod, &tail_prod, a_elem, x_elem);
+#if 0
                 {
                   /* Compute double_double = double * double. */
                   double a1, a2, b1, b2, con;
@@ -598,6 +603,7 @@ void BLAS_zgemv_d_d_x(enum blas_order_type order, enum blas_trans_type trans,
                   tail_prod =
                     (((a1 * b1 - head_prod) + a1 * b2) + a2 * b1) + a2 * b2;
                 }
+#endif
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
@@ -700,6 +706,8 @@ void BLAS_zgemv_d_d_x(enum blas_order_type order, enum blas_trans_type trans,
               a_elem = a_i[aij];
 
               x_elem = x_i[jx];
+              compute_doubledouble_eq_double_mul_double(&head_prod, &tail_prod, a_elem, x_elem);
+#if 0
               {
                 /* Compute double_double = double * double. */
                 double a1, a2, b1, b2, con;
@@ -717,6 +725,7 @@ void BLAS_zgemv_d_d_x(enum blas_order_type order, enum blas_trans_type trans,
                 tail_prod =
                   (((a1 * b1 - head_prod) + a1 * b2) + a2 * b1) + a2 * b2;
               }
+#endif
               {
                 /* Compute double-double = double-double + double-double. */
                 double bv;

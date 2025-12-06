@@ -161,6 +161,8 @@ void BLAS_ddot_d_s_x(enum blas_conj_type conj, int n, double alpha,
 
         {
           double dt = (double) y_ii;
+          compute_doubledouble_eq_double_mul_double(&head_prod, &tail_prod, x_ii, dt);
+#if 0
           {
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
@@ -178,6 +180,7 @@ void BLAS_ddot_d_s_x(enum blas_conj_type conj, int n, double alpha,
             tail_prod =
               (((a1 * b1 - head_prod) + a1 * b2) + a2 * b1) + a2 * b2;
           }
+#endif
         }                        /* prod = x[i]*y[i] */
         {
           /* Compute double-double = double-double + double-double. */
@@ -234,6 +237,8 @@ void BLAS_ddot_d_s_x(enum blas_conj_type conj, int n, double alpha,
         head_tmp1 = t1 + t2;
         tail_tmp1 = t2 - (head_tmp1 - t1);
       }                                /* tmp1 = sum*alpha */
+      compute_doubledouble_eq_double_mul_double(&head_tmp2, &tail_tmp2, r_v, beta_i);
+#if 0
       {
         /* Compute double_double = double * double. */
         double a1, a2, b1, b2, con;
@@ -250,6 +255,7 @@ void BLAS_ddot_d_s_x(enum blas_conj_type conj, int n, double alpha,
         head_tmp2 = r_v * beta_i;
         tail_tmp2 = (((a1 * b1 - head_tmp2) + a1 * b2) + a2 * b1) + a2 * b2;
       }                                /* tmp2 = r*beta */
+#endif
       {
         /* Compute double-double = double-double + double-double. */
         double bv;
