@@ -370,6 +370,8 @@ void BLAS_dtbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 double head_bt, tail_bt;
                 head_bt = -head_temp2;
                 tail_bt = -tail_temp2;
+                compute_doubledouble_eq_doubledouble_add_doubledouble(&head_temp1, &tail_temp1, head_temp1, tail_temp1, head_bt, tail_bt);
+#if 0
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
@@ -397,6 +399,7 @@ void BLAS_dtbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   head_temp1 = t1 + t2;
                   tail_temp1 = t2 - (head_temp1 - t1);
                 }
+#endif
               }
               x_inti += inc_x_inti;
               Tij += dot_inc;
@@ -529,6 +532,8 @@ void BLAS_dtbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 double head_bt, tail_bt;
                 head_bt = -head_temp2;
                 tail_bt = -tail_temp2;
+                compute_doubledouble_eq_doubledouble_add_doubledouble(&head_temp1, &tail_temp1, head_temp1, tail_temp1, head_bt, tail_bt);
+#if 0
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
@@ -556,6 +561,7 @@ void BLAS_dtbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   head_temp1 = t1 + t2;
                   tail_temp1 = t2 - (head_temp1 - t1);
                 }
+#endif
               }
               x_inti += inc_x_inti;
               Tij += dot_inc;
@@ -597,6 +603,8 @@ void BLAS_dtbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 double head_bt, tail_bt;
                 head_bt = -head_temp2;
                 tail_bt = -tail_temp2;
+                compute_doubledouble_eq_doubledouble_add_doubledouble(&head_temp1, &tail_temp1, head_temp1, tail_temp1, head_bt, tail_bt);
+#if 0
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
@@ -624,6 +632,7 @@ void BLAS_dtbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   head_temp1 = t1 + t2;
                   tail_temp1 = t2 - (head_temp1 - t1);
                 }
+#endif
               }
               x_inti += inc_x_inti;
               Tij += dot_inc;

@@ -217,6 +217,8 @@ void BLAS_swaxpby_x(int n, float alpha, const float *x, int incx,
         tail_tmpx = 0.0;        /* tmpx  = alpha * x[ix] */
         head_tmpy = (double) beta_i *y_ii;
         tail_tmpy = 0.0;        /* tmpy = beta * y[iy] */
+        compute_doubledouble_eq_doubledouble_add_doubledouble(&head_tmpy, &tail_tmpy, head_tmpy, tail_tmpy, head_tmpx, tail_tmpx);
+#if 0
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
@@ -244,6 +246,7 @@ void BLAS_swaxpby_x(int n, float alpha, const float *x, int incx,
           head_tmpy = t1 + t2;
           tail_tmpy = t2 - (head_tmpy - t1);
         }
+#endif
         w_i[iw] = head_tmpy;
         ix += incx;
         iy += incy;

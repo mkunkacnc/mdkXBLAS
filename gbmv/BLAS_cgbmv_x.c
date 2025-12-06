@@ -661,6 +661,8 @@ void BLAS_cgbmv_x(enum blas_order_type order, enum blas_trans_type trans,
               tail_a = tail_sum[0];
               head_b = head_prod[0];
               tail_b = tail_prod[0];
+              compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t, &tail_t, head_a, tail_a, head_b, tail_b);
+#if 0
               {
                 /* Compute double-double = double-double + double-double. */
                 double bv;
@@ -688,6 +690,7 @@ void BLAS_cgbmv_x(enum blas_order_type order, enum blas_trans_type trans,
                 head_t = t1 + t2;
                 tail_t = t2 - (head_t - t1);
               }
+#endif
               head_sum[0] = head_t;
               tail_sum[0] = tail_t;
               /* Imaginary part */
@@ -695,6 +698,8 @@ void BLAS_cgbmv_x(enum blas_order_type order, enum blas_trans_type trans,
               tail_a = tail_sum[1];
               head_b = head_prod[1];
               tail_b = tail_prod[1];
+              compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t, &tail_t, head_a, tail_a, head_b, tail_b);
+#if 0
               {
                 /* Compute double-double = double-double + double-double. */
                 double bv;
@@ -722,6 +727,7 @@ void BLAS_cgbmv_x(enum blas_order_type order, enum blas_trans_type trans,
                 head_t = t1 + t2;
                 tail_t = t2 - (head_t - t1);
               }
+#endif
               head_sum[1] = head_t;
               tail_sum[1] = tail_t;
             }
@@ -786,6 +792,8 @@ void BLAS_cgbmv_x(enum blas_order_type order, enum blas_trans_type trans,
               tail_a = tail_sum[0];
               head_b = head_prod[0];
               tail_b = tail_prod[0];
+              compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t, &tail_t, head_a, tail_a, head_b, tail_b);
+#if 0
               {
                 /* Compute double-double = double-double + double-double. */
                 double bv;
@@ -813,6 +821,7 @@ void BLAS_cgbmv_x(enum blas_order_type order, enum blas_trans_type trans,
                 head_t = t1 + t2;
                 tail_t = t2 - (head_t - t1);
               }
+#endif
               head_sum[0] = head_t;
               tail_sum[0] = tail_t;
               /* Imaginary part */
@@ -820,6 +829,8 @@ void BLAS_cgbmv_x(enum blas_order_type order, enum blas_trans_type trans,
               tail_a = tail_sum[1];
               head_b = head_prod[1];
               tail_b = tail_prod[1];
+              compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t, &tail_t, head_a, tail_a, head_b, tail_b);
+#if 0
               {
                 /* Compute double-double = double-double + double-double. */
                 double bv;
@@ -847,6 +858,7 @@ void BLAS_cgbmv_x(enum blas_order_type order, enum blas_trans_type trans,
                 head_t = t1 + t2;
                 tail_t = t2 - (head_t - t1);
               }
+#endif
               head_sum[1] = head_t;
               tail_sum[1] = tail_t;
             }
@@ -918,6 +930,8 @@ void BLAS_cgbmv_x(enum blas_order_type order, enum blas_trans_type trans,
             }
             head_t2 = -head_t2;
             tail_t2 = -tail_t2;
+            compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+#if 0
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
@@ -945,6 +959,7 @@ void BLAS_cgbmv_x(enum blas_order_type order, enum blas_trans_type trans,
               head_t1 = t1 + t2;
               tail_t1 = t2 - (head_t1 - t1);
             }
+#endif
             head_tmp1[0] = head_t1;
             tail_tmp1[0] = tail_t1;
             /* imaginary part */
@@ -994,6 +1009,8 @@ void BLAS_cgbmv_x(enum blas_order_type order, enum blas_trans_type trans,
               head_t2 = t1 + t2;
               tail_t2 = t2 - (head_t2 - t1);
             }
+            compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+#if 0
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
@@ -1021,6 +1038,7 @@ void BLAS_cgbmv_x(enum blas_order_type order, enum blas_trans_type trans,
               head_t1 = t1 + t2;
               tail_t1 = t2 - (head_t1 - t1);
             }
+#endif
             head_tmp1[1] = head_t1;
             tail_tmp1[1] = tail_t1;
           }

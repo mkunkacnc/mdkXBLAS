@@ -37,14 +37,14 @@ void compute_doubledouble_eq_doubledouble_add_doubledouble(double* head_c,
   double s1, s2, t1, t2;
 
   /* Add two hi words. */
-  s1 = head_b + head_a;
-  bv = s1 - head_b;
-  s2 = ((head_a - bv) + (head_b - (s1 - bv)));
+  s1 = head_a + head_b;
+  bv = s1 - head_a;
+  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
 
   /* Add two lo words. */
-  t1 = tail_b + tail_a;
-  bv = t1 - tail_b;
-  t2 = ((tail_a - bv) + (tail_b - (t1 - bv)));
+  t1 = tail_a + tail_b;
+  bv = t1 - tail_a;
+  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
 
   s2 += t1;
 

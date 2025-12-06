@@ -688,6 +688,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   }
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -715,6 +717,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
                   head_temp1[0] = head_t1;
                   tail_temp1[0] = tail_t1;
                   /* imaginary part */
@@ -766,6 +769,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -793,6 +798,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
                   head_temp1[1] = head_t1;
                   tail_temp1[1] = tail_t1;
                 }
@@ -883,6 +889,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   tail_at = tail_temp1[0];
                   head_bt = -head_temp2[0];
                   tail_bt = -tail_temp2[0];
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -910,6 +918,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_ct = t1 + t2;
                     tail_ct = t2 - (head_ct - t1);
                   }
+#endif
                   head_temp1[0] = head_ct;
                   tail_temp1[0] = tail_ct;
                   /* Imaginary part */
@@ -917,6 +926,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   tail_at = tail_temp1[1];
                   head_bt = -head_temp2[1];
                   tail_bt = -tail_temp2[1];
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -944,6 +955,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_ct = t1 + t2;
                     tail_ct = t2 - (head_ct - t1);
                   }
+#endif
                   head_temp1[1] = head_ct;
                   tail_temp1[1] = tail_ct;
                 }
@@ -1126,6 +1138,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   }
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -1153,6 +1167,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
                   head_temp1[0] = head_t1;
                   tail_temp1[0] = tail_t1;
                   /* imaginary part */
@@ -1204,6 +1219,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -1231,6 +1248,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
                   head_temp1[1] = head_t1;
                   tail_temp1[1] = tail_t1;
                 }
@@ -1321,6 +1339,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   tail_at = tail_temp1[0];
                   head_bt = -head_temp2[0];
                   tail_bt = -tail_temp2[0];
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -1348,6 +1368,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_ct = t1 + t2;
                     tail_ct = t2 - (head_ct - t1);
                   }
+#endif
                   head_temp1[0] = head_ct;
                   tail_temp1[0] = tail_ct;
                   /* Imaginary part */
@@ -1355,6 +1376,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   tail_at = tail_temp1[1];
                   head_bt = -head_temp2[1];
                   tail_bt = -tail_temp2[1];
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -1382,6 +1405,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_ct = t1 + t2;
                     tail_ct = t2 - (head_ct - t1);
                   }
+#endif
                   head_temp1[1] = head_ct;
                   tail_temp1[1] = tail_ct;
                 }
@@ -1563,6 +1587,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   }
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -1590,6 +1616,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
                   head_temp1[0] = head_t1;
                   tail_temp1[0] = tail_t1;
                   /* imaginary part */
@@ -1641,6 +1668,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -1668,6 +1697,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
                   head_temp1[1] = head_t1;
                   tail_temp1[1] = tail_t1;
                 }
@@ -1758,6 +1788,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   tail_at = tail_temp1[0];
                   head_bt = -head_temp2[0];
                   tail_bt = -tail_temp2[0];
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -1785,6 +1817,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_ct = t1 + t2;
                     tail_ct = t2 - (head_ct - t1);
                   }
+#endif
                   head_temp1[0] = head_ct;
                   tail_temp1[0] = tail_ct;
                   /* Imaginary part */
@@ -1792,6 +1825,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   tail_at = tail_temp1[1];
                   head_bt = -head_temp2[1];
                   tail_bt = -tail_temp2[1];
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -1819,6 +1854,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_ct = t1 + t2;
                     tail_ct = t2 - (head_ct - t1);
                   }
+#endif
                   head_temp1[1] = head_ct;
                   tail_temp1[1] = tail_ct;
                 }
@@ -2001,6 +2037,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   }
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -2028,6 +2066,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
                   head_temp1[0] = head_t1;
                   tail_temp1[0] = tail_t1;
                   /* imaginary part */
@@ -2079,6 +2118,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -2106,6 +2147,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
                   head_temp1[1] = head_t1;
                   tail_temp1[1] = tail_t1;
                 }
@@ -2196,6 +2238,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   tail_at = tail_temp1[0];
                   head_bt = -head_temp2[0];
                   tail_bt = -tail_temp2[0];
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -2223,6 +2267,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_ct = t1 + t2;
                     tail_ct = t2 - (head_ct - t1);
                   }
+#endif
                   head_temp1[0] = head_ct;
                   tail_temp1[0] = tail_ct;
                   /* Imaginary part */
@@ -2230,6 +2275,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   tail_at = tail_temp1[1];
                   head_bt = -head_temp2[1];
                   tail_bt = -tail_temp2[1];
+                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
+#if 0
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
@@ -2257,6 +2304,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_ct = t1 + t2;
                     tail_ct = t2 - (head_ct - t1);
                   }
+#endif
                   head_temp1[1] = head_ct;
                   tail_temp1[1] = tail_ct;
                 }

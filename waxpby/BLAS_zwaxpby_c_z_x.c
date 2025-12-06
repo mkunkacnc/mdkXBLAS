@@ -222,6 +222,8 @@ void BLAS_zwaxpby_c_z_x(int n, const void *alpha, const void *x, int incx,
 #endif
             head_t2 = -head_t2;
             tail_t2 = -tail_t2;
+            compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+#if 0
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
@@ -249,6 +251,7 @@ void BLAS_zwaxpby_c_z_x(int n, const void *alpha, const void *x, int incx,
               head_t1 = t1 + t2;
               tail_t1 = t2 - (head_t1 - t1);
             }
+#endif
             head_tmpx[0] = head_t1;
             tail_tmpx[0] = tail_t1;
             /* Imaginary part */
@@ -290,6 +293,8 @@ void BLAS_zwaxpby_c_z_x(int n, const void *alpha, const void *x, int incx,
               tail_t2 = (((a1 * b1 - head_t2) + a1 * b2) + a2 * b1) + a2 * b2;
             }
 #endif
+            compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+#if 0
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
@@ -317,6 +322,7 @@ void BLAS_zwaxpby_c_z_x(int n, const void *alpha, const void *x, int incx,
               head_t1 = t1 + t2;
               tail_t1 = t2 - (head_t1 - t1);
             }
+#endif
             head_tmpx[1] = head_t1;
             tail_tmpx[1] = tail_t1;
           }
@@ -366,6 +372,8 @@ void BLAS_zwaxpby_c_z_x(int n, const void *alpha, const void *x, int incx,
 #endif
           head_t2 = -head_t2;
           tail_t2 = -tail_t2;
+          compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+#if 0
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
@@ -393,6 +401,7 @@ void BLAS_zwaxpby_c_z_x(int n, const void *alpha, const void *x, int incx,
             head_t1 = t1 + t2;
             tail_t1 = t2 - (head_t1 - t1);
           }
+#endif
           head_tmpy[0] = head_t1;
           tail_tmpy[0] = tail_t1;
           /* Imaginary part */
@@ -434,6 +443,8 @@ void BLAS_zwaxpby_c_z_x(int n, const void *alpha, const void *x, int incx,
             tail_t2 = (((a1 * b1 - head_t2) + a1 * b2) + a2 * b1) + a2 * b2;
           }
 #endif
+          compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+#if 0
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
@@ -461,6 +472,7 @@ void BLAS_zwaxpby_c_z_x(int n, const void *alpha, const void *x, int incx,
             head_t1 = t1 + t2;
             tail_t1 = t2 - (head_t1 - t1);
           }
+#endif
           head_tmpy[1] = head_t1;
           tail_tmpy[1] = tail_t1;
         }                        /* tmpy = beta * y[iy] */
@@ -473,6 +485,8 @@ void BLAS_zwaxpby_c_z_x(int n, const void *alpha, const void *x, int incx,
           tail_a = tail_tmpy[0];
           head_b = head_tmpx[0];
           tail_b = tail_tmpx[0];
+          compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t, &tail_t, head_a, tail_a, head_b, tail_b);
+#if 0
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
@@ -500,6 +514,7 @@ void BLAS_zwaxpby_c_z_x(int n, const void *alpha, const void *x, int incx,
             head_t = t1 + t2;
             tail_t = t2 - (head_t - t1);
           }
+#endif
           head_tmpy[0] = head_t;
           tail_tmpy[0] = tail_t;
           /* Imaginary part */
@@ -507,6 +522,8 @@ void BLAS_zwaxpby_c_z_x(int n, const void *alpha, const void *x, int incx,
           tail_a = tail_tmpy[1];
           head_b = head_tmpx[1];
           tail_b = tail_tmpx[1];
+          compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t, &tail_t, head_a, tail_a, head_b, tail_b);
+#if 0
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
@@ -534,6 +551,7 @@ void BLAS_zwaxpby_c_z_x(int n, const void *alpha, const void *x, int incx,
             head_t = t1 + t2;
             tail_t = t2 - (head_t - t1);
           }
+#endif
           head_tmpy[1] = head_t;
           tail_tmpy[1] = tail_t;
         }

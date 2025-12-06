@@ -182,6 +182,8 @@ void BLAS_ddot_s_d_x(enum blas_conj_type conj, int n, double alpha,
           }
 #endif
         }                        /* prod = x[i]*y[i] */
+        compute_doubledouble_eq_doubledouble_add_doubledouble(&head_sum, &tail_sum, head_sum, tail_sum, head_prod, tail_prod);
+#if 0
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
@@ -209,6 +211,7 @@ void BLAS_ddot_s_d_x(enum blas_conj_type conj, int n, double alpha,
           head_sum = t1 + t2;
           tail_sum = t2 - (head_sum - t1);
         }                        /* sum = sum+prod */
+#endif
         ix += incx;
         iy += incy;
       }                                /* endfor */
@@ -256,6 +259,8 @@ void BLAS_ddot_s_d_x(enum blas_conj_type conj, int n, double alpha,
         tail_tmp2 = (((a1 * b1 - head_tmp2) + a1 * b2) + a2 * b1) + a2 * b2;
       }                                /* tmp2 = r*beta */
 #endif
+      compute_doubledouble_eq_doubledouble_add_doubledouble(&head_tmp1, &tail_tmp1, head_tmp1, tail_tmp1, head_tmp2, tail_tmp2);
+#if 0
       {
         /* Compute double-double = double-double + double-double. */
         double bv;
@@ -283,6 +288,7 @@ void BLAS_ddot_s_d_x(enum blas_conj_type conj, int n, double alpha,
         head_tmp1 = t1 + t2;
         tail_tmp1 = t2 - (head_tmp1 - t1);
       }                                /* tmp1 = tmp1+tmp2 */
+#endif
       *r = head_tmp1;                /* r = tmp1 */
 
       FPU_FIX_STOP;

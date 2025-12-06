@@ -336,6 +336,8 @@ void BLAS_dtpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   }
 #endif
                 }
+                compute_doubledouble_eq_doubledouble_add_doubledouble(&head_rowsum, &tail_rowsum, head_rowsum, tail_rowsum, head_rowtmp, tail_rowtmp);
+#if 0
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
@@ -363,6 +365,7 @@ void BLAS_dtpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   head_rowsum = t1 + t2;
                   tail_rowsum = t2 - (head_rowsum - t1);
                 }
+#endif
                 x_index += incx;
                 tp_index += inctp;
                 col_index++;
@@ -454,6 +457,8 @@ void BLAS_dtpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   }
 #endif
                 }
+                compute_doubledouble_eq_doubledouble_add_doubledouble(&head_rowsum, &tail_rowsum, head_rowsum, tail_rowsum, head_rowtmp, tail_rowtmp);
+#if 0
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
@@ -481,6 +486,7 @@ void BLAS_dtpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   head_rowsum = t1 + t2;
                   tail_rowsum = t2 - (head_rowsum - t1);
                 }
+#endif
                 x_index -= incx;
                 tp_index -= inctp2 * inctp;
                 inctp2--;
@@ -573,6 +579,8 @@ void BLAS_dtpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   }
 #endif
                 }
+                compute_doubledouble_eq_doubledouble_add_doubledouble(&head_rowsum, &tail_rowsum, head_rowsum, tail_rowsum, head_rowtmp, tail_rowtmp);
+#if 0
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
@@ -600,6 +608,7 @@ void BLAS_dtpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   head_rowsum = t1 + t2;
                   tail_rowsum = t2 - (head_rowsum - t1);
                 }
+#endif
                 x_index2 -= incx;
                 tp_index -= inctp;
               }
@@ -687,6 +696,8 @@ void BLAS_dtpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   }
 #endif
                 }
+                compute_doubledouble_eq_doubledouble_add_doubledouble(&head_rowsum, &tail_rowsum, head_rowsum, tail_rowsum, head_rowtmp, tail_rowtmp);
+#if 0
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
@@ -714,6 +725,7 @@ void BLAS_dtpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   head_rowsum = t1 + t2;
                   tail_rowsum = t2 - (head_rowsum - t1);
                 }
+#endif
                 stride--;
                 tp_index += stride * inctp;
                 x_index2 += incx;

@@ -552,6 +552,8 @@ void BLAS_cgbmv_s_s_x(enum blas_order_type order, enum blas_trans_type trans,
           a_elem = a_i[aij];
           head_prod = (double) x_elem *a_elem;
           tail_prod = 0.0;
+          compute_doubledouble_eq_doubledouble_add_doubledouble(&head_sum, &tail_sum, head_sum, tail_sum, head_prod, tail_prod);
+#if 0
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
@@ -579,6 +581,7 @@ void BLAS_cgbmv_s_s_x(enum blas_order_type order, enum blas_trans_type trans,
             head_sum = t1 + t2;
             tail_sum = t2 - (head_sum - t1);
           }
+#endif
           aij += incaij;
           jx += incx;
         }
