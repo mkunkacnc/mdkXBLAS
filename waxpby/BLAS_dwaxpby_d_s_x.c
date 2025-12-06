@@ -157,6 +157,8 @@ void BLAS_dwaxpby_d_s_x(int n, double alpha, const double *x, int incx,
       for (i = 0; i < n; ++i) {
         x_ii = x_i[ix];
         y_ii = y_i[iy];
+        compute_doubledouble_eq_double_mul_double(&head_tmpx, &tail_tmpx, alpha_i, x_ii);
+#if 0
         {
           /* Compute double_double = double * double. */
           double a1, a2, b1, b2, con;
@@ -173,6 +175,7 @@ void BLAS_dwaxpby_d_s_x(int n, double alpha, const double *x, int incx,
           head_tmpx = alpha_i * x_ii;
           tail_tmpx = (((a1 * b1 - head_tmpx) + a1 * b2) + a2 * b1) + a2 * b2;
         }                        /* tmpx  = alpha * x[ix] */
+#endif
         {
           double dt = (double) y_ii;
           {
