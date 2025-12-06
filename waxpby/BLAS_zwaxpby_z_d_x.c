@@ -315,6 +315,8 @@ void BLAS_zwaxpby_z_d_x(int n, const void *alpha, const void *x, int incx,
         {
           /* Compute complex-extra = complex-double * real. */
           double head_t, tail_t;
+          compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, y_ii, beta_i[0]);
+#if 0
           {
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
@@ -331,8 +333,11 @@ void BLAS_zwaxpby_z_d_x(int n, const void *alpha, const void *x, int incx,
             head_t = y_ii * beta_i[0];
             tail_t = (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) + a2 * b2;
           }
+#endif
           head_tmpy[0] = head_t;
           tail_tmpy[0] = tail_t;
+          compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, y_ii, beta_i[1]);
+#if 0
           {
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
@@ -349,6 +354,7 @@ void BLAS_zwaxpby_z_d_x(int n, const void *alpha, const void *x, int incx,
             head_t = y_ii * beta_i[1];
             tail_t = (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) + a2 * b2;
           }
+#endif
           head_tmpy[1] = head_t;
           tail_tmpy[1] = tail_t;
         }                        /* tmpy = beta * y[iy] */

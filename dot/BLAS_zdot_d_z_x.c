@@ -180,6 +180,8 @@ void BLAS_zdot_d_z_x(enum blas_conj_type conj, int n, const void *alpha,
         {
           /* Compute complex-extra = complex-double * real. */
           double head_t, tail_t;
+          compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, x_ii, y_ii[0]);
+#if 0
           {
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
@@ -196,8 +198,11 @@ void BLAS_zdot_d_z_x(enum blas_conj_type conj, int n, const void *alpha,
             head_t = x_ii * y_ii[0];
             tail_t = (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) + a2 * b2;
           }
+#endif
           head_prod[0] = head_t;
           tail_prod[0] = tail_t;
+          compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, x_ii, y_ii[1]);
+#if 0
           {
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
@@ -214,6 +219,7 @@ void BLAS_zdot_d_z_x(enum blas_conj_type conj, int n, const void *alpha,
             head_t = x_ii * y_ii[1];
             tail_t = (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) + a2 * b2;
           }
+#endif
           head_prod[1] = head_t;
           tail_prod[1] = tail_t;
         }                        /* prod = x[i]*y[i] */

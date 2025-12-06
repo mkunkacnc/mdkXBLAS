@@ -1320,6 +1320,8 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   /* Now un1/eps1*2 <= (a,b) >= ov1/16, un/eps*2 <= (c,d) >= ov/16 */
                   if (abs_c > abs_d) {
                     r = T_element[1] / T_element[0];
+                    compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, T_element[1]);
+#if 0
                     {
                       /* Compute double_double = double * double. */
                       double a1, a2, b1, b2, con;
@@ -1337,6 +1339,7 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       tail_t =
                         (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) + a2 * b2;
                     }
+#endif
                     {
                       /* Compute double-double = double-double + double. */
                       double e, t1, t2;
@@ -1692,6 +1695,8 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     tail_q[1] = tail_t2;
                   } else {
                     r = T_element[0] / T_element[1];
+                    compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, T_element[0]);
+#if 0
                     {
                       /* Compute double_double = double * double. */
                       double a1, a2, b1, b2, con;
@@ -1709,6 +1714,7 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       tail_t =
                         (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) + a2 * b2;
                     }
+#endif
                     {
                       /* Compute double-double = double-double + double. */
                       double e, t1, t2;
@@ -3029,6 +3035,8 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   /* Now un1/eps1*2 <= (a,b) >= ov1/16, un/eps*2 <= (c,d) >= ov/16 */
                   if (abs_c > abs_d) {
                     r = T_element[1] / T_element[0];
+                    compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, T_element[1]);
+#if 0
                     {
                       /* Compute double_double = double * double. */
                       double a1, a2, b1, b2, con;
@@ -3046,6 +3054,7 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       tail_t =
                         (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) + a2 * b2;
                     }
+#endif
                     {
                       /* Compute double-double = double-double + double. */
                       double e, t1, t2;
@@ -3401,6 +3410,8 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     tail_q[1] = tail_t2;
                   } else {
                     r = T_element[0] / T_element[1];
+                    compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, T_element[0]);
+#if 0
                     {
                       /* Compute double_double = double * double. */
                       double a1, a2, b1, b2, con;
@@ -3418,6 +3429,7 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       tail_t =
                         (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) + a2 * b2;
                     }
+#endif
                     {
                       /* Compute double-double = double-double + double. */
                       double e, t1, t2;
@@ -4487,6 +4499,8 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   /* Now un1/eps1*2 <= (a,b) >= ov1/16, un/eps*2 <= (c,d) >= ov/16 */
                   if (abs_c > abs_d) {
                     r = T_element[1] / T_element[0];
+                    compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, T_element[1]);
+#if 0
                     {
                       /* Compute double_double = double * double. */
                       double a1, a2, b1, b2, con;
@@ -4504,6 +4518,7 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       tail_t =
                         (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) + a2 * b2;
                     }
+#endif
                     {
                       /* Compute double-double = double-double + double. */
                       double e, t1, t2;
@@ -4859,6 +4874,8 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     tail_q[1] = tail_t2;
                   } else {
                     r = T_element[0] / T_element[1];
+                    compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, T_element[0]);
+#if 0
                     {
                       /* Compute double_double = double * double. */
                       double a1, a2, b1, b2, con;
@@ -4876,6 +4893,7 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       tail_t =
                         (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) + a2 * b2;
                     }
+#endif
                     {
                       /* Compute double-double = double-double + double. */
                       double e, t1, t2;
@@ -6196,6 +6214,8 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   /* Now un1/eps1*2 <= (a,b) >= ov1/16, un/eps*2 <= (c,d) >= ov/16 */
                   if (abs_c > abs_d) {
                     r = T_element[1] / T_element[0];
+                    compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, T_element[1]);
+#if 0
                     {
                       /* Compute double_double = double * double. */
                       double a1, a2, b1, b2, con;
@@ -6213,6 +6233,7 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       tail_t =
                         (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) + a2 * b2;
                     }
+#endif
                     {
                       /* Compute double-double = double-double + double. */
                       double e, t1, t2;
@@ -6568,6 +6589,8 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     tail_q[1] = tail_t2;
                   } else {
                     r = T_element[0] / T_element[1];
+                    compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, T_element[0]);
+#if 0
                     {
                       /* Compute double_double = double * double. */
                       double a1, a2, b1, b2, con;
@@ -6585,6 +6608,7 @@ void BLAS_ztbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       tail_t =
                         (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) + a2 * b2;
                     }
+#endif
                     {
                       /* Compute double-double = double-double + double. */
                       double e, t1, t2;
