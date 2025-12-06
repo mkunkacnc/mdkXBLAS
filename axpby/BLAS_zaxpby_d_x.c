@@ -149,6 +149,8 @@ void BLAS_zaxpby_d_x(int n, const void *alpha, const double *x, int incx,
         {
           /* Compute complex-extra = complex-double * real. */
           double head_t, tail_t;
+          compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, x_ii, alpha_i[0]);
+#if 0
           {
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
@@ -165,8 +167,11 @@ void BLAS_zaxpby_d_x(int n, const void *alpha, const double *x, int incx,
             head_t = x_ii * alpha_i[0];
             tail_t = (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) + a2 * b2;
           }
+#endif
           head_tmpx[0] = head_t;
           tail_tmpx[0] = tail_t;
+          compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, x_ii, alpha_i[1]);
+#if 0
           {
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
@@ -183,6 +188,7 @@ void BLAS_zaxpby_d_x(int n, const void *alpha, const double *x, int incx,
             head_t = x_ii * alpha_i[1];
             tail_t = (((a1 * b1 - head_t) + a1 * b2) + a2 * b1) + a2 * b2;
           }
+#endif
           head_tmpx[1] = head_t;
           tail_tmpx[1] = tail_t;
         }                        /* tmpx  = alpha * x[ix] */
@@ -191,6 +197,8 @@ void BLAS_zaxpby_d_x(int n, const void *alpha, const double *x, int incx,
           double head_t1, tail_t1;
           double head_t2, tail_t2;
           /* Real part */
+          compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, beta_i[0], y_ii[0]);
+#if 0
           {
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
@@ -207,6 +215,9 @@ void BLAS_zaxpby_d_x(int n, const void *alpha, const double *x, int incx,
             head_t1 = beta_i[0] * y_ii[0];
             tail_t1 = (((a1 * b1 - head_t1) + a1 * b2) + a2 * b1) + a2 * b2;
           }
+#endif
+          compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, beta_i[1], y_ii[1]);
+#if 0
           {
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
@@ -223,6 +234,7 @@ void BLAS_zaxpby_d_x(int n, const void *alpha, const double *x, int incx,
             head_t2 = beta_i[1] * y_ii[1];
             tail_t2 = (((a1 * b1 - head_t2) + a1 * b2) + a2 * b1) + a2 * b2;
           }
+#endif
           head_t2 = -head_t2;
           tail_t2 = -tail_t2;
           {
@@ -255,6 +267,8 @@ void BLAS_zaxpby_d_x(int n, const void *alpha, const double *x, int incx,
           head_tmpy[0] = head_t1;
           tail_tmpy[0] = tail_t1;
           /* Imaginary part */
+          compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, beta_i[1], y_ii[0]);
+#if 0
           {
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
@@ -271,6 +285,9 @@ void BLAS_zaxpby_d_x(int n, const void *alpha, const double *x, int incx,
             head_t1 = beta_i[1] * y_ii[0];
             tail_t1 = (((a1 * b1 - head_t1) + a1 * b2) + a2 * b1) + a2 * b2;
           }
+#endif
+          compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, beta_i[0], y_ii[1]);
+#if 0
           {
             /* Compute double_double = double * double. */
             double a1, a2, b1, b2, con;
@@ -287,6 +304,7 @@ void BLAS_zaxpby_d_x(int n, const void *alpha, const double *x, int incx,
             head_t2 = beta_i[0] * y_ii[1];
             tail_t2 = (((a1 * b1 - head_t2) + a1 * b2) + a2 * b1) + a2 * b2;
           }
+#endif
           {
             /* Compute double-double = double-double + double-double. */
             double bv;

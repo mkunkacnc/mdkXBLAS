@@ -15,4 +15,9 @@
 
 #include "blas_fpu.h"
 
+void compute_doubledouble_eq_double_mul_double(double* head_c,
+                                               double* tail_c,
+                                               double a,
+                                               double b);
+
 #endif /* BLAS_EXTENDED_PRIVATE_H */

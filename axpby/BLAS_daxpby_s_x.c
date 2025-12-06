@@ -1,30 +1,6 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 
-/* compute c = a * b; */
-void compute_doubledouble_eq_double_mul_double(double* head_c,
-                                               double* tail_c,
-                                               double a,
-                                               double b)
-{
-    /* Compute double_double = double * double. */
-    double a1, a2, b1, b2, con;
-
-#define SPLIT_VAR(a)    \
-    con = a * SPLIT;    \
-    a##1 = con - a;     \
-    a##1 = con - a##1;  \
-    a##2 = a - a##1;
-
-    SPLIT_VAR(a)
-    SPLIT_VAR(b)
-
-#undef SPLIT_VAR
-
-    *head_c = a * b;
-    *tail_c = (((a1 * b1 - *head_c) + a1 * b2) + a2 * b1) + a2 * b2;
-}
-
 void BLAS_daxpby_s_x(int n, double alpha, const float *x, int incx,
                      double beta, double *y,
                      int incy, enum blas_prec_type prec)
@@ -155,8 +131,7 @@ void BLAS_daxpby_s_x(int n, double alpha, const float *x, int incx,
       for (i = 0; i < n; ++i) {
         x_ii = x_i[ix];
         y_ii = y_i[iy];
-        compute_doubledouble_eq_double_mul_double(&head_tmpx, &tail_tmpx, (double)x_ii, alpha_i);
-        compute_doubledouble_eq_double_mul_double(&head_tmpy, &tail_tmpy,         y_ii, beta_i);
+        compute_doubledouble_eq_double_mul_double(&head_tmpx, &tail_tmpx, alpha_i, (double)x_ii);
 #if 0
         {
           double dt = (double) x_ii;
@@ -178,6 +153,9 @@ void BLAS_daxpby_s_x(int n, double alpha, const float *x, int incx,
               (((a1 * b1 - head_tmpx) + a1 * b2) + a2 * b1) + a2 * b2;
           }
         }                        /* tmpx  = alpha * x[ix] */
+#endif
+        compute_doubledouble_eq_double_mul_double(&head_tmpy, &tail_tmpy, beta_i, y_ii);
+#if 0
         {
           /* Compute double_double = double * double. */
           double a1, a2, b1, b2, con;
