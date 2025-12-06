@@ -56,5 +56,5 @@ void compute_doubledouble_eq_doubledouble_add_doubledouble(double* head_c,
 
   /* Renormalize (t1, t2)  */
   *head_c = t1 + t2;
-  *tail_c = t2 - (head_b - t1);
+  *tail_c = t2 - (*head_c - t1);
 }

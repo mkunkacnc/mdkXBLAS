@@ -167,6 +167,8 @@ void BLAS_daxpby_x(int n, double alpha, const double *x, int incx,
           tail_tmpy = (((a1 * b1 - head_tmpy) + a1 * b2) + a2 * b1) + a2 * b2;
         }                        /* tmpy = beta * y[iy] */
 #endif
+        compute_doubledouble_eq_doubledouble_add_doubledouble(&head_tmpy, &tail_tmpy, head_tmpy, tail_tmpy, head_tmpx, tail_tmpx);
+#if 0
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
@@ -194,6 +196,7 @@ void BLAS_daxpby_x(int n, double alpha, const double *x, int incx,
           head_tmpy = t1 + t2;
           tail_tmpy = t2 - (head_tmpy - t1);
         }
+#endif
         y_i[iy] = head_tmpy;
         ix += incx;
         iy += incy;
