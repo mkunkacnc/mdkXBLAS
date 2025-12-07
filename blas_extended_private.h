@@ -25,4 +25,9 @@ void compute_doubledouble_eq_doubledouble_add_doubledouble(double* head_c,
                                                            double tail_a,
                                                            double head_b,
                                                            double tail_b);
+double compute_double_eq_doubledouble_add_doubledouble(double head_a,
+                                                       double tail_a,
+                                                       double head_b,
+                                                       double tail_b);
+
 #endif /* BLAS_EXTENDED_PRIVATE_H */

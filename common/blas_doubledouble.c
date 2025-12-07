@@ -58,3 +58,35 @@ void compute_doubledouble_eq_doubledouble_add_doubledouble(double* head_c,
   *head_c = t1 + t2;
   *tail_c = t2 - (*head_c - t1);
 }
+
+/* compute c = a + b */
+double compute_double_eq_doubledouble_add_doubledouble(double head_a,
+                                                       double tail_a,
+                                                       double head_b,
+                                                       double tail_b)
+{
+  /* Compute double = double-double + double-double. */
+  double bv;
+  double s1, s2, t1, t2;
+
+  /* Add two hi words. */
+  s1 = head_a + head_b;
+  bv = s1 - head_a;
+  s2 = ((head_b - bv) + (head_a - (s1 - bv)));
+
+  /* Add two lo words. */
+  t1 = tail_a + tail_b;
+  bv = t1 - tail_a;
+  t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
+
+  s2 += t1;
+
+  /* Renormalize (s1, s2)  to  (t1, s2) */
+  t1 = s1 + s2;
+  s2 = s2 - (t1 - s1);
+
+  t2 += s2;
+
+  /* Renormalize (t1, t2) */
+  return t1 + t2;
+}
