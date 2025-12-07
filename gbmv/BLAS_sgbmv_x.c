@@ -588,6 +588,8 @@ void BLAS_sgbmv_x(enum blas_order_type order, enum blas_trans_type trans,
         y_elem = y_i[iy];
         head_tmp2 = (double) beta_i *y_elem;
         tail_tmp2 = 0.0;
+        result = compute_double_eq_doubledouble_add_doubledouble(head_tmp1, tail_tmp1, head_tmp2, tail_tmp2);
+#if 0
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
@@ -614,6 +616,7 @@ void BLAS_sgbmv_x(enum blas_order_type order, enum blas_trans_type trans,
           /* Renormalize (t1, t2)  */
           result = t1 + t2;
         }
+#endif
         y_i[iy] = result;
         iy += incy;
         if (i >= lbound) {
