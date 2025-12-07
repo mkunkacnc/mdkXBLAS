@@ -1247,6 +1247,8 @@ void BLAS_zgbmv_z_c_x(enum blas_order_type order, enum blas_trans_type trans,
           tail_a = tail_tmp1[0];
           head_b = head_tmp2[0];
           tail_b = tail_tmp2[0];
+          result[0] = compute_double_eq_doubledouble_add_doubledouble(head_a, tail_a, head_b, tail_b);
+#if 0
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
@@ -1273,11 +1275,14 @@ void BLAS_zgbmv_z_c_x(enum blas_order_type order, enum blas_trans_type trans,
             /* Renormalize (t1, t2)  */
             result[0] = t1 + t2;
           }
+#endif
           /* Imaginary part */
           head_a = head_tmp1[1];
           tail_a = tail_tmp1[1];
           head_b = head_tmp2[1];
           tail_b = tail_tmp2[1];
+          result[1] = compute_double_eq_doubledouble_add_doubledouble(head_a, tail_a, head_b, tail_b);
+#if 0
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
@@ -1304,6 +1309,7 @@ void BLAS_zgbmv_z_c_x(enum blas_order_type order, enum blas_trans_type trans,
             /* Renormalize (t1, t2)  */
             result[1] = t1 + t2;
           }
+#endif
         }
         y_i[iy] = result[0];
         y_i[iy + 1] = result[1];
