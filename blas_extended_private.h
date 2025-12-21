@@ -20,6 +20,12 @@ void compute_doubledouble_eq_double_mul_double(double* head_c,
                                                double a,
                                                double b);
 
+void compute_doubledouble_eq_doubledouble_mul_double(double* head_c,
+                                                     double* tail_c,
+                                                     double head_a,
+                                                     double tail_a,
+                                                     double b);
+
 void compute_doubledouble_eq_doubledouble_add_doubledouble(double* head_c,
                                                            double* tail_c,
                                                            double head_a,

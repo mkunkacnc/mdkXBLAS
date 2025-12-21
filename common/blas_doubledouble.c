@@ -24,6 +24,37 @@ void compute_doubledouble_eq_double_mul_double(double* head_c,
   *tail_c = (((a1 * b1 - *head_c) + a1 * b2) + a2 * b1) + a2 * b2;
 }
 
+/* compute c = a * b */
+void compute_doubledouble_eq_doubledouble_mul_double(double* head_t1,
+                                                     double* tail_t1,
+                                                     double head_a0,
+                                                     double tail_a0,
+                                                     double cd)
+{
+  /* Compute double-double = double-double * double. */
+  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+
+  con = head_a0 * SPLIT;
+  a11 = con - head_a0;
+  a11 = con - a11;
+  a21 = head_a0 - a11;
+
+  con = cd * SPLIT;
+  b1 = con - cd;
+  b1 = con - b1;
+  b2 = cd - b1;
+
+  c11 = head_a0 * cd;
+  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
+
+  c2 = tail_a0 * cd;
+  t1 = c11 + c2;
+  t2 = (c2 - (t1 - c11)) + c21;
+
+  *head_t1 = t1 + t2;
+  *tail_t1 = t2 - (*head_t1 - t1);
+}
+
 /* compute c = a + b */
 void compute_doubledouble_eq_doubledouble_add_doubledouble(double* head_c,
                                                            double* tail_c,
