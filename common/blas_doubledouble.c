@@ -90,3 +90,22 @@ double compute_double_eq_doubledouble_add_doubledouble(double head_a,
   /* Renormalize (t1, t2) */
   return t1 + t2;
 }
+
+/* compute c = a + b */
+void compute_doubledouble_eq_double_add_double(double* head_e1,
+                                               double* tail_e1,
+                                               double d1,
+                                               double d2)
+{
+  /* Compute double-double = double + double. */
+  double e, t1, t2;
+
+  /* Knuth trick. */
+  t1 = d1 + d2;
+  e = t1 - d1;
+  t2 = ((d2 - e) + (d1 - (t1 - e)));
+
+  /* The result is t1 + t2, after normalization. */
+  *head_e1 = t1 + t2;
+  *tail_e1 = t2 - (*head_e1 - t1);
+}

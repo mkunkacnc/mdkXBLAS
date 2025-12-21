@@ -744,6 +744,8 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
               /* Real part */
               d1 = (double) a_elem[0] * x_elem[0];
               d2 = (double) -a_elem[1] * x_elem[1];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -757,11 +759,14 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod1[0] = head_e1;
               tail_prod1[0] = tail_e1;
               /* imaginary part */
               d1 = (double) a_elem[0] * x_elem[1];
               d2 = (double) a_elem[1] * x_elem[0];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -775,6 +780,7 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod1[1] = head_e1;
               tail_prod1[1] = tail_e1;
             }
@@ -866,6 +872,8 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
               /* Real part */
               d1 = (double) a_elem[0] * x_elem[0];
               d2 = (double) -a_elem[1] * x_elem[1];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -879,11 +887,14 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod2[0] = head_e1;
               tail_prod2[0] = tail_e1;
               /* imaginary part */
               d1 = (double) a_elem[0] * x_elem[1];
               d2 = (double) a_elem[1] * x_elem[0];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -897,6 +908,7 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod2[1] = head_e1;
               tail_prod2[1] = tail_e1;
             }
@@ -1173,6 +1185,8 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
               /* Real part */
               d1 = (double) a_elem[0] * x_elem[0];
               d2 = (double) -a_elem[1] * x_elem[1];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -1186,11 +1200,14 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod1[0] = head_e1;
               tail_prod1[0] = tail_e1;
               /* imaginary part */
               d1 = (double) a_elem[0] * x_elem[1];
               d2 = (double) a_elem[1] * x_elem[0];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -1204,6 +1221,7 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod1[1] = head_e1;
               tail_prod1[1] = tail_e1;
             }
@@ -1295,6 +1313,8 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
               /* Real part */
               d1 = (double) a_elem[0] * x_elem[0];
               d2 = (double) -a_elem[1] * x_elem[1];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -1308,11 +1328,14 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod2[0] = head_e1;
               tail_prod2[0] = tail_e1;
               /* imaginary part */
               d1 = (double) a_elem[0] * x_elem[1];
               d2 = (double) a_elem[1] * x_elem[0];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -1326,6 +1349,7 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod2[1] = head_e1;
               tail_prod2[1] = tail_e1;
             }
@@ -1913,6 +1937,8 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
               /* Real part */
               d1 = (double) a_elem[0] * x_elem[0];
               d2 = (double) -a_elem[1] * x_elem[1];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -1926,11 +1952,14 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod1[0] = head_e1;
               tail_prod1[0] = tail_e1;
               /* imaginary part */
               d1 = (double) a_elem[0] * x_elem[1];
               d2 = (double) a_elem[1] * x_elem[0];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -1944,6 +1973,7 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod1[1] = head_e1;
               tail_prod1[1] = tail_e1;
             }
@@ -2035,6 +2065,8 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
               /* Real part */
               d1 = (double) a_elem[0] * x_elem[0];
               d2 = (double) -a_elem[1] * x_elem[1];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -2048,11 +2080,14 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod2[0] = head_e1;
               tail_prod2[0] = tail_e1;
               /* imaginary part */
               d1 = (double) a_elem[0] * x_elem[1];
               d2 = (double) a_elem[1] * x_elem[0];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -2066,6 +2101,7 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod2[1] = head_e1;
               tail_prod2[1] = tail_e1;
             }
@@ -2341,6 +2377,8 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
               /* Real part */
               d1 = (double) a_elem[0] * x_elem[0];
               d2 = (double) -a_elem[1] * x_elem[1];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -2354,11 +2392,14 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod1[0] = head_e1;
               tail_prod1[0] = tail_e1;
               /* imaginary part */
               d1 = (double) a_elem[0] * x_elem[1];
               d2 = (double) a_elem[1] * x_elem[0];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -2372,6 +2413,7 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod1[1] = head_e1;
               tail_prod1[1] = tail_e1;
             }
@@ -2463,6 +2505,8 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
               /* Real part */
               d1 = (double) a_elem[0] * x_elem[0];
               d2 = (double) -a_elem[1] * x_elem[1];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -2476,11 +2520,14 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod2[0] = head_e1;
               tail_prod2[0] = tail_e1;
               /* imaginary part */
               d1 = (double) a_elem[0] * x_elem[1];
               d2 = (double) a_elem[1] * x_elem[0];
+              compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+#if 0
               {
                 /* Compute double-double = double + double. */
                 double e, t1, t2;
@@ -2494,6 +2541,7 @@ void BLAS_zhemv2_c_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_e1 = t1 + t2;
                 tail_e1 = t2 - (head_e1 - t1);
               }
+#endif
               head_prod2[1] = head_e1;
               tail_prod2[1] = tail_e1;
             }
