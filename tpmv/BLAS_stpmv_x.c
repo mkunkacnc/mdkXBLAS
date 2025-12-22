@@ -469,35 +469,6 @@ void BLAS_stpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   tail_rowtmp = 0.0;
                 }
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_rowsum, &tail_rowsum, head_rowsum, tail_rowsum, head_rowtmp, tail_rowtmp);
-#if 0
-                {
-                  /* Compute double-double = double-double + double-double. */
-                  double bv;
-                  double s1, s2, t1, t2;
-
-                  /* Add two hi words. */
-                  s1 = head_rowsum + head_rowtmp;
-                  bv = s1 - head_rowsum;
-                  s2 = ((head_rowtmp - bv) + (head_rowsum - (s1 - bv)));
-
-                  /* Add two lo words. */
-                  t1 = tail_rowsum + tail_rowtmp;
-                  bv = t1 - tail_rowsum;
-                  t2 = ((tail_rowtmp - bv) + (tail_rowsum - (t1 - bv)));
-
-                  s2 += t1;
-
-                  /* Renormalize (s1, s2)  to  (t1, s2) */
-                  t1 = s1 + s2;
-                  s2 = s2 - (t1 - s1);
-
-                  t2 += s2;
-
-                  /* Renormalize (t1, t2)  */
-                  head_rowsum = t1 + t2;
-                  tail_rowsum = t2 - (head_rowsum - t1);
-                }
-#endif
                 x_index += incx;
                 tp_index += inctp;
                 col_index++;
@@ -505,31 +476,6 @@ void BLAS_stpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
               {
                 double dt = (double) alpha_i;
                 compute_doubledouble_eq_doubledouble_mul_double(&head_result, &tail_result, head_rowsum, tail_rowsum, dt);
-#if 0
-                {
-                  /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-                  con = head_rowsum * SPLIT;
-                  a11 = con - head_rowsum;
-                  a11 = con - a11;
-                  a21 = head_rowsum - a11;
-                  con = dt * SPLIT;
-                  b1 = con - dt;
-                  b1 = con - b1;
-                  b2 = dt - b1;
-
-                  c11 = head_rowsum * dt;
-                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-                  c2 = tail_rowsum * dt;
-                  t1 = c11 + c2;
-                  t2 = (c2 - (t1 - c11)) + c21;
-
-                  head_result = t1 + t2;
-                  tail_result = t2 - (head_result - t1);
-                }
-#endif
               }
               x_i[x_index2] = head_result;
             }
@@ -558,35 +504,6 @@ void BLAS_stpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   tail_rowtmp = 0.0;
                 }
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_rowsum, &tail_rowsum, head_rowsum, tail_rowsum, head_rowtmp, tail_rowtmp);
-#if 0
-                {
-                  /* Compute double-double = double-double + double-double. */
-                  double bv;
-                  double s1, s2, t1, t2;
-
-                  /* Add two hi words. */
-                  s1 = head_rowsum + head_rowtmp;
-                  bv = s1 - head_rowsum;
-                  s2 = ((head_rowtmp - bv) + (head_rowsum - (s1 - bv)));
-
-                  /* Add two lo words. */
-                  t1 = tail_rowsum + tail_rowtmp;
-                  bv = t1 - tail_rowsum;
-                  t2 = ((tail_rowtmp - bv) + (tail_rowsum - (t1 - bv)));
-
-                  s2 += t1;
-
-                  /* Renormalize (s1, s2)  to  (t1, s2) */
-                  t1 = s1 + s2;
-                  s2 = s2 - (t1 - s1);
-
-                  t2 += s2;
-
-                  /* Renormalize (t1, t2)  */
-                  head_rowsum = t1 + t2;
-                  tail_rowsum = t2 - (head_rowsum - t1);
-                }
-#endif
                 x_index -= incx;
                 tp_index -= inctp2 * inctp;
                 inctp2--;
@@ -595,31 +512,6 @@ void BLAS_stpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
               {
                 double dt = (double) alpha_i;
                 compute_doubledouble_eq_doubledouble_mul_double(&head_result, &tail_result, head_rowsum, tail_rowsum, dt);
-#if 0
-                {
-                  /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-                  con = head_rowsum * SPLIT;
-                  a11 = con - head_rowsum;
-                  a11 = con - a11;
-                  a21 = head_rowsum - a11;
-                  con = dt * SPLIT;
-                  b1 = con - dt;
-                  b1 = con - b1;
-                  b2 = dt - b1;
-
-                  c11 = head_rowsum * dt;
-                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-                  c2 = tail_rowsum * dt;
-                  t1 = c11 + c2;
-                  t2 = (c2 - (t1 - c11)) + c21;
-
-                  head_result = t1 + t2;
-                  tail_result = t2 - (head_result - t1);
-                }
-#endif
               }
               x_i[x_index2] = head_result;
               x_index2 += incx;
@@ -648,66 +540,12 @@ void BLAS_stpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   tail_rowtmp = 0.0;
                 }
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_rowsum, &tail_rowsum, head_rowsum, tail_rowsum, head_rowtmp, tail_rowtmp);
-#if 0
-                {
-                  /* Compute double-double = double-double + double-double. */
-                  double bv;
-                  double s1, s2, t1, t2;
-
-                  /* Add two hi words. */
-                  s1 = head_rowsum + head_rowtmp;
-                  bv = s1 - head_rowsum;
-                  s2 = ((head_rowtmp - bv) + (head_rowsum - (s1 - bv)));
-
-                  /* Add two lo words. */
-                  t1 = tail_rowsum + tail_rowtmp;
-                  bv = t1 - tail_rowsum;
-                  t2 = ((tail_rowtmp - bv) + (tail_rowsum - (t1 - bv)));
-
-                  s2 += t1;
-
-                  /* Renormalize (s1, s2)  to  (t1, s2) */
-                  t1 = s1 + s2;
-                  s2 = s2 - (t1 - s1);
-
-                  t2 += s2;
-
-                  /* Renormalize (t1, t2)  */
-                  head_rowsum = t1 + t2;
-                  tail_rowsum = t2 - (head_rowsum - t1);
-                }
-#endif
                 x_index2 -= incx;
                 tp_index -= inctp;
               }
               {
                 double dt = (double) alpha_i;
                 compute_doubledouble_eq_doubledouble_mul_double(&head_result, &tail_result, head_rowsum, tail_rowsum, dt);
-#if 0
-                {
-                  /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-                  con = head_rowsum * SPLIT;
-                  a11 = con - head_rowsum;
-                  a11 = con - a11;
-                  a21 = head_rowsum - a11;
-                  con = dt * SPLIT;
-                  b1 = con - dt;
-                  b1 = con - b1;
-                  b2 = dt - b1;
-
-                  c11 = head_rowsum * dt;
-                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-                  c2 = tail_rowsum * dt;
-                  t1 = c11 + c2;
-                  t2 = (c2 - (t1 - c11)) + c21;
-
-                  head_result = t1 + t2;
-                  tail_result = t2 - (head_result - t1);
-                }
-#endif
               }
               x_i[x_index] = head_result;
               x_index -= incx;
@@ -733,35 +571,6 @@ void BLAS_stpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   tail_rowtmp = 0.0;
                 }
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_rowsum, &tail_rowsum, head_rowsum, tail_rowsum, head_rowtmp, tail_rowtmp);
-#if 0
-                {
-                  /* Compute double-double = double-double + double-double. */
-                  double bv;
-                  double s1, s2, t1, t2;
-
-                  /* Add two hi words. */
-                  s1 = head_rowsum + head_rowtmp;
-                  bv = s1 - head_rowsum;
-                  s2 = ((head_rowtmp - bv) + (head_rowsum - (s1 - bv)));
-
-                  /* Add two lo words. */
-                  t1 = tail_rowsum + tail_rowtmp;
-                  bv = t1 - tail_rowsum;
-                  t2 = ((tail_rowtmp - bv) + (tail_rowsum - (t1 - bv)));
-
-                  s2 += t1;
-
-                  /* Renormalize (s1, s2)  to  (t1, s2) */
-                  t1 = s1 + s2;
-                  s2 = s2 - (t1 - s1);
-
-                  t2 += s2;
-
-                  /* Renormalize (t1, t2)  */
-                  head_rowsum = t1 + t2;
-                  tail_rowsum = t2 - (head_rowsum - t1);
-                }
-#endif
                 stride--;
                 tp_index += stride * inctp;
                 x_index2 += incx;
@@ -769,31 +578,6 @@ void BLAS_stpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
               {
                 double dt = (double) alpha_i;
                 compute_doubledouble_eq_doubledouble_mul_double(&head_result, &tail_result, head_rowsum, tail_rowsum, dt);
-#if 0
-                {
-                  /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-                  con = head_rowsum * SPLIT;
-                  a11 = con - head_rowsum;
-                  a11 = con - a11;
-                  a21 = head_rowsum - a11;
-                  con = dt * SPLIT;
-                  b1 = con - dt;
-                  b1 = con - b1;
-                  b2 = dt - b1;
-
-                  c11 = head_rowsum * dt;
-                  c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-                  c2 = tail_rowsum * dt;
-                  t1 = c11 + c2;
-                  t2 = (c2 - (t1 - c11)) + c21;
-
-                  head_result = t1 + t2;
-                  tail_result = t2 - (head_result - t1);
-                }
-#endif
               }
               x_i[x_index] = head_result;
               x_index -= incx;

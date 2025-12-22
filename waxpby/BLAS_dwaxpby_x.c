@@ -158,73 +158,8 @@ void BLAS_dwaxpby_x(int n, double alpha, const double *x, int incx,
         x_ii = x_i[ix];
         y_ii = y_i[iy];
         compute_doubledouble_eq_double_mul_double(&head_tmpx, &tail_tmpx, alpha_i, x_ii);
-#if 0
-        {
-          /* Compute double_double = double * double. */
-          double a1, a2, b1, b2, con;
-
-          con = alpha_i * SPLIT;
-          a1 = con - alpha_i;
-          a1 = con - a1;
-          a2 = alpha_i - a1;
-          con = x_ii * SPLIT;
-          b1 = con - x_ii;
-          b1 = con - b1;
-          b2 = x_ii - b1;
-
-          head_tmpx = alpha_i * x_ii;
-          tail_tmpx = (((a1 * b1 - head_tmpx) + a1 * b2) + a2 * b1) + a2 * b2;
-        }                        /* tmpx  = alpha * x[ix] */
-#endif
         compute_doubledouble_eq_double_mul_double(&head_tmpy, &tail_tmpy, beta_i, y_ii);
-#if 0
-        {
-          /* Compute double_double = double * double. */
-          double a1, a2, b1, b2, con;
-
-          con = beta_i * SPLIT;
-          a1 = con - beta_i;
-          a1 = con - a1;
-          a2 = beta_i - a1;
-          con = y_ii * SPLIT;
-          b1 = con - y_ii;
-          b1 = con - b1;
-          b2 = y_ii - b1;
-
-          head_tmpy = beta_i * y_ii;
-          tail_tmpy = (((a1 * b1 - head_tmpy) + a1 * b2) + a2 * b1) + a2 * b2;
-        }                        /* tmpy = beta * y[iy] */
-#endif
         compute_doubledouble_eq_doubledouble_add_doubledouble(&head_tmpy, &tail_tmpy, head_tmpy, tail_tmpy, head_tmpx, tail_tmpx);
-#if 0
-        {
-          /* Compute double-double = double-double + double-double. */
-          double bv;
-          double s1, s2, t1, t2;
-
-          /* Add two hi words. */
-          s1 = head_tmpy + head_tmpx;
-          bv = s1 - head_tmpy;
-          s2 = ((head_tmpx - bv) + (head_tmpy - (s1 - bv)));
-
-          /* Add two lo words. */
-          t1 = tail_tmpy + tail_tmpx;
-          bv = t1 - tail_tmpy;
-          t2 = ((tail_tmpx - bv) + (tail_tmpy - (t1 - bv)));
-
-          s2 += t1;
-
-          /* Renormalize (s1, s2)  to  (t1, s2) */
-          t1 = s1 + s2;
-          s2 = s2 - (t1 - s1);
-
-          t2 += s2;
-
-          /* Renormalize (t1, t2)  */
-          head_tmpy = t1 + t2;
-          tail_tmpy = t2 - (head_tmpy - t1);
-        }
-#endif
         w_i[iw] = head_tmpy;
         ix += incx;
         iy += incy;

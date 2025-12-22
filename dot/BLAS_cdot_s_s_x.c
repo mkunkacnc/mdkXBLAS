@@ -244,35 +244,6 @@ void BLAS_cdot_s_s_x(enum blas_conj_type conj, int n, const void *alpha,
         head_prod = (double) x_ii *y_ii;
         tail_prod = 0.0;        /* prod = x[i]*y[i] */
         compute_doubledouble_eq_doubledouble_add_doubledouble(&head_sum, &tail_sum, head_sum, tail_sum, head_prod, tail_prod);
-#if 0
-        {
-          /* Compute double-double = double-double + double-double. */
-          double bv;
-          double s1, s2, t1, t2;
-
-          /* Add two hi words. */
-          s1 = head_sum + head_prod;
-          bv = s1 - head_sum;
-          s2 = ((head_prod - bv) + (head_sum - (s1 - bv)));
-
-          /* Add two lo words. */
-          t1 = tail_sum + tail_prod;
-          bv = t1 - tail_sum;
-          t2 = ((tail_prod - bv) + (tail_sum - (t1 - bv)));
-
-          s2 += t1;
-
-          /* Renormalize (s1, s2)  to  (t1, s2) */
-          t1 = s1 + s2;
-          s2 = s2 - (t1 - s1);
-
-          t2 += s2;
-
-          /* Renormalize (t1, t2)  */
-          head_sum = t1 + t2;
-          tail_sum = t2 - (head_sum - t1);
-        }                        /* sum = sum+prod */
-#endif
         ix += incx;
         iy += incy;
       }                                /* endfor */
@@ -283,60 +254,10 @@ void BLAS_cdot_s_s_x(enum blas_conj_type conj, int n, const void *alpha,
         double dt;
         dt = (double) alpha_i[0];
         compute_doubledouble_eq_doubledouble_mul_double(&head_e1, &tail_e1, head_sum, tail_sum, dt);
-#if 0
-        {
-          /* Compute double-double = double-double * double. */
-          double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-          con = head_sum * SPLIT;
-          a11 = con - head_sum;
-          a11 = con - a11;
-          a21 = head_sum - a11;
-          con = dt * SPLIT;
-          b1 = con - dt;
-          b1 = con - b1;
-          b2 = dt - b1;
-
-          c11 = head_sum * dt;
-          c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-          c2 = tail_sum * dt;
-          t1 = c11 + c2;
-          t2 = (c2 - (t1 - c11)) + c21;
-
-          head_e1 = t1 + t2;
-          tail_e1 = t2 - (head_e1 - t1);
-        }
-#endif
         head_tmp1[0] = head_e1;
         tail_tmp1[0] = tail_e1;
         dt = (double) alpha_i[1];
         compute_doubledouble_eq_doubledouble_mul_double(&head_e1, &tail_e1, head_sum, tail_sum, dt);
-#if 0
-        {
-          /* Compute double-double = double-double * double. */
-          double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-          con = head_sum * SPLIT;
-          a11 = con - head_sum;
-          a11 = con - a11;
-          a21 = head_sum - a11;
-          con = dt * SPLIT;
-          b1 = con - dt;
-          b1 = con - b1;
-          b2 = dt - b1;
-
-          c11 = head_sum * dt;
-          c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-          c2 = tail_sum * dt;
-          t1 = c11 + c2;
-          t2 = (c2 - (t1 - c11)) + c21;
-
-          head_e1 = t1 + t2;
-          tail_e1 = t2 - (head_e1 - t1);
-        }
-#endif
         head_tmp1[1] = head_e1;
         tail_tmp1[1] = tail_e1;
       }                                /* tmp1 = sum*alpha */
@@ -348,42 +269,12 @@ void BLAS_cdot_s_s_x(enum blas_conj_type conj, int n, const void *alpha,
         d1 = (double) r_v[0] * beta_i[0];
         d2 = (double) -r_v[1] * beta_i[1];
         compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
-#if 0
-        {
-          /* Compute double-double = double + double. */
-          double e, t1, t2;
-
-          /* Knuth trick. */
-          t1 = d1 + d2;
-          e = t1 - d1;
-          t2 = ((d2 - e) + (d1 - (t1 - e)));
-
-          /* The result is t1 + t2, after normalization. */
-          head_e1 = t1 + t2;
-          tail_e1 = t2 - (head_e1 - t1);
-        }
-#endif
         head_tmp2[0] = head_e1;
         tail_tmp2[0] = tail_e1;
         /* imaginary part */
         d1 = (double) r_v[0] * beta_i[1];
         d2 = (double) r_v[1] * beta_i[0];
         compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
-#if 0
-        {
-          /* Compute double-double = double + double. */
-          double e, t1, t2;
-
-          /* Knuth trick. */
-          t1 = d1 + d2;
-          e = t1 - d1;
-          t2 = ((d2 - e) + (d1 - (t1 - e)));
-
-          /* The result is t1 + t2, after normalization. */
-          head_e1 = t1 + t2;
-          tail_e1 = t2 - (head_e1 - t1);
-        }
-#endif
         head_tmp2[1] = head_e1;
         tail_tmp2[1] = tail_e1;
       }                                /* tmp2 = r*beta */
@@ -397,35 +288,6 @@ void BLAS_cdot_s_s_x(enum blas_conj_type conj, int n, const void *alpha,
         head_b = head_tmp2[0];
         tail_b = tail_tmp2[0];
         compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t, &tail_t, head_a, tail_a, head_b, tail_b);
-#if 0
-        {
-          /* Compute double-double = double-double + double-double. */
-          double bv;
-          double s1, s2, t1, t2;
-
-          /* Add two hi words. */
-          s1 = head_a + head_b;
-          bv = s1 - head_a;
-          s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-          /* Add two lo words. */
-          t1 = tail_a + tail_b;
-          bv = t1 - tail_a;
-          t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-          s2 += t1;
-
-          /* Renormalize (s1, s2)  to  (t1, s2) */
-          t1 = s1 + s2;
-          s2 = s2 - (t1 - s1);
-
-          t2 += s2;
-
-          /* Renormalize (t1, t2)  */
-          head_t = t1 + t2;
-          tail_t = t2 - (head_t - t1);
-        }
-#endif
         head_tmp1[0] = head_t;
         tail_tmp1[0] = tail_t;
         /* Imaginary part */
@@ -434,35 +296,6 @@ void BLAS_cdot_s_s_x(enum blas_conj_type conj, int n, const void *alpha,
         head_b = head_tmp2[1];
         tail_b = tail_tmp2[1];
         compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t, &tail_t, head_a, tail_a, head_b, tail_b);
-#if 0
-        {
-          /* Compute double-double = double-double + double-double. */
-          double bv;
-          double s1, s2, t1, t2;
-
-          /* Add two hi words. */
-          s1 = head_a + head_b;
-          bv = s1 - head_a;
-          s2 = ((head_b - bv) + (head_a - (s1 - bv)));
-
-          /* Add two lo words. */
-          t1 = tail_a + tail_b;
-          bv = t1 - tail_a;
-          t2 = ((tail_b - bv) + (tail_a - (t1 - bv)));
-
-          s2 += t1;
-
-          /* Renormalize (s1, s2)  to  (t1, s2) */
-          t1 = s1 + s2;
-          s2 = s2 - (t1 - s1);
-
-          t2 += s2;
-
-          /* Renormalize (t1, t2)  */
-          head_t = t1 + t2;
-          tail_t = t2 - (head_t - t1);
-        }
-#endif
         head_tmp1[1] = head_t;
         tail_tmp1[1] = tail_t;
       }                                /* tmp1 = tmp1+tmp2 */

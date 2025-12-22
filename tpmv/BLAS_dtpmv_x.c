@@ -292,110 +292,16 @@ void BLAS_dtpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 vecval = x_i[x_index];
                 if ((diag == blas_unit_diag) && (col_index == matrix_row)) {
                   compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, vecval, one);
-#if 0
-                  {
-                    /* Compute double_double = double * double. */
-                    double a1, a2, b1, b2, con;
-
-                    con = vecval * SPLIT;
-                    a1 = con - vecval;
-                    a1 = con - a1;
-                    a2 = vecval - a1;
-                    con = one * SPLIT;
-                    b1 = con - one;
-                    b1 = con - b1;
-                    b2 = one - b1;
-
-                    head_rowtmp = vecval * one;
-                    tail_rowtmp =
-                      (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
-                      a2 * b2;
-                  }
-#endif
                 } else {
                   matval = tp_i[tp_index];
                   compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, matval, vecval);
-#if 0
-                  {
-                    /* Compute double_double = double * double. */
-                    double a1, a2, b1, b2, con;
-
-                    con = matval * SPLIT;
-                    a1 = con - matval;
-                    a1 = con - a1;
-                    a2 = matval - a1;
-                    con = vecval * SPLIT;
-                    b1 = con - vecval;
-                    b1 = con - b1;
-                    b2 = vecval - b1;
-
-                    head_rowtmp = matval * vecval;
-                    tail_rowtmp =
-                      (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
-                      a2 * b2;
-                  }
-#endif
                 }
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_rowsum, &tail_rowsum, head_rowsum, tail_rowsum, head_rowtmp, tail_rowtmp);
-#if 0
-                {
-                  /* Compute double-double = double-double + double-double. */
-                  double bv;
-                  double s1, s2, t1, t2;
-
-                  /* Add two hi words. */
-                  s1 = head_rowsum + head_rowtmp;
-                  bv = s1 - head_rowsum;
-                  s2 = ((head_rowtmp - bv) + (head_rowsum - (s1 - bv)));
-
-                  /* Add two lo words. */
-                  t1 = tail_rowsum + tail_rowtmp;
-                  bv = t1 - tail_rowsum;
-                  t2 = ((tail_rowtmp - bv) + (tail_rowsum - (t1 - bv)));
-
-                  s2 += t1;
-
-                  /* Renormalize (s1, s2)  to  (t1, s2) */
-                  t1 = s1 + s2;
-                  s2 = s2 - (t1 - s1);
-
-                  t2 += s2;
-
-                  /* Renormalize (t1, t2)  */
-                  head_rowsum = t1 + t2;
-                  tail_rowsum = t2 - (head_rowsum - t1);
-                }
-#endif
                 x_index += incx;
                 tp_index += inctp;
                 col_index++;
               }
               compute_doubledouble_eq_doubledouble_mul_double(&head_result, &tail_result, head_rowsum, tail_rowsum, alpha_i);
-#if 0
-              {
-                /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-                con = head_rowsum * SPLIT;
-                a11 = con - head_rowsum;
-                a11 = con - a11;
-                a21 = head_rowsum - a11;
-                con = alpha_i * SPLIT;
-                b1 = con - alpha_i;
-                b1 = con - b1;
-                b2 = alpha_i - b1;
-
-                c11 = head_rowsum * alpha_i;
-                c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-                c2 = tail_rowsum * alpha_i;
-                t1 = c11 + c2;
-                t2 = (c2 - (t1 - c11)) + c21;
-
-                head_result = t1 + t2;
-                tail_result = t2 - (head_result - t1);
-              }
-#endif
               x_i[x_index2] = head_result;
             }
           } else if ((uplo == blas_upper &&
@@ -416,111 +322,17 @@ void BLAS_dtpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 vecval = x_i[x_index];
                 if ((diag == blas_unit_diag) && (col_index == 0)) {
                   compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, vecval, one);
-#if 0
-                  {
-                    /* Compute double_double = double * double. */
-                    double a1, a2, b1, b2, con;
-
-                    con = vecval * SPLIT;
-                    a1 = con - vecval;
-                    a1 = con - a1;
-                    a2 = vecval - a1;
-                    con = one * SPLIT;
-                    b1 = con - one;
-                    b1 = con - b1;
-                    b2 = one - b1;
-
-                    head_rowtmp = vecval * one;
-                    tail_rowtmp =
-                      (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
-                      a2 * b2;
-                  }
-#endif
                 } else {
                   matval = tp_i[tp_index];
                   compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, matval, vecval);
-#if 0
-                  {
-                    /* Compute double_double = double * double. */
-                    double a1, a2, b1, b2, con;
-
-                    con = matval * SPLIT;
-                    a1 = con - matval;
-                    a1 = con - a1;
-                    a2 = matval - a1;
-                    con = vecval * SPLIT;
-                    b1 = con - vecval;
-                    b1 = con - b1;
-                    b2 = vecval - b1;
-
-                    head_rowtmp = matval * vecval;
-                    tail_rowtmp =
-                      (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
-                      a2 * b2;
-                  }
-#endif
                 }
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_rowsum, &tail_rowsum, head_rowsum, tail_rowsum, head_rowtmp, tail_rowtmp);
-#if 0
-                {
-                  /* Compute double-double = double-double + double-double. */
-                  double bv;
-                  double s1, s2, t1, t2;
-
-                  /* Add two hi words. */
-                  s1 = head_rowsum + head_rowtmp;
-                  bv = s1 - head_rowsum;
-                  s2 = ((head_rowtmp - bv) + (head_rowsum - (s1 - bv)));
-
-                  /* Add two lo words. */
-                  t1 = tail_rowsum + tail_rowtmp;
-                  bv = t1 - tail_rowsum;
-                  t2 = ((tail_rowtmp - bv) + (tail_rowsum - (t1 - bv)));
-
-                  s2 += t1;
-
-                  /* Renormalize (s1, s2)  to  (t1, s2) */
-                  t1 = s1 + s2;
-                  s2 = s2 - (t1 - s1);
-
-                  t2 += s2;
-
-                  /* Renormalize (t1, t2)  */
-                  head_rowsum = t1 + t2;
-                  tail_rowsum = t2 - (head_rowsum - t1);
-                }
-#endif
                 x_index -= incx;
                 tp_index -= inctp2 * inctp;
                 inctp2--;
                 col_index--;
               }
               compute_doubledouble_eq_doubledouble_mul_double(&head_result, &tail_result, head_rowsum, tail_rowsum, alpha_i);
-#if 0
-              {
-                /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-                con = head_rowsum * SPLIT;
-                a11 = con - head_rowsum;
-                a11 = con - a11;
-                a21 = head_rowsum - a11;
-                con = alpha_i * SPLIT;
-                b1 = con - alpha_i;
-                b1 = con - b1;
-                b2 = alpha_i - b1;
-
-                c11 = head_rowsum * alpha_i;
-                c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-                c2 = tail_rowsum * alpha_i;
-                t1 = c11 + c2;
-                t2 = (c2 - (t1 - c11)) + c21;
-
-                head_result = t1 + t2;
-                tail_result = t2 - (head_result - t1);
-              }
-#endif
               x_i[x_index2] = head_result;
               x_index2 += incx;
             }
@@ -541,109 +353,15 @@ void BLAS_dtpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 vecval = x_i[x_index2];
                 if ((diag == blas_unit_diag) && (step == 0)) {
                   compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, vecval, one);
-#if 0
-                  {
-                    /* Compute double_double = double * double. */
-                    double a1, a2, b1, b2, con;
-
-                    con = vecval * SPLIT;
-                    a1 = con - vecval;
-                    a1 = con - a1;
-                    a2 = vecval - a1;
-                    con = one * SPLIT;
-                    b1 = con - one;
-                    b1 = con - b1;
-                    b2 = one - b1;
-
-                    head_rowtmp = vecval * one;
-                    tail_rowtmp =
-                      (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
-                      a2 * b2;
-                  }
-#endif
                 } else {
                   matval = tp_i[tp_index];
                   compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, matval, vecval);
-#if 0
-                  {
-                    /* Compute double_double = double * double. */
-                    double a1, a2, b1, b2, con;
-
-                    con = matval * SPLIT;
-                    a1 = con - matval;
-                    a1 = con - a1;
-                    a2 = matval - a1;
-                    con = vecval * SPLIT;
-                    b1 = con - vecval;
-                    b1 = con - b1;
-                    b2 = vecval - b1;
-
-                    head_rowtmp = matval * vecval;
-                    tail_rowtmp =
-                      (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
-                      a2 * b2;
-                  }
-#endif
                 }
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_rowsum, &tail_rowsum, head_rowsum, tail_rowsum, head_rowtmp, tail_rowtmp);
-#if 0
-                {
-                  /* Compute double-double = double-double + double-double. */
-                  double bv;
-                  double s1, s2, t1, t2;
-
-                  /* Add two hi words. */
-                  s1 = head_rowsum + head_rowtmp;
-                  bv = s1 - head_rowsum;
-                  s2 = ((head_rowtmp - bv) + (head_rowsum - (s1 - bv)));
-
-                  /* Add two lo words. */
-                  t1 = tail_rowsum + tail_rowtmp;
-                  bv = t1 - tail_rowsum;
-                  t2 = ((tail_rowtmp - bv) + (tail_rowsum - (t1 - bv)));
-
-                  s2 += t1;
-
-                  /* Renormalize (s1, s2)  to  (t1, s2) */
-                  t1 = s1 + s2;
-                  s2 = s2 - (t1 - s1);
-
-                  t2 += s2;
-
-                  /* Renormalize (t1, t2)  */
-                  head_rowsum = t1 + t2;
-                  tail_rowsum = t2 - (head_rowsum - t1);
-                }
-#endif
                 x_index2 -= incx;
                 tp_index -= inctp;
               }
               compute_doubledouble_eq_doubledouble_mul_double(&head_result, &tail_result, head_rowsum, tail_rowsum, alpha_i);
-#if 0
-              {
-                /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-                con = head_rowsum * SPLIT;
-                a11 = con - head_rowsum;
-                a11 = con - a11;
-                a21 = head_rowsum - a11;
-                con = alpha_i * SPLIT;
-                b1 = con - alpha_i;
-                b1 = con - b1;
-                b2 = alpha_i - b1;
-
-                c11 = head_rowsum * alpha_i;
-                c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-                c2 = tail_rowsum * alpha_i;
-                t1 = c11 + c2;
-                t2 = (c2 - (t1 - c11)) + c21;
-
-                head_result = t1 + t2;
-                tail_result = t2 - (head_result - t1);
-              }
-#endif
               x_i[x_index] = head_result;
               x_index -= incx;
             }
@@ -661,110 +379,16 @@ void BLAS_dtpmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 vecval = x_i[x_index2];
                 if ((diag == blas_unit_diag) && (step == matrix_row)) {
                   compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, vecval, one);
-#if 0
-                  {
-                    /* Compute double_double = double * double. */
-                    double a1, a2, b1, b2, con;
-
-                    con = vecval * SPLIT;
-                    a1 = con - vecval;
-                    a1 = con - a1;
-                    a2 = vecval - a1;
-                    con = one * SPLIT;
-                    b1 = con - one;
-                    b1 = con - b1;
-                    b2 = one - b1;
-
-                    head_rowtmp = vecval * one;
-                    tail_rowtmp =
-                      (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
-                      a2 * b2;
-                  }
-#endif
                 } else {
                   matval = tp_i[tp_index];
                   compute_doubledouble_eq_double_mul_double(&head_rowtmp, &tail_rowtmp, matval, vecval);
-#if 0
-                  {
-                    /* Compute double_double = double * double. */
-                    double a1, a2, b1, b2, con;
-
-                    con = matval * SPLIT;
-                    a1 = con - matval;
-                    a1 = con - a1;
-                    a2 = matval - a1;
-                    con = vecval * SPLIT;
-                    b1 = con - vecval;
-                    b1 = con - b1;
-                    b2 = vecval - b1;
-
-                    head_rowtmp = matval * vecval;
-                    tail_rowtmp =
-                      (((a1 * b1 - head_rowtmp) + a1 * b2) + a2 * b1) +
-                      a2 * b2;
-                  }
-#endif
                 }
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_rowsum, &tail_rowsum, head_rowsum, tail_rowsum, head_rowtmp, tail_rowtmp);
-#if 0
-                {
-                  /* Compute double-double = double-double + double-double. */
-                  double bv;
-                  double s1, s2, t1, t2;
-
-                  /* Add two hi words. */
-                  s1 = head_rowsum + head_rowtmp;
-                  bv = s1 - head_rowsum;
-                  s2 = ((head_rowtmp - bv) + (head_rowsum - (s1 - bv)));
-
-                  /* Add two lo words. */
-                  t1 = tail_rowsum + tail_rowtmp;
-                  bv = t1 - tail_rowsum;
-                  t2 = ((tail_rowtmp - bv) + (tail_rowsum - (t1 - bv)));
-
-                  s2 += t1;
-
-                  /* Renormalize (s1, s2)  to  (t1, s2) */
-                  t1 = s1 + s2;
-                  s2 = s2 - (t1 - s1);
-
-                  t2 += s2;
-
-                  /* Renormalize (t1, t2)  */
-                  head_rowsum = t1 + t2;
-                  tail_rowsum = t2 - (head_rowsum - t1);
-                }
-#endif
                 stride--;
                 tp_index += stride * inctp;
                 x_index2 += incx;
               }
               compute_doubledouble_eq_doubledouble_mul_double(&head_result, &tail_result, head_rowsum, tail_rowsum, alpha_i);
-#if 0
-              {
-                /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
-
-                con = head_rowsum * SPLIT;
-                a11 = con - head_rowsum;
-                a11 = con - a11;
-                a21 = head_rowsum - a11;
-                con = alpha_i * SPLIT;
-                b1 = con - alpha_i;
-                b1 = con - b1;
-                b2 = alpha_i - b1;
-
-                c11 = head_rowsum * alpha_i;
-                c21 = (((a11 * b1 - c11) + a11 * b2) + a21 * b1) + a21 * b2;
-
-                c2 = tail_rowsum * alpha_i;
-                t1 = c11 + c2;
-                t2 = (c2 - (t1 - c11)) + c21;
-
-                head_result = t1 + t2;
-                tail_result = t2 - (head_result - t1);
-              }
-#endif
               x_i[x_index] = head_result;
               x_index -= incx;
             }
