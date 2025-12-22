@@ -515,21 +515,6 @@ void BLAS_strmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
             {
               double dt = (double) x_elem;
               compute_doubledouble_eq_doubledouble_add_double(&head_sum, &tail_sum, head_sum, tail_sum, dt);
-#if 0
-              {
-                /* Compute double-double = double-double + double. */
-                double e, t1, t2;
-
-                /* Knuth trick. */
-                t1 = head_sum + dt;
-                e = t1 - head_sum;
-                t2 = ((dt - e) + (head_sum - (t1 - e))) + tail_sum;
-
-                /* The result is t1 + t2, after normalization. */
-                head_sum = t1 + t2;
-                tail_sum = t2 - (head_sum - t1);
-              };
-#endif
             }
 
             if (alpha_i == 1.0) {

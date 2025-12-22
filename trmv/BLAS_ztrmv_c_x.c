@@ -552,41 +552,11 @@ void BLAS_ztrmv_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_a = head_sum[0];
                 tail_a = tail_sum[0];
                 compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_a, tail_a, x_elem[0]);
-#if 0
-                {
-                  /* Compute double-double = double-double + double. */
-                  double e, t1, t2;
-
-                  /* Knuth trick. */
-                  t1 = head_a + x_elem[0];
-                  e = t1 - head_a;
-                  t2 = ((x_elem[0] - e) + (head_a - (t1 - e))) + tail_a;
-
-                  /* The result is t1 + t2, after normalization. */
-                  head_t = t1 + t2;
-                  tail_t = t2 - (head_t - t1);
-                }
-#endif
                 head_sum[0] = head_t;
                 tail_sum[0] = tail_t;
                 head_a = head_sum[1];
                 tail_a = tail_sum[1];
                 compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_a, tail_a, x_elem[1]);
-#if 0
-                {
-                  /* Compute double-double = double-double + double. */
-                  double e, t1, t2;
-
-                  /* Knuth trick. */
-                  t1 = head_a + x_elem[1];
-                  e = t1 - head_a;
-                  t2 = ((x_elem[1] - e) + (head_a - (t1 - e))) + tail_a;
-
-                  /* The result is t1 + t2, after normalization. */
-                  head_t = t1 + t2;
-                  tail_t = t2 - (head_t - t1);
-                }
-#endif
                 head_sum[1] = head_t;
                 tail_sum[1] = tail_t;
               }
@@ -704,41 +674,11 @@ void BLAS_ztrmv_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 head_a = head_sum[0];
                 tail_a = tail_sum[0];
                 compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_a, tail_a, x_elem[0]);
-#if 0
-                {
-                  /* Compute double-double = double-double + double. */
-                  double e, t1, t2;
-
-                  /* Knuth trick. */
-                  t1 = head_a + x_elem[0];
-                  e = t1 - head_a;
-                  t2 = ((x_elem[0] - e) + (head_a - (t1 - e))) + tail_a;
-
-                  /* The result is t1 + t2, after normalization. */
-                  head_t = t1 + t2;
-                  tail_t = t2 - (head_t - t1);
-                }
-#endif
                 head_sum[0] = head_t;
                 tail_sum[0] = tail_t;
                 head_a = head_sum[1];
                 tail_a = tail_sum[1];
                 compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_a, tail_a, x_elem[1]);
-#if 0
-                {
-                  /* Compute double-double = double-double + double. */
-                  double e, t1, t2;
-
-                  /* Knuth trick. */
-                  t1 = head_a + x_elem[1];
-                  e = t1 - head_a;
-                  t2 = ((x_elem[1] - e) + (head_a - (t1 - e))) + tail_a;
-
-                  /* The result is t1 + t2, after normalization. */
-                  head_t = t1 + t2;
-                  tail_t = t2 - (head_t - t1);
-                }
-#endif
                 head_sum[1] = head_t;
                 tail_sum[1] = tail_t;
               }

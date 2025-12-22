@@ -117,21 +117,6 @@ void BLAS_ssum_x(int n, const float *x, int incx,
         {
           double dt = (double) x_elem;
           compute_doubledouble_eq_doubledouble_add_double(&head_tmp, &tail_tmp, head_tmp, tail_tmp, dt);
-#if 0
-          {
-            /* Compute double-double = double-double + double. */
-            double e, t1, t2;
-
-            /* Knuth trick. */
-            t1 = head_tmp + dt;
-            e = t1 - head_tmp;
-            t2 = ((dt - e) + (head_tmp - (t1 - e))) + tail_tmp;
-
-            /* The result is t1 + t2, after normalization. */
-            head_tmp = t1 + t2;
-            tail_tmp = t2 - (head_tmp - t1);
-          };
-#endif
         }
       }
       *sum = head_tmp;
