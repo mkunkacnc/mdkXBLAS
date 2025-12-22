@@ -256,6 +256,8 @@ void BLAS_sdot_x(enum blas_conj_type conj, int n, float alpha,
 
       {
         double dt = (double) alpha_i;
+        compute_doubledouble_eq_doubledouble_mul_double(&head_tmp1, &tail_tmp1, head_sum, tail_sum, dt);
+#if 0
         {
           /* Compute double-double = double-double * double. */
           double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -279,6 +281,7 @@ void BLAS_sdot_x(enum blas_conj_type conj, int n, float alpha,
           head_tmp1 = t1 + t2;
           tail_tmp1 = t2 - (head_tmp1 - t1);
         }
+#endif
       }                                /* tmp1 = sum*alpha */
       head_tmp2 = (double) r_v *beta_i;
       tail_tmp2 = 0.0;                /* tmp2 = r*beta */

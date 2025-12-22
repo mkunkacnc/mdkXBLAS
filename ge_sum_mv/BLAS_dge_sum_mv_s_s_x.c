@@ -572,6 +572,8 @@ void BLAS_dge_sum_mv_s_s_x(enum blas_order_type order, int m, int n,
               bij += incbij;
             }
             /* now put the result into y_i */
+            compute_doubledouble_eq_doubledouble_mul_double(&head_tmp1, &tail_tmp1, head_sumB, tail_sumB, beta_i);
+#if 0
             {
               /* Compute double-double = double-double * double. */
               double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -595,6 +597,7 @@ void BLAS_dge_sum_mv_s_s_x(enum blas_order_type order, int m, int n,
               head_tmp1 = t1 + t2;
               tail_tmp1 = t2 - (head_tmp1 - t1);
             }
+#endif
             y_i[yi] = head_tmp1;
 
             bi += incbi;
@@ -857,6 +860,8 @@ void BLAS_dge_sum_mv_s_s_x(enum blas_order_type order, int m, int n,
             /* now put the result into y_i */
             head_tmp1 = head_sumA;
             tail_tmp1 = tail_sumA;
+            compute_doubledouble_eq_doubledouble_mul_double(&head_tmp2, &tail_tmp2, head_sumB, tail_sumB, beta_i);
+#if 0
             {
               /* Compute double-double = double-double * double. */
               double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -880,6 +885,7 @@ void BLAS_dge_sum_mv_s_s_x(enum blas_order_type order, int m, int n,
               head_tmp2 = t1 + t2;
               tail_tmp2 = t2 - (head_tmp2 - t1);
             }
+#endif
             compute_doubledouble_eq_doubledouble_add_doubledouble(&head_tmp1, &tail_tmp1, head_tmp1, tail_tmp1, head_tmp2, tail_tmp2);
 #if 0
             {
@@ -964,6 +970,8 @@ void BLAS_dge_sum_mv_s_s_x(enum blas_order_type order, int m, int n,
 
             }
             /* now put the result into y_i */
+            compute_doubledouble_eq_doubledouble_mul_double(&head_tmp1, &tail_tmp1, head_sumA, tail_sumA, alpha_i);
+#if 0
             {
               /* Compute double-double = double-double * double. */
               double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -987,6 +995,7 @@ void BLAS_dge_sum_mv_s_s_x(enum blas_order_type order, int m, int n,
               head_tmp1 = t1 + t2;
               tail_tmp1 = t2 - (head_tmp1 - t1);
             }
+#endif
             y_i[yi] = head_tmp1;
             ai += incai;
 
@@ -1073,6 +1082,8 @@ void BLAS_dge_sum_mv_s_s_x(enum blas_order_type order, int m, int n,
               bij += incbij;
             }
             /* now put the result into y_i */
+            compute_doubledouble_eq_doubledouble_mul_double(&head_tmp1, &tail_tmp1, head_sumA, tail_sumA, alpha_i);
+#if 0
             {
               /* Compute double-double = double-double * double. */
               double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -1096,6 +1107,7 @@ void BLAS_dge_sum_mv_s_s_x(enum blas_order_type order, int m, int n,
               head_tmp1 = t1 + t2;
               tail_tmp1 = t2 - (head_tmp1 - t1);
             }
+#endif
             head_tmp2 = head_sumB;
             tail_tmp2 = tail_sumB;
             compute_doubledouble_eq_doubledouble_add_doubledouble(&head_tmp1, &tail_tmp1, head_tmp1, tail_tmp1, head_tmp2, tail_tmp2);
@@ -1214,6 +1226,8 @@ void BLAS_dge_sum_mv_s_s_x(enum blas_order_type order, int m, int n,
               bij += incbij;
             }
             /* now put the result into y_i */
+            compute_doubledouble_eq_doubledouble_mul_double(&head_tmp1, &tail_tmp1, head_sumA, tail_sumA, alpha_i);
+#if 0
             {
               /* Compute double-double = double-double * double. */
               double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -1237,6 +1251,9 @@ void BLAS_dge_sum_mv_s_s_x(enum blas_order_type order, int m, int n,
               head_tmp1 = t1 + t2;
               tail_tmp1 = t2 - (head_tmp1 - t1);
             }
+#endif
+            compute_doubledouble_eq_doubledouble_mul_double(&head_tmp2, &tail_tmp2, head_sumB, tail_sumB, beta_i);
+#if 0
             {
               /* Compute double-double = double-double * double. */
               double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -1260,6 +1277,7 @@ void BLAS_dge_sum_mv_s_s_x(enum blas_order_type order, int m, int n,
               head_tmp2 = t1 + t2;
               tail_tmp2 = t2 - (head_tmp2 - t1);
             }
+#endif
             compute_doubledouble_eq_doubledouble_add_doubledouble(&head_tmp1, &tail_tmp1, head_tmp1, tail_tmp1, head_tmp2, tail_tmp2);
 #if 0
             {

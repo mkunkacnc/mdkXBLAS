@@ -884,6 +884,8 @@ void BLAS_sge_sum_mv_x(enum blas_order_type order, int m, int n,
             /* now put the result into y_i */
             {
               double dt = (double) beta_i;
+              compute_doubledouble_eq_doubledouble_mul_double(&head_tmp1, &tail_tmp1, head_sumB, tail_sumB, dt);
+#if 0
               {
                 /* Compute double-double = double-double * double. */
                 double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -907,6 +909,7 @@ void BLAS_sge_sum_mv_x(enum blas_order_type order, int m, int n,
                 head_tmp1 = t1 + t2;
                 tail_tmp1 = t2 - (head_tmp1 - t1);
               }
+#endif
             }
             y_i[yi] = head_tmp1;
 
@@ -1172,6 +1175,8 @@ void BLAS_sge_sum_mv_x(enum blas_order_type order, int m, int n,
             tail_tmp1 = tail_sumA;
             {
               double dt = (double) beta_i;
+              compute_doubledouble_eq_doubledouble_mul_double(&head_tmp2, &tail_tmp2, head_sumB, tail_sumB, dt);
+#if 0
               {
                 /* Compute double-double = double-double * double. */
                 double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -1195,6 +1200,7 @@ void BLAS_sge_sum_mv_x(enum blas_order_type order, int m, int n,
                 head_tmp2 = t1 + t2;
                 tail_tmp2 = t2 - (head_tmp2 - t1);
               }
+#endif
             }
             compute_doubledouble_eq_doubledouble_add_doubledouble(&head_tmp1, &tail_tmp1, head_tmp1, tail_tmp1, head_tmp2, tail_tmp2);
 #if 0
@@ -1282,6 +1288,8 @@ void BLAS_sge_sum_mv_x(enum blas_order_type order, int m, int n,
             /* now put the result into y_i */
             {
               double dt = (double) alpha_i;
+              compute_doubledouble_eq_doubledouble_mul_double(&head_tmp1, &tail_tmp1, head_sumA, tail_sumA, dt);
+#if 0
               {
                 /* Compute double-double = double-double * double. */
                 double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -1305,6 +1313,7 @@ void BLAS_sge_sum_mv_x(enum blas_order_type order, int m, int n,
                 head_tmp1 = t1 + t2;
                 tail_tmp1 = t2 - (head_tmp1 - t1);
               }
+#endif
             }
             y_i[yi] = head_tmp1;
             ai += incai;
@@ -1394,6 +1403,8 @@ void BLAS_sge_sum_mv_x(enum blas_order_type order, int m, int n,
             /* now put the result into y_i */
             {
               double dt = (double) alpha_i;
+              compute_doubledouble_eq_doubledouble_mul_double(&head_tmp1, &tail_tmp1, head_sumA, tail_sumA, dt);
+#if 0
               {
                 /* Compute double-double = double-double * double. */
                 double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -1417,6 +1428,7 @@ void BLAS_sge_sum_mv_x(enum blas_order_type order, int m, int n,
                 head_tmp1 = t1 + t2;
                 tail_tmp1 = t2 - (head_tmp1 - t1);
               }
+#endif
             }
             head_tmp2 = head_sumB;
             tail_tmp2 = tail_sumB;
@@ -1538,6 +1550,8 @@ void BLAS_sge_sum_mv_x(enum blas_order_type order, int m, int n,
             /* now put the result into y_i */
             {
               double dt = (double) alpha_i;
+              compute_doubledouble_eq_doubledouble_mul_double(&head_tmp1, &tail_tmp1, head_sumA, tail_sumA, dt);
+#if 0
               {
                 /* Compute double-double = double-double * double. */
                 double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -1561,9 +1575,12 @@ void BLAS_sge_sum_mv_x(enum blas_order_type order, int m, int n,
                 head_tmp1 = t1 + t2;
                 tail_tmp1 = t2 - (head_tmp1 - t1);
               }
+#endif
             }
             {
               double dt = (double) beta_i;
+              compute_doubledouble_eq_doubledouble_mul_double(&head_tmp2, &tail_tmp2, head_sumB, tail_sumB, dt);
+#if 0
               {
                 /* Compute double-double = double-double * double. */
                 double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -1587,6 +1604,7 @@ void BLAS_sge_sum_mv_x(enum blas_order_type order, int m, int n,
                 head_tmp2 = t1 + t2;
                 tail_tmp2 = t2 - (head_tmp2 - t1);
               }
+#endif
             }
             compute_doubledouble_eq_doubledouble_add_doubledouble(&head_tmp1, &tail_tmp1, head_tmp1, tail_tmp1, head_tmp2, tail_tmp2);
 #if 0

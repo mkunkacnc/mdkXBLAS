@@ -965,6 +965,8 @@ void BLAS_dspmv_d_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       ap_index += incap;
                       x_index += incx;
                     }
+                    compute_doubledouble_eq_doubledouble_mul_double(&head_tmp1, &tail_tmp1, head_rowsum, tail_rowsum, alpha_i);
+#if 0
                     {
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -989,6 +991,7 @@ void BLAS_dspmv_d_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       head_tmp1 = t1 + t2;
                       tail_tmp1 = t2 - (head_tmp1 - t1);
                     }
+#endif
                     y_i[y_index] = head_tmp1;
 
                     y_index += incy;
@@ -1125,6 +1128,8 @@ void BLAS_dspmv_d_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       x_index += incx;
                     }
                     resval = y_i[y_index];
+                    compute_doubledouble_eq_doubledouble_mul_double(&head_tmp1, &tail_tmp1, head_rowsum, tail_rowsum, alpha_i);
+#if 0
                     {
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -1149,6 +1154,7 @@ void BLAS_dspmv_d_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       head_tmp1 = t1 + t2;
                       tail_tmp1 = t2 - (head_tmp1 - t1);
                     }
+#endif
                     compute_doubledouble_eq_double_mul_double(&head_tmp2, &tail_tmp2, beta_i, resval);
 #if 0
                     {
@@ -1667,6 +1673,8 @@ void BLAS_dspmv_d_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       ap_index += (step + 1) * incap;
                       x_index += incx;
                     }
+                    compute_doubledouble_eq_doubledouble_mul_double(&head_tmp1, &tail_tmp1, head_rowsum, tail_rowsum, alpha_i);
+#if 0
                     {
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -1691,6 +1699,7 @@ void BLAS_dspmv_d_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       head_tmp1 = t1 + t2;
                       tail_tmp1 = t2 - (head_tmp1 - t1);
                     }
+#endif
                     y_i[y_index] = head_tmp1;
 
                     y_index += incy;
@@ -1827,6 +1836,8 @@ void BLAS_dspmv_d_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       x_index += incx;
                     }
                     resval = y_i[y_index];
+                    compute_doubledouble_eq_doubledouble_mul_double(&head_tmp1, &tail_tmp1, head_rowsum, tail_rowsum, alpha_i);
+#if 0
                     {
                       /* Compute double-double = double-double * double. */
                       double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -1851,6 +1862,7 @@ void BLAS_dspmv_d_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       head_tmp1 = t1 + t2;
                       tail_tmp1 = t2 - (head_tmp1 - t1);
                     }
+#endif
                     compute_doubledouble_eq_double_mul_double(&head_tmp2, &tail_tmp2, beta_i, resval);
 #if 0
                     {
