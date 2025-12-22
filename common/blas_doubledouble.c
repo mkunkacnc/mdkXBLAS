@@ -140,3 +140,22 @@ void compute_doubledouble_eq_double_add_double(double* head_c,
   *head_c = t1 + t2;
   *tail_c = t2 - (*head_c - t1);
 }
+
+void compute_doubledouble_eq_doubledouble_add_double(double* head_c,
+                                                     double* tail_c,
+                                                     double head_a,
+                                                     double tail_a,
+                                                     double b)
+{
+  /* Compute double-double = double-double + double. */
+  double e, t1, t2;
+
+  /* Knuth trick. */
+  t1 = head_a + b;
+  e = t1 - head_a;
+  t2 = ((b - e) + (head_a - (t1 - e))) + tail_a;
+
+  /* The result is t1 + t2, after normalization. */
+  *head_c = t1 + t2;
+  *tail_c = t2 - (*head_c - t1);
+}
