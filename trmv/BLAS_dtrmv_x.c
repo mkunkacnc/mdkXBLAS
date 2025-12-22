@@ -344,6 +344,8 @@ void BLAS_dtrmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
             }
 
             x_elem = x_i[xj];
+            compute_doubledouble_eq_doubledouble_add_double(&head_sum, &tail_sum, head_sum, tail_sum, x_elem);
+#if 0
             {
               /* Compute double-double = double-double + double. */
               double e, t1, t2;
@@ -357,6 +359,7 @@ void BLAS_dtrmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
               head_sum = t1 + t2;
               tail_sum = t2 - (head_sum - t1);
             }
+#endif
 
             if (alpha_i == 1.0) {
               x_i[xj] = head_sum;

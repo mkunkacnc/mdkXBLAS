@@ -116,6 +116,8 @@ void BLAS_ssum_x(int n, const float *x, int incx,
         x_elem = x_i[xi];
         {
           double dt = (double) x_elem;
+          compute_doubledouble_eq_doubledouble_add_double(&head_tmp, &tail_tmp, head_tmp, tail_tmp, dt);
+#if 0
           {
             /* Compute double-double = double-double + double. */
             double e, t1, t2;
@@ -129,6 +131,7 @@ void BLAS_ssum_x(int n, const float *x, int incx,
             head_tmp = t1 + t2;
             tail_tmp = t2 - (head_tmp - t1);
           };
+#endif
         }
       }
       *sum = head_tmp;

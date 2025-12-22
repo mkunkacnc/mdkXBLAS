@@ -123,6 +123,8 @@ void BLAS_zsum_x(int n, const void *x, int incx,
           double head_a, tail_a;
           head_a = head_tmp[0];
           tail_a = tail_tmp[0];
+          compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_a, tail_a, x_elem[0]);
+#if 0
           {
             /* Compute double-double = double-double + double. */
             double e, t1, t2;
@@ -136,10 +138,13 @@ void BLAS_zsum_x(int n, const void *x, int incx,
             head_t = t1 + t2;
             tail_t = t2 - (head_t - t1);
           }
+#endif
           head_tmp[0] = head_t;
           tail_tmp[0] = tail_t;
           head_a = head_tmp[1];
           tail_a = tail_tmp[1];
+          compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_a, tail_a, x_elem[1]);
+#if 0
           {
             /* Compute double-double = double-double + double. */
             double e, t1, t2;
@@ -153,6 +158,7 @@ void BLAS_zsum_x(int n, const void *x, int incx,
             head_t = t1 + t2;
             tail_t = t2 - (head_t - t1);
           }
+#endif
           head_tmp[1] = head_t;
           tail_tmp[1] = tail_t;
         }
