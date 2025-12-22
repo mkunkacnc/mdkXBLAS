@@ -1995,6 +1995,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_a1 = head_sum[1];
                   tail_a1 = tail_sum[1];
                   /* real part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -2019,6 +2021,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -2043,6 +2048,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
@@ -2078,6 +2084,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_tmp1[0] = head_t1;
                   tail_tmp1[0] = tail_t1;
                   /* imaginary part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -2102,6 +2110,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -2126,6 +2137,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
 #if 0
                   {
@@ -2171,6 +2183,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_a1 = head_sum2[1];
                   tail_a1 = tail_sum2[1];
                   /* real part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -2195,6 +2209,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -2219,6 +2236,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
@@ -2254,6 +2272,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_tmp2[0] = head_t1;
                   tail_tmp2[0] = tail_t1;
                   /* imaginary part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -2278,6 +2298,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -2302,6 +2325,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
 #if 0
                   {
@@ -3721,6 +3745,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_a1 = head_sum[1];
                   tail_a1 = tail_sum[1];
                   /* real part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -3745,6 +3771,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -3769,6 +3798,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
@@ -3804,6 +3834,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_tmp1[0] = head_t1;
                   tail_tmp1[0] = tail_t1;
                   /* imaginary part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -3828,6 +3860,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -3852,6 +3887,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
 #if 0
                   {
@@ -3897,6 +3933,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_a1 = head_sum2[1];
                   tail_a1 = tail_sum2[1];
                   /* real part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -3921,6 +3959,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -3945,6 +3986,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
@@ -3980,6 +4022,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_tmp2[0] = head_t1;
                   tail_tmp2[0] = tail_t1;
                   /* imaginary part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -4004,6 +4048,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -4028,6 +4075,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
 #if 0
                   {
@@ -5452,6 +5500,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_a1 = head_sum[1];
                   tail_a1 = tail_sum[1];
                   /* real part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -5476,6 +5526,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -5500,6 +5553,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
@@ -5535,6 +5589,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_tmp1[0] = head_t1;
                   tail_tmp1[0] = tail_t1;
                   /* imaginary part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -5559,6 +5615,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -5583,6 +5642,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
 #if 0
                   {
@@ -5628,6 +5688,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_a1 = head_sum2[1];
                   tail_a1 = tail_sum2[1];
                   /* real part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -5652,6 +5714,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -5676,6 +5741,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
@@ -5711,6 +5777,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_tmp2[0] = head_t1;
                   tail_tmp2[0] = tail_t1;
                   /* imaginary part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -5735,6 +5803,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -5759,6 +5830,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
 #if 0
                   {
@@ -7178,6 +7250,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_a1 = head_sum[1];
                   tail_a1 = tail_sum[1];
                   /* real part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -7202,6 +7276,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -7226,6 +7303,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
@@ -7261,6 +7339,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_tmp1[0] = head_t1;
                   tail_tmp1[0] = tail_t1;
                   /* imaginary part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -7285,6 +7365,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -7309,6 +7392,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
 #if 0
                   {
@@ -7354,6 +7438,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_a1 = head_sum2[1];
                   tail_a1 = tail_sum2[1];
                   /* real part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -7378,6 +7464,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -7402,6 +7491,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
@@ -7437,6 +7527,8 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                   head_tmp2[0] = head_t1;
                   tail_tmp2[0] = tail_t1;
                   /* imaginary part */
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -7461,6 +7553,9 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t1 = t1 + t2;
                     tail_t1 = t2 - (head_t1 - t1);
                   }
+#endif
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+#if 0
                   {
                     /* Compute double-double = double-double * double. */
                     double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -7485,6 +7580,7 @@ void BLAS_zgemv2_x(enum blas_order_type order, enum blas_trans_type trans,
                     head_t2 = t1 + t2;
                     tail_t2 = t2 - (head_t2 - t1);
                   }
+#endif
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
 #if 0
                   {
