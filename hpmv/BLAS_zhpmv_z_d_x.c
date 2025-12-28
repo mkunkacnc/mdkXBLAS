@@ -1296,27 +1296,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;
@@ -1439,27 +1418,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;
@@ -1588,27 +1546,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;
@@ -1773,27 +1710,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;
@@ -1966,27 +1882,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;
@@ -2131,27 +2026,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;
@@ -2302,27 +2176,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;
@@ -2509,27 +2362,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;
@@ -2726,27 +2558,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;
@@ -2869,27 +2680,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;
@@ -3018,27 +2808,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;
@@ -3203,27 +2972,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;
@@ -3396,27 +3144,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;
@@ -3561,27 +3288,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;
@@ -3732,27 +3438,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;
@@ -3939,27 +3624,6 @@ void BLAS_zhpmv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       matval[0] = ap_i[ap_index];
                       vecval = x_i[x_index];
                       compute_complex_double_double_eq_double_mul_double(head_rowtmp, tail_rowtmp, vecval, matval[0]);
-#if 0
-                      {
-                        /* Compute complex double_double = double * double. */
-                        double a1, a2, b1, b2, con;
-
-                        con = vecval * SPLIT;
-                        a1 = con - vecval;
-                        a1 = con - a1;
-                        a2 = vecval - a1;
-                        con = matval[0] * SPLIT;
-                        b1 = con - matval[0];
-                        b1 = con - b1;
-                        b2 = matval[0] - b1;
-
-                        head_rowtmp[0] = vecval * matval[0];
-                        tail_rowtmp[0] =
-                          (((a1 * b1 - head_rowtmp[0]) + a1 * b2) + a2 * b1) +
-                          a2 * b2;
-                        head_rowtmp[1] = tail_rowtmp[1] = 0.0;
-                      }
-#endif
                       {
                         double head_t, tail_t;
                         double head_a, tail_a;

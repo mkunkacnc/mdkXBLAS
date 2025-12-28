@@ -822,27 +822,6 @@ void BLAS_zhbmv_z_d_x(enum blas_order_type order,
                 a_elem[0] = a_i[aij];
                 x_elem = x_i[xi];
                 compute_complex_double_double_eq_double_mul_double(head_prod, tail_prod, x_elem, a_elem[0]);
-#if 0
-                {
-                  /* Compute complex double_double = double * double. */
-                  double a1, a2, b1, b2, con;
-
-                  con = x_elem * SPLIT;
-                  a1 = con - x_elem;
-                  a1 = con - a1;
-                  a2 = x_elem - a1;
-                  con = a_elem[0] * SPLIT;
-                  b1 = con - a_elem[0];
-                  b1 = con - b1;
-                  b2 = a_elem[0] - b1;
-
-                  head_prod[0] = x_elem * a_elem[0];
-                  tail_prod[0] =
-                    (((a1 * b1 - head_prod[0]) + a1 * b2) + a2 * b1) +
-                    a2 * b2;
-                  head_prod[1] = tail_prod[1] = 0.0;
-                }
-#endif
                 {
                   double head_t, tail_t;
                   double head_a, tail_a;
@@ -963,27 +942,6 @@ void BLAS_zhbmv_z_d_x(enum blas_order_type order,
                 a_elem[0] = a_i[aij];
                 x_elem = x_i[xi];
                 compute_complex_double_double_eq_double_mul_double(head_prod, tail_prod, x_elem, a_elem[0]);
-#if 0
-                {
-                  /* Compute complex double_double = double * double. */
-                  double a1, a2, b1, b2, con;
-
-                  con = x_elem * SPLIT;
-                  a1 = con - x_elem;
-                  a1 = con - a1;
-                  a2 = x_elem - a1;
-                  con = a_elem[0] * SPLIT;
-                  b1 = con - a_elem[0];
-                  b1 = con - b1;
-                  b2 = a_elem[0] - b1;
-
-                  head_prod[0] = x_elem * a_elem[0];
-                  tail_prod[0] =
-                    (((a1 * b1 - head_prod[0]) + a1 * b2) + a2 * b1) +
-                    a2 * b2;
-                  head_prod[1] = tail_prod[1] = 0.0;
-                }
-#endif
                 {
                   double head_t, tail_t;
                   double head_a, tail_a;
@@ -1150,26 +1108,6 @@ void BLAS_zhbmv_z_d_x(enum blas_order_type order,
               a_elem[0] = a_i[aij];
               x_elem = x_i[xi];
               compute_complex_double_double_eq_double_mul_double(head_prod, tail_prod, x_elem, a_elem[0]);
-#if 0
-              {
-                /* Compute complex double_double = double * double. */
-                double a1, a2, b1, b2, con;
-
-                con = x_elem * SPLIT;
-                a1 = con - x_elem;
-                a1 = con - a1;
-                a2 = x_elem - a1;
-                con = a_elem[0] * SPLIT;
-                b1 = con - a_elem[0];
-                b1 = con - b1;
-                b2 = a_elem[0] - b1;
-
-                head_prod[0] = x_elem * a_elem[0];
-                tail_prod[0] =
-                  (((a1 * b1 - head_prod[0]) + a1 * b2) + a2 * b1) + a2 * b2;
-                head_prod[1] = tail_prod[1] = 0.0;
-              }
-#endif
               {
                 double head_t, tail_t;
                 double head_a, tail_a;
@@ -1363,27 +1301,6 @@ void BLAS_zhbmv_z_d_x(enum blas_order_type order,
                 a_elem[0] = a_i[aij];
                 x_elem = x_i[xi];
                 compute_complex_double_double_eq_double_mul_double(head_prod, tail_prod, x_elem, a_elem[0]);
-#if 0
-                {
-                  /* Compute complex double_double = double * double. */
-                  double a1, a2, b1, b2, con;
-
-                  con = x_elem * SPLIT;
-                  a1 = con - x_elem;
-                  a1 = con - a1;
-                  a2 = x_elem - a1;
-                  con = a_elem[0] * SPLIT;
-                  b1 = con - a_elem[0];
-                  b1 = con - b1;
-                  b2 = a_elem[0] - b1;
-
-                  head_prod[0] = x_elem * a_elem[0];
-                  tail_prod[0] =
-                    (((a1 * b1 - head_prod[0]) + a1 * b2) + a2 * b1) +
-                    a2 * b2;
-                  head_prod[1] = tail_prod[1] = 0.0;
-                }
-#endif
                 {
                   double head_t, tail_t;
                   double head_a, tail_a;
@@ -1504,27 +1421,6 @@ void BLAS_zhbmv_z_d_x(enum blas_order_type order,
                 a_elem[0] = a_i[aij];
                 x_elem = x_i[xi];
                 compute_complex_double_double_eq_double_mul_double(head_prod, tail_prod, x_elem, a_elem[0]);
-#if 0
-                {
-                  /* Compute complex double_double = double * double. */
-                  double a1, a2, b1, b2, con;
-
-                  con = x_elem * SPLIT;
-                  a1 = con - x_elem;
-                  a1 = con - a1;
-                  a2 = x_elem - a1;
-                  con = a_elem[0] * SPLIT;
-                  b1 = con - a_elem[0];
-                  b1 = con - b1;
-                  b2 = a_elem[0] - b1;
-
-                  head_prod[0] = x_elem * a_elem[0];
-                  tail_prod[0] =
-                    (((a1 * b1 - head_prod[0]) + a1 * b2) + a2 * b1) +
-                    a2 * b2;
-                  head_prod[1] = tail_prod[1] = 0.0;
-                }
-#endif
                 {
                   double head_t, tail_t;
                   double head_a, tail_a;
@@ -1691,26 +1587,6 @@ void BLAS_zhbmv_z_d_x(enum blas_order_type order,
               a_elem[0] = a_i[aij];
               x_elem = x_i[xi];
               compute_complex_double_double_eq_double_mul_double(head_prod, tail_prod, x_elem, a_elem[0]);
-#if 0
-              {
-                /* Compute complex double_double = double * double. */
-                double a1, a2, b1, b2, con;
-
-                con = x_elem * SPLIT;
-                a1 = con - x_elem;
-                a1 = con - a1;
-                a2 = x_elem - a1;
-                con = a_elem[0] * SPLIT;
-                b1 = con - a_elem[0];
-                b1 = con - b1;
-                b2 = a_elem[0] - b1;
-
-                head_prod[0] = x_elem * a_elem[0];
-                tail_prod[0] =
-                  (((a1 * b1 - head_prod[0]) + a1 * b2) + a2 * b1) + a2 * b2;
-                head_prod[1] = tail_prod[1] = 0.0;
-              }
-#endif
               {
                 double head_t, tail_t;
                 double head_a, tail_a;
