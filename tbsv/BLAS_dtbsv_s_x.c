@@ -345,43 +345,6 @@ void BLAS_dtbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
               {
                 double dt = (double) T_element;
                 compute_doubledouble_eq_doubledouble_div_double(&head_temp1, &tail_temp1, head_temp1, tail_temp1, dt);
-#if 0
-                {
-                  /* Compute double-double = double-double / double,
-                     using a Newton iteration scheme. */
-                  double b1, b2, con, e, t1, t2, t11, t21, t12, t22;
-
-                  /* Compute a DP approximation to the quotient. */
-                  t1 = head_temp1 / dt;
-
-                  /* Split t1 and b into two parts with at most 26 bits each,
-                     using the Dekker-Veltkamp method. */
-                  con = t1 * SPLIT;
-                  t11 = con - (con - t1);
-                  t21 = t1 - t11;
-                  con = dt * SPLIT;
-                  b1 = con - (con - dt);
-                  b2 = dt - b1;
-
-                  /* Compute t1 * b using Dekker method. */
-                  t12 = t1 * dt;
-                  t22 = (((t11 * b1 - t12) + t11 * b2) + t21 * b1) + t21 * b2;
-
-                  /* Compute dda - (t12, t22) using Knuth trick. */
-                  t11 = head_temp1 - t12;
-                  e = t11 - head_temp1;
-                  t21 =
-                    ((-t12 - e) + (head_temp1 - (t11 - e))) + tail_temp1 -
-                    t22;
-
-                  /* Compute high-order word of (t11, t21) and divide by b. */
-                  t2 = (t11 + t21) / dt;
-
-                  /* The result is t1 + t2, after normalization. */
-                  head_temp1 = t1 + t2;
-                  tail_temp1 = t2 - (head_temp1 - t1);
-                }
-#endif
               }
 
             }
@@ -460,43 +423,6 @@ void BLAS_dtbsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
               {
                 double dt = (double) T_element;
                 compute_doubledouble_eq_doubledouble_div_double(&head_temp1, &tail_temp1, head_temp1, tail_temp1, dt);
-#if 0
-                {
-                  /* Compute double-double = double-double / double,
-                     using a Newton iteration scheme. */
-                  double b1, b2, con, e, t1, t2, t11, t21, t12, t22;
-
-                  /* Compute a DP approximation to the quotient. */
-                  t1 = head_temp1 / dt;
-
-                  /* Split t1 and b into two parts with at most 26 bits each,
-                     using the Dekker-Veltkamp method. */
-                  con = t1 * SPLIT;
-                  t11 = con - (con - t1);
-                  t21 = t1 - t11;
-                  con = dt * SPLIT;
-                  b1 = con - (con - dt);
-                  b2 = dt - b1;
-
-                  /* Compute t1 * b using Dekker method. */
-                  t12 = t1 * dt;
-                  t22 = (((t11 * b1 - t12) + t11 * b2) + t21 * b1) + t21 * b2;
-
-                  /* Compute dda - (t12, t22) using Knuth trick. */
-                  t11 = head_temp1 - t12;
-                  e = t11 - head_temp1;
-                  t21 =
-                    ((-t12 - e) + (head_temp1 - (t11 - e))) + tail_temp1 -
-                    t22;
-
-                  /* Compute high-order word of (t11, t21) and divide by b. */
-                  t2 = (t11 + t21) / dt;
-
-                  /* The result is t1 + t2, after normalization. */
-                  head_temp1 = t1 + t2;
-                  tail_temp1 = t2 - (head_temp1 - t1);
-                }
-#endif
               }
 
             }
