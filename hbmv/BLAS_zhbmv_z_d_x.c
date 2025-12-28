@@ -821,6 +821,8 @@ void BLAS_zhbmv_z_d_x(enum blas_order_type order,
                 }
                 a_elem[0] = a_i[aij];
                 x_elem = x_i[xi];
+                compute_complex_double_double_eq_double_mul_double(head_prod, tail_prod, x_elem, a_elem[0]);
+#if 0
                 {
                   /* Compute complex double_double = double * double. */
                   double a1, a2, b1, b2, con;
@@ -840,6 +842,7 @@ void BLAS_zhbmv_z_d_x(enum blas_order_type order,
                     a2 * b2;
                   head_prod[1] = tail_prod[1] = 0.0;
                 }
+#endif
                 {
                   double head_t, tail_t;
                   double head_a, tail_a;

@@ -55,4 +55,9 @@ void compute_doubledouble_eq_doubledouble_div_double(double* head_c,
                                                      double tail_a,
                                                      double b);
 
+void compute_complex_double_double_eq_double_mul_double(double head_c[],
+                                                        double tail_c[],
+                                                        double a,
+                                                        double b);
+
 #endif /* BLAS_EXTENDED_PRIVATE_H */

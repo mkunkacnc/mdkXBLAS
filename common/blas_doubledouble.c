@@ -6,7 +6,7 @@ void compute_doubledouble_eq_double_mul_double(double* head_c,
                                                double a,
                                                double b)
 {
-  /* Compute double_double = double * double. */
+  /* Compute double-double = double * double. */
   double a1, a2, b1, b2, con;
 
 #define SPLIT_VAR(a)  \
@@ -199,4 +199,16 @@ void compute_doubledouble_eq_doubledouble_div_double(double* head_c,
   /* The result is t1 + t2, after normalization. */
   *head_c = t1 + t2;
   *tail_c = t2 - (*head_c - t1);
+}
+
+/* compute c = a * b */
+void compute_complex_double_double_eq_double_mul_double(double head_c[],
+                                                        double tail_c[],
+                                                        double a,
+                                                        double b)
+{
+  /* Compute complex double-double = double * double. */
+  compute_doubledouble_eq_double_mul_double(&head_c[0], &tail_c[0], a, b);
+  head_c[1] = 0.0;
+  tail_c[1] = 0.0;
 }
