@@ -693,6 +693,8 @@ void BLAS_zhemv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 }
                 a_elem[0] = a_i[aik];
                 x_elem = x_i[xi];
+                compute_complex_double_double_eq_double_mul_double(head_prod, tail_prod, x_elem, a_elem[0]);
+#if 0
                 {
                   /* Compute complex double_double = double * double. */
                   double a1, a2, b1, b2, con;
@@ -712,6 +714,7 @@ void BLAS_zhemv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     a2 * b2;
                   head_prod[1] = tail_prod[1] = 0.0;
                 }
+#endif
                 {
                   double head_t, tail_t;
                   double head_a, tail_a;
@@ -823,6 +826,8 @@ void BLAS_zhemv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 }
                 a_elem[0] = a_i[aik];
                 x_elem = x_i[xi];
+                compute_complex_double_double_eq_double_mul_double(head_prod, tail_prod, x_elem, a_elem[0]);
+#if 0
                 {
                   /* Compute complex double_double = double * double. */
                   double a1, a2, b1, b2, con;
@@ -842,6 +847,7 @@ void BLAS_zhemv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     a2 * b2;
                   head_prod[1] = tail_prod[1] = 0.0;
                 }
+#endif
                 {
                   double head_t, tail_t;
                   double head_a, tail_a;
@@ -999,6 +1005,8 @@ void BLAS_zhemv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
               }
               a_elem[0] = a_i[aik];
               x_elem = x_i[xi];
+              compute_complex_double_double_eq_double_mul_double(head_prod, tail_prod, x_elem, a_elem[0]);
+#if 0
               {
                 /* Compute complex double_double = double * double. */
                 double a1, a2, b1, b2, con;
@@ -1017,6 +1025,7 @@ void BLAS_zhemv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   (((a1 * b1 - head_prod[0]) + a1 * b2) + a2 * b1) + a2 * b2;
                 head_prod[1] = tail_prod[1] = 0.0;
               }
+#endif
               {
                 double head_t, tail_t;
                 double head_a, tail_a;
@@ -1201,6 +1210,8 @@ void BLAS_zhemv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 }
                 a_elem[0] = a_i[aik];
                 x_elem = x_i[xi];
+                compute_complex_double_double_eq_double_mul_double(head_prod, tail_prod, x_elem, a_elem[0]);
+#if 0
                 {
                   /* Compute complex double_double = double * double. */
                   double a1, a2, b1, b2, con;
@@ -1220,6 +1231,7 @@ void BLAS_zhemv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     a2 * b2;
                   head_prod[1] = tail_prod[1] = 0.0;
                 }
+#endif
                 {
                   double head_t, tail_t;
                   double head_a, tail_a;
@@ -1331,6 +1343,8 @@ void BLAS_zhemv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                 }
                 a_elem[0] = a_i[aik];
                 x_elem = x_i[xi];
+                compute_complex_double_double_eq_double_mul_double(head_prod, tail_prod, x_elem, a_elem[0]);
+#if 0
                 {
                   /* Compute complex double_double = double * double. */
                   double a1, a2, b1, b2, con;
@@ -1350,6 +1364,7 @@ void BLAS_zhemv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     a2 * b2;
                   head_prod[1] = tail_prod[1] = 0.0;
                 }
+#endif
                 {
                   double head_t, tail_t;
                   double head_a, tail_a;
@@ -1507,6 +1522,8 @@ void BLAS_zhemv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
               }
               a_elem[0] = a_i[aik];
               x_elem = x_i[xi];
+              compute_complex_double_double_eq_double_mul_double(head_prod, tail_prod, x_elem, a_elem[0]);
+#if 0
               {
                 /* Compute complex double_double = double * double. */
                 double a1, a2, b1, b2, con;
@@ -1525,6 +1542,7 @@ void BLAS_zhemv_z_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   (((a1 * b1 - head_prod[0]) + a1 * b2) + a2 * b1) + a2 * b2;
                 head_prod[1] = tail_prod[1] = 0.0;
               }
+#endif
               {
                 double head_t, tail_t;
                 double head_a, tail_a;
