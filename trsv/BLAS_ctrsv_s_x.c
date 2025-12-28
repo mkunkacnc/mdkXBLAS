@@ -719,6 +719,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   double head_b, tail_b;
                   head_a = head_temp1[0];
                   tail_a = tail_temp1[0];
+                  compute_doubledouble_eq_doubledouble_div_double(&head_b, &tail_b, head_a, tail_a, T_element);
+#if 0
                   {
                     /* Compute double-double = double-double / double,
                        using a Newton iteration scheme. */
@@ -753,10 +755,13 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_b = t1 + t2;
                     tail_b = t2 - (head_b - t1);
                   }
+#endif
                   head_temp1[0] = head_b;
                   tail_temp1[0] = tail_b;
                   head_a = head_temp1[1];
                   tail_a = tail_temp1[1];
+                  compute_doubledouble_eq_doubledouble_div_double(&head_b, &tail_b, head_a, tail_a, T_element);
+#if 0
                   {
                     /* Compute double-double = double-double / double,
                        using a Newton iteration scheme. */
@@ -791,6 +796,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_b = t1 + t2;
                     tail_b = t2 - (head_b - t1);
                   }
+#endif
                   head_temp1[1] = head_b;
                   tail_temp1[1] = tail_b;
                 }
@@ -915,6 +921,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   double head_b, tail_b;
                   head_a = head_temp1[0];
                   tail_a = tail_temp1[0];
+                  compute_doubledouble_eq_doubledouble_div_double(&head_b, &tail_b, head_a, tail_a, T_element);
+#if 0
                   {
                     /* Compute double-double = double-double / double,
                        using a Newton iteration scheme. */
@@ -949,10 +957,13 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_b = t1 + t2;
                     tail_b = t2 - (head_b - t1);
                   }
+#endif
                   head_temp1[0] = head_b;
                   tail_temp1[0] = tail_b;
                   head_a = head_temp1[1];
                   tail_a = tail_temp1[1];
+                  compute_doubledouble_eq_doubledouble_div_double(&head_b, &tail_b, head_a, tail_a, T_element);
+#if 0
                   {
                     /* Compute double-double = double-double / double,
                        using a Newton iteration scheme. */
@@ -987,6 +998,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_b = t1 + t2;
                     tail_b = t2 - (head_b - t1);
                   }
+#endif
                   head_temp1[1] = head_b;
                   tail_temp1[1] = tail_b;
                 }
@@ -1110,6 +1122,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   double head_b, tail_b;
                   head_a = head_temp1[0];
                   tail_a = tail_temp1[0];
+                  compute_doubledouble_eq_doubledouble_div_double(&head_b, &tail_b, head_a, tail_a, T_element);
+#if 0
                   {
                     /* Compute double-double = double-double / double,
                        using a Newton iteration scheme. */
@@ -1144,10 +1158,13 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_b = t1 + t2;
                     tail_b = t2 - (head_b - t1);
                   }
+#endif
                   head_temp1[0] = head_b;
                   tail_temp1[0] = tail_b;
                   head_a = head_temp1[1];
                   tail_a = tail_temp1[1];
+                  compute_doubledouble_eq_doubledouble_div_double(&head_b, &tail_b, head_a, tail_a, T_element);
+#if 0
                   {
                     /* Compute double-double = double-double / double,
                        using a Newton iteration scheme. */
@@ -1182,6 +1199,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_b = t1 + t2;
                     tail_b = t2 - (head_b - t1);
                   }
+#endif
                   head_temp1[1] = head_b;
                   tail_temp1[1] = tail_b;
                 }
@@ -1306,6 +1324,8 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   double head_b, tail_b;
                   head_a = head_temp1[0];
                   tail_a = tail_temp1[0];
+                  compute_doubledouble_eq_doubledouble_div_double(&head_b, &tail_b, head_a, tail_a, T_element);
+#if 0
                   {
                     /* Compute double-double = double-double / double,
                        using a Newton iteration scheme. */
@@ -1340,10 +1360,13 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_b = t1 + t2;
                     tail_b = t2 - (head_b - t1);
                   }
+#endif
                   head_temp1[0] = head_b;
                   tail_temp1[0] = tail_b;
                   head_a = head_temp1[1];
                   tail_a = tail_temp1[1];
+                  compute_doubledouble_eq_doubledouble_div_double(&head_b, &tail_b, head_a, tail_a, T_element);
+#if 0
                   {
                     /* Compute double-double = double-double / double,
                        using a Newton iteration scheme. */
@@ -1378,6 +1401,7 @@ void BLAS_ctrsv_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_b = t1 + t2;
                     tail_b = t2 - (head_b - t1);
                   }
+#endif
                   head_temp1[1] = head_b;
                   tail_temp1[1] = tail_b;
                 }
