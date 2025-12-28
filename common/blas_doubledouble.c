@@ -201,6 +201,118 @@ void compute_doubledouble_eq_doubledouble_div_double(double* head_c,
   *tail_c = t2 - (*head_c - t1);
 }
 
+/* compute c = a / b */
+void compute_doubledouble_eq_doubledouble_div_doubledouble(double* head_c,
+                                                           double* tail_c,
+                                                           double head_t2,
+                                                           double tail_t2,
+                                                           double head_t,
+                                                           double tail_t)
+{
+  double q1, q2, q3;
+  double a1, a2, b1, b2;
+  double p1, p2, c;
+  double s1, s2, v;
+  double t1, t2;
+  double r1, r2;
+  double cona, conb;
+
+  q1 = head_t2 / head_t;        /*  approximate quotient */
+
+  /*  Compute  q1 * b  */
+  cona = q1 * SPLIT;
+  conb = head_t * SPLIT;
+  a1 = cona - (cona - q1);
+  b1 = conb - (conb - head_t);
+  a2 = q1 - a1;
+  b2 = head_t - b1;
+
+  /*  (p1, p2) is the product of high order terms. */
+  p1 = q1 * head_t;
+  p2 = (((a1 * b1 - p1) + a1 * b2) + a2 * b1) + a2 * b2;
+
+  /*  Compute the low-order term */
+  c = q1 * tail_t;
+
+  /*  Compute  (s1, s2) = (p1, p2) + c */
+  s1 = p1 + c;
+  v = s1 - p1;
+  s2 = ((c - v) + (p1 - (s1 - v))) + p2;
+
+  /*  Renormalize. */
+  p1 = s1 + s2;
+  p2 = s2 - (p1 - s1);
+
+  /*  Compute  a - (p1, p2)    */
+  s1 = head_t2 - p1;
+  v = s1 - head_t2;
+  s2 = (head_t2 - (s1 - v)) - (p1 + v);
+
+  t1 = tail_t2 - p2;
+  v = t1 - tail_t2;
+  t2 = (tail_t2 - (t1 - v)) - (p2 + v);
+
+  s2 += t1;
+  t1 = s1 + s2;
+  s2 = s2 - (t1 - s1);
+
+  t2 += s2;
+  r1 = t1 + t2;
+  r2 = t2 - (r1 - t1);
+
+  /*  Compute the next quotient. */
+  q2 = r1 / head_t;
+
+  /*  Compute residual   r1 - q2 * b          */
+  cona = q2 * SPLIT;
+  a1 = cona - (cona - q2);
+  a2 = q2 - a1;
+
+  /*  (p1, p2) is the product of high order terms. */
+  p1 = q2 * head_t;
+  p2 = (((a1 * b1 - p1) + a1 * b2) + a2 * b1) + a2 * b2;
+
+  /*  Compute the low-order term */
+  c = q2 * tail_t;
+
+  /*  Compute  (s1, s2) = (p1, p2) + c */
+  s1 = p1 + c;
+  v = s1 - p1;
+  s2 = ((c - v) + (p1 - (s1 - v))) + p2;
+
+  /*  Renormalize. */
+  p1 = s1 + s2;
+  p2 = s2 - (p1 - s1);
+
+  /*  Compute  (r1, r2) - (p1, p2)    */
+  s1 = r1 - p1;
+  v = s1 - r1;
+  s2 = (r1 - (s1 - v)) - (p1 + v);
+
+  t1 = r2 - p2;
+  v = t1 - r2;
+  t2 = (r2 - (t1 - v)) - (p2 + v);
+
+  s2 += t1;
+  t1 = s1 + s2;
+  s2 = s2 - (t1 - s1);
+
+  t2 += s2;
+  s1 = t1 + t2;
+
+  /*  Compute the last correction. */
+  q3 = s1 / head_t;
+
+  /* Renormalize q1, q2, q3. */
+  s1 = q2 + q3;
+  s2 = q3 - (s1 - q2);
+
+  *head_c = q1 + s1;
+  t1 = s1 - (*head_c - q1);
+
+  *tail_c = s2 + t1;
+}
+
 /* compute c = a * b */
 void compute_complex_double_double_eq_double_mul_double(double head_c[],
                                                         double tail_c[],

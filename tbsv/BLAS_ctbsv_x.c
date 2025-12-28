@@ -1469,6 +1469,8 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                     head_t1 = head_temp1[0];
                     tail_t1 = tail_temp1[0];        /* a */
                     compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t2, &tail_t2, head_t2, tail_t2, head_t1, tail_t1);
+                    compute_doubledouble_eq_doubledouble_div_doubledouble(&head_t2, &tail_t2, head_t2, tail_t2, head_t, tail_t);
+#if 0
                     {
                       double q1, q2, q3;
                       double a1, a2, b1, b2;
@@ -1579,6 +1581,7 @@ void BLAS_ctbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                       tail_t2 = s2 + t1;
 
                     }
+#endif
                     head_q[0] = head_t2;
                     tail_q[0] = tail_t2;
                     head_t1 = head_temp1[0];

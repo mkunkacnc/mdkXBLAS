@@ -55,6 +55,13 @@ void compute_doubledouble_eq_doubledouble_div_double(double* head_c,
                                                      double tail_a,
                                                      double b);
 
+void compute_doubledouble_eq_doubledouble_div_doubledouble(double* head_c,
+                                                           double* tail_c,
+                                                           double head_a,
+                                                           double tail_a,
+                                                           double head_b,
+                                                           double tail_b);
+
 void compute_complex_double_double_eq_double_mul_double(double head_c[],
                                                         double tail_c[],
                                                         double a,
