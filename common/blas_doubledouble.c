@@ -141,6 +141,7 @@ void compute_doubledouble_eq_double_add_double(double* head_c,
   *tail_c = t2 - (*head_c - t1);
 }
 
+/* compute c = a + b */
 void compute_doubledouble_eq_doubledouble_add_double(double* head_c,
                                                      double* tail_c,
                                                      double head_a,
@@ -154,6 +155,46 @@ void compute_doubledouble_eq_doubledouble_add_double(double* head_c,
   t1 = head_a + b;
   e = t1 - head_a;
   t2 = ((b - e) + (head_a - (t1 - e))) + tail_a;
+
+  /* The result is t1 + t2, after normalization. */
+  *head_c = t1 + t2;
+  *tail_c = t2 - (*head_c - t1);
+}
+
+/* compute c = a / b */
+void compute_doubledouble_eq_doubledouble_div_double(double* head_c,
+                                                     double* tail_c,
+                                                     double head_a,
+                                                     double tail_a,
+                                                     double b)
+{
+  /* Compute double-double = double-double / double,
+     using a Newton iteration scheme. */
+  double b1, b2, con, e, t1, t2, t11, t21, t12, t22;
+
+  /* Compute a DP approximation to the quotient. */
+  t1 = head_a / b;
+
+  /* Split t1 and b into two parts with at most 26 bits each,
+     using the Dekker-Veltkamp method. */
+  con = t1 * SPLIT;
+  t11 = con - (con - t1);
+  t21 = t1 - t11;
+  con = b * SPLIT;
+  b1 = con - (con - b);
+  b2 = b - b1;
+
+  /* Compute t1 * b using Dekker method. */
+  t12 = t1 * b;
+  t22 = (((t11 * b1 - t12) + t11 * b2) + t21 * b1) + t21 * b2;
+
+  /* Compute dda - (t12, t22) using Knuth trick. */
+  t11 = head_a - t12;
+  e = t11 - head_a;
+  t21 = ((-t12 - e) + (head_a - (t11 - e))) + tail_a - t22;
+
+  /* Compute high-order word of (t11, t21) and divide by b. */
+  t2 = (t11 + t21) / b;
 
   /* The result is t1 + t2, after normalization. */
   *head_c = t1 + t2;
