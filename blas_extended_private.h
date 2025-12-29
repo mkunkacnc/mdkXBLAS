@@ -15,6 +15,11 @@
 
 #include "blas_fpu.h"
 
+/* Set up for C function definitions, even when using C++ */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void compute_doubledouble_eq_double_mul_double(double* head_c,
                                                double* tail_c,
                                                double a,
@@ -66,5 +71,10 @@ void compute_complex_double_double_eq_double_mul_double(double head_c[],
                                                         double tail_c[],
                                                         double a,
                                                         double b);
+
+/* Ends C function definitions when using C++ */
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* BLAS_EXTENDED_PRIVATE_H */

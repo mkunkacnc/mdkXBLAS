@@ -1,6 +1,10 @@
 #ifndef BLAS_EXTENDED_PROTO_H
 #define BLAS_EXTENDED_PROTO_H
 
+/* Set up for C function definitions, even when using C++ */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 void BLAS_ddot_d_s(enum blas_conj_type conj, int n, double alpha,
                    const double *x, int incx, double beta,
@@ -2113,5 +2117,10 @@ void BLAS_zgbmv2_d_d_x(enum blas_order_type order, enum blas_trans_type trans,
 
 int BLAS_fpinfo_x(enum blas_cmach_type cmach, enum blas_prec_type prec);
 void BLAS_error(const char *rname, int iflag, int ival, char *form, ...);
+
+/* Ends C function definitions when using C++ */
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* BLAS_EXTENDED_PROTO_H */

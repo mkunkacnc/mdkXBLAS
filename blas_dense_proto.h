@@ -1,6 +1,11 @@
 #ifndef BLAS_DENSE_PROTO_H
 #define BLAS_DENSE_PROTO_H
 
+/* Set up for C function definitions, even when using C++ */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
   /* Chapter 2 prototypes */
 
   /* Reduction Operations */
@@ -116,7 +121,7 @@ void BLAS_caxpy_dot( int n, const void *alpha, void *w, int incw,
                      const void *v, int incv, const void *u, int incu,
                      void *r );
 void BLAS_zaxpy_dot( int n, const void *alpha, void *w, int incw,
-                     const void *v, int incv, const void *u, int incu, 
+                     const void *v, int incv, const void *u, int incu,
                      void *r );
 
 void BLAS_sapply_grot( int n, float c, float s, float *x, int incx,
@@ -301,7 +306,7 @@ void BLAS_dtpmv( enum blas_order_type order, enum blas_uplo_type uplo,
                  int incx );
 void BLAS_ctpmv( enum blas_order_type order, enum blas_uplo_type uplo,
                  enum blas_trans_type trans, enum blas_diag_type diag,
-                 int n, const void *alpha, const void *tp, void *x, 
+                 int n, const void *alpha, const void *tp, void *x,
                  int incx );
 void BLAS_ztpmv( enum blas_order_type order, enum blas_uplo_type uplo,
                  enum blas_trans_type trans, enum blas_diag_type diag,
@@ -540,7 +545,7 @@ void BLAS_zge_norm( enum blas_order_type order, enum blas_norm_type norm,
 void BLAS_sgb_norm( enum blas_order_type order, enum blas_norm_type norm,
                     int m, int n, int kl, int ku, const float *a, int lda,
                     float *r );
-void BLAS_dgb_norm( enum blas_order_type order, enum blas_norm_type norm, 
+void BLAS_dgb_norm( enum blas_order_type order, enum blas_norm_type norm,
                     int m, int n, int kl, int ku, const double *a, int lda,
                     double *r );
 void BLAS_cgb_norm( enum blas_order_type order, enum blas_norm_type norm,
@@ -659,7 +664,7 @@ void BLAS_cge_diag_scale( enum blas_order_type order,
                           enum blas_side_type side, int m, int n,
                           const void *d, int incd, void *a, int lda );
 void BLAS_zge_diag_scale( enum blas_order_type order,
-                          enum blas_side_type side, int m, int n, 
+                          enum blas_side_type side, int m, int n,
                           const void *d, int incd, void *a, int lda );
 
 void BLAS_sgb_diag_scale( enum blas_order_type order,
@@ -861,7 +866,7 @@ void BLAS_dtr_acc( enum blas_order_type order, enum blas_uplo_type uplo,
                    int ldb );
 void BLAS_ctr_acc( enum blas_order_type order, enum blas_uplo_type uplo,
                    enum blas_diag_type diag, int n, const void *alpha,
-                   const void *a, int lda, const void *beta, void *b, 
+                   const void *a, int lda, const void *beta, void *b,
                    int ldb );
 void BLAS_ztr_acc( enum blas_order_type order, enum blas_uplo_type uplo,
                    enum blas_diag_type diag, int n, const void *alpha,
@@ -948,7 +953,7 @@ void BLAS_ssb_add( enum blas_order_type order, enum blas_uplo_type uplo,
                    float beta, const float *b, int ldb, float *c, int ldc );
 void BLAS_dsb_add( enum blas_order_type order, enum blas_uplo_type uplo,
                    int n, int k, double alpha, const double *a, int lda,
-                   double beta, const double *b, int ldb, double *c, 
+                   double beta, const double *b, int ldb, double *c,
                    int ldc );
 void BLAS_csb_add( enum blas_order_type order, enum blas_uplo_type uplo,
                    int n, int k, const void *alpha, const void *a, int lda,
@@ -1127,7 +1132,7 @@ void BLAS_zherk( enum blas_order_type order, enum blas_uplo_type uplo,
 void BLAS_ssy_tridiag_rk( enum blas_order_type order,
                           enum blas_uplo_type uplo,
                           enum blas_trans_type trans, int n, int k,
-                          float alpha, const float *a, int lda, 
+                          float alpha, const float *a, int lda,
                           const float *d, const float *e, float beta,
                           float *c, int ldc );
 void BLAS_dsy_tridiag_rk( enum blas_order_type order,
@@ -1175,7 +1180,7 @@ void BLAS_csyr2k( enum blas_order_type order, enum blas_uplo_type uplo,
                   const void *alpha, const void *a, int lda, const void *b,
                   int ldb, const void *beta, void *c, int ldc );
 void BLAS_zsyr2k( enum blas_order_type order, enum blas_uplo_type uplo,
-                  enum blas_trans_type trans, int n, int k, 
+                  enum blas_trans_type trans, int n, int k,
                   const void *alpha, const void *a, int lda, const void *b,
                   int ldb, const void *beta, void *c, int ldc );
 
@@ -1296,7 +1301,7 @@ void BLAS_ztr_copy( enum blas_order_type order, enum blas_uplo_type uplo,
 
 void BLAS_stb_copy( enum blas_order_type order, enum blas_uplo_type uplo,
                     enum blas_trans_type trans, enum blas_diag_type diag,
-                    int n, int k, const float *a, int lda, float *b, 
+                    int n, int k, const float *a, int lda, float *b,
                     int ldb );
 void BLAS_dtb_copy( enum blas_order_type order, enum blas_uplo_type uplo,
                     enum blas_trans_type trans, enum blas_diag_type diag,
@@ -1363,6 +1368,11 @@ void BLAS_zge_permute( enum blas_order_type order, enum blas_side_type side,
 
 float c_sfpinfo( enum blas_cmach_type cmach );
 double c_dfpinfo( enum blas_cmach_type cmach );
+
+/* Ends C function definitions when using C++ */
+#ifdef __cplusplus
+}
+#endif
 
 #endif
    /* BLAS_DENSE_PROTO_H */
