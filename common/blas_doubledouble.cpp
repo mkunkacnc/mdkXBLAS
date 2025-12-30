@@ -204,10 +204,10 @@ void compute_doubledouble_eq_doubledouble_div_double(double* head_c,
 /* compute c = a / b */
 void compute_doubledouble_eq_doubledouble_div_doubledouble(double* head_c,
                                                            double* tail_c,
-                                                           double head_t2,
-                                                           double tail_t2,
-                                                           double head_t,
-                                                           double tail_t)
+                                                           double head_a,
+                                                           double tail_a,
+                                                           double head_b,
+                                                           double tail_b)
 {
   double q1, q2, q3;
   double a1, a2, b1, b2;
@@ -217,22 +217,22 @@ void compute_doubledouble_eq_doubledouble_div_doubledouble(double* head_c,
   double r1, r2;
   double cona, conb;
 
-  q1 = head_t2 / head_t;        /*  approximate quotient */
+  q1 = head_a / head_b;        /*  approximate quotient */
 
   /*  Compute  q1 * b  */
   cona = q1 * SPLIT;
-  conb = head_t * SPLIT;
+  conb = head_b * SPLIT;
   a1 = cona - (cona - q1);
-  b1 = conb - (conb - head_t);
+  b1 = conb - (conb - head_b);
   a2 = q1 - a1;
-  b2 = head_t - b1;
+  b2 = head_b - b1;
 
   /*  (p1, p2) is the product of high order terms. */
-  p1 = q1 * head_t;
+  p1 = q1 * head_b;
   p2 = (((a1 * b1 - p1) + a1 * b2) + a2 * b1) + a2 * b2;
 
   /*  Compute the low-order term */
-  c = q1 * tail_t;
+  c = q1 * tail_b;
 
   /*  Compute  (s1, s2) = (p1, p2) + c */
   s1 = p1 + c;
@@ -244,13 +244,13 @@ void compute_doubledouble_eq_doubledouble_div_doubledouble(double* head_c,
   p2 = s2 - (p1 - s1);
 
   /*  Compute  a - (p1, p2)    */
-  s1 = head_t2 - p1;
-  v = s1 - head_t2;
-  s2 = (head_t2 - (s1 - v)) - (p1 + v);
+  s1 = head_a - p1;
+  v = s1 - head_a;
+  s2 = (head_a - (s1 - v)) - (p1 + v);
 
-  t1 = tail_t2 - p2;
-  v = t1 - tail_t2;
-  t2 = (tail_t2 - (t1 - v)) - (p2 + v);
+  t1 = tail_a - p2;
+  v = t1 - tail_a;
+  t2 = (tail_a - (t1 - v)) - (p2 + v);
 
   s2 += t1;
   t1 = s1 + s2;
@@ -261,7 +261,7 @@ void compute_doubledouble_eq_doubledouble_div_doubledouble(double* head_c,
   r2 = t2 - (r1 - t1);
 
   /*  Compute the next quotient. */
-  q2 = r1 / head_t;
+  q2 = r1 / head_b;
 
   /*  Compute residual   r1 - q2 * b          */
   cona = q2 * SPLIT;
@@ -269,11 +269,11 @@ void compute_doubledouble_eq_doubledouble_div_doubledouble(double* head_c,
   a2 = q2 - a1;
 
   /*  (p1, p2) is the product of high order terms. */
-  p1 = q2 * head_t;
+  p1 = q2 * head_b;
   p2 = (((a1 * b1 - p1) + a1 * b2) + a2 * b1) + a2 * b2;
 
   /*  Compute the low-order term */
-  c = q2 * tail_t;
+  c = q2 * tail_b;
 
   /*  Compute  (s1, s2) = (p1, p2) + c */
   s1 = p1 + c;
@@ -301,7 +301,7 @@ void compute_doubledouble_eq_doubledouble_div_doubledouble(double* head_c,
   s1 = t1 + t2;
 
   /*  Compute the last correction. */
-  q3 = s1 / head_t;
+  q3 = s1 / head_b;
 
   /* Renormalize q1, q2, q3. */
   s1 = q2 + q3;
