@@ -1,8 +1,9 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "axpby/BLAS_axpby.hpp"
+
 void BLAS_saxpby_x(int n, float alpha, const float *x, int incx,
                    float beta, float *y, int incy, enum blas_prec_type prec)
-
 /*
  * Purpose
  * =======
@@ -46,8 +47,10 @@ void BLAS_saxpby_x(int n, float alpha, const float *x, int incx,
   static const char routine_name[] = "BLAS_saxpby_x";
 
   switch (prec) {
-  case blas_prec_single:{
-
+  case blas_prec_single:
+    BLAS_axpby_cpp(n, alpha, x, incx, beta, y, incy);
+#if 0
+    {
       int i, ix = 0, iy = 0;
       const float *x_i = x;
       float *y_i = y;
@@ -57,7 +60,6 @@ void BLAS_saxpby_x(int n, float alpha, const float *x, int incx,
       float y_ii;
       float tmpx;
       float tmpy;
-
 
       /* Test the input parameters. */
       if (incx == 0)
@@ -69,10 +71,6 @@ void BLAS_saxpby_x(int n, float alpha, const float *x, int incx,
       if (n <= 0 || (alpha_i == 0.0 && beta_i == 1.0))
         return;
 
-
-
-
-
       if (incx < 0)
         ix = (-n + 1) * incx;
       if (incy < 0)
@@ -81,18 +79,16 @@ void BLAS_saxpby_x(int n, float alpha, const float *x, int incx,
       for (i = 0; i < n; ++i) {
         x_ii = x_i[ix];
         y_ii = y_i[iy];
-        tmpx = alpha_i * x_ii;        /* tmpx  = alpha * x[ix] */
-        tmpy = beta_i * y_ii;        /* tmpy = beta * y[iy] */
+        tmpx = alpha_i * x_ii; /* tmpx  = alpha * x[ix] */
+        tmpy = beta_i * y_ii;  /* tmpy = beta * y[iy] */
         tmpy = tmpy + tmpx;
         y_i[iy] = tmpy;
         ix += incx;
         iy += incy;
-      }                                /* endfor */
-
-
-
-      break;
+      }                        /* endfor */
     }
+#endif
+    break;
   case blas_prec_double:
   case blas_prec_indigenous:
     {
@@ -106,7 +102,6 @@ void BLAS_saxpby_x(int n, float alpha, const float *x, int incx,
       double tmpx;
       double tmpy;
 
-
       /* Test the input parameters. */
       if (incx == 0)
         BLAS_error(routine_name, -4, incx, NULL);
@@ -117,10 +112,6 @@ void BLAS_saxpby_x(int n, float alpha, const float *x, int incx,
       if (n <= 0 || (alpha_i == 0.0 && beta_i == 1.0))
         return;
 
-
-
-
-
       if (incx < 0)
         ix = (-n + 1) * incx;
       if (incy < 0)
@@ -129,15 +120,13 @@ void BLAS_saxpby_x(int n, float alpha, const float *x, int incx,
       for (i = 0; i < n; ++i) {
         x_ii = x_i[ix];
         y_ii = y_i[iy];
-        tmpx = (double) alpha_i *x_ii;        /* tmpx  = alpha * x[ix] */
-        tmpy = (double) beta_i *y_ii;        /* tmpy = beta * y[iy] */
+        tmpx = (double) alpha_i *x_ii; /* tmpx  = alpha * x[ix] */
+        tmpy = (double) beta_i *y_ii;  /* tmpy = beta * y[iy] */
         tmpy = tmpy + tmpx;
         y_i[iy] = tmpy;
         ix += incx;
         iy += incy;
       }                                /* endfor */
-
-
     }
     break;
   case blas_prec_extra:
@@ -165,8 +154,6 @@ void BLAS_saxpby_x(int n, float alpha, const float *x, int incx,
 
       FPU_FIX_START;
 
-
-
       if (incx < 0)
         ix = (-n + 1) * incx;
       if (incy < 0)
@@ -183,7 +170,7 @@ void BLAS_saxpby_x(int n, float alpha, const float *x, int incx,
         y_i[iy] = head_tmpy;
         ix += incx;
         iy += incy;
-      }                                /* endfor */
+      }                         /* endfor */
 
       FPU_FIX_STOP;
     }
