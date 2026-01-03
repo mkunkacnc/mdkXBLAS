@@ -302,4 +302,4 @@ void BLAS_axpby_x_cpp(int n, float alpha, const float *x, int incx,
   }
 }                               /* end BLAS_axpby_x_cpp */
 
-#endif
+#endif // XBLAS_AXPBY_HPP

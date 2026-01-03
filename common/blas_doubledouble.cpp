@@ -1,4 +1,5 @@
 #include "blas_extended_private.h"
+#include "common/BLAS_doubledouble.hpp"
 
 /* compute c = a * b; */
 void compute_doubledouble_eq_double_mul_double(double* head_c,
@@ -7,6 +8,10 @@ void compute_doubledouble_eq_double_mul_double(double* head_c,
                                                double b)
 {
   /* Compute double-double = double * double. */
+  DoubleDouble res = DoubleDouble::mul(a, b);
+  *head_c = res.head;
+  *tail_c = res.tail;
+#if 0
   double a1, a2, b1, b2, con;
 
 #define SPLIT_VAR(a)  \
@@ -22,6 +27,7 @@ void compute_doubledouble_eq_double_mul_double(double* head_c,
 
   *head_c = a * b;
   *tail_c = (((a1 * b1 - *head_c) + a1 * b2) + a2 * b1) + a2 * b2;
+#endif
 }
 
 /* compute c = a * b; */
@@ -31,8 +37,13 @@ void compute_doubledouble_eq_float_mul_float(double* head_c,
                                              float b)
 {
   /* Compute double-double = float * float. */
+  DoubleDouble res = DoubleDouble::mul(a, b);
+  *head_c = res.head;
+  *tail_c = res.tail;
+#if 0
   *head_c = static_cast<double>(a) * b;
   *tail_c = 0.0;
+#endif
 }
 
 /* compute c = a * b */
