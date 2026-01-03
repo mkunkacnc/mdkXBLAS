@@ -1,8 +1,9 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "axpby/BLAS_axpby.hpp"
+
 void BLAS_daxpby_x(int n, double alpha, const double *x, int incx,
                    double beta, double *y, int incy, enum blas_prec_type prec)
-
 /*
  * Purpose
  * =======
@@ -43,8 +44,9 @@ void BLAS_daxpby_x(int n, double alpha, const double *x, int incx,
  *
  */
 {
-  static const char routine_name[] = "BLAS_daxpby_x";
-
+  //static const char routine_name[] = "BLAS_daxpby_x";
+  BLAS_daxpby_x_cpp(n, alpha, x, incx, beta, y, incy, prec);
+#if 0
   switch (prec) {
   case blas_prec_single:
   case blas_prec_double:
@@ -141,4 +143,5 @@ void BLAS_daxpby_x(int n, double alpha, const double *x, int incx,
     }
     break;
   }
+#endif
 }                                /* end BLAS_daxpby_x */
