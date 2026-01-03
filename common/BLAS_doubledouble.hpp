@@ -6,6 +6,7 @@
 class DoubleDouble
 {
 public:
+    DoubleDouble() {}
     explicit DoubleDouble(double x);
 
     static DoubleDouble mul(float a, float b);
@@ -31,10 +32,10 @@ DoubleDouble DoubleDouble::mul(double a, double b)
   /* Compute double-double = double * double. */
   double a1, a2, b1, b2, con;
 
-#define SPLIT_VAR(a)  \
-  con = a * SPLIT;    \
-  a##1 = con - a;     \
-  a##1 = con - a##1;  \
+#define SPLIT_VAR(a)                \
+  con = a * DoubleDouble::split;    \
+  a##1 = con - a;                   \
+  a##1 = con - a##1;                \
   a##2 = a - a##1;
 
   SPLIT_VAR(a)

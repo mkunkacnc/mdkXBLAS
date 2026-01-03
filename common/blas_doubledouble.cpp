@@ -7,11 +7,12 @@ void compute_doubledouble_eq_double_mul_double(double* head_c,
                                                double a,
                                                double b)
 {
+#if 1
   /* Compute double-double = double * double. */
   DoubleDouble res = DoubleDouble::mul(a, b);
   *head_c = res.head;
   *tail_c = res.tail;
-#if 0
+#else
   double a1, a2, b1, b2, con;
 
 #define SPLIT_VAR(a)  \

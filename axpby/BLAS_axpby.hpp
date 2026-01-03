@@ -2,6 +2,7 @@
 #define XBLAS_AXPBY_HPP
 
 #include "blas_extended_private.h"
+#include "common/BLAS_doubledouble.hpp"
 
 template<typename T,
          typename X,
@@ -164,8 +165,8 @@ void BLAS_axpby_x_cpp(int n,
       double beta_i = beta;
       X x_ii;
       double y_ii;
-      double head_tmpx, tail_tmpx;
-      double head_tmpy, tail_tmpy;
+      DoubleDouble tmpx;
+      DoubleDouble tmpy;
       FPU_FIX_DECL;
 
       /* Test the input parameters. */
@@ -188,10 +189,10 @@ void BLAS_axpby_x_cpp(int n,
       for (i = 0; i < n; ++i) {
         x_ii = x_i[ix];
         y_ii = y_i[iy];
-        compute_doubledouble_eq_double_mul_double(&head_tmpx, &tail_tmpx, alpha_i, x_ii);
-        compute_doubledouble_eq_double_mul_double(&head_tmpy, &tail_tmpy, beta_i, y_ii);
-        compute_doubledouble_eq_doubledouble_add_doubledouble(&head_tmpy, &tail_tmpy, head_tmpx, tail_tmpx, head_tmpy, tail_tmpy);
-        y_i[iy] = head_tmpy;
+        tmpx = DoubleDouble::mul(alpha_i, static_cast<double>(x_ii));
+        tmpy = DoubleDouble::mul(beta_i, y_ii);
+        compute_doubledouble_eq_doubledouble_add_doubledouble(&tmpy.head, &tmpy.tail, tmpx.head, tmpx.tail, tmpy.head, tmpy.tail);
+        y_i[iy] = tmpy.head;
         ix += incx;
         iy += incy;
       }               /* endfor */
@@ -264,8 +265,8 @@ void BLAS_axpby_x_cpp(int n, float alpha, const float *x, int incx,
       float beta_i = beta;
       float x_ii;
       float y_ii;
-      double head_tmpx, tail_tmpx;
-      double head_tmpy, tail_tmpy;
+      DoubleDouble tmpx;
+      DoubleDouble tmpy;
       FPU_FIX_DECL;
 
       /* Test the input parameters. */
@@ -288,10 +289,10 @@ void BLAS_axpby_x_cpp(int n, float alpha, const float *x, int incx,
       for (i = 0; i < n; ++i) {
         x_ii = x_i[ix];
         y_ii = y_i[iy];
-        compute_doubledouble_eq_float_mul_float(&head_tmpx, &tail_tmpx, alpha_i, x_ii);
-        compute_doubledouble_eq_float_mul_float(&head_tmpy, &tail_tmpy, beta_i, y_ii);
-        compute_doubledouble_eq_doubledouble_add_doubledouble(&head_tmpy, &tail_tmpy, head_tmpy, tail_tmpy, head_tmpx, tail_tmpx);
-        y_i[iy] = head_tmpy;
+        tmpx = DoubleDouble::mul(alpha_i, x_ii);
+        tmpy = DoubleDouble::mul(beta_i, y_ii);
+        compute_doubledouble_eq_doubledouble_add_doubledouble(&tmpy.head, &tmpy.tail, tmpx.head, tmpx.tail, tmpy.head, tmpy.tail);
+        y_i[iy] = tmpy.head;
         ix += incx;
         iy += incy;
       }                         /* endfor */
