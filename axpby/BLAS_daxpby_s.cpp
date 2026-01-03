@@ -1,8 +1,9 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "axpby/BLAS_axpby.hpp"
+
 void BLAS_daxpby_s(int n, double alpha, const float *x, int incx,
                    double beta, double *y, int incy)
-
 /*
  * Purpose
  * =======
@@ -35,8 +36,9 @@ void BLAS_daxpby_s(int n, double alpha, const float *x, int incx,
  *
  */
 {
-  static const char routine_name[] = "BLAS_daxpby_s";
-
+  //static const char routine_name[] = "BLAS_daxpby_s";
+  BLAS_daxpby_cpp(n, alpha, x, incx, beta, y, incy);
+#if 0
   int i, ix = 0, iy = 0;
   const float *x_i = x;
   double *y_i = y;
@@ -79,5 +81,5 @@ void BLAS_daxpby_s(int n, double alpha, const float *x, int incx,
   }                                /* endfor */
 
 
-
+#endif
 }                                /* end BLAS_daxpby_s */
