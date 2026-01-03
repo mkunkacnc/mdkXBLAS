@@ -24,6 +24,17 @@ void compute_doubledouble_eq_double_mul_double(double* head_c,
   *tail_c = (((a1 * b1 - *head_c) + a1 * b2) + a2 * b1) + a2 * b2;
 }
 
+/* compute c = a * b; */
+void compute_doubledouble_eq_float_mul_float(double* head_c,
+                                             double* tail_c,
+                                             float a,
+                                             float b)
+{
+  /* Compute double-double = float * float. */
+  *head_c = static_cast<double>(a) * b;
+  *tail_c = 0.0;
+}
+
 /* compute c = a * b */
 void compute_doubledouble_eq_doubledouble_mul_double(double* head_c,
                                                      double* tail_c,

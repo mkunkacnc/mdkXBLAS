@@ -49,85 +49,10 @@ void BLAS_saxpby_x(int n, float alpha, const float *x, int incx,
   switch (prec) {
   case blas_prec_single:
     BLAS_axpby_cpp(n, alpha, x, incx, beta, y, incy);
-#if 0
-    {
-      int i, ix = 0, iy = 0;
-      const float *x_i = x;
-      float *y_i = y;
-      float alpha_i = alpha;
-      float beta_i = beta;
-      float x_ii;
-      float y_ii;
-      float tmpx;
-      float tmpy;
-
-      /* Test the input parameters. */
-      if (incx == 0)
-        BLAS_error(routine_name, -4, incx, NULL);
-      else if (incy == 0)
-        BLAS_error(routine_name, -7, incy, NULL);
-
-      /* Immediate return */
-      if (n <= 0 || (alpha_i == 0.0 && beta_i == 1.0))
-        return;
-
-      if (incx < 0)
-        ix = (-n + 1) * incx;
-      if (incy < 0)
-        iy = (-n + 1) * incy;
-
-      for (i = 0; i < n; ++i) {
-        x_ii = x_i[ix];
-        y_ii = y_i[iy];
-        tmpx = alpha_i * x_ii; /* tmpx  = alpha * x[ix] */
-        tmpy = beta_i * y_ii;  /* tmpy = beta * y[iy] */
-        tmpy = tmpy + tmpx;
-        y_i[iy] = tmpy;
-        ix += incx;
-        iy += incy;
-      }                        /* endfor */
-    }
-#endif
     break;
   case blas_prec_double:
   case blas_prec_indigenous:
-    {
-      int i, ix = 0, iy = 0;
-      const float *x_i = x;
-      float *y_i = y;
-      float alpha_i = alpha;
-      float beta_i = beta;
-      float x_ii;
-      float y_ii;
-      double tmpx;
-      double tmpy;
-
-      /* Test the input parameters. */
-      if (incx == 0)
-        BLAS_error(routine_name, -4, incx, NULL);
-      else if (incy == 0)
-        BLAS_error(routine_name, -7, incy, NULL);
-
-      /* Immediate return */
-      if (n <= 0 || (alpha_i == 0.0 && beta_i == 1.0))
-        return;
-
-      if (incx < 0)
-        ix = (-n + 1) * incx;
-      if (incy < 0)
-        iy = (-n + 1) * incy;
-
-      for (i = 0; i < n; ++i) {
-        x_ii = x_i[ix];
-        y_ii = y_i[iy];
-        tmpx = (double) alpha_i *x_ii; /* tmpx  = alpha * x[ix] */
-        tmpy = (double) beta_i *y_ii;  /* tmpy = beta * y[iy] */
-        tmpy = tmpy + tmpx;
-        y_i[iy] = tmpy;
-        ix += incx;
-        iy += incy;
-      }                                /* endfor */
-    }
+    BLAS_axpby_cpp<float, float, double>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
     {
@@ -162,10 +87,8 @@ void BLAS_saxpby_x(int n, float alpha, const float *x, int incx,
       for (i = 0; i < n; ++i) {
         x_ii = x_i[ix];
         y_ii = y_i[iy];
-        head_tmpx = (double) alpha_i *x_ii;
-        tail_tmpx = 0.0;        /* tmpx  = alpha * x[ix] */
-        head_tmpy = (double) beta_i *y_ii;
-        tail_tmpy = 0.0;        /* tmpy = beta * y[iy] */
+        compute_doubledouble_eq_float_mul_float(&head_tmpx, &tail_tmpx, alpha_i, x_ii);
+        compute_doubledouble_eq_float_mul_float(&head_tmpy, &tail_tmpy, beta_i, y_ii);
         compute_doubledouble_eq_doubledouble_add_doubledouble(&head_tmpy, &tail_tmpy, head_tmpy, tail_tmpy, head_tmpx, tail_tmpx);
         y_i[iy] = head_tmpy;
         ix += incx;
@@ -176,4 +99,4 @@ void BLAS_saxpby_x(int n, float alpha, const float *x, int incx,
     }
     break;
   }
-}                                /* end BLAS_saxpby_x */
+}                               /* end BLAS_saxpby_x */
