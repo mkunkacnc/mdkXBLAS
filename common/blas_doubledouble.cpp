@@ -7,12 +7,11 @@ void compute_doubledouble_eq_double_mul_double(double* head_c,
                                                double a,
                                                double b)
 {
-#if 1
   /* Compute double-double = double * double. */
-  DoubleDouble res = DoubleDouble::mul(a, b);
-  *head_c = res.head;
-  *tail_c = res.tail;
-#else
+  DoubleDouble c = DoubleDouble::mul(a, b);
+  *head_c = c.head;
+  *tail_c = c.tail;
+#if 0
   double a1, a2, b1, b2, con;
 
 #define SPLIT_VAR(a)  \
@@ -38,9 +37,9 @@ void compute_doubledouble_eq_float_mul_float(double* head_c,
                                              float b)
 {
   /* Compute double-double = float * float. */
-  DoubleDouble res = DoubleDouble::mul(a, b);
-  *head_c = res.head;
-  *tail_c = res.tail;
+  DoubleDouble c = DoubleDouble::mul(a, b);
+  *head_c = c.head;
+  *tail_c = c.tail;
 #if 0
   *head_c = static_cast<double>(a) * b;
   *tail_c = 0.0;
@@ -55,6 +54,11 @@ void compute_doubledouble_eq_doubledouble_mul_double(double* head_c,
                                                      double b)
 {
   /* Compute double-double = double-double * double. */
+  DoubleDouble a(head_a, tail_a);
+  DoubleDouble c = a * b;
+  *head_c = c.head;
+  *tail_c = c.tail;
+#if 0
   double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
   con = head_a * SPLIT;
@@ -76,6 +80,7 @@ void compute_doubledouble_eq_doubledouble_mul_double(double* head_c,
 
   *head_c = t1 + t2;
   *tail_c = t2 - (*head_c - t1);
+#endif
 }
 
 /* compute c = a + b */
