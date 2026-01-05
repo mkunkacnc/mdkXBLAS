@@ -4,16 +4,73 @@
 #include "blas_extended_private.h"
 #include "common/BLAS_doubledouble.hpp"
 
+#include <type_traits>
+
+//---------------
+namespace XBLAS {
+//---------------
+
+//-----------------
+
+template<typename C,
+         typename A,
+         typename B>
+inline C mul(A a, B b)
+{
+  return static_cast<C>(a) * b;
+}
+
+template<typename C>
+inline C mul(C a, C b)
+{
+  return a * b;
+}
+
+template<>
+inline DoubleDouble mul(double a, double b)
+{
+  return DoubleDouble::mul(a, b);
+}
+
+template<>
+inline DoubleDouble mul(double a, float b)
+{
+  return DoubleDouble::mul(a, static_cast<double>(b));
+}
+
+template<>
+inline DoubleDouble mul(float a, float b)
+{
+  return DoubleDouble::mul(a, b);
+}
+
+//-----------------
+
+template<typename To,
+         typename From>
+inline To to(From from)
+{
+  return static_cast<To>(from);
+}
+
+template<typename To>
+inline To to(DoubleDouble from)
+{
+  return static_cast<To>(from.head);
+}
+
+//-----------------
+
 template<typename T,
          typename X,
          typename TmpType = T>
-void BLAS_axpby_cpp(int n,
-                    T alpha,
-                    const X *x,
-                    int incx,
-                    T beta,
-                    T *y,
-                    int incy)
+void axpby(int n,
+           T alpha,
+           const X *x,
+           int incx,
+           T beta,
+           T *y,
+           int incy)
 /*
  * Purpose
  * =======
@@ -46,7 +103,7 @@ void BLAS_axpby_cpp(int n,
  *
  */
 {
-  static const char routine_name[] = "BLAS_axpby_cpp";
+  static const char routine_name[] = "XBLAS::axpby";
 
   int i, ix = 0, iy = 0;
   const X *x_i = x;
@@ -57,6 +114,7 @@ void BLAS_axpby_cpp(int n,
   T y_ii;
   TmpType tmpx;
   TmpType tmpy;
+  FPU_FIX_DECL;
 
   /* Test the input parameters. */
   if (incx == 0)
@@ -68,6 +126,10 @@ void BLAS_axpby_cpp(int n,
   if (n <= 0 || (alpha_i == 0.0 && beta_i == 1.0))
     return;
 
+  if constexpr (std::is_same_v<TmpType, DoubleDouble>) {
+    FPU_FIX_START;
+  }
+
   if (incx < 0)
     ix = (-n + 1) * incx;
   if (incy < 0)
@@ -76,38 +138,44 @@ void BLAS_axpby_cpp(int n,
   for (i = 0; i < n; ++i) {
     x_ii = x_i[ix];
     y_ii = y_i[iy];
-    tmpx = static_cast<TmpType>(alpha_i) * x_ii; /* tmpx  = alpha * x[ix] */
-    tmpy = static_cast<TmpType>(beta_i) * y_ii;  /* tmpy = beta * y[iy] */
+    tmpx = mul<TmpType>(alpha_i, x_ii); /* tmpx  = alpha * x[ix] */
+    tmpy = mul<TmpType>(beta_i, y_ii);  /* tmpy = beta * y[iy] */
     tmpy = tmpy + tmpx;
-    y_i[iy] = tmpy;
+    y_i[iy] = to<T>(tmpy);
     ix += incx;
     iy += incy;
-  }                        /* endfor */
-}                          /* end BLAS_axpby_cpp */
+  } /* endfor */
+
+  if constexpr (std::is_same_v<TmpType, DoubleDouble>) {
+    FPU_FIX_STOP;
+  }
+} /* end BLAS_axpby_cpp */
+
+//-----------------
 
 template<typename T,
          typename X>
-void BLAS_axpby_x_cpp(int n,
-                      T alpha,
-                      const X *x,
-                      int incx,
-                      T beta,
-                      T *y,
-                      int incy,
-                      enum blas_prec_type prec)
+void axpby_x(int n,
+             T alpha,
+             const X *x,
+             int incx,
+             T beta,
+             T *y,
+             int incy,
+             enum blas_prec_type prec)
 {
   static_assert("Missing specialization");
-}
+} /* end BLAS_axpby_x_cpp */
 
 template<typename X>
-void BLAS_axpby_x_cpp(int n,
-                      double alpha,
-                      const X *x,
-                      int incx,
-                      double beta,
-                      double *y,
-                      int incy,
-                      enum blas_prec_type prec)
+void axpby_x(int n,
+             double alpha,
+             const X *x,
+             int incx,
+             double beta,
+             double *y,
+             int incy,
+             enum blas_prec_type prec)
 /*
  * Purpose
  * =======
@@ -148,64 +216,28 @@ void BLAS_axpby_x_cpp(int n,
  *
  */
 {
-  static const char routine_name[] = "BLAS_axpby_x_cpp";
-
+//static const char routine_name[] = "XBLAS::axpby_x";
   switch (prec) {
   case blas_prec_single:
   case blas_prec_double:
   case blas_prec_indigenous:
-    BLAS_axpby_cpp(n, alpha, x, incx, beta, y, incy);
+    axpby(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    {
-      int i, ix = 0, iy = 0;
-      const X *x_i = x;
-      double *y_i = y;
-      double alpha_i = alpha;
-      double beta_i = beta;
-      X x_ii;
-      double y_ii;
-      DoubleDouble tmpx;
-      DoubleDouble tmpy;
-      FPU_FIX_DECL;
-
-      /* Test the input parameters. */
-      if (incx == 0)
-        BLAS_error(routine_name, -4, incx, NULL);
-      else if (incy == 0)
-        BLAS_error(routine_name, -7, incy, NULL);
-
-      /* Immediate return */
-      if (n <= 0 || (alpha_i == 0.0 && beta_i == 1.0))
-        return;
-
-      FPU_FIX_START;
-
-      if (incx < 0)
-        ix = (-n + 1) * incx;
-      if (incy < 0)
-        iy = (-n + 1) * incy;
-
-      for (i = 0; i < n; ++i) {
-        x_ii = x_i[ix];
-        y_ii = y_i[iy];
-        tmpx = DoubleDouble::mul(alpha_i, static_cast<double>(x_ii));
-        tmpy = DoubleDouble::mul(beta_i, y_ii);
-        compute_doubledouble_eq_doubledouble_add_doubledouble(&tmpy.head, &tmpy.tail, tmpx.head, tmpx.tail, tmpy.head, tmpy.tail);
-        y_i[iy] = tmpy.head;
-        ix += incx;
-        iy += incy;
-      }               /* endfor */
-
-      FPU_FIX_STOP;
-    }
+    axpby<double, X, DoubleDouble>(n, alpha, x, incx, beta, y, incy);
     break;
   }
-}                     /* end BLAS_axpby_x_cpp */
+} /* end XBLAS::axpby_x */
 
 template<> inline
-void BLAS_axpby_x_cpp(int n, float alpha, const float *x, int incx,
-                      float beta, float *y, int incy, enum blas_prec_type prec)
+void axpby_x(int n,
+             float alpha,
+             const float *x,
+             int incx,
+             float beta,
+             float *y,
+             int incy,
+             enum blas_prec_type prec)
 /*
  * Purpose
  * =======
@@ -246,61 +278,23 @@ void BLAS_axpby_x_cpp(int n, float alpha, const float *x, int incx,
  *
  */
 {
-  static const char routine_name[] = "BLAS_axpby_x_cpp";
-
+//static const char routine_name[] = "XBLAS::axpby_x";
   switch (prec) {
   case blas_prec_single:
-    BLAS_axpby_cpp(n, alpha, x, incx, beta, y, incy);
+    axpby(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_double:
   case blas_prec_indigenous:
-    BLAS_axpby_cpp<float, float, double>(n, alpha, x, incx, beta, y, incy);
+    axpby<float, float, double>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    {
-      int i, ix = 0, iy = 0;
-      const float *x_i = x;
-      float *y_i = y;
-      float alpha_i = alpha;
-      float beta_i = beta;
-      float x_ii;
-      float y_ii;
-      DoubleDouble tmpx;
-      DoubleDouble tmpy;
-      FPU_FIX_DECL;
-
-      /* Test the input parameters. */
-      if (incx == 0)
-        BLAS_error(routine_name, -4, incx, NULL);
-      else if (incy == 0)
-        BLAS_error(routine_name, -7, incy, NULL);
-
-      /* Immediate return */
-      if (n <= 0 || (alpha_i == 0.0 && beta_i == 1.0))
-        return;
-
-      FPU_FIX_START;
-
-      if (incx < 0)
-        ix = (-n + 1) * incx;
-      if (incy < 0)
-        iy = (-n + 1) * incy;
-
-      for (i = 0; i < n; ++i) {
-        x_ii = x_i[ix];
-        y_ii = y_i[iy];
-        tmpx = DoubleDouble::mul(alpha_i, x_ii);
-        tmpy = DoubleDouble::mul(beta_i, y_ii);
-        compute_doubledouble_eq_doubledouble_add_doubledouble(&tmpy.head, &tmpy.tail, tmpx.head, tmpx.tail, tmpy.head, tmpy.tail);
-        y_i[iy] = tmpy.head;
-        ix += incx;
-        iy += incy;
-      }                         /* endfor */
-
-      FPU_FIX_STOP;
-    }
+    axpby<float, float, DoubleDouble>(n, alpha, x, incx, beta, y, incy);
     break;
   }
-}                               /* end BLAS_axpby_x_cpp */
+} /* end XBLAS::axpby_x */
+
+//-----------------
+} //namespace XBLAS
+//-----------------
 
 #endif // XBLAS_AXPBY_HPP

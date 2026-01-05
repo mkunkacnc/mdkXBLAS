@@ -92,6 +92,12 @@ void compute_doubledouble_eq_doubledouble_add_doubledouble(double* head_c,
                                                            double tail_b)
 {
   /* Compute double-double = double-double + double-double. */
+  DoubleDouble a(head_a, tail_a);
+  DoubleDouble b(head_b, tail_b);
+  DoubleDouble c = a + b;
+  *head_c = c.head;
+  *tail_c = c.tail;
+#if 0
   double bv;
   double s1, s2, t1, t2;
 
@@ -116,6 +122,7 @@ void compute_doubledouble_eq_doubledouble_add_doubledouble(double* head_c,
   /* Renormalize (t1, t2)  */
   *head_c = t1 + t2;
   *tail_c = t2 - (*head_c - t1);
+#endif
 }
 
 /* compute c = a + b */

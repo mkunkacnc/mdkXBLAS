@@ -37,5 +37,5 @@ void BLAS_daxpby_s(int n, double alpha, const float *x, int incx,
  */
 {
   //static const char routine_name[] = "BLAS_daxpby_s";
-  BLAS_axpby_cpp(n, alpha, x, incx, beta, y, incy);
+  XBLAS::axpby(n, alpha, x, incx, beta, y, incy);
 }

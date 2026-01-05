@@ -21,6 +21,7 @@ public:
 };
 
 DoubleDouble operator *(const DoubleDouble& a, double b);
+DoubleDouble operator +(const DoubleDouble& a, const DoubleDouble& b);
 
 //-----------------
 
@@ -92,5 +93,37 @@ DoubleDouble operator *(const DoubleDouble& a, double b)
   c.tail = t2 - (c.head - t1);
   return c;
 }
+
+inline
+DoubleDouble operator +(const DoubleDouble& a, const DoubleDouble& b)
+{
+  /* Compute double-double = double-double + double-double. */
+  double bv;
+  double s1, s2, t1, t2;
+
+  /* Add two hi words. */
+  s1 = a.head + b.head;
+  bv = s1 - a.head;
+  s2 = ((b.head - bv) + (a.head - (s1 - bv)));
+
+  /* Add two lo words. */
+  t1 = a.tail + b.tail;
+  bv = t1 - a.tail;
+  t2 = ((b.tail - bv) + (a.tail - (t1 - bv)));
+
+  s2 += t1;
+
+  /* Renormalize (s1, s2)  to  (t1, s2) */
+  t1 = s1 + s2;
+  s2 = s2 - (t1 - s1);
+
+  t2 += s2;
+
+  /* Renormalize (t1, t2)  */
+  DoubleDouble c(t1 + t2);
+  c.tail = t2 - (c.head - t1);
+  return c;
+}
+
 
 #endif // XBLAS_DOUBLEDOUBLE_HPP
