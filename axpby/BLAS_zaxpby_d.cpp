@@ -1,8 +1,14 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-void BLAS_zaxpby_d(int n, const void *alpha, const double *x, int incx,
-                   const void *beta, void *y, int incy)
+#include "axpby/XBLAS_axpby.hpp"
 
+void BLAS_zaxpby_d(int n,
+                   const void *alpha,
+                   const double *x,
+                   int incx,
+                   const void *beta,
+                   void *y,
+                   int incy)
 /*
  * Purpose
  * =======
@@ -35,8 +41,9 @@ void BLAS_zaxpby_d(int n, const void *alpha, const double *x, int incx,
  *
  */
 {
-  static const char routine_name[] = "BLAS_zaxpby_d";
-
+  //static const char routine_name[] = "BLAS_zaxpby_d";
+  XBLAS::caxpby<double>(n, alpha, x, incx, beta, y, incy);
+#if 0
   int i, ix = 0, iy = 0;
   const double *x_i = x;
   double *y_i = (double *) y;
@@ -46,7 +53,6 @@ void BLAS_zaxpby_d(int n, const void *alpha, const double *x, int incx,
   double y_ii[2];
   double tmpx[2];
   double tmpy[2];
-
 
   /* Test the input parameters. */
   if (incx == 0)
@@ -59,9 +65,6 @@ void BLAS_zaxpby_d(int n, const void *alpha, const double *x, int incx,
       || (alpha_i[0] == 0.0 && alpha_i[1] == 0.0
           && (beta_i[0] == 1.0 && beta_i[1] == 0.0)))
     return;
-
-
-
 
   incy *= 2;
   if (incx < 0)
@@ -88,7 +91,5 @@ void BLAS_zaxpby_d(int n, const void *alpha, const double *x, int incx,
     ix += incx;
     iy += incy;
   }                                /* endfor */
-
-
-
-}                                /* end BLAS_zaxpby_d */
+#endif
+} /* end BLAS_zaxpby_d */

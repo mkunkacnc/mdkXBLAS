@@ -1,8 +1,14 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-void BLAS_zaxpby_c(int n, const void *alpha, const void *x, int incx,
-                   const void *beta, void *y, int incy)
+#include "axpby/XBLAS_axpby.hpp"
 
+void BLAS_zaxpby_c(int n,
+                   const void *alpha,
+                   const void *x,
+                   int incx,
+                   const void *beta,
+                   void *y,
+                   int incy)
 /*
  * Purpose
  * =======
@@ -47,7 +53,6 @@ void BLAS_zaxpby_c(int n, const void *alpha, const void *x, int incx,
   double tmpx[2];
   double tmpy[2];
 
-
   /* Test the input parameters. */
   if (incx == 0)
     BLAS_error(routine_name, -4, incx, NULL);
@@ -59,8 +64,6 @@ void BLAS_zaxpby_c(int n, const void *alpha, const void *x, int incx,
       || (alpha_i[0] == 0.0 && alpha_i[1] == 0.0
           && (beta_i[0] == 1.0 && beta_i[1] == 0.0)))
     return;
-
-
 
   incx *= 2;
   incy *= 2;
@@ -89,7 +92,4 @@ void BLAS_zaxpby_c(int n, const void *alpha, const void *x, int incx,
     ix += incx;
     iy += incy;
   }                                /* endfor */
-
-
-
 }                                /* end BLAS_zaxpby_c */

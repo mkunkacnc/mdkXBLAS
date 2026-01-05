@@ -1,9 +1,15 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-void BLAS_caxpby_x(int n, const void *alpha, const void *x, int incx,
-                   const void *beta, void *y,
-                   int incy, enum blas_prec_type prec)
+#include "axpby/XBLAS_axpby.hpp"
 
+void BLAS_caxpby_x(int n,
+                   const void *alpha,
+                   const void *x,
+                   int incx,
+                   const void *beta,
+                   void *y,
+                   int incy,
+                   enum blas_prec_type prec)
 /*
  * Purpose
  * =======
@@ -47,8 +53,8 @@ void BLAS_caxpby_x(int n, const void *alpha, const void *x, int incx,
   static const char routine_name[] = "BLAS_caxpby_x";
 
   switch (prec) {
-  case blas_prec_single:{
-
+  case blas_prec_single:
+    {
       int i, ix = 0, iy = 0;
       const float *x_i = (float *) x;
       float *y_i = (float *) y;
@@ -58,7 +64,6 @@ void BLAS_caxpby_x(int n, const void *alpha, const void *x, int incx,
       float y_ii[2];
       float tmpx[2];
       float tmpy[2];
-
 
       /* Test the input parameters. */
       if (incx == 0)
@@ -71,8 +76,6 @@ void BLAS_caxpby_x(int n, const void *alpha, const void *x, int incx,
           || (alpha_i[0] == 0.0 && alpha_i[1] == 0.0
               && (beta_i[0] == 1.0 && beta_i[1] == 0.0)))
         return;
-
-
 
       incx *= 2;
       incy *= 2;
@@ -103,9 +106,6 @@ void BLAS_caxpby_x(int n, const void *alpha, const void *x, int incx,
         ix += incx;
         iy += incy;
       }                                /* endfor */
-
-
-
       break;
     }
   case blas_prec_double:
@@ -121,7 +121,6 @@ void BLAS_caxpby_x(int n, const void *alpha, const void *x, int incx,
       double tmpx[2];
       double tmpy[2];
 
-
       /* Test the input parameters. */
       if (incx == 0)
         BLAS_error(routine_name, -4, incx, NULL);
@@ -133,8 +132,6 @@ void BLAS_caxpby_x(int n, const void *alpha, const void *x, int incx,
           || (alpha_i[0] == 0.0 && alpha_i[1] == 0.0
               && (beta_i[0] == 1.0 && beta_i[1] == 0.0)))
         return;
-
-
 
       incx *= 2;
       incy *= 2;
@@ -167,8 +164,6 @@ void BLAS_caxpby_x(int n, const void *alpha, const void *x, int incx,
         ix += incx;
         iy += incy;
       }                                /* endfor */
-
-
     }
     break;
   case blas_prec_extra:

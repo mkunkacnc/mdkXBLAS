@@ -5,6 +5,7 @@
 #include "common/BLAS_doubledouble.hpp"
 
 #include <type_traits>
+#include <complex>
 
 //---------------
 namespace XBLAS {
@@ -149,7 +150,92 @@ void axpby(int n,
   if constexpr (std::is_same_v<TmpType, DoubleDouble>) {
     FPU_FIX_STOP;
   }
-} /* end BLAS_axpby_cpp */
+} /* end XBLAS::axpby */
+
+template<typename T,
+         typename X,
+         typename TmpType = T>
+void caxpby(int n,
+            const void *alpha,
+            const X *x,
+            int incx,
+            const void *beta,
+            void *y,
+            int incy)
+/*
+ * Purpose
+ * =======
+ *
+ * This routine computes:
+ *
+ *      y <- alpha * x + beta * y.
+ *
+ * Arguments
+ * =========
+ *
+ * n         (input) int
+ *           The length of vectors x and y.
+ *
+ * alpha     (input) const void*
+ *
+ * x         (input) const X*
+ *           Array of length n.
+ *
+ * incx      (input) int
+ *           The stride used to access components x[i].
+ *
+ * beta      (input) const void*
+ *
+ * y         (input) void*
+ *           Array of length n.
+ *
+ * incy      (input) int
+ *           The stride used to access components y[i].
+ *
+ */
+{
+  static const char routine_name[] = "XBLAS::caxpby";
+
+  static_assert(sizeof(std::complex<T>) == 2*sizeof(T) && sizeof(T[2]) == 2*sizeof(T));
+  static_assert(sizeof(std::complex<X>) == 2*sizeof(X) && sizeof(X[2]) == 2*sizeof(X));
+  static_assert(sizeof(std::complex<TmpType>) == 2*sizeof(TmpType) && sizeof(TmpType[2]) == 2*sizeof(TmpType));
+
+  int i, ix = 0, iy = 0;
+  const X *x_i = x;
+  std::complex<T> *y_i = static_cast<std::complex<T>*>(y);
+  const std::complex<T> alpha_i = *static_cast<const std::complex<T>*>(alpha);
+  const std::complex<T> beta_i = *static_cast<const std::complex<T>*>(beta);
+  X x_ii;
+  std::complex<T> y_ii;
+  std::complex<TmpType> tmpx;
+  std::complex<TmpType> tmpy;
+
+  /* Test the input parameters. */
+  if (incx == 0)
+    BLAS_error(routine_name, -4, incx, NULL);
+  else if (incy == 0)
+    BLAS_error(routine_name, -7, incy, NULL);
+
+  /* Immediate return */
+  if (n <= 0 || (alpha_i == std::complex<T>(0) && beta_i == std::complex<T>(1)))
+    return;
+
+  if (incx < 0)
+    ix = (-n + 1) * incx;
+  if (incy < 0)
+    iy = (-n + 1) * incy;
+
+  for (i = 0; i < n; ++i) {
+    x_ii = x_i[ix];
+    y_ii = y_i[iy];
+    tmpx = static_cast<std::complex<TmpType>>(alpha_i) * static_cast<TmpType>(x_ii);
+    tmpy = static_cast<std::complex<TmpType>>(beta_i) * static_cast<std::complex<TmpType>>(y_ii);
+    tmpy = tmpy + tmpx;
+    y_i[iy] = tmpy;
+    ix += incx;
+    iy += incy;
+  } /* endfor */
+} /* end XBLAS::caxpby */
 
 //-----------------
 

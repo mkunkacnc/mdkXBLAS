@@ -1,9 +1,15 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-void BLAS_caxpby_s_x(int n, const void *alpha, const float *x, int incx,
-                     const void *beta, void *y,
-                     int incy, enum blas_prec_type prec)
+#include "axpby/XBLAS_axpby.hpp"
 
+void BLAS_caxpby_s_x(int n,
+                     const void *alpha,
+                     const float *x,
+                     int incx,
+                     const void *beta,
+                     void *y,
+                     int incy,
+                     enum blas_prec_type prec)
 /*
  * Purpose
  * =======
@@ -47,124 +53,12 @@ void BLAS_caxpby_s_x(int n, const void *alpha, const float *x, int incx,
   static const char routine_name[] = "BLAS_caxpby_s_x";
 
   switch (prec) {
-  case blas_prec_single:{
-
-      int i, ix = 0, iy = 0;
-      const float *x_i = x;
-      float *y_i = (float *) y;
-      float *alpha_i = (float *) alpha;
-      float *beta_i = (float *) beta;
-      float x_ii;
-      float y_ii[2];
-      float tmpx[2];
-      float tmpy[2];
-
-
-      /* Test the input parameters. */
-      if (incx == 0)
-        BLAS_error(routine_name, -4, incx, NULL);
-      else if (incy == 0)
-        BLAS_error(routine_name, -7, incy, NULL);
-
-      /* Immediate return */
-      if (n <= 0
-          || (alpha_i[0] == 0.0 && alpha_i[1] == 0.0
-              && (beta_i[0] == 1.0 && beta_i[1] == 0.0)))
-        return;
-
-
-
-
-      incy *= 2;
-      if (incx < 0)
-        ix = (-n + 1) * incx;
-      if (incy < 0)
-        iy = (-n + 1) * incy;
-
-      for (i = 0; i < n; ++i) {
-        x_ii = x_i[ix];
-        y_ii[0] = y_i[iy];
-        y_ii[1] = y_i[iy + 1];
-        {
-          tmpx[0] = alpha_i[0] * x_ii;
-          tmpx[1] = alpha_i[1] * x_ii;
-        }                        /* tmpx  = alpha * x[ix] */
-        {
-          tmpy[0] = beta_i[0] * y_ii[0] - beta_i[1] * y_ii[1];
-          tmpy[1] = beta_i[0] * y_ii[1] + beta_i[1] * y_ii[0];
-        }
-        /* tmpy = beta * y[iy] */
-        tmpy[0] = tmpy[0] + tmpx[0];
-        tmpy[1] = tmpy[1] + tmpx[1];
-        y_i[iy] = tmpy[0];
-        y_i[iy + 1] = tmpy[1];
-        ix += incx;
-        iy += incy;
-      }                                /* endfor */
-
-
-
-      break;
-    }
+  case blas_prec_single:
+    XBLAS::caxpby<float>(n, alpha, x, incx, beta, y, incy);
+    break;
   case blas_prec_double:
   case blas_prec_indigenous:
-    {
-      int i, ix = 0, iy = 0;
-      const float *x_i = x;
-      float *y_i = (float *) y;
-      float *alpha_i = (float *) alpha;
-      float *beta_i = (float *) beta;
-      float x_ii;
-      float y_ii[2];
-      double tmpx[2];
-      double tmpy[2];
-
-
-      /* Test the input parameters. */
-      if (incx == 0)
-        BLAS_error(routine_name, -4, incx, NULL);
-      else if (incy == 0)
-        BLAS_error(routine_name, -7, incy, NULL);
-
-      /* Immediate return */
-      if (n <= 0
-          || (alpha_i[0] == 0.0 && alpha_i[1] == 0.0
-              && (beta_i[0] == 1.0 && beta_i[1] == 0.0)))
-        return;
-
-
-
-
-      incy *= 2;
-      if (incx < 0)
-        ix = (-n + 1) * incx;
-      if (incy < 0)
-        iy = (-n + 1) * incy;
-
-      for (i = 0; i < n; ++i) {
-        x_ii = x_i[ix];
-        y_ii[0] = y_i[iy];
-        y_ii[1] = y_i[iy + 1];
-        {
-          tmpx[0] = (double) alpha_i[0] * x_ii;
-          tmpx[1] = (double) alpha_i[1] * x_ii;
-        }                        /* tmpx  = alpha * x[ix] */
-        {
-          tmpy[0] =
-            (double) beta_i[0] * y_ii[0] - (double) beta_i[1] * y_ii[1];
-          tmpy[1] =
-            (double) beta_i[0] * y_ii[1] + (double) beta_i[1] * y_ii[0];
-        }                        /* tmpy = beta * y[iy] */
-        tmpy[0] = tmpy[0] + tmpx[0];
-        tmpy[1] = tmpy[1] + tmpx[1];
-        y_i[iy] = tmpy[0];
-        y_i[iy + 1] = tmpy[1];
-        ix += incx;
-        iy += incy;
-      }                                /* endfor */
-
-
-    }
+    XBLAS::caxpby<float, float, double>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
     {

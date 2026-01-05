@@ -1,9 +1,15 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-void BLAS_zaxpby_d_x(int n, const void *alpha, const double *x, int incx,
-                     const void *beta, void *y,
-                     int incy, enum blas_prec_type prec)
+#include "axpby/XBLAS_axpby.hpp"
 
+void BLAS_zaxpby_d_x(int n,
+                     const void *alpha,
+                     const double *x,
+                     int incx,
+                     const void *beta,
+                     void *y,
+                     int incy,
+                     enum blas_prec_type prec)
 /*
  * Purpose
  * =======
@@ -50,6 +56,8 @@ void BLAS_zaxpby_d_x(int n, const void *alpha, const double *x, int incx,
   case blas_prec_single:
   case blas_prec_double:
   case blas_prec_indigenous:
+    XBLAS::caxpby<double>(n, alpha, x, incx, beta, y, incy);
+#if 0
     {
       int i, ix = 0, iy = 0;
       const double *x_i = x;
@@ -107,6 +115,7 @@ void BLAS_zaxpby_d_x(int n, const void *alpha, const double *x, int incx,
 
 
     }
+#endif
     break;
   case blas_prec_extra:
     {
@@ -134,7 +143,6 @@ void BLAS_zaxpby_d_x(int n, const void *alpha, const double *x, int incx,
         return;
 
       FPU_FIX_START;
-
 
       incy *= 2;
       if (incx < 0)
