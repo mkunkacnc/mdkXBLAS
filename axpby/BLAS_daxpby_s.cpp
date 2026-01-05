@@ -1,9 +1,14 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "axpby/BLAS_axpby.hpp"
+#include "axpby/XBLAS_axpby.hpp"
 
-void BLAS_daxpby_s(int n, double alpha, const float *x, int incx,
-                   double beta, double *y, int incy)
+void BLAS_daxpby_s(int n,
+                   double alpha,
+                   const float *x,
+                   int incx,
+                   double beta,
+                   double *y,
+                   int incy)
 /*
  * Purpose
  * =======

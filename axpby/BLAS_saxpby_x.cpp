@@ -1,9 +1,15 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "axpby/BLAS_axpby.hpp"
+#include "axpby/XBLAS_axpby.hpp"
 
-void BLAS_saxpby_x(int n, float alpha, const float *x, int incx,
-                   float beta, float *y, int incy, enum blas_prec_type prec)
+void BLAS_saxpby_x(int n,
+                   float alpha,
+                   const float *x,
+                   int incx,
+                   float beta,
+                   float *y,
+                   int incy,
+                   enum blas_prec_type prec)
 /*
  * Purpose
  * =======
