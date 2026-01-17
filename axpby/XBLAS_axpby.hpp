@@ -89,6 +89,7 @@ inline To to(DoubleDouble from)
 template<typename T,
          typename X,
          typename TmpType = T>
+requires (sizeof(X) <= sizeof(T) && sizeof(TmpType) >= sizeof(T))
 void axpby(int n,
            T alpha,
            const X *x,
