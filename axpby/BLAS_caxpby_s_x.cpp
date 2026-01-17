@@ -50,8 +50,7 @@ void BLAS_caxpby_s_x(int n,
  *
  */
 {
-  static const char routine_name[] = "BLAS_caxpby_s_x";
-
+//static const char routine_name[] = "BLAS_caxpby_s_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::axpby<std::complex<float>,
@@ -77,6 +76,16 @@ void BLAS_caxpby_s_x(int n,
                                        incy);
     break;
   case blas_prec_extra:
+    XBLAS::my_axpby/*<std::complex<float>,
+                 float,
+                 std::complex<DoubleDouble>>*/(n,
+                                             *static_cast<const std::complex<float> *>(alpha),
+                                             x,
+                                             incx,
+                                             *static_cast<const std::complex<float> *>(beta),
+                                             static_cast<std::complex<float> *>(y),
+                                             incy);
+#if 0
     {
       int i, ix = 0, iy = 0;
       const float *x_i = x;
@@ -166,6 +175,7 @@ void BLAS_caxpby_s_x(int n,
 
       FPU_FIX_STOP;
     }
+#endif
     break;
   }
-}                                /* end BLAS_caxpby_s_x */
+} /* end BLAS_caxpby_s_x */
