@@ -51,7 +51,7 @@ void BLAS_zwaxpby_d_d_x(int n, const void *alpha, const double *x, int incx,
  *
  */
 {
-  char *routine_name = "BLAS_zwaxpby_d_d_x";
+  static const char routine_name[] = "BLAS_zwaxpby_d_d_x";
   switch (prec) {
   case blas_prec_single:
   case blas_prec_double:

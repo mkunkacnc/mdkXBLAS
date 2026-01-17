@@ -42,7 +42,13 @@ void BLAS_zaxpby_d(int n,
  */
 {
   //static const char routine_name[] = "BLAS_zaxpby_d";
-  XBLAS::caxpby<double>(n, alpha, x, incx, beta, y, incy);
+  XBLAS::caxpby<double>(n,
+                        *static_cast<const std::complex<double> *>(alpha),
+                        x,
+                        incx,
+                        *static_cast<const std::complex<double> *>(beta),
+                        static_cast<std::complex<double> *>(y),
+                        incy);
 #if 0
   int i, ix = 0, iy = 0;
   const double *x_i = x;

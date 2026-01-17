@@ -43,7 +43,7 @@ void BLAS_zwaxpby_d_d(int n, const void *alpha, const double *x, int incx,
  *
  */
 {
-  char *routine_name = "BLAS_zwaxpby_d_d";
+  static const char routine_name[] = "BLAS_zwaxpby_d_d";
 
   int i, ix = 0, iy = 0, iw = 0;
   double *w_i = (double *) w;

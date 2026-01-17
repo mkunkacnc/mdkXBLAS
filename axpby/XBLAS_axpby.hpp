@@ -156,11 +156,11 @@ template<typename T,
          typename X,
          typename TmpType = T>
 void caxpby(int n,
-            const void *alpha,
+            const std::complex<T> alpha,
             const X *x,
             int incx,
-            const void *beta,
-            void *y,
+            const std::complex<T> beta,
+            std::complex<T> *y,
             int incy)
 /*
  * Purpose
@@ -196,15 +196,11 @@ void caxpby(int n,
 {
   static const char routine_name[] = "XBLAS::caxpby";
 
-  static_assert(sizeof(std::complex<T>) == 2*sizeof(T) && sizeof(T[2]) == 2*sizeof(T));
-  static_assert(sizeof(std::complex<X>) == 2*sizeof(X) && sizeof(X[2]) == 2*sizeof(X));
-  static_assert(sizeof(std::complex<TmpType>) == 2*sizeof(TmpType) && sizeof(TmpType[2]) == 2*sizeof(TmpType));
-
   int i, ix = 0, iy = 0;
   const X *x_i = x;
-  std::complex<T> *y_i = static_cast<std::complex<T>*>(y);
-  const std::complex<T> alpha_i = *static_cast<const std::complex<T>*>(alpha);
-  const std::complex<T> beta_i = *static_cast<const std::complex<T>*>(beta);
+  std::complex<T> *y_i = y;
+  std::complex<T> alpha_i = alpha;
+  std::complex<T> beta_i = beta;
   X x_ii;
   std::complex<T> y_ii;
   std::complex<TmpType> tmpx;

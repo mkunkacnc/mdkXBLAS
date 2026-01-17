@@ -51,7 +51,7 @@ void BLAS_swaxpby_x(int n, float alpha, const float *x, int incx,
  *
  */
 {
-  char *routine_name = "BLAS_swaxpby_x";
+  static const char routine_name[] = "BLAS_swaxpby_x";
   switch (prec) {
   case blas_prec_single:{
 
