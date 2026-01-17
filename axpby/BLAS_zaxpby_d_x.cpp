@@ -56,13 +56,13 @@ void BLAS_zaxpby_d_x(int n,
   case blas_prec_single:
   case blas_prec_double:
   case blas_prec_indigenous:
-    XBLAS::caxpby<double>(n,
-                          *static_cast<const std::complex<double> *>(alpha),
-                          x,
-                          incx,
-                          *static_cast<const std::complex<double> *>(beta),
-                          static_cast<std::complex<double> *>(y),
-                          incy);
+    XBLAS::axpby(n,
+                 *static_cast<const std::complex<double> *>(alpha),
+                 x,
+                 incx,
+                 *static_cast<const std::complex<double> *>(beta),
+                 static_cast<std::complex<double> *>(y),
+                 incy);
     break;
   case blas_prec_extra:
     {
