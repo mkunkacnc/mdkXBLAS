@@ -11,11 +11,17 @@
 namespace XBLAS {
 //---------------
 
+template<typename T>
+concept has_value_type = requires(T t)  {
+  typename T::value_type;
+};
+
 //-----------------
 
 template<typename C,
          typename A,
          typename B>
+requires (!std::is_same_v<C, A> || !std::is_same_v<C, B>)
 inline C mul(A a, B b)
 {
   return static_cast<C>(a) * b;
@@ -25,6 +31,24 @@ template<typename C>
 inline C mul(C a, C b)
 {
   return a * b;
+}
+
+template<typename C,
+         typename A,
+         typename B>
+requires (std::floating_point<B> && has_value_type<C> && !std::is_same_v<typename C::value_type, B>)
+inline C mul(std::complex<A> a, B b)
+{
+  return mul<C>(a, static_cast<C::value_type>(b));
+}
+
+template<typename C,
+         typename A,
+         typename B>
+requires (has_value_type<C> && !std::is_same_v<typename C::value_type, B>)
+inline C mul(std::complex<A> a, std::complex<B> b)
+{
+  return mul<C>(a, static_cast<C>(b));
 }
 
 template<>
@@ -124,7 +148,7 @@ void axpby(int n,
     BLAS_error(routine_name, -7, incy, NULL);
 
   /* Immediate return */
-  if (n <= 0 || (alpha_i == 0.0 && beta_i == 1.0))
+  if (n <= 0 || (alpha_i == T(0) && beta_i == T(1)))
     return;
 
   if constexpr (std::is_same_v<TmpType, DoubleDouble>) {
@@ -194,6 +218,8 @@ void caxpby(int n,
  *
  */
 {
+  axpby<std::complex<T>, X, std::complex<TmpType>>(n, alpha, x, incx, beta, y, incy);
+#if 0
   static const char routine_name[] = "XBLAS::caxpby";
 
   int i, ix = 0, iy = 0;
@@ -224,13 +250,14 @@ void caxpby(int n,
   for (i = 0; i < n; ++i) {
     x_ii = x_i[ix];
     y_ii = y_i[iy];
-    tmpx = static_cast<std::complex<TmpType>>(alpha_i) * static_cast<TmpType>(x_ii);
-    tmpy = static_cast<std::complex<TmpType>>(beta_i) * static_cast<std::complex<TmpType>>(y_ii);
+    tmpx = mul<std::complex<TmpType>>(alpha_i, x_ii);
+    tmpy = mul<std::complex<TmpType>>(beta_i, y_ii);
     tmpy = tmpy + tmpx;
-    y_i[iy] = tmpy;
+    y_i[iy] = to<std::complex<T>>(tmpy);
     ix += incx;
     iy += incy;
   } /* endfor */
+#endif
 } /* end XBLAS::caxpby */
 
 //-----------------
