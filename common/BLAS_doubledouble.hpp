@@ -13,6 +13,8 @@ public:
     static DoubleDouble mul(float a, float b);
     static DoubleDouble mul(double a, double b);
 
+    DoubleDouble& operator +=(const DoubleDouble& rhs);
+
 public:
     static constexpr double split = SPLIT;
 
@@ -65,6 +67,16 @@ DoubleDouble DoubleDouble::mul(float a, float b)
   /* Compute double-double = float * float. */
   return DoubleDouble(static_cast<double>(a) * b);
 }
+
+inline
+DoubleDouble& DoubleDouble::operator +=(const DoubleDouble& rhs)
+{
+  DoubleDouble lhs(*this);
+  *this = lhs + rhs;
+  return *this;
+}
+
+//-----------------
 
 inline
 DoubleDouble operator *(const DoubleDouble& a, double b)

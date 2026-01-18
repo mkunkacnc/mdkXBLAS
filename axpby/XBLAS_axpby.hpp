@@ -246,7 +246,7 @@ inline void my_axpby(int n,
       compute_doubledouble_eq_double_add_double(&head_e2, &tail_e2, d1, d2);
       tmpy = TmpType(DoubleDouble(head_e1, tail_e1), DoubleDouble(head_e2, tail_e2));
     }                        /* tmpy = beta * y[iy] */
-    tmpy = TmpType(real(tmpy) + real(tmpx), imag(tmpy) + imag(tmpx));
+    tmpy = tmpy + tmpx;
     y_i[iy] = to<T>(tmpy);
     ix += incx;
     iy += incy;
