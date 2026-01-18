@@ -10,6 +10,8 @@ public:
     explicit DoubleDouble(double x);
     DoubleDouble(double h, double t);
 
+    static DoubleDouble add(double a, double b);
+
     static DoubleDouble mul(float a, float b);
     static DoubleDouble mul(double a, double b);
 
@@ -38,6 +40,23 @@ DoubleDouble::DoubleDouble(double h, double t)
 :head(h),
  tail(t)
 {}
+
+inline
+DoubleDouble DoubleDouble::add(double a, double b)
+{
+  /* Compute double-double = double + double. */
+  double e, t1, t2;
+
+  /* Knuth trick. */
+  t1 = a + b;
+  e = t1 - a;
+  t2 = ((b - e) + (a - (t1 - e)));
+
+  /* The result is t1 + t2, after normalization. */
+  DoubleDouble c(t1 + t2);
+  c.tail = t2 - (c.head - t1);
+  return c;
+}
 
 inline
 DoubleDouble DoubleDouble::mul(double a, double b)

@@ -69,6 +69,34 @@ inline DoubleDouble mul(float a, float b)
   return DoubleDouble::mul(a, b);
 }
 
+template<>
+inline std::complex<DoubleDouble> mul(std::complex<float> beta_i, std::complex<float> y_ii)
+{
+  DoubleDouble e1, e2;
+  //double head_e1, tail_e1;
+  //double head_e2, tail_e2;
+  double d1;
+  double d2;
+  /* Real part */
+  d1 = (double) real(beta_i) * real(y_ii);
+  d2 = (double) -imag(beta_i) * imag(y_ii);
+  e1 = DoubleDouble::add(d1, d2);
+  //compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
+  /* imaginary part */
+  d1 = (double) real(beta_i) * imag(y_ii);
+  d2 = (double) imag(beta_i) * real(y_ii);
+  e2 = DoubleDouble::add(d1, d2);
+  //compute_doubledouble_eq_double_add_double(&head_e2, &tail_e2, d1, d2);
+  //return std::complex<DoubleDouble>(DoubleDouble(head_e1, tail_e1), DoubleDouble(head_e2, tail_e2));
+  return std::complex<DoubleDouble>(e1, e2);
+}
+
+template<>
+inline std::complex<DoubleDouble> mul(std::complex<float> a, float b)
+{
+  return std::complex<DoubleDouble>(mul<DoubleDouble>(real(a), b), mul<DoubleDouble>(imag(a), b));
+}
+
 //-----------------
 
 template<typename To,
@@ -230,7 +258,9 @@ inline void my_axpby(int n,
   for (i = 0; i < n; ++i) {
     x_ii = x_i[ix];
     y_ii = y_i[iy];
-    tmpx = TmpType(mul<DoubleDouble>(real(alpha_i), x_ii), mul<DoubleDouble>(imag(alpha_i), x_ii)); /* tmpx  = alpha * x[ix] */
+    tmpx = mul<TmpType>(alpha_i, x_ii); /* tmpx = alpha * x[ix] */
+    tmpy = mul<TmpType>(beta_i, y_ii);  /* tmpy = beta * y[iy] */
+#if 0
     {
       double head_e1, tail_e1;
       double head_e2, tail_e2;
@@ -246,6 +276,7 @@ inline void my_axpby(int n,
       compute_doubledouble_eq_double_add_double(&head_e2, &tail_e2, d1, d2);
       tmpy = TmpType(DoubleDouble(head_e1, tail_e1), DoubleDouble(head_e2, tail_e2));
     }                        /* tmpy = beta * y[iy] */
+#endif
     tmpy = tmpy + tmpx;
     y_i[iy] = to<T>(tmpy);
     ix += incx;
