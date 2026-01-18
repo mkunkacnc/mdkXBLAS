@@ -177,18 +177,6 @@ void axpby(int n,
   }
 } /* end XBLAS::axpby */
 
-template<typename T>
-inline T& real(T t[2])
-{
-    return t[0];
-}
-
-template<typename T>
-inline T& imag(T t[2])
-{
-    return t[1];
-}
-
 //template<>
 inline void my_axpby(int n,
               std::complex<float> alpha,
@@ -202,7 +190,7 @@ inline void my_axpby(int n,
 
   using T = std::complex<float>;
   using X = float;
-  using TmpType = DoubleDouble[2];
+  using TmpType = std::complex<DoubleDouble>;
 
   int i, ix = 0, iy = 0;
   const X *x_i = x;
@@ -235,28 +223,23 @@ inline void my_axpby(int n,
   for (i = 0; i < n; ++i) {
     x_ii = x_i[ix];
     y_ii = y_i[iy];
-    real(tmpx) = mul<DoubleDouble>(real(alpha_i), x_ii);
-    imag(tmpx) = mul<DoubleDouble>(imag(alpha_i), x_ii);
-                   /* tmpx  = alpha * x[ix] */
+    tmpx = TmpType(mul<DoubleDouble>(real(alpha_i), x_ii), mul<DoubleDouble>(imag(alpha_i), x_ii)); /* tmpx  = alpha * x[ix] */
     {
       double head_e1, tail_e1;
+      double head_e2, tail_e2;
       double d1;
       double d2;
       /* Real part */
       d1 = (double) real(beta_i) * real(y_ii);
       d2 = (double) -imag(beta_i) * imag(y_ii);
       compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
-      real(tmpy) = DoubleDouble(head_e1, tail_e1);
       /* imaginary part */
       d1 = (double) real(beta_i) * imag(y_ii);
       d2 = (double) imag(beta_i) * real(y_ii);
-      compute_doubledouble_eq_double_add_double(&head_e1, &tail_e1, d1, d2);
-      imag(tmpy) = DoubleDouble(head_e1, tail_e1);
+      compute_doubledouble_eq_double_add_double(&head_e2, &tail_e2, d1, d2);
+      tmpy = TmpType(DoubleDouble(head_e1, tail_e1), DoubleDouble(head_e2, tail_e2));
     }                        /* tmpy = beta * y[iy] */
-    {
-      real(tmpy) = real(tmpy) + real(tmpx);
-      imag(tmpy) = imag(tmpy) + imag(tmpx);
-    }
+    tmpy = TmpType(real(tmpy) + real(tmpx), imag(tmpy) + imag(tmpx));
     y_i[iy] = std::complex(to<float>(real(tmpy)), to<float>(imag(tmpy)));
     ix += incx;
     iy += incy;
