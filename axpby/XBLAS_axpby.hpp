@@ -219,7 +219,7 @@ inline void my_axpby(int n,
 
   using T = std::complex<double>;
   using X = double;
-  using TmpType = DoubleDouble[2]; //std::complex<DoubleDouble>;
+  using TmpType = std::complex<DoubleDouble>;
 
   int i, ix = 0, iy = 0;
   const X *x_i = x;
@@ -254,27 +254,27 @@ inline void my_axpby(int n,
     y_ii = y_i[iy];
     {
       /* Compute complex-extra = complex-double * real. */
-      tmpx[0] = DoubleDouble::mul(real(alpha_i), x_ii);
-      tmpx[1] = DoubleDouble::mul(imag(alpha_i), x_ii);
+      tmpx = TmpType(DoubleDouble::mul(real(alpha_i), x_ii), DoubleDouble::mul(imag(alpha_i), x_ii));
     }                        /* tmpx = alpha * x[ix] */
     {
       /* Compute complex-extra = complex-double * complex-double. */
       /* Real part */
       DoubleDouble t1 = DoubleDouble::mul( real(beta_i), real(y_ii));
       DoubleDouble t2 = DoubleDouble::mul(-imag(beta_i), imag(y_ii));
-      tmpy[0] = t1 + t2;
+      //tmpy[0] = t1 + t2;
       /* Imaginary part */
-      t1 = DoubleDouble::mul(imag(beta_i), real(y_ii));
-      t2 = DoubleDouble::mul(real(beta_i), imag(y_ii));
-      tmpy[1] = t1 + t2;
+      DoubleDouble t3 = DoubleDouble::mul(imag(beta_i), real(y_ii));
+      DoubleDouble t4 = DoubleDouble::mul(real(beta_i), imag(y_ii));
+      //tmpy[1] = t1 + t2;
+      tmpy = TmpType(t1+t2, t3+t4);
     }                        /* tmpy = beta * y[iy] */
     {
       /* Real part */
-      tmpy[0] = tmpy[0] + tmpx[0];
+      tmpy = tmpy + tmpx;
       /* Imaginary part */
-      tmpy[1] = tmpy[1] + tmpx[1];
+      //tmpy[1] = tmpy[1] + tmpx[1];
     }
-    y_i[iy] = T(to<double>(tmpy[0]), to<double>(tmpy[1]));
+    y_i[iy] = T(to<double>(real(tmpy)), to<double>(imag(tmpy)));
     ix += incx;
     iy += incy;
   }                                /* endfor */
