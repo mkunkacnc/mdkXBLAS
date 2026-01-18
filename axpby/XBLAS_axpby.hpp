@@ -36,7 +36,10 @@ inline C mul(C a, C b)
 template<typename C,
          typename A,
          typename B>
-requires (std::floating_point<B> && has_value_type<C> && !std::is_same_v<typename C::value_type, B>)
+requires (std::floating_point<B> &&
+          has_value_type<C> &&
+          !std::is_same_v<typename C::value_type, B> &&
+          !std::is_same_v<typename C::value_type, DoubleDouble>)
 inline C mul(std::complex<A> a, B b)
 {
   return mul<C>(a, static_cast<C::value_type>(b));
@@ -84,7 +87,28 @@ inline std::complex<DoubleDouble> mul(std::complex<float> a, std::complex<float>
 }
 
 template<>
+inline std::complex<DoubleDouble> mul(std::complex<double> a, std::complex<double> b)
+{
+  /* Compute complex-extra = complex-double * complex-double. */
+  /* Real part */
+  DoubleDouble t1 = DoubleDouble::mul( real(a), real(b));
+  DoubleDouble t2 = DoubleDouble::mul(-imag(a), imag(b));
+  DoubleDouble cr = t1 + t2; /* ar*br - ai*bi */
+  /* Imaginary part */
+  t1 = DoubleDouble::mul(imag(a), real(b));
+  t2 = DoubleDouble::mul(real(a), imag(b));
+  DoubleDouble ci = t1 + t2; /* ar*bi + ai*br */
+  return std::complex<DoubleDouble>(cr, ci);
+}
+
+template<>
 inline std::complex<DoubleDouble> mul(std::complex<float> a, float b)
+{
+  return std::complex<DoubleDouble>(mul<DoubleDouble>(real(a), b), mul<DoubleDouble>(imag(a), b));
+}
+
+template<>
+inline std::complex<DoubleDouble> mul(std::complex<double> a, double b)
 {
   return std::complex<DoubleDouble>(mul<DoubleDouble>(real(a), b), mul<DoubleDouble>(imag(a), b));
 }
@@ -252,29 +276,10 @@ inline void my_axpby(int n,
   for (i = 0; i < n; ++i) {
     x_ii = x_i[ix];
     y_ii = y_i[iy];
-    {
-      /* Compute complex-extra = complex-double * real. */
-      tmpx = TmpType(DoubleDouble::mul(real(alpha_i), x_ii), DoubleDouble::mul(imag(alpha_i), x_ii));
-    }                        /* tmpx = alpha * x[ix] */
-    {
-      /* Compute complex-extra = complex-double * complex-double. */
-      /* Real part */
-      DoubleDouble t1 = DoubleDouble::mul( real(beta_i), real(y_ii));
-      DoubleDouble t2 = DoubleDouble::mul(-imag(beta_i), imag(y_ii));
-      //tmpy[0] = t1 + t2;
-      /* Imaginary part */
-      DoubleDouble t3 = DoubleDouble::mul(imag(beta_i), real(y_ii));
-      DoubleDouble t4 = DoubleDouble::mul(real(beta_i), imag(y_ii));
-      //tmpy[1] = t1 + t2;
-      tmpy = TmpType(t1+t2, t3+t4);
-    }                        /* tmpy = beta * y[iy] */
-    {
-      /* Real part */
-      tmpy = tmpy + tmpx;
-      /* Imaginary part */
-      //tmpy[1] = tmpy[1] + tmpx[1];
-    }
-    y_i[iy] = T(to<double>(real(tmpy)), to<double>(imag(tmpy)));
+    tmpx = mul<TmpType>(alpha_i, x_ii); /* tmpx = alpha * x[ix] */
+    tmpy = mul<TmpType>(beta_i, y_ii);  /* tmpy = beta * y[iy] */
+    tmpy = tmpy + tmpx;
+    y_i[iy] = to<T>(tmpy);
     ix += incx;
     iy += incy;
   }                                /* endfor */
