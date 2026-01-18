@@ -228,8 +228,8 @@ inline void my_axpby(int n,
   T beta_i = beta;
   X x_ii;
   T y_ii;
-  double head_tmpx[2], tail_tmpx[2];
-  double head_tmpy[2], tail_tmpy[2];
+  TmpType tmpx;
+  TmpType tmpy;
   FPU_FIX_DECL;
 
   /* Test the input parameters. */
@@ -256,11 +256,9 @@ inline void my_axpby(int n,
       /* Compute complex-extra = complex-double * real. */
       double head_t, tail_t;
       compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, x_ii, real(alpha_i));
-      head_tmpx[0] = head_t;
-      tail_tmpx[0] = tail_t;
+      tmpx[0] = DoubleDouble(head_t, tail_t);
       compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, x_ii, imag(alpha_i));
-      head_tmpx[1] = head_t;
-      tail_tmpx[1] = tail_t;
+      tmpx[1] = DoubleDouble(head_t, tail_t);
     }                        /* tmpx = alpha * x[ix] */
     {
       /* Compute complex-extra = complex-double * complex-double. */
@@ -272,37 +270,33 @@ inline void my_axpby(int n,
       head_t2 = -head_t2;
       tail_t2 = -tail_t2;
       compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-      head_tmpy[0] = head_t1;
-      tail_tmpy[0] = tail_t1;
+      tmpy[0] = DoubleDouble(head_t1, tail_t1);
       /* Imaginary part */
       compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, imag(beta_i), real(y_ii));
       compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, real(beta_i), imag(y_ii));
       compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-      head_tmpy[1] = head_t1;
-      tail_tmpy[1] = tail_t1;
+      tmpy[1] = DoubleDouble(head_t1, tail_t1);
     }                        /* tmpy = beta * y[iy] */
     {
       double head_t, tail_t;
       double head_a, tail_a;
       double head_b, tail_b;
       /* Real part */
-      head_a = head_tmpy[0];
-      tail_a = tail_tmpy[0];
-      head_b = head_tmpx[0];
-      tail_b = tail_tmpx[0];
+      head_a = tmpy[0].head;
+      tail_a = tmpy[0].tail;
+      head_b = tmpx[0].head;
+      tail_b = tmpx[0].tail;
       compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t, &tail_t, head_a, tail_a, head_b, tail_b);
-      head_tmpy[0] = head_t;
-      tail_tmpy[0] = tail_t;
+      tmpy[0] = DoubleDouble(head_t, tail_t);
       /* Imaginary part */
-      head_a = head_tmpy[1];
-      tail_a = tail_tmpy[1];
-      head_b = head_tmpx[1];
-      tail_b = tail_tmpx[1];
+      head_a = tmpy[1].head;
+      tail_a = tmpy[1].tail;
+      head_b = tmpx[1].head;
+      tail_b = tmpx[1].tail;
       compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t, &tail_t, head_a, tail_a, head_b, tail_b);
-      head_tmpy[1] = head_t;
-      tail_tmpy[1] = tail_t;
+      tmpy[1] = DoubleDouble(head_t, tail_t);
     }
-    y_i[iy] = T(head_tmpy[0], head_tmpy[1]);
+    y_i[iy] = T(to<double>(tmpy[0]), to<double>(tmpy[1]));
     ix += incx;
     iy += incy;
   }                                /* endfor */
