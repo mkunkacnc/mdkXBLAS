@@ -50,21 +50,32 @@ void BLAS_zaxpby_d_x(int n,
  *
  */
 {
-  static const char routine_name[] = "BLAS_zaxpby_d_x";
-
+//static const char routine_name[] = "BLAS_zaxpby_d_x";
   switch (prec) {
   case blas_prec_single:
   case blas_prec_double:
   case blas_prec_indigenous:
-    XBLAS::axpby(n,
-                 *static_cast<const std::complex<double> *>(alpha),
-                 x,
-                 incx,
-                 *static_cast<const std::complex<double> *>(beta),
-                 static_cast<std::complex<double> *>(y),
-                 incy);
+    XBLAS::axpby<std::complex<double>,
+                 double,
+                 std::complex<double>>(n,
+                                       *static_cast<const std::complex<double> *>(alpha),
+                                       x,
+                                       incx,
+                                       *static_cast<const std::complex<double> *>(beta),
+                                       static_cast<std::complex<double> *>(y),
+                                       incy);
     break;
   case blas_prec_extra:
+    XBLAS::my_axpby/*<std::complex<double>,
+                 double,
+                 std::complex<DoubleDouble>>*/(n,
+                                             *static_cast<const std::complex<double> *>(alpha),
+                                             x,
+                                             incx,
+                                             *static_cast<const std::complex<double> *>(beta),
+                                             static_cast<std::complex<double> *>(y),
+                                             incy);
+#if 0
     {
       int i, ix = 0, iy = 0;
       const double *x_i = x;
@@ -159,6 +170,7 @@ void BLAS_zaxpby_d_x(int n,
 
       FPU_FIX_STOP;
     }
+#endif
     break;
   }
 }                                /* end BLAS_zaxpby_d_x */
