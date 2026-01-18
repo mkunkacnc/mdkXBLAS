@@ -84,6 +84,13 @@ inline To to(DoubleDouble from)
   return static_cast<To>(from.head);
 }
 
+template<typename To>
+requires has_value_type<To>
+inline To to(std::complex<DoubleDouble> from)
+{
+  return To(to<typename To::value_type>(real(from)), to<typename To::value_type>(imag(from)));
+}
+
 //-----------------
 
 template<typename T,
@@ -240,7 +247,7 @@ inline void my_axpby(int n,
       tmpy = TmpType(DoubleDouble(head_e1, tail_e1), DoubleDouble(head_e2, tail_e2));
     }                        /* tmpy = beta * y[iy] */
     tmpy = TmpType(real(tmpy) + real(tmpx), imag(tmpy) + imag(tmpx));
-    y_i[iy] = std::complex(to<float>(real(tmpy)), to<float>(imag(tmpy)));
+    y_i[iy] = to<T>(tmpy);
     ix += incx;
     iy += incy;
   } /* endfor */
