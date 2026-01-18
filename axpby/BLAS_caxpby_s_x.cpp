@@ -51,40 +51,12 @@ void BLAS_caxpby_s_x(int n,
  */
 {
 //static const char routine_name[] = "BLAS_caxpby_s_x";
-  switch (prec) {
-  case blas_prec_single:
-    XBLAS::axpby<std::complex<float>,
-                 float,
-                 std::complex<float>>(n,
-                                      *static_cast<const std::complex<float> *>(alpha),
-                                      x,
-                                      incx,
-                                      *static_cast<const std::complex<float> *>(beta),
-                                      static_cast<std::complex<float> *>(y),
-                                      incy);
-    break;
-  case blas_prec_double:
-  case blas_prec_indigenous:
-    XBLAS::axpby<std::complex<float>,
-                 float,
-                 std::complex<double>>(n,
-                                       *static_cast<const std::complex<float> *>(alpha),
-                                       x,
-                                       incx,
-                                       *static_cast<const std::complex<float> *>(beta),
-                                       static_cast<std::complex<float> *>(y),
-                                       incy);
-    break;
-  case blas_prec_extra:
-    XBLAS::axpby<std::complex<float>,
-                 float,
-                 std::complex<DoubleDouble>>(n,
-                                             *static_cast<const std::complex<float> *>(alpha),
-                                             x,
-                                             incx,
-                                             *static_cast<const std::complex<float> *>(beta),
-                                             static_cast<std::complex<float> *>(y),
-                                             incy);
-    break;
-  }
+  XBLAS::axpby_x(n,
+                 *static_cast<const std::complex<float> *>(alpha),
+                 x,
+                 incx,
+                 *static_cast<const std::complex<float> *>(beta),
+                 static_cast<std::complex<float> *>(y),
+                 incy,
+                 prec);
 } /* end BLAS_caxpby_s_x */

@@ -230,63 +230,6 @@ void axpby(int n,
   }
 } /* end XBLAS::axpby */
 
-//template<>
-inline void my_axpby(int n,
-              std::complex<double> alpha,
-              const double *x,
-              int incx,
-              std::complex<double> beta,
-              std::complex<double> *y,
-              int incy)
-{
-  static const char routine_name[] = "XBLAS::my_axpby";
-
-  using T = std::complex<double>;
-  using X = double;
-  using TmpType = std::complex<DoubleDouble>;
-
-  int i, ix = 0, iy = 0;
-  const X *x_i = x;
-  T *y_i = y;
-  T alpha_i = alpha;
-  T beta_i = beta;
-  X x_ii;
-  T y_ii;
-  TmpType tmpx;
-  TmpType tmpy;
-  FPU_FIX_DECL;
-
-  /* Test the input parameters. */
-  if (incx == 0)
-    BLAS_error(routine_name, -4, incx, NULL);
-  else if (incy == 0)
-    BLAS_error(routine_name, -7, incy, NULL);
-
-  /* Immediate return */
-  if (n <= 0 || (alpha_i == T(0) && beta_i == T(1)))
-    return;
-
-  FPU_FIX_START;
-
-  if (incx < 0)
-    ix = (-n + 1) * incx;
-  if (incy < 0)
-    iy = (-n + 1) * incy;
-
-  for (i = 0; i < n; ++i) {
-    x_ii = x_i[ix];
-    y_ii = y_i[iy];
-    tmpx = mul<TmpType>(alpha_i, x_ii); /* tmpx = alpha * x[ix] */
-    tmpy = mul<TmpType>(beta_i, y_ii);  /* tmpy = beta * y[iy] */
-    tmpy = tmpy + tmpx;
-    y_i[iy] = to<T>(tmpy);
-    ix += incx;
-    iy += incy;
-  }                                /* endfor */
-
-  FPU_FIX_STOP;
-}
-
 //-----------------
 
 template<typename T,
@@ -425,6 +368,132 @@ void axpby_x(int n,
     break;
   case blas_prec_extra:
     axpby<float, float, DoubleDouble>(n, alpha, x, incx, beta, y, incy);
+    break;
+  }
+} /* end XBLAS::axpby_x */
+
+template<typename X>
+void axpby_x(int n,
+             std::complex<double> alpha,
+             const X *x,
+             int incx,
+             std::complex<double> beta,
+             std::complex<double> *y,
+             int incy,
+             enum blas_prec_type prec)
+/*
+ * Purpose
+ * =======
+ *
+ * This routine computes:
+ *
+ *      y <- alpha * x + beta * y.
+ *
+ * Arguments
+ * =========
+ *
+ * n         (input) int
+ *           The length of vectors x and y.
+ *
+ * alpha     (input) std::complex<double>
+ *
+ * x         (input) const X*
+ *           Array of length n.
+ *
+ * incx      (input) int
+ *           The stride used to access components x[i].
+ *
+ * beta      (input) std::complex<double>
+ *
+ * y         (input) doublestd::complex<double>*
+ *           Array of length n.
+ *
+ * incy      (input) int
+ *           The stride used to access components y[i].
+ *
+ * prec   (input) enum blas_prec_type
+ *        Specifies the internal precision to be used.
+ *        = blas_prec_single: single precision.
+ *        = blas_prec_double: double precision.
+ *        = blas_prec_extra : anything at least 1.5 times as accurate
+ *                            than double, and wider than 80-bits.
+ *                            We use double-double in our implementation.
+ *
+ */
+{
+//static const char routine_name[] = "XBLAS::axpby_x";
+  switch (prec) {
+  case blas_prec_single:
+  case blas_prec_double:
+  case blas_prec_indigenous:
+    axpby(n, alpha, x, incx, beta, y, incy);
+    break;
+  case blas_prec_extra:
+    axpby<std::complex<double>, X, std::complex<DoubleDouble>>(n, alpha, x, incx, beta, y, incy);
+    break;
+  }
+} /* end XBLAS::axpby_x */
+
+template<> inline
+void axpby_x(int n,
+             std::complex<float> alpha,
+             const float *x,
+             int incx,
+             std::complex<float> beta,
+             std::complex<float> *y,
+             int incy,
+             enum blas_prec_type prec)
+/*
+ * Purpose
+ * =======
+ *
+ * This routine computes:
+ *
+ *      y <- alpha * x + beta * y.
+ *
+ * Arguments
+ * =========
+ *
+ * n         (input) int
+ *           The length of vectors x and y.
+ *
+ * alpha     (input) float
+ *
+ * x         (input) const float*
+ *           Array of length n.
+ *
+ * incx      (input) int
+ *           The stride used to access components x[i].
+ *
+ * beta      (input) float
+ *
+ * y         (input) float*
+ *           Array of length n.
+ *
+ * incy      (input) int
+ *           The stride used to access components y[i].
+ *
+ * prec   (input) enum blas_prec_type
+ *        Specifies the internal precision to be used.
+ *        = blas_prec_single: single precision.
+ *        = blas_prec_double: double precision.
+ *        = blas_prec_extra : anything at least 1.5 times as accurate
+ *                            than double, and wider than 80-bits.
+ *                            We use double-double in our implementation.
+ *
+ */
+{
+//static const char routine_name[] = "XBLAS::axpby_x";
+  switch (prec) {
+  case blas_prec_single:
+    axpby(n, alpha, x, incx, beta, y, incy);
+    break;
+  case blas_prec_double:
+  case blas_prec_indigenous:
+    axpby<std::complex<float>, float, std::complex<double>>(n, alpha, x, incx, beta, y, incy);
+    break;
+  case blas_prec_extra:
+    axpby<std::complex<float>, float, std::complex<DoubleDouble>>(n, alpha, x, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::axpby_x */
