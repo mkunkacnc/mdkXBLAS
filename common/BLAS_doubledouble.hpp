@@ -24,6 +24,7 @@ public:
     double tail;
 };
 
+DoubleDouble operator *(const DoubleDouble& a, float b);
 DoubleDouble operator *(const DoubleDouble& a, double b);
 DoubleDouble operator +(const DoubleDouble& a, const DoubleDouble& b);
 
@@ -96,6 +97,12 @@ DoubleDouble& DoubleDouble::operator +=(const DoubleDouble& rhs)
 }
 
 //-----------------
+
+inline
+DoubleDouble operator *(const DoubleDouble& a, float b)
+{
+  return a * static_cast<double>(b);
+}
 
 inline
 DoubleDouble operator *(const DoubleDouble& a, double b)
