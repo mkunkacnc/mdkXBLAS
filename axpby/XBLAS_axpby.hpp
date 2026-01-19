@@ -104,13 +104,13 @@ inline std::complex<DoubleDouble> mul(std::complex<double> a, std::complex<doubl
 template<>
 inline std::complex<DoubleDouble> mul(std::complex<float> a, float b)
 {
-  return std::complex<DoubleDouble>(mul<DoubleDouble>(real(a), b), mul<DoubleDouble>(imag(a), b));
+  return std::complex<DoubleDouble>(DoubleDouble::mul(real(a), b), DoubleDouble::mul(imag(a), b));
 }
 
 template<>
 inline std::complex<DoubleDouble> mul(std::complex<double> a, double b)
 {
-  return std::complex<DoubleDouble>(mul<DoubleDouble>(real(a), b), mul<DoubleDouble>(imag(a), b));
+  return std::complex<DoubleDouble>(DoubleDouble::mul(real(a), b), DoubleDouble::mul(imag(a), b));
 }
 
 //-----------------
@@ -434,10 +434,10 @@ void axpby_x(int n,
   }
 } /* end XBLAS::axpby_x */
 
-template<> inline
+template<typename X> inline
 void axpby_x(int n,
              std::complex<float> alpha,
-             const float *x,
+             const X *x,
              int incx,
              std::complex<float> beta,
              std::complex<float> *y,
@@ -490,10 +490,10 @@ void axpby_x(int n,
     break;
   case blas_prec_double:
   case blas_prec_indigenous:
-    axpby<std::complex<float>, float, std::complex<double>>(n, alpha, x, incx, beta, y, incy);
+    axpby<std::complex<float>, X, std::complex<double>>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    axpby<std::complex<float>, float, std::complex<DoubleDouble>>(n, alpha, x, incx, beta, y, incy);
+    axpby<std::complex<float>, X, std::complex<DoubleDouble>>(n, alpha, x, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::axpby_x */
