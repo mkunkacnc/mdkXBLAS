@@ -33,7 +33,7 @@ void BLAS_daxpby_s(int n,
  *
  * beta      (input) double
  *
- * y         (input) double*
+ * y         (input/output) double*
  *           Array of length n.
  *
  * incy      (input) int
@@ -43,4 +43,4 @@ void BLAS_daxpby_s(int n,
 {
   //static const char routine_name[] = "BLAS_daxpby_s";
   XBLAS::axpby(n, alpha, x, incx, beta, y, incy);
-}
+} /* end BLAS_daxpby_s */

@@ -33,7 +33,7 @@ void BLAS_caxpby_s(int n,
  *
  * beta      (input) const void*
  *
- * y         (input) void*
+ * y         (input/output) void*
  *           Array of length n.
  *
  * incy      (input) int
@@ -49,4 +49,4 @@ void BLAS_caxpby_s(int n,
                *static_cast<const std::complex<float> *>(beta),
                static_cast<std::complex<float> *>(y),
                incy);
-}
+} /* end BLAS_caxpby_s */

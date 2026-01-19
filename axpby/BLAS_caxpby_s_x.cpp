@@ -34,7 +34,7 @@ void BLAS_caxpby_s_x(int n,
  *
  * beta      (input) const void*
  *
- * y         (input) void*
+ * y         (input/output) void*
  *           Array of length n.
  *
  * incy      (input) int
