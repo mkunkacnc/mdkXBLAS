@@ -232,6 +232,129 @@ void axpby(int n,
 
 //-----------------
 
+//template<>
+inline void my_axpby(int n,
+              std::complex<double> alpha,
+              const std::complex<float> *x,
+              int incx,
+              std::complex<double> beta,
+              std::complex<double> *y,
+              int incy)
+{
+  static const char routine_name[] = "XBLAS::my_axpby";
+
+  using T = std::complex<double>;
+  using X = std::complex<float>;
+  using TmpType = std::complex<DoubleDouble>;
+
+  int i, ix = 0, iy = 0;
+  const X *x_i = x;
+  T *y_i = y;
+  T alpha_i = alpha;
+  T beta_i = beta;
+  float x_ii[2];
+  double y_ii[2];
+  double head_tmpx[2], tail_tmpx[2];
+  double head_tmpy[2], tail_tmpy[2];
+  FPU_FIX_DECL;
+
+  /* Test the input parameters. */
+  if (incx == 0)
+    BLAS_error(routine_name, -4, incx, NULL);
+  else if (incy == 0)
+    BLAS_error(routine_name, -7, incy, NULL);
+
+  /* Immediate return */
+  if (n <= 0 || (alpha_i == T(0) && beta_i == T(1)))
+    return;
+
+  FPU_FIX_START;
+
+  if (incx < 0)
+    ix = (-n + 1) * incx;
+  if (incy < 0)
+    iy = (-n + 1) * incy;
+
+  for (i = 0; i < n; ++i) {
+    x_ii[0] = real(x_i[ix]);
+    x_ii[1] = imag(x_i[ix]);
+    y_ii[0] = real(y_i[iy]);
+    y_ii[1] = imag(y_i[iy]);
+    {
+      double cd[2];
+      cd[0] = (double) x_ii[0];
+      cd[1] = (double) x_ii[1];
+      {
+        /* Compute complex-extra = complex-double * complex-double. */
+        double head_t1, tail_t1;
+        double head_t2, tail_t2;
+        /* Real part */
+        compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, real(alpha_i), cd[0]);
+        compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, imag(alpha_i), cd[1]);
+        head_t2 = -head_t2;
+        tail_t2 = -tail_t2;
+        compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+        head_tmpx[0] = head_t1;
+        tail_tmpx[0] = tail_t1;
+        /* Imaginary part */
+        compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, imag(alpha_i), cd[0]);
+        compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, real(alpha_i), cd[1]);
+        compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+        head_tmpx[1] = head_t1;
+        tail_tmpx[1] = tail_t1;
+      }
+    }                        /* tmpx  = alpha * x[ix] */
+    {
+      /* Compute complex-extra = complex-double * complex-double. */
+      double head_t1, tail_t1;
+      double head_t2, tail_t2;
+      /* Real part */
+      compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, real(beta_i), y_ii[0]);
+      compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, imag(beta_i), y_ii[1]);
+      head_t2 = -head_t2;
+      tail_t2 = -tail_t2;
+      compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+      head_tmpy[0] = head_t1;
+      tail_tmpy[0] = tail_t1;
+      /* Imaginary part */
+      compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, imag(beta_i), y_ii[0]);
+      compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, real(beta_i), y_ii[1]);
+      compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
+      head_tmpy[1] = head_t1;
+      tail_tmpy[1] = tail_t1;
+    }                        /* tmpy = beta * y[iy] */
+    {
+      double head_t, tail_t;
+      double head_a, tail_a;
+      double head_b, tail_b;
+      /* Real part */
+      head_a = head_tmpy[0];
+      tail_a = tail_tmpy[0];
+      head_b = head_tmpx[0];
+      tail_b = tail_tmpx[0];
+      compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t, &tail_t, head_a, tail_a, head_b, tail_b);
+      head_tmpy[0] = head_t;
+      tail_tmpy[0] = tail_t;
+      /* Imaginary part */
+      head_a = head_tmpy[1];
+      tail_a = tail_tmpy[1];
+      head_b = head_tmpx[1];
+      tail_b = tail_tmpx[1];
+      compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t, &tail_t, head_a, tail_a, head_b, tail_b);
+      head_tmpy[1] = head_t;
+      tail_tmpy[1] = tail_t;
+    }
+    y_i[iy] = T(head_tmpy[0], head_tmpy[1]);
+    ix += incx;
+    iy += incy;
+  }                                /* endfor */
+
+  FPU_FIX_STOP;
+}
+
+
+//-----------------
+
 template<typename T,
          typename X>
 void axpby_x(int n,

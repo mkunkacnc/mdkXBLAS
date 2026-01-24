@@ -10,7 +10,6 @@ void BLAS_zaxpby_c_x(int n,
                      void *y,
                      int incy,
                      enum blas_prec_type prec)
-
 /*
  * Purpose
  * =======
@@ -75,6 +74,15 @@ void BLAS_zaxpby_c_x(int n,
                  incy);
     break;
   case blas_prec_extra:
+#if 1
+    XBLAS::my_axpby(n,
+                    *static_cast<const std::complex<double> *>(alpha),
+                    static_cast<const std::complex<float> *>(x),
+                    incx,
+                    *static_cast<const std::complex<double> *>(beta),
+                    static_cast<std::complex<double> *>(y),
+                    incy);
+#else
     {
       int i, ix = 0, iy = 0;
       const float *x_i = (float *) x;
@@ -185,6 +193,7 @@ void BLAS_zaxpby_c_x(int n,
 
       FPU_FIX_STOP;
     }
+#endif
     break;
   }
 #endif
