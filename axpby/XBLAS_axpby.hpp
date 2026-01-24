@@ -2,7 +2,7 @@
 #define XBLAS_AXPBY_HPP
 
 #include "blas_extended_private.h"
-#include "common/BLAS_doubledouble.hpp"
+#include "common/XBLAS_double_double.hpp"
 
 #include <type_traits>
 #include <complex>
