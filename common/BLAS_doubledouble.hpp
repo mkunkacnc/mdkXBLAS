@@ -1,21 +1,25 @@
-#ifndef XBLAS_DOUBLEDOUBLE_HPP
-#define XBLAS_DOUBLEDOUBLE_HPP
+#ifndef XBLAS_DOUBLE_DOUBLE_HPP
+#define XBLAS_DOUBLE_DOUBLE_HPP
 
 #include "blas_extended_private.h"
 
-class DoubleDouble
+//---------------
+namespace XBLAS {
+//---------------
+
+class double_double
 {
 public:
-    DoubleDouble() {}
-    explicit DoubleDouble(double x);
-    DoubleDouble(double h, double t);
+    double_double() {}
+    explicit double_double(double x);
+    double_double(double h, double t);
 
-    static DoubleDouble add(double a, double b);
+    static double_double add(double a, double b);
 
-    static DoubleDouble mul(float a, float b);
-    static DoubleDouble mul(double a, double b);
+    static double_double mul(float a, float b);
+    static double_double mul(double a, double b);
 
-    DoubleDouble& operator +=(const DoubleDouble& rhs);
+    double_double& operator +=(const double_double& rhs);
 
 public:
     static constexpr double split = SPLIT;
@@ -24,26 +28,26 @@ public:
     double tail;
 };
 
-DoubleDouble operator *(const DoubleDouble& a, float b);
-DoubleDouble operator *(const DoubleDouble& a, double b);
-DoubleDouble operator +(const DoubleDouble& a, const DoubleDouble& b);
+double_double operator *(const double_double& a, float b);
+double_double operator *(const double_double& a, double b);
+double_double operator +(const double_double& a, const double_double& b);
 
 //-----------------
 
 inline
-DoubleDouble::DoubleDouble(double x)
+double_double::double_double(double x)
 :head(x),
  tail(0)
 {}
 
 inline
-DoubleDouble::DoubleDouble(double h, double t)
+double_double::double_double(double h, double t)
 :head(h),
  tail(t)
 {}
 
 inline
-DoubleDouble DoubleDouble::add(double a, double b)
+double_double double_double::add(double a, double b)
 {
   /* Compute double-double = double + double. */
   double e, t1, t2;
@@ -54,19 +58,19 @@ DoubleDouble DoubleDouble::add(double a, double b)
   t2 = ((b - e) + (a - (t1 - e)));
 
   /* The result is t1 + t2, after normalization. */
-  DoubleDouble c(t1 + t2);
+  double_double c(t1 + t2);
   c.tail = t2 - (c.head - t1);
   return c;
 }
 
 inline
-DoubleDouble DoubleDouble::mul(double a, double b)
+double_double double_double::mul(double a, double b)
 {
   /* Compute double-double = double * double. */
   double a1, a2, b1, b2, con;
 
 #define SPLIT_VAR(a)                \
-  con = a * DoubleDouble::split;    \
+  con = a * double_double::split;    \
   a##1 = con - a;                   \
   a##1 = con - a##1;                \
   a##2 = a - a##1;
@@ -76,22 +80,22 @@ DoubleDouble DoubleDouble::mul(double a, double b)
 
 #undef SPLIT_VAR
 
-  DoubleDouble c(a * b);
+  double_double c(a * b);
   c.tail = (((a1 * b1 - c.head) + a1 * b2) + a2 * b1) + a2 * b2;
   return c;
 }
 
 inline
-DoubleDouble DoubleDouble::mul(float a, float b)
+double_double double_double::mul(float a, float b)
 {
   /* Compute double-double = float * float. */
-  return DoubleDouble(static_cast<double>(a) * b);
+  return double_double(static_cast<double>(a) * b);
 }
 
 inline
-DoubleDouble& DoubleDouble::operator +=(const DoubleDouble& rhs)
+double_double& double_double::operator +=(const double_double& rhs)
 {
-  DoubleDouble lhs(*this);
+  double_double lhs(*this);
   *this = lhs + rhs;
   return *this;
 }
@@ -99,23 +103,23 @@ DoubleDouble& DoubleDouble::operator +=(const DoubleDouble& rhs)
 //-----------------
 
 inline
-DoubleDouble operator *(const DoubleDouble& a, float b)
+double_double operator *(const double_double& a, float b)
 {
   return a * static_cast<double>(b);
 }
 
 inline
-DoubleDouble operator *(const DoubleDouble& a, double b)
+double_double operator *(const double_double& a, double b)
 {
   /* Compute double-double = double-double * double. */
   double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
 
-  con = a.head * DoubleDouble::split;
+  con = a.head * double_double::split;
   a11 = con - a.head;
   a11 = con - a11;
   a21 = a.head - a11;
 
-  con = b * DoubleDouble::split;
+  con = b * double_double::split;
   b1 = con - b;
   b1 = con - b1;
   b2 = b - b1;
@@ -127,13 +131,13 @@ DoubleDouble operator *(const DoubleDouble& a, double b)
   t1 = c11 + c2;
   t2 = (c2 - (t1 - c11)) + c21;
 
-  DoubleDouble c(t1 + t2);
+  double_double c(t1 + t2);
   c.tail = t2 - (c.head - t1);
   return c;
 }
 
 inline
-DoubleDouble operator +(const DoubleDouble& a, const DoubleDouble& b)
+double_double operator +(const double_double& a, const double_double& b)
 {
   /* Compute double-double = double-double + double-double. */
   double bv;
@@ -158,10 +162,13 @@ DoubleDouble operator +(const DoubleDouble& a, const DoubleDouble& b)
   t2 += s2;
 
   /* Renormalize (t1, t2)  */
-  DoubleDouble c(t1 + t2);
+  double_double c(t1 + t2);
   c.tail = t2 - (c.head - t1);
   return c;
 }
 
+//-----------------
+} //namespace XBLAS
+//-----------------
 
-#endif // XBLAS_DOUBLEDOUBLE_HPP
+#endif // XBLAS_DOUBLE_DOUBLE_HPP

@@ -39,7 +39,7 @@ template<typename C,
 requires (std::floating_point<B> &&
           has_value_type<C> &&
           !std::is_same_v<typename C::value_type, B> &&
-          !std::is_same_v<typename C::value_type, DoubleDouble>)
+          !std::is_same_v<typename C::value_type, double_double>)
 inline C mul(std::complex<A> a, B b)
 {
   return mul<C>(a, static_cast<C::value_type>(b));
@@ -55,68 +55,68 @@ inline C mul(std::complex<A> a, std::complex<B> b)
 }
 
 template<>
-inline DoubleDouble mul(double a, double b)
+inline double_double mul(double a, double b)
 {
-  return DoubleDouble::mul(a, b);
+  return double_double::mul(a, b);
 }
 
 template<>
-inline DoubleDouble mul(double a, float b)
+inline double_double mul(double a, float b)
 {
-  return DoubleDouble::mul(a, static_cast<double>(b));
+  return double_double::mul(a, static_cast<double>(b));
 }
 
 template<>
-inline DoubleDouble mul(float a, float b)
+inline double_double mul(float a, float b)
 {
-  return DoubleDouble::mul(a, b);
+  return double_double::mul(a, b);
 }
 
 template<>
-inline std::complex<DoubleDouble> mul(std::complex<float> a, std::complex<float> b)
+inline std::complex<double_double> mul(std::complex<float> a, std::complex<float> b)
 {
   /* Real part */
   double d1 = static_cast<double>(real(a)) * real(b);
   double d2 = static_cast<double>(-imag(a)) * imag(b);
-  DoubleDouble cr = DoubleDouble::add(d1, d2); /* ar*br - ai*bi */
+  double_double cr = double_double::add(d1, d2); /* ar*br - ai*bi */
   /* imaginary part */
   d1 = static_cast<double>(real(a)) * imag(b);
   d2 = static_cast<double>(imag(a)) * real(b);
-  DoubleDouble ci = DoubleDouble::add(d1, d2); /* ar*bi + ai*br */
-  return std::complex<DoubleDouble>(cr, ci);
+  double_double ci = double_double::add(d1, d2); /* ar*bi + ai*br */
+  return std::complex<double_double>(cr, ci);
 }
 
 template<>
-inline std::complex<DoubleDouble> mul(std::complex<double> a, std::complex<double> b)
+inline std::complex<double_double> mul(std::complex<double> a, std::complex<double> b)
 {
   /* Compute complex-extra = complex-double * complex-double. */
   /* Real part */
-  DoubleDouble t1 = DoubleDouble::mul( real(a), real(b));
-  DoubleDouble t2 = DoubleDouble::mul(-imag(a), imag(b));
-  DoubleDouble cr = t1 + t2; /* ar*br - ai*bi */
+  double_double t1 = double_double::mul( real(a), real(b));
+  double_double t2 = double_double::mul(-imag(a), imag(b));
+  double_double cr = t1 + t2; /* ar*br - ai*bi */
   /* Imaginary part */
-  t1 = DoubleDouble::mul(imag(a), real(b));
-  t2 = DoubleDouble::mul(real(a), imag(b));
-  DoubleDouble ci = t1 + t2; /* ar*bi + ai*br */
-  return std::complex<DoubleDouble>(cr, ci);
+  t1 = double_double::mul(imag(a), real(b));
+  t2 = double_double::mul(real(a), imag(b));
+  double_double ci = t1 + t2; /* ar*bi + ai*br */
+  return std::complex<double_double>(cr, ci);
 }
 
 template<>
-inline std::complex<DoubleDouble> mul(std::complex<double> a, std::complex<float> b)
+inline std::complex<double_double> mul(std::complex<double> a, std::complex<float> b)
 {
-  return mul<std::complex<DoubleDouble>>(a, std::complex<double>(b));
+  return mul<std::complex<double_double>>(a, std::complex<double>(b));
 }
 
 template<>
-inline std::complex<DoubleDouble> mul(std::complex<float> a, float b)
+inline std::complex<double_double> mul(std::complex<float> a, float b)
 {
-  return std::complex<DoubleDouble>(DoubleDouble::mul(real(a), b), DoubleDouble::mul(imag(a), b));
+  return std::complex<double_double>(double_double::mul(real(a), b), double_double::mul(imag(a), b));
 }
 
 template<>
-inline std::complex<DoubleDouble> mul(std::complex<double> a, double b)
+inline std::complex<double_double> mul(std::complex<double> a, double b)
 {
-  return std::complex<DoubleDouble>(DoubleDouble::mul(real(a), b), DoubleDouble::mul(imag(a), b));
+  return std::complex<double_double>(double_double::mul(real(a), b), double_double::mul(imag(a), b));
 }
 
 //-----------------
@@ -129,14 +129,14 @@ inline To to(From from)
 }
 
 template<typename To>
-inline To to(DoubleDouble from)
+inline To to(double_double from)
 {
   return static_cast<To>(from.head);
 }
 
 template<typename To>
 requires has_value_type<To>
-inline To to(std::complex<DoubleDouble> from)
+inline To to(std::complex<double_double> from)
 {
   return To(to<typename To::value_type>(real(from)), to<typename To::value_type>(imag(from)));
 }
@@ -209,8 +209,8 @@ void axpby(int n,
   if (n <= 0 || (alpha_i == T(0) && beta_i == T(1)))
     return;
 
-  if constexpr (std::is_same_v<TmpType, DoubleDouble> ||
-                std::is_same_v<TmpType, std::complex<DoubleDouble>>) {
+  if constexpr (std::is_same_v<TmpType, double_double> ||
+                std::is_same_v<TmpType, std::complex<double_double>>) {
     FPU_FIX_START;
   }
 
@@ -230,8 +230,8 @@ void axpby(int n,
     iy += incy;
   } /* endfor */
 
-  if constexpr (std::is_same_v<TmpType, DoubleDouble> ||
-                std::is_same_v<TmpType, std::complex<DoubleDouble>>) {
+  if constexpr (std::is_same_v<TmpType, double_double> ||
+                std::is_same_v<TmpType, std::complex<double_double>>) {
     FPU_FIX_STOP;
   }
 } /* end XBLAS::axpby */
@@ -251,7 +251,7 @@ inline void my_axpby(int n,
 
   using T = std::complex<double>;
   using X = std::complex<float>;
-  using TmpType = std::complex<DoubleDouble>;
+  using TmpType = std::complex<double_double>;
 
   int i, ix = 0, iy = 0;
   const X *x_i = x;
@@ -369,7 +369,7 @@ void axpby_x(int n,
     axpby(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    axpby<double, X, DoubleDouble>(n, alpha, x, incx, beta, y, incy);
+    axpby<double, X, double_double>(n, alpha, x, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::axpby_x */
@@ -433,7 +433,7 @@ void axpby_x(int n,
     axpby<float, float, double>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    axpby<float, float, DoubleDouble>(n, alpha, x, incx, beta, y, incy);
+    axpby<float, float, double_double>(n, alpha, x, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::axpby_x */
@@ -495,7 +495,7 @@ void axpby_x(int n,
     axpby(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    axpby<std::complex<double>, X, std::complex<DoubleDouble>>(n, alpha, x, incx, beta, y, incy);
+    axpby<std::complex<double>, X, std::complex<double_double>>(n, alpha, x, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::axpby_x */
@@ -559,7 +559,7 @@ void axpby_x(int n,
     axpby<std::complex<float>, X, std::complex<double>>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    axpby<std::complex<float>, X, std::complex<DoubleDouble>>(n, alpha, x, incx, beta, y, incy);
+    axpby<std::complex<float>, X, std::complex<double_double>>(n, alpha, x, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::axpby_x */

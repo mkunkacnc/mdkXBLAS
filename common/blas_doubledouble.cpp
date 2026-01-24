@@ -1,6 +1,8 @@
 #include "blas_extended_private.h"
 #include "common/BLAS_doubledouble.hpp"
 
+using XBLAS::double_double;
+
 /* compute c = a * b; */
 void compute_doubledouble_eq_double_mul_double(double* head_c,
                                                double* tail_c,
@@ -8,7 +10,7 @@ void compute_doubledouble_eq_double_mul_double(double* head_c,
                                                double b)
 {
   /* Compute double-double = double * double. */
-  DoubleDouble c = DoubleDouble::mul(a, b);
+  double_double c = double_double::mul(a, b);
   *head_c = c.head;
   *tail_c = c.tail;
 }
@@ -20,7 +22,7 @@ void compute_doubledouble_eq_float_mul_float(double* head_c,
                                              float b)
 {
   /* Compute double-double = float * float. */
-  DoubleDouble c = DoubleDouble::mul(a, b);
+  double_double c = double_double::mul(a, b);
   *head_c = c.head;
   *tail_c = c.tail;
 }
@@ -33,8 +35,8 @@ void compute_doubledouble_eq_doubledouble_mul_double(double* head_c,
                                                      double b)
 {
   /* Compute double-double = double-double * double. */
-  DoubleDouble a(head_a, tail_a);
-  DoubleDouble c = a * b;
+  double_double a(head_a, tail_a);
+  double_double c = a * b;
   *head_c = c.head;
   *tail_c = c.tail;
 }
@@ -48,9 +50,9 @@ void compute_doubledouble_eq_doubledouble_add_doubledouble(double* head_c,
                                                            double tail_b)
 {
   /* Compute double-double = double-double + double-double. */
-  DoubleDouble a(head_a, tail_a);
-  DoubleDouble b(head_b, tail_b);
-  DoubleDouble c = a + b;
+  double_double a(head_a, tail_a);
+  double_double b(head_b, tail_b);
+  double_double c = a + b;
   *head_c = c.head;
   *tail_c = c.tail;
 }
