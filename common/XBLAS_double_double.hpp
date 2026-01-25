@@ -10,16 +10,16 @@ namespace XBLAS {
 class double_double
 {
 public:
-    double_double() {}
-    explicit double_double(double x);
-    double_double(double h, double t);
+    constexpr double_double() {}
+    constexpr explicit double_double(double x);
+    constexpr double_double(double h, double t);
 
-    static double_double add(double a, double b);
+    static constexpr double_double add(double a, double b);
 
-    static double_double mul(float a, float b);
-    static double_double mul(double a, double b);
+    static constexpr double_double mul(float a, float b);
+    static constexpr double_double mul(double a, double b);
 
-    double_double& operator +=(const double_double& rhs);
+    constexpr double_double& operator +=(const double_double& rhs);
 
 public:
     static constexpr double split = SPLIT;
@@ -28,26 +28,26 @@ public:
     double tail;
 };
 
-double_double operator *(const double_double& a, float b);
-double_double operator *(const double_double& a, double b);
-double_double operator +(const double_double& a, const double_double& b);
+constexpr double_double operator *(const double_double& a, float b);
+constexpr double_double operator *(const double_double& a, double b);
+constexpr double_double operator +(const double_double& a, const double_double& b);
 
 //-----------------
 
 inline
-double_double::double_double(double x)
+constexpr double_double::double_double(double x)
 :head(x),
  tail(0)
 {}
 
 inline
-double_double::double_double(double h, double t)
+constexpr double_double::double_double(double h, double t)
 :head(h),
  tail(t)
 {}
 
 inline
-double_double double_double::add(double a, double b)
+constexpr double_double double_double::add(double a, double b)
 {
   /* Compute double-double = double + double. */
   double e, t1, t2;
@@ -64,7 +64,7 @@ double_double double_double::add(double a, double b)
 }
 
 inline
-double_double double_double::mul(double a, double b)
+constexpr double_double double_double::mul(double a, double b)
 {
   /* Compute double-double = double * double. */
   double a1, a2, b1, b2, con;
@@ -86,14 +86,14 @@ double_double double_double::mul(double a, double b)
 }
 
 inline
-double_double double_double::mul(float a, float b)
+constexpr double_double double_double::mul(float a, float b)
 {
   /* Compute double-double = float * float. */
   return double_double(static_cast<double>(a) * b);
 }
 
 inline
-double_double& double_double::operator +=(const double_double& rhs)
+constexpr double_double& double_double::operator +=(const double_double& rhs)
 {
   double_double lhs(*this);
   *this = lhs + rhs;
@@ -103,13 +103,13 @@ double_double& double_double::operator +=(const double_double& rhs)
 //-----------------
 
 inline
-double_double operator *(const double_double& a, float b)
+constexpr double_double operator *(const double_double& a, float b)
 {
   return a * static_cast<double>(b);
 }
 
 inline
-double_double operator *(const double_double& a, double b)
+constexpr double_double operator *(const double_double& a, double b)
 {
   /* Compute double-double = double-double * double. */
   double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
@@ -137,7 +137,7 @@ double_double operator *(const double_double& a, double b)
 }
 
 inline
-double_double operator +(const double_double& a, const double_double& b)
+constexpr double_double operator +(const double_double& a, const double_double& b)
 {
   /* Compute double-double = double-double + double-double. */
   double bv;
