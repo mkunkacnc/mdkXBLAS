@@ -10,10 +10,58 @@
 namespace XBLAS {
 //---------------
 
+//--------------
+namespace impl {
+//--------------
+
 template<typename T>
 concept has_value_type = requires(T t)  {
   typename T::value_type;
 };
+
+//-------------------------------------
+
+template<typename T, int prec>
+struct internal_precision { using type = T; };
+
+template<>
+struct internal_precision<float, blas_prec_single> { using type = float; };
+template<>
+struct internal_precision<float, blas_prec_double> { using type = double; };
+template<>
+struct internal_precision<float, blas_prec_indigenous> { using type = double; };
+template<>
+struct internal_precision<float, blas_prec_extra> { using type = double_double; };
+
+template<>
+struct internal_precision<double, blas_prec_single> { using type = double; };
+template<>
+struct internal_precision<double, blas_prec_double> { using type = double; };
+template<>
+struct internal_precision<double, blas_prec_indigenous> { using type = double; };
+template<>
+struct internal_precision<double, blas_prec_extra> { using type = double_double; };
+
+template<>
+struct internal_precision<std::complex<float>, blas_prec_single> { using type = std::complex<float>; };
+template<>
+struct internal_precision<std::complex<float>, blas_prec_double> { using type = std::complex<double>; };
+template<>
+struct internal_precision<std::complex<float>, blas_prec_indigenous> { using type = std::complex<double>; };
+template<>
+struct internal_precision<std::complex<float>, blas_prec_extra> { using type = std::complex<double_double>; };
+
+template<>
+struct internal_precision<std::complex<double>, blas_prec_single> { using type = std::complex<double>; };
+template<>
+struct internal_precision<std::complex<double>, blas_prec_double> { using type = std::complex<double>; };
+template<>
+struct internal_precision<std::complex<double>, blas_prec_indigenous> { using type = std::complex<double>; };
+template<>
+struct internal_precision<std::complex<double>, blas_prec_extra> { using type = std::complex<double_double>; };
+
+template<typename T, int prec>
+using internal_precision_t = typename internal_precision<T, prec>::type;
 
 //-------------------------------------
 
@@ -139,6 +187,10 @@ inline To to(std::complex<double_double> from)
 {
   return To(to<typename To::value_type>(real(from)), to<typename To::value_type>(imag(from)));
 }
+
+//-----------------
+} //namespace impl
+//-----------------
 
 //-----------------
 } //namespace XBLAS
