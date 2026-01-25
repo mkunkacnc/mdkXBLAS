@@ -1,5 +1,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "gemv/XBLAS_gemv.hpp"
+
 void BLAS_zgemv_z_c_x(enum blas_order_type order, enum blas_trans_type trans,
                       int m, int n, const void *alpha, const void *a, int lda,
                       const void *x, int incx, const void *beta, void *y,

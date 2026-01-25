@@ -1,5 +1,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "hemm/XBLAS_hemm.hpp"
+
 void BLAS_zhemm_c_c(enum blas_order_type order, enum blas_side_type side,
                     enum blas_uplo_type uplo, int m, int n,
                     const void *alpha, const void *a, int lda,

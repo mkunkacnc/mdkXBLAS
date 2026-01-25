@@ -1,5 +1,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "symm/XBLAS_symm.hpp"
+
 void BLAS_ssymm_x(enum blas_order_type order, enum blas_side_type side,
                   enum blas_uplo_type uplo, int m, int n,
                   float alpha, const float *a, int lda,

@@ -1,5 +1,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "sum/XBLAS_sum.hpp"
+
 void BLAS_dsum_x(int n, const double *x, int incx,
                  double *sum, enum blas_prec_type prec)
 

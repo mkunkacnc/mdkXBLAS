@@ -1,5 +1,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "spmv/XBLAS_spmv.hpp"
+
 
 /*
  * Purpose

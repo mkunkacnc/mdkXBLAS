@@ -1,5 +1,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "gbmv/XBLAS_gbmv.hpp"
+
 void BLAS_dgbmv_d_s(enum blas_order_type order, enum blas_trans_type trans,
                     int m, int n, int kl, int ku, double alpha,
                     const double *a, int lda, const float *x, int incx,

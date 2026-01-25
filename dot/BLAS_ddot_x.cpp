@@ -1,5 +1,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "dot/XBLAS_dot.hpp"
+
 void BLAS_ddot_x(enum blas_conj_type conj, int n, double alpha,
                  const double *x, int incx, double beta,
                  const double *y, int incy,

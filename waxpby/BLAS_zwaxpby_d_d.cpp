@@ -1,5 +1,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "waxpby/XBLAS_waxpby.hpp"
+
 
 void BLAS_zwaxpby_d_d(int n, const void *alpha, const double *x, int incx,
                       const void *beta, const double *y, int incy, void *w,

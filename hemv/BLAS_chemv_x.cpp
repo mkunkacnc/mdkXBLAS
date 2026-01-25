@@ -1,5 +1,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "hemv/XBLAS_hemv.hpp"
+
 void BLAS_chemv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   int n, const void *alpha, const void *a, int lda,
                   const void *x, int incx, const void *beta,

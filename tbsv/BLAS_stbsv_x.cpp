@@ -1,6 +1,8 @@
 #include <math.h>
 #include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "tbsv/XBLAS_tbsv.hpp"
+
 void BLAS_stbsv_x(enum blas_order_type order, enum blas_uplo_type uplo,
                   enum blas_trans_type trans, enum blas_diag_type diag,
                   int n, int k, float alpha, const float *t, int ldt,

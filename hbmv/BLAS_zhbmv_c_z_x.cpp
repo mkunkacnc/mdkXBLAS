@@ -1,5 +1,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "hbmv/XBLAS_hbmv.hpp"
+
 void BLAS_zhbmv_c_z_x(enum blas_order_type order,
                       enum blas_uplo_type uplo, int n, int k,
                       const void *alpha, const void *a, int lda,
