@@ -56,10 +56,6 @@ constexpr void axpby(IdxType n,
 {
   static const char routine_name[] = "XBLAS::axpby";
 
-  const X *x_i = x;
-  T *y_i = y;
-  T alpha_i = alpha;
-  T beta_i = beta;
   FPU_FIX_DECL;
 
   /* Test the input parameters. */
@@ -69,7 +65,7 @@ constexpr void axpby(IdxType n,
     BLAS_error(routine_name, -7, incy, NULL);
 
   /* Immediate return */
-  if (n <= 0 || (alpha_i == T(0) && beta_i == T(1)))
+  if (n <= 0 || (alpha == T(0) && beta == T(1)))
     return;
 
   if constexpr (std::is_same_v<TmpType, double_double> ||
@@ -85,12 +81,10 @@ constexpr void axpby(IdxType n,
     iy = (-n + 1) * incy;
 
   for (IdxType i = 0; i < n; ++i) {
-    X x_ii = x_i[ix];
-    T y_ii = y_i[iy];
-    TmpType tmpx = impl::mul<TmpType>(alpha_i, x_ii); /* tmpx = alpha * x[ix] */
-    TmpType tmpy = impl::mul<TmpType>(beta_i, y_ii);  /* tmpy = beta * y[iy] */
+    TmpType tmpx = impl::mul<TmpType>(alpha, x[ix]); /* tmpx = alpha * x[ix] */
+    TmpType tmpy = impl::mul<TmpType>(beta, y[iy]);  /* tmpy = beta * y[iy] */
     tmpy += tmpx;
-    y_i[iy] = impl::to<T>(tmpy);
+    y[iy] = impl::to<T>(tmpy);
     ix += incx;
     iy += incy;
   } /* endfor */
