@@ -10,15 +10,18 @@ namespace XBLAS {
 
 template<typename T,
          typename X,
-         typename TmpType = T>
-requires (sizeof(X) <= sizeof(T) && sizeof(TmpType) >= sizeof(T))
-void axpby(int n,
-           T alpha,
-           const X *x,
-           int incx,
-           T beta,
-           T *y,
-           int incy)
+         typename TmpType = T,
+         typename IdxType = int>
+requires (sizeof(X) <= sizeof(T) &&
+          sizeof(TmpType) >= sizeof(T) &&
+          std::signed_integral<IdxType>)
+constexpr void axpby(IdxType n,
+                     T alpha,
+                     const X *x,
+                     IdxType incx,
+                     T beta,
+                     T *y,
+                     IdxType incy)
 /*
  * Purpose
  * =======
@@ -53,15 +56,10 @@ void axpby(int n,
 {
   static const char routine_name[] = "XBLAS::axpby";
 
-  int i, ix = 0, iy = 0;
   const X *x_i = x;
   T *y_i = y;
   T alpha_i = alpha;
   T beta_i = beta;
-  X x_ii;
-  T y_ii;
-  TmpType tmpx;
-  TmpType tmpy;
   FPU_FIX_DECL;
 
   /* Test the input parameters. */
@@ -79,17 +77,19 @@ void axpby(int n,
     FPU_FIX_START;
   }
 
+  IdxType ix = 0;
   if (incx < 0)
     ix = (-n + 1) * incx;
+  IdxType iy = 0;
   if (incy < 0)
     iy = (-n + 1) * incy;
 
-  for (i = 0; i < n; ++i) {
-    x_ii = x_i[ix];
-    y_ii = y_i[iy];
-    tmpx = impl::mul<TmpType>(alpha_i, x_ii); /* tmpx = alpha * x[ix] */
-    tmpy = impl::mul<TmpType>(beta_i, y_ii);  /* tmpy = beta * y[iy] */
-    tmpy = tmpy + tmpx;
+  for (IdxType i = 0; i < n; ++i) {
+    X x_ii = x_i[ix];
+    T y_ii = y_i[iy];
+    TmpType tmpx = impl::mul<TmpType>(alpha_i, x_ii); /* tmpx = alpha * x[ix] */
+    TmpType tmpy = impl::mul<TmpType>(beta_i, y_ii);  /* tmpy = beta * y[iy] */
+    tmpy += tmpx;
     y_i[iy] = impl::to<T>(tmpy);
     ix += incx;
     iy += incy;
@@ -104,29 +104,31 @@ void axpby(int n,
 //-----------------
 
 template<typename T,
-         typename X>
-void axpby_x(int n,
-             T alpha,
-             const X *x,
-             int incx,
-             T beta,
-             T *y,
-             int incy,
-             enum blas_prec_type prec)
+         typename X,
+         typename IdxType = int>
+requires std::signed_integral<IdxType>
+constexpr void axpby_x(IdxType n,
+                       T alpha,
+                       const X *x,
+                       IdxType incx,
+                       T beta,
+                       T *y,
+                       IdxType incy,
+                       enum blas_prec_type prec)
 {
 //static const char routine_name[] = "XBLAS::axpby_x";
   switch (prec) {
   case blas_prec_single:
-    axpby<T, X, impl::internal_precision_t<T, blas_prec_single>>(n, alpha, x, incx, beta, y, incy);
+    axpby<T, X, impl::internal_precision_t<T, blas_prec_single>, IdxType>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_double:
-    axpby<T, X, impl::internal_precision_t<T, blas_prec_double>>(n, alpha, x, incx, beta, y, incy);
+    axpby<T, X, impl::internal_precision_t<T, blas_prec_double>, IdxType>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_indigenous:
-    axpby<T, X, impl::internal_precision_t<T, blas_prec_indigenous>>(n, alpha, x, incx, beta, y, incy);
+    axpby<T, X, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    axpby<T, X, impl::internal_precision_t<T, blas_prec_extra>>(n, alpha, x, incx, beta, y, incy);
+    axpby<T, X, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(n, alpha, x, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::axpby_x */
