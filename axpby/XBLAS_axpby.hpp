@@ -117,6 +117,48 @@ void axpby_x(int n,
   static_assert("Missing specialization");
 } /* end BLAS_axpby_x_cpp */
 
+template<typename T, int prec>
+struct internal_precision { using type = T; };
+
+template<>
+struct internal_precision<float, blas_prec_single> { using type = float; };
+template<>
+struct internal_precision<float, blas_prec_double> { using type = double; };
+template<>
+struct internal_precision<float, blas_prec_indigenous> { using type = double; };
+template<>
+struct internal_precision<float, blas_prec_extra> { using type = double_double; };
+
+template<>
+struct internal_precision<double, blas_prec_single> { using type = double; };
+template<>
+struct internal_precision<double, blas_prec_double> { using type = double; };
+template<>
+struct internal_precision<double, blas_prec_indigenous> { using type = double; };
+template<>
+struct internal_precision<double, blas_prec_extra> { using type = double_double; };
+
+template<>
+struct internal_precision<std::complex<float>, blas_prec_single> { using type = std::complex<float>; };
+template<>
+struct internal_precision<std::complex<float>, blas_prec_double> { using type = std::complex<double>; };
+template<>
+struct internal_precision<std::complex<float>, blas_prec_indigenous> { using type = std::complex<double>; };
+template<>
+struct internal_precision<std::complex<float>, blas_prec_extra> { using type = std::complex<double_double>; };
+
+template<>
+struct internal_precision<std::complex<double>, blas_prec_single> { using type = std::complex<double>; };
+template<>
+struct internal_precision<std::complex<double>, blas_prec_double> { using type = std::complex<double>; };
+template<>
+struct internal_precision<std::complex<double>, blas_prec_indigenous> { using type = std::complex<double>; };
+template<>
+struct internal_precision<std::complex<double>, blas_prec_extra> { using type = std::complex<double_double>; };
+
+template<typename T, int prec>
+using internal_precision_t = typename internal_precision<T, prec>::type;
+
 template<typename X>
 void axpby_x(int n,
              double alpha,
@@ -169,12 +211,16 @@ void axpby_x(int n,
 //static const char routine_name[] = "XBLAS::axpby_x";
   switch (prec) {
   case blas_prec_single:
+    axpby<double, X, internal_precision_t<double, blas_prec_single>>(n, alpha, x, incx, beta, y, incy);
+    break;
   case blas_prec_double:
+    axpby<double, X, internal_precision_t<double, blas_prec_double>>(n, alpha, x, incx, beta, y, incy);
+    break;
   case blas_prec_indigenous:
-    axpby(n, alpha, x, incx, beta, y, incy);
+    axpby<double, X, internal_precision_t<double, blas_prec_indigenous>>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    axpby<double, X, double_double>(n, alpha, x, incx, beta, y, incy);
+    axpby<double, X, internal_precision_t<double, blas_prec_extra>>(n, alpha, x, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::axpby_x */
@@ -231,14 +277,16 @@ void axpby_x(int n,
 //static const char routine_name[] = "XBLAS::axpby_x";
   switch (prec) {
   case blas_prec_single:
-    axpby(n, alpha, x, incx, beta, y, incy);
+    axpby<float, float, internal_precision_t<float, blas_prec_single>>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_double:
+    axpby<float, float, internal_precision_t<float, blas_prec_double>>(n, alpha, x, incx, beta, y, incy);
+    break;
   case blas_prec_indigenous:
-    axpby<float, float, double>(n, alpha, x, incx, beta, y, incy);
+    axpby<float, float, internal_precision_t<float, blas_prec_indigenous>>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    axpby<float, float, double_double>(n, alpha, x, incx, beta, y, incy);
+    axpby<float, float, internal_precision_t<float, blas_prec_extra>>(n, alpha, x, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::axpby_x */
@@ -295,12 +343,16 @@ void axpby_x(int n,
 //static const char routine_name[] = "XBLAS::axpby_x";
   switch (prec) {
   case blas_prec_single:
+    axpby<std::complex<double>, X, internal_precision_t<std::complex<double>, blas_prec_single>>(n, alpha, x, incx, beta, y, incy);
+    break;
   case blas_prec_double:
+    axpby<std::complex<double>, X, internal_precision_t<std::complex<double>, blas_prec_double>>(n, alpha, x, incx, beta, y, incy);
+    break;
   case blas_prec_indigenous:
-    axpby(n, alpha, x, incx, beta, y, incy);
+    axpby<std::complex<double>, X, internal_precision_t<std::complex<double>, blas_prec_indigenous>>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    axpby<std::complex<double>, X, std::complex<double_double>>(n, alpha, x, incx, beta, y, incy);
+    axpby<std::complex<double>, X, internal_precision_t<std::complex<double>, blas_prec_extra>>(n, alpha, x, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::axpby_x */
@@ -357,14 +409,16 @@ void axpby_x(int n,
 //static const char routine_name[] = "XBLAS::axpby_x";
   switch (prec) {
   case blas_prec_single:
-    axpby(n, alpha, x, incx, beta, y, incy);
+    axpby<std::complex<float>, X, internal_precision_t<std::complex<float>, blas_prec_single>>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_double:
+    axpby<std::complex<float>, X, internal_precision_t<std::complex<float>, blas_prec_double>>(n, alpha, x, incx, beta, y, incy);
+    break;
   case blas_prec_indigenous:
-    axpby<std::complex<float>, X, std::complex<double>>(n, alpha, x, incx, beta, y, incy);
+    axpby<std::complex<float>, X, internal_precision_t<std::complex<float>, blas_prec_indigenous>>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    axpby<std::complex<float>, X, std::complex<double_double>>(n, alpha, x, incx, beta, y, incy);
+    axpby<std::complex<float>, X, internal_precision_t<std::complex<float>, blas_prec_extra>>(n, alpha, x, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::axpby_x */
