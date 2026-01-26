@@ -39,10 +39,16 @@
  *              The stride for vector y.
  *
  */
-void BLAS_cspmv_s_s(enum blas_order_type order, enum blas_uplo_type uplo,
-                    int n, const void *alpha, const float *ap,
-                    const float *x, int incx, const void *beta,
-                    void *y, int incy)
+void BLAS_cspmv_s_s(enum blas_order_type order,
+                    enum blas_uplo_type uplo,
+                    int n,
+                    const void *alpha,
+                    const float *ap,
+                    const float *x,
+                    int incx,
+                    const void *beta,
+                    void *y,
+                    int incy)
 {
   static const char routine_name[] = "BLAS_cspmv_s_s";
 

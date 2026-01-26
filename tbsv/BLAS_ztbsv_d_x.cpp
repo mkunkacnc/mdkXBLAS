@@ -3,11 +3,18 @@
 #include "blas_extended_private.h"
 #include "tbsv/XBLAS_tbsv.hpp"
 
-void BLAS_ztbsv_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
-                    enum blas_trans_type trans, enum blas_diag_type diag,
-                    int n, int k, const void *alpha, const double *t, int ldt,
-                    void *x, int incx, enum blas_prec_type prec)
-
+void BLAS_ztbsv_d_x(enum blas_order_type order,
+                    enum blas_uplo_type uplo,
+                    enum blas_trans_type trans,
+                    enum blas_diag_type diag,
+                    int n,
+                    int k,
+                    const void *alpha,
+                    const double *t,
+                    int ldt,
+                    void *x,
+                    int incx,
+                    enum blas_prec_type prec)
 /*
  * Purpose
  * =======

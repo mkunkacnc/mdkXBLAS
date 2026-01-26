@@ -3,11 +3,17 @@
 #include "trmv/XBLAS_trmv.hpp"
 
 
-void BLAS_ztrmv_x(enum blas_order_type order, enum blas_uplo_type uplo,
-                  enum blas_trans_type trans, enum blas_diag_type diag, int n,
-                  const void *alpha, const void *T, int ldt,
-                  void *x, int incx, enum blas_prec_type prec)
-
+void BLAS_ztrmv_x(enum blas_order_type order,
+                  enum blas_uplo_type uplo,
+                  enum blas_trans_type trans,
+                  enum blas_diag_type diag,
+                  int n,
+                  const void *alpha,
+                  const void *T,
+                  int ldt,
+                  void *x,
+                  int incx,
+                  enum blas_prec_type prec)
 /*
  * Purpose
  * =======

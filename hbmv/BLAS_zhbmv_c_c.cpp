@@ -3,11 +3,17 @@
 #include "hbmv/XBLAS_hbmv.hpp"
 
 void BLAS_zhbmv_c_c(enum blas_order_type order,
-                    enum blas_uplo_type uplo, int n, int k,
-                    const void *alpha, const void *a, int lda,
-                    const void *x, int incx, const void *beta,
-                    void *y, int incy)
-
+                    enum blas_uplo_type uplo,
+                    int n,
+                    int k,
+                    const void *alpha,
+                    const void *a,
+                    int lda,
+                    const void *x,
+                    int incx,
+                    const void *beta,
+                    void *y,
+                    int incy)
 /*
  * Purpose
  * =======

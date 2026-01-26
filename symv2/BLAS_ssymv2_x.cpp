@@ -1,11 +1,19 @@
 #include <blas_extended.h>
 #include <blas_extended_private.h>
 #include <blas_fpu.h>
-void BLAS_ssymv2_x(enum blas_order_type order, enum blas_uplo_type uplo,
-                   int n, float alpha, const float *a, int lda,
-                   const float *x_head, const float *x_tail, int incx,
-                   float beta, float *y, int incy, enum blas_prec_type prec)
-
+void BLAS_ssymv2_x(enum blas_order_type order,
+                   enum blas_uplo_type uplo,
+                   int n,
+                   float alpha,
+                   const float *a,
+                   int lda,
+                   const float *x_head,
+                   const float *x_tail,
+                   int incx,
+                   float beta,
+                   float *y,
+                   int incy,
+                   enum blas_prec_type prec)
 /*
  * Purpose
  * =======

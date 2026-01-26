@@ -3,10 +3,16 @@
 #include "trmv/XBLAS_trmv.hpp"
 
 
-void BLAS_dtrmv_s(enum blas_order_type order, enum blas_uplo_type uplo,
-                  enum blas_trans_type trans, enum blas_diag_type diag, int n,
-                  double alpha, const float *T, int ldt, double *x, int incx)
-
+void BLAS_dtrmv_s(enum blas_order_type order,
+                  enum blas_uplo_type uplo,
+                  enum blas_trans_type trans,
+                  enum blas_diag_type diag,
+                  int n,
+                  double alpha,
+                  const float *T,
+                  int ldt,
+                  double *x,
+                  int incx)
 /*
  * Purpose
  * =======

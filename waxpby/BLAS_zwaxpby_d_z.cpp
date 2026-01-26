@@ -3,10 +3,15 @@
 #include "waxpby/XBLAS_waxpby.hpp"
 
 
-void BLAS_zwaxpby_d_z(int n, const void *alpha, const double *x, int incx,
-                      const void *beta, const void *y, int incy, void *w,
+void BLAS_zwaxpby_d_z(int n,
+                      const void *alpha,
+                      const double *x,
+                      int incx,
+                      const void *beta,
+                      const void *y,
+                      int incy,
+                      void *w,
                       int incw)
-
 /*
  * Purpose
  * =======

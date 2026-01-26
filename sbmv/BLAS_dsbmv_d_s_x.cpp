@@ -2,11 +2,19 @@
 #include "blas_extended_private.h"
 #include "sbmv/XBLAS_sbmv.hpp"
 
-void BLAS_dsbmv_d_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
-                      int n, int k, double alpha, const double *a, int lda,
-                      const float *x, int incx, double beta,
-                      double *y, int incy, enum blas_prec_type prec)
-
+void BLAS_dsbmv_d_s_x(enum blas_order_type order,
+                      enum blas_uplo_type uplo,
+                      int n,
+                      int k,
+                      double alpha,
+                      const double *a,
+                      int lda,
+                      const float *x,
+                      int incx,
+                      double beta,
+                      double *y,
+                      int incy,
+                      enum blas_prec_type prec)
 /*
  * Purpose
  * =======

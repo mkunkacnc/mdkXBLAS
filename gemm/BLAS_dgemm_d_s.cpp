@@ -2,11 +2,20 @@
 #include "blas_extended_private.h"
 #include "gemm/XBLAS_gemm.hpp"
 
-void BLAS_dgemm_d_s(enum blas_order_type order, enum blas_trans_type transa,
-                    enum blas_trans_type transb, int m, int n, int k,
-                    double alpha, const double *a, int lda, const float *b,
-                    int ldb, double beta, double *c, int ldc)
-
+void BLAS_dgemm_d_s(enum blas_order_type order,
+                    enum blas_trans_type transa,
+                    enum blas_trans_type transb,
+                    int m,
+                    int n,
+                    int k,
+                    double alpha,
+                    const double *a,
+                    int lda,
+                    const float *b,
+                    int ldb,
+                    double beta,
+                    double *c,
+                    int ldc)
 /*
  * Purpose
  * =======

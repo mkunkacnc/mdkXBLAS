@@ -2,11 +2,16 @@
 #include "blas_extended_private.h"
 #include "dot/XBLAS_dot.hpp"
 
-void BLAS_zdot_c_c_x(enum blas_conj_type conj, int n, const void *alpha,
-                     const void *x, int incx, const void *beta,
-                     const void *y, int incy,
-                     void *r, enum blas_prec_type prec)
-
+void BLAS_zdot_c_c_x(enum blas_conj_type conj,
+                     int n,
+                     const void *alpha,
+                     const void *x,
+                     int incx,
+                     const void *beta,
+                     const void *y,
+                     int incy,
+                     void *r,
+                     enum blas_prec_type prec)
 /*
  * Purpose
  * =======

@@ -39,9 +39,15 @@
  *              The stride for vector y.
  *
  */
-void BLAS_zhpmv_z_d(enum blas_order_type order, enum blas_uplo_type uplo,
-                    int n, const void *alpha, const void *ap,
-                    const double *x, int incx, const void *beta, void *y,
+void BLAS_zhpmv_z_d(enum blas_order_type order,
+                    enum blas_uplo_type uplo,
+                    int n,
+                    const void *alpha,
+                    const void *ap,
+                    const double *x,
+                    int incx,
+                    const void *beta,
+                    void *y,
                     int incy)
 {
   static const char routine_name[] = "BLAS_zhpmv_z_d";

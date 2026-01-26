@@ -2,9 +2,11 @@
 #include "blas_extended_private.h"
 #include "sum/XBLAS_sum.hpp"
 
-void BLAS_csum_x(int n, const void *x, int incx,
-                 void *sum, enum blas_prec_type prec)
-
+void BLAS_csum_x(int n,
+                 const void *x,
+                 int incx,
+                 void *sum,
+                 enum blas_prec_type prec)
 /*
  * Purpose
  * =======

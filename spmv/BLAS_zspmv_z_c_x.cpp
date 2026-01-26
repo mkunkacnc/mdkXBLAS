@@ -47,10 +47,17 @@
  *
  *
  */
-void BLAS_zspmv_z_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
-                      int n, const void *alpha, const void *ap,
-                      const void *x, int incx, const void *beta,
-                      void *y, int incy, enum blas_prec_type prec)
+void BLAS_zspmv_z_c_x(enum blas_order_type order,
+                      enum blas_uplo_type uplo,
+                      int n,
+                      const void *alpha,
+                      const void *ap,
+                      const void *x,
+                      int incx,
+                      const void *beta,
+                      void *y,
+                      int incy,
+                      enum blas_prec_type prec)
 {
   static const char routine_name[] = "BLAS_zspmv_z_c_x";
 

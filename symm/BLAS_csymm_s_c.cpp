@@ -2,12 +2,19 @@
 #include "blas_extended_private.h"
 #include "symm/XBLAS_symm.hpp"
 
-void BLAS_csymm_s_c(enum blas_order_type order, enum blas_side_type side,
-                    enum blas_uplo_type uplo, int m, int n,
-                    const void *alpha, const float *a, int lda,
-                    const void *b, int ldb, const void *beta,
-                    void *c, int ldc)
-
+void BLAS_csymm_s_c(enum blas_order_type order,
+                    enum blas_side_type side,
+                    enum blas_uplo_type uplo,
+                    int m,
+                    int n,
+                    const void *alpha,
+                    const float *a,
+                    int lda,
+                    const void *b,
+                    int ldb,
+                    const void *beta,
+                    void *c,
+                    int ldc)
 /*
  * Purpose
  * =======

@@ -2,12 +2,22 @@
 #include "blas_extended_private.h"
 #include "gbmv2/XBLAS_gbmv2.hpp"
 
-void BLAS_zgbmv2_d_d_x(enum blas_order_type order, enum blas_trans_type trans,
-                       int m, int n, int kl, int ku, const void *alpha,
-                       const double *a, int lda, const double *head_x,
-                       const double *tail_x, int incx, const void *beta,
-                       void *y, int incy, enum blas_prec_type prec)
-
+void BLAS_zgbmv2_d_d_x(enum blas_order_type order,
+                       enum blas_trans_type trans,
+                       int m,
+                       int n,
+                       int kl,
+                       int ku,
+                       const void *alpha,
+                       const double *a,
+                       int lda,
+                       const double *head_x,
+                       const double *tail_x,
+                       int incx,
+                       const void *beta,
+                       void *y,
+                       int incy,
+                       enum blas_prec_type prec)
 /*
  * Purpose
  * =======

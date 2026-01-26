@@ -2,11 +2,17 @@
 #include "blas_extended_private.h"
 #include "symv/XBLAS_symv.hpp"
 
-void BLAS_dsymv_s_d(enum blas_order_type order, enum blas_uplo_type uplo,
-                    int n, double alpha, const float *a, int lda,
-                    const double *x, int incx, double beta,
-                    double *y, int incy)
-
+void BLAS_dsymv_s_d(enum blas_order_type order,
+                    enum blas_uplo_type uplo,
+                    int n,
+                    double alpha,
+                    const float *a,
+                    int lda,
+                    const double *x,
+                    int incx,
+                    double beta,
+                    double *y,
+                    int incy)
 /*
  * Purpose
  * =======

@@ -2,12 +2,20 @@
 #include "blas_extended_private.h"
 #include "ge_sum_mv/XBLAS_ge_sum_mv.hpp"
 
-void BLAS_sge_sum_mv_x(enum blas_order_type order, int m, int n,
-                       float alpha, const float *a, int lda,
-                       const float *x, int incx,
-                       float beta, const float *b, int ldb,
-                       float *y, int incy, enum blas_prec_type prec)
-
+void BLAS_sge_sum_mv_x(enum blas_order_type order,
+                       int m,
+                       int n,
+                       float alpha,
+                       const float *a,
+                       int lda,
+                       const float *x,
+                       int incx,
+                       float beta,
+                       const float *b,
+                       int ldb,
+                       float *y,
+                       int incy,
+                       enum blas_prec_type prec)
 /*
  * Purpose
  * =======

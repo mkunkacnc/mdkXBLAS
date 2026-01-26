@@ -3,10 +3,16 @@
 #include "waxpby/XBLAS_waxpby.hpp"
 
 
-void BLAS_cwaxpby_s_c_x(int n, const void *alpha, const float *x, int incx,
-                        const void *beta, const void *y, int incy, void *w,
-                        int incw, enum blas_prec_type prec)
-
+void BLAS_cwaxpby_s_c_x(int n,
+                        const void *alpha,
+                        const float *x,
+                        int incx,
+                        const void *beta,
+                        const void *y,
+                        int incy,
+                        void *w,
+                        int incw,
+                        enum blas_prec_type prec)
 /*
  * Purpose
  * =======

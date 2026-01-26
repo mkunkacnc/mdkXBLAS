@@ -47,10 +47,17 @@
  *                            We use double-double in our implementation.
  *
  */
-void BLAS_chpmv_c_s_x(enum blas_order_type order, enum blas_uplo_type uplo,
-                      int n, const void *alpha, const void *ap,
-                      const float *x, int incx, const void *beta, void *y,
-                      int incy, enum blas_prec_type prec)
+void BLAS_chpmv_c_s_x(enum blas_order_type order,
+                      enum blas_uplo_type uplo,
+                      int n,
+                      const void *alpha,
+                      const void *ap,
+                      const float *x,
+                      int incx,
+                      const void *beta,
+                      void *y,
+                      int incy,
+                      enum blas_prec_type prec)
 {
   static const char routine_name[] = "BLAS_chpmv_c_s_x";
 

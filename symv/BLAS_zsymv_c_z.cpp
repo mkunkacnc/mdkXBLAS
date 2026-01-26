@@ -2,11 +2,17 @@
 #include "blas_extended_private.h"
 #include "symv/XBLAS_symv.hpp"
 
-void BLAS_zsymv_c_z(enum blas_order_type order, enum blas_uplo_type uplo,
-                    int n, const void *alpha, const void *a, int lda,
-                    const void *x, int incx, const void *beta,
-                    void *y, int incy)
-
+void BLAS_zsymv_c_z(enum blas_order_type order,
+                    enum blas_uplo_type uplo,
+                    int n,
+                    const void *alpha,
+                    const void *a,
+                    int lda,
+                    const void *x,
+                    int incx,
+                    const void *beta,
+                    void *y,
+                    int incy)
 /*
  * Purpose
  * =======

@@ -3,11 +3,16 @@
 #include "tpmv/XBLAS_tpmv.hpp"
 
 
-void BLAS_ztpmv_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
-                    enum blas_trans_type trans, enum blas_diag_type diag,
-                    int n, const void *alpha, const double *tp,
-                    void *x, int incx, enum blas_prec_type prec)
-
+void BLAS_ztpmv_d_x(enum blas_order_type order,
+                    enum blas_uplo_type uplo,
+                    enum blas_trans_type trans,
+                    enum blas_diag_type diag,
+                    int n,
+                    const void *alpha,
+                    const double *tp,
+                    void *x,
+                    int incx,
+                    enum blas_prec_type prec)
 /*
  * Purpose
  * =======

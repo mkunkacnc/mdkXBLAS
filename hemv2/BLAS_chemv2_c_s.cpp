@@ -1,11 +1,18 @@
 #include <blas_extended.h>
 #include <blas_extended_private.h>
 #include <blas_fpu.h>
-void BLAS_chemv2_c_s(enum blas_order_type order, enum blas_uplo_type uplo,
-                     int n, const void *alpha, const void *a, int lda,
-                     const float *x_head, const float *x_tail, int incx,
-                     const void *beta, const float *y, int incy)
-
+void BLAS_chemv2_c_s(enum blas_order_type order,
+                     enum blas_uplo_type uplo,
+                     int n,
+                     const void *alpha,
+                     const void *a,
+                     int lda,
+                     const float *x_head,
+                     const float *x_tail,
+                     int incx,
+                     const void *beta,
+                     const float *y,
+                     int incy)
 /*
  * Purpose
  * =======

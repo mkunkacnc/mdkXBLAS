@@ -10,7 +10,11 @@
 extern void xerbla_array(const char *, const int *, const int *);
 #endif
 
-void BLAS_error(const char *rname, int iflag, int ival, char *form, ...)
+void BLAS_error(const char *rname,
+                int iflag,
+                int ival,
+                char *form,
+                ...)
 /*
  * Argument
  * ========

@@ -2,11 +2,19 @@
 #include "blas_extended_private.h"
 #include "gemv/XBLAS_gemv.hpp"
 
-void BLAS_zgemv_d_d_x(enum blas_order_type order, enum blas_trans_type trans,
-                      int m, int n, const void *alpha, const double *a,
-                      int lda, const double *x, int incx, const void *beta,
-                      void *y, int incy, enum blas_prec_type prec)
-
+void BLAS_zgemv_d_d_x(enum blas_order_type order,
+                      enum blas_trans_type trans,
+                      int m,
+                      int n,
+                      const void *alpha,
+                      const double *a,
+                      int lda,
+                      const double *x,
+                      int incx,
+                      const void *beta,
+                      void *y,
+                      int incy,
+                      enum blas_prec_type prec)
 /*
  * Purpose
  * =======

@@ -2,12 +2,20 @@
 #include "blas_extended_private.h"
 #include "hemm/XBLAS_hemm.hpp"
 
-void BLAS_chemm_c_s_x(enum blas_order_type order, enum blas_side_type side,
-                      enum blas_uplo_type uplo, int m, int n,
-                      const void *alpha, const void *a, int lda,
-                      const float *b, int ldb, const void *beta,
-                      void *c, int ldc, enum blas_prec_type prec)
-
+void BLAS_chemm_c_s_x(enum blas_order_type order,
+                      enum blas_side_type side,
+                      enum blas_uplo_type uplo,
+                      int m,
+                      int n,
+                      const void *alpha,
+                      const void *a,
+                      int lda,
+                      const float *b,
+                      int ldb,
+                      const void *beta,
+                      void *c,
+                      int ldc,
+                      enum blas_prec_type prec)
 /*
  * Purpose
  * =======

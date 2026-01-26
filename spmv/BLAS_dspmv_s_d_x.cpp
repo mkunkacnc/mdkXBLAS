@@ -47,10 +47,17 @@
  *
  *
  */
-void BLAS_dspmv_s_d_x(enum blas_order_type order, enum blas_uplo_type uplo,
-                      int n, double alpha, const float *ap,
-                      const double *x, int incx, double beta,
-                      double *y, int incy, enum blas_prec_type prec)
+void BLAS_dspmv_s_d_x(enum blas_order_type order,
+                      enum blas_uplo_type uplo,
+                      int n,
+                      double alpha,
+                      const float *ap,
+                      const double *x,
+                      int incx,
+                      double beta,
+                      double *y,
+                      int incy,
+                      enum blas_prec_type prec)
 {
   static const char routine_name[] = "BLAS_dspmv_s_d_x";
 

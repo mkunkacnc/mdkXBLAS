@@ -4,11 +4,17 @@
 #include "trsv/XBLAS_trsv.hpp"
 
 
-void BLAS_ztrsv_c_x(enum blas_order_type order, enum blas_uplo_type uplo,
-                    enum blas_trans_type trans, enum blas_diag_type diag,
-                    int n, const void *alpha, const void *T, int ldt,
-                    void *x, int incx, enum blas_prec_type prec)
-
+void BLAS_ztrsv_c_x(enum blas_order_type order,
+                    enum blas_uplo_type uplo,
+                    enum blas_trans_type trans,
+                    enum blas_diag_type diag,
+                    int n,
+                    const void *alpha,
+                    const void *T,
+                    int ldt,
+                    void *x,
+                    int incx,
+                    enum blas_prec_type prec)
 /*
  * Purpose
  * =======
