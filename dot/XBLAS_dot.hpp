@@ -10,16 +10,18 @@ namespace XBLAS {
 //---------------
 
 template<typename T,
+         typename X,
          typename Y,
          typename TmpType = T,
          typename IdxType = int>
-requires (sizeof(Y) <= sizeof(T) &&
+requires (sizeof(X) <= sizeof(T) &&
+          sizeof(Y) <= sizeof(T) &&
           sizeof(TmpType) >= sizeof(T) &&
           std::signed_integral<IdxType>)
 constexpr void dot(blas_conj_type /*conj*/,
                    IdxType n,
                    T alpha,
-                   const T *x,
+                   const X *x,
                    IdxType incx,
                    T beta,
                    const Y *y,
@@ -45,7 +47,7 @@ constexpr void dot(blas_conj_type /*conj*/,
  *
  * alpha  (input) T
  *
- * x      (input) const T*
+ * x      (input) const X*
  *        Array of length n.
  *
  * incx   (input) IdxType
@@ -67,11 +69,11 @@ constexpr void dot(blas_conj_type /*conj*/,
 
   IdxType i, ix = 0, iy = 0;
   T *r_i = r;
-  const T *x_i = x;
+  const X *x_i = x;
   const Y *y_i = y;
   T alpha_i = alpha;
   T beta_i = beta;
-  T x_ii;
+  X x_ii;
   Y y_ii;
   T r_v;
   TmpType prod;
@@ -88,11 +90,11 @@ constexpr void dot(blas_conj_type /*conj*/,
     BLAS_error(routine_name, -8, incy, NULL);
 
   /* Immediate return. */
-  if ((beta_i == 1.0) && (n == 0 || (alpha_i == 0.0)))
+  if ((beta_i == T(1)) && (n == 0 || (alpha_i == T(0))))
     return;
 
   r_v = r_i[0];
-  sum = 0.0;
+  sum = T(0);
 
   if (incx < 0)
     ix = (-n + 1) * incx;
