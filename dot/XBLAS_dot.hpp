@@ -105,16 +105,16 @@ constexpr void dot(blas_conj_type /*conj*/,
     x_ii = x_i[ix];
     y_ii = y_i[iy];
 
-    prod = x_ii * y_ii; /* prod = x[i]*y[i] */
-    sum = sum + prod;   /* sum = sum+prod */
+    prod = impl::mul<TmpType>(x_ii, y_ii); /* prod = x[i]*y[i] */
+    sum = sum + prod;                      /* sum = sum+prod */
     ix += incx;
     iy += incy;
   } /* endfor */
 
-  tmp1 = sum * alpha_i; /* tmp1 = sum*alpha */
-  tmp2 = r_v * beta_i;  /* tmp2 = r*beta */
-  tmp1 = tmp1 + tmp2;   /* tmp1 = tmp1+tmp2 */
-  *r = tmp1;            /* r = tmp1 */
+  tmp1 = sum * alpha_i;   /* tmp1 = sum*alpha */
+  tmp2 = r_v * beta_i;    /* tmp2 = r*beta */
+  tmp1 = tmp1 + tmp2;     /* tmp1 = tmp1+tmp2 */
+  *r = impl::to<T>(tmp1); /* r = tmp1 */
 }
 
 //-----------------
