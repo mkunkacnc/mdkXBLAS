@@ -67,6 +67,8 @@ constexpr void dot(blas_conj_type conj,
 {
   static const char routine_name[] = "XBLAS::dot";
 
+  using PrdType = impl::get_inner_type<X, Y, TmpType>::type;
+
   FPU_FIX_DECL;
 
   IdxType i, ix = 0, iy = 0;
@@ -78,8 +80,8 @@ constexpr void dot(blas_conj_type conj,
   X x_ii;
   Y y_ii;
   T r_v;
-  TmpType prod;
-  TmpType sum;
+  PrdType prod;
+  PrdType sum;
   TmpType tmp1;
   TmpType tmp2;
 
@@ -101,7 +103,7 @@ constexpr void dot(blas_conj_type conj,
   }
 
   r_v = r_i[0];
-  sum = TmpType(0);
+  sum = PrdType(0);
 
   if (incx < 0)
     ix = (-n + 1) * incx;
@@ -113,7 +115,7 @@ constexpr void dot(blas_conj_type conj,
       x_ii = impl::Conj::func(x_i[ix]);
       y_ii = y_i[iy];
 
-      prod = impl::mul<TmpType>(x_ii, y_ii); /* prod = x[i]*y[i] */
+      prod = impl::mul<PrdType>(x_ii, y_ii); /* prod = x[i]*y[i] */
       sum = sum + prod;                      /* sum = sum+prod */
       ix += incx;
       iy += incy;
@@ -123,7 +125,7 @@ constexpr void dot(blas_conj_type conj,
       x_ii = x_i[ix];
       y_ii = y_i[iy];
 
-      prod = impl::mul<TmpType>(x_ii, y_ii); /* prod = x[i]*y[i] */
+      prod = impl::mul<PrdType>(x_ii, y_ii); /* prod = x[i]*y[i] */
       sum = sum + prod;                      /* sum = sum+prod */
       ix += incx;
       iy += incy;
@@ -145,10 +147,10 @@ constexpr void dot(blas_conj_type conj,
 //-----------------
 
 inline
-void mydot(enum blas_conj_type conj,
+void mydot(enum blas_conj_type /*conj*/,
            int n,
            std::complex<float> alpha,
-           const std::complex<float> *x,
+           const float *x,
            int incx,
            std::complex<float> beta,
            const float *y,
@@ -192,12 +194,14 @@ void mydot(enum blas_conj_type conj,
  *
  */
 {
-  static const char routine_name[] = "BLAS_cdot_c_s";
+  static const char routine_name[] = "BLAS_cdot_s_s";
 
   using T = std::complex<float>;
-  using X = std::complex<float>;
+  using X = float;
   using Y = float;
   using TmpType = std::complex<float>;
+  using PrdType = impl::get_inner_type<X, Y, TmpType>::type; //typename impl::inner_type<TmpType>::type;
+  static_assert(std::floating_point<PrdType>);
 
   int i, ix = 0, iy = 0;
   T *r_i = r;
@@ -208,8 +212,8 @@ void mydot(enum blas_conj_type conj,
   X x_ii;
   Y y_ii;
   T r_v;
-  TmpType prod;
-  TmpType sum;
+  PrdType prod;
+  PrdType sum;
   TmpType tmp1;
   TmpType tmp2;
 
@@ -227,34 +231,21 @@ void mydot(enum blas_conj_type conj,
     return;
 
   r_v = r_i[0];
-  sum = TmpType(0);
+  sum = PrdType(0);
 
   if (incx < 0)
     ix = (-n + 1) * incx;
   if (incy < 0)
     iy = (-n + 1) * incy;
 
-  if (conj == blas_conj) {
-    for (i = 0; i < n; ++i) {
-      x_ii = x_i[ix];
-      y_ii = y_i[iy];
-      x_ii = std::conj(x_ii);
-      prod = x_ii * y_ii;
-      sum = sum + prod;
-      ix += incx;
-      iy += incy;
-    }                                /* endfor */
-  } else {
-    /* do not conjugate */
-    for (i = 0; i < n; ++i) {
-      x_ii = x_i[ix];
-      y_ii = y_i[iy];
-      prod = x_ii * y_ii;
-      sum = sum + prod;
-      ix += incx;
-      iy += incy;
-    }                                /* endfor */
-  }
+  for (i = 0; i < n; ++i) {
+    x_ii = x_i[ix];
+    y_ii = y_i[iy];
+    prod = impl::mul<PrdType>(x_ii, y_ii);
+    sum = sum + prod;
+    ix += incx;
+    iy += incy;
+  }                                /* endfor */
 
   tmp1 = sum * alpha;
   tmp2 = r_v * beta;

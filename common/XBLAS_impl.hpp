@@ -19,6 +19,31 @@ concept has_value_type = requires(T t)  {
   typename T::value_type;
 };
 
+//---------------------------
+// INNER_TYPE
+// T or T::value_type
+
+template<typename T>
+struct inner_type { using type = T; };
+
+template<template<typename> class C, typename T> // will work for complex
+struct inner_type<C<T>> { using type = C<T>::value_type; };
+
+//---------------------------
+// GET_INNER_TYPE
+// T or T::value_type, depending on types X and Y
+
+template<typename X,
+         typename Y,
+         typename T>
+struct get_inner_type { using type = T; };
+
+template<typename X,
+         typename Y,
+         typename T>
+requires (std::floating_point<X> && std::floating_point<Y>)
+struct get_inner_type<X, Y, T> { using type = typename inner_type<T>::type; };
+
 //-------------------------------------
 
 template<typename T, int prec>

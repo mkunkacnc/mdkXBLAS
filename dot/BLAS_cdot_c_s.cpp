@@ -51,12 +51,12 @@ void BLAS_cdot_c_s(enum blas_conj_type conj,
 {
 //static const char routine_name[] = "BLAS_cdot_c_s";
   XBLAS::dot(conj,
-               n,
-               *static_cast<const std::complex<float> *>(alpha),
-               static_cast<const std::complex<float> *>(x),
-               incx,
-               *static_cast<const std::complex<float> *>(beta),
-               y,
-               incy,
-               static_cast<std::complex<float> *>(r));
-}
+             n,
+             *static_cast<const std::complex<float> *>(alpha),
+             static_cast<const std::complex<float> *>(x),
+             incx,
+             *static_cast<const std::complex<float> *>(beta),
+             y,
+             incy,
+             static_cast<std::complex<float> *>(r));
+} /* end BLAS_cdot_c_s */
