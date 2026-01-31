@@ -107,7 +107,7 @@ constexpr void axpby_x(IdxType n,
                        T beta,
                        T *y,
                        IdxType incy,
-                       enum blas_prec_type prec)
+                       blas_prec_type prec)
 {
 //static const char routine_name[] = "XBLAS::axpby_x";
   switch (prec) {

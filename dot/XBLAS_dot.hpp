@@ -67,6 +67,8 @@ constexpr void dot(blas_conj_type /*conj*/,
 {
   static const char routine_name[] = "XBLAS::dot";
 
+  FPU_FIX_DECL;
+
   IdxType i, ix = 0, iy = 0;
   T *r_i = r;
   const X *x_i = x;
@@ -93,8 +95,13 @@ constexpr void dot(blas_conj_type /*conj*/,
   if ((beta_i == T(1)) && (n == 0 || (alpha_i == T(0))))
     return;
 
+  if constexpr (std::is_same_v<TmpType, double_double> ||
+                std::is_same_v<TmpType, std::complex<double_double>>) {
+    FPU_FIX_START;
+  }
+
   r_v = r_i[0];
-  sum = T(0);
+  sum = TmpType(0);
 
   if (incx < 0)
     ix = (-n + 1) * incx;
@@ -111,10 +118,96 @@ constexpr void dot(blas_conj_type /*conj*/,
     iy += incy;
   } /* endfor */
 
-  tmp1 = sum * alpha_i;   /* tmp1 = sum*alpha */
-  tmp2 = r_v * beta_i;    /* tmp2 = r*beta */
-  tmp1 = tmp1 + tmp2;     /* tmp1 = tmp1+tmp2 */
-  *r = impl::to<T>(tmp1); /* r = tmp1 */
+  tmp1 = sum * alpha_i;                   /* tmp1 = sum*alpha */
+  tmp2 = impl::mul<TmpType>(r_v, beta_i); /* tmp2 = r*beta */
+  tmp1 = tmp1 + tmp2;                     /* tmp1 = tmp1+tmp2 */
+  *r = impl::to<T>(tmp1);                 /* r = tmp1 */
+
+
+  if constexpr (std::is_same_v<TmpType, double_double> ||
+                std::is_same_v<TmpType, std::complex<double_double>>) {
+    FPU_FIX_STOP;
+  }
+}
+
+//-----------------
+
+template<typename T,
+         typename X,
+         typename Y,
+         typename IdxType = int>
+requires std::signed_integral<IdxType>
+constexpr void dot_x(blas_conj_type conj,
+                     IdxType n,
+                     T alpha,
+                     const X *x,
+                     IdxType incx,
+                     T beta,
+                     const Y *y,
+                     IdxType incy,
+                     T *r,
+                     blas_prec_type prec)
+/*
+ * Purpose
+ * =======
+ *
+ * This routine computes the inner product:
+ *
+ *     r <- beta * r + alpha * SUM_{i=0, n-1} x[i] * y[i].
+ *
+ * Arguments
+ * =========
+ *
+ * conj   (input) enum blas_conj_type
+ *        When x and y are complex vectors, specifies whether vector
+ *        components x[i] are used unconjugated or conjugated.
+ *
+ * n      (input) IdxType
+ *        The length of vectors x and y.
+ *
+ * alpha  (input) T
+ *
+ * x      (input) const X*
+ *        Array of length n.
+ *
+ * incx   (input) IdxType
+ *        The stride used to access components x[i].
+ *
+ * beta   (input) T
+ *
+ * y      (input) const Y*
+ *        Array of length n.
+ *
+ * incy   (input) IdxType
+ *        The stride used to access components y[i].
+ *
+ * r      (input/output) T*
+ *
+ * prec   (input) enum blas_prec_type
+ *        Specifies the internal precision to be used.
+ *        = blas_prec_single: single precision.
+ *        = blas_prec_double: double precision.
+ *        = blas_prec_extra : anything at least 1.5 times as accurate
+ *                            than double, and wider than 80-bits.
+ *                            We use double-double in our implementation.
+ *
+ */
+{
+//static const char routine_name[] = "XBLAS::dot_x";
+  switch (prec) {
+  case blas_prec_single:
+    XBLAS::dot<T, X, Y, impl::internal_precision_t<T, blas_prec_single>, IdxType>(conj, n, alpha, x, incx, beta, y, incy, r);
+    break;
+  case blas_prec_double:
+    XBLAS::dot<T, X, Y, impl::internal_precision_t<T, blas_prec_double>, IdxType>(conj, n, alpha, x, incx, beta, y, incy, r);
+    break;
+  case blas_prec_indigenous:
+    XBLAS::dot<T, X, Y, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(conj, n, alpha, x, incx, beta, y, incy, r);
+    break;
+  case blas_prec_extra:
+    XBLAS::dot<T, X, Y, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(conj, n, alpha, x, incx, beta, y, incy, r);
+    break;
+  }
 }
 
 //-----------------
