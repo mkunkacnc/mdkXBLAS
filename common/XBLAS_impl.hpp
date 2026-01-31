@@ -188,6 +188,19 @@ constexpr inline To to(std::complex<double_double> from)
   return To(to<typename To::value_type>(real(from)), to<typename To::value_type>(imag(from)));
 }
 
+//---------------------------
+// CONJ
+// use nothing (real) or conj (complex)
+
+struct Conj
+{
+    template<typename T> // for real types
+    static constexpr auto func(T x) { return x; }
+
+    template<template<typename> class C, typename T> // for complex types
+    static constexpr auto func(const C<T>& z) { return conj(z); }
+};
+
 //-----------------
 } //namespace impl
 //-----------------

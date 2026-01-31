@@ -18,7 +18,7 @@ requires (sizeof(X) <= sizeof(T) &&
           sizeof(Y) <= sizeof(T) &&
           sizeof(TmpType) >= sizeof(T) &&
           std::signed_integral<IdxType>)
-constexpr void dot(blas_conj_type /*conj*/,
+constexpr void dot(blas_conj_type conj,
                    IdxType n,
                    T alpha,
                    const X *x,
@@ -108,15 +108,27 @@ constexpr void dot(blas_conj_type /*conj*/,
   if (incy < 0)
     iy = (-n + 1) * incy;
 
-  for (i = 0; i < n; ++i) {
-    x_ii = x_i[ix];
-    y_ii = y_i[iy];
+  if (conj == blas_conj) {
+    for (i = 0; i < n; ++i) {
+      x_ii = impl::Conj::func(x_i[ix]);
+      y_ii = y_i[iy];
 
-    prod = impl::mul<TmpType>(x_ii, y_ii); /* prod = x[i]*y[i] */
-    sum = sum + prod;                      /* sum = sum+prod */
-    ix += incx;
-    iy += incy;
-  } /* endfor */
+      prod = impl::mul<TmpType>(x_ii, y_ii); /* prod = x[i]*y[i] */
+      sum = sum + prod;                      /* sum = sum+prod */
+      ix += incx;
+      iy += incy;
+    } /* endfor */
+  } else {
+    for (i = 0; i < n; ++i) {
+      x_ii = x_i[ix];
+      y_ii = y_i[iy];
+
+      prod = impl::mul<TmpType>(x_ii, y_ii); /* prod = x[i]*y[i] */
+      sum = sum + prod;                      /* sum = sum+prod */
+      ix += incx;
+      iy += incy;
+    } /* endfor */
+  }
 
   tmp1 = sum * alpha_i;                   /* tmp1 = sum*alpha */
   tmp2 = impl::mul<TmpType>(r_v, beta_i); /* tmp2 = r*beta */
@@ -129,6 +141,127 @@ constexpr void dot(blas_conj_type /*conj*/,
     FPU_FIX_STOP;
   }
 }
+
+//-----------------
+
+inline
+void mydot(enum blas_conj_type conj,
+           int n,
+           std::complex<float> alpha,
+           const std::complex<float> *x,
+           int incx,
+           std::complex<float> beta,
+           const float *y,
+           int incy,
+           std::complex<float> *r)
+/*
+ * Purpose
+ * =======
+ *
+ * This routine computes the inner product:
+ *
+ *     r <- beta * r + alpha * SUM_{i=0, n-1} x[i] * y[i].
+ *
+ * Arguments
+ * =========
+ *
+ * conj   (input) enum blas_conj_type
+ *        When x and y are complex vectors, specifies whether vector
+ *        components x[i] are used unconjugated or conjugated.
+ *
+ * n      (input) int
+ *        The length of vectors x and y.
+ *
+ * alpha  (input) const void*
+ *
+ * x      (input) const void*
+ *        Array of length n.
+ *
+ * incx   (input) int
+ *        The stride used to access components x[i].
+ *
+ * beta   (input) const void*
+ *
+ * y      (input) const float*
+ *        Array of length n.
+ *
+ * incy   (input) int
+ *        The stride used to access components y[i].
+ *
+ * r      (input/output) void*
+ *
+ */
+{
+  static const char routine_name[] = "BLAS_cdot_c_s";
+
+  using T = std::complex<float>;
+  using X = std::complex<float>;
+  using Y = float;
+  using TmpType = std::complex<float>;
+
+  int i, ix = 0, iy = 0;
+  T *r_i = r;
+  const X *x_i = x;
+  const Y *y_i = y;
+  T alpha_i = alpha;
+  T beta_i = beta;
+  X x_ii;
+  Y y_ii;
+  T r_v;
+  TmpType prod;
+  TmpType sum;
+  TmpType tmp1;
+  TmpType tmp2;
+
+
+  /* Test the input parameters. */
+  if (n < 0)
+    BLAS_error(routine_name, -2, n, NULL);
+  else if (incx == 0)
+    BLAS_error(routine_name, -5, incx, NULL);
+  else if (incy == 0)
+    BLAS_error(routine_name, -8, incy, NULL);
+
+  /* Immediate return. */
+  if (beta_i == T(1) && (n == 0 || alpha_i == T(0)))
+    return;
+
+  r_v = r_i[0];
+  sum = TmpType(0);
+
+  if (incx < 0)
+    ix = (-n + 1) * incx;
+  if (incy < 0)
+    iy = (-n + 1) * incy;
+
+  if (conj == blas_conj) {
+    for (i = 0; i < n; ++i) {
+      x_ii = x_i[ix];
+      y_ii = y_i[iy];
+      x_ii = std::conj(x_ii);
+      prod = x_ii * y_ii;
+      sum = sum + prod;
+      ix += incx;
+      iy += incy;
+    }                                /* endfor */
+  } else {
+    /* do not conjugate */
+    for (i = 0; i < n; ++i) {
+      x_ii = x_i[ix];
+      y_ii = y_i[iy];
+      prod = x_ii * y_ii;
+      sum = sum + prod;
+      ix += incx;
+      iy += incy;
+    }                                /* endfor */
+  }
+
+  tmp1 = sum * alpha;
+  tmp2 = r_v * beta;
+  tmp1 = tmp1 + tmp2;
+  *r = tmp1;
+}
+
 
 //-----------------
 
