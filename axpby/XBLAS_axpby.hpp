@@ -1,7 +1,6 @@
 #ifndef XBLAS_AXPBY_HPP
 #define XBLAS_AXPBY_HPP
 
-#include "blas_extended_private.h"
 #include "common/XBLAS_impl.hpp"
 
 //---------------
@@ -33,7 +32,7 @@ constexpr void axpby(IdxType n,
  * Arguments
  * =========
  *
- * n         (input) int
+ * n         (input) IdxType
  *           The length of vectors x and y.
  *
  * alpha     (input) T
@@ -41,7 +40,7 @@ constexpr void axpby(IdxType n,
  * x         (input) const X*
  *           Array of length n.
  *
- * incx      (input) int
+ * incx      (input) IdxType
  *           The stride used to access components x[i].
  *
  * beta      (input) T
@@ -49,7 +48,7 @@ constexpr void axpby(IdxType n,
  * y         (input/output) T*
  *           Array of length n.
  *
- * incy      (input) int
+ * incy      (input) IdxType
  *           The stride used to access components y[i].
  *
  */
