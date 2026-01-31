@@ -65,7 +65,6 @@ void BLAS_ddot_d_s(enum blas_conj_type conj,
   double tmp1;
   double tmp2;
 
-
   /* Test the input parameters. */
   if (n < 0)
     BLAS_error(routine_name, -2, n, NULL);
@@ -78,11 +77,8 @@ void BLAS_ddot_d_s(enum blas_conj_type conj,
   if ((beta_i == 1.0) && (n == 0 || (alpha_i == 0.0)))
     return;
 
-
-
   r_v = r_i[0];
   sum = 0.0;
-
 
   if (incx < 0)
     ix = (-n + 1) * incx;
@@ -93,18 +89,14 @@ void BLAS_ddot_d_s(enum blas_conj_type conj,
     x_ii = x_i[ix];
     y_ii = y_i[iy];
 
-    prod = x_ii * y_ii;                /* prod = x[i]*y[i] */
-    sum = sum + prod;                /* sum = sum+prod */
+    prod = x_ii * y_ii; /* prod = x[i]*y[i] */
+    sum = sum + prod;   /* sum = sum+prod */
     ix += incx;
     iy += incy;
-  }                                /* endfor */
+  } /* endfor */
 
-
-  tmp1 = sum * alpha_i;                /* tmp1 = sum*alpha */
-  tmp2 = r_v * beta_i;                /* tmp2 = r*beta */
-  tmp1 = tmp1 + tmp2;                /* tmp1 = tmp1+tmp2 */
-  *r = tmp1;                        /* r = tmp1 */
-
-
-
+  tmp1 = sum * alpha_i; /* tmp1 = sum*alpha */
+  tmp2 = r_v * beta_i;  /* tmp2 = r*beta */
+  tmp1 = tmp1 + tmp2;   /* tmp1 = tmp1+tmp2 */
+  *r = tmp1;            /* r = tmp1 */
 }
