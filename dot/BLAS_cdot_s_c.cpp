@@ -59,4 +59,4 @@ void BLAS_cdot_s_c(enum blas_conj_type conj,
              static_cast<const std::complex<float> *>(y),
              incy,
              static_cast<std::complex<float> *>(r));
-} /* end BLAS_cdot_c_s */
+} /* end BLAS_cdot_s_c */
