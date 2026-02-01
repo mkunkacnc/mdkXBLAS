@@ -140,6 +140,12 @@ constexpr inline C mul(std::complex<A> a, std::complex<B> b)
 }
 
 template<>
+constexpr inline std::complex<double> mul(double a, std::complex<float> b)
+{
+  return a * static_cast<std::complex<double>>(b);
+}
+
+template<>
 constexpr inline double_double mul(double a, double b)
 {
   return double_double::mul(a, b);
@@ -242,6 +248,18 @@ template<>
 constexpr inline std::complex<double_double> mul(double a, std::complex<double> b)
 {
   return std::complex<double_double>(double_double::mul(a, real(b)), double_double::mul(a, imag(b)));
+}
+
+template<>
+constexpr inline std::complex<double_double> mul(double_double a, std::complex<float> b)
+{
+  return std::complex<double_double>(a * real(b), a * imag(b));
+}
+
+template<>
+constexpr inline std::complex<double_double> mul(double_double a, std::complex<double> b)
+{
+  return std::complex<double_double>(a * real(b), a * imag(b));
 }
 
 //-------------------------------------

@@ -58,8 +58,19 @@ void BLAS_cdot_s_s_x(enum blas_conj_type conj,
  *
  */
 {
-  static const char routine_name[] = "BLAS_cdot_s_s_x";
-
+//static const char routine_name[] = "BLAS_cdot_s_s_x";
+  XBLAS::dot_x(conj,
+               n,
+               *static_cast<const std::complex<float> *>(alpha),
+               x,
+               incx,
+               *static_cast<const std::complex<float> *>(beta),
+               y,
+               incy,
+               static_cast<std::complex<float> *>(r),
+               prec);
+} /* end BLAS_cdot_s_s_x */
+#if 0
   switch (prec) {
   case blas_prec_single:{
 
@@ -314,3 +325,4 @@ void BLAS_cdot_s_s_x(enum blas_conj_type conj,
     break;
   }
 }
+#endif
