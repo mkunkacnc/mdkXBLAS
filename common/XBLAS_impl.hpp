@@ -26,8 +26,9 @@ concept has_value_type = requires(T t)  {
 template<typename T>
 struct inner_type { using type = T; };
 
-template<template<typename> class C, typename T> // will work for complex
-struct inner_type<C<T>> { using type = C<T>::value_type; };
+template<typename T>
+requires has_value_type<T>
+struct inner_type<T> { using type = T::value_type; };
 
 //---------------------------
 // GET_INNER_TYPE
@@ -42,7 +43,7 @@ template<typename X,
          typename Y,
          typename T>
 requires (std::floating_point<X> && std::floating_point<Y>)
-struct get_inner_type<X, Y, T> { using type = typename inner_type<T>::type; };
+struct get_inner_type<X, Y, T> { using type = inner_type<T>::type; };
 
 //-------------------------------------
 
@@ -145,6 +146,34 @@ constexpr inline double_double mul(float a, float b)
 }
 
 template<>
+constexpr inline std::complex<double_double> mul(std::complex<double_double> a, std::complex<float> b)
+{
+  /* Real part */
+  auto d1 = real(a) * real(b);
+  auto d2 = imag(a) * -imag(b);
+  double_double cr = d1 + d2; /* ar*br - ai*bi */
+  /* imaginary part */
+  d1 = real(a) * imag(b);
+  d2 = imag(a) * real(b);
+  double_double ci = d1 + d2; /* ar*bi + ai*br */
+  return std::complex<double_double>(cr, ci);
+}
+
+template<>
+constexpr inline std::complex<double_double> mul(std::complex<double_double> a, std::complex<double> b)
+{
+  /* Real part */
+  auto d1 = real(a) * real(b);
+  auto d2 = imag(a) * -imag(b);
+  double_double cr = d1 + d2; /* ar*br - ai*bi */
+  /* imaginary part */
+  d1 = real(a) * imag(b);
+  d2 = imag(a) * real(b);
+  double_double ci = d1 + d2; /* ar*bi + ai*br */
+  return std::complex<double_double>(cr, ci);
+}
+
+template<>
 constexpr inline std::complex<double_double> mul(std::complex<float> a, std::complex<float> b)
 {
   /* Real part */
@@ -222,9 +251,19 @@ struct Conj
     template<typename T> // for real types
     static constexpr auto func(T x) { return x; }
 
-    template<template<typename> class C, typename T> // for complex types
-    static constexpr auto func(const C<T>& z) { return conj(z); }
+    template<typename T> // for complex types
+    static constexpr auto func(const std::complex<T>& z) { return conj(z); }
 };
+
+//---------------------------
+// ZERO
+// return 0 with the correct type
+
+template<typename T>
+struct Zero { static constexpr auto value = T(0); };
+
+template<typename T>
+struct Zero<std::complex<T>> { static constexpr auto value = std::complex<T>(T(0), T(0)); };
 
 //-----------------
 } //namespace impl
