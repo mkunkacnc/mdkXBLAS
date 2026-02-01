@@ -121,6 +121,18 @@ constexpr inline C mul(std::complex<A> a, B b)
 template<typename C,
          typename A,
          typename B>
+requires (std::floating_point<A> &&
+          has_value_type<C> &&
+          !std::is_same_v<typename C::value_type, A> &&
+          !std::is_same_v<typename C::value_type, double_double>)
+constexpr inline C mul(A a, std::complex<B> b)
+{
+  return mul<C>(static_cast<C::value_type>(a), static_cast<C>(b));
+}
+
+template<typename C,
+         typename A,
+         typename B>
 requires (has_value_type<C> && !std::is_same_v<typename C::value_type, B>)
 constexpr inline C mul(std::complex<A> a, std::complex<B> b)
 {
@@ -215,9 +227,21 @@ constexpr inline std::complex<double_double> mul(std::complex<float> a, float b)
 }
 
 template<>
+constexpr inline std::complex<double_double> mul(float a, std::complex<float> b)
+{
+  return std::complex<double_double>(double_double::mul(a, real(b)), double_double::mul(a, imag(b)));
+}
+
+template<>
 constexpr inline std::complex<double_double> mul(std::complex<double> a, double b)
 {
   return std::complex<double_double>(double_double::mul(real(a), b), double_double::mul(imag(a), b));
+}
+
+template<>
+constexpr inline std::complex<double_double> mul(double a, std::complex<double> b)
+{
+  return std::complex<double_double>(double_double::mul(a, real(b)), double_double::mul(a, imag(b)));
 }
 
 //-------------------------------------
