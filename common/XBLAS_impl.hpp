@@ -14,10 +14,17 @@ namespace XBLAS {
 namespace impl {
 //--------------
 
+//---------------------------
+// IS_COMPLEX
+
 template<typename T>
-concept has_value_type = requires(T t)  {
-  typename T::value_type;
-};
+struct is_complex { static constexpr auto value = false; };
+
+template<typename T>
+struct is_complex<std::complex<T>> { static constexpr auto value = true; };
+
+template<typename T>
+inline constexpr bool is_complex_v = is_complex<T>::value;
 
 //---------------------------
 // INNER_TYPE
@@ -27,8 +34,20 @@ template<typename T>
 struct inner_type { using type = T; };
 
 template<typename T>
-requires has_value_type<T>
+requires is_complex_v<T>
 struct inner_type<T> { using type = T::value_type; };
+
+template<typename T>
+using inner_type_t = inner_type<T>::type;
+
+//---------------------------
+// SIZE_LE
+
+template<typename X, typename Y>
+struct size_le { static constexpr auto value = sizeof(inner_type_t<X>) <= sizeof(inner_type_t<Y>); };
+
+template<typename X, typename Y>
+inline constexpr bool size_le_v = size_le<X, Y>::value;
 
 //---------------------------
 // GET_INNER_TYPE
@@ -39,19 +58,23 @@ template<typename X,
          typename T>
 struct get_inner_type { using type = T; };
 
+// if X and Y are both real, we want the Z in T = complex<Z>
 template<typename X,
          typename Y,
          typename T>
 requires (std::floating_point<X> && std::floating_point<Y>)
-struct get_inner_type<X, Y, T> { using type = inner_type<T>::type; };
+struct get_inner_type<X, Y, T> { using type = inner_type_t<T>; };
+
+template<typename X,
+         typename Y,
+         typename T>
+using get_inner_type_t = get_inner_type<X, Y, T>::type;
 
 //-------------------------------------
 
 template<typename T, int prec>
 struct internal_precision { using type = T; };
 
-template<>
-struct internal_precision<float, blas_prec_single> { using type = float; };
 template<>
 struct internal_precision<float, blas_prec_double> { using type = double; };
 template<>
@@ -60,16 +83,8 @@ template<>
 struct internal_precision<float, blas_prec_extra> { using type = double_double; };
 
 template<>
-struct internal_precision<double, blas_prec_single> { using type = double; };
-template<>
-struct internal_precision<double, blas_prec_double> { using type = double; };
-template<>
-struct internal_precision<double, blas_prec_indigenous> { using type = double; };
-template<>
 struct internal_precision<double, blas_prec_extra> { using type = double_double; };
 
-template<>
-struct internal_precision<std::complex<float>, blas_prec_single> { using type = std::complex<float>; };
 template<>
 struct internal_precision<std::complex<float>, blas_prec_double> { using type = std::complex<double>; };
 template<>
@@ -77,12 +92,6 @@ struct internal_precision<std::complex<float>, blas_prec_indigenous> { using typ
 template<>
 struct internal_precision<std::complex<float>, blas_prec_extra> { using type = std::complex<double_double>; };
 
-template<>
-struct internal_precision<std::complex<double>, blas_prec_single> { using type = std::complex<double>; };
-template<>
-struct internal_precision<std::complex<double>, blas_prec_double> { using type = std::complex<double>; };
-template<>
-struct internal_precision<std::complex<double>, blas_prec_indigenous> { using type = std::complex<double>; };
 template<>
 struct internal_precision<std::complex<double>, blas_prec_extra> { using type = std::complex<double_double>; };
 
@@ -94,23 +103,87 @@ using internal_precision_t = typename internal_precision<T, prec>::type;
 template<typename C,
          typename A,
          typename B>
-requires (!std::is_same_v<C, A> || !std::is_same_v<C, B>)
 constexpr inline C mul(A a, B b)
 {
-  return static_cast<C>(a) * b;
+  if constexpr (std::is_same_v<C, A> &&
+                std::is_same_v<C, B>) {
+    return a * b;
+
+  } else if constexpr (std::is_same_v<C, double_double> &&
+                       std::floating_point<A> &&
+                       std::floating_point<B>) {
+    return double_double::mul(a, b);
+
+  } else if constexpr (std::is_same_v<C, std::complex<double_double>>) {
+    if constexpr (std::is_same_v<A, std::complex<float>> &&
+                  std::is_same_v<B, std::complex<float>>) {
+      /* Real part */
+      double d1 = static_cast<double>(real(a)) * real(b);
+      double d2 = static_cast<double>(-imag(a)) * imag(b);
+      double_double cr = double_double::add(d1, d2); /* ar*br - ai*bi */
+      /* imaginary part */
+      d1 = static_cast<double>(real(a)) * imag(b);
+      d2 = static_cast<double>(imag(a)) * real(b);
+      double_double ci = double_double::add(d1, d2); /* ar*bi + ai*br */
+      return std::complex<double_double>(cr, ci);
+
+    } else if constexpr (std::is_same_v<A, std::complex<double>> &&
+                         std::is_same_v<B, std::complex<float>>) {
+      return mul<std::complex<double_double>>(a, static_cast<std::complex<double>>(b));
+
+    } else if constexpr (std::is_same_v<A, std::complex<double>> &&
+                         std::is_same_v<B, std::complex<double>>) {
+      /* Compute complex-extra = complex-double * complex-double. */
+      /* Real part */
+      double_double t1 = double_double::mul( real(a), real(b));
+      double_double t2 = double_double::mul(-imag(a), imag(b));
+      double_double cr = t1 + t2; /* ar*br - ai*bi */
+      /* Imaginary part */
+      t1 = double_double::mul(imag(a), real(b));
+      t2 = double_double::mul(real(a), imag(b));
+      double_double ci = t1 + t2; /* ar*bi + ai*br */
+      return std::complex<double_double>(cr, ci);
+    }
+  } else {
+    return static_cast<C>(a) * b;
+  }
 }
 
-template<typename C>
-constexpr inline C mul(C a, C b)
+template<>
+constexpr inline std::complex<double_double> mul(std::complex<float> a, float b)
 {
-  return a * b;
+  return std::complex<double_double>(double_double::mul(real(a), b), double_double::mul(imag(a), b));
+}
+
+template<>
+constexpr inline std::complex<double_double> mul(float a, std::complex<float> b)
+{
+  return std::complex<double_double>(double_double::mul(a, real(b)), double_double::mul(a, imag(b)));
+}
+
+template<>
+constexpr inline std::complex<double_double> mul(std::complex<double> a, double b)
+{
+  return std::complex<double_double>(double_double::mul(real(a), b), double_double::mul(imag(a), b));
+}
+
+template<>
+constexpr inline std::complex<double_double> mul(double a, std::complex<double> b)
+{
+  return std::complex<double_double>(double_double::mul(a, real(b)), double_double::mul(a, imag(b)));
+}
+
+template<>
+constexpr inline std::complex<double> mul(double a, std::complex<float> b)
+{
+  return a * static_cast<std::complex<double>>(b);
 }
 
 template<typename C,
          typename A,
          typename B>
 requires (std::floating_point<B> &&
-          has_value_type<C> &&
+          is_complex_v<C> &&
           !std::is_same_v<typename C::value_type, B> &&
           !std::is_same_v<typename C::value_type, double_double>)
 constexpr inline C mul(std::complex<A> a, B b)
@@ -122,7 +195,7 @@ template<typename C,
          typename A,
          typename B>
 requires (std::floating_point<A> &&
-          has_value_type<C> &&
+          is_complex_v<C> &&
           !std::is_same_v<typename C::value_type, A> &&
           !std::is_same_v<typename C::value_type, double_double>)
 constexpr inline C mul(A a, std::complex<B> b)
@@ -133,34 +206,10 @@ constexpr inline C mul(A a, std::complex<B> b)
 template<typename C,
          typename A,
          typename B>
-requires (has_value_type<C> && !std::is_same_v<typename C::value_type, B>)
+requires (is_complex_v<C> && !std::is_same_v<typename C::value_type, B>)
 constexpr inline C mul(std::complex<A> a, std::complex<B> b)
 {
   return mul<C>(a, static_cast<C>(b));
-}
-
-template<>
-constexpr inline std::complex<double> mul(double a, std::complex<float> b)
-{
-  return a * static_cast<std::complex<double>>(b);
-}
-
-template<>
-constexpr inline double_double mul(double a, double b)
-{
-  return double_double::mul(a, b);
-}
-
-template<>
-constexpr inline double_double mul(double a, float b)
-{
-  return double_double::mul(a, static_cast<double>(b));
-}
-
-template<>
-constexpr inline double_double mul(float a, float b)
-{
-  return double_double::mul(a, b);
 }
 
 template<>
@@ -204,65 +253,6 @@ constexpr inline std::complex<double_double> mul(std::complex<double> a, std::co
 }
 
 template<>
-constexpr inline std::complex<double_double> mul(std::complex<float> a, std::complex<float> b)
-{
-  /* Real part */
-  double d1 = static_cast<double>(real(a)) * real(b);
-  double d2 = static_cast<double>(-imag(a)) * imag(b);
-  double_double cr = double_double::add(d1, d2); /* ar*br - ai*bi */
-  /* imaginary part */
-  d1 = static_cast<double>(real(a)) * imag(b);
-  d2 = static_cast<double>(imag(a)) * real(b);
-  double_double ci = double_double::add(d1, d2); /* ar*bi + ai*br */
-  return std::complex<double_double>(cr, ci);
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(std::complex<double> a, std::complex<double> b)
-{
-  /* Compute complex-extra = complex-double * complex-double. */
-  /* Real part */
-  double_double t1 = double_double::mul( real(a), real(b));
-  double_double t2 = double_double::mul(-imag(a), imag(b));
-  double_double cr = t1 + t2; /* ar*br - ai*bi */
-  /* Imaginary part */
-  t1 = double_double::mul(imag(a), real(b));
-  t2 = double_double::mul(real(a), imag(b));
-  double_double ci = t1 + t2; /* ar*bi + ai*br */
-  return std::complex<double_double>(cr, ci);
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(std::complex<double> a, std::complex<float> b)
-{
-  return mul<std::complex<double_double>>(a, static_cast<std::complex<double>>(b));
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(std::complex<float> a, float b)
-{
-  return std::complex<double_double>(double_double::mul(real(a), b), double_double::mul(imag(a), b));
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(float a, std::complex<float> b)
-{
-  return std::complex<double_double>(double_double::mul(a, real(b)), double_double::mul(a, imag(b)));
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(std::complex<double> a, double b)
-{
-  return std::complex<double_double>(double_double::mul(real(a), b), double_double::mul(imag(a), b));
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(double a, std::complex<double> b)
-{
-  return std::complex<double_double>(double_double::mul(a, real(b)), double_double::mul(a, imag(b)));
-}
-
-template<>
 constexpr inline std::complex<double_double> mul(double_double a, std::complex<float> b)
 {
   return std::complex<double_double>(a * real(b), a * imag(b));
@@ -290,7 +280,7 @@ constexpr inline To to(double_double from)
 }
 
 template<typename To>
-requires has_value_type<To>
+requires is_complex_v<To>
 constexpr inline To to(std::complex<double_double> from)
 {
   return To(to<typename To::value_type>(real(from)), to<typename To::value_type>(imag(from)));
@@ -314,17 +304,20 @@ struct Conj
 // return 0 with the correct type
 
 template<typename T>
-struct Zero { static constexpr auto value = T(0); };
+struct zero { static constexpr auto value = T(0); };
 
 template<typename T>
-struct Zero<std::complex<T>> { static constexpr auto value = std::complex<T>(T(0), T(0)); };
+struct zero<std::complex<T>> { static constexpr auto value = std::complex<T>(T(0), T(0)); };
+
+template<typename T>
+inline constexpr auto zero_v = zero<T>::value;
 
 //-----------------
-} //namespace impl
+} // namespace impl
 //-----------------
 
-//-----------------
-} //namespace XBLAS
-//-----------------
+//------------------
+} // namespace XBLAS
+//------------------
 
 #endif // XBLAS_IMPL_HPP

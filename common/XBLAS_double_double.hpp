@@ -17,6 +17,8 @@ public:
     static constexpr double_double add(double a, double b);
 
     static constexpr double_double mul(float a, float b);
+    static constexpr double_double mul(float a, double b);
+    static constexpr double_double mul(double a, float b);
     static constexpr double_double mul(double a, double b);
 
     constexpr double_double& operator +=(const double_double& rhs);
@@ -64,6 +66,27 @@ constexpr double_double double_double::add(double a, double b)
 }
 
 inline
+constexpr double_double double_double::mul(float a, float b)
+{
+  /* Compute double-double = float * float. */
+  return double_double(static_cast<double>(a) * b);
+}
+
+inline
+constexpr double_double double_double::mul(float a, double b)
+{
+  /* Compute double-double = float * double. */
+  return double_double::mul(static_cast<double>(a), b);
+}
+
+inline
+constexpr double_double double_double::mul(double a, float b)
+{
+  /* Compute double-double = double * float. */
+  return double_double::mul(b, a);
+}
+
+inline
 constexpr double_double double_double::mul(double a, double b)
 {
   /* Compute double-double = double * double. */
@@ -83,13 +106,6 @@ constexpr double_double double_double::mul(double a, double b)
   double_double c(a * b);
   c.tail = (((a1 * b1 - c.head) + a1 * b2) + a2 * b1) + a2 * b2;
   return c;
-}
-
-inline
-constexpr double_double double_double::mul(float a, float b)
-{
-  /* Compute double-double = float * float. */
-  return double_double(static_cast<double>(a) * b);
 }
 
 inline
