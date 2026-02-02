@@ -178,6 +178,12 @@ constexpr inline std::complex<double_double> mul(std::complex<double_double> a, 
 }
 
 template<>
+constexpr inline std::complex<double_double> mul(std::complex<float> a, std::complex<double_double> b)
+{
+  return mul<std::complex<double_double>>(b, a);
+}
+
+template<>
 constexpr inline std::complex<double_double> mul(std::complex<double_double> a, std::complex<double> b)
 {
   /* Real part */
@@ -189,6 +195,12 @@ constexpr inline std::complex<double_double> mul(std::complex<double_double> a, 
   d2 = imag(a) * real(b);
   double_double ci = d1 + d2; /* ar*bi + ai*br */
   return std::complex<double_double>(cr, ci);
+}
+
+template<>
+constexpr inline std::complex<double_double> mul(std::complex<double> a, std::complex<double_double> b)
+{
+  return mul<std::complex<double_double>>(b, a);
 }
 
 template<>
