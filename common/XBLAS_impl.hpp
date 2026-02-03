@@ -117,6 +117,7 @@ constexpr inline C mul(A a, B b)
   } else if constexpr (std::is_same_v<C, std::complex<double_double>>) {
     if constexpr (std::is_same_v<A, std::complex<float>> &&
                   std::is_same_v<B, std::complex<float>>) {
+      /* Compute complex-extra = complex-float * complex-float. */
       /* Real part */
       double d1 = static_cast<double>(real(a)) * real(b);
       double d2 = static_cast<double>(-imag(a)) * imag(b);
@@ -126,6 +127,10 @@ constexpr inline C mul(A a, B b)
       d2 = static_cast<double>(imag(a)) * real(b);
       double_double ci = double_double::add(d1, d2); /* ar*bi + ai*br */
       return std::complex<double_double>(cr, ci);
+
+    } else if constexpr (std::is_same_v<A, std::complex<float>> &&
+                         std::is_same_v<B, std::complex<double>>) {
+      return mul<std::complex<double_double>>(static_cast<std::complex<double>>(a), b);
 
     } else if constexpr (std::is_same_v<A, std::complex<double>> &&
                          std::is_same_v<B, std::complex<float>>) {
@@ -143,125 +148,71 @@ constexpr inline C mul(A a, B b)
       t2 = double_double::mul(real(a), imag(b));
       double_double ci = t1 + t2; /* ar*bi + ai*br */
       return std::complex<double_double>(cr, ci);
+
+    // complex<double_double> mul(complex<T>, T), T is floating point
+    } else if constexpr (is_complex_v<A> && std::floating_point<inner_type_t<A>> &&
+                         std::is_same_v<inner_type_t<A>, B>) {
+      return std::complex<double_double>(double_double::mul(real(a), b), double_double::mul(imag(a), b));
+
+    // complex<double_double> mul(T, complex<T>), T is floating point
+    } else if constexpr (is_complex_v<B> && std::floating_point<inner_type_t<B>> &&
+                         std::is_same_v<inner_type_t<B>, A>) {
+      return mul<std::complex<double_double>>(b, a);
+
+    } else if constexpr (std::is_same_v<C, A> && is_complex_v<B>) {
+      /* Real part */
+      auto d1 = real(a) * real(b);
+      auto d2 = imag(a) * -imag(b);
+      double_double cr = d1 + d2; /* ar*br - ai*bi */
+      /* imaginary part */
+      d1 = real(a) * imag(b);
+      d2 = imag(a) * real(b);
+      double_double ci = d1 + d2; /* ar*bi + ai*br */
+      return std::complex<double_double>(cr, ci);
+
+    } else if constexpr (is_complex_v<A> && std::is_same_v<C, B>) {
+      return mul<std::complex<double_double>>(b, a);
+
+    } else if constexpr (std::is_same_v<A, double_double> &&
+                         is_complex_v<B> && std::floating_point<inner_type_t<B>>) {
+      return std::complex<double_double>(a * real(b), a * imag(b));
+
+    } else {
+      static_assert(false, "Missing else if in XBLAS::impl::mul");
     }
+
+  // All complex<double_doubles> should have been handled above.
+  } else if constexpr (is_complex_v<C> &&
+                       is_complex_v<A> &&
+                       std::floating_point<B>) {
+    static_assert(!std::is_same_v<C, std::complex<double_double>>);
+    static_assert(!std::is_same_v<C, double_double>);
+    return static_cast<C>(a) * static_cast<inner_type_t<C>>(b);
+
+  } else if constexpr (is_complex_v<C> &&
+                       std::floating_point<A> &&
+                       is_complex_v<B>) {
+    static_assert(!std::is_same_v<C, std::complex<double_double>>);
+    static_assert(!std::is_same_v<C, double_double>);
+    return static_cast<inner_type_t<C>>(a) * static_cast<C>(b);
+
+  } else if constexpr (is_complex_v<C> &&
+                       is_complex_v<A> &&
+                       is_complex_v<B>) {
+    static_assert(!std::is_same_v<C, std::complex<double_double>>);
+    static_assert(!std::is_same_v<C, double_double>);
+    return static_cast<C>(a) * static_cast<C>(b);
+
+  // At this point C, A, B should all be real (possibly double_double), not complex.
+  } else if constexpr (std::is_same_v<C, A> || std::is_same_v<C, B>) {
+    static_assert(!std::is_same_v<C, std::complex<double_double>>);
+    return a * b;
+
   } else {
+    static_assert(!std::is_same_v<C, std::complex<double_double>>);
+    static_assert(!std::is_same_v<C, double_double>);
     return static_cast<C>(a) * b;
   }
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(std::complex<float> a, float b)
-{
-  return std::complex<double_double>(double_double::mul(real(a), b), double_double::mul(imag(a), b));
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(float a, std::complex<float> b)
-{
-  return std::complex<double_double>(double_double::mul(a, real(b)), double_double::mul(a, imag(b)));
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(std::complex<double> a, double b)
-{
-  return std::complex<double_double>(double_double::mul(real(a), b), double_double::mul(imag(a), b));
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(double a, std::complex<double> b)
-{
-  return std::complex<double_double>(double_double::mul(a, real(b)), double_double::mul(a, imag(b)));
-}
-
-template<>
-constexpr inline std::complex<double> mul(double a, std::complex<float> b)
-{
-  return a * static_cast<std::complex<double>>(b);
-}
-
-template<typename C,
-         typename A,
-         typename B>
-requires (std::floating_point<B> &&
-          is_complex_v<C> &&
-          !std::is_same_v<typename C::value_type, B> &&
-          !std::is_same_v<typename C::value_type, double_double>)
-constexpr inline C mul(std::complex<A> a, B b)
-{
-  return mul<C>(a, static_cast<C::value_type>(b));
-}
-
-template<typename C,
-         typename A,
-         typename B>
-requires (std::floating_point<A> &&
-          is_complex_v<C> &&
-          !std::is_same_v<typename C::value_type, A> &&
-          !std::is_same_v<typename C::value_type, double_double>)
-constexpr inline C mul(A a, std::complex<B> b)
-{
-  return mul<C>(static_cast<C::value_type>(a), static_cast<C>(b));
-}
-
-template<typename C,
-         typename A,
-         typename B>
-requires (is_complex_v<C> && !std::is_same_v<typename C::value_type, B>)
-constexpr inline C mul(std::complex<A> a, std::complex<B> b)
-{
-  return mul<C>(a, static_cast<C>(b));
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(std::complex<double_double> a, std::complex<float> b)
-{
-  /* Real part */
-  auto d1 = real(a) * real(b);
-  auto d2 = imag(a) * -imag(b);
-  double_double cr = d1 + d2; /* ar*br - ai*bi */
-  /* imaginary part */
-  d1 = real(a) * imag(b);
-  d2 = imag(a) * real(b);
-  double_double ci = d1 + d2; /* ar*bi + ai*br */
-  return std::complex<double_double>(cr, ci);
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(std::complex<float> a, std::complex<double_double> b)
-{
-  return mul<std::complex<double_double>>(b, a);
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(std::complex<double_double> a, std::complex<double> b)
-{
-  /* Real part */
-  auto d1 = real(a) * real(b);
-  auto d2 = imag(a) * -imag(b);
-  double_double cr = d1 + d2; /* ar*br - ai*bi */
-  /* imaginary part */
-  d1 = real(a) * imag(b);
-  d2 = imag(a) * real(b);
-  double_double ci = d1 + d2; /* ar*bi + ai*br */
-  return std::complex<double_double>(cr, ci);
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(std::complex<double> a, std::complex<double_double> b)
-{
-  return mul<std::complex<double_double>>(b, a);
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(double_double a, std::complex<float> b)
-{
-  return std::complex<double_double>(a * real(b), a * imag(b));
-}
-
-template<>
-constexpr inline std::complex<double_double> mul(double_double a, std::complex<double> b)
-{
-  return std::complex<double_double>(a * real(b), a * imag(b));
 }
 
 //-------------------------------------
