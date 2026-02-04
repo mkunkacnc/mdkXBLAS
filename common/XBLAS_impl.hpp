@@ -105,75 +105,50 @@ template<typename C,
          typename B>
 constexpr inline C mul(A a, B b)
 {
+  // C mul(C, C)
   if constexpr (std::is_same_v<C, A> &&
                 std::is_same_v<C, B>) {
     return a * b;
 
+  // double_double mul(A, B), A, B floating-point
   } else if constexpr (std::is_same_v<C, double_double> &&
                        std::floating_point<A> &&
                        std::floating_point<B>) {
     return double_double::mul(a, b);
 
+  // complex<double_double> mul(A, B), A, B real, complex, double_double, etc.
   } else if constexpr (std::is_same_v<C, std::complex<double_double>>) {
-    // complex<double_double> mul(complex<T>, complex<U>)
-    if constexpr (is_complex_v<A> && std::floating_point<inner_type_t<A>> &&
-                  is_complex_v<B> && std::floating_point<inner_type_t<B>>) {
-      return double_double::mul(a, b);
+    return double_double::mul(a, b);
 
-    // complex<double_double> mul(complex<T>, T), T is floating point
-    } else if constexpr (is_complex_v<A> && std::floating_point<inner_type_t<A>> &&
-                         std::is_same_v<inner_type_t<A>, B>) {
-      return double_double::mul(a, b);
-
-    // complex<double_double> mul(T, complex<T>), T is floating point
-    } else if constexpr (is_complex_v<B> && std::floating_point<inner_type_t<B>> &&
-                         std::is_same_v<inner_type_t<B>, A>) {
-      return double_double::mul(a, b);
-
-    // complex<double_double> mul(complex<double_double>, complex<T>)
-    } else if constexpr (std::is_same_v<C, A> && is_complex_v<B>) {
-      return double_double::mul(a, b);
-
-    // complex<double_double> mul(complex<T>, complex<double_double>)
-    } else if constexpr (is_complex_v<A> && std::is_same_v<C, B>) {
-      return double_double::mul(a, b);
-
-    // complex<double_double> mul(double_double, complex<T>)
-    } else if constexpr (std::is_same_v<A, double_double> &&
-                         is_complex_v<B> && std::floating_point<inner_type_t<B>>) {
-      return double_double::mul(a, b);
-
-    } else {
-      static_assert(false, "Missing else if in XBLAS::impl::mul");
-    }
-
-  // All complex<double_doubles> should have been handled above.
+  // All complex<double_double> should have been handled above.
+  // complex<T> mul(complex<U>, B)
   } else if constexpr (is_complex_v<C> &&
                        is_complex_v<A> &&
                        std::floating_point<B>) {
     static_assert(!std::is_same_v<C, std::complex<double_double>>);
-    static_assert(!std::is_same_v<C, double_double>);
     return static_cast<C>(a) * static_cast<inner_type_t<C>>(b);
 
+  // complex<T> mul(A, complex<U>)
   } else if constexpr (is_complex_v<C> &&
                        std::floating_point<A> &&
                        is_complex_v<B>) {
     static_assert(!std::is_same_v<C, std::complex<double_double>>);
-    static_assert(!std::is_same_v<C, double_double>);
     return static_cast<inner_type_t<C>>(a) * static_cast<C>(b);
 
+  // complex<T> mul(complex<U>, complex<V>)
   } else if constexpr (is_complex_v<C> &&
                        is_complex_v<A> &&
                        is_complex_v<B>) {
     static_assert(!std::is_same_v<C, std::complex<double_double>>);
-    static_assert(!std::is_same_v<C, double_double>);
     return static_cast<C>(a) * static_cast<C>(b);
 
   // At this point C, A, B should all be real (possibly double_double), not complex.
+  // C mul(C, B) or C mul(A, C)
   } else if constexpr (std::is_same_v<C, A> || std::is_same_v<C, B>) {
     static_assert(!std::is_same_v<C, std::complex<double_double>>);
     return a * b;
 
+  // C mul(A, B)
   } else {
     static_assert(!std::is_same_v<C, std::complex<double_double>>);
     static_assert(!std::is_same_v<C, double_double>);
