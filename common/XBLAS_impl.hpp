@@ -175,7 +175,7 @@ template<typename To>
 requires is_complex_v<To>
 constexpr inline To to(std::complex<double_double> from)
 {
-  return To(to<typename To::value_type>(real(from)), to<typename To::value_type>(imag(from)));
+  return To(to<inner_type_t<To>>(std::real(from)), to<inner_type_t<To>>(std::imag(from)));
 }
 
 //---------------------------
@@ -188,7 +188,7 @@ struct Conj
     static constexpr auto func(T x) { return x; }
 
     template<typename T> // for complex types
-    static constexpr auto func(const std::complex<T>& z) { return conj(z); }
+    static constexpr auto func(const std::complex<T>& z) { return std::conj(z); }
 };
 
 //---------------------------

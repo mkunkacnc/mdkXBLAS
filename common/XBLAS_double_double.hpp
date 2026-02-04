@@ -153,12 +153,12 @@ constexpr std::complex<double_double> double_double::mul(std::complex<float> a, 
 {
   /* Compute complex-extra = complex-float * complex-float. */
   /* Real part */
-  double d1 = static_cast<double>(real(a)) * real(b);
-  double d2 = static_cast<double>(-imag(a)) * imag(b);
+  double d1 = static_cast<double>(std::real(a)) * std::real(b);
+  double d2 = static_cast<double>(-std::imag(a)) * std::imag(b);
   double_double cr = double_double::add(d1, d2); /* ar*br - ai*bi */
-  /* imaginary part */
-  d1 = static_cast<double>(real(a)) * imag(b);
-  d2 = static_cast<double>(imag(a)) * real(b);
+  /* Imaginary part */
+  d1 = static_cast<double>(std::real(a)) * std::imag(b);
+  d2 = static_cast<double>(std::imag(a)) * std::real(b);
   double_double ci = double_double::add(d1, d2); /* ar*bi + ai*br */
   return std::complex<double_double>(cr, ci);
 }
@@ -180,12 +180,12 @@ constexpr std::complex<double_double> double_double::mul(std::complex<double> a,
 {
   /* Compute complex-extra = complex-double * complex-double. */
   /* Real part */
-  double_double t1 = double_double::mul( real(a), real(b));
-  double_double t2 = double_double::mul(-imag(a), imag(b));
+  double_double t1 = double_double::mul( std::real(a), std::real(b));
+  double_double t2 = double_double::mul(-std::imag(a), std::imag(b));
   double_double cr = t1 + t2; /* ar*br - ai*bi */
   /* Imaginary part */
-  t1 = double_double::mul(imag(a), real(b));
-  t2 = double_double::mul(real(a), imag(b));
+  t1 = double_double::mul(std::imag(a), std::real(b));
+  t2 = double_double::mul(std::real(a), std::imag(b));
   double_double ci = t1 + t2; /* ar*bi + ai*br */
   return std::complex<double_double>(cr, ci);
 }
@@ -195,7 +195,7 @@ requires std::floating_point<T>
 constexpr std::complex<double_double> double_double::mul(std::complex<T> a, T b)
 {
   // complex<double_double> mul(complex<T>, T), T is floating point
-  return std::complex<double_double>(double_double::mul(real(a), b), double_double::mul(imag(a), b));
+  return std::complex<double_double>(double_double::mul(std::real(a), b), double_double::mul(std::imag(a), b));
 }
 
 template<typename T>
@@ -256,12 +256,12 @@ constexpr std::complex<double_double> operator *(const std::complex<double_doubl
 {
   // complex<double_double> mul(complex<double_double>, complex<T>)
   /* Real part */
-  auto d1 = real(a) * real(b);
-  auto d2 = imag(a) * -imag(b);
+  auto d1 = std::real(a) * std::real(b);
+  auto d2 = std::imag(a) * -std::imag(b);
   double_double cr = d1 + d2; /* ar*br - ai*bi */
-  /* imaginary part */
-  d1 = real(a) * imag(b);
-  d2 = imag(a) * real(b);
+  /* Imaginary part */
+  d1 = std::real(a) * std::imag(b);
+  d2 = std::imag(a) * std::real(b);
   double_double ci = d1 + d2; /* ar*bi + ai*br */
   return std::complex<double_double>(cr, ci);
 }
@@ -279,7 +279,7 @@ requires std::floating_point<T>
 constexpr std::complex<double_double> operator *(const double_double& a, const std::complex<T>& b)
 {
   // complex<double_double> mul(double_double, complex<T>)
-  return std::complex<double_double>(a * real(b), a * imag(b));
+  return std::complex<double_double>(a * std::real(b), a * std::imag(b));
 }
 
 inline
