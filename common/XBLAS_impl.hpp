@@ -3,8 +3,8 @@
 
 #include "common/XBLAS_double_double.hpp"
 
-#include <type_traits>
 #include <complex>
+#include <type_traits>
 
 //---------------
 namespace XBLAS {
@@ -115,49 +115,33 @@ constexpr inline C mul(A a, B b)
     return double_double::mul(a, b);
 
   } else if constexpr (std::is_same_v<C, std::complex<double_double>>) {
-    if constexpr (std::is_same_v<A, std::complex<float>> &&
-                  std::is_same_v<B, std::complex<float>>) {
-      return double_double::mul(a, b);
-
-    } else if constexpr (std::is_same_v<A, std::complex<float>> &&
-                         std::is_same_v<B, std::complex<double>>) {
-      return double_double::mul(a, b);
-
-    } else if constexpr (std::is_same_v<A, std::complex<double>> &&
-                         std::is_same_v<B, std::complex<float>>) {
-      return double_double::mul(a, b);
-
-    } else if constexpr (std::is_same_v<A, std::complex<double>> &&
-                         std::is_same_v<B, std::complex<double>>) {
+    // complex<double_double> mul(complex<T>, complex<U>)
+    if constexpr (is_complex_v<A> && std::floating_point<inner_type_t<A>> &&
+                  is_complex_v<B> && std::floating_point<inner_type_t<B>>) {
       return double_double::mul(a, b);
 
     // complex<double_double> mul(complex<T>, T), T is floating point
     } else if constexpr (is_complex_v<A> && std::floating_point<inner_type_t<A>> &&
                          std::is_same_v<inner_type_t<A>, B>) {
-      return std::complex<double_double>(double_double::mul(real(a), b), double_double::mul(imag(a), b));
+      return double_double::mul(a, b);
 
     // complex<double_double> mul(T, complex<T>), T is floating point
     } else if constexpr (is_complex_v<B> && std::floating_point<inner_type_t<B>> &&
                          std::is_same_v<inner_type_t<B>, A>) {
-      return mul<std::complex<double_double>>(b, a);
+      return double_double::mul(a, b);
 
+    // complex<double_double> mul(complex<double_double>, complex<T>)
     } else if constexpr (std::is_same_v<C, A> && is_complex_v<B>) {
-      /* Real part */
-      auto d1 = real(a) * real(b);
-      auto d2 = imag(a) * -imag(b);
-      double_double cr = d1 + d2; /* ar*br - ai*bi */
-      /* imaginary part */
-      d1 = real(a) * imag(b);
-      d2 = imag(a) * real(b);
-      double_double ci = d1 + d2; /* ar*bi + ai*br */
-      return std::complex<double_double>(cr, ci);
+      return double_double::mul(a, b);
 
+    // complex<double_double> mul(complex<T>, complex<double_double>)
     } else if constexpr (is_complex_v<A> && std::is_same_v<C, B>) {
-      return mul<std::complex<double_double>>(b, a);
+      return double_double::mul(a, b);
 
+    // complex<double_double> mul(double_double, complex<T>)
     } else if constexpr (std::is_same_v<A, double_double> &&
                          is_complex_v<B> && std::floating_point<inner_type_t<B>>) {
-      return std::complex<double_double>(a * real(b), a * imag(b));
+      return double_double::mul(a, b);
 
     } else {
       static_assert(false, "Missing else if in XBLAS::impl::mul");

@@ -2,7 +2,9 @@
 #define XBLAS_DOUBLE_DOUBLE_HPP
 
 #include "blas_extended_private.h"
+
 #include <complex>
+#include <type_traits>
 
 //---------------
 namespace XBLAS {
@@ -26,6 +28,26 @@ public:
     static constexpr std::complex<double_double> mul(std::complex<double> a, std::complex<float> b);
     static constexpr std::complex<double_double> mul(std::complex<double> a, std::complex<double> b);
 
+    template<typename T>
+    requires std::floating_point<T>
+    static constexpr std::complex<double_double> mul(std::complex<T> a, T b);
+
+    template<typename T>
+    requires std::floating_point<T>
+    static constexpr std::complex<double_double> mul(T a, std::complex<T> b);
+
+    template<typename T>
+    requires std::floating_point<T>
+    static constexpr std::complex<double_double> mul(std::complex<double_double> a, std::complex<T> b) { return a * b; }
+
+    template<typename T>
+    requires std::floating_point<T>
+    static constexpr std::complex<double_double> mul(std::complex<T> a, std::complex<double_double> b) { return a * b; }
+
+    template<typename T>
+    requires std::floating_point<T>
+    static constexpr std::complex<double_double> mul(double_double a, std::complex<T> b) { return a * b; }
+
     constexpr double_double& operator +=(const double_double& rhs);
 
 public:
@@ -37,6 +59,19 @@ public:
 
 constexpr double_double operator *(const double_double& a, float b);
 constexpr double_double operator *(const double_double& a, double b);
+
+template<typename T>
+requires std::floating_point<T>
+constexpr std::complex<double_double> operator *(const std::complex<double_double>& a, const std::complex<T>& b);
+
+template<typename T>
+requires std::floating_point<T>
+constexpr std::complex<double_double> operator *(const std::complex<T>& a, const std::complex<double_double>& b);
+
+template<typename T>
+requires std::floating_point<T>
+constexpr std::complex<double_double> operator *(const double_double& a, const std::complex<T>& b);
+
 constexpr double_double operator +(const double_double& a, const double_double& b);
 
 //-----------------
@@ -155,6 +190,22 @@ constexpr std::complex<double_double> double_double::mul(std::complex<double> a,
   return std::complex<double_double>(cr, ci);
 }
 
+template<typename T>
+requires std::floating_point<T>
+constexpr std::complex<double_double> double_double::mul(std::complex<T> a, T b)
+{
+  // complex<double_double> mul(complex<T>, T), T is floating point
+  return std::complex<double_double>(double_double::mul(real(a), b), double_double::mul(imag(a), b));
+}
+
+template<typename T>
+requires std::floating_point<T>
+constexpr std::complex<double_double> double_double::mul(T a, std::complex<T> b)
+{
+  // complex<double_double> mul(T, complex<T>), T is floating point
+  return double_double::mul(b, a);
+}
+
 inline
 constexpr double_double& double_double::operator +=(const double_double& rhs)
 {
@@ -197,6 +248,38 @@ constexpr double_double operator *(const double_double& a, double b)
   double_double c(t1 + t2);
   c.tail = t2 - (c.head - t1);
   return c;
+}
+
+template<typename T>
+requires std::floating_point<T>
+constexpr std::complex<double_double> operator *(const std::complex<double_double>& a, const std::complex<T>& b)
+{
+  // complex<double_double> mul(complex<double_double>, complex<T>)
+  /* Real part */
+  auto d1 = real(a) * real(b);
+  auto d2 = imag(a) * -imag(b);
+  double_double cr = d1 + d2; /* ar*br - ai*bi */
+  /* imaginary part */
+  d1 = real(a) * imag(b);
+  d2 = imag(a) * real(b);
+  double_double ci = d1 + d2; /* ar*bi + ai*br */
+  return std::complex<double_double>(cr, ci);
+}
+
+template<typename T>
+requires std::floating_point<T>
+constexpr std::complex<double_double> operator *(const std::complex<T>& a, const std::complex<double_double>& b)
+{
+  // complex<double_double> mul(complex<T>, complex<double_double>)
+  return b * a;
+}
+
+template<typename T>
+requires std::floating_point<T>
+constexpr std::complex<double_double> operator *(const double_double& a, const std::complex<T>& b)
+{
+  // complex<double_double> mul(double_double, complex<T>)
+  return std::complex<double_double>(a * real(b), a * imag(b));
 }
 
 inline
