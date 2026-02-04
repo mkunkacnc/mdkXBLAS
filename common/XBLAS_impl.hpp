@@ -117,37 +117,19 @@ constexpr inline C mul(A a, B b)
   } else if constexpr (std::is_same_v<C, std::complex<double_double>>) {
     if constexpr (std::is_same_v<A, std::complex<float>> &&
                   std::is_same_v<B, std::complex<float>>) {
-      /* Compute complex-extra = complex-float * complex-float. */
-      /* Real part */
-      double d1 = static_cast<double>(real(a)) * real(b);
-      double d2 = static_cast<double>(-imag(a)) * imag(b);
-      double_double cr = double_double::add(d1, d2); /* ar*br - ai*bi */
-      /* imaginary part */
-      d1 = static_cast<double>(real(a)) * imag(b);
-      d2 = static_cast<double>(imag(a)) * real(b);
-      double_double ci = double_double::add(d1, d2); /* ar*bi + ai*br */
-      return std::complex<double_double>(cr, ci);
+      return double_double::mul(a, b);
 
     } else if constexpr (std::is_same_v<A, std::complex<float>> &&
                          std::is_same_v<B, std::complex<double>>) {
-      return mul<std::complex<double_double>>(static_cast<std::complex<double>>(a), b);
+      return double_double::mul(a, b);
 
     } else if constexpr (std::is_same_v<A, std::complex<double>> &&
                          std::is_same_v<B, std::complex<float>>) {
-      return mul<std::complex<double_double>>(a, static_cast<std::complex<double>>(b));
+      return double_double::mul(a, b);
 
     } else if constexpr (std::is_same_v<A, std::complex<double>> &&
                          std::is_same_v<B, std::complex<double>>) {
-      /* Compute complex-extra = complex-double * complex-double. */
-      /* Real part */
-      double_double t1 = double_double::mul( real(a), real(b));
-      double_double t2 = double_double::mul(-imag(a), imag(b));
-      double_double cr = t1 + t2; /* ar*br - ai*bi */
-      /* Imaginary part */
-      t1 = double_double::mul(imag(a), real(b));
-      t2 = double_double::mul(real(a), imag(b));
-      double_double ci = t1 + t2; /* ar*bi + ai*br */
-      return std::complex<double_double>(cr, ci);
+      return double_double::mul(a, b);
 
     // complex<double_double> mul(complex<T>, T), T is floating point
     } else if constexpr (is_complex_v<A> && std::floating_point<inner_type_t<A>> &&
