@@ -9,8 +9,8 @@ namespace XBLAS {
 //---------------
 
 
-//-----------------
-} //namespace XBLAS
-//-----------------
+//------------------
+} // namespace XBLAS
+//------------------
 
 #endif // XBLAS_GE_SUM_MV_HPP

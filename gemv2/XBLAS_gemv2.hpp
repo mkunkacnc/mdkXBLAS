@@ -9,8 +9,8 @@ namespace XBLAS {
 //---------------
 
 
-//-----------------
-} //namespace XBLAS
-//-----------------
+//------------------
+} // namespace XBLAS
+//------------------
 
 #endif // XBLAS_GEMV2_HPP

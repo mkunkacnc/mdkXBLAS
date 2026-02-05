@@ -313,8 +313,8 @@ constexpr double_double operator +(const double_double& a, const double_double& 
   return c;
 }
 
-//-----------------
-} //namespace XBLAS
-//-----------------
+//------------------
+} // namespace XBLAS
+//------------------
 
 #endif // XBLAS_DOUBLE_DOUBLE_HPP
