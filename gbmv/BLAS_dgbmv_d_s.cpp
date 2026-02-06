@@ -107,11 +107,11 @@ void BLAS_dgbmv_d_s(enum blas_order_type order,
  *
  */
 {
-//char *routine_name = "BLAS_dgbmv_d_s";
+//static const char routine_name[] = "BLAS_dgbmv_d_s";
 #if 0
   XBLAS::gbmv(order, trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
 } /* end BLAS_dgbmv_d_s */
-#else 
+#else
   static const char routine_name[] = "BLAS_dgbmv_d_s";
 
   int ky, iy, kx, jx, j, i, rbound, lbound, ra, la, lenx, leny;

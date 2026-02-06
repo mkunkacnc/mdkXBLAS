@@ -50,7 +50,7 @@ void BLAS_cwaxpby_s_s(int n,
  *
  */
 {
-  char *routine_name = "BLAS_cwaxpby_s_s";
+  static const char routine_name[] = "BLAS_cwaxpby_s_s";
 
   int i, ix = 0, iy = 0, iw = 0;
   float *w_i = (float *) w;

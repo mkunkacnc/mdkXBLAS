@@ -62,7 +62,7 @@ void BLAS_ztrsv_c_x(enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_ztrsv_c";
+  static const char routine_name[] = "BLAS_ztrsv_c";
 
   int i, j;                        /* used to idx matrix */
   int ix, jx;                        /* used to idx vector x */

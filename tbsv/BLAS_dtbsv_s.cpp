@@ -56,11 +56,11 @@ void BLAS_dtbsv_s(enum blas_order_type order,
  *
  */
 {
-//char *routine_name = "BLAS_dtbsv_s";
+//static const char routine_name[] = "BLAS_dtbsv_s";
 #if 0
   XBLAS::tbsv(order, uplo, trans, diag, n, k, alpha, t, ldt, x, incx);
 } /* end BLAS_dtbsv_s */
-#else 
+#else
   /* Routine name */
   static const char routine_name[] = "BLAS_dtbsv_s";
 

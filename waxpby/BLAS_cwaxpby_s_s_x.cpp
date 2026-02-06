@@ -59,7 +59,7 @@ void BLAS_cwaxpby_s_s_x(int n,
  *
  */
 {
-  char *routine_name = "BLAS_cwaxpby_s_s_x";
+  static const char routine_name[] = "BLAS_cwaxpby_s_s_x";
   switch (prec) {
   case blas_prec_single:{
 

@@ -65,11 +65,11 @@ void BLAS_stbsv_x(enum blas_order_type order,
  *
  */
 {
-//char *routine_name = "BLAS_stbsv_x";
+//static const char routine_name[] = "BLAS_stbsv_x";
 #if 0
   XBLAS::tbsv_x(order, uplo, trans, diag, n, k, alpha, t, ldt, x, incx, prec);
 } /* end BLAS_stbsv_x */
-#else 
+#else
   /* Routine name */
   static const char routine_name[] = "BLAS_stbsv_x";
 

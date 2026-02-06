@@ -50,12 +50,12 @@ void BLAS_dwaxpby_d_s(int n,
  *
  */
 {
-//char *routine_name = "BLAS_dwaxpby_d_s";
+//static const char routine_name[] = "BLAS_dwaxpby_d_s";
 #if 0
   XBLAS::waxpby(n, alpha, x, incx, beta, y, incy, w, incw);
 } /* end BLAS_dwaxpby_d_s */
-#else 
-  char *routine_name = "BLAS_dwaxpby_d_s";
+#else
+  static const char routine_name[] = "BLAS_dwaxpby_d_s";
 
   int i, ix = 0, iy = 0, iw = 0;
   double *w_i = w;

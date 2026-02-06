@@ -59,11 +59,11 @@ void BLAS_dgemv2_d_s(enum blas_order_type order,
  *
  */
 {
-//char *routine_name = "BLAS_dgemv2_d_s";
+//static const char routine_name[] = "BLAS_dgemv2_d_s";
 #if 0
   XBLAS::gemv2(order, trans, m, n, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
 } /* end BLAS_dgemv2_d_s */
-#else 
+#else
   static const char routine_name[] = "BLAS_dgemv2_d_s";
 
   int i, j;

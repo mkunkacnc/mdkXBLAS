@@ -68,11 +68,11 @@ void BLAS_sgemv2_x(enum blas_order_type order,
  *
  */
 {
-//char *routine_name = "BLAS_sgemv2_x";
+//static const char routine_name[] = "BLAS_sgemv2_x";
 #if 0
   XBLAS::gemv2_x(order, trans, m, n, alpha, a, lda, head_x, tail_x, incx, beta, y, incy, prec);
 } /* end BLAS_sgemv2_x */
-#else 
+#else
   static const char routine_name[] = "BLAS_sgemv2_x";
   switch (prec) {
   case blas_prec_single:{

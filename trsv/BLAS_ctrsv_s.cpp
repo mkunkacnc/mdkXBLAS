@@ -53,7 +53,7 @@ void BLAS_ctrsv_s(enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_ctrsv_s";
+  static const char routine_name[] = "BLAS_ctrsv_s";
 
   int i, j;                        /* used to idx matrix */
   int ix, jx;                        /* used to idx vector x */

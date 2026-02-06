@@ -62,12 +62,12 @@ void BLAS_dtrsv_s_x(enum blas_order_type order,
  *
  */
 {
-//char *routine_name = "BLAS_dtrsv_s_x";
+//static const char routine_name[] = "BLAS_dtrsv_s_x";
 #if 0
   XBLAS::trsv_x(order, uplo, trans, diag, n, alpha, T, ldt, x, incx, prec);
 } /* end BLAS_dtrsv_s_x */
-#else 
-  char *routine_name = "BLAS_dtrsv_s";
+#else
+  static const char routine_name[] = "BLAS_dtrsv_s";
 
   int i, j;                        /* used to idx matrix */
   int ix, jx;                        /* used to idx vector x */
