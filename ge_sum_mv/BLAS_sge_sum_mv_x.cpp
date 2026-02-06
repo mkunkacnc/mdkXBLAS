@@ -69,6 +69,11 @@ void BLAS_sge_sum_mv_x(enum blas_order_type order,
  *
  */
 {
+//char *routine_name = "BLAS_sge_sum_mv_x";
+#if 0
+  XBLAS::ge_sum_mv_x(order, m, n, alpha, a, lda, x, incx, beta, b, ldb, y, incy, prec);
+} /* end BLAS_sge_sum_mv_x */
+#else 
   /* Routine name */
   static const char routine_name[] = "BLAS_sge_sum_mv";
   switch (prec) {
@@ -1050,3 +1055,4 @@ void BLAS_sge_sum_mv_x(enum blas_order_type order,
   }
 
 }                                /* end BLAS_sge_sum_mv */
+#endif

@@ -59,6 +59,11 @@ void BLAS_dspmv_d_s_x(enum blas_order_type order,
                       int incy,
                       enum blas_prec_type prec)
 {
+//char *routine_name = "BLAS_dspmv_d_s_x";
+#if 0
+  XBLAS::spmv_x(order, uplo, n, alpha, ap, x, incx, beta, y, incy, prec);
+} /* end BLAS_dspmv_d_s_x */
+#else 
   static const char routine_name[] = "BLAS_dspmv_d_s_x";
 
   switch (prec) {
@@ -838,3 +843,4 @@ void BLAS_dspmv_d_s_x(enum blas_order_type order,
 
   }
 }
+#endif

@@ -66,6 +66,11 @@ void BLAS_dgemv_s_s_x(enum blas_order_type order,
  *
  */
 {
+//char *routine_name = "BLAS_dgemv_s_s_x";
+#if 0
+  XBLAS::gemv_x(order, trans, m, n, alpha, a, lda, x, incx, beta, y, incy, prec);
+} /* end BLAS_dgemv_s_s_x */
+#else 
   static const char routine_name[] = "BLAS_dgemv_s_s_x";
   switch (prec) {
   case blas_prec_single:
@@ -414,3 +419,4 @@ void BLAS_dgemv_s_s_x(enum blas_order_type order,
     break;
   }
 }
+#endif

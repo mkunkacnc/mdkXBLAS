@@ -39,6 +39,11 @@ void BLAS_ssum_x(int n,
  *
  */
 {
+//char *routine_name = "BLAS_ssum_x";
+#if 0
+  XBLAS::sum_x(n, x, incx, sum, prec);
+} /* end BLAS_ssum_x */
+#else 
   static const char routine_name[] = "BLAS_ssum_x";
   switch (prec) {
   case blas_prec_single:
@@ -130,3 +135,4 @@ void BLAS_ssum_x(int n,
     break;
   }
 }
+#endif

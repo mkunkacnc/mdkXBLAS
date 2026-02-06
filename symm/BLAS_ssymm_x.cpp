@@ -78,6 +78,11 @@ void BLAS_ssymm_x(enum blas_order_type order,
  *
  */
 {
+//char *routine_name = "BLAS_ssymm_x";
+#if 0
+  XBLAS::symm_x(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc, prec);
+} /* end BLAS_ssymm_x */
+#else 
   switch (prec) {
 
   case blas_prec_single:{
@@ -721,3 +726,4 @@ void BLAS_ssymm_x(enum blas_order_type order,
     }
   }
 }
+#endif

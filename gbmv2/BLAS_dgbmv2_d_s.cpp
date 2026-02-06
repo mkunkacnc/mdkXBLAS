@@ -112,6 +112,11 @@ void BLAS_dgbmv2_d_s(enum blas_order_type order,
  *
  */
 {
+//char *routine_name = "BLAS_dgbmv2_d_s";
+#if 0
+  XBLAS::gbmv2(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
+} /* end BLAS_dgbmv2_d_s */
+#else 
   static const char routine_name[] = "BLAS_dgbmv2_d_s";
 
   int iy0, iy, ix0, jx, j, i, rbound, lbound, ra, la, lenx, leny;
@@ -263,3 +268,4 @@ void BLAS_dgbmv2_d_s(enum blas_order_type order,
 
 
 }                                /* end BLAS_dgbmv2_d_s */
+#endif

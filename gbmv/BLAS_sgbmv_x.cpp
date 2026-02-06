@@ -116,6 +116,11 @@ void BLAS_sgbmv_x(enum blas_order_type order,
  *
  */
 {
+//char *routine_name = "BLAS_sgbmv_x";
+#if 0
+  XBLAS::gbmv_x(order, trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy, prec);
+} /* end BLAS_sgbmv_x */
+#else 
   static const char routine_name[] = "BLAS_sgbmv_x";
 
   switch (prec) {
@@ -569,3 +574,4 @@ void BLAS_sgbmv_x(enum blas_order_type order,
     break;
   }
 }                                /* end GEMV_NAME(s, s, s, _x) */
+#endif

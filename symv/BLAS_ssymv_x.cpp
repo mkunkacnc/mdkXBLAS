@@ -69,6 +69,11 @@ void BLAS_ssymv_x(enum blas_order_type order,
  *
  */
 {
+//char *routine_name = "BLAS_ssymv_x";
+#if 0
+  XBLAS::symv_x(order, uplo, n, alpha, a, lda, x, incx, beta, y, incy, prec);
+} /* end BLAS_ssymv_x */
+#else 
   /* Routine name */
   static const char routine_name[] = "BLAS_ssymv_x";
   switch (prec) {
@@ -627,3 +632,4 @@ void BLAS_ssymv_x(enum blas_order_type order,
     }
   }
 }                                /* end BLAS_ssymv_x */
+#endif

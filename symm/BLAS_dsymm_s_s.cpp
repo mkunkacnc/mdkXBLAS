@@ -69,6 +69,11 @@ void BLAS_dsymm_s_s(enum blas_order_type order,
  *
  */
 {
+//char *routine_name = "BLAS_dsymm_s_s";
+#if 0
+  XBLAS::symm(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
+} /* end BLAS_dsymm_s_s */
+#else 
 
   /* Integer Index Variables */
   int i, j, k;
@@ -274,3 +279,4 @@ void BLAS_dsymm_s_s(enum blas_order_type order,
 
 
 }
+#endif

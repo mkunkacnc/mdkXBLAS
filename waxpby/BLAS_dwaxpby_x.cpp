@@ -59,6 +59,11 @@ void BLAS_dwaxpby_x(int n,
  *
  */
 {
+//char *routine_name = "BLAS_dwaxpby_x";
+#if 0
+  XBLAS::waxpby_x(n, alpha, x, incx, beta, y, incy, w, incw, prec);
+} /* end BLAS_dwaxpby_x */
+#else 
   char *routine_name = "BLAS_dwaxpby_x";
   switch (prec) {
   case blas_prec_single:
@@ -180,3 +185,4 @@ void BLAS_dwaxpby_x(int n,
     }
   }
 }
+#endif

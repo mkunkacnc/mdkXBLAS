@@ -59,6 +59,11 @@ void BLAS_swaxpby_x(int n,
  *
  */
 {
+//char *routine_name = "BLAS_swaxpby_x";
+#if 0
+  XBLAS::waxpby_x(n, alpha, x, incx, beta, y, incy, w, incw, prec);
+} /* end BLAS_swaxpby_x */
+#else 
   static const char routine_name[] = "BLAS_swaxpby_x";
   switch (prec) {
   case blas_prec_single:{
@@ -238,3 +243,4 @@ void BLAS_swaxpby_x(int n,
     }
   }
 }
+#endif
