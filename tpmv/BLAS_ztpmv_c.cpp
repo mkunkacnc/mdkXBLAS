@@ -48,6 +48,19 @@ void BLAS_ztpmv_c(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_ztpmv_c";
+#if 0
+  XBLAS::tpmv(order,
+              uplo,
+              trans,
+              diag,
+              n,
+              *static_cast<const std::complex<> *>(alpha),
+              static_cast<const std::complex<> *>(tp),
+              static_cast<std::complex<> *>(x),
+              incx);
+} /* end BLAS_ztpmv_c */
+#else
   static const char routine_name[] = "BLAS_ztpmv_c";
 
   {
@@ -311,3 +324,4 @@ void BLAS_ztpmv_c(enum blas_order_type order,
 
   }
 }
+#endif
