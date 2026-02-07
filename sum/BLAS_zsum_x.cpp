@@ -39,6 +39,15 @@ void BLAS_zsum_x(int n,
  *
  */
 {
+//static const char routine_name[] = "BLAS_zsum_x";
+#if 0
+  XBLAS::sum_x(n,
+               static_cast<const std::complex<> *>(x),
+               incx,
+               static_cast<std::complex<> *>(sum),
+               prec);
+} /* end BLAS_zsum_x */
+#else
   static const char routine_name[] = "BLAS_zsum_x";
   switch (prec) {
   case blas_prec_single:
@@ -146,3 +155,4 @@ void BLAS_zsum_x(int n,
   }
 
 }
+#endif
