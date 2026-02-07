@@ -63,6 +63,22 @@ void BLAS_zhemv2_z_d(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_zhemv2_z_d";
+#if 0
+  XBLAS::hemv2(order,
+               uplo,
+               n,
+               *static_cast<const std::complex<> *>(alpha),
+               static_cast<const std::complex<> *>(a),
+               lda,
+               x_head,
+               x_tail,
+               incx,
+               *static_cast<const std::complex<> *>(beta),
+               y,
+               incy);
+} /* end BLAS_zhemv2_z_d */
+#else
   /* Routine name */
   const char routine_name[] = "BLAS_zhemv2_z_d";
 
@@ -300,3 +316,4 @@ void BLAS_zhemv2_z_d(enum blas_order_type order,
 
 
 }                                /* end BLAS_zhemv2_z_d */
+#endif
