@@ -62,6 +62,21 @@ void BLAS_ztrmv_d_x(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_ztrmv_d_x";
+#if 0
+  XBLAS::trmv_x(order,
+                uplo,
+                trans,
+                diag,
+                n,
+                *static_cast<const std::complex<> *>(alpha),
+                T,
+                ldt,
+                static_cast<std::complex<> *>(x),
+                incx,
+                prec);
+} /* end BLAS_ztrmv_d_x */
+#else
   static const char routine_name[] = "BLAS_ztrmv_d_x";
 
   switch (prec) {
@@ -563,3 +578,4 @@ void BLAS_ztrmv_d_x(enum blas_order_type order,
     }
   }
 }
+#endif

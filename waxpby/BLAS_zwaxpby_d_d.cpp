@@ -50,6 +50,19 @@ void BLAS_zwaxpby_d_d(int n,
  *
  */
 {
+//static const char routine_name[] = "BLAS_zwaxpby_d_d";
+#if 0
+  XBLAS::waxpby(n,
+                *static_cast<const std::complex<> *>(alpha),
+                x,
+                incx,
+                *static_cast<const std::complex<> *>(beta),
+                y,
+                incy,
+                static_cast<std::complex<> *>(w),
+                incw);
+} /* end BLAS_zwaxpby_d_d */
+#else
   static const char routine_name[] = "BLAS_zwaxpby_d_d";
 
   int i, ix = 0, iy = 0, iw = 0;
@@ -114,3 +127,4 @@ void BLAS_zwaxpby_d_d(int n,
 
 
 }
+#endif

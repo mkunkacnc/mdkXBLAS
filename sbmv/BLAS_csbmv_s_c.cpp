@@ -116,6 +116,22 @@ void BLAS_csbmv_s_c(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_csbmv_s_c";
+#if 0
+  XBLAS::sbmv(order,
+              uplo,
+              n,
+              k,
+              *static_cast<const std::complex<> *>(alpha),
+              a,
+              lda,
+              static_cast<const std::complex<> *>(x),
+              incx,
+              *static_cast<const std::complex<> *>(beta),
+              static_cast<std::complex<> *>(y),
+              incy);
+} /* end BLAS_csbmv_s_c */
+#else
   static const char routine_name[] = "BLAS_csbmv_s_c";
 
   /* Integer Index Variables */
@@ -433,3 +449,4 @@ void BLAS_csbmv_s_c(enum blas_order_type order,
 
 
 }                                /* end BLAS_csbmv_s_c */
+#endif

@@ -65,6 +65,22 @@ void BLAS_ztbsv_c_x(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_ztbsv_c_x";
+#if 0
+  XBLAS::tbsv_x(order,
+                uplo,
+                trans,
+                diag,
+                n,
+                k,
+                *static_cast<const std::complex<> *>(alpha),
+                static_cast<const std::complex<> *>(t),
+                ldt,
+                static_cast<std::complex<> *>(x),
+                incx,
+                prec);
+} /* end BLAS_ztbsv_c_x */
+#else
   /* Routine name */
   static const char routine_name[] = "BLAS_ztbsv_c_x";
 
@@ -2038,3 +2054,4 @@ void BLAS_ztbsv_c_x(enum blas_order_type order,
     break;
   }                                /* end prec switch */
 }                                /* end BLAS_ztbsv_c_x */
+#endif

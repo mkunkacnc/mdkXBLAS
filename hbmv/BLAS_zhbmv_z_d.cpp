@@ -119,6 +119,22 @@ void BLAS_zhbmv_z_d(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_zhbmv_z_d";
+#if 0
+  XBLAS::hbmv(order,
+              uplo,
+              n,
+              k,
+              *static_cast<const std::complex<> *>(alpha),
+              static_cast<const std::complex<> *>(a),
+              lda,
+              x,
+              incx,
+              *static_cast<const std::complex<> *>(beta),
+              static_cast<std::complex<> *>(y),
+              incy);
+} /* end BLAS_zhbmv_z_d */
+#else
   /* Routine name */
   static const char routine_name[] = "BLAS_zhbmv_z_d";
 
@@ -627,3 +643,4 @@ void BLAS_zhbmv_z_d(enum blas_order_type order,
 
 
 }                                /* end BLAS_zhbmv_z_d */
+#endif

@@ -60,6 +60,21 @@ void BLAS_csymv_s_s(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_csymv_s_s";
+#if 0
+  XBLAS::symv(order,
+              uplo,
+              n,
+              *static_cast<const std::complex<> *>(alpha),
+              a,
+              lda,
+              x,
+              incx,
+              *static_cast<const std::complex<> *>(beta),
+              static_cast<std::complex<> *>(y),
+              incy);
+} /* end BLAS_csymv_s_s */
+#else
   /* Routine name */
   static const char routine_name[] = "BLAS_csymv_s_s";
 
@@ -267,3 +282,4 @@ void BLAS_csymv_s_s(enum blas_order_type order,
 
 
 }                                /* end BLAS_csymv_s_s */
+#endif

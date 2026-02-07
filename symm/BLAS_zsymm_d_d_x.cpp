@@ -78,6 +78,24 @@ void BLAS_zsymm_d_d_x(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_zsymm_d_d_x";
+#if 0
+  XBLAS::symm_x(order,
+                side,
+                uplo,
+                m,
+                n,
+                *static_cast<const std::complex<> *>(alpha),
+                a,
+                lda,
+                b,
+                ldb,
+                *static_cast<const std::complex<> *>(beta),
+                static_cast<std::complex<> *>(c),
+                ldc,
+                prec);
+} /* end BLAS_zsymm_d_d_x */
+#else
   switch (prec) {
 
   case blas_prec_single:
@@ -654,3 +672,4 @@ void BLAS_zsymm_d_d_x(enum blas_order_type order,
     }
   }
 }
+#endif

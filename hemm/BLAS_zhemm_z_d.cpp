@@ -69,6 +69,23 @@ void BLAS_zhemm_z_d(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_zhemm_z_d";
+#if 0
+  XBLAS::hemm(order,
+              side,
+              uplo,
+              m,
+              n,
+              *static_cast<const std::complex<> *>(alpha),
+              static_cast<const std::complex<> *>(a),
+              lda,
+              b,
+              ldb,
+              *static_cast<const std::complex<> *>(beta),
+              static_cast<std::complex<> *>(c),
+              ldc);
+} /* end BLAS_zhemm_z_d */
+#else
 
   /* Integer Index Variables */
   int i, j, k;
@@ -363,3 +380,4 @@ void BLAS_zhemm_z_d(enum blas_order_type order,
 
 
 }
+#endif

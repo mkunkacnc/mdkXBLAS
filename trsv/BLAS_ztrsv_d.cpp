@@ -53,6 +53,20 @@ void BLAS_ztrsv_d(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_ztrsv_d";
+#if 0
+  XBLAS::trsv(order,
+              uplo,
+              trans,
+              diag,
+              n,
+              *static_cast<const std::complex<> *>(alpha),
+              T,
+              ldt,
+              static_cast<std::complex<> *>(x),
+              incx);
+} /* end BLAS_ztrsv_d */
+#else
   static const char routine_name[] = "BLAS_ztrsv_d";
 
   int i, j;                        /* used to idx matrix */
@@ -304,3 +318,4 @@ void BLAS_ztrsv_d(enum blas_order_type order,
     }
   }
 }
+#endif

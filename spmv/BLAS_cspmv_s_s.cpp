@@ -50,6 +50,20 @@ void BLAS_cspmv_s_s(enum blas_order_type order,
                     void *y,
                     int incy)
 {
+//static const char routine_name[] = "BLAS_cspmv_s_s";
+#if 0
+  XBLAS::spmv(order,
+              uplo,
+              n,
+              *static_cast<const std::complex<> *>(alpha),
+              ap,
+              x,
+              incx,
+              *static_cast<const std::complex<> *>(beta),
+              static_cast<std::complex<> *>(y),
+              incy);
+} /* end BLAS_cspmv_s_s */
+#else
   static const char routine_name[] = "BLAS_cspmv_s_s";
 
   {
@@ -464,3 +478,4 @@ void BLAS_cspmv_s_s(enum blas_order_type order,
 
   }
 }
+#endif

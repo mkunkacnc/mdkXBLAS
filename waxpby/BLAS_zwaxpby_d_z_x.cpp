@@ -59,6 +59,20 @@ void BLAS_zwaxpby_d_z_x(int n,
  *
  */
 {
+//static const char routine_name[] = "BLAS_zwaxpby_d_z_x";
+#if 0
+  XBLAS::waxpby_x(n,
+                  *static_cast<const std::complex<> *>(alpha),
+                  x,
+                  incx,
+                  *static_cast<const std::complex<> *>(beta),
+                  static_cast<const std::complex<> *>(y),
+                  incy,
+                  static_cast<std::complex<> *>(w),
+                  incw,
+                  prec);
+} /* end BLAS_zwaxpby_d_z_x */
+#else
   static const char routine_name[] = "BLAS_zwaxpby_d_z_x";
   switch (prec) {
   case blas_prec_single:
@@ -240,3 +254,4 @@ void BLAS_zwaxpby_d_z_x(int n,
     }
   }
 }
+#endif

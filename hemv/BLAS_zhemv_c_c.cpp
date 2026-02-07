@@ -60,6 +60,21 @@ void BLAS_zhemv_c_c(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_zhemv_c_c";
+#if 0
+  XBLAS::hemv(order,
+              uplo,
+              n,
+              *static_cast<const std::complex<> *>(alpha),
+              static_cast<const std::complex<> *>(a),
+              lda,
+              static_cast<const std::complex<> *>(x),
+              incx,
+              *static_cast<const std::complex<> *>(beta),
+              static_cast<std::complex<> *>(y),
+              incy);
+} /* end BLAS_zhemv_c_c */
+#else
   /* Routine name */
   static const char routine_name[] = "BLAS_zhemv_c_c";
 
@@ -588,3 +603,4 @@ void BLAS_zhemv_c_c(enum blas_order_type order,
 
 
 }                                /* end BLAS_zhemv_c_c */
+#endif

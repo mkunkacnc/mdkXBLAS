@@ -69,6 +69,22 @@ void BLAS_chemv_c_s_x(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_chemv_c_s_x";
+#if 0
+  XBLAS::hemv_x(order,
+                uplo,
+                n,
+                *static_cast<const std::complex<> *>(alpha),
+                static_cast<const std::complex<> *>(a),
+                lda,
+                x,
+                incx,
+                *static_cast<const std::complex<> *>(beta),
+                static_cast<std::complex<> *>(y),
+                incy,
+                prec);
+} /* end BLAS_chemv_c_s_x */
+#else
   /* Routine name */
   static const char routine_name[] = "BLAS_chemv_c_s";
   switch (prec) {
@@ -1974,3 +1990,4 @@ void BLAS_chemv_c_s_x(enum blas_order_type order,
     break;
   }
 }                                /* end BLAS_chemv_c_s */
+#endif

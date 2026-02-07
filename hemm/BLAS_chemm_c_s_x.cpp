@@ -78,6 +78,24 @@ void BLAS_chemm_c_s_x(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_chemm_c_s_x";
+#if 0
+  XBLAS::hemm_x(order,
+                side,
+                uplo,
+                m,
+                n,
+                *static_cast<const std::complex<> *>(alpha),
+                static_cast<const std::complex<> *>(a),
+                lda,
+                b,
+                ldb,
+                *static_cast<const std::complex<> *>(beta),
+                static_cast<std::complex<> *>(c),
+                ldc,
+                prec);
+} /* end BLAS_chemm_c_s_x */
+#else
   switch (prec) {
 
   case blas_prec_single:{
@@ -1201,3 +1219,4 @@ void BLAS_chemm_c_s_x(enum blas_order_type order,
     }
   }
 }
+#endif
