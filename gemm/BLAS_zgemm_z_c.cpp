@@ -73,6 +73,24 @@ void BLAS_zgemm_z_c(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_zgemm_z_c";
+#if 0
+  XBLAS::gemm(order,
+              transa,
+              transb,
+              m,
+              n,
+              k,
+              *static_cast<const std::complex<> *>(alpha),
+              static_cast<const std::complex<> *>(a),
+              lda,
+              static_cast<const std::complex<> *>(b),
+              ldb,
+              *static_cast<const std::complex<> *>(beta),
+              static_cast<std::complex<> *>(c),
+              ldc);
+} /* end BLAS_zgemm_z_c */
+#else
   static const char routine_name[] = "BLAS_zgemm_z_c";
 
 
@@ -412,3 +430,4 @@ void BLAS_zgemm_z_c(enum blas_order_type order,
 
 
 }
+#endif
