@@ -60,6 +60,23 @@ void BLAS_zge_sum_mv_d_d(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_zge_sum_mv_d_d";
+#if 0
+  XBLAS::ge_sum_mv(order,
+                   m,
+                   n,
+                   *static_cast<const std::complex<> *>(alpha),
+                   a,
+                   lda,
+                   x,
+                   incx,
+                   *static_cast<const std::complex<> *>(beta),
+                   b,
+                   ldb,
+                   static_cast<std::complex<> *>(y),
+                   incy);
+} /* end BLAS_zge_sum_mv_d_d */
+#else
   /* Routine name */
   static const char routine_name[] = "BLAS_zge_sum_mv_d_d";
   int i, j;
@@ -410,3 +427,4 @@ void BLAS_zge_sum_mv_d_d(enum blas_order_type order,
 
 
 }                                /* end BLAS_zge_sum_mv_d_d */
+#endif
