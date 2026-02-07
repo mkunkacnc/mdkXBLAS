@@ -112,6 +112,25 @@ void BLAS_zgbmv2_d_z(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_zgbmv2_d_z";
+#if 0
+  XBLAS::gbmv2(order,
+               trans,
+               m,
+               n,
+               kl,
+               ku,
+               *static_cast<const std::complex<> *>(alpha),
+               a,
+               lda,
+               static_cast<const std::complex<> *>(head_x),
+               static_cast<const std::complex<> *>(tail_x),
+               incx,
+               *static_cast<const std::complex<> *>(beta),
+               static_cast<std::complex<> *>(y),
+               incy);
+} /* end BLAS_zgbmv2_d_z */
+#else
   static const char routine_name[] = "BLAS_zgbmv2_d_z";
 
   int iy0, iy, ix0, jx, j, i, rbound, lbound, ra, la, lenx, leny;
@@ -289,3 +308,4 @@ void BLAS_zgbmv2_d_z(enum blas_order_type order,
 
 
 }                                /* end BLAS_zgbmv2_d_z */
+#endif

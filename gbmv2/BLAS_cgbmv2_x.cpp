@@ -121,6 +121,26 @@ void BLAS_cgbmv2_x(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_cgbmv2_x";
+#if 0
+  XBLAS::gbmv2_x(order,
+                 trans,
+                 m,
+                 n,
+                 kl,
+                 ku,
+                 *static_cast<const std::complex<> *>(alpha),
+                 static_cast<const std::complex<> *>(a),
+                 lda,
+                 static_cast<const std::complex<> *>(head_x),
+                 static_cast<const std::complex<> *>(tail_x),
+                 incx,
+                 *static_cast<const std::complex<> *>(beta),
+                 static_cast<std::complex<> *>(y),
+                 incy,
+                 prec);
+} /* end BLAS_cgbmv2_x */
+#else
   static const char routine_name[] = "BLAS_cgbmv2_x";
 
   switch (prec) {
@@ -988,3 +1008,4 @@ void BLAS_cgbmv2_x(enum blas_order_type order,
     break;
   }
 }                                /* end BLAS_cgbmv2_x */
+#endif
