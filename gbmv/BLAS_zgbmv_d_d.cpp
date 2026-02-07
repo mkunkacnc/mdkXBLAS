@@ -107,6 +107,24 @@ void BLAS_zgbmv_d_d(enum blas_order_type order,
  *
  */
 {
+//static const char routine_name[] = "BLAS_zgbmv_d_d";
+#if 0
+  XBLAS::gbmv(order,
+              trans,
+              m,
+              n,
+              kl,
+              ku,
+              *static_cast<const std::complex<> *>(alpha),
+              a,
+              lda,
+              x,
+              incx,
+              *static_cast<const std::complex<> *>(beta),
+              static_cast<std::complex<> *>(y),
+              incy);
+} /* end BLAS_zgbmv_d_d */
+#else
   static const char routine_name[] = "BLAS_zgbmv_d_d";
 
   int ky, iy, kx, jx, j, i, rbound, lbound, ra, la, lenx, leny;
@@ -267,3 +285,4 @@ void BLAS_zgbmv_d_d(enum blas_order_type order,
 
 
 }                                /* end GEMV_NAME(z, d, d, ) */
+#endif
