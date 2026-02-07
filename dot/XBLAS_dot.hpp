@@ -83,8 +83,7 @@ constexpr void dot(blas_conj_type conj,
   if (beta == T(1) && (n == 0 || alpha == T(0)))
     return;
 
-  if constexpr (std::is_same_v<TmpType, double_double> ||
-                std::is_same_v<TmpType, std::complex<double_double>>) {
+  if constexpr (impl::uses_double_double_v<TmpType>) {
     FPU_FIX_START;
   }
 
@@ -129,8 +128,7 @@ constexpr void dot(blas_conj_type conj,
   tmp1 += tmp2;                                  /* tmp1 = tmp1+tmp2 */
   *r = impl::to<T>(tmp1);                        /* r = tmp1 */
 
-  if constexpr (std::is_same_v<TmpType, double_double> ||
-                std::is_same_v<TmpType, std::complex<double_double>>) {
+  if constexpr (impl::uses_double_double_v<TmpType>) {
     FPU_FIX_STOP;
   }
 }

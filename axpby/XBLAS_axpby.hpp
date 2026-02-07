@@ -67,8 +67,7 @@ constexpr void axpby(IdxType n,
   if (n <= 0 || (alpha == T(0) && beta == T(1)))
     return;
 
-  if constexpr (std::is_same_v<TmpType, double_double> ||
-                std::is_same_v<TmpType, std::complex<double_double>>) {
+  if constexpr (impl::uses_double_double_v<TmpType>) {
     FPU_FIX_START;
   }
 
@@ -88,8 +87,7 @@ constexpr void axpby(IdxType n,
     iy += incy;
   } /* endfor */
 
-  if constexpr (std::is_same_v<TmpType, double_double> ||
-                std::is_same_v<TmpType, std::complex<double_double>>) {
+  if constexpr (impl::uses_double_double_v<TmpType>) {
     FPU_FIX_STOP;
   }
 } /* end XBLAS::axpby */

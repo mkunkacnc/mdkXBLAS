@@ -41,6 +41,15 @@ template<typename T>
 using inner_type_t = inner_type<T>::type;
 
 //---------------------------
+// USES_DOUBLE_DOUBLE
+
+template<typename T>
+struct uses_double_double { static constexpr auto value = std::is_same_v<inner_type_t<T>, double_double>; };
+
+template<typename T>
+inline constexpr bool uses_double_double_v = uses_double_double<T>::value;
+
+//---------------------------
 // SIZE_LE
 
 template<typename X, typename Y>
