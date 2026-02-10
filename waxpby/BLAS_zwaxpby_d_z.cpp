@@ -53,13 +53,13 @@ void BLAS_zwaxpby_d_z(int n,
 //static const char routine_name[] = "BLAS_zwaxpby_d_z";
 #if 0
   XBLAS::waxpby(n,
-                *static_cast<const std::complex<> *>(alpha),
+                *static_cast<const std::complex<double> *>(alpha),
                 x,
                 incx,
-                *static_cast<const std::complex<> *>(beta),
-                static_cast<const std::complex<> *>(y),
+                *static_cast<const std::complex<double> *>(beta),
+                static_cast<const std::complex<double> *>(y),
                 incy,
-                static_cast<std::complex<> *>(w),
+                static_cast<std::complex<double> *>(w),
                 incw);
 } /* end BLAS_zwaxpby_d_z */
 #else

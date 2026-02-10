@@ -64,10 +64,10 @@ void BLAS_ctbsv_s(enum blas_order_type order,
               diag,
               n,
               k,
-              *static_cast<const std::complex<> *>(alpha),
+              *static_cast<const std::complex<float> *>(alpha),
               t,
               ldt,
-              static_cast<std::complex<> *>(x),
+              static_cast<std::complex<float> *>(x),
               incx);
 } /* end BLAS_ctbsv_s */
 #else

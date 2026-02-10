@@ -55,12 +55,12 @@ void BLAS_zspmv_z_c(enum blas_order_type order,
   XBLAS::spmv(order,
               uplo,
               n,
-              *static_cast<const std::complex<> *>(alpha),
-              static_cast<const std::complex<> *>(ap),
-              static_cast<const std::complex<> *>(x),
+              *static_cast<const std::complex<double> *>(alpha),
+              static_cast<const std::complex<double> *>(ap),
+              static_cast<const std::complex<float> *>(x),
               incx,
-              *static_cast<const std::complex<> *>(beta),
-              static_cast<std::complex<> *>(y),
+              *static_cast<const std::complex<double> *>(beta),
+              static_cast<std::complex<double> *>(y),
               incy);
 } /* end BLAS_zspmv_z_c */
 #else

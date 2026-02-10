@@ -81,13 +81,13 @@ void BLAS_cgemm_s_s(enum blas_order_type order,
               m,
               n,
               k,
-              *static_cast<const std::complex<> *>(alpha),
+              *static_cast<const std::complex<float> *>(alpha),
               a,
               lda,
               b,
               ldb,
-              *static_cast<const std::complex<> *>(beta),
-              static_cast<std::complex<> *>(c),
+              *static_cast<const std::complex<float> *>(beta),
+              static_cast<std::complex<float> *>(c),
               ldc);
 } /* end BLAS_cgemm_s_s */
 #else

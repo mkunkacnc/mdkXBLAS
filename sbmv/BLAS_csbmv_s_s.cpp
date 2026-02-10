@@ -122,13 +122,13 @@ void BLAS_csbmv_s_s(enum blas_order_type order,
               uplo,
               n,
               k,
-              *static_cast<const std::complex<> *>(alpha),
+              *static_cast<const std::complex<float> *>(alpha),
               a,
               lda,
               x,
               incx,
-              *static_cast<const std::complex<> *>(beta),
-              static_cast<std::complex<> *>(y),
+              *static_cast<const std::complex<float> *>(beta),
+              static_cast<std::complex<float> *>(y),
               incy);
 } /* end BLAS_csbmv_s_s */
 #else

@@ -65,14 +65,14 @@ void BLAS_cgemv2_c_s(enum blas_order_type order,
                trans,
                m,
                n,
-               *static_cast<const std::complex<> *>(alpha),
-               static_cast<const std::complex<> *>(a),
+               *static_cast<const std::complex<float> *>(alpha),
+               static_cast<const std::complex<float> *>(a),
                lda,
                head_x,
                tail_x,
                incx,
-               *static_cast<const std::complex<> *>(beta),
-               static_cast<std::complex<> *>(y),
+               *static_cast<const std::complex<float> *>(beta),
+               static_cast<std::complex<float> *>(y),
                incy);
 } /* end BLAS_cgemv2_c_s */
 #else

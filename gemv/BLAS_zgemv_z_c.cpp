@@ -63,13 +63,13 @@ void BLAS_zgemv_z_c(enum blas_order_type order,
               trans,
               m,
               n,
-              *static_cast<const std::complex<> *>(alpha),
-              static_cast<const std::complex<> *>(a),
+              *static_cast<const std::complex<double> *>(alpha),
+              static_cast<const std::complex<double> *>(a),
               lda,
-              static_cast<const std::complex<> *>(x),
+              static_cast<const std::complex<float> *>(x),
               incx,
-              *static_cast<const std::complex<> *>(beta),
-              static_cast<std::complex<> *>(y),
+              *static_cast<const std::complex<double> *>(beta),
+              static_cast<std::complex<double> *>(y),
               incy);
 } /* end BLAS_zgemv_z_c */
 #else

@@ -60,10 +60,10 @@ void BLAS_ctrsv_s(enum blas_order_type order,
               trans,
               diag,
               n,
-              *static_cast<const std::complex<> *>(alpha),
+              *static_cast<const std::complex<float> *>(alpha),
               T,
               ldt,
-              static_cast<std::complex<> *>(x),
+              static_cast<std::complex<float> *>(x),
               incx);
 } /* end BLAS_ctrsv_s */
 #else

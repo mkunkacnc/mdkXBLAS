@@ -55,9 +55,9 @@ void BLAS_ztpmv_c(enum blas_order_type order,
               trans,
               diag,
               n,
-              *static_cast<const std::complex<> *>(alpha),
-              static_cast<const std::complex<> *>(tp),
-              static_cast<std::complex<> *>(x),
+              *static_cast<const std::complex<double> *>(alpha),
+              static_cast<const std::complex<float> *>(tp),
+              static_cast<std::complex<double> *>(x),
               incx);
 } /* end BLAS_ztpmv_c */
 #else

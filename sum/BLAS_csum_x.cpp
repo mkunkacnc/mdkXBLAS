@@ -42,9 +42,9 @@ void BLAS_csum_x(int n,
 //static const char routine_name[] = "BLAS_csum_x";
 #if 0
   XBLAS::sum_x(n,
-               static_cast<const std::complex<> *>(x),
+               static_cast<const std::complex<float> *>(x),
                incx,
-               static_cast<std::complex<> *>(sum),
+               static_cast<std::complex<float> *>(sum),
                prec);
 } /* end BLAS_csum_x */
 #else

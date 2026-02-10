@@ -53,13 +53,13 @@ void BLAS_cwaxpby_s_c(int n,
 //static const char routine_name[] = "BLAS_cwaxpby_s_c";
 #if 0
   XBLAS::waxpby(n,
-                *static_cast<const std::complex<> *>(alpha),
+                *static_cast<const std::complex<float> *>(alpha),
                 x,
                 incx,
-                *static_cast<const std::complex<> *>(beta),
-                static_cast<const std::complex<> *>(y),
+                *static_cast<const std::complex<float> *>(beta),
+                static_cast<const std::complex<float> *>(y),
                 incy,
-                static_cast<std::complex<> *>(w),
+                static_cast<std::complex<float> *>(w),
                 incw);
 } /* end BLAS_cwaxpby_s_c */
 #else

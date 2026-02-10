@@ -76,13 +76,13 @@ void BLAS_csymm_c_s(enum blas_order_type order,
               uplo,
               m,
               n,
-              *static_cast<const std::complex<> *>(alpha),
-              static_cast<const std::complex<> *>(a),
+              *static_cast<const std::complex<float> *>(alpha),
+              static_cast<const std::complex<float> *>(a),
               lda,
               b,
               ldb,
-              *static_cast<const std::complex<> *>(beta),
-              static_cast<std::complex<> *>(c),
+              *static_cast<const std::complex<float> *>(beta),
+              static_cast<std::complex<float> *>(c),
               ldc);
 } /* end BLAS_csymm_c_s */
 #else

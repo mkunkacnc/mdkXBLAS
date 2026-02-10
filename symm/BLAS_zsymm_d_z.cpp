@@ -76,13 +76,13 @@ void BLAS_zsymm_d_z(enum blas_order_type order,
               uplo,
               m,
               n,
-              *static_cast<const std::complex<> *>(alpha),
+              *static_cast<const std::complex<double> *>(alpha),
               a,
               lda,
-              static_cast<const std::complex<> *>(b),
+              static_cast<const std::complex<double> *>(b),
               ldb,
-              *static_cast<const std::complex<> *>(beta),
-              static_cast<std::complex<> *>(c),
+              *static_cast<const std::complex<double> *>(beta),
+              static_cast<std::complex<double> *>(c),
               ldc);
 } /* end BLAS_zsymm_d_z */
 #else

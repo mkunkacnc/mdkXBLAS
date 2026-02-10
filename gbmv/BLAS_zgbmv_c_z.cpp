@@ -115,13 +115,13 @@ void BLAS_zgbmv_c_z(enum blas_order_type order,
               n,
               kl,
               ku,
-              *static_cast<const std::complex<> *>(alpha),
-              static_cast<const std::complex<> *>(a),
+              *static_cast<const std::complex<double> *>(alpha),
+              static_cast<const std::complex<float> *>(a),
               lda,
-              static_cast<const std::complex<> *>(x),
+              static_cast<const std::complex<double> *>(x),
               incx,
-              *static_cast<const std::complex<> *>(beta),
-              static_cast<std::complex<> *>(y),
+              *static_cast<const std::complex<double> *>(beta),
+              static_cast<std::complex<double> *>(y),
               incy);
 } /* end BLAS_zgbmv_c_z */
 #else

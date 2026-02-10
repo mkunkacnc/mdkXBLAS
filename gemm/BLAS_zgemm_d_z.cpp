@@ -81,13 +81,13 @@ void BLAS_zgemm_d_z(enum blas_order_type order,
               m,
               n,
               k,
-              *static_cast<const std::complex<> *>(alpha),
+              *static_cast<const std::complex<double> *>(alpha),
               a,
               lda,
-              static_cast<const std::complex<> *>(b),
+              static_cast<const std::complex<double> *>(b),
               ldb,
-              *static_cast<const std::complex<> *>(beta),
-              static_cast<std::complex<> *>(c),
+              *static_cast<const std::complex<double> *>(beta),
+              static_cast<std::complex<double> *>(c),
               ldc);
 } /* end BLAS_zgemm_d_z */
 #else

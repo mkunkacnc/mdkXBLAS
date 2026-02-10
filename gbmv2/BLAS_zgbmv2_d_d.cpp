@@ -120,14 +120,14 @@ void BLAS_zgbmv2_d_d(enum blas_order_type order,
                n,
                kl,
                ku,
-               *static_cast<const std::complex<> *>(alpha),
+               *static_cast<const std::complex<double> *>(alpha),
                a,
                lda,
                head_x,
                tail_x,
                incx,
-               *static_cast<const std::complex<> *>(beta),
-               static_cast<std::complex<> *>(y),
+               *static_cast<const std::complex<double> *>(beta),
+               static_cast<std::complex<double> *>(y),
                incy);
 } /* end BLAS_zgbmv2_d_d */
 #else

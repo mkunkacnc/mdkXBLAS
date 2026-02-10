@@ -68,14 +68,14 @@ void BLAS_zsymv2_z_d(enum blas_order_type order,
   XBLAS::symv2(order,
                uplo,
                n,
-               *static_cast<const std::complex<> *>(alpha),
-               static_cast<const std::complex<> *>(a),
+               *static_cast<const std::complex<double> *>(alpha),
+               static_cast<const std::complex<double> *>(a),
                lda,
                x_head,
                x_tail,
                incx,
-               *static_cast<const std::complex<> *>(beta),
-               static_cast<std::complex<> *>(y),
+               *static_cast<const std::complex<double> *>(beta),
+               static_cast<std::complex<double> *>(y),
                incy);
 } /* end BLAS_zsymv2_z_d */
 #else
