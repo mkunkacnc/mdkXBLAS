@@ -45,10 +45,10 @@ void BLAS_dgbmv_s_s(enum blas_order_type order,
  *              Dimension of AB and the length of vector x
  *
  * kl           (input) int
- *              Number of lower diagnols of AB
+ *              Number of lower diagonals of AB
  *
  * ku           (input) int
- *              Number of upper diagnols of AB
+ *              Number of upper diagonals of AB
  *
  * alpha        (input) double
  *
@@ -102,13 +102,13 @@ void BLAS_dgbmv_s_s(enum blas_order_type order,
  *             *   a31  a32  a33 a34
  *             *    *   a42  a43 a44
  *
- *  Varations on order and transpose have been implemented by modifying these
+ *  Variations on order and transpose have been implemented by modifying these
  *  local variables.
  *
  */
 {
 //static const char routine_name[] = "BLAS_dgbmv_s_s";
-#if 0
+#if 1
   XBLAS::gbmv(order, trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
 } /* end BLAS_dgbmv_s_s */
 #else

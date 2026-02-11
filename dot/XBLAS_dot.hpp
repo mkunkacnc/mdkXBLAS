@@ -131,7 +131,7 @@ constexpr void dot(blas_conj_type conj,
   if constexpr (impl::uses_double_double_v<TmpType>) {
     FPU_FIX_STOP;
   }
-}
+} /* end XBLAS::dot */
 
 //-----------------
 
@@ -211,7 +211,7 @@ constexpr void dot_x(blas_conj_type conj,
     XBLAS::dot<T, X, Y, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(conj, n, alpha, x, incx, beta, y, incy, r);
     break;
   }
-}
+} /* end XBLAS::dot_x */
 
 //-----------------
 } // namespace XBLAS

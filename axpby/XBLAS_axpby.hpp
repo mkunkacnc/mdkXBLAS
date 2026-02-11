@@ -106,6 +106,45 @@ constexpr void axpby_x(IdxType n,
                        T *y,
                        IdxType incy,
                        blas_prec_type prec)
+/*
+ * Purpose
+ * =======
+ *
+ * This routine computes:
+ *
+ *      y <- alpha * x + beta * y.
+ *
+ * Arguments
+ * =========
+ *
+ * n         (input) IdxType
+ *           The length of vectors x and y.
+ *
+ * alpha     (input) T
+ *
+ * x         (input) const X*
+ *           Array of length n.
+ *
+ * incx      (input) IdxType
+ *           The stride used to access components x[i].
+ *
+ * beta      (input) T
+ *
+ * y         (input/output) T*
+ *           Array of length n.
+ *
+ * incy      (input) IdxType
+ *           The stride used to access components y[i].
+ *
+ * prec   (input) enum blas_prec_type
+ *        Specifies the internal precision to be used.
+ *        = blas_prec_single: single precision.
+ *        = blas_prec_double: double precision.
+ *        = blas_prec_extra : anything at least 1.5 times as accurate
+ *                            than double, and wider than 80-bits.
+ *                            We use double-double in our implementation.
+ *
+ */
 {
 //static const char routine_name[] = "XBLAS::axpby_x";
   switch (prec) {

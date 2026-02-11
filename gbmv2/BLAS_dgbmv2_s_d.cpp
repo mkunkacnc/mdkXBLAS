@@ -49,10 +49,10 @@ void BLAS_dgbmv2_s_d(enum blas_order_type order,
  *              Dimension of AB and the length of vector x and z
  *
  * kl           (input) int
- *              Number of lower diagnols of AB
+ *              Number of lower diagonals of AB
  *
  * ku           (input) int
- *              Number of upper diagnols of AB
+ *              Number of upper diagonals of AB
  *
  * alpha        (input) double
  *
@@ -107,7 +107,7 @@ void BLAS_dgbmv2_s_d(enum blas_order_type order,
  *             *   a31  a32  a33 a34
  *             *    *   a42  a43 a44
  *
- *  Varations on order and transpose have been implemented by modifying these
+ *  Variations on order and transpose have been implemented by modifying these
  *  local variables.
  *
  */
