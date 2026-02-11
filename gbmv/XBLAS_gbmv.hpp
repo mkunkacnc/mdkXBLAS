@@ -124,7 +124,7 @@ constexpr void gbmv(blas_order_type order,
 {
   static const char routine_name[] = "XBLAS::gbmv";
 
-  using PrdType = TmpType; //impl::get_inner_type_t<A, X, TmpType>;
+  using PrdType = impl::get_inner_type_t<A, X, TmpType>;
 
   IdxType ky, iy, kx, jx, j, i, rbound, lbound, ra, la, lenx, leny;
   IdxType incaij, aij, incai1, incai2, astart, ai;
@@ -265,7 +265,7 @@ constexpr void gbmv(blas_order_type order,
       }
     }
 
-    tmp1 = sum * alpha_i;
+    tmp1 = impl::mul<TmpType>(sum, alpha_i);
     y_elem = y_i[iy];
     tmp2 = impl::mul<TmpType>(beta_i, y_elem);
     result = impl::to<T>(tmp1 + tmp2); // want to fix this for double-double
@@ -287,6 +287,8 @@ constexpr void gbmv(blas_order_type order,
     FPU_FIX_STOP;
   }
 } /* end XBLAS::gbmv */
+
+//-----------------
 
 template<typename T,
          typename A,
