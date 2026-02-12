@@ -126,21 +126,6 @@ constexpr void gbmv(blas_order_type order,
 
   using PrdType = impl::get_inner_type_t<A, X, TmpType>;
 
-  IdxType ky, iy, kx, jx, j, i, rbound, lbound, ra, la, lenx, leny;
-  IdxType incaij, aij, incai1, incai2, astart, ai;
-  T *y_i = y;
-  const A *a_i = a;
-  const X *x_i = x;
-  T alpha_i = alpha;
-  T beta_i = beta;
-  TmpType tmp1;
-  TmpType tmp2;
-  T result;
-  PrdType sum;
-  PrdType prod;
-  A a_elem;
-  X x_elem;
-  T y_elem;
   FPU_FIX_DECL;
 
   if (order != blas_colmajor && order != blas_rowmajor)
@@ -164,9 +149,10 @@ constexpr void gbmv(blas_order_type order,
   if (incy == 0)
     BLAS_error(routine_name, -14, incy, NULL);
 
-  if (m == 0 || n == 0 || (alpha_i == T(0) && beta_i == T(1)))
+  if (m == 0 || n == 0 || (alpha == T(0) && beta == T(1)))
     return;
 
+  IdxType lenx, leny;
   if (trans == blas_no_trans) {
     lenx = n;
     leny = m;
@@ -175,12 +161,14 @@ constexpr void gbmv(blas_order_type order,
     leny = n;
   }
 
+  IdxType kx;
   if (incx < 0) {
     kx = -(lenx - 1) * incx;
   } else {
     kx = 0;
   }
 
+  IdxType ky;
   if (incy < 0) {
     ky = -(leny - 1) * incy;
   } else {
@@ -191,7 +179,9 @@ constexpr void gbmv(blas_order_type order,
     FPU_FIX_START;
   }
 
-  /* if alpha = 0, return y = y*beta */
+  /* if alpha = 0, return y = y*beta (not implemented as a special case?) */
+
+  IdxType astart, incai1, incai2, incaij, rbound, lbound, ra;
   if (order == blas_colmajor && trans == blas_no_trans) {
     astart = ku;
     incai1 = 1;
@@ -226,50 +216,44 @@ constexpr void gbmv(blas_order_type order,
     ra = kl;
   }
 
-  la = 0;
-  ai = astart;
-  iy = ky;
-  for (i = 0; i < leny; i++) {
-    sum = impl::zero_v<PrdType>;
-    aij = ai;
-    jx = kx;
+  IdxType la = 0;
+  IdxType ai = astart;
+  IdxType iy = ky;
+
+  for (IdxType i = 0; i < leny; i++) {
+    PrdType sum = impl::zero_v<PrdType>;
+    IdxType aij = ai;
+    IdxType jx = kx;
 
     if constexpr (impl::is_complex_v<A>) {
       if (trans == blas_conj_trans) {
-        for (j = ra - la; j >= 0; j--) {
-          x_elem = x_i[jx];
-          a_elem = impl::Conj::func(a_i[aij]);
-          prod = impl::mul<PrdType>(x_elem, a_elem);
+        for (IdxType j = ra - la; j >= 0; j--) {
+          PrdType prod = impl::mul<PrdType>(x[jx], impl::Conj::func(a[aij]));
           sum = sum + prod;
           aij += incaij;
           jx += incx;
         }
       } else {
-        for (j = ra - la; j >= 0; j--) {
-          x_elem = x_i[jx];
-          a_elem = a_i[aij];
-          prod = impl::mul<PrdType>(x_elem, a_elem);
+        for (IdxType j = ra - la; j >= 0; j--) {
+          PrdType prod = impl::mul<PrdType>(x[jx], a[aij]);
           sum = sum + prod;
           aij += incaij;
           jx += incx;
         }
       }
     } else {
-      for (j = ra - la; j >= 0; j--) {
-        x_elem = x_i[jx];
-        a_elem = a_i[aij];
-        prod = impl::mul<PrdType>(x_elem, a_elem);
+      for (IdxType j = ra - la; j >= 0; j--) {
+        PrdType prod = impl::mul<PrdType>(x[jx], a[aij]);
         sum = sum + prod;
         aij += incaij;
         jx += incx;
       }
     }
 
-    tmp1 = impl::mul<TmpType>(sum, alpha_i);
-    y_elem = y_i[iy];
-    tmp2 = impl::mul<TmpType>(beta_i, y_elem);
-    result = impl::add<T>(tmp1, tmp2);
-    y_i[iy] = result;
+    TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
+    TmpType tmp2 = impl::mul<TmpType>(beta, y[iy]);
+    T result = impl::add<T>(tmp1, tmp2);
+    y[iy] = result;
     iy += incy;
     if (i >= lbound) {
       kx += incx;
