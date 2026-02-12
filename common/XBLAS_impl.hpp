@@ -80,6 +80,7 @@ template<typename X,
 using get_inner_type_t = get_inner_type<X, Y, T>::type;
 
 //-------------------------------------
+// INTERNAL_PRECISION
 
 template<typename T, int prec>
 struct internal_precision { using type = T; };
@@ -108,6 +109,7 @@ template<typename T, int prec>
 using internal_precision_t = typename internal_precision<T, prec>::type;
 
 //-------------------------------------
+// MUL
 
 template<typename C,
          typename A,
@@ -166,6 +168,7 @@ constexpr inline C mul(A a, B b)
 }
 
 //-------------------------------------
+// TO
 
 template<typename To,
          typename From>
@@ -185,6 +188,30 @@ requires is_complex_v<To>
 constexpr inline To to(std::complex<double_double> from)
 {
   return To(to<inner_type_t<To>>(std::real(from)), to<inner_type_t<To>>(std::imag(from)));
+}
+
+//-------------------------------------
+// ADD
+
+template<typename C,
+         typename A,
+         typename B>
+constexpr inline C add(A a, B b)
+{
+  if constexpr (std::floating_point<C> &&
+                std::is_same_v<A, double_double> &&
+                std::is_same_v<B, double_double>) {
+    return double_double::add(a, b);
+
+  } else if constexpr (is_complex_v<C> &&
+                       std::floating_point<inner_type_t<C>> &&
+                       std::is_same_v<A, std::complex<double_double>> &&
+                       std::is_same_v<B, std::complex<double_double>>) {
+    return C(double_double::add(std::real(a), std::real(b)), double_double::add(std::imag(a), std::imag(b)));
+
+  } else {
+    return to<C>(a + b);
+  }
 }
 
 //---------------------------

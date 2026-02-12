@@ -18,6 +18,7 @@ public:
     constexpr double_double(double h, double t);
 
     static constexpr double_double add(double a, double b);
+    static constexpr double add(double_double a, double_double b);
 
     static constexpr double_double mul(float a, float b);
     static constexpr double_double mul(float a, double b);
@@ -49,6 +50,8 @@ public:
     static constexpr std::complex<double_double> mul(double_double a, std::complex<T> b) { return a * b; }
 
     constexpr double_double& operator +=(const double_double& rhs);
+    constexpr double_double& operator +=(double rhs);
+    constexpr double_double& operator +=(float rhs);
 
 public:
     static constexpr double split = SPLIT;
@@ -73,6 +76,8 @@ requires std::floating_point<T>
 constexpr std::complex<double_double> operator *(const double_double& a, const std::complex<T>& b);
 
 constexpr double_double operator +(const double_double& a, const double_double& b);
+constexpr double_double operator +(const double_double& a, double b);
+constexpr double_double operator +(const double_double& a, float b);
 
 //-----------------
 
@@ -103,6 +108,35 @@ constexpr double_double double_double::add(double a, double b)
   double_double c(t1 + t2);
   c.tail = t2 - (c.head - t1);
   return c;
+}
+
+inline
+constexpr double double_double::add(double_double a, double_double b)
+{
+  /* Compute double = double-double + double-double. */
+  double bv;
+  double s1, s2, t1, t2;
+
+  /* Add two hi words. */
+  s1 = a.head + b.head;
+  bv = s1 - a.head;
+  s2 = ((b.head - bv) + (a.head - (s1 - bv)));
+
+  /* Add two lo words. */
+  t1 = a.tail + b.tail;
+  bv = t1 - a.tail;
+  t2 = ((b.tail - bv) + (a.tail - (t1 - bv)));
+
+  s2 += t1;
+
+  /* Renormalize (s1, s2)  to  (t1, s2) */
+  t1 = s1 + s2;
+  s2 = s2 - (t1 - s1);
+
+  t2 += s2;
+
+  /* Renormalize (t1, t2) */
+  return t1 + t2;
 }
 
 inline
@@ -214,6 +248,22 @@ constexpr double_double& double_double::operator +=(const double_double& rhs)
   return *this;
 }
 
+inline
+constexpr double_double& double_double::operator +=(double rhs)
+{
+  double_double lhs(*this);
+  *this = lhs + rhs;
+  return *this;
+}
+
+inline
+constexpr double_double& double_double::operator +=(float rhs)
+{
+  double_double lhs(*this);
+  *this = lhs + rhs;
+  return *this;
+}
+
 //-----------------
 
 inline
@@ -311,6 +361,29 @@ constexpr double_double operator +(const double_double& a, const double_double& 
   double_double c(t1 + t2);
   c.tail = t2 - (c.head - t1);
   return c;
+}
+
+inline
+constexpr double_double operator +(const double_double& a, double b)
+{
+  /* Compute double-double = double-double + double. */
+  double e, t1, t2;
+
+  /* Knuth trick. */
+  t1 = a.head + b;
+  e = t1 - a.head;
+  t2 = ((b - e) + (a.head - (t1 - e))) + a.tail;
+
+  /* The result is t1 + t2, after normalization. */
+  double_double c(t1 + t2);
+  c.tail = t2 - (c.head - t1);
+  return c;
+}
+
+inline
+constexpr double_double operator +(const double_double& a, float b)
+{
+  return a + static_cast<double>(b);
 }
 
 //------------------

@@ -167,10 +167,6 @@ constexpr void gbmv(blas_order_type order,
   if (m == 0 || n == 0 || (alpha_i == T(0) && beta_i == T(1)))
     return;
 
-  if constexpr (impl::uses_double_double_v<TmpType>) {
-    FPU_FIX_START;
-  }
-
   if (trans == blas_no_trans) {
     lenx = n;
     leny = m;
@@ -191,8 +187,12 @@ constexpr void gbmv(blas_order_type order,
     ky = 0;
   }
 
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_START;
+  }
+
   /* if alpha = 0, return y = y*beta */
-  if ((order == blas_colmajor) && (trans == blas_no_trans)) {
+  if (order == blas_colmajor && trans == blas_no_trans) {
     astart = ku;
     incai1 = 1;
     incai2 = lda;
@@ -200,7 +200,7 @@ constexpr void gbmv(blas_order_type order,
     lbound = kl;
     rbound = n - ku - 1;
     ra = ku;
-  } else if ((order == blas_colmajor) && (trans != blas_no_trans)) {
+  } else if (order == blas_colmajor && trans != blas_no_trans) {
     astart = ku;
     incai1 = lda - 1;
     incai2 = lda;
@@ -208,7 +208,7 @@ constexpr void gbmv(blas_order_type order,
     lbound = ku;
     rbound = m - kl - 1;
     ra = kl;
-  } else if ((order == blas_rowmajor) && (trans == blas_no_trans)) {
+  } else if (order == blas_rowmajor && trans == blas_no_trans) {
     astart = kl;
     incai1 = lda - 1;
     incai2 = lda;
@@ -235,10 +235,10 @@ constexpr void gbmv(blas_order_type order,
     jx = kx;
 
     if constexpr (impl::is_complex_v<A>) {
-      if (trans != blas_conj_trans) {
+      if (trans == blas_conj_trans) {
         for (j = ra - la; j >= 0; j--) {
           x_elem = x_i[jx];
-          a_elem = a_i[aij];
+          a_elem = impl::Conj::func(a_i[aij]);
           prod = impl::mul<PrdType>(x_elem, a_elem);
           sum = sum + prod;
           aij += incaij;
@@ -247,7 +247,7 @@ constexpr void gbmv(blas_order_type order,
       } else {
         for (j = ra - la; j >= 0; j--) {
           x_elem = x_i[jx];
-          a_elem = impl::Conj::func(a_i[aij]);
+          a_elem = a_i[aij];
           prod = impl::mul<PrdType>(x_elem, a_elem);
           sum = sum + prod;
           aij += incaij;
@@ -268,7 +268,7 @@ constexpr void gbmv(blas_order_type order,
     tmp1 = impl::mul<TmpType>(sum, alpha_i);
     y_elem = y_i[iy];
     tmp2 = impl::mul<TmpType>(beta_i, y_elem);
-    result = impl::to<T>(tmp1 + tmp2); // want to fix this for double-double
+    result = impl::add<T>(tmp1, tmp2);
     y_i[iy] = result;
     iy += incy;
     if (i >= lbound) {
