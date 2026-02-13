@@ -67,13 +67,13 @@ constexpr void gbmv(blas_order_type order,
  *
  * alpha        (input) T
  *
- * AB           (input) A*
+ * AB           (input) const A*
  *
- * lda          (input) int
+ * lda          (input) IdxType
  *              Leading dimension of AB
  *              lda >= ku + kl + 1
  *
- * x            (input) X*
+ * x            (input) const X*
  *
  * incx         (input) IdxType
  *              The stride for vector x.
@@ -229,14 +229,14 @@ constexpr void gbmv(blas_order_type order,
       if (trans == blas_conj_trans) {
         for (IdxType j = ra - la; j >= 0; j--) {
           PrdType prod = impl::mul<PrdType>(x[jx], impl::Conj::func(a[aij]));
-          sum = sum + prod;
+          sum += prod;
           aij += incaij;
           jx += incx;
         }
       } else {
         for (IdxType j = ra - la; j >= 0; j--) {
           PrdType prod = impl::mul<PrdType>(x[jx], a[aij]);
-          sum = sum + prod;
+          sum += prod;
           aij += incaij;
           jx += incx;
         }
@@ -244,7 +244,7 @@ constexpr void gbmv(blas_order_type order,
     } else {
       for (IdxType j = ra - la; j >= 0; j--) {
         PrdType prod = impl::mul<PrdType>(x[jx], a[aij]);
-        sum = sum + prod;
+        sum += prod;
         aij += incaij;
         jx += incx;
       }
@@ -252,8 +252,7 @@ constexpr void gbmv(blas_order_type order,
 
     TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
     TmpType tmp2 = impl::mul<TmpType>(beta, y[iy]);
-    T result = impl::add<T>(tmp1, tmp2);
-    y[iy] = result;
+    y[iy] = impl::add<T>(tmp1, tmp2);
     iy += incy;
     if (i >= lbound) {
       kx += incx;
