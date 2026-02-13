@@ -57,21 +57,21 @@ void BLAS_zgbmv2_z_d_x(enum blas_order_type order,
  *
  * alpha        (input) const void*
  *
- * AB           (input) void*
+ * AB           (input) const void*
  *
  * lda          (input) int
  *              Leading dimension of AB
  *              lda >= ku + kl + 1
  *
  * head_x
- * tail_x       (input) double*
+ * tail_x       (input) const double*
  *
  * incx         (input) int
  *              The stride for vector x.
  *
  * beta         (input) const void*
  *
- * y            (input) const void*
+ * y            (input/output) void*
  *
  * incy         (input) int
  *              The stride for vector y.
@@ -122,7 +122,7 @@ void BLAS_zgbmv2_z_d_x(enum blas_order_type order,
  */
 {
 //static const char routine_name[] = "BLAS_zgbmv2_z_d_x";
-#if 0
+#if 1
   XBLAS::gbmv2_x(order,
                  trans,
                  m,

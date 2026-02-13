@@ -57,21 +57,21 @@ void BLAS_cgbmv2_s_c_x(enum blas_order_type order,
  *
  * alpha        (input) const void*
  *
- * AB           (input) float*
+ * AB           (input) const float*
  *
  * lda          (input) int
  *              Leading dimension of AB
  *              lda >= ku + kl + 1
  *
  * head_x
- * tail_x       (input) void*
+ * tail_x       (input) const void*
  *
  * incx         (input) int
  *              The stride for vector x.
  *
  * beta         (input) const void*
  *
- * y            (input) const void*
+ * y            (input/output) void*
  *
  * incy         (input) int
  *              The stride for vector y.
@@ -122,7 +122,7 @@ void BLAS_cgbmv2_s_c_x(enum blas_order_type order,
  */
 {
 //static const char routine_name[] = "BLAS_cgbmv2_s_c_x";
-#if 0
+#if 1
   XBLAS::gbmv2_x(order,
                  trans,
                  m,

@@ -232,8 +232,8 @@ constexpr void gbmv2(blas_order_type order,
   ai = astart;
   iy = iy0;
   for (i = 0; i < leny; i++) {
-    sum1 = 0.0;
-    sum2 = 0.0;
+    sum1 = impl::zero_v<PrdType>;
+    sum2 = impl::zero_v<PrdType>;
     aij = ai;
     jx = ix0;
 
@@ -302,6 +302,153 @@ constexpr void gbmv2(blas_order_type order,
     FPU_FIX_STOP;
   }
 } /* end XBLAS::gbmv2 */
+
+//-----------------
+
+template<typename T,
+         typename A,
+         typename X,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<A, T> &&
+          impl::size_le_v<X, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void gbmv2_x(blas_order_type order,
+                       blas_trans_type trans,
+                       IdxType m,
+                       IdxType n,
+                       IdxType kl,
+                       IdxType ku,
+                       T alpha,
+                       const A *a,
+                       IdxType lda,
+                       const X *head_x,
+                       const X *tail_x,
+                       IdxType incx,
+                       T beta,
+                       T *y,
+                       IdxType incy,
+                       blas_prec_type prec)
+/*
+ * Purpose
+ * =======
+ *
+ * This routines computes the matrix product:
+ *
+ *     y  <-  alpha * op(A) * (x_head + x_tail) + beta * y
+ *
+ * where
+ *
+ *  A is a m x n banded matrix
+ *  x is a n x 1 vector
+ *  y is a m x 1 vector
+ *  alpha and beta are scalars
+ *
+ * Arguments
+ * =========
+ *
+ * order        (input) blas_order_type
+ *              Order of AB; row or column major
+ *
+ * trans        (input) blas_trans_type
+ *              Transpose of AB; no trans,
+ *              trans, or conjugate trans
+ *
+ * m            (input) IdxType
+ *              Dimension of AB
+ *
+ * n            (input) IdxType
+ *              Dimension of AB and the length of vector x and z
+ *
+ * kl           (input) IdxType
+ *              Number of lower diagonals of AB
+ *
+ * ku           (input) IdxType
+ *              Number of upper diagonals of AB
+ *
+ * alpha        (input) T
+ *
+ * AB           (input) const A*
+ *
+ * lda          (input) IdxType
+ *              Leading dimension of AB
+ *              lda >= ku + kl + 1
+ *
+ * head_x
+ * tail_x       (input) const X*
+ *
+ * incx         (input) IdxType
+ *              The stride for vector x.
+ *
+ * beta         (input) T
+ *
+ * y            (input/output) T*
+ *
+ * incy         (input) IdxType
+ *              The stride for vector y.
+ *
+ * prec   (input) enum blas_prec_type
+ *        Specifies the internal precision to be used.
+ *        = blas_prec_single: single precision.
+ *        = blas_prec_double: double precision.
+ *        = blas_prec_extra : anything at least 1.5 times as accurate
+ *                            than double, and wider than 80-bits.
+ *                            We use double-double in our implementation.
+ *
+ *
+ * LOCAL VARIABLES
+ * ===============
+ *
+ *  As an example, these variables are described on the mxn, column
+ *  major, banded matrix described in section 2.2.3 of the specification
+ *
+ *  astart      indexes first element in A where computation begins
+ *
+ *  incai1      indexes first element in row where row is less than lbound
+ *
+ *  incai2      indexes first element in row where row exceeds lbound
+ *
+ *  lbound      denotes the number of rows before  first element shifts
+ *
+ *  rbound      denotes the columns where there is blank space
+ *
+ *  ra          index of the rightmost element for a given row
+ *
+ *  la          index of leftmost  elements for a given row
+ *
+ *  ra - la     width of a row
+ *
+ *                        rbound
+ *            la   ra    ____|_____
+ *             |    |   |          |
+ *         |  a00  a01   *    *   *
+ * lbound -|  a10  a11  a12   *   *
+ *         |  a20  a21  a22  a23  *
+ *             *   a31  a32  a33 a34
+ *             *    *   a42  a43 a44
+ *
+ *  Variations on order and transpose have been implemented by modifying these
+ *  local variables.
+ *
+ */
+{
+//static const char routine_name[] = "XBLAS::gbmv_x";
+  switch (prec) {
+  case blas_prec_single:
+    XBLAS::gbmv2<T, A, X, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
+    break;
+  case blas_prec_double:
+    XBLAS::gbmv2<T, A, X, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
+    break;
+  case blas_prec_indigenous:
+    XBLAS::gbmv2<T, A, X, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
+    break;
+  case blas_prec_extra:
+    XBLAS::gbmv2<T, A, X, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
+    break;
+  }
+} /* end XBLAS::gbmv2_x */
 
 //------------------
 } // namespace XBLAS
