@@ -11,8 +11,8 @@ void compute_doubledouble_eq_double_mul_double(double* head_c,
 {
   /* Compute double-double = double * double. */
   double_double c = double_double::mul(a, b);
-  *head_c = c.head;
-  *tail_c = c.tail;
+  *head_c = c.head_();
+  *tail_c = c.tail_();
 }
 
 /* compute c = a * b; */
@@ -23,8 +23,8 @@ void compute_doubledouble_eq_float_mul_float(double* head_c,
 {
   /* Compute double-double = float * float. */
   double_double c = double_double::mul(a, b);
-  *head_c = c.head;
-  *tail_c = c.tail;
+  *head_c = c.head_();
+  *tail_c = c.tail_();
 }
 
 /* compute c = a * b */
@@ -37,8 +37,8 @@ void compute_doubledouble_eq_doubledouble_mul_double(double* head_c,
   /* Compute double-double = double-double * double. */
   double_double a(head_a, tail_a);
   double_double c = a * b;
-  *head_c = c.head;
-  *tail_c = c.tail;
+  *head_c = c.head_();
+  *tail_c = c.tail_();
 }
 
 /* compute c = a + b */
@@ -53,8 +53,8 @@ void compute_doubledouble_eq_doubledouble_add_doubledouble(double* head_c,
   double_double a(head_a, tail_a);
   double_double b(head_b, tail_b);
   double_double c = a + b;
-  *head_c = c.head;
-  *tail_c = c.tail;
+  *head_c = c.head_();
+  *tail_c = c.tail_();
 }
 
 /* compute c = a + b */
@@ -77,8 +77,8 @@ void compute_doubledouble_eq_double_add_double(double* head_c,
 {
   /* Compute double-double = double + double. */
   double_double c = double_double::add(a, b);
-  *head_c = c.head;
-  *tail_c = c.tail;
+  *head_c = c.head_();
+  *tail_c = c.tail_();
 }
 
 /* compute c = a + b */
@@ -91,8 +91,8 @@ void compute_doubledouble_eq_doubledouble_add_double(double* head_c,
   /* Compute double-double = double-double + double. */
   double_double a(head_a, tail_a);
   double_double c = a + b;
-  *head_c = c.head;
-  *tail_c = c.tail;
+  *head_c = c.head_();
+  *tail_c = c.tail_();
 }
 
 /* compute c = a / b */

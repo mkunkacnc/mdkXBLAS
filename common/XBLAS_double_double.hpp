@@ -12,6 +12,25 @@ namespace XBLAS {
 
 class double_double
 {
+    friend constexpr double_double operator *(const double_double& a, float b);
+    friend constexpr double_double operator *(const double_double& a, double b);
+
+    template<typename T>
+    requires std::floating_point<T>
+    friend constexpr std::complex<double_double> operator *(const std::complex<double_double>& a, const std::complex<T>& b);
+
+    template<typename T>
+    requires std::floating_point<T>
+    friend constexpr std::complex<double_double> operator *(const std::complex<T>& a, const std::complex<double_double>& b);
+
+    template<typename T>
+    requires std::floating_point<T>
+    friend constexpr std::complex<double_double> operator *(const double_double& a, const std::complex<T>& b);
+
+    friend constexpr double_double operator +(const double_double& a, const double_double& b);
+    friend constexpr double_double operator +(const double_double& a, double b);
+    friend constexpr double_double operator +(const double_double& a, float b);
+
 public:
     constexpr double_double() {}
     constexpr explicit double_double(double x);
@@ -53,7 +72,11 @@ public:
     constexpr double_double& operator +=(double rhs);
     constexpr double_double& operator +=(float rhs);
 
-public:
+    constexpr double to_double() const { return head; }
+    constexpr double head_() const { return head; } // eventually remove
+    constexpr double tail_() const { return tail; } // eventually remove
+
+private:
     static constexpr double split = SPLIT;
 
     double head;
