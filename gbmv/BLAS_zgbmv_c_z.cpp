@@ -31,10 +31,10 @@ void BLAS_zgbmv_c_z(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order        (input) blas_order_type
+ * order        (input) enum blas_order_type
  *              Order of AP; row or column major
  *
- * trans        (input) blas_trans_type
+ * trans        (input) enum blas_trans_type
  *              Transpose of AB; no trans,
  *              trans, or conjugate trans
  *
@@ -52,13 +52,13 @@ void BLAS_zgbmv_c_z(enum blas_order_type order,
  *
  * alpha        (input) const void*
  *
- * AB           (input) void*
+ * AB           (input) const void*
  *
  * lda          (input) int
  *              Leading dimension of AB
  *              lda >= ku + kl + 1
  *
- * x            (input) void*
+ * x            (input) const void*
  *
  * incx         (input) int
  *              The stride for vector x.

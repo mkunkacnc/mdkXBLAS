@@ -25,10 +25,10 @@ void BLAS_dgemv2_s_s(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order        (input) blas_order_type
+ * order        (input) enum blas_order_type
  *              Order of A; row or column major
  *
- * trans        (input) blas_trans_type
+ * trans        (input) enum blas_trans_type
  *              Transpose of A: no trans, trans, or conjugate trans
  *
  * m            (input) int
@@ -52,7 +52,7 @@ void BLAS_dgemv2_s_s(enum blas_order_type order,
  *
  * beta         (input) double
  *
- * y            (input) const double*
+ * y            (input) double*
  *
  * incy         (input) int
  *              The stride for vector y.

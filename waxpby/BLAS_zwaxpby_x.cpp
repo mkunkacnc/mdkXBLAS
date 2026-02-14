@@ -37,7 +37,7 @@ void BLAS_zwaxpby_x(int n,
  *
  * beta  (input) const void*
  *
- * y     (input) void*
+ * y     (input) const void*
  *       Array of length n.
  *
  * incy  (input) int

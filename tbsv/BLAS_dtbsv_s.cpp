@@ -45,10 +45,10 @@ void BLAS_dtbsv_s(enum blas_order_type order,
  *
  * alpha  (input) double
  *
- * t      (input) float*
+ * t      (input) const float*
  *        Triangular Banded matrix
  *
- * x      (input) const double*
+ * x      (input) double*
  *           Array of length n.
  *
  * incx   (input) int

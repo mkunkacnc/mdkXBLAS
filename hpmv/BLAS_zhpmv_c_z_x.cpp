@@ -24,10 +24,10 @@ void BLAS_zhpmv_c_z_x(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order        (input) blas_order_type
+ * order        (input) enum blas_order_type
  *              Order of ap; row or column major
  *
- * uplo         (input) blas_uplo_type
+ * uplo         (input) enum blas_uplo_type
  *              Whether ap is upper or lower
  *
  * n            (input) int
@@ -35,9 +35,9 @@ void BLAS_zhpmv_c_z_x(enum blas_order_type order,
  *
  * alpha        (input) const void*
  *
- * ap           (input) void*
+ * ap           (input) const void*
  *
- * x            (input) void*
+ * x            (input) const void*
  *
  * incx         (input) int
  *              The stride for vector x.

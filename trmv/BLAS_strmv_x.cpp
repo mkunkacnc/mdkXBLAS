@@ -40,13 +40,13 @@ void BLAS_strmv_x(enum blas_order_type order,
  *
  * alpha  (input) float
  *
- * T      (input) float*
+ * T      (input) const float*
  *        Triangular matrix
  *
  * ldt    (input) int
  *        Leading dimension of T
  *
- * x      (input) const float*
+ * x      (input) float*
  *    Array of length n.
  *
  * incx   (input) int

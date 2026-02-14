@@ -38,7 +38,7 @@ constexpr void dot(blas_conj_type conj,
  * Arguments
  * =========
  *
- * conj   (input) enum blas_conj_type
+ * conj   (input) blas_conj_type
  *        When x and y are complex vectors, specifies whether vector
  *        components x[i] are used unconjugated or conjugated.
  *
@@ -161,7 +161,7 @@ constexpr void dot_x(blas_conj_type conj,
  * Arguments
  * =========
  *
- * conj   (input) enum blas_conj_type
+ * conj   (input) blas_conj_type
  *        When x and y are complex vectors, specifies whether vector
  *        components x[i] are used unconjugated or conjugated.
  *
@@ -186,7 +186,7 @@ constexpr void dot_x(blas_conj_type conj,
  *
  * r      (input/output) T*
  *
- * prec   (input) enum blas_prec_type
+ * prec   (input) blas_prec_type
  *        Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
  *        = blas_prec_double: double precision.

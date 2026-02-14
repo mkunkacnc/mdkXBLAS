@@ -37,7 +37,7 @@ void BLAS_cwaxpby_c_s_x(int n,
  *
  * beta  (input) const void*
  *
- * y     (input) float*
+ * y     (input) const float*
  *       Array of length n.
  *
  * incy  (input) int

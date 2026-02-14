@@ -363,7 +363,7 @@ constexpr void gbmv2_x(blas_order_type order,
  * incy         (input) IdxType
  *              The stride for vector y.
  *
- * prec   (input) enum blas_prec_type
+ * prec   (input) blas_prec_type
  *        Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
  *        = blas_prec_double: double precision.

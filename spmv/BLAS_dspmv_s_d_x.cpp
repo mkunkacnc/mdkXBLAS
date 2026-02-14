@@ -24,10 +24,10 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order        (input) blas_order_type
+ * order        (input) enum blas_order_type
  *              Order of ap; row or column major
  *
- * uplo         (input) blas_uplo_type
+ * uplo         (input) enum blas_uplo_type
  *              Whether ap is upper or lower
  *
  * n            (input) int
@@ -35,9 +35,9 @@ void BLAS_dspmv_s_d_x(enum blas_order_type order,
  *
  * alpha        (input) double
  *
- * ap           (input) float*
+ * ap           (input) const float*
  *
- * x            (input) double*
+ * x            (input) const double*
  *
  * incx         (input) int
  *              The stride for vector x.

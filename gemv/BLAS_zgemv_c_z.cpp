@@ -23,10 +23,10 @@ void BLAS_zgemv_c_z(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order        (input) blas_order_type
+ * order        (input) enum blas_order_type
  *              Order of AP; row or column major
  *
- * trans        (input) blas_trans_type
+ * trans        (input) enum blas_trans_type
  *              Transpose of AB; no trans,
  *              trans, or conjugate trans
  *

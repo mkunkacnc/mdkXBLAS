@@ -333,13 +333,13 @@ constexpr void gbmv_x(blas_order_type order,
  *
  * alpha        (input) T
  *
- * AB           (input) A*
+ * AB           (input) const A*
  *
  * lda          (input) IdxType
  *              Leading dimension of AB
  *              lda >= ku + kl + 1
  *
- * x            (input) X*
+ * x            (input) const X*
  *
  * incx         (input) IdxType
  *              The stride for vector x.
@@ -351,7 +351,7 @@ constexpr void gbmv_x(blas_order_type order,
  * incy         (input) IdxType
  *              The stride for vector y.
  *
- * prec   (input) enum blas_prec_type
+ * prec   (input) blas_prec_type
  *        Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
  *        = blas_prec_double: double precision.

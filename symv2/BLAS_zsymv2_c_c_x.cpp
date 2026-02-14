@@ -39,16 +39,16 @@ void BLAS_zsymv2_c_c_x(enum blas_order_type order,
  *
  * alpha   (input) const void*
  *
- * a       (input) void*
+ * a       (input) const void*
  *         Matrix A.
  *
  * lda     (input) int
  *         Leading dimension of matrix A.
  *
- * x_head  (input) void*
+ * x_head  (input) const void*
  *         Vector x_head
  *
- * x_tail  (input) void*
+ * x_tail  (input) const void*
  *         Vector x_tail
  *
  * incx    (input) int

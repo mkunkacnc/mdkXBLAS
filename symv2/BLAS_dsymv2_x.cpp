@@ -39,16 +39,16 @@ void BLAS_dsymv2_x(enum blas_order_type order,
  *
  * alpha   (input) double
  *
- * a       (input) double*
+ * a       (input) const double*
  *         Matrix A.
  *
  * lda     (input) int
  *         Leading dimension of matrix A.
  *
- * x_head  (input) double*
+ * x_head  (input) const double*
  *         Vector x_head
  *
- * x_tail  (input) double*
+ * x_tail  (input) const double*
  *         Vector x_tail
  *
  * incx    (input) int

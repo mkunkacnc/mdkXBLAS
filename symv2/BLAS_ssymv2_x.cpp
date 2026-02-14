@@ -39,16 +39,16 @@ void BLAS_ssymv2_x(enum blas_order_type order,
  *
  * alpha   (input) float
  *
- * a       (input) float*
+ * a       (input) const float*
  *         Matrix A.
  *
  * lda     (input) int
  *         Leading dimension of matrix A.
  *
- * x_head  (input) float*
+ * x_head  (input) const float*
  *         Vector x_head
  *
- * x_tail  (input) float*
+ * x_tail  (input) const float*
  *         Vector x_tail
  *
  * incx    (input) int

@@ -46,10 +46,10 @@ void BLAS_stbsv_x(enum blas_order_type order,
  *
  * alpha  (input) float
  *
- * t      (input) float*
+ * t      (input) const float*
  *        Triangular Banded matrix
  *
- * x      (input) const float*
+ * x      (input) float*
  *           Array of length n.
  *
  * incx   (input) int

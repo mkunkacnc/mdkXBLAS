@@ -38,16 +38,16 @@ void BLAS_zhemv2_z_c(enum blas_order_type order,
  *
  * alpha   (input) const void*
  *
- * a       (input) void*
+ * a       (input) const void*
  *         Matrix A.
  *
  * lda     (input) int
  *         Leading dimension of matrix A.
  *
- * x_head  (input) void*
+ * x_head  (input) const void*
  *         Vector x_head
  *
- * x_tail  (input) void*
+ * x_tail  (input) const void*
  *         Vector x_tail
  *
  * incx    (input) int
@@ -55,7 +55,7 @@ void BLAS_zhemv2_z_c(enum blas_order_type order,
  *
  * beta    (input) const void*
  *
- * y       (input) void*
+ * y       (input) const void*
  *         Vector y.
  *
  * incy    (input) int

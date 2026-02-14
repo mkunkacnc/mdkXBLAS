@@ -136,7 +136,7 @@ constexpr void axpby_x(IdxType n,
  * incy      (input) IdxType
  *           The stride used to access components y[i].
  *
- * prec   (input) enum blas_prec_type
+ * prec   (input) blas_prec_type
  *        Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
  *        = blas_prec_double: double precision.

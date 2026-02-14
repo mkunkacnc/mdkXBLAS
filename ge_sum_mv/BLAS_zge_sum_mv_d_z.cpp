@@ -25,7 +25,7 @@ void BLAS_zge_sum_mv_d_z(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order        (input) blas_order_type
+ * order        (input) enum blas_order_type
  *              Order of A; row or column major
  *
  * m            (input) int

@@ -39,13 +39,13 @@ void BLAS_ztrmv_c(enum blas_order_type order,
  *
  * alpha  (input) const void*
  *
- * T      (input) void*
+ * T      (input) const void*
  *        Triangular matrix
  *
  * ldt    (input) int
  *        Leading dimension of T
  *
- * x      (input) const void*
+ * x      (input) void*
  *    Array of length n.
  *
  * incx   (input) int

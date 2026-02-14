@@ -43,13 +43,13 @@ void BLAS_zsbmv_d_z_x(enum blas_order_type order,
  *
  * alpha   (input) const void*
  *
- * a       (input) double*
+ * a       (input) const double*
  *         Matrix A.
  *
  * lda     (input) int
  *         Leading dimension of matrix A.
  *
- * x       (input) void*
+ * x       (input) const void*
  *         Vector x.
  *
  * incx    (input) int

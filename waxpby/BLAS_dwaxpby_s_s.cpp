@@ -36,7 +36,7 @@ void BLAS_dwaxpby_s_s(int n,
  *
  * beta  (input) double
  *
- * y     (input) float*
+ * y     (input) const float*
  *       Array of length n.
  *
  * incy  (input) int

@@ -38,16 +38,16 @@ void BLAS_dsymv2_d_s(enum blas_order_type order,
  *
  * alpha   (input) double
  *
- * a       (input) double*
+ * a       (input) const double*
  *         Matrix A.
  *
  * lda     (input) int
  *         Leading dimension of matrix A.
  *
- * x_head  (input) float*
+ * x_head  (input) const float*
  *         Vector x_head
  *
- * x_tail  (input) float*
+ * x_tail  (input) const float*
  *         Vector x_tail
  *
  * incx    (input) int
@@ -55,7 +55,7 @@ void BLAS_dsymv2_d_s(enum blas_order_type order,
  *
  * beta    (input) double
  *
- * y       (input) float*
+ * y       (input) double*
  *         Vector y.
  *
  * incy    (input) int
