@@ -21,23 +21,23 @@ void BLAS_zaxpby_x(int n,
  * Arguments
  * =========
  *
- * n         (input) int
+ * n      (input) int
  *           The length of vectors x and y.
  *
- * alpha     (input) const void*
+ * alpha  (input) const void*
  *
- * x         (input) const void*
+ * x      (input) const void*
  *           Array of length n.
  *
- * incx      (input) int
+ * incx   (input) int
  *           The stride used to access components x[i].
  *
- * beta      (input) const void*
+ * beta   (input) const void*
  *
- * y         (input/output) void*
+ * y      (input/output) void*
  *           Array of length n.
  *
- * incy      (input) int
+ * incy   (input) int
  *           The stride used to access components y[i].
  *
  * prec   (input) enum blas_prec_type

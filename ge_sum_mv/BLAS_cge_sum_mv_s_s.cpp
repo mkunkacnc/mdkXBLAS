@@ -25,37 +25,37 @@ void BLAS_cge_sum_mv_s_s(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order        (input) enum blas_order_type
+ * order  (input) enum blas_order_type
  *              Order of A; row or column major
  *
- * m            (input) int
+ * m      (input) int
  *              Row Dimension of A, B, length of output vector y
  *
- * n            (input) int
+ * n      (input) int
  *              Column Dimension of A, B and the length of vector x
  *
- * alpha        (input) const void*
+ * alpha  (input) const void*
  *
- * A            (input) const float*
+ * A      (input) const float*
  *
- * lda          (input) int
+ * lda    (input) int
  *              Leading dimension of A
  *
- * x            (input) const float*
+ * x      (input) const float*
  *
- * incx         (input) int
+ * incx   (input) int
  *              The stride for vector x.
  *
- * beta         (input) const void*
+ * beta   (input) const void*
  *
- * b            (input) const float*
+ * b      (input) const float*
  *
- * ldb          (input) int
+ * ldb    (input) int
  *              Leading dimension of B
  *
- * y            (input/output) void*
+ * y      (input/output) void*
  *
- * incy         (input) int
+ * incy   (input) int
  *              The stride for vector y.
  *
  */

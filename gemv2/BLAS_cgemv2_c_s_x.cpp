@@ -26,39 +26,39 @@ void BLAS_cgemv2_c_s_x(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order        (input) enum blas_order_type
+ * order   (input) enum blas_order_type
  *              Order of A; row or column major
  *
- * trans        (input) enum blas_trans_type
+ * trans   (input) enum blas_trans_type
  *              Transpose of A: no trans, trans, or conjugate trans
  *
- * m            (input) int
+ * m       (input) int
  *              Dimension of A
  *
- * n            (input) int
+ * n       (input) int
  *              Dimension of A and the length of vector x and z
  *
- * alpha        (input) const void*
+ * alpha   (input) const void*
  *
- * A            (input) const void*
+ * A       (input) const void*
  *
- * lda          (input) int
+ * lda     (input) int
  *              Leading dimension of A
  *
  * head_x
- * tail_x       (input) const float*
+ * tail_x  (input) const float*
  *
- * incx         (input) int
+ * incx    (input) int
  *              The stride for vector x.
  *
- * beta         (input) const void*
+ * beta    (input) const void*
  *
- * y            (input/output) void*
+ * y       (input/output) void*
  *
- * incy         (input) int
+ * incy    (input) int
  *              The stride for vector y.
  *
- * prec   (input) enum blas_prec_type
+ * prec    (input) enum blas_prec_type
  *        Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
  *        = blas_prec_double: double precision.

@@ -21,23 +21,23 @@ void BLAS_daxpby_x(int n,
  * Arguments
  * =========
  *
- * n         (input) int
+ * n      (input) int
  *           The length of vectors x and y.
  *
- * alpha     (input) double
+ * alpha  (input) double
  *
- * x         (input) const double*
+ * x      (input) const double*
  *           Array of length n.
  *
- * incx      (input) int
+ * incx   (input) int
  *           The stride used to access components x[i].
  *
- * beta      (input) double
+ * beta   (input) double
  *
- * y         (input/output) double*
+ * y      (input/output) double*
  *           Array of length n.
  *
- * incy      (input) int
+ * incy   (input) int
  *           The stride used to access components y[i].
  *
  * prec   (input) enum blas_prec_type

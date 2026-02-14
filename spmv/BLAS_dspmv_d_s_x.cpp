@@ -24,29 +24,29 @@ void BLAS_dspmv_d_s_x(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order        (input) enum blas_order_type
+ * order  (input) enum blas_order_type
  *              Order of ap; row or column major
  *
- * uplo         (input) enum blas_uplo_type
+ * uplo   (input) enum blas_uplo_type
  *              Whether ap is upper or lower
  *
- * n            (input) int
+ * n      (input) int
  *              Dimension of ap and the length of vector x
  *
- * alpha        (input) double
+ * alpha  (input) double
  *
- * ap           (input) const double*
+ * ap     (input) const double*
  *
- * x            (input) const float*
+ * x      (input) const float*
  *
- * incx         (input) int
+ * incx   (input) int
  *              The stride for vector x.
  *
- * beta         (input) double
+ * beta   (input) double
  *
- * y            (input/output) double*
+ * y      (input/output) double*
  *
- * incy         (input) int
+ * incy   (input) int
  *              The stride for vector y.
  * prec   (input) enum blas_prec_type
  *        Specifies the internal precision to be used.

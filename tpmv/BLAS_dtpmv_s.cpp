@@ -23,27 +23,27 @@ void BLAS_dtpmv_s(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order        (input) enum blas_order_type
+ * order  (input) enum blas_order_type
  *              Order of tp; row or column major
  *
- * uplo         (input) enum blas_uplo_type
+ * uplo   (input) enum blas_uplo_type
  *              Whether tp is upper or lower
  *
- * trans        (input) enum blas_trans_type
+ * trans  (input) enum blas_trans_type
  *
- * diag         (input) enum blas_diag_type
+ * diag   (input) enum blas_diag_type
  *              Whether the diagonal entries of tp are 1
  *
- * n            (input) int
+ * n      (input) int
  *              Dimension of tp and the length of vector x
  *
- * alpha        (input) double
+ * alpha  (input) double
  *
- * tp           (input) const float*
+ * tp     (input) const float*
  *
- * x            (input/output) double*
+ * x      (input/output) double*
  *
- * incx         (input) int
+ * incx   (input) int
  *              The stride for vector x.
  *
  */

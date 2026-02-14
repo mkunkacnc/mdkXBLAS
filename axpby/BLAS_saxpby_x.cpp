@@ -21,23 +21,23 @@ void BLAS_saxpby_x(int n,
  * Arguments
  * =========
  *
- * n         (input) int
+ * n      (input) int
  *           The length of vectors x and y.
  *
- * alpha     (input) float
+ * alpha  (input) float
  *
- * x         (input) const float*
+ * x      (input) const float*
  *           Array of length n.
  *
- * incx      (input) int
+ * incx   (input) int
  *           The stride used to access components x[i].
  *
- * beta      (input) float
+ * beta   (input) float
  *
- * y         (input/output) float*
+ * y      (input/output) float*
  *           Array of length n.
  *
- * incy      (input) int
+ * incy   (input) int
  *           The stride used to access components y[i].
  *
  * prec   (input) enum blas_prec_type

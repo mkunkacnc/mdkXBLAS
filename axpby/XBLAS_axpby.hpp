@@ -32,23 +32,23 @@ constexpr void axpby(IdxType n,
  * Arguments
  * =========
  *
- * n         (input) IdxType
+ * n      (input) IdxType
  *           The length of vectors x and y.
  *
- * alpha     (input) T
+ * alpha  (input) T
  *
- * x         (input) const X*
+ * x      (input) const X*
  *           Array of length n.
  *
- * incx      (input) IdxType
+ * incx   (input) IdxType
  *           The stride used to access components x[i].
  *
- * beta      (input) T
+ * beta   (input) T
  *
- * y         (input/output) T*
+ * y      (input/output) T*
  *           Array of length n.
  *
- * incy      (input) IdxType
+ * incy   (input) IdxType
  *           The stride used to access components y[i].
  *
  */
@@ -117,23 +117,23 @@ constexpr void axpby_x(IdxType n,
  * Arguments
  * =========
  *
- * n         (input) IdxType
+ * n      (input) IdxType
  *           The length of vectors x and y.
  *
- * alpha     (input) T
+ * alpha  (input) T
  *
- * x         (input) const X*
+ * x      (input) const X*
  *           Array of length n.
  *
- * incx      (input) IdxType
+ * incx   (input) IdxType
  *           The stride used to access components x[i].
  *
- * beta      (input) T
+ * beta   (input) T
  *
- * y         (input/output) T*
+ * y      (input/output) T*
  *           Array of length n.
  *
- * incy      (input) IdxType
+ * incy   (input) IdxType
  *           The stride used to access components y[i].
  *
  * prec   (input) blas_prec_type

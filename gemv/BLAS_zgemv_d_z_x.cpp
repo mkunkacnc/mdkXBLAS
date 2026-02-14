@@ -24,36 +24,36 @@ void BLAS_zgemv_d_z_x(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order        (input) enum blas_order_type
+ * order  (input) enum blas_order_type
  *              Order of AP; row or column major
  *
- * trans        (input) enum blas_trans_type
+ * trans  (input) enum blas_trans_type
  *              Transpose of AB; no trans,
  *              trans, or conjugate trans
  *
- * m            (input) int
+ * m      (input) int
  *              Dimension of AB
  *
- * n            (input) int
+ * n      (input) int
  *              Dimension of AB and the length of vector x
  *
- * alpha        (input) const void*
+ * alpha  (input) const void*
  *
- * A            (input) const double*
+ * A      (input) const double*
  *
- * lda          (input) int
+ * lda    (input) int
  *              Leading dimension of A
  *
- * x            (input) const void*
+ * x      (input) const void*
  *
- * incx         (input) int
+ * incx   (input) int
  *              The stride for vector x.
  *
- * beta         (input) const void*
+ * beta   (input) const void*
  *
- * y            (input/output) void*
+ * y      (input/output) void*
  *
- * incy         (input) int
+ * incy   (input) int
  *              The stride for vector y.
  *
  * prec   (input) enum blas_prec_type

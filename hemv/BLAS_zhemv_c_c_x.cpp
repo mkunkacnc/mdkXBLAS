@@ -27,36 +27,36 @@ void BLAS_zhemv_c_c_x(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order   (input) enum blas_order_type
+ * order  (input) enum blas_order_type
  *         Storage format of input hermitian matrix A.
  *
- * uplo    (input) enum blas_uplo_type
+ * uplo   (input) enum blas_uplo_type
  *         Determines which half of matrix A (upper or lower triangle)
  *         is accessed.
  *
- * n       (input) int
+ * n      (input) int
  *         Dimension of A and size of vectors x, y.
  *
- * alpha   (input) const void*
+ * alpha  (input) const void*
  *
- * a       (input) const void*
+ * a      (input) const void*
  *         Matrix A.
  *
- * lda     (input) int
+ * lda    (input) int
  *         Leading dimension of matrix A.
  *
- * x       (input) const void*
+ * x      (input) const void*
  *         Vector x.
  *
- * incx    (input) int
+ * incx   (input) int
  *         Stride for vector x.
  *
- * beta    (input) const void*
+ * beta   (input) const void*
  *
- * y       (input/output) void*
+ * y      (input/output) void*
  *         Vector y.
  *
- * incy    (input) int
+ * incy   (input) int
  *         Stride for vector y.
  *
  * prec   (input) enum blas_prec_type

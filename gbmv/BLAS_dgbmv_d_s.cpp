@@ -31,43 +31,43 @@ void BLAS_dgbmv_d_s(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order        (input) enum blas_order_type
+ * order  (input) enum blas_order_type
  *              Order of AP; row or column major
  *
- * trans        (input) enum blas_trans_type
+ * trans  (input) enum blas_trans_type
  *              Transpose of AB; no trans,
  *              trans, or conjugate trans
  *
- * m            (input) int
+ * m      (input) int
  *              Dimension of AB
  *
- * n            (input) int
+ * n      (input) int
  *              Dimension of AB and the length of vector x
  *
- * kl           (input) int
+ * kl     (input) int
  *              Number of lower diagonals of AB
  *
- * ku           (input) int
+ * ku     (input) int
  *              Number of upper diagonals of AB
  *
- * alpha        (input) double
+ * alpha  (input) double
  *
- * AB           (input) const double*
+ * AB     (input) const double*
  *
- * lda          (input) int
+ * lda    (input) int
  *              Leading dimension of AB
  *              lda >= ku + kl + 1
  *
- * x            (input) const float*
+ * x      (input) const float*
  *
- * incx         (input) int
+ * incx   (input) int
  *              The stride for vector x.
  *
- * beta         (input) double
+ * beta   (input) double
  *
- * y            (input/output) double*
+ * y      (input/output) double*
  *
- * incy         (input) int
+ * incy   (input) int
  *              The stride for vector y.
  *
  *

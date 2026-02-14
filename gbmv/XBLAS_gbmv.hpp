@@ -46,43 +46,43 @@ constexpr void gbmv(blas_order_type order,
  * Arguments
  * =========
  *
- * order        (input) blas_order_type
+ * order  (input) blas_order_type
  *              Order of AB; row or column major
  *
- * trans        (input) blas_trans_type
+ * trans  (input) blas_trans_type
  *              Transpose of AB; no trans,
  *              trans, or conjugate trans
  *
- * m            (input) IdxType
+ * m      (input) IdxType
  *              Dimension of AB
  *
- * n            (input) IdxType
+ * n      (input) IdxType
  *              Dimension of AB and the length of vector x
  *
- * kl           (input) IdxType
+ * kl     (input) IdxType
  *              Number of lower diagonals of AB
  *
- * ku           (input) IdxType
+ * ku     (input) IdxType
  *              Number of upper diagonals of AB
  *
- * alpha        (input) T
+ * alpha  (input) T
  *
- * AB           (input) const A*
+ * AB     (input) const A*
  *
- * lda          (input) IdxType
+ * lda    (input) IdxType
  *              Leading dimension of AB
  *              lda >= ku + kl + 1
  *
- * x            (input) const X*
+ * x      (input) const X*
  *
- * incx         (input) IdxType
+ * incx   (input) IdxType
  *              The stride for vector x.
  *
- * beta         (input) T
+ * beta   (input) T
  *
- * y            (input/output) T*
+ * y      (input/output) T*
  *
- * incy         (input) IdxType
+ * incy   (input) IdxType
  *              The stride for vector y.
  *
  *
@@ -312,43 +312,43 @@ constexpr void gbmv_x(blas_order_type order,
  * Arguments
  * =========
  *
- * order        (input) blas_order_type
+ * order  (input) blas_order_type
  *              Order of AP; row or column major
  *
- * trans        (input) blas_trans_type
+ * trans  (input) blas_trans_type
  *              Transpose of AB; no trans,
  *              trans, or conjugate trans
  *
- * m            (input) IdxType
+ * m      (input) IdxType
  *              Dimension of AB
  *
- * n            (input) IdxType
+ * n      (input) IdxType
  *              Dimension of AB and the length of vector x
  *
- * kl           (input) IdxType
+ * kl     (input) IdxType
  *              Number of lower diagonals of AB
  *
- * ku           (input) IdxType
+ * ku     (input) IdxType
  *              Number of upper diagonals of AB
  *
- * alpha        (input) T
+ * alpha  (input) T
  *
- * AB           (input) const A*
+ * AB     (input) const A*
  *
- * lda          (input) IdxType
+ * lda    (input) IdxType
  *              Leading dimension of AB
  *              lda >= ku + kl + 1
  *
- * x            (input) const X*
+ * x      (input) const X*
  *
- * incx         (input) IdxType
+ * incx   (input) IdxType
  *              The stride for vector x.
  *
- * beta         (input) T
+ * beta   (input) T
  *
- * y            (input/output) T*
+ * y      (input/output) T*
  *
- * incy         (input) IdxType
+ * incy   (input) IdxType
  *              The stride for vector y.
  *
  * prec   (input) blas_prec_type

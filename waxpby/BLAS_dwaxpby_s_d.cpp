@@ -23,29 +23,29 @@ void BLAS_dwaxpby_s_d(int n,
  * Arguments
  * =========
  *
- * n     (input) int
+ * n      (input) int
  *       The length of vectors x, y, and w.
  *
- * alpha (input) double
+ * alpha  (input) double
  *
- * x     (input) const float*
+ * x      (input) const float*
  *       Array of length n.
  *
- * incx  (input) int
+ * incx   (input) int
  *       The stride used to access components x[i].
  *
- * beta  (input) double
+ * beta   (input) double
  *
- * y     (input) const double*
+ * y      (input) const double*
  *       Array of length n.
  *
- * incy  (input) int
+ * incy   (input) int
  *       The stride used to access components y[i].
  *
- * w     (output) double*
+ * w      (output) double*
  *       Array of length n.
  *
- * incw  (input) int
+ * incw   (input) int
  *       The stride used to write components w[i].
  *
  */

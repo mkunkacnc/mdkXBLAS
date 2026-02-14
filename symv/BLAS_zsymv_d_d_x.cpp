@@ -27,36 +27,36 @@ void BLAS_zsymv_d_d_x(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order   (input) enum blas_order_type
+ * order  (input) enum blas_order_type
  *         Storage format of input symmetric matrix A.
  *
- * uplo    (input) enum blas_uplo_type
+ * uplo   (input) enum blas_uplo_type
  *         Determines which half of matrix A (upper or lower triangle)
  *         is accessed.
  *
- * n       (input) int
+ * n      (input) int
  *         Dimension of A and size of vectors x, y.
  *
- * alpha   (input) const void*
+ * alpha  (input) const void*
  *
- * a       (input) const double*
+ * a      (input) const double*
  *         Matrix A.
  *
- * lda     (input) int
+ * lda    (input) int
  *         Leading dimension of matrix A.
  *
- * x       (input) const double*
+ * x      (input) const double*
  *         Vector x.
  *
- * incx    (input) int
+ * incx   (input) int
  *         Stride for vector x.
  *
- * beta    (input) const void*
+ * beta   (input) const void*
  *
- * y       (input/output) void*
+ * y      (input/output) void*
  *         Vector y.
  *
- * incy    (input) int
+ * incy   (input) int
  *         Stride for vector y.
  *
  * prec   (input) enum blas_prec_type

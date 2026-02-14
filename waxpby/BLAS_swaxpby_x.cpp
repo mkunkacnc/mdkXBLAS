@@ -24,29 +24,29 @@ void BLAS_swaxpby_x(int n,
  * Arguments
  * =========
  *
- * n     (input) int
+ * n      (input) int
  *       The length of vectors x, y, and w.
  *
- * alpha (input) float
+ * alpha  (input) float
  *
- * x     (input) const float*
+ * x      (input) const float*
  *       Array of length n.
  *
- * incx  (input) int
+ * incx   (input) int
  *       The stride used to access components x[i].
  *
- * beta  (input) float
+ * beta   (input) float
  *
- * y     (input) const float*
+ * y      (input) const float*
  *       Array of length n.
  *
- * incy  (input) int
+ * incy   (input) int
  *       The stride used to access components y[i].
  *
- * w     (output) float*
+ * w      (output) float*
  *       Array of length n.
  *
- * incw  (input) int
+ * incw   (input) int
  *       The stride used to write components w[i].
  *
  * prec   (input) enum blas_prec_type

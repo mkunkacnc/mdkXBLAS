@@ -35,44 +35,44 @@ void BLAS_cgbmv2_c_s(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order        (input) enum blas_order_type
+ * order   (input) enum blas_order_type
  *              Order of AB; row or column major
  *
- * trans        (input) enum blas_trans_type
+ * trans   (input) enum blas_trans_type
  *              Transpose of AB; no trans,
  *              trans, or conjugate trans
  *
- * m            (input) int
+ * m       (input) int
  *              Dimension of AB
  *
- * n            (input) int
+ * n       (input) int
  *              Dimension of AB and the length of vector x and z
  *
- * kl           (input) int
+ * kl      (input) int
  *              Number of lower diagonals of AB
  *
- * ku           (input) int
+ * ku      (input) int
  *              Number of upper diagonals of AB
  *
- * alpha        (input) const void*
+ * alpha   (input) const void*
  *
- * AB           (input) const void*
+ * AB      (input) const void*
  *
- * lda          (input) int
+ * lda     (input) int
  *              Leading dimension of AB
  *              lda >= ku + kl + 1
  *
  * head_x
- * tail_x       (input) const float*
+ * tail_x  (input) const float*
  *
- * incx         (input) int
+ * incx    (input) int
  *              The stride for vector x.
  *
- * beta         (input) const void*
+ * beta    (input) const void*
  *
- * y            (input/output) void*
+ * y       (input/output) void*
  *
- * incy         (input) int
+ * incy    (input) int
  *              The stride for vector y.
  *
  *

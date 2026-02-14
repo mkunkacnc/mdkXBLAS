@@ -72,7 +72,7 @@ void BLAS_cgemm_s_s_x(enum blas_order_type order,
  * ldc     (input) int
  *         leading dimension of C.
  *
- * prec   (input) enum blas_prec_type
+ * prec    (input) enum blas_prec_type
  *        Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
  *        = blas_prec_double: double precision.

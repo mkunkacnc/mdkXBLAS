@@ -30,13 +30,13 @@ void BLAS_zhemm_z_d_x(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order   (input) enum blas_order_type
+ * order  (input) enum blas_order_type
  *         Storage format of input matrices A, B, and C.
  *
- * side    (input) enum blas_side_type
+ * side   (input) enum blas_side_type
  *         Determines which side of matrix B is matrix A is multiplied.
  *
- * uplo    (input) enum blas_uplo_type
+ * uplo   (input) enum blas_uplo_type
  *         Determines which half of matrix A (upper or lower triangle)
  *         is accessed.
  *
@@ -46,26 +46,26 @@ void BLAS_zhemm_z_d_x(enum blas_order_type order,
  *                     n-by-n otherwise.
  *         Matrices B and C are m-by-n.
  *
- * alpha   (input) const void*
+ * alpha  (input) const void*
  *
- * a       (input) const void*
+ * a      (input) const void*
  *         Matrix A.
  *
- * lda     (input) int
+ * lda    (input) int
  *         Leading dimension of matrix A.
  *
- * b       (input) const double*
+ * b      (input) const double*
  *         Matrix B.
  *
- * ldb     (input) int
+ * ldb    (input) int
  *         Leading dimension of matrix B.
  *
- * beta    (input) const void*
+ * beta   (input) const void*
  *
- * c       (input/output) void*
+ * c      (input/output) void*
  *         Matrix C.
  *
- * ldc     (input) int
+ * ldc    (input) int
  *         Leading dimension of matrix C.
  *
  * prec   (input) enum blas_prec_type
