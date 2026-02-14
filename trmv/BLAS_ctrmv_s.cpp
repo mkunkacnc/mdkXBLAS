@@ -46,10 +46,10 @@ void BLAS_ctrmv_s(enum blas_order_type order,
  *        Leading dimension of T
  *
  * x      (input/output) void*
- *    Array of length n.
+ *        Array of length n.
  *
  * incx   (input) int
- *     The stride used to access components x[i].
+ *        The stride used to access components x[i].
  *
  */
 {
