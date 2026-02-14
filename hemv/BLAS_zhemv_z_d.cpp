@@ -31,7 +31,7 @@ void BLAS_zhemv_z_d(enum blas_order_type order,
  *
  * uplo   (input) enum blas_uplo_type
  *        Determines which half of matrix A (upper or lower triangle)
- *         is accessed.
+ *          is accessed.
  *
  * n      (input) int
  *        Dimension of A and size of vectors x, y.

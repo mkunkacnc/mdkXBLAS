@@ -38,7 +38,7 @@ void BLAS_zsymm_x(enum blas_order_type order,
  *
  * uplo   (input) enum blas_uplo_type
  *        Determines which half of matrix A (upper or lower triangle)
- *         is accessed.
+ *          is accessed.
  *
  * m n     (input) int
  *         Size of matrices A, B, and C.

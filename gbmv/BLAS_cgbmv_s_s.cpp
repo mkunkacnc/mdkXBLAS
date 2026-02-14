@@ -36,7 +36,7 @@ void BLAS_cgbmv_s_s(enum blas_order_type order,
  *
  * trans  (input) enum blas_trans_type
  *        Transpose of AB; no trans,
- *              trans, or conjugate trans
+ *          trans, or conjugate trans
  *
  * m      (input) int
  *        Dimension of AB
@@ -56,7 +56,7 @@ void BLAS_cgbmv_s_s(enum blas_order_type order,
  *
  * lda    (input) int
  *        Leading dimension of AB
- *              lda >= ku + kl + 1
+ *          lda >= ku + kl + 1
  *
  * x      (input) const float*
  *

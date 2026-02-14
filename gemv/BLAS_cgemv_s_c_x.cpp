@@ -29,7 +29,7 @@ void BLAS_cgemv_s_c_x(enum blas_order_type order,
  *
  * trans  (input) enum blas_trans_type
  *        Transpose of AB; no trans,
- *              trans, or conjugate trans
+ *          trans, or conjugate trans
  *
  * m      (input) int
  *        Dimension of AB

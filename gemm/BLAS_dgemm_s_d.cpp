@@ -35,11 +35,11 @@ void BLAS_dgemm_s_d(enum blas_order_type order,
  *
  * transa  (input) enum blas_trans_type
  *         Operation to be done on matrix A before multiplication.
- *         Can be no operation, transposition, or conjugate transposition.
+ *           Can be no operation, transposition, or conjugate transposition.
  *
  * transb  (input) enum blas_trans_type
  *         Operation to be done on matrix B before multiplication.
- *         Can be no operation, transposition, or conjugate transposition.
+ *           Can be no operation, transposition, or conjugate transposition.
  *
  * m n k   (input) int
  *         The dimensions of matrices A, B, and C.

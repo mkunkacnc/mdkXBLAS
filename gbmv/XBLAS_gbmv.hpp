@@ -51,7 +51,7 @@ constexpr void gbmv(blas_order_type order,
  *
  * trans  (input) blas_trans_type
  *        Transpose of AB; no trans,
- *              trans, or conjugate trans
+ *          trans, or conjugate trans
  *
  * m      (input) IdxType
  *        Dimension of AB
@@ -71,7 +71,7 @@ constexpr void gbmv(blas_order_type order,
  *
  * lda    (input) IdxType
  *        Leading dimension of AB
- *              lda >= ku + kl + 1
+ *          lda >= ku + kl + 1
  *
  * x      (input) const X*
  *
@@ -317,7 +317,7 @@ constexpr void gbmv_x(blas_order_type order,
  *
  * trans  (input) blas_trans_type
  *        Transpose of AB; no trans,
- *              trans, or conjugate trans
+ *          trans, or conjugate trans
  *
  * m      (input) IdxType
  *        Dimension of AB
@@ -337,7 +337,7 @@ constexpr void gbmv_x(blas_order_type order,
  *
  * lda    (input) IdxType
  *        Leading dimension of AB
- *              lda >= ku + kl + 1
+ *          lda >= ku + kl + 1
  *
  * x      (input) const X*
  *

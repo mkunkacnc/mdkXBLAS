@@ -40,7 +40,7 @@ constexpr void dot(blas_conj_type conj,
  *
  * conj   (input) blas_conj_type
  *        When x and y are complex vectors, specifies whether vector
- *        components x[i] are used unconjugated or conjugated.
+ *          components x[i] are used unconjugated or conjugated.
  *
  * n      (input) IdxType
  *        The length of vectors x and y.
@@ -163,7 +163,7 @@ constexpr void dot_x(blas_conj_type conj,
  *
  * conj   (input) blas_conj_type
  *        When x and y are complex vectors, specifies whether vector
- *        components x[i] are used unconjugated or conjugated.
+ *          components x[i] are used unconjugated or conjugated.
  *
  * n      (input) IdxType
  *        The length of vectors x and y.

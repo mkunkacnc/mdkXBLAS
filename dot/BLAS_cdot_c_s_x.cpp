@@ -25,7 +25,7 @@ void BLAS_cdot_c_s_x(enum blas_conj_type conj,
  *
  * conj   (input) enum blas_conj_type
  *        When x and y are complex vectors, specifies whether vector
- *        components x[i] are used unconjugated or conjugated.
+ *          components x[i] are used unconjugated or conjugated.
  *
  * n      (input) int
  *        The length of vectors x and y.
