@@ -64,11 +64,11 @@ void BLAS_csymv2_c_s_x(enum blas_order_type order,
  *
  * prec    (input) enum blas_prec_type
  *         Specifies the internal precision to be used.
- *        = blas_prec_single: single precision.
- *        = blas_prec_double: double precision.
- *        = blas_prec_extra : anything at least 1.5 times as accurate
- *                            than double, and wider than 80-bits.
- *                            We use double-double in our implementation.
+ *         = blas_prec_single: single precision.
+ *         = blas_prec_double: double precision.
+ *         = blas_prec_extra : anything at least 1.5 times as accurate
+ *                             than double, and wider than 80-bits.
+ *                             We use double-double in our implementation.
  *
  */
 {
