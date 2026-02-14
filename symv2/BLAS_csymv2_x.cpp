@@ -56,7 +56,7 @@ void BLAS_csymv2_x(enum blas_order_type order,
  *
  * beta    (input) const void*
  *
- * y       (input) void*
+ * y       (input/output) void*
  *         Vector y.
  *
  * incy    (input) int

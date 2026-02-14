@@ -52,7 +52,7 @@ void BLAS_dgemv2_s_d(enum blas_order_type order,
  *
  * beta         (input) double
  *
- * y            (input) double*
+ * y            (input/output) double*
  *
  * incy         (input) int
  *              The stride for vector y.

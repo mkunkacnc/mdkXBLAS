@@ -48,7 +48,7 @@ void BLAS_ztbsv_c(enum blas_order_type order,
  * t      (input) const void*
  *        Triangular Banded matrix
  *
- * x      (input) void*
+ * x      (input/output) void*
  *           Array of length n.
  *
  * incx   (input) int

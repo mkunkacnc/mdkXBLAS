@@ -42,7 +42,7 @@ void BLAS_stpmv_x(enum blas_order_type order,
  *
  * tp           (input) const float*
  *
- * x            (input) float*
+ * x            (input/output) float*
  *
  * incx         (input) int
  *              The stride for vector x.

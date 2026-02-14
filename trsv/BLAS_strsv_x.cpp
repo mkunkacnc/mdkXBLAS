@@ -46,7 +46,7 @@ void BLAS_strsv_x(enum blas_order_type order,
  * T      (input) const float*
  *        Triangular matrix
  *
- * x      (input) float*
+ * x      (input/output) float*
  *           Array of length n.
  *
  * incx   (input) int

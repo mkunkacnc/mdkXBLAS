@@ -46,7 +46,7 @@ void BLAS_ztrmv_c_x(enum blas_order_type order,
  * ldt    (input) int
  *        Leading dimension of T
  *
- * x      (input) void*
+ * x      (input/output) void*
  *    Array of length n.
  *
  * incx   (input) int

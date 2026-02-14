@@ -46,7 +46,7 @@ void BLAS_strmv_x(enum blas_order_type order,
  * ldt    (input) int
  *        Leading dimension of T
  *
- * x      (input) float*
+ * x      (input/output) float*
  *    Array of length n.
  *
  * incx   (input) int

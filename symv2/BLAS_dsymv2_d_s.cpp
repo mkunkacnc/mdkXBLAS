@@ -55,7 +55,7 @@ void BLAS_dsymv2_d_s(enum blas_order_type order,
  *
  * beta    (input) double
  *
- * y       (input) double*
+ * y       (input/output) double*
  *         Vector y.
  *
  * incy    (input) int

@@ -52,7 +52,7 @@ void BLAS_cgemv2_s_s(enum blas_order_type order,
  *
  * beta         (input) const void*
  *
- * y            (input) void*
+ * y            (input/output) void*
  *
  * incy         (input) int
  *              The stride for vector y.

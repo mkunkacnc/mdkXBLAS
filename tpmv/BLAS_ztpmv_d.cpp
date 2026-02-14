@@ -41,7 +41,7 @@ void BLAS_ztpmv_d(enum blas_order_type order,
  *
  * tp           (input) const double*
  *
- * x            (input) void*
+ * x            (input/output) void*
  *
  * incx         (input) int
  *              The stride for vector x.

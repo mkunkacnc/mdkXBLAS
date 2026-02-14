@@ -45,7 +45,7 @@ void BLAS_dtrsv_s(enum blas_order_type order,
  * T      (input) const float*
  *        Triangular matrix
  *
- * x      (input) double*
+ * x      (input/output) double*
  *           Array of length n.
  *
  * incx   (input) int
