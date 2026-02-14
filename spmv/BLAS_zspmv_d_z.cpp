@@ -3,6 +3,16 @@
 #include "spmv/XBLAS_spmv.hpp"
 
 
+void BLAS_zspmv_d_z(enum blas_order_type order,
+                    enum blas_uplo_type uplo,
+                    int n,
+                    const void *alpha,
+                    const double *ap,
+                    const void *x,
+                    int incx,
+                    const void *beta,
+                    void *y,
+                    int incy)
 /*
  * Purpose
  * =======
@@ -39,16 +49,6 @@
  *              The stride for vector y.
  *
  */
-void BLAS_zspmv_d_z(enum blas_order_type order,
-                    enum blas_uplo_type uplo,
-                    int n,
-                    const void *alpha,
-                    const double *ap,
-                    const void *x,
-                    int incx,
-                    const void *beta,
-                    void *y,
-                    int incy)
 {
 //static const char routine_name[] = "BLAS_zspmv_d_z";
 #if 0

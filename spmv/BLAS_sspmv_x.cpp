@@ -3,6 +3,17 @@
 #include "spmv/XBLAS_spmv.hpp"
 
 
+void BLAS_sspmv_x(enum blas_order_type order,
+                  enum blas_uplo_type uplo,
+                  int n,
+                  float alpha,
+                  const float *ap,
+                  const float *x,
+                  int incx,
+                  float beta,
+                  float *y,
+                  int incy,
+                  enum blas_prec_type prec)
 /*
  * Purpose
  * =======
@@ -47,17 +58,6 @@
  *
  *
  */
-void BLAS_sspmv_x(enum blas_order_type order,
-                  enum blas_uplo_type uplo,
-                  int n,
-                  float alpha,
-                  const float *ap,
-                  const float *x,
-                  int incx,
-                  float beta,
-                  float *y,
-                  int incy,
-                  enum blas_prec_type prec)
 {
 //static const char routine_name[] = "BLAS_sspmv_x";
 #if 0

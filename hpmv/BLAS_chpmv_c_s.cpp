@@ -3,6 +3,16 @@
 #include "hpmv/XBLAS_hpmv.hpp"
 
 
+void BLAS_chpmv_c_s(enum blas_order_type order,
+                    enum blas_uplo_type uplo,
+                    int n,
+                    const void *alpha,
+                    const void *ap,
+                    const float *x,
+                    int incx,
+                    const void *beta,
+                    void *y,
+                    int incy)
 /*
  * Purpose
  * =======
@@ -39,16 +49,6 @@
  *              The stride for vector y.
  *
  */
-void BLAS_chpmv_c_s(enum blas_order_type order,
-                    enum blas_uplo_type uplo,
-                    int n,
-                    const void *alpha,
-                    const void *ap,
-                    const float *x,
-                    int incx,
-                    const void *beta,
-                    void *y,
-                    int incy)
 {
 //static const char routine_name[] = "BLAS_chpmv_c_s";
 #if 0
