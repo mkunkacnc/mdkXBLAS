@@ -29,39 +29,39 @@ void BLAS_ssbmv_x(enum blas_order_type order,
  * =========
  *
  * order  (input) enum blas_order_type
- *         Storage format of input symmetric matrix A.
+ *        Storage format of input symmetric matrix A.
  *
  * uplo   (input) enum blas_uplo_type
- *         Determines which half of matrix A (upper or lower triangle)
+ *        Determines which half of matrix A (upper or lower triangle)
  *         is accessed.
  *
  * n      (input) int
- *         Dimension of A and size of vectors x, y.
+ *        Dimension of A and size of vectors x, y.
  *
  * k      (input) int
- *         Number of subdiagonals ( = number of superdiagonals)
+ *        Number of subdiagonals ( = number of superdiagonals)
  *
  * alpha  (input) float
  *
  * a      (input) const float*
- *         Matrix A.
+ *        Matrix A.
  *
  * lda    (input) int
- *         Leading dimension of matrix A.
+ *        Leading dimension of matrix A.
  *
  * x      (input) const float*
- *         Vector x.
+ *        Vector x.
  *
  * incx   (input) int
- *         Stride for vector x.
+ *        Stride for vector x.
  *
  * beta   (input) float
  *
  * y      (input/output) float*
- *         Vector y.
+ *        Vector y.
  *
  * incy   (input) int
- *         Stride for vector y.
+ *        Stride for vector y.
  *
  * prec   (input) enum blas_prec_type
  *        Specifies the internal precision to be used.

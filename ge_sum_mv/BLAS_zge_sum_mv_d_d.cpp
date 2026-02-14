@@ -26,37 +26,37 @@ void BLAS_zge_sum_mv_d_d(enum blas_order_type order,
  * =========
  *
  * order  (input) enum blas_order_type
- *              Order of A; row or column major
+ *        Order of A; row or column major
  *
  * m      (input) int
- *              Row Dimension of A, B, length of output vector y
+ *        Row Dimension of A, B, length of output vector y
  *
  * n      (input) int
- *              Column Dimension of A, B and the length of vector x
+ *        Column Dimension of A, B and the length of vector x
  *
  * alpha  (input) const void*
  *
  * A      (input) const double*
  *
  * lda    (input) int
- *              Leading dimension of A
+ *        Leading dimension of A
  *
  * x      (input) const double*
  *
  * incx   (input) int
- *              The stride for vector x.
+ *        The stride for vector x.
  *
  * beta   (input) const void*
  *
  * b      (input) const double*
  *
  * ldb    (input) int
- *              Leading dimension of B
+ *        Leading dimension of B
  *
  * y      (input/output) void*
  *
  * incy   (input) int
- *              The stride for vector y.
+ *        The stride for vector y.
  *
  */
 {

@@ -25,29 +25,29 @@ void BLAS_zwaxpby_x(int n,
  * =========
  *
  * n      (input) int
- *       The length of vectors x, y, and w.
+ *        The length of vectors x, y, and w.
  *
  * alpha  (input) const void*
  *
  * x      (input) const void*
- *       Array of length n.
+ *        Array of length n.
  *
  * incx   (input) int
- *       The stride used to access components x[i].
+ *        The stride used to access components x[i].
  *
  * beta   (input) const void*
  *
  * y      (input) const void*
- *       Array of length n.
+ *        Array of length n.
  *
  * incy   (input) int
- *       The stride used to access components y[i].
+ *        The stride used to access components y[i].
  *
  * w      (output) void*
- *       Array of length n.
+ *        Array of length n.
  *
  * incw   (input) int
- *       The stride used to write components w[i].
+ *        The stride used to write components w[i].
  *
  * prec   (input) enum blas_prec_type
  *        Specifies the internal precision to be used.

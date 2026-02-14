@@ -21,23 +21,23 @@ void BLAS_caxpby_s(int n,
  * =========
  *
  * n      (input) int
- *           The length of vectors x and y.
+ *        The length of vectors x and y.
  *
  * alpha  (input) const void*
  *
  * x      (input) const float*
- *           Array of length n.
+ *        Array of length n.
  *
  * incx   (input) int
- *           The stride used to access components x[i].
+ *        The stride used to access components x[i].
  *
  * beta   (input) const void*
  *
  * y      (input/output) void*
- *           Array of length n.
+ *        Array of length n.
  *
  * incy   (input) int
- *           The stride used to access components y[i].
+ *        The stride used to access components y[i].
  *
  */
 {

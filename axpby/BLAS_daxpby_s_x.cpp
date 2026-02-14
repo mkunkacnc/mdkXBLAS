@@ -22,23 +22,23 @@ void BLAS_daxpby_s_x(int n,
  * =========
  *
  * n      (input) int
- *           The length of vectors x and y.
+ *        The length of vectors x and y.
  *
  * alpha  (input) double
  *
  * x      (input) const float*
- *           Array of length n.
+ *        Array of length n.
  *
  * incx   (input) int
- *           The stride used to access components x[i].
+ *        The stride used to access components x[i].
  *
  * beta   (input) double
  *
  * y      (input/output) double*
- *           Array of length n.
+ *        Array of length n.
  *
  * incy   (input) int
- *           The stride used to access components y[i].
+ *        The stride used to access components y[i].
  *
  * prec   (input) enum blas_prec_type
  *        Specifies the internal precision to be used.

@@ -28,39 +28,39 @@ void BLAS_dsbmv_s_d(enum blas_order_type order,
  * =========
  *
  * order  (input) enum blas_order_type
- *         Storage format of input symmetric matrix A.
+ *        Storage format of input symmetric matrix A.
  *
  * uplo   (input) enum blas_uplo_type
- *         Determines which half of matrix A (upper or lower triangle)
+ *        Determines which half of matrix A (upper or lower triangle)
  *         is accessed.
  *
  * n      (input) int
- *         Dimension of A and size of vectors x, y.
+ *        Dimension of A and size of vectors x, y.
  *
  * k      (input) int
- *         Number of subdiagonals ( = number of superdiagonals)
+ *        Number of subdiagonals ( = number of superdiagonals)
  *
  * alpha  (input) double
  *
  * a      (input) const float*
- *         Matrix A.
+ *        Matrix A.
  *
  * lda    (input) int
- *         Leading dimension of matrix A.
+ *        Leading dimension of matrix A.
  *
  * x      (input) const double*
- *         Vector x.
+ *        Vector x.
  *
  * incx   (input) int
- *         Stride for vector x.
+ *        Stride for vector x.
  *
  * beta   (input) double
  *
  * y      (input/output) double*
- *         Vector y.
+ *        Vector y.
  *
  * incy   (input) int
- *         Stride for vector y.
+ *        Stride for vector y.
  *
  *
  *  Notes on storing a symmetric band matrix:

@@ -24,18 +24,18 @@ void BLAS_ztpmv_d(enum blas_order_type order,
  * =========
  *
  * order  (input) enum blas_order_type
- *              Order of tp; row or column major
+ *        Order of tp; row or column major
  *
  * uplo   (input) enum blas_uplo_type
- *              Whether tp is upper or lower
+ *        Whether tp is upper or lower
  *
  * trans  (input) enum blas_trans_type
  *
  * diag   (input) enum blas_diag_type
- *              Whether the diagonal entries of tp are 1
+ *        Whether the diagonal entries of tp are 1
  *
  * n      (input) int
- *              Dimension of tp and the length of vector x
+ *        Dimension of tp and the length of vector x
  *
  * alpha  (input) const void*
  *
@@ -44,7 +44,7 @@ void BLAS_ztpmv_d(enum blas_order_type order,
  * x      (input/output) void*
  *
  * incx   (input) int
- *              The stride for vector x.
+ *        The stride for vector x.
  *
  */
 {

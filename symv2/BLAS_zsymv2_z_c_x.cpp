@@ -63,7 +63,7 @@ void BLAS_zsymv2_z_c_x(enum blas_order_type order,
  *         Stride for vector y.
  *
  * prec    (input) enum blas_prec_type
- *        Specifies the internal precision to be used.
+ *         Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
  *        = blas_prec_double: double precision.
  *        = blas_prec_extra : anything at least 1.5 times as accurate

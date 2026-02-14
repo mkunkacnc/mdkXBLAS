@@ -19,18 +19,18 @@ void BLAS_ssum_x(int n,
  * =========
  *
  * n     (input) int
- *        The length of vector x.
+ *       The length of vector x.
  *
  * x     (input) const float*
- *        Array of length n.
+ *       Array of length n.
  *
  * incx  (input) int
- *        The stride used to access components x[i].
+ *       The stride used to access components x[i].
  *
  * sum   (output) float*
  *
  * prec  (input) enum blas_prec_type
- *        Specifies the internal precision to be used.
+ *       Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
  *        = blas_prec_double: double precision.
  *        = blas_prec_extra : anything at least 1.5 times as accurate

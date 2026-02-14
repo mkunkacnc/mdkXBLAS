@@ -27,39 +27,39 @@ void BLAS_zgemv2_d_d_x(enum blas_order_type order,
  * =========
  *
  * order   (input) enum blas_order_type
- *              Order of A; row or column major
+ *         Order of A; row or column major
  *
  * trans   (input) enum blas_trans_type
- *              Transpose of A: no trans, trans, or conjugate trans
+ *         Transpose of A: no trans, trans, or conjugate trans
  *
  * m       (input) int
- *              Dimension of A
+ *         Dimension of A
  *
  * n       (input) int
- *              Dimension of A and the length of vector x and z
+ *         Dimension of A and the length of vector x and z
  *
  * alpha   (input) const void*
  *
  * A       (input) const double*
  *
  * lda     (input) int
- *              Leading dimension of A
+ *         Leading dimension of A
  *
  * head_x
  * tail_x  (input) const double*
  *
  * incx    (input) int
- *              The stride for vector x.
+ *         The stride for vector x.
  *
  * beta    (input) const void*
  *
  * y       (input/output) void*
  *
  * incy    (input) int
- *              The stride for vector y.
+ *         The stride for vector y.
  *
  * prec    (input) enum blas_prec_type
- *        Specifies the internal precision to be used.
+ *         Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
  *        = blas_prec_double: double precision.
  *        = blas_prec_extra : anything at least 1.5 times as accurate

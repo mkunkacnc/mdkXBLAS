@@ -31,13 +31,13 @@ void BLAS_zsymm_x(enum blas_order_type order,
  * =========
  *
  * order  (input) enum blas_order_type
- *         Storage format of input matrices A, B, and C.
+ *        Storage format of input matrices A, B, and C.
  *
  * side   (input) enum blas_side_type
- *         Determines which side of matrix B is matrix A is multiplied.
+ *        Determines which side of matrix B is matrix A is multiplied.
  *
  * uplo   (input) enum blas_uplo_type
- *         Determines which half of matrix A (upper or lower triangle)
+ *        Determines which half of matrix A (upper or lower triangle)
  *         is accessed.
  *
  * m n     (input) int
@@ -49,24 +49,24 @@ void BLAS_zsymm_x(enum blas_order_type order,
  * alpha  (input) const void*
  *
  * a      (input) const void*
- *         Matrix A.
+ *        Matrix A.
  *
  * lda    (input) int
- *         Leading dimension of matrix A.
+ *        Leading dimension of matrix A.
  *
  * b      (input) const void*
- *         Matrix B.
+ *        Matrix B.
  *
  * ldb    (input) int
- *         Leading dimension of matrix B.
+ *        Leading dimension of matrix B.
  *
  * beta   (input) const void*
  *
  * c      (input/output) void*
- *         Matrix C.
+ *        Matrix C.
  *
  * ldc    (input) int
- *         Leading dimension of matrix C.
+ *        Leading dimension of matrix C.
  *
  * prec   (input) enum blas_prec_type
  *        Specifies the internal precision to be used.

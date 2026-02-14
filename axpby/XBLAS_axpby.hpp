@@ -33,23 +33,23 @@ constexpr void axpby(IdxType n,
  * =========
  *
  * n      (input) IdxType
- *           The length of vectors x and y.
+ *        The length of vectors x and y.
  *
  * alpha  (input) T
  *
  * x      (input) const X*
- *           Array of length n.
+ *        Array of length n.
  *
  * incx   (input) IdxType
- *           The stride used to access components x[i].
+ *        The stride used to access components x[i].
  *
  * beta   (input) T
  *
  * y      (input/output) T*
- *           Array of length n.
+ *        Array of length n.
  *
  * incy   (input) IdxType
- *           The stride used to access components y[i].
+ *        The stride used to access components y[i].
  *
  */
 {
@@ -118,23 +118,23 @@ constexpr void axpby_x(IdxType n,
  * =========
  *
  * n      (input) IdxType
- *           The length of vectors x and y.
+ *        The length of vectors x and y.
  *
  * alpha  (input) T
  *
  * x      (input) const X*
- *           Array of length n.
+ *        Array of length n.
  *
  * incx   (input) IdxType
- *           The stride used to access components x[i].
+ *        The stride used to access components x[i].
  *
  * beta   (input) T
  *
  * y      (input/output) T*
- *           Array of length n.
+ *        Array of length n.
  *
  * incy   (input) IdxType
- *           The stride used to access components y[i].
+ *        The stride used to access components y[i].
  *
  * prec   (input) blas_prec_type
  *        Specifies the internal precision to be used.

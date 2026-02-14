@@ -24,13 +24,13 @@ void BLAS_chpmv_c_s(enum blas_order_type order,
  * =========
  *
  * order  (input) enum blas_order_type
- *              Order of ap; row or column major
+ *        Order of ap; row or column major
  *
  * uplo   (input) enum blas_uplo_type
- *              Whether ap is upper or lower
+ *        Whether ap is upper or lower
  *
  * n      (input) int
- *              Dimension of ap and the length of vector x
+ *        Dimension of ap and the length of vector x
  *
  * alpha  (input) const void*
  *
@@ -39,14 +39,14 @@ void BLAS_chpmv_c_s(enum blas_order_type order,
  * x      (input) const float*
  *
  * incx   (input) int
- *              The stride for vector x.
+ *        The stride for vector x.
  *
  * beta   (input) const void*
  *
  * y      (input/output) void*
  *
  * incy   (input) int
- *              The stride for vector y.
+ *        The stride for vector y.
  *
  */
 {
