@@ -49,10 +49,10 @@ void BLAS_ztbsv_c(enum blas_order_type order,
  *        Triangular Banded matrix
  *
  * x      (input/output) void*
- *           Array of length n.
+ *        Array of length n.
  *
  * incx   (input) int
- *           The stride used to access components x[i].
+ *        The stride used to access components x[i].
  *
  */
 {

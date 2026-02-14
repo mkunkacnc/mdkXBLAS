@@ -46,10 +46,10 @@ void BLAS_dtrsv_s(enum blas_order_type order,
  *        Triangular matrix
  *
  * x      (input/output) double*
- *           Array of length n.
+ *        Array of length n.
  *
  * incx   (input) int
- *           The stride used to access components x[i].
+ *        The stride used to access components x[i].
  *
  */
 {
