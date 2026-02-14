@@ -13,7 +13,7 @@ extern void xerbla_array(const char *, const int *, const int *);
 void BLAS_error(const char *rname,
                 int iflag,
                 int ival,
-                char *form,
+                const char *form,
                 ...)
 /*
  * Argument

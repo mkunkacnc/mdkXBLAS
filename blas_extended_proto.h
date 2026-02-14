@@ -2116,7 +2116,7 @@ void BLAS_zgbmv2_d_d_x(enum blas_order_type order, enum blas_trans_type trans,
 
 
 int BLAS_fpinfo_x(enum blas_cmach_type cmach, enum blas_prec_type prec);
-void BLAS_error(const char *rname, int iflag, int ival, char *form, ...);
+void BLAS_error(const char *rname, int iflag, int ival, const char *form, ...);
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus
