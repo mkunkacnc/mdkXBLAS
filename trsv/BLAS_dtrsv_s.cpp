@@ -53,7 +53,7 @@ void BLAS_dtrsv_s(enum blas_order_type order,
  */
 {
 //static const char routine_name[] = "BLAS_dtrsv_s";
-#if 0
+#if 1
   XBLAS::trsv(order, uplo, trans, diag, n, alpha, T, ldt, x, incx);
 } /* end BLAS_dtrsv_s */
 #else
