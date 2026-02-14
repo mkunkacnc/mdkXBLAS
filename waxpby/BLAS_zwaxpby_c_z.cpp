@@ -2,7 +2,6 @@
 #include "blas_extended_private.h"
 #include "waxpby/XBLAS_waxpby.hpp"
 
-
 void BLAS_zwaxpby_c_z(int n,
                       const void *alpha,
                       const void *x,

@@ -2,7 +2,6 @@
 #include "blas_extended_private.h"
 #include "spmv/XBLAS_spmv.hpp"
 
-
 void BLAS_sspmv_x(enum blas_order_type order,
                   enum blas_uplo_type uplo,
                   int n,

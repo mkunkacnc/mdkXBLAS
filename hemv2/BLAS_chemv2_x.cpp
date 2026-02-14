@@ -1,6 +1,7 @@
 #include <blas_extended.h>
 #include <blas_extended_private.h>
 #include <blas_fpu.h>
+
 void BLAS_chemv2_x(enum blas_order_type order,
                    enum blas_uplo_type uplo,
                    int n,

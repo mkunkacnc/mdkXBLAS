@@ -3,7 +3,6 @@
 #include "blas_extended_private.h"
 #include "trsv/XBLAS_trsv.hpp"
 
-
 void BLAS_dtrsv_x(enum blas_order_type order,
                   enum blas_uplo_type uplo,
                   enum blas_trans_type trans,

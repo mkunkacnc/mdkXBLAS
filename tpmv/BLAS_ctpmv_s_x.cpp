@@ -2,7 +2,6 @@
 #include "blas_extended_private.h"
 #include "tpmv/XBLAS_tpmv.hpp"
 
-
 void BLAS_ctpmv_s_x(enum blas_order_type order,
                     enum blas_uplo_type uplo,
                     enum blas_trans_type trans,

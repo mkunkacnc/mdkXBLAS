@@ -2,7 +2,6 @@
 #include "blas_extended_private.h"
 #include "trmv/XBLAS_trmv.hpp"
 
-
 void BLAS_ztrmv_c(enum blas_order_type order,
                   enum blas_uplo_type uplo,
                   enum blas_trans_type trans,
