@@ -1,6 +1,7 @@
 #include <blas_extended.h>
 #include <blas_extended_private.h>
 #include <blas_fpu.h>
+#include "symv2/XBLAS_symv2.hpp"
 
 void BLAS_zsymv2_d_z(enum blas_order_type order,
                      enum blas_uplo_type uplo,
