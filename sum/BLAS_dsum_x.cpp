@@ -40,7 +40,7 @@ void BLAS_dsum_x(int n,
  */
 {
 //static const char routine_name[] = "BLAS_dsum_x";
-#if 0
+#if 1
   XBLAS::sum_x(n, x, incx, sum, prec);
 } /* end BLAS_dsum_x */
 #else
