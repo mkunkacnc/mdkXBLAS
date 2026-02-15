@@ -66,11 +66,6 @@ constexpr void gemv2(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_dgemv2_d_s";
-#if 0
-  XBLAS::gemv2(order, trans, m, n, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
-} /* end BLAS_dgemv2_d_s */
-#else
   static const char routine_name[] = "BLAS_dgemv2_d_s";
 
   int i, j;
@@ -291,7 +286,6 @@ constexpr void gemv2(enum blas_order_type order,
 
 
 }
-#endif
 
 //------------------
 } // namespace XBLAS

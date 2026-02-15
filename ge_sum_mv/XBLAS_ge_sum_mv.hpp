@@ -67,11 +67,6 @@ constexpr void ge_sum_mv(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_dge_sum_mv_d_s";
-#if 0
-  XBLAS::ge_sum_mv(order, m, n, alpha, a, lda, x, incx, beta, b, ldb, y, incy);
-} /* end BLAS_dge_sum_mv_d_s */
-#else
   /* Routine name */
   static const char routine_name[] = "BLAS_dge_sum_mv_d_s";
   int i, j;
@@ -382,8 +377,7 @@ constexpr void ge_sum_mv(enum blas_order_type order,
   }
 
 
-}                                /* end BLAS_dge_sum_mv_d_s */
-#endif
+} /* end XBLAS::ge_sum_mv */
 
 //------------------
 } // namespace XBLAS

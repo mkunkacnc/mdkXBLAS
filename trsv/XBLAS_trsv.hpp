@@ -58,11 +58,6 @@ constexpr void trsv(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_dtrsv_s";
-#if 0
-  XBLAS::trsv(order, uplo, trans, diag, n, alpha, T, ldt, x, incx);
-} /* end BLAS_dtrsv_s */
-#else
   static const char routine_name[] = "BLAS_dtrsv_s";
 
   int i, j;                        /* used to idx matrix */
@@ -261,7 +256,6 @@ constexpr void trsv(enum blas_order_type order,
     }
   }
 }
-#endif
 
 //------------------
 } // namespace XBLAS

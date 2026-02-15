@@ -76,11 +76,6 @@ constexpr void symm(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_dsymm_d_s";
-#if 0
-  XBLAS::symm(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
-} /* end BLAS_dsymm_d_s */
-#else
 
   /* Integer Index Variables */
   int i, j, k;
@@ -286,7 +281,6 @@ constexpr void symm(enum blas_order_type order,
 
 
 }
-#endif
 
 //------------------
 } // namespace XBLAS

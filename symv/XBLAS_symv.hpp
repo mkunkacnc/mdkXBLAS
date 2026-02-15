@@ -67,11 +67,6 @@ constexpr void symv(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_dsymv_d_s";
-#if 0
-  XBLAS::symv(order, uplo, n, alpha, a, lda, x, incx, beta, y, incy);
-} /* end BLAS_dsymv_d_s */
-#else
   /* Routine name */
   static const char routine_name[] = "BLAS_dsymv_d_s";
 
@@ -250,8 +245,7 @@ constexpr void symv(enum blas_order_type order,
 
 
 
-}                                /* end BLAS_dsymv_d_s */
-#endif
+} /* end XBLAS::symv */
 
 //------------------
 } // namespace XBLAS
