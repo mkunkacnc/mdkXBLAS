@@ -100,33 +100,29 @@ constexpr void dot(blas_conj_type conj,
   if constexpr (impl::is_complex_v<X>) {
     if (conj == blas_conj) {
       for (IdxType i = 0; i < n; ++i) {
-        PrdType prod = impl::mul<PrdType>(impl::Conj::func(x[ix]), y[iy]); /* prod = x[i]*y[i] */
-        sum += prod;                                                       /* sum = sum+prod */
+        sum += impl::mul<PrdType>(impl::Conj::func(x[ix]), y[iy]);
         ix += incx;
         iy += incy;
       } /* endfor */
     } else {
       /* do not conjugate */
       for (IdxType i = 0; i < n; ++i) {
-        PrdType prod = impl::mul<PrdType>(x[ix], y[iy]); /* prod = x[i]*y[i] */
-        sum += prod;                                     /* sum = sum+prod */
+        sum += impl::mul<PrdType>(x[ix], y[iy]);
         ix += incx;
         iy += incy;
       } /* endfor */
     }
   } else {
     for (IdxType i = 0; i < n; ++i) {
-      PrdType prod = impl::mul<PrdType>(x[ix], y[iy]); /* prod = x[i]*y[i] */
-      sum += prod;                                     /* sum = sum+prod */
+      sum += impl::mul<PrdType>(x[ix], y[iy]);
       ix += incx;
       iy += incy;
     } /* endfor */
   }
 
-  TmpType tmp1 = impl::mul<TmpType>(sum, alpha); /* tmp1 = sum*alpha */
-  TmpType tmp2 = impl::mul<TmpType>(r_v, beta);  /* tmp2 = r*beta */
-  tmp1 += tmp2;                                  /* tmp1 = tmp1+tmp2 */
-  *r = impl::to<T>(tmp1);                        /* r = tmp1 */
+  TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
+  TmpType tmp2 = impl::mul<TmpType>(r_v, beta);
+  *r = impl::add<T>(tmp1, tmp2);
 
   if constexpr (impl::uses_double_double_v<TmpType>) {
     FPU_FIX_STOP;

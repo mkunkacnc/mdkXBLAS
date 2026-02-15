@@ -142,16 +142,16 @@ constexpr void ge_sum_mv(blas_order_type order,
   if (alpha == T(0)) {
     if (beta == T(0)) {
       /* alpha, beta are 0 */
-      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
         y[yi] = T(0);
       }
     } else if (beta == T(1)) {
       /* alpha is 0, beta is 1 */
       IdxType bi = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
         PrdType sumB = impl::zero_v<PrdType>;
         IdxType bij = bi;
-        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
           sumB += impl::mul<PrdType>(b[bij], x[xi]);
           bij += incbij;
         }
@@ -162,10 +162,10 @@ constexpr void ge_sum_mv(blas_order_type order,
     } else {
       /* alpha is 0, beta not 1 nor 0 */
       IdxType bi = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
         PrdType sumB = impl::zero_v<PrdType>;
         IdxType bij = bi;
-        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
           sumB += impl::mul<PrdType>(b[bij], x[xi]);
           bij += incbij;
         }
@@ -179,10 +179,10 @@ constexpr void ge_sum_mv(blas_order_type order,
     if (beta == T(0)) {
       /* alpha is 1, beta is 0 */
       IdxType ai = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
         PrdType sumA = impl::zero_v<PrdType>;
         IdxType aij = ai;
-        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
           sumA += impl::mul<PrdType>(a[aij], x[xi]);
           aij += incaij;
         }
@@ -195,12 +195,12 @@ constexpr void ge_sum_mv(blas_order_type order,
       /* alpha is 1, beta is 1 */
       IdxType ai = 0;
       IdxType bi = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
         PrdType sumA = impl::zero_v<PrdType>;
         IdxType aij = ai;
         PrdType sumB = impl::zero_v<PrdType>;
         IdxType bij = bi;
-        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
           sumA += impl::mul<PrdType>(a[aij], x[xi]);
           aij += incaij;
           sumB += impl::mul<PrdType>(b[bij], x[xi]);
@@ -217,12 +217,12 @@ constexpr void ge_sum_mv(blas_order_type order,
       /* alpha is 1, beta is other */
       IdxType ai = 0;
       IdxType bi = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
         PrdType sumA = impl::zero_v<PrdType>;
         IdxType aij = ai;
         PrdType sumB = impl::zero_v<PrdType>;
         IdxType bij = bi;
-        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
           sumA += impl::mul<PrdType>(a[aij], x[xi]);
           aij += incaij;
           sumB += impl::mul<PrdType>(b[bij], x[xi]);
@@ -240,10 +240,10 @@ constexpr void ge_sum_mv(blas_order_type order,
     if (beta == T(0)) {
       /* alpha is other, beta is 0 */
       IdxType ai = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
         PrdType sumA = impl::zero_v<PrdType>;
         IdxType aij = ai;
-        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
           sumA += impl::mul<PrdType>(a[aij], x[xi]);
           aij += incaij;
         }
@@ -256,12 +256,12 @@ constexpr void ge_sum_mv(blas_order_type order,
       /* alpha is other, beta is 1 */
       IdxType ai = 0;
       IdxType bi = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
         PrdType sumA = impl::zero_v<PrdType>;
         IdxType aij = ai;
         PrdType sumB = impl::zero_v<PrdType>;
         IdxType bij = bi;
-        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
           sumA += impl::mul<PrdType>(a[aij], x[xi]);
           aij += incaij;
           sumB += impl::mul<PrdType>(b[bij], x[xi]);
@@ -278,12 +278,12 @@ constexpr void ge_sum_mv(blas_order_type order,
       /* most general form, alpha, beta are other */
       IdxType ai = 0;
       IdxType bi = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
         PrdType sumA = impl::zero_v<PrdType>;
         IdxType aij = ai;
         PrdType sumB = impl::zero_v<PrdType>;
         IdxType bij = bi;
-        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
           sumA += impl::mul<PrdType>(a[aij], x[xi]);
           aij += incaij;
           sumB += impl::mul<PrdType>(b[bij], x[xi]);

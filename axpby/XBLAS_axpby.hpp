@@ -81,8 +81,7 @@ constexpr void axpby(IdxType n,
   for (IdxType i = 0; i < n; ++i) {
     TmpType tmpx = impl::mul<TmpType>(alpha, x[ix]); /* tmpx = alpha * x[ix] */
     TmpType tmpy = impl::mul<TmpType>(beta, y[iy]);  /* tmpy = beta * y[iy] */
-    tmpy += tmpx;
-    y[iy] = impl::to<T>(tmpy);
+    y[iy] = impl::add<T>(tmpx, tmpy);
     ix += incx;
     iy += incy;
   } /* endfor */

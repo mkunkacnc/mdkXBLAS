@@ -220,21 +220,21 @@ constexpr void gbmv(blas_order_type order,
   IdxType ai = astart;
   IdxType iy = ky;
 
-  for (IdxType i = 0; i < leny; i++) {
+  for (IdxType i = 0; i < leny; ++i) {
     PrdType sum = impl::zero_v<PrdType>;
     IdxType aij = ai;
     IdxType jx = kx;
 
     if constexpr (impl::is_complex_v<A>) {
       if (trans == blas_conj_trans) {
-        for (IdxType j = ra - la; j >= 0; j--) {
+        for (IdxType j = ra - la; j >= 0; --j) {
           PrdType prod = impl::mul<PrdType>(x[jx], impl::Conj::func(a[aij]));
           sum += prod;
           aij += incaij;
           jx += incx;
         }
       } else {
-        for (IdxType j = ra - la; j >= 0; j--) {
+        for (IdxType j = ra - la; j >= 0; --j) {
           PrdType prod = impl::mul<PrdType>(x[jx], a[aij]);
           sum += prod;
           aij += incaij;
@@ -242,7 +242,7 @@ constexpr void gbmv(blas_order_type order,
         }
       }
     } else {
-      for (IdxType j = ra - la; j >= 0; j--) {
+      for (IdxType j = ra - la; j >= 0; --j) {
         PrdType prod = impl::mul<PrdType>(x[jx], a[aij]);
         sum += prod;
         aij += incaij;
@@ -257,12 +257,12 @@ constexpr void gbmv(blas_order_type order,
     if (i >= lbound) {
       kx += incx;
       ai += incai2;
-      la++;
+      ++la;
     } else {
       ai += incai1;
     }
     if (i < rbound) {
-      ra++;
+      ++ra;
     }
   }
 

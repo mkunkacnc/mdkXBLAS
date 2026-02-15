@@ -216,7 +216,7 @@ constexpr void gbmv2(blas_order_type order,
   IdxType ai = astart;
   IdxType iy = iy0;
 
-  for (IdxType i = 0; i < leny; i++) {
+  for (IdxType i = 0; i < leny; ++i) {
     PrdType sum1 = impl::zero_v<PrdType>;
     PrdType sum2 = impl::zero_v<PrdType>;
     IdxType aij = ai;
@@ -224,31 +224,25 @@ constexpr void gbmv2(blas_order_type order,
 
     if constexpr (impl::is_complex_v<A>) {
       if (trans != blas_conj_trans) {
-        for (IdxType j = ra - la; j >= 0; j--) {
-          PrdType prod = impl::mul<PrdType>(head_x[jx], a[aij]);
-          sum1 += prod;
-          prod = impl::mul<PrdType>(tail_x[jx], a[aij]);
-          sum2 += prod;
+        for (IdxType j = ra - la; j >= 0; --j) {
+          sum1 += impl::mul<PrdType>(a[aij], head_x[jx]);
+          sum2 += impl::mul<PrdType>(a[aij], tail_x[jx]);
           aij += incaij;
           jx += incx;
         }
       } else {
-        for (IdxType j = ra - la; j >= 0; j--) {
+        for (IdxType j = ra - la; j >= 0; --j) {
           A a_elem = impl::Conj::func(a[aij]);
-          PrdType prod = impl::mul<PrdType>(head_x[jx], a_elem);
-          sum1 += prod;
-          prod = impl::mul<PrdType>(tail_x[jx], a_elem);
-          sum2 += prod;
+          sum1 += impl::mul<PrdType>(a_elem, head_x[jx]);
+          sum2 += impl::mul<PrdType>(a_elem, tail_x[jx]);
           aij += incaij;
           jx += incx;
         }
       }
     } else {
-      for (IdxType j = ra - la; j >= 0; j--) {
-        PrdType prod = impl::mul<PrdType>(head_x[jx], a[aij]);
-        sum1 += prod;
-        prod = impl::mul<PrdType>(tail_x[jx], a[aij]);
-        sum2 += prod;
+      for (IdxType j = ra - la; j >= 0; --j) {
+        sum1 += impl::mul<PrdType>(a[aij], head_x[jx]);
+        sum2 += impl::mul<PrdType>(a[aij], tail_x[jx]);
         aij += incaij;
         jx += incx;
       }
@@ -264,12 +258,12 @@ constexpr void gbmv2(blas_order_type order,
     if (i >= lbound) {
       ix0 += incx;
       ai += incai2;
-      la++;
+      ++la;
     } else {
       ai += incai1;
     }
     if (i < rbound) {
-      ra++;
+      ++ra;
     }
   }
 
