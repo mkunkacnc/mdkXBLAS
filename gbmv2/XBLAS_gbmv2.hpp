@@ -226,9 +226,9 @@ constexpr void gbmv2(blas_order_type order,
       if (trans != blas_conj_trans) {
         for (IdxType j = ra - la; j >= 0; j--) {
           PrdType prod = impl::mul<PrdType>(head_x[jx], a[aij]);
-          sum1 = sum1 + prod;
+          sum1 += prod;
           prod = impl::mul<PrdType>(tail_x[jx], a[aij]);
-          sum2 = sum2 + prod;
+          sum2 += prod;
           aij += incaij;
           jx += incx;
         }
@@ -236,9 +236,9 @@ constexpr void gbmv2(blas_order_type order,
         for (IdxType j = ra - la; j >= 0; j--) {
           A a_elem = impl::Conj::func(a[aij]);
           PrdType prod = impl::mul<PrdType>(head_x[jx], a_elem);
-          sum1 = sum1 + prod;
+          sum1 += prod;
           prod = impl::mul<PrdType>(tail_x[jx], a_elem);
-          sum2 = sum2 + prod;
+          sum2 += prod;
           aij += incaij;
           jx += incx;
         }
@@ -246,9 +246,9 @@ constexpr void gbmv2(blas_order_type order,
     } else {
       for (IdxType j = ra - la; j >= 0; j--) {
         PrdType prod = impl::mul<PrdType>(head_x[jx], a[aij]);
-        sum1 = sum1 + prod;
+        sum1 += prod;
         prod = impl::mul<PrdType>(tail_x[jx], a[aij]);
-        sum2 = sum2 + prod;
+        sum2 += prod;
         aij += incaij;
         jx += incx;
       }

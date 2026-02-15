@@ -101,7 +101,7 @@ constexpr void dot(blas_conj_type conj,
     if (conj == blas_conj) {
       for (IdxType i = 0; i < n; ++i) {
         PrdType prod = impl::mul<PrdType>(impl::Conj::func(x[ix]), y[iy]); /* prod = x[i]*y[i] */
-        sum = sum + prod;                                                  /* sum = sum+prod */
+        sum += prod;                                                       /* sum = sum+prod */
         ix += incx;
         iy += incy;
       } /* endfor */
@@ -109,7 +109,7 @@ constexpr void dot(blas_conj_type conj,
       /* do not conjugate */
       for (IdxType i = 0; i < n; ++i) {
         PrdType prod = impl::mul<PrdType>(x[ix], y[iy]); /* prod = x[i]*y[i] */
-        sum = sum + prod;                                /* sum = sum+prod */
+        sum += prod;                                     /* sum = sum+prod */
         ix += incx;
         iy += incy;
       } /* endfor */
@@ -117,7 +117,7 @@ constexpr void dot(blas_conj_type conj,
   } else {
     for (IdxType i = 0; i < n; ++i) {
       PrdType prod = impl::mul<PrdType>(x[ix], y[iy]); /* prod = x[i]*y[i] */
-      sum = sum + prod;                                /* sum = sum+prod */
+      sum += prod;                                     /* sum = sum+prod */
       ix += incx;
       iy += incy;
     } /* endfor */

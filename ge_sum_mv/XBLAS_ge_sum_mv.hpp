@@ -8,96 +8,105 @@
 namespace XBLAS {
 //---------------
 
-inline
-constexpr void ge_sum_mv(enum blas_order_type order,
-                         int m,
-                         int n,
-                         double alpha,
-                         const double *a,
-                         int lda,
-                         const float *x,
-                         int incx,
-                         double beta,
-                         const double *b,
-                         int ldb,
-                         double *y,
-                         int incy)
+template<typename T,
+         typename A,
+         typename X,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<A, T> &&
+          impl::size_le_v<X, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void ge_sum_mv(blas_order_type order,
+                         IdxType m,
+                         IdxType n,
+                         T alpha,
+                         const A *a,
+                         IdxType lda,
+                         const X *x,
+                         IdxType incx,
+                         T beta,
+                         const A *b,
+                         IdxType ldb,
+                         T *y,
+                         IdxType incy)
 /*
  * Purpose
  * =======
  *
  * Computes y = alpha * A * x + beta * B * y,
- *     where A, B are general matricies.
+ *     where A, B are general matrices.
  *
  * Arguments
  * =========
  *
- * order  (input) enum blas_order_type
+ * order  (input) blas_order_type
  *        Order of A; row or column major
  *
- * m      (input) int
+ * m      (input) IdxType
  *        Row Dimension of A, B, length of output vector y
  *
- * n      (input) int
+ * n      (input) IdxType
  *        Column Dimension of A, B and the length of vector x
  *
- * alpha  (input) double
+ * alpha  (input) T
  *
- * A      (input) const double*
+ * A      (input) const A*
  *
- * lda    (input) int
+ * lda    (input) IdxType
  *        Leading dimension of A
  *
- * x      (input) const float*
+ * x      (input) const X*
  *
- * incx   (input) int
+ * incx   (input) IdxType
  *        The stride for vector x.
  *
- * beta   (input) double
+ * beta   (input) T
  *
- * b      (input) const double*
+ * b      (input) const A*
  *
- * ldb    (input) int
+ * ldb    (input) IdxType
  *        Leading dimension of B
  *
- * y      (input/output) double*
+ * y      (input/output) T*
  *
- * incy   (input) int
+ * incy   (input) IdxType
  *        The stride for vector y.
  *
  */
 {
-  /* Routine name */
-  static const char routine_name[] = "BLAS_dge_sum_mv_d_s";
-  int i, j;
-  int xi, yi;
-  int x_starti, y_starti, incxi, incyi;
-  int lda_min;
-  int ai;
-  int incai;
-  int aij;
-  int incaij;
-  int bi;
-  int incbi;
-  int bij;
-  int incbij;
+  static const char routine_name[] = "XBLAS::ge_sum_mv";
 
-  const double *a_i = a;
-  const double *b_i = b;
-  const float *x_i = x;
-  double *y_i = y;
-  double alpha_i = alpha;
-  double beta_i = beta;
-  double a_elem;
-  double b_elem;
-  float x_elem;
-  double prod;
-  double sumA;
-  double sumB;
-  double tmp1;
-  double tmp2;
+  using PrdType = impl::get_inner_type_t<A, X, TmpType>;
 
+  IdxType i, j;
+  IdxType xi, yi;
+  IdxType x_starti, y_starti, incxi, incyi;
+  IdxType lda_min;
+  IdxType ai;
+  IdxType incai;
+  IdxType aij;
+  IdxType incaij;
+  IdxType bi;
+  IdxType incbi;
+  IdxType bij;
+  IdxType incbij;
 
+  const A *a_i = a;
+  const A *b_i = b;
+  const X *x_i = x;
+  T *y_i = y;
+  T alpha_i = alpha;
+  T beta_i = beta;
+  A a_elem;
+  A b_elem;
+  X x_elem;
+  PrdType prod;
+  PrdType sumA;
+  PrdType sumB;
+  TmpType tmp1;
+  TmpType tmp2;
+  FPU_FIX_DECL;
 
   /* m is number of rows */
   /* n is number of columns */
@@ -105,17 +114,18 @@ constexpr void ge_sum_mv(enum blas_order_type order,
   if (m == 0 || n == 0)
     return;
 
-
   /* all error calls */
   if (order == blas_rowmajor) {
     lda_min = n;
-    incai = lda;                /* row stride */
+    incai = lda; /* row stride */
     incbi = ldb;
-    incbij = incaij = 1;        /* column stride */
+    incbij = 1; /* column stride */
+    incaij = 1;
   } else if (order == blas_colmajor) {
     lda_min = m;
-    incai = incbi = 1;                /*row stride */
-    incaij = lda;                /* column stride */
+    incai = 1; /*row stride */
+    incbi = 1;
+    incaij = lda; /* column stride */
     incbij = ldb;
   } else {
     /* error, order not blas_colmajor not blas_rowmajor */
@@ -139,12 +149,6 @@ constexpr void ge_sum_mv(enum blas_order_type order,
   incxi = incx;
   incyi = incy;
 
-
-
-
-
-
-
   if (incxi > 0)
     x_starti = 0;
   else
@@ -155,101 +159,84 @@ constexpr void ge_sum_mv(enum blas_order_type order,
   else
     y_starti = (1 - m) * incyi;
 
-
-
-  if (alpha_i == 0.0) {
-    if (beta_i == 0.0) {
-      /* alpha, beta are 0.0 */
+  if (alpha_i == T(0)) {
+    if (beta_i == T(0)) {
+      /* alpha, beta are 0 */
       for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        y_i[yi] = 0.0;
+        y_i[yi] = T(0);
       }
-    } else if (beta_i == 1.0) {
-      /* alpha is 0.0, beta is 1.0 */
-
-
+    } else if (beta_i == T(1)) {
+      /* alpha is 0, beta is 1 */
       bi = 0;
       for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-
-        sumB = 0.0;
+        sumB = impl::zero_v<PrdType>;
         bij = bi;
         for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
           x_elem = x_i[xi];
-
           b_elem = b_i[bij];
-          prod = b_elem * x_elem;
+          prod = impl::mul<PrdType>(b_elem, x_elem);
           sumB = sumB + prod;
           bij += incbij;
         }
         /* now put the result into y_i */
-        y_i[yi] = sumB;
-
+        y_i[yi] = impl::to<T>(sumB);
         bi += incbi;
       }
     } else {
-      /* alpha is 0.0, beta not 1.0 nor 0.0 */
-
-
+      /* alpha is 0, beta not 1 nor 0 */
       bi = 0;
       for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-
-        sumB = 0.0;
+        sumB = impl::zero_v<PrdType>;
         bij = bi;
         for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
           x_elem = x_i[xi];
-
           b_elem = b_i[bij];
-          prod = b_elem * x_elem;
+          prod = impl::mul<PrdType>(b_elem, x_elem);
           sumB = sumB + prod;
           bij += incbij;
         }
         /* now put the result into y_i */
-        tmp1 = sumB * beta_i;
-        y_i[yi] = tmp1;
-
+        tmp1 = impl::mul<TmpType>(sumB, beta_i);
+        y_i[yi] = impl::to<T>(tmp1);
         bi += incbi;
       }
     }
-  } else if (alpha_i == 1.0) {
-    if (beta_i == 0.0) {
-      /* alpha is 1.0, beta is 0.0 */
-
+  } else if (alpha_i == T(1)) {
+    if (beta_i == T(0)) {
+      /* alpha is 1, beta is 0 */
       ai = 0;
-
       for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        sumA = 0.0;
+        sumA = impl::zero_v<PrdType>;
         aij = ai;
-
         for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
           x_elem = x_i[xi];
           a_elem = a_i[aij];
-          prod = a_elem * x_elem;
+          prod = impl::mul<PrdType>(a_elem, x_elem);
           sumA = sumA + prod;
           aij += incaij;
-
         }
         /* now put the result into y_i */
-        y_i[yi] = sumA;
+        y_i[yi] = impl::to<T>(sumA);
         ai += incai;
 
       }
-    } else if (beta_i == 1.0) {
-      /* alpha is 1.0, beta is 1.0 */
-
+    } else if (beta_i == T(1)) {
+      /* alpha is 1, beta is 1 */
       ai = 0;
       bi = 0;
       for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        sumA = 0.0;
+        sumA = impl::zero_v<PrdType>;
         aij = ai;
-        sumB = 0.0;
+        sumB = impl::zero_v<PrdType>;
         bij = bi;
         for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
           x_elem = x_i[xi];
           a_elem = a_i[aij];
-          prod = a_elem * x_elem;
+          prod = impl::mul<PrdType>(a_elem, x_elem);
           sumA = sumA + prod;
           aij += incaij;
           b_elem = b_i[bij];
-          prod = b_elem * x_elem;
+          prod = impl::mul<PrdType>(b_elem, x_elem);
           sumB = sumB + prod;
           bij += incbij;
         }
@@ -257,126 +244,116 @@ constexpr void ge_sum_mv(enum blas_order_type order,
         tmp1 = sumA;
         tmp2 = sumB;
         tmp1 = tmp1 + tmp2;
-        y_i[yi] = tmp1;
+        y_i[yi] = impl::to<T>(tmp1);
         ai += incai;
         bi += incbi;
       }
     } else {
-      /* alpha is 1.0, beta is other */
-
+      /* alpha is 1, beta is other */
       ai = 0;
       bi = 0;
       for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        sumA = 0.0;
+        sumA = impl::zero_v<PrdType>;
         aij = ai;
-        sumB = 0.0;
+        sumB = impl::zero_v<PrdType>;
         bij = bi;
         for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
           x_elem = x_i[xi];
           a_elem = a_i[aij];
-          prod = a_elem * x_elem;
+          prod = impl::mul<PrdType>(a_elem, x_elem);
           sumA = sumA + prod;
           aij += incaij;
           b_elem = b_i[bij];
-          prod = b_elem * x_elem;
+          prod = impl::mul<PrdType>(b_elem, x_elem);
           sumB = sumB + prod;
           bij += incbij;
         }
         /* now put the result into y_i */
         tmp1 = sumA;
-        tmp2 = sumB * beta_i;
+        tmp2 = impl::mul<TmpType>(sumB, beta_i);
         tmp1 = tmp1 + tmp2;
-        y_i[yi] = tmp1;
+        y_i[yi] = impl::to<T>(tmp1);
         ai += incai;
         bi += incbi;
       }
     }
   } else {
-    if (beta_i == 0.0) {
-      /* alpha is other, beta is 0.0 */
-
+    if (beta_i == T(0)) {
+      /* alpha is other, beta is 0 */
       ai = 0;
-
       for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        sumA = 0.0;
+        sumA = impl::zero_v<PrdType>;
         aij = ai;
-
         for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
           x_elem = x_i[xi];
           a_elem = a_i[aij];
-          prod = a_elem * x_elem;
+          prod = impl::mul<PrdType>(a_elem, x_elem);
           sumA = sumA + prod;
           aij += incaij;
-
         }
         /* now put the result into y_i */
-        tmp1 = sumA * alpha_i;
-        y_i[yi] = tmp1;
+        tmp1 = impl::mul<TmpType>(sumA, alpha_i);
+        y_i[yi] = impl::to<T>(tmp1);
         ai += incai;
-
       }
-    } else if (beta_i == 1.0) {
-      /* alpha is other, beta is 1.0 */
-
+    } else if (beta_i == T(1)) {
+      /* alpha is other, beta is 1 */
       ai = 0;
       bi = 0;
       for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        sumA = 0.0;
+        sumA = impl::zero_v<PrdType>;
         aij = ai;
-        sumB = 0.0;
+        sumB = impl::zero_v<PrdType>;
         bij = bi;
         for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
           x_elem = x_i[xi];
           a_elem = a_i[aij];
-          prod = a_elem * x_elem;
+          prod = impl::mul<PrdType>(a_elem, x_elem);
           sumA = sumA + prod;
           aij += incaij;
           b_elem = b_i[bij];
-          prod = b_elem * x_elem;
+          prod = impl::mul<PrdType>(b_elem, x_elem);
           sumB = sumB + prod;
           bij += incbij;
         }
         /* now put the result into y_i */
-        tmp1 = sumA * alpha_i;
+        tmp1 = impl::mul<TmpType>(sumA, alpha_i);
         tmp2 = sumB;
         tmp1 = tmp1 + tmp2;
-        y_i[yi] = tmp1;
+        y_i[yi] = impl::to<T>(tmp1);
         ai += incai;
         bi += incbi;
       }
     } else {
       /* most general form, alpha, beta are other */
-
       ai = 0;
       bi = 0;
       for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        sumA = 0.0;
+        sumA = impl::zero_v<PrdType>;
         aij = ai;
-        sumB = 0.0;
+        sumB = impl::zero_v<PrdType>;
         bij = bi;
         for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
           x_elem = x_i[xi];
           a_elem = a_i[aij];
-          prod = a_elem * x_elem;
+          prod = impl::mul<PrdType>(a_elem, x_elem);
           sumA = sumA + prod;
           aij += incaij;
           b_elem = b_i[bij];
-          prod = b_elem * x_elem;
+          prod = impl::mul<PrdType>(b_elem, x_elem);
           sumB = sumB + prod;
           bij += incbij;
         }
         /* now put the result into y_i */
-        tmp1 = sumA * alpha_i;
-        tmp2 = sumB * beta_i;
+        tmp1 = impl::mul<TmpType>(sumA, alpha_i);
+        tmp2 = impl::mul<TmpType>(sumB, beta_i);
         tmp1 = tmp1 + tmp2;
-        y_i[yi] = tmp1;
+        y_i[yi] = impl::to<T>(tmp1);
         ai += incai;
         bi += incbi;
       }
     }
   }
-
-
 } /* end XBLAS::ge_sum_mv */
 
 //-----------------
@@ -401,7 +378,7 @@ constexpr void ge_sum_mv_x(enum blas_order_type order,
  * =======
  *
  * Computes y = alpha * A * x + beta * B * y,
- *     where A, B are general matricies.
+ *     where A, B are general matrices.
  *
  * Arguments
  * =========

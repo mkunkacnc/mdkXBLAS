@@ -20,7 +20,7 @@ void BLAS_dge_sum_mv_s_s(enum blas_order_type order,
  * =======
  *
  * Computes y = alpha * A * x + beta * B * y,
- *     where A, B are general matricies.
+ *     where A, B are general matrices.
  *
  * Arguments
  * =========
@@ -61,7 +61,7 @@ void BLAS_dge_sum_mv_s_s(enum blas_order_type order,
  */
 {
 //static const char routine_name[] = "BLAS_dge_sum_mv_s_s";
-#if 0
+#if 1
   XBLAS::ge_sum_mv(order, m, n, alpha, a, lda, x, incx, beta, b, ldb, y, incy);
 } /* end BLAS_dge_sum_mv_s_s */
 #else

@@ -20,7 +20,7 @@ void BLAS_zge_sum_mv_d_z(enum blas_order_type order,
  * =======
  *
  * Computes y = alpha * A * x + beta * B * y,
- *     where A, B are general matricies.
+ *     where A, B are general matrices.
  *
  * Arguments
  * =========
