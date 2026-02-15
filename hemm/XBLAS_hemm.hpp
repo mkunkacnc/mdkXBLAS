@@ -76,7 +76,7 @@ constexpr void hemm(enum blas_order_type order,
  *
  */
 {
-  static const char routine_name[] = "BLAS_zhemm_c_c";
+  //static const char routine_name[] = "BLAS_zhemm_c_c";
   /* Integer Index Variables */
   int i, j, k;
 
