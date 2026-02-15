@@ -79,33 +79,6 @@ constexpr void ge_sum_mv(blas_order_type order,
 
   using PrdType = impl::get_inner_type_t<A, X, TmpType>;
 
-  IdxType i, j;
-  IdxType xi, yi;
-  IdxType x_starti, y_starti, incxi, incyi;
-  IdxType lda_min;
-  IdxType ai;
-  IdxType incai;
-  IdxType aij;
-  IdxType incaij;
-  IdxType bi;
-  IdxType incbi;
-  IdxType bij;
-  IdxType incbij;
-
-  const A *a_i = a;
-  const A *b_i = b;
-  const X *x_i = x;
-  T *y_i = y;
-  T alpha_i = alpha;
-  T beta_i = beta;
-  A a_elem;
-  A b_elem;
-  X x_elem;
-  PrdType prod;
-  PrdType sumA;
-  PrdType sumB;
-  TmpType tmp1;
-  TmpType tmp2;
   FPU_FIX_DECL;
 
   /* m is number of rows */
@@ -115,12 +88,13 @@ constexpr void ge_sum_mv(blas_order_type order,
     return;
 
   /* all error calls */
+  IdxType lda_min, incai, incbi, incaij, incbij;
   if (order == blas_rowmajor) {
     lda_min = n;
     incai = lda; /* row stride */
     incbi = ldb;
-    incbij = 1; /* column stride */
-    incaij = 1;
+    incaij = 1; /* column stride */
+    incbij = 1;
   } else if (order == blas_colmajor) {
     lda_min = m;
     incai = 1; /*row stride */
@@ -146,213 +120,187 @@ constexpr void ge_sum_mv(blas_order_type order,
   else if (incy == 0)
     BLAS_error(routine_name, -13, incy, 0);
 
-  incxi = incx;
-  incyi = incy;
+  IdxType incxi = incx;
+  IdxType incyi = incy;
 
+  IdxType x_starti;
   if (incxi > 0)
     x_starti = 0;
   else
     x_starti = (1 - n) * incxi;
 
+  IdxType y_starti;
   if (incyi > 0)
     y_starti = 0;
   else
     y_starti = (1 - m) * incyi;
 
-  if (alpha_i == T(0)) {
-    if (beta_i == T(0)) {
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_START;
+  }
+
+  if (alpha == T(0)) {
+    if (beta == T(0)) {
       /* alpha, beta are 0 */
-      for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        y_i[yi] = T(0);
+      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+        y[yi] = T(0);
       }
-    } else if (beta_i == T(1)) {
+    } else if (beta == T(1)) {
       /* alpha is 0, beta is 1 */
-      bi = 0;
-      for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        sumB = impl::zero_v<PrdType>;
-        bij = bi;
-        for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-          x_elem = x_i[xi];
-          b_elem = b_i[bij];
-          prod = impl::mul<PrdType>(b_elem, x_elem);
-          sumB = sumB + prod;
+      IdxType bi = 0;
+      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+        PrdType sumB = impl::zero_v<PrdType>;
+        IdxType bij = bi;
+        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+          sumB += impl::mul<PrdType>(b[bij], x[xi]);
           bij += incbij;
         }
-        /* now put the result into y_i */
-        y_i[yi] = impl::to<T>(sumB);
+        /* now put the result into y */
+        y[yi] = impl::to<T>(sumB);
         bi += incbi;
       }
     } else {
       /* alpha is 0, beta not 1 nor 0 */
-      bi = 0;
-      for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        sumB = impl::zero_v<PrdType>;
-        bij = bi;
-        for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-          x_elem = x_i[xi];
-          b_elem = b_i[bij];
-          prod = impl::mul<PrdType>(b_elem, x_elem);
-          sumB = sumB + prod;
+      IdxType bi = 0;
+      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+        PrdType sumB = impl::zero_v<PrdType>;
+        IdxType bij = bi;
+        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+          sumB += impl::mul<PrdType>(b[bij], x[xi]);
           bij += incbij;
         }
-        /* now put the result into y_i */
-        tmp1 = impl::mul<TmpType>(sumB, beta_i);
-        y_i[yi] = impl::to<T>(tmp1);
+        /* now put the result into y */
+        TmpType tmp1 = impl::mul<TmpType>(sumB, beta);
+        y[yi] = impl::to<T>(tmp1);
         bi += incbi;
       }
     }
-  } else if (alpha_i == T(1)) {
-    if (beta_i == T(0)) {
+  } else if (alpha == T(1)) {
+    if (beta == T(0)) {
       /* alpha is 1, beta is 0 */
-      ai = 0;
-      for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        sumA = impl::zero_v<PrdType>;
-        aij = ai;
-        for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-          x_elem = x_i[xi];
-          a_elem = a_i[aij];
-          prod = impl::mul<PrdType>(a_elem, x_elem);
-          sumA = sumA + prod;
+      IdxType ai = 0;
+      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+        PrdType sumA = impl::zero_v<PrdType>;
+        IdxType aij = ai;
+        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+          sumA += impl::mul<PrdType>(a[aij], x[xi]);
           aij += incaij;
         }
-        /* now put the result into y_i */
-        y_i[yi] = impl::to<T>(sumA);
+        /* now put the result into y */
+        y[yi] = impl::to<T>(sumA);
         ai += incai;
 
       }
-    } else if (beta_i == T(1)) {
+    } else if (beta == T(1)) {
       /* alpha is 1, beta is 1 */
-      ai = 0;
-      bi = 0;
-      for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        sumA = impl::zero_v<PrdType>;
-        aij = ai;
-        sumB = impl::zero_v<PrdType>;
-        bij = bi;
-        for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-          x_elem = x_i[xi];
-          a_elem = a_i[aij];
-          prod = impl::mul<PrdType>(a_elem, x_elem);
-          sumA = sumA + prod;
+      IdxType ai = 0;
+      IdxType bi = 0;
+      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+        PrdType sumA = impl::zero_v<PrdType>;
+        IdxType aij = ai;
+        PrdType sumB = impl::zero_v<PrdType>;
+        IdxType bij = bi;
+        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+          sumA += impl::mul<PrdType>(a[aij], x[xi]);
           aij += incaij;
-          b_elem = b_i[bij];
-          prod = impl::mul<PrdType>(b_elem, x_elem);
-          sumB = sumB + prod;
+          sumB += impl::mul<PrdType>(b[bij], x[xi]);
           bij += incbij;
         }
-        /* now put the result into y_i */
-        tmp1 = sumA;
-        tmp2 = sumB;
-        tmp1 = tmp1 + tmp2;
-        y_i[yi] = impl::to<T>(tmp1);
+        /* now put the result into y */
+        TmpType tmp1 = sumA;
+        TmpType tmp2 = sumB;
+        y[yi] = impl::add<T>(tmp1, tmp2);
         ai += incai;
         bi += incbi;
       }
     } else {
       /* alpha is 1, beta is other */
-      ai = 0;
-      bi = 0;
-      for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        sumA = impl::zero_v<PrdType>;
-        aij = ai;
-        sumB = impl::zero_v<PrdType>;
-        bij = bi;
-        for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-          x_elem = x_i[xi];
-          a_elem = a_i[aij];
-          prod = impl::mul<PrdType>(a_elem, x_elem);
-          sumA = sumA + prod;
+      IdxType ai = 0;
+      IdxType bi = 0;
+      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+        PrdType sumA = impl::zero_v<PrdType>;
+        IdxType aij = ai;
+        PrdType sumB = impl::zero_v<PrdType>;
+        IdxType bij = bi;
+        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+          sumA += impl::mul<PrdType>(a[aij], x[xi]);
           aij += incaij;
-          b_elem = b_i[bij];
-          prod = impl::mul<PrdType>(b_elem, x_elem);
-          sumB = sumB + prod;
+          sumB += impl::mul<PrdType>(b[bij], x[xi]);
           bij += incbij;
         }
-        /* now put the result into y_i */
-        tmp1 = sumA;
-        tmp2 = impl::mul<TmpType>(sumB, beta_i);
-        tmp1 = tmp1 + tmp2;
-        y_i[yi] = impl::to<T>(tmp1);
+        /* now put the result into y */
+        TmpType tmp1 = sumA;
+        TmpType tmp2 = impl::mul<TmpType>(sumB, beta);
+        y[yi] = impl::add<T>(tmp1, tmp2);
         ai += incai;
         bi += incbi;
       }
     }
   } else {
-    if (beta_i == T(0)) {
+    if (beta == T(0)) {
       /* alpha is other, beta is 0 */
-      ai = 0;
-      for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        sumA = impl::zero_v<PrdType>;
-        aij = ai;
-        for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-          x_elem = x_i[xi];
-          a_elem = a_i[aij];
-          prod = impl::mul<PrdType>(a_elem, x_elem);
-          sumA = sumA + prod;
+      IdxType ai = 0;
+      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+        PrdType sumA = impl::zero_v<PrdType>;
+        IdxType aij = ai;
+        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+          sumA += impl::mul<PrdType>(a[aij], x[xi]);
           aij += incaij;
         }
-        /* now put the result into y_i */
-        tmp1 = impl::mul<TmpType>(sumA, alpha_i);
-        y_i[yi] = impl::to<T>(tmp1);
+        /* now put the result into y */
+        TmpType tmp1 = impl::mul<TmpType>(sumA, alpha);
+        y[yi] = impl::to<T>(tmp1);
         ai += incai;
       }
-    } else if (beta_i == T(1)) {
+    } else if (beta == T(1)) {
       /* alpha is other, beta is 1 */
-      ai = 0;
-      bi = 0;
-      for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        sumA = impl::zero_v<PrdType>;
-        aij = ai;
-        sumB = impl::zero_v<PrdType>;
-        bij = bi;
-        for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-          x_elem = x_i[xi];
-          a_elem = a_i[aij];
-          prod = impl::mul<PrdType>(a_elem, x_elem);
-          sumA = sumA + prod;
+      IdxType ai = 0;
+      IdxType bi = 0;
+      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+        PrdType sumA = impl::zero_v<PrdType>;
+        IdxType aij = ai;
+        PrdType sumB = impl::zero_v<PrdType>;
+        IdxType bij = bi;
+        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+          sumA += impl::mul<PrdType>(a[aij], x[xi]);
           aij += incaij;
-          b_elem = b_i[bij];
-          prod = impl::mul<PrdType>(b_elem, x_elem);
-          sumB = sumB + prod;
+          sumB += impl::mul<PrdType>(b[bij], x[xi]);
           bij += incbij;
         }
-        /* now put the result into y_i */
-        tmp1 = impl::mul<TmpType>(sumA, alpha_i);
-        tmp2 = sumB;
-        tmp1 = tmp1 + tmp2;
-        y_i[yi] = impl::to<T>(tmp1);
+        /* now put the result into y */
+        TmpType tmp1 = impl::mul<TmpType>(sumA, alpha);
+        TmpType tmp2 = sumB;
+        y[yi] = impl::add<T>(tmp1, tmp2);
         ai += incai;
         bi += incbi;
       }
     } else {
       /* most general form, alpha, beta are other */
-      ai = 0;
-      bi = 0;
-      for (i = 0, yi = y_starti; i < m; i++, yi += incyi) {
-        sumA = impl::zero_v<PrdType>;
-        aij = ai;
-        sumB = impl::zero_v<PrdType>;
-        bij = bi;
-        for (j = 0, xi = x_starti; j < n; j++, xi += incxi) {
-          x_elem = x_i[xi];
-          a_elem = a_i[aij];
-          prod = impl::mul<PrdType>(a_elem, x_elem);
-          sumA = sumA + prod;
+      IdxType ai = 0;
+      IdxType bi = 0;
+      for (IdxType i = 0, yi = y_starti; i < m; i++, yi += incyi) {
+        PrdType sumA = impl::zero_v<PrdType>;
+        IdxType aij = ai;
+        PrdType sumB = impl::zero_v<PrdType>;
+        IdxType bij = bi;
+        for (IdxType j = 0, xi = x_starti; j < n; j++, xi += incxi) {
+          sumA += impl::mul<PrdType>(a[aij], x[xi]);
           aij += incaij;
-          b_elem = b_i[bij];
-          prod = impl::mul<PrdType>(b_elem, x_elem);
-          sumB = sumB + prod;
+          sumB += impl::mul<PrdType>(b[bij], x[xi]);
           bij += incbij;
         }
-        /* now put the result into y_i */
-        tmp1 = impl::mul<TmpType>(sumA, alpha_i);
-        tmp2 = impl::mul<TmpType>(sumB, beta_i);
-        tmp1 = tmp1 + tmp2;
-        y_i[yi] = impl::to<T>(tmp1);
+        /* now put the result into y */
+        TmpType tmp1 = impl::mul<TmpType>(sumA, alpha);
+        TmpType tmp2 = impl::mul<TmpType>(sumB, beta);
+        y[yi] = impl::add<T>(tmp1, tmp2);
         ai += incai;
         bi += incbi;
       }
     }
+  }
+
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_STOP;
   }
 } /* end XBLAS::ge_sum_mv */
 
