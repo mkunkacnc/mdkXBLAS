@@ -56,20 +56,6 @@ constexpr void hpmv(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_zhpmv_c_c";
-#if 0
-  XBLAS::hpmv(order,
-              uplo,
-              n,
-              *static_cast<const std::complex<double> *>(alpha),
-              static_cast<const std::complex<float> *>(ap),
-              static_cast<const std::complex<float> *>(x),
-              incx,
-              *static_cast<const std::complex<double> *>(beta),
-              static_cast<std::complex<double> *>(y),
-              incy);
-} /* end BLAS_zhpmv_c_c */
-#else
   static const char routine_name[] = "BLAS_zhpmv_c_c";
 
   {
@@ -1367,7 +1353,6 @@ constexpr void hpmv(enum blas_order_type order,
 
   }
 }
-#endif
 
 //------------------
 } // namespace XBLAS
