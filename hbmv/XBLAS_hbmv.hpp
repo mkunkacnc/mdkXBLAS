@@ -843,23 +843,6 @@ constexpr void hbmv_x(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_zhbmv_c_c_x";
-#if 0
-  XBLAS::hbmv_x(order,
-                uplo,
-                n,
-                k,
-                *static_cast<const std::complex<double> *>(alpha),
-                static_cast<const std::complex<float> *>(a),
-                lda,
-                static_cast<const std::complex<float> *>(x),
-                incx,
-                *static_cast<const std::complex<double> *>(beta),
-                static_cast<std::complex<double> *>(y),
-                incy,
-                prec);
-} /* end BLAS_zhbmv_c_c_x */
-#else
   /* Routine name */
   static const char routine_name[] = "BLAS_zhbmv_c_c";
   switch (prec) {
@@ -2693,8 +2676,7 @@ constexpr void hbmv_x(enum blas_order_type order,
     BLAS_error(routine_name, -13, prec, 0);
     break;
   }
-}                                /* end BLAS_zhbmv_c_c */
-#endif
+} /* end XBLAS::hbmv_x */
 
 //------------------
 } // namespace XBLAS

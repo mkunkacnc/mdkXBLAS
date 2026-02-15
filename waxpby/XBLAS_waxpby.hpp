@@ -172,11 +172,6 @@ constexpr void waxpby_x(int n,
  *
  */
 {
-//static const char routine_name[] = "BLAS_dwaxpby_d_s_x";
-#if 0
-  XBLAS::waxpby_x(n, alpha, x, incx, beta, y, incy, w, incw, prec);
-} /* end BLAS_dwaxpby_d_s_x */
-#else
   static const char routine_name[] = "BLAS_dwaxpby_d_s_x";
   switch (prec) {
   case blas_prec_single:
@@ -300,8 +295,7 @@ constexpr void waxpby_x(int n,
       break;
     }
   }
-}
-#endif
+} /* end XBLAS::waxpby_x */
 
 //------------------
 } // namespace XBLAS

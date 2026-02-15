@@ -282,11 +282,6 @@ constexpr void tpmv_x(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_dtpmv_s_x";
-#if 0
-  XBLAS::tpmv_x(order, uplo, trans, diag, n, alpha, tp, x, incx, prec);
-} /* end BLAS_dtpmv_s_x */
-#else
   static const char routine_name[] = "BLAS_dtpmv_s_x";
 
 
@@ -662,8 +657,7 @@ constexpr void tpmv_x(enum blas_order_type order,
     }
   }
 
-}
-#endif
+} /* end XBLAS::tpmv_x */
 
 //------------------
 } // namespace XBLAS

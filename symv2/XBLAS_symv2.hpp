@@ -251,11 +251,6 @@ constexpr void symv2_x(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_dsymv2_d_s_x";
-#if 0
-  XBLAS::symv2_x(order, uplo, n, alpha, a, lda, x_head, x_tail, incx, beta, y, incy, prec);
-} /* end BLAS_dsymv2_d_s_x */
-#else
   /* Routine name */
   const char routine_name[] = "BLAS_dsymv2_d_s_x";
   switch (prec) {
@@ -591,8 +586,7 @@ constexpr void symv2_x(enum blas_order_type order,
       break;
     }
   }
-}                                /* end BLAS_dsymv2_d_s_x */
-#endif
+} /* end XBLAS::symv2_x */
 
 //------------------
 } // namespace XBLAS

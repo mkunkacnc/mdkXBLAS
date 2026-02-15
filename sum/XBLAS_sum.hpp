@@ -46,11 +46,6 @@ constexpr void sum_x(int n,
  *
  */
 {
-//static const char routine_name[] = "BLAS_dsum_x";
-#if 0
-  XBLAS::sum_x(n, x, incx, sum, prec);
-} /* end BLAS_dsum_x */
-#else
   static const char routine_name[] = "BLAS_dsum_x";
   switch (prec) {
   case blas_prec_single:
@@ -138,8 +133,7 @@ constexpr void sum_x(int n,
     }
     break;
   }
-}
-#endif
+} /* end XBLAS::sum_x */
 
 //------------------
 } // namespace XBLAS

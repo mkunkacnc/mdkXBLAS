@@ -419,23 +419,6 @@ constexpr void hemv2_x(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_zhemv2_c_c_x";
-#if 0
-  XBLAS::hemv2_x(order,
-                 uplo,
-                 n,
-                 *static_cast<const std::complex<double> *>(alpha),
-                 static_cast<const std::complex<float> *>(a),
-                 lda,
-                 static_cast<const std::complex<float> *>(x_head),
-                 static_cast<const std::complex<float> *>(x_tail),
-                 incx,
-                 *static_cast<const std::complex<double> *>(beta),
-                 static_cast<const std::complex<double> *>(y),
-                 incy,
-                 prec);
-} /* end BLAS_zhemv2_c_c_x */
-#else
   /* Routine name */
   const char routine_name[] = "BLAS_zhemv2_c_c_x";
   switch (prec) {
@@ -1767,8 +1750,7 @@ constexpr void hemv2_x(enum blas_order_type order,
       break;
     }
   }
-}                                /* end BLAS_zhemv2_c_c_x */
-#endif
+} /* end XBLAS::hemv2_x */
 
 //------------------
 } // namespace XBLAS
