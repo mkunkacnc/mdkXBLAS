@@ -79,7 +79,7 @@ void BLAS_zhemm_c_c_x(enum blas_order_type order,
  */
 {
 //static const char routine_name[] = "BLAS_zhemm_c_c_x";
-#if 1
+#if 0
   XBLAS::hemm_x(order,
                 side,
                 uplo,
