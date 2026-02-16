@@ -223,18 +223,18 @@ constexpr void gbmv2(blas_order_type order,
     IdxType jx = ix0;
 
     if constexpr (impl::is_complex_v<A>) {
-      if (trans != blas_conj_trans) {
+      if (trans == blas_conj_trans) {
         for (IdxType j = ra - la; j >= 0; --j) {
-          sum1 += impl::mul<PrdType>(a[aij], head_x[jx]);
-          sum2 += impl::mul<PrdType>(a[aij], tail_x[jx]);
+          A a_elem = impl::Conj::func(a[aij]);
+          sum1 += impl::mul<PrdType>(a_elem, head_x[jx]);
+          sum2 += impl::mul<PrdType>(a_elem, tail_x[jx]);
           aij += incaij;
           jx += incx;
         }
       } else {
         for (IdxType j = ra - la; j >= 0; --j) {
-          A a_elem = impl::Conj::func(a[aij]);
-          sum1 += impl::mul<PrdType>(a_elem, head_x[jx]);
-          sum2 += impl::mul<PrdType>(a_elem, tail_x[jx]);
+          sum1 += impl::mul<PrdType>(a[aij], head_x[jx]);
+          sum2 += impl::mul<PrdType>(a[aij], tail_x[jx]);
           aij += incaij;
           jx += incx;
         }
@@ -252,7 +252,7 @@ constexpr void gbmv2(blas_order_type order,
     TmpType tmp2 = impl::mul<TmpType>(sum2, alpha);
     TmpType tmp3 = tmp1 + tmp2;
     TmpType tmp4 = impl::mul<TmpType>(beta, y[iy]);
-    y[iy] = impl::add<T>(tmp4, tmp3);
+    y[iy] = impl::add<T>(tmp3, tmp4);
 
     iy += incy;
     if (i >= lbound) {

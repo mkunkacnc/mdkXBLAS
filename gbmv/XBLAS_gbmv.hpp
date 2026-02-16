@@ -253,6 +253,7 @@ constexpr void gbmv(blas_order_type order,
     TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
     TmpType tmp2 = impl::mul<TmpType>(beta, y[iy]);
     y[iy] = impl::add<T>(tmp1, tmp2);
+
     iy += incy;
     if (i >= lbound) {
       kx += incx;

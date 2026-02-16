@@ -8,21 +8,29 @@
 namespace XBLAS {
 //---------------
 
-inline
-constexpr void gemm(enum blas_order_type order,
-                    enum blas_trans_type transa,
-                    enum blas_trans_type transb,
-                    int m,
-                    int n,
-                    int k,
-                    double alpha,
-                    const double *a,
-                    int lda,
-                    const float *b,
-                    int ldb,
-                    double beta,
-                    double *c,
-                    int ldc)
+template<typename T,
+         typename A,
+         typename B,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<A, T> &&
+          impl::size_le_v<B, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void gemm(blas_order_type order,
+                    blas_trans_type transa,
+                    blas_trans_type transb,
+                    IdxType m,
+                    IdxType n,
+                    IdxType k,
+                    T alpha,
+                    const A *a,
+                    IdxType lda,
+                    const B *b,
+                    IdxType ldb,
+                    T beta,
+                    T *c,
+                    IdxType ldc)
 /*
  * Purpose
  * =======
@@ -37,18 +45,18 @@ constexpr void gemm(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order   (input) enum blas_order_type
+ * order   (input) blas_order_type
  *         Storage format of input matrices A, B, and C.
  *
- * transa  (input) enum blas_trans_type
+ * transa  (input) blas_trans_type
  *         Operation to be done on matrix A before multiplication.
  *           Can be no operation, transposition, or conjugate transposition.
  *
- * transb  (input) enum blas_trans_type
+ * transb  (input) blas_trans_type
  *         Operation to be done on matrix B before multiplication.
  *           Can be no operation, transposition, or conjugate transposition.
  *
- * m n k   (input) int
+ * m n k   (input) IdxType
  *         The dimensions of matrices A, B, and C.
  *         Matrix C is m-by-n matrix.
  *         Matrix A is m-by-k if A is not transposed,
@@ -56,64 +64,65 @@ constexpr void gemm(enum blas_order_type order,
  *         Matrix B is k-by-n if B is not transposed,
  *                     n-by-k otherwise.
  *
- * alpha   (input) double
+ * alpha   (input) T
  *
- * a       (input) const double*
+ * a       (input) const A*
  *         matrix A.
  *
- * lda     (input) int
+ * lda     (input) IdxType
  *         leading dimension of A.
  *
- * b       (input) const float*
+ * b       (input) const B*
  *         matrix B
  *
- * ldb     (input) int
+ * ldb     (input) IdxType
  *         leading dimension of B.
  *
- * beta    (input) double
+ * beta    (input) T
  *
- * c       (input/output) double*
+ * c       (input/output) T*
  *         matrix C
  *
- * ldc     (input) int
+ * ldc     (input) IdxType
  *         leading dimension of C.
  *
  */
 {
-  static const char routine_name[] = "BLAS_dgemm_d_s";
+  static const char routine_name[] = "XBLAS::gemm";
 
+  using PrdType = impl::get_inner_type_t<A, B, TmpType>;
+
+  FPU_FIX_DECL;
 
   /* Integer Index Variables */
-  int i, j, h;
+  IdxType i, j, h;
 
-  int ai, bj, ci;
-  int aih, bhj, cij;                /* Index into matrices a, b, c during multiply */
+  IdxType ai, bj, ci;
+  IdxType aih, bhj, cij;                /* Index into matrices a, b, c during multiply */
 
-  int incai, incaih;                /* Index increments for matrix a */
-  int incbj, incbhj;                /* Index increments for matrix b */
-  int incci, inccij;                /* Index increments for matrix c */
+  IdxType incai, incaih;                /* Index increments for matrix a */
+  IdxType incbj, incbhj;                /* Index increments for matrix b */
+  IdxType incci, inccij;                /* Index increments for matrix c */
 
   /* Input Matrices */
-  const double *a_i = a;
-  const float *b_i = b;
+  const A *a_i = a;
+  const B *b_i = b;
 
   /* Output Matrix */
-  double *c_i = c;
+  T *c_i = c;
 
   /* Input Scalars */
-  double alpha_i = alpha;
-  double beta_i = beta;
+  T alpha_i = alpha;
+  T beta_i = beta;
 
   /* Temporary Floating-Point Variables */
-  double a_elem;
-  float b_elem;
-  double c_elem;
-  double prod;
-  double sum;
-  double tmp1;
-  double tmp2;
-
-
+  A a_elem;
+  B b_elem;
+  T c_elem;
+  PrdType prod;
+  PrdType sum;
+  TmpType tmp1;
+  TmpType tmp2;
 
   /* Test for error conditions */
   if (m < 0)
@@ -124,7 +133,6 @@ constexpr void gemm(enum blas_order_type order,
     BLAS_error(routine_name, -6, k, NULL);
 
   if (order == blas_colmajor) {
-
     if (ldc < m)
       BLAS_error(routine_name, -14, ldc, NULL);
 
@@ -143,7 +151,6 @@ constexpr void gemm(enum blas_order_type order,
       if (ldb < n)
         BLAS_error(routine_name, -11, ldb, NULL);
     }
-
   } else {
     /* row major */
     if (ldc < n)
@@ -169,7 +176,7 @@ constexpr void gemm(enum blas_order_type order,
   /* Test for no-op */
   if (n == 0 || m == 0 || k == 0)
     return;
-  if (alpha_i == 0.0 && beta_i == 1.0) {
+  if (alpha_i == T(0) && beta_i == T(1)) {
     return;
   }
 
@@ -193,7 +200,6 @@ constexpr void gemm(enum blas_order_type order,
       incbj = 1;
       incbhj = ldb;
     }
-
   } else {
     /* row major */
     incci = ldc;
@@ -214,151 +220,124 @@ constexpr void gemm(enum blas_order_type order,
       incbj = ldb;
       incbhj = 1;
     }
-
   }
 
-
-
-  /* Ajustment to increments */
-
-
-
-
-
-
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_START;
+  }
 
   /* alpha = 0.  In this case, just return beta * C */
-  if (alpha_i == 0.0) {
-
+  if (alpha_i == T(0)) {
     ci = 0;
     for (i = 0; i < m; i++, ci += incci) {
       cij = ci;
       for (j = 0; j < n; j++, cij += inccij) {
         c_elem = c_i[cij];
-        tmp1 = c_elem * beta_i;
-        c_i[cij] = tmp1;
+        tmp1 = impl::mul<TmpType>(c_elem, beta_i);
+        c_i[cij] = impl::to<T>(tmp1);
       }
     }
-
-  } else if (alpha_i == 1.0) {
-
+  } else if (alpha_i == T(1)) {
     /* Case alpha == 1. */
-
-    if (beta_i == 0.0) {
+    if (beta_i == T(0)) {
       /* Case alpha == 1, beta == 0.   We compute  C <--- A * B */
-
       ci = 0;
       ai = 0;
       for (i = 0; i < m; i++, ci += incci, ai += incai) {
-
         cij = ci;
         bj = 0;
-
         for (j = 0; j < n; j++, cij += inccij, bj += incbj) {
-
           aih = ai;
           bhj = bj;
-
-          sum = 0.0;
-
+          sum = impl::zero_v<PrdType>;
           for (h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
             a_elem = a_i[aih];
             b_elem = b_i[bhj];
-            if (transa == blas_conj_trans) {
-
+            if constexpr (impl::is_complex_v<A>) {
+              if (transa == blas_conj_trans)
+                a_elem = impl::Conj::func(a_elem);
             }
-            if (transb == blas_conj_trans) {
-
+            if constexpr (impl::is_complex_v<B>) {
+              if (transb == blas_conj_trans)
+                b_elem = impl::Conj::func(b_elem);
             }
-            prod = a_elem * b_elem;
+            prod = impl::mul<PrdType>(a_elem, b_elem);
             sum = sum + prod;
           }
-          c_i[cij] = sum;
+          c_i[cij] = impl::to<T>(sum);
         }
       }
-
     } else {
       /* Case alpha == 1, but beta != 0.
          We compute   C <--- A * B + beta * C   */
-
       ci = 0;
       ai = 0;
       for (i = 0; i < m; i++, ci += incci, ai += incai) {
-
         cij = ci;
         bj = 0;
-
         for (j = 0; j < n; j++, cij += inccij, bj += incbj) {
-
           aih = ai;
           bhj = bj;
-
-          sum = 0.0;
-
+          sum = impl::zero_v<PrdType>;
           for (h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
             a_elem = a_i[aih];
             b_elem = b_i[bhj];
-            if (transa == blas_conj_trans) {
-
+            if constexpr (impl::is_complex_v<A>) {
+              if (transa == blas_conj_trans)
+                a_elem = impl::Conj::func(a_elem);
             }
-            if (transb == blas_conj_trans) {
-
+            if constexpr (impl::is_complex_v<B>) {
+              if (transb == blas_conj_trans)
+                b_elem = impl::Conj::func(b_elem);
             }
-            prod = a_elem * b_elem;
+            prod = impl::mul<PrdType>(a_elem, b_elem);
             sum = sum + prod;
           }
-
           c_elem = c_i[cij];
-          tmp2 = c_elem * beta_i;
+          tmp2 = impl::mul<TmpType>(c_elem, beta_i);
           tmp1 = sum;
           tmp1 = tmp2 + tmp1;
-          c_i[cij] = tmp1;
+          c_i[cij] = impl::to<T>(tmp1);
         }
       }
     }
-
   } else {
-
     /* The most general form,   C <-- alpha * A * B + beta * C  */
     ci = 0;
     ai = 0;
     for (i = 0; i < m; i++, ci += incci, ai += incai) {
-
       cij = ci;
       bj = 0;
-
       for (j = 0; j < n; j++, cij += inccij, bj += incbj) {
-
         aih = ai;
         bhj = bj;
-
-        sum = 0.0;
-
+        sum = impl::zero_v<PrdType>;
         for (h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
           a_elem = a_i[aih];
           b_elem = b_i[bhj];
-          if (transa == blas_conj_trans) {
-
+          if constexpr (impl::is_complex_v<A>) {
+            if (transa == blas_conj_trans)
+              a_elem = impl::Conj::func(a_elem);
           }
-          if (transb == blas_conj_trans) {
-
+          if constexpr (impl::is_complex_v<B>) {
+            if (transb == blas_conj_trans)
+              b_elem = impl::Conj::func(b_elem);
           }
-          prod = a_elem * b_elem;
+          prod = impl::mul<PrdType>(a_elem, b_elem);
           sum = sum + prod;
         }
-
-        tmp1 = sum * alpha_i;
+        tmp1 = impl::mul<TmpType>(sum, alpha_i);
         c_elem = c_i[cij];
-        tmp2 = c_elem * beta_i;
+        tmp2 = impl::mul<TmpType>(c_elem, beta_i);
         tmp1 = tmp1 + tmp2;
-        c_i[cij] = tmp1;
+        c_i[cij] = impl::to<T>(tmp1);
       }
     }
-
   }
 
-
-
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_STOP;
+  }
 } /* end XBLAS::gemm */
 
 //-----------------

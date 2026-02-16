@@ -1,6 +1,10 @@
 #ifndef XBLAS_IMPL_HPP
 #define XBLAS_IMPL_HPP
 
+// Need at least C++23
+static_assert(__cplusplus >= 202302L, "Need at lease C++23");
+//static_assert(__STDCPP_FLOAT128_T__, "Need float128");
+
 #include "common/XBLAS_double_double.hpp"
 
 #include <complex>
