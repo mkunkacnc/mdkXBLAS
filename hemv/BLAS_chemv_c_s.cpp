@@ -61,7 +61,7 @@ void BLAS_chemv_c_s(enum blas_order_type order,
  */
 {
 //static const char routine_name[] = "BLAS_chemv_c_s";
-#if 0
+#if 1
   XBLAS::hemv(order,
               uplo,
               n,
