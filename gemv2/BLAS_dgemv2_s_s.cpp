@@ -60,7 +60,7 @@ void BLAS_dgemv2_s_s(enum blas_order_type order,
  */
 {
 //static const char routine_name[] = "BLAS_dgemv2_s_s";
-#if 0
+#if 1
   XBLAS::gemv2(order, trans, m, n, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
 } /* end BLAS_dgemv2_s_s */
 #else
