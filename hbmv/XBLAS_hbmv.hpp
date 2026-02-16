@@ -55,7 +55,7 @@ constexpr void hbmv(blas_order_type order,
  * k      (input) IdxType
  *        Number of subdiagonals ( = number of superdiagonals)
  *
- * alpha  (input) const T*
+ * alpha  (input) T
  *
  * a      (input) const A*
  *        Matrix A.
@@ -69,7 +69,7 @@ constexpr void hbmv(blas_order_type order,
  * incx   (input) IdxType
  *        Stride for vector x.
  *
- * beta   (input) const T*
+ * beta   (input) T
  *
  * y      (input/output) T*
  *        Vector y.

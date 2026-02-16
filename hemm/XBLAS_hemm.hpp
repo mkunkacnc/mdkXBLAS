@@ -8,20 +8,28 @@
 namespace XBLAS {
 //---------------
 
-inline
-constexpr void hemm(enum blas_order_type order,
-                    enum blas_side_type side,
-                    enum blas_uplo_type uplo,
-                    int m,
-                    int n,
-                    const void *alpha,
-                    const void *a,
-                    int lda,
-                    const void *b,
-                    int ldb,
-                    const void *beta,
-                    void *c,
-                    int ldc)
+template<typename T,
+         typename A,
+         typename B,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<A, T> &&
+          impl::size_le_v<B, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void hemm(blas_order_type order,
+                    blas_side_type side,
+                    blas_uplo_type uplo,
+                    IdxType m,
+                    IdxType n,
+                    T alpha,
+                    const A *a,
+                    IdxType lda,
+                    const B *b,
+                    IdxType ldb,
+                    T beta,
+                    T *c,
+                    IdxType ldc)
 /*
  * Purpose
  * =======
@@ -36,81 +44,84 @@ constexpr void hemm(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order  (input) enum blas_order_type
+ * order  (input) blas_order_type
  *        Storage format of input matrices A, B, and C.
  *
- * side   (input) enum blas_side_type
+ * side   (input) blas_side_type
  *        Determines which side of matrix B is matrix A is multiplied.
  *
- * uplo   (input) enum blas_uplo_type
+ * uplo   (input) blas_uplo_type
  *        Determines which half of matrix A (upper or lower triangle)
  *          is accessed.
  *
- * m n     (input) int
+ * m n     (input) IdxType
  *         Size of matrices A, B, and C.
  *         Matrix A is m-by-m if it is multiplied on the left,
  *                     n-by-n otherwise.
  *         Matrices B and C are m-by-n.
  *
- * alpha  (input) const void*
+ * alpha  (input) T
  *
- * a      (input) const void*
+ * a      (input) const A*
  *        Matrix A.
  *
- * lda    (input) int
+ * lda    (input) IdxType
  *        Leading dimension of matrix A.
  *
- * b      (input) const void*
+ * b      (input) const B*
  *        Matrix B.
  *
- * ldb    (input) int
+ * ldb    (input) IdxType
  *        Leading dimension of matrix B.
  *
- * beta   (input) const void*
+ * beta   (input) T
  *
- * c      (input/output) void*
+ * c      (input/output) T*
  *        Matrix C.
  *
- * ldc    (input) int
+ * ldc    (input) IdxType
  *        Leading dimension of matrix C.
  *
  */
 {
-  //static const char routine_name[] = "BLAS_zhemm_c_c";
+//static const char routine_name[] = "XBLAS::hemm";
+
+  using PrdType = impl::get_inner_type_t<A, B, TmpType>;
+
+  FPU_FIX_DECL;
+
   /* Integer Index Variables */
-  int i, j, k;
+  IdxType i, j, k;
 
-  int ai, bj, ci;
-  int aik, bkj, cij;
+  IdxType ai, bj, ci;
+  IdxType aik, bkj, cij;
 
-  int incai, incbj, incci;
-  int incaik1, incaik2, incbkj, inccij;
+  IdxType incai, incbj, incci;
+  IdxType incaik1, incaik2, incbkj, inccij;
 
-  int m_i, n_i;
+  IdxType m_i, n_i;
 
-  int conj_flag;
+  IdxType conj_flag;
 
   /* Input Matrices */
-  const float *a_i = (float *) a;
-  const float *b_i = (float *) b;
+  const A *a_i = a;
+  const B *b_i = b;
 
   /* Output Matrix */
-  double *c_i = (double *) c;
+  T *c_i = c;
 
   /* Input Scalars */
-  double *alpha_i = (double *) alpha;
-  double *beta_i = (double *) beta;
+  T alpha_i = alpha;
+  T beta_i = beta;
 
   /* Temporary Floating-Point Variables */
-  float a_elem[2];
-  float b_elem[2];
-  double c_elem[2];
-  double prod[2];
-  double sum[2];
-  double tmp1[2];
-  double tmp2[2];
-
-
+  A a_elem;
+  B b_elem;
+  T c_elem;
+  PrdType prod;
+  PrdType sum;
+  TmpType tmp1;
+  TmpType tmp2;
 
   /* Check for error conditions. */
   if (m <= 0 || n <= 0) {
@@ -133,8 +144,7 @@ constexpr void hemm(enum blas_order_type order,
   }
 
   /* Test for no-op */
-  if (alpha_i[0] == 0.0 && alpha_i[1] == 0.0
-      && (beta_i[0] == 1.0 && beta_i[1] == 0.0)) {
+  if (alpha_i == T(0) && beta_i == T(1)) {
     return;
   }
 
@@ -177,224 +187,121 @@ constexpr void hemm(enum blas_order_type order,
   else
     conj_flag = 0;
 
-
-
-  /* Adjustment to increments (if any) */
-  incci *= 2;
-  inccij *= 2;
-  incai *= 2;
-  incaik1 *= 2;
-  incaik2 *= 2;
-  incbj *= 2;
-  incbkj *= 2;
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_START;
+  }
 
   /* alpha = 0.  In this case, just return beta * C */
-  if (alpha_i[0] == 0.0 && alpha_i[1] == 0.0) {
+  if (alpha_i == T(0)) {
     for (i = 0, ci = 0; i < m_i; i++, ci += incci) {
       for (j = 0, cij = ci; j < n_i; j++, cij += inccij) {
-        c_elem[0] = c_i[cij];
-        c_elem[1] = c_i[cij + 1];
-        {
-          tmp1[0] =
-            (double) c_elem[0] * beta_i[0] - (double) c_elem[1] * beta_i[1];
-          tmp1[1] =
-            (double) c_elem[0] * beta_i[1] + (double) c_elem[1] * beta_i[0];
-        }
-        c_i[cij] = tmp1[0];
-        c_i[cij + 1] = tmp1[1];
+        c_elem = c_i[cij];
+        tmp1 = impl::mul<TmpType>(c_elem, beta_i);
+        c_i[cij] = impl::to<T>(tmp1);
       }
     }
-  } else if ((alpha_i[0] == 1.0 && alpha_i[1] == 0.0)) {
-
+  } else if (alpha_i == T(1)) {
     /* Case alpha == 1. */
-
-    if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
+    if (beta_i == T(0)) {
       /* Case alpha = 1, beta = 0.  We compute  C <--- A * B   or  B * A */
       for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
         for (j = 0, cij = ci, bj = 0; j < n_i;
              j++, cij += inccij, bj += incbj) {
-
-          sum[0] = sum[1] = 0.0;
-
+          sum = impl::zero_v<PrdType>;
           for (k = 0, aik = ai, bkj = bj; k < i;
                k++, aik += incaik1, bkj += incbkj) {
-            a_elem[0] = a_i[aik];
-            a_elem[1] = a_i[aik + 1];
-            b_elem[0] = b_i[bkj];
-            b_elem[1] = b_i[bkj + 1];
+            a_elem = a_i[aik];
+            b_elem = b_i[bkj];
             if (conj_flag == 1) {
-              a_elem[1] = -a_elem[1];
+              a_elem = impl::Conj::func(a_elem);
             }
-            {
-              prod[0] =
-                (double) a_elem[0] * b_elem[0] -
-                (double) a_elem[1] * b_elem[1];
-              prod[1] =
-                (double) a_elem[0] * b_elem[1] +
-                (double) a_elem[1] * b_elem[0];
-            }
-            sum[0] = sum[0] + prod[0];
-            sum[1] = sum[1] + prod[1];
+            prod = impl::mul<PrdType>(a_elem, b_elem);
+            sum = sum + prod;
           }
           for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-            a_elem[0] = a_i[aik];
-            a_elem[1] = a_i[aik + 1];
-            b_elem[0] = b_i[bkj];
-            b_elem[1] = b_i[bkj + 1];
+            a_elem = a_i[aik];
+            b_elem = b_i[bkj];
             if (conj_flag == 0) {
-              a_elem[1] = -a_elem[1];
+              a_elem = impl::Conj::func(a_elem);
             }
-            {
-              prod[0] =
-                (double) a_elem[0] * b_elem[0] -
-                (double) a_elem[1] * b_elem[1];
-              prod[1] =
-                (double) a_elem[0] * b_elem[1] +
-                (double) a_elem[1] * b_elem[0];
-            }
-            sum[0] = sum[0] + prod[0];
-            sum[1] = sum[1] + prod[1];
+            prod = impl::mul<PrdType>(a_elem, b_elem);
+            sum = sum + prod;
           }
-          c_i[cij] = sum[0];
-          c_i[cij + 1] = sum[1];
+          c_i[cij] = impl::to<T>(sum);
         }
       }
     } else {
       /* Case alpha = 1, but beta != 0.
          We compute  C  <--- A * B + beta * C
          or  C  <--- B * A + beta * C  */
-
       for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
         for (j = 0, cij = ci, bj = 0; j < n_i;
              j++, cij += inccij, bj += incbj) {
-
-          sum[0] = sum[1] = 0.0;
-
+          sum = impl::zero_v<PrdType>;
           for (k = 0, aik = ai, bkj = bj; k < i;
                k++, aik += incaik1, bkj += incbkj) {
-            a_elem[0] = a_i[aik];
-            a_elem[1] = a_i[aik + 1];
-            b_elem[0] = b_i[bkj];
-            b_elem[1] = b_i[bkj + 1];
+            a_elem = a_i[aik];
+            b_elem = b_i[bkj];
             if (conj_flag == 1) {
-              a_elem[1] = -a_elem[1];
+              a_elem = impl::Conj::func(a_elem);
             }
-            {
-              prod[0] =
-                (double) a_elem[0] * b_elem[0] -
-                (double) a_elem[1] * b_elem[1];
-              prod[1] =
-                (double) a_elem[0] * b_elem[1] +
-                (double) a_elem[1] * b_elem[0];
-            }
-            sum[0] = sum[0] + prod[0];
-            sum[1] = sum[1] + prod[1];
+            prod = impl::mul<PrdType>(a_elem, b_elem);
+            sum = sum + prod;
           }
           for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-            a_elem[0] = a_i[aik];
-            a_elem[1] = a_i[aik + 1];
-            b_elem[0] = b_i[bkj];
-            b_elem[1] = b_i[bkj + 1];
+            a_elem = a_i[aik];
+            b_elem = b_i[bkj];
             if (conj_flag == 0) {
-              a_elem[1] = -a_elem[1];
+              a_elem = impl::Conj::func(a_elem);
             }
-            {
-              prod[0] =
-                (double) a_elem[0] * b_elem[0] -
-                (double) a_elem[1] * b_elem[1];
-              prod[1] =
-                (double) a_elem[0] * b_elem[1] +
-                (double) a_elem[1] * b_elem[0];
-            }
-            sum[0] = sum[0] + prod[0];
-            sum[1] = sum[1] + prod[1];
+            prod = impl::mul<PrdType>(a_elem, b_elem);
+            sum = sum + prod;
           }
-          c_elem[0] = c_i[cij];
-          c_elem[1] = c_i[cij + 1];
-          {
-            tmp2[0] =
-              (double) c_elem[0] * beta_i[0] - (double) c_elem[1] * beta_i[1];
-            tmp2[1] =
-              (double) c_elem[0] * beta_i[1] + (double) c_elem[1] * beta_i[0];
-          }
-          tmp1[0] = sum[0];
-          tmp1[1] = sum[1];
-          tmp1[0] = tmp2[0] + tmp1[0];
-          tmp1[1] = tmp2[1] + tmp1[1];
-          c_i[cij] = tmp1[0];
-          c_i[cij + 1] = tmp1[1];
+          c_elem = c_i[cij];
+          tmp2 = impl::mul<TmpType>(c_elem, beta_i);
+          tmp1 = sum;
+          tmp1 = tmp2 + tmp1;
+          c_i[cij] = impl::to<T>(tmp1);
         }
       }
     }
-
   } else {
     /* The most general form,   C <--- alpha * A * B + beta * C
        or   C <--- alpha * B * A + beta * C  */
-
     for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
       for (j = 0, cij = ci, bj = 0; j < n_i; j++, cij += inccij, bj += incbj) {
-
-        sum[0] = sum[1] = 0.0;
-
+        sum = impl::zero_v<PrdType>;
         for (k = 0, aik = ai, bkj = bj; k < i;
              k++, aik += incaik1, bkj += incbkj) {
-          a_elem[0] = a_i[aik];
-          a_elem[1] = a_i[aik + 1];
-          b_elem[0] = b_i[bkj];
-          b_elem[1] = b_i[bkj + 1];
+          a_elem = a_i[aik];
+          b_elem = b_i[bkj];
           if (conj_flag == 1) {
-            a_elem[1] = -a_elem[1];
+            a_elem = impl::Conj::func(a_elem);
           }
-          {
-            prod[0] =
-              (double) a_elem[0] * b_elem[0] - (double) a_elem[1] * b_elem[1];
-            prod[1] =
-              (double) a_elem[0] * b_elem[1] + (double) a_elem[1] * b_elem[0];
-          }
-          sum[0] = sum[0] + prod[0];
-          sum[1] = sum[1] + prod[1];
+          prod = impl::mul<PrdType>(a_elem, b_elem);
+          sum = sum + prod;
         }
         for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-          a_elem[0] = a_i[aik];
-          a_elem[1] = a_i[aik + 1];
-          b_elem[0] = b_i[bkj];
-          b_elem[1] = b_i[bkj + 1];
+          a_elem = a_i[aik];
+          b_elem = b_i[bkj];
           if (conj_flag == 0) {
-            a_elem[1] = -a_elem[1];
+            a_elem = impl::Conj::func(a_elem);
           }
-          {
-            prod[0] =
-              (double) a_elem[0] * b_elem[0] - (double) a_elem[1] * b_elem[1];
-            prod[1] =
-              (double) a_elem[0] * b_elem[1] + (double) a_elem[1] * b_elem[0];
-          }
-          sum[0] = sum[0] + prod[0];
-          sum[1] = sum[1] + prod[1];
+          prod = impl::mul<PrdType>(a_elem, b_elem);
+          sum = sum + prod;
         }
-        {
-          tmp1[0] =
-            (double) sum[0] * alpha_i[0] - (double) sum[1] * alpha_i[1];
-          tmp1[1] =
-            (double) sum[0] * alpha_i[1] + (double) sum[1] * alpha_i[0];
-        }
-        c_elem[0] = c_i[cij];
-        c_elem[1] = c_i[cij + 1];
-        {
-          tmp2[0] =
-            (double) c_elem[0] * beta_i[0] - (double) c_elem[1] * beta_i[1];
-          tmp2[1] =
-            (double) c_elem[0] * beta_i[1] + (double) c_elem[1] * beta_i[0];
-        }
-        tmp1[0] = tmp1[0] + tmp2[0];
-        tmp1[1] = tmp1[1] + tmp2[1];
-        c_i[cij] = tmp1[0];
-        c_i[cij + 1] = tmp1[1];
+        tmp1 = impl::mul<TmpType>(sum, alpha_i);
+        c_elem = c_i[cij];
+        tmp2 = impl::mul<TmpType>(c_elem, beta_i);
+        tmp1 = tmp1 + tmp2;
+        c_i[cij] = impl::to<T>(tmp1);
       }
     }
   }
 
-
-
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_STOP;
+  }
 } /* end XBLAS::hemm */
 
 //-----------------
