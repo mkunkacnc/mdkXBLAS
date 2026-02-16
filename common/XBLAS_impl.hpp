@@ -2,7 +2,9 @@
 #define XBLAS_IMPL_HPP
 
 // Need at least C++23
-static_assert(__cplusplus >= 202302L, "Need at lease C++23");
+static_assert(__cplusplus >= 202302L, "Need at least C++23");
+// Both of these may be defined starting with C++23
+//static_assert(__STDCPP_FLOAT16_T__, "Need float16");
 //static_assert(__STDCPP_FLOAT128_T__, "Need float128");
 
 #include "common/XBLAS_double_double.hpp"
