@@ -13,7 +13,7 @@ void BLAS_zhemv2_z_c_x(enum blas_order_type order,
                        const void *x_tail,
                        int incx,
                        const void *beta,
-                       const void *y,
+                       void *y,
                        int incy,
                        enum blas_prec_type prec)
 /*
@@ -58,7 +58,7 @@ void BLAS_zhemv2_z_c_x(enum blas_order_type order,
  *
  * beta    (input) const void*
  *
- * y       (input) const void*
+ * y       (input/output) void*
  *         Vector y.
  *
  * incy    (input) int
@@ -86,7 +86,7 @@ void BLAS_zhemv2_z_c_x(enum blas_order_type order,
                  static_cast<const std::complex<float> *>(x_tail),
                  incx,
                  *static_cast<const std::complex<double> *>(beta),
-                 static_cast<const std::complex<double> *>(y),
+                 static_cast<std::complex<double> *>(y),
                  incy,
                  prec);
 } /* end BLAS_zhemv2_z_c_x */

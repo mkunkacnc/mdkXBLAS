@@ -13,7 +13,7 @@ void BLAS_zhemv2_c_c(enum blas_order_type order,
                      const void *x_tail,
                      int incx,
                      const void *beta,
-                     const void *y,
+                     void *y,
                      int incy)
 /*
  * Purpose
@@ -57,7 +57,7 @@ void BLAS_zhemv2_c_c(enum blas_order_type order,
  *
  * beta    (input) const void*
  *
- * y       (input) const void*
+ * y       (input/output) void*
  *         Vector y.
  *
  * incy    (input) int
@@ -66,7 +66,7 @@ void BLAS_zhemv2_c_c(enum blas_order_type order,
  */
 {
 //static const char routine_name[] = "BLAS_zhemv2_c_c";
-#if 0
+#if 1
   XBLAS::hemv2(order,
                uplo,
                n,
@@ -77,7 +77,7 @@ void BLAS_zhemv2_c_c(enum blas_order_type order,
                static_cast<const std::complex<float> *>(x_tail),
                incx,
                *static_cast<const std::complex<double> *>(beta),
-               static_cast<const std::complex<double> *>(y),
+               static_cast<std::complex<double> *>(y),
                incy);
 } /* end BLAS_zhemv2_c_c */
 #else

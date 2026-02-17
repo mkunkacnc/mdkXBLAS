@@ -13,7 +13,7 @@ void BLAS_chemv2_c_s(enum blas_order_type order,
                      const float *x_tail,
                      int incx,
                      const void *beta,
-                     const float *y,
+                     void *y,
                      int incy)
 /*
  * Purpose
@@ -57,7 +57,7 @@ void BLAS_chemv2_c_s(enum blas_order_type order,
  *
  * beta    (input) const void*
  *
- * y       (input) const float*
+ * y       (input/output) void*
  *         Vector y.
  *
  * incy    (input) int
@@ -66,7 +66,7 @@ void BLAS_chemv2_c_s(enum blas_order_type order,
  */
 {
 //static const char routine_name[] = "BLAS_chemv2_c_s";
-#if 0
+#if 1
   XBLAS::hemv2(order,
                uplo,
                n,
@@ -77,7 +77,7 @@ void BLAS_chemv2_c_s(enum blas_order_type order,
                x_tail,
                incx,
                *static_cast<const std::complex<float> *>(beta),
-               y,
+               static_cast<std::complex<float> *>(y),
                incy);
 } /* end BLAS_chemv2_c_s */
 #else
