@@ -8,19 +8,27 @@
 namespace XBLAS {
 //---------------
 
-inline
-constexpr void sbmv(enum blas_order_type order,
-                    enum blas_uplo_type uplo,
-                    int n,
-                    int k,
-                    double alpha,
-                    const double *a,
-                    int lda,
-                    const float *x,
-                    int incx,
-                    double beta,
-                    double *y,
-                    int incy)
+template<typename T,
+         typename A,
+         typename X,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<A, T> &&
+          impl::size_le_v<X, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void sbmv(blas_order_type order,
+                    blas_uplo_type uplo,
+                    IdxType n,
+                    IdxType k,
+                    T alpha,
+                    const A *a,
+                    IdxType lda,
+                    const X *x,
+                    IdxType incx,
+                    T beta,
+                    T *y,
+                    IdxType incy)
 /*
  * Purpose
  * =======
@@ -34,39 +42,39 @@ constexpr void sbmv(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order  (input) enum blas_order_type
+ * order  (input) blas_order_type
  *        Storage format of input symmetric matrix A.
  *
- * uplo   (input) enum blas_uplo_type
+ * uplo   (input) blas_uplo_type
  *        Determines which half of matrix A (upper or lower triangle)
  *          is accessed.
  *
- * n      (input) int
+ * n      (input) IdxType
  *        Dimension of A and size of vectors x, y.
  *
- * k      (input) int
+ * k      (input) IdxType
  *        Number of subdiagonals ( = number of superdiagonals)
  *
- * alpha  (input) double
+ * alpha  (input) T
  *
- * a      (input) const double*
+ * a      (input) const A*
  *        Matrix A.
  *
- * lda    (input) int
+ * lda    (input) IdxType
  *        Leading dimension of matrix A.
  *
- * x      (input) const float*
+ * x      (input) const X*
  *        Vector x.
  *
- * incx   (input) int
+ * incx   (input) IdxType
  *        Stride for vector x.
  *
- * beta   (input) double
+ * beta   (input) T
  *
- * y      (input/output) double*
+ * y      (input/output) T*
  *        Vector y.
  *
- * incy   (input) int
+ * incy   (input) IdxType
  *        Stride for vector y.
  *
  *
@@ -75,7 +83,7 @@ constexpr void sbmv(enum blas_order_type order,
  *      Integers in the below arrays represent values of
  *              type double.
  *
- *    if we have a symettric matrix:
+ *    if we have a symmetric matrix:
  *
  *      1  2  3  0  0
  *      2  4  5  6  0
@@ -87,7 +95,7 @@ constexpr void sbmv(enum blas_order_type order,
  *      following ways:
  *
  *      Notes for the examples:
- *      Each column below represents a contigous vector.
+ *      Each column below represents a contiguous vector.
  *      Columns are strided by lda.
  *      An asterisk (*) represents a position in the
  *       matrix that is not used.
@@ -109,56 +117,59 @@ constexpr void sbmv(enum blas_order_type order,
  *
  *
  *    blas_rowmajor and blas_upper
- *      Columns here also represent contigous arrays.
+ *      Columns here also represent contiguous arrays.
  *      1  4  7  10  12
  *      2  5  8  11  *
  *      3  6  9  *   *
  *
  *
  *    blas_rowmajor and blas_lower
- *      Columns here also represent contigous arrays.
+ *      Columns here also represent contiguous arrays.
  *      *  *  3  6   9
  *      *  2  5  8   11
  *      1  4  7  10  12
  *
  */
 {
-  static const char routine_name[] = "BLAS_dsbmv_d_s";
+  static const char routine_name[] = "XBLAS::sbmv";
+
+  using PrdType = impl::get_inner_type_t<A, X, TmpType>;
+
+  FPU_FIX_DECL;
 
   /* Integer Index Variables */
-  int i, j;
-  int xi, yi;
-  int aij, astarti, x_starti, y_starti;
-  int incaij, incaij2;
-  int n_i;
-  int maxj_first, maxj_second;
+  IdxType i, j;
+  IdxType xi, yi;
+  IdxType aij, astarti, x_starti, y_starti;
+  IdxType incaij, incaij2;
+  IdxType n_i;
+  IdxType maxj_first, maxj_second;
 
   /* Input Matrices */
-  const double *a_i = a;
-  const float *x_i = x;
+  const A *a_i = a;
+  const X *x_i = x;
 
   /* Output Vector */
-  double *y_i = y;
+  T *y_i = y;
 
   /* Input Scalars */
-  double alpha_i = alpha;
-  double beta_i = beta;
+  T alpha_i = alpha;
+  T beta_i = beta;
 
   /* Temporary Floating-Point Variables */
-  double a_elem;
-  float x_elem;
-  double y_elem;
-  double prod;
-  double sum;
-  double tmp1;
-  double tmp2;
-
+  A a_elem;
+  X x_elem;
+  T y_elem;
+  PrdType prod;
+  PrdType sum;
+  TmpType tmp1;
+  TmpType tmp2;
 
   /* Test for no-op */
   if (n <= 0) {
     return;
   }
-  if (alpha_i == 0.0 && beta_i == 1.0) {
+  if (alpha_i == T(0) && beta_i == T(1)) {
     return;
   }
 
@@ -210,44 +221,45 @@ constexpr void sbmv(enum blas_order_type order,
     y_starti = 0;
   }
 
-
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_START;
+  }
 
   /* alpha = 0.  In this case, just return beta * y */
-  if (alpha_i == 0.0) {
+  if (alpha_i == T(0)) {
     for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
       y_elem = y_i[yi];
-      tmp1 = y_elem * beta_i;
-      y_i[yi] = tmp1;
+      tmp1 = impl::mul<TmpType>(y_elem, beta_i);
+      y_i[yi] = impl::to<T>(tmp1);
     }
   } else {
-    /*  determine the loop interation counts */
+    /*  determine the loop iteration counts */
     /* number of elements done in first loop
        (this will increase by one over each column up to a limit) */
     maxj_first = 0;
     /* number of elements done in second loop the first time */
-    maxj_second = MIN(k + 1, n_i);
+    maxj_second = std::min(k + 1, n_i);
 
     /* Case alpha == 1. */
-    if (alpha_i == 1.0) {
-
-      if (beta_i == 0.0) {
+    if (alpha_i == T(1)) {
+      if (beta_i == T(0)) {
         /* Case alpha = 1, beta = 0.  We compute  y <--- A * x */
         for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-          sum = 0.0;
+          sum = impl::zero_v<PrdType>;
           for (j = 0, aij = astarti, xi = x_starti;
                j < maxj_first; j++, aij += incaij, xi += incx) {
             a_elem = a_i[aij];
             x_elem = x_i[xi];
-            prod = a_elem * x_elem;
+            prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           for (j = 0; j < maxj_second; j++, aij += incaij2, xi += incx) {
             a_elem = a_i[aij];
             x_elem = x_i[xi];
-            prod = a_elem * x_elem;
+            prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
-          y_i[yi] = sum;
+          y_i[yi] = impl::to<T>(sum);
           if (i + 1 >= (n_i - k))
             maxj_second--;
           if (i >= k) {
@@ -262,26 +274,25 @@ constexpr void sbmv(enum blas_order_type order,
         /* Case alpha = 1, but beta != 0.
            We compute  y  <--- A * x + beta * y */
         for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-          sum = 0.0;
-
+          sum = impl::zero_v<PrdType>;
           for (j = 0, aij = astarti, xi = x_starti;
                j < maxj_first; j++, aij += incaij, xi += incx) {
             a_elem = a_i[aij];
             x_elem = x_i[xi];
-            prod = a_elem * x_elem;
+            prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           for (j = 0; j < maxj_second; j++, aij += incaij2, xi += incx) {
             a_elem = a_i[aij];
             x_elem = x_i[xi];
-            prod = a_elem * x_elem;
+            prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           y_elem = y_i[yi];
-          tmp2 = y_elem * beta_i;
+          tmp2 = impl::mul<TmpType>(y_elem, beta_i);
           tmp1 = sum;
           tmp1 = tmp2 + tmp1;
-          y_i[yi] = tmp1;
+          y_i[yi] = impl::to<T>(tmp1);
           if (i + 1 >= (n_i - k))
             maxj_second--;
           if (i >= k) {
@@ -294,7 +305,7 @@ constexpr void sbmv(enum blas_order_type order,
         }
       }
     } else {
-      if (beta_i == 0.0) {
+      if (beta_i == T(0)) {
         /* Case alpha != 1, but beta == 0.
            We compute  y  <--- A * x * a */
         for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
@@ -304,18 +315,18 @@ constexpr void sbmv(enum blas_order_type order,
                j < maxj_first; j++, aij += incaij, xi += incx) {
             a_elem = a_i[aij];
             x_elem = x_i[xi];
-            prod = a_elem * x_elem;
+            prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           for (j = 0; j < maxj_second; j++, aij += incaij2, xi += incx) {
             a_elem = a_i[aij];
             x_elem = x_i[xi];
-            prod = a_elem * x_elem;
+            prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           y_elem = y_i[yi];
-          tmp1 = sum * alpha_i;
-          y_i[yi] = tmp1;
+          tmp1 = impl::mul<TmpType>(sum, alpha_i);
+          y_i[yi] = impl::to<T>(tmp1);
           if (i + 1 >= (n_i - k))
             maxj_second--;
           if (i >= k) {
@@ -335,20 +346,20 @@ constexpr void sbmv(enum blas_order_type order,
                j < maxj_first; j++, aij += incaij, xi += incx) {
             a_elem = a_i[aij];
             x_elem = x_i[xi];
-            prod = a_elem * x_elem;
+            prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           for (j = 0; j < maxj_second; j++, aij += incaij2, xi += incx) {
             a_elem = a_i[aij];
             x_elem = x_i[xi];
-            prod = a_elem * x_elem;
+            prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           y_elem = y_i[yi];
-          tmp2 = y_elem * beta_i;
-          tmp1 = sum * alpha_i;
+          tmp2 = impl::mul<TmpType>(y_elem, beta_i);
+          tmp1 = impl::mul<TmpType>(sum, alpha_i);
           tmp1 = tmp2 + tmp1;
-          y_i[yi] = tmp1;
+          y_i[yi] = impl::to<T>(tmp1);
           if (i + 1 >= (n_i - k))
             maxj_second--;
           if (i >= k) {
@@ -363,7 +374,9 @@ constexpr void sbmv(enum blas_order_type order,
     }
   }
 
-
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_STOP;
+  }
 } /* end XBLAS::sbmv */
 
 //-----------------
@@ -456,7 +469,7 @@ constexpr void sbmv_x(enum blas_order_type order,
  *      following ways:
  *
  *      Notes for the examples:
- *      Each column below represents a contigous vector.
+ *      Each column below represents a contiguous vector.
  *      Columns are strided by lda.
  *      An asterisk (*) represents a position in the
  *       matrix that is not used.
@@ -478,14 +491,14 @@ constexpr void sbmv_x(enum blas_order_type order,
  *
  *
  *    blas_rowmajor and blas_upper
- *      Columns here also represent contigous arrays.
+ *      Columns here also represent contiguous arrays.
  *      1  4  7  10  12
  *      2  5  8  11  *
  *      3  6  9  *   *
  *
  *
  *    blas_rowmajor and blas_lower
- *      Columns here also represent contigous arrays.
+ *      Columns here also represent contiguous arrays.
  *      *  *  3  6   9
  *      *  2  5  8   11
  *      1  4  7  10  12
@@ -594,7 +607,7 @@ constexpr void sbmv_x(enum blas_order_type order,
           y_i[yi] = tmp1;
         }
       } else {
-        /*  determine the loop interation counts */
+        /*  determine the loop iteration counts */
         /* number of elements done in first loop
            (this will increase by one over each column up to a limit) */
         maxj_first = 0;
@@ -838,7 +851,7 @@ constexpr void sbmv_x(enum blas_order_type order,
           y_i[yi] = head_tmp1;
         }
       } else {
-        /*  determine the loop interation counts */
+        /*  determine the loop iteration counts */
         /* number of elements done in first loop
            (this will increase by one over each column up to a limit) */
         maxj_first = 0;

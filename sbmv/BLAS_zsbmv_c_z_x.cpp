@@ -89,7 +89,7 @@ void BLAS_zsbmv_c_z_x(enum blas_order_type order,
  *      following ways:
  *
  *      Notes for the examples:
- *      Each column below represents a contigous vector.
+ *      Each column below represents a contiguous vector.
  *      Columns are strided by lda.
  *      An asterisk (*) represents a position in the
  *       matrix that is not used.
@@ -111,14 +111,14 @@ void BLAS_zsbmv_c_z_x(enum blas_order_type order,
  *
  *
  *    blas_rowmajor and blas_upper
- *      Columns here also represent contigous arrays.
+ *      Columns here also represent contiguous arrays.
  *      1  4  7  10  12
  *      2  5  8  11  *
  *      3  6  9  *   *
  *
  *
  *    blas_rowmajor and blas_lower
- *      Columns here also represent contigous arrays.
+ *      Columns here also represent contiguous arrays.
  *      *  *  3  6   9
  *      *  2  5  8   11
  *      1  4  7  10  12
@@ -257,7 +257,7 @@ void BLAS_zsbmv_c_z_x(enum blas_order_type order,
           y_i[yi + 1] = tmp1[1];
         }
       } else {
-        /*  determine the loop interation counts */
+        /*  determine the loop iteration counts */
         /* number of elements done in first loop
            (this will increase by one over each column up to a limit) */
         maxj_first = 0;
@@ -641,7 +641,7 @@ void BLAS_zsbmv_c_z_x(enum blas_order_type order,
           y_i[yi + 1] = head_tmp1[1];
         }
       } else {
-        /*  determine the loop interation counts */
+        /*  determine the loop iteration counts */
         /* number of elements done in first loop
            (this will increase by one over each column up to a limit) */
         maxj_first = 0;

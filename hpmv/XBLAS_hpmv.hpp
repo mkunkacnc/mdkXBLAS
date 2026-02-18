@@ -55,7 +55,7 @@ constexpr void hpmv(enum blas_order_type order,
  * incx   (input) IdxType
  *        The stride for vector x.
  *
- * beta   (input) const T*
+ * beta   (input) T
  *
  * y      (input/output) T*
  *
