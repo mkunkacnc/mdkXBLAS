@@ -50,7 +50,7 @@ void BLAS_cspmv_c_s(enum blas_order_type order,
  */
 {
 //static const char routine_name[] = "BLAS_cspmv_c_s";
-#if 0
+#if 1
   XBLAS::spmv(order,
               uplo,
               n,

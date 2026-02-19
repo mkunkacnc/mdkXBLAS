@@ -8,17 +8,25 @@
 namespace XBLAS {
 //---------------
 
-inline
-constexpr void spmv(enum blas_order_type order,
-                    enum blas_uplo_type uplo,
-                    int n,
-                    double alpha,
-                    const double *ap,
-                    const float *x,
-                    int incx,
-                    double beta,
-                    double *y,
-                    int incy)
+template<typename T,
+         typename A,
+         typename X,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<A, T> &&
+          impl::size_le_v<X, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void spmv(blas_order_type order,
+                    blas_uplo_type uplo,
+                    IdxType n,
+                    T alpha,
+                    const A *ap,
+                    const X *x,
+                    IdxType incx,
+                    T beta,
+                    T *y,
+                    IdxType incy)
 /*
  * Purpose
  * =======
@@ -29,390 +37,380 @@ constexpr void spmv(enum blas_order_type order,
  * Arguments
  * =========
  *
- * order  (input) enum blas_order_type
+ * order  (input) blas_order_type
  *        Order of ap; row or column major
  *
- * uplo   (input) enum blas_uplo_type
+ * uplo   (input) blas_uplo_type
  *        Whether ap is upper or lower
  *
- * n      (input) int
+ * n      (input) IdxType
  *        Dimension of ap and the length of vector x
  *
- * alpha  (input) double
+ * alpha  (input) T
  *
- * ap     (input) const double*
+ * ap     (input) const A*
  *
- * x      (input) const float*
+ * x      (input) const X*
  *
- * incx   (input) int
+ * incx   (input) IdxType
  *        The stride for vector x.
  *
- * beta   (input) double
+ * beta   (input) T
  *
- * y      (input/output) double*
+ * y      (input/output) T*
  *
- * incy   (input) int
+ * incy   (input) IdxType
  *        The stride for vector y.
  *
  */
 {
-  static const char routine_name[] = "BLAS_dspmv_d_s";
+  static const char routine_name[] = "XBLAS::spmv";
 
-  {
-    int matrix_row, step, ap_index, ap_start, x_index, x_start;
-    int y_start, y_index, incap;
-    double alpha_i = alpha;
-    double beta_i = beta;
+  using PrdType = impl::get_inner_type_t<A, X, TmpType>;
 
-    const double *ap_i = ap;
-    const float *x_i = x;
-    double *y_i = y;
-    double rowsum;
-    double rowtmp;
-    double matval;
-    float vecval;
-    double resval;
-    double tmp1;
-    double tmp2;
+  FPU_FIX_DECL;
 
+  IdxType matrix_row, step, ap_index, ap_start, x_index, x_start;
+  IdxType y_start, y_index, incap;
+  T alpha_i = alpha;
+  T beta_i = beta;
 
-    incap = 1;
+  const A *ap_i = ap;
+  const X *x_i = x;
+  T *y_i = y;
+  PrdType rowsum;
+  PrdType rowtmp;
+  A matval;
+  X vecval;
+  T resval;
+  TmpType tmp1;
+  TmpType tmp2;
 
+  incap = 1;
 
+  if (incx < 0)
+    x_start = (-n + 1) * incx;
+  else
+    x_start = 0;
+  if (incy < 0)
+    y_start = (-n + 1) * incy;
+  else
+    y_start = 0;
 
+  if (n < 1) {
+    return;
+  }
+  if (alpha_i == T(0) && beta_i == T(1)) {
+    return;
+  }
 
-    if (incx < 0)
-      x_start = (-n + 1) * incx;
-    else
-      x_start = 0;
-    if (incy < 0)
-      y_start = (-n + 1) * incy;
-    else
-      y_start = 0;
+  /* Check for error conditions. */
+  if (order != blas_colmajor && order != blas_rowmajor) {
+    BLAS_error(routine_name, -1, order, NULL);
+  }
+  if (uplo != blas_upper && uplo != blas_lower) {
+    BLAS_error(routine_name, -2, uplo, NULL);
+  }
+  if (incx == 0) {
+    BLAS_error(routine_name, -7, incx, NULL);
+  }
+  if (incy == 0) {
+    BLAS_error(routine_name, -10, incy, NULL);
+  }
 
-    if (n < 1) {
-      return;
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_START;
+  }
+
+  if (alpha_i == T(0)) {
+    y_index = y_start;
+    for (matrix_row = 0; matrix_row < n; matrix_row++) {
+      resval = y_i[y_index];
+      tmp2 = impl::mul<TmpType>(beta_i, resval);
+      y_i[y_index] = impl::to<T>(tmp2);
+      y_index += incy;
     }
-    if (alpha_i == 0.0 && beta_i == 1.0) {
-      return;
-    }
-
-    /* Check for error conditions. */
-    if (order != blas_colmajor && order != blas_rowmajor) {
-      BLAS_error(routine_name, -1, order, NULL);
-    }
-    if (uplo != blas_upper && uplo != blas_lower) {
-      BLAS_error(routine_name, -2, uplo, NULL);
-    }
-    if (incx == 0) {
-      BLAS_error(routine_name, -7, incx, NULL);
-    }
-    if (incy == 0) {
-      BLAS_error(routine_name, -10, incy, NULL);
-    }
-
-
-
-    if (alpha_i == 0.0) {
-      {
-        y_index = y_start;
-        for (matrix_row = 0; matrix_row < n; matrix_row++) {
-          resval = y_i[y_index];
-
-          tmp2 = beta_i * resval;
-
-          y_i[y_index] = tmp2;
-
-          y_index += incy;
-        }
-      }
-    } else {
-      if (uplo == blas_lower)
-        order = (order == blas_rowmajor) ? blas_colmajor : blas_rowmajor;
-      if (order == blas_rowmajor) {
-        if (alpha_i == 1.0) {
-          if (beta_i == 0.0) {
-            {
-              y_index = y_start;
-              ap_start = 0;
-              for (matrix_row = 0; matrix_row < n; matrix_row++) {
-                x_index = x_start;
-                ap_index = ap_start;
-                rowsum = 0.0;
-                rowtmp = 0.0;
-                for (step = 0; step < matrix_row; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += (n - step - 1) * incap;
-                  x_index += incx;
-                }
-                for (step = matrix_row; step < n; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += incap;
-                  x_index += incx;
-                }
-                tmp1 = rowsum;
-                y_i[y_index] = tmp1;
-
-                y_index += incy;
-                ap_start += incap;
+  } else {
+    if (uplo == blas_lower)
+      order = (order == blas_rowmajor) ? blas_colmajor : blas_rowmajor;
+    if (order == blas_rowmajor) {
+      if (alpha_i == T(1)) {
+        if (beta_i == T(0)) {
+          {
+            y_index = y_start;
+            ap_start = 0;
+            for (matrix_row = 0; matrix_row < n; matrix_row++) {
+              x_index = x_start;
+              ap_index = ap_start;
+              rowsum = impl::zero_v<PrdType>;
+              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              for (step = 0; step < matrix_row; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += (n - step - 1) * incap;
+                x_index += incx;
               }
-            }
-          } else {
-            {
-              y_index = y_start;
-              ap_start = 0;
-              for (matrix_row = 0; matrix_row < n; matrix_row++) {
-                x_index = x_start;
-                ap_index = ap_start;
-                rowsum = 0.0;
-                rowtmp = 0.0;
-                for (step = 0; step < matrix_row; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += (n - step - 1) * incap;
-                  x_index += incx;
-                }
-                for (step = matrix_row; step < n; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += incap;
-                  x_index += incx;
-                }
-                resval = y_i[y_index];
-                tmp1 = rowsum;
-                tmp2 = beta_i * resval;
-                tmp2 = tmp1 + tmp2;
-                y_i[y_index] = tmp2;
-
-                y_index += incy;
-                ap_start += incap;
+              for (step = matrix_row; step < n; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += incap;
+                x_index += incx;
               }
+              tmp1 = rowsum;
+              y_i[y_index] = impl::to<T>(tmp1);
+              y_index += incy;
+              ap_start += incap;
             }
           }
         } else {
-          if (beta_i == 0.0) {
-            {
-              y_index = y_start;
-              ap_start = 0;
-              for (matrix_row = 0; matrix_row < n; matrix_row++) {
-                x_index = x_start;
-                ap_index = ap_start;
-                rowsum = 0.0;
-                rowtmp = 0.0;
-                for (step = 0; step < matrix_row; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += (n - step - 1) * incap;
-                  x_index += incx;
-                }
-                for (step = matrix_row; step < n; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += incap;
-                  x_index += incx;
-                }
-                tmp1 = rowsum * alpha_i;
-                y_i[y_index] = tmp1;
-
-                y_index += incy;
-                ap_start += incap;
+          {
+            y_index = y_start;
+            ap_start = 0;
+            for (matrix_row = 0; matrix_row < n; matrix_row++) {
+              x_index = x_start;
+              ap_index = ap_start;
+              rowsum = impl::zero_v<PrdType>;
+              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              for (step = 0; step < matrix_row; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += (n - step - 1) * incap;
+                x_index += incx;
               }
-            }
-          } else {
-            {
-              y_index = y_start;
-              ap_start = 0;
-              for (matrix_row = 0; matrix_row < n; matrix_row++) {
-                x_index = x_start;
-                ap_index = ap_start;
-                rowsum = 0.0;
-                rowtmp = 0.0;
-                for (step = 0; step < matrix_row; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += (n - step - 1) * incap;
-                  x_index += incx;
-                }
-                for (step = matrix_row; step < n; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += incap;
-                  x_index += incx;
-                }
-                resval = y_i[y_index];
-                tmp1 = rowsum * alpha_i;
-                tmp2 = beta_i * resval;
-                tmp2 = tmp1 + tmp2;
-                y_i[y_index] = tmp2;
-
-                y_index += incy;
-                ap_start += incap;
+              for (step = matrix_row; step < n; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += incap;
+                x_index += incx;
               }
+              resval = y_i[y_index];
+              tmp1 = rowsum;
+              tmp2 = impl::mul<TmpType>(beta_i, resval);
+              tmp2 = tmp1 + tmp2;
+              y_i[y_index] = impl::to<T>(tmp2);
+
+              y_index += incy;
+              ap_start += incap;
             }
           }
         }
       } else {
-        if (alpha_i == 1.0) {
-          if (beta_i == 0.0) {
-            {
-              y_index = y_start;
-              ap_start = 0;
-              for (matrix_row = 0; matrix_row < n; matrix_row++) {
-                x_index = x_start;
-                ap_index = ap_start;
-                rowsum = 0.0;
-                rowtmp = 0.0;
-                for (step = 0; step < matrix_row; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += incap;
-                  x_index += incx;
-                }
-                for (step = matrix_row; step < n; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += (step + 1) * incap;
-                  x_index += incx;
-                }
-                tmp1 = rowsum;
-                y_i[y_index] = tmp1;
-
-                y_index += incy;
-                ap_start += (matrix_row + 1) * incap;
+        if (beta_i == T(0)) {
+          {
+            y_index = y_start;
+            ap_start = 0;
+            for (matrix_row = 0; matrix_row < n; matrix_row++) {
+              x_index = x_start;
+              ap_index = ap_start;
+              rowsum = impl::zero_v<PrdType>;
+              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              for (step = 0; step < matrix_row; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += (n - step - 1) * incap;
+                x_index += incx;
               }
-            }
-          } else {
-            {
-              y_index = y_start;
-              ap_start = 0;
-              for (matrix_row = 0; matrix_row < n; matrix_row++) {
-                x_index = x_start;
-                ap_index = ap_start;
-                rowsum = 0.0;
-                rowtmp = 0.0;
-                for (step = 0; step < matrix_row; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += incap;
-                  x_index += incx;
-                }
-                for (step = matrix_row; step < n; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += (step + 1) * incap;
-                  x_index += incx;
-                }
-                resval = y_i[y_index];
-                tmp1 = rowsum;
-                tmp2 = beta_i * resval;
-                tmp2 = tmp1 + tmp2;
-                y_i[y_index] = tmp2;
-
-                y_index += incy;
-                ap_start += (matrix_row + 1) * incap;
+              for (step = matrix_row; step < n; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += incap;
+                x_index += incx;
               }
+              tmp1 = impl::mul<TmpType>(rowsum, alpha_i);
+              y_i[y_index] = impl::to<T>(tmp1);
+              y_index += incy;
+              ap_start += incap;
             }
           }
         } else {
-          if (beta_i == 0.0) {
-            {
-              y_index = y_start;
-              ap_start = 0;
-              for (matrix_row = 0; matrix_row < n; matrix_row++) {
-                x_index = x_start;
-                ap_index = ap_start;
-                rowsum = 0.0;
-                rowtmp = 0.0;
-                for (step = 0; step < matrix_row; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += incap;
-                  x_index += incx;
-                }
-                for (step = matrix_row; step < n; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += (step + 1) * incap;
-                  x_index += incx;
-                }
-                tmp1 = rowsum * alpha_i;
-                y_i[y_index] = tmp1;
-
-                y_index += incy;
-                ap_start += (matrix_row + 1) * incap;
+          {
+            y_index = y_start;
+            ap_start = 0;
+            for (matrix_row = 0; matrix_row < n; matrix_row++) {
+              x_index = x_start;
+              ap_index = ap_start;
+              rowsum = impl::zero_v<PrdType>;
+              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              for (step = 0; step < matrix_row; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += (n - step - 1) * incap;
+                x_index += incx;
               }
-            }
-          } else {
-            {
-              y_index = y_start;
-              ap_start = 0;
-              for (matrix_row = 0; matrix_row < n; matrix_row++) {
-                x_index = x_start;
-                ap_index = ap_start;
-                rowsum = 0.0;
-                rowtmp = 0.0;
-                for (step = 0; step < matrix_row; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += incap;
-                  x_index += incx;
-                }
-                for (step = matrix_row; step < n; step++) {
-                  matval = ap_i[ap_index];
-                  vecval = x_i[x_index];
-                  rowtmp = matval * vecval;
-                  rowsum = rowsum + rowtmp;
-                  ap_index += (step + 1) * incap;
-                  x_index += incx;
-                }
-                resval = y_i[y_index];
-                tmp1 = rowsum * alpha_i;
-                tmp2 = beta_i * resval;
-                tmp2 = tmp1 + tmp2;
-                y_i[y_index] = tmp2;
-
-                y_index += incy;
-                ap_start += (matrix_row + 1) * incap;
+              for (step = matrix_row; step < n; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += incap;
+                x_index += incx;
               }
+              resval = y_i[y_index];
+              tmp1 = impl::mul<TmpType>(rowsum, alpha_i);
+              tmp2 = impl::mul<TmpType>(beta_i, resval);
+              tmp2 = tmp1 + tmp2;
+              y_i[y_index] = impl::to<T>(tmp2);
+              y_index += incy;
+              ap_start += incap;
             }
           }
         }
-      }                                /* if order == ... */
-    }                                /* alpha != 0 */
+      }
+    } else {
+      if (alpha_i == T(1)) {
+        if (beta_i == T(0)) {
+          {
+            y_index = y_start;
+            ap_start = 0;
+            for (matrix_row = 0; matrix_row < n; matrix_row++) {
+              x_index = x_start;
+              ap_index = ap_start;
+              rowsum = impl::zero_v<PrdType>;
+              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              for (step = 0; step < matrix_row; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += incap;
+                x_index += incx;
+              }
+              for (step = matrix_row; step < n; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += (step + 1) * incap;
+                x_index += incx;
+              }
+              tmp1 = rowsum;
+              y_i[y_index] = impl::to<T>(tmp1);
+              y_index += incy;
+              ap_start += (matrix_row + 1) * incap;
+            }
+          }
+        } else {
+          {
+            y_index = y_start;
+            ap_start = 0;
+            for (matrix_row = 0; matrix_row < n; matrix_row++) {
+              x_index = x_start;
+              ap_index = ap_start;
+              rowsum = impl::zero_v<PrdType>;
+              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              for (step = 0; step < matrix_row; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += incap;
+                x_index += incx;
+              }
+              for (step = matrix_row; step < n; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += (step + 1) * incap;
+                x_index += incx;
+              }
+              resval = y_i[y_index];
+              tmp1 = rowsum;
+              tmp2 = impl::mul<TmpType>(beta_i, resval);
+              tmp2 = tmp1 + tmp2;
+              y_i[y_index] = impl::to<T>(tmp2);
+              y_index += incy;
+              ap_start += (matrix_row + 1) * incap;
+            }
+          }
+        }
+      } else {
+        if (beta_i == T(0)) {
+          {
+            y_index = y_start;
+            ap_start = 0;
+            for (matrix_row = 0; matrix_row < n; matrix_row++) {
+              x_index = x_start;
+              ap_index = ap_start;
+              rowsum = impl::zero_v<PrdType>;
+              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              for (step = 0; step < matrix_row; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += incap;
+                x_index += incx;
+              }
+              for (step = matrix_row; step < n; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += (step + 1) * incap;
+                x_index += incx;
+              }
+              tmp1 = impl::mul<TmpType>(rowsum, alpha_i);
+              y_i[y_index] = impl::to<T>(tmp1);
+              y_index += incy;
+              ap_start += (matrix_row + 1) * incap;
+            }
+          }
+        } else {
+          {
+            y_index = y_start;
+            ap_start = 0;
+            for (matrix_row = 0; matrix_row < n; matrix_row++) {
+              x_index = x_start;
+              ap_index = ap_start;
+              rowsum = impl::zero_v<PrdType>;
+              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              for (step = 0; step < matrix_row; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += incap;
+                x_index += incx;
+              }
+              for (step = matrix_row; step < n; step++) {
+                matval = ap_i[ap_index];
+                vecval = x_i[x_index];
+                rowtmp = impl::mul<PrdType>(matval, vecval);
+                rowsum = rowsum + rowtmp;
+                ap_index += (step + 1) * incap;
+                x_index += incx;
+              }
+              resval = y_i[y_index];
+              tmp1 = impl::mul<TmpType>(rowsum, alpha_i);
+              tmp2 = impl::mul<TmpType>(beta_i, resval);
+              tmp2 = tmp1 + tmp2;
+              y_i[y_index] = impl::to<T>(tmp2);
+              y_index += incy;
+              ap_start += (matrix_row + 1) * incap;
+            }
+          }
+        }
+      }
+    } /* if order == ... */
+  }   /* alpha != 0 */
 
-
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_STOP;
   }
 } /* end XBLAS::spmv */
 
