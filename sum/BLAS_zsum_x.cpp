@@ -40,7 +40,7 @@ void BLAS_zsum_x(int n,
  */
 {
 //static const char routine_name[] = "BLAS_zsum_x";
-#if 0
+#if 1
   XBLAS::sum_x(n,
                static_cast<const std::complex<double> *>(x),
                incx,

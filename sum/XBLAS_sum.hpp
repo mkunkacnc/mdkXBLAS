@@ -8,12 +8,15 @@
 namespace XBLAS {
 //---------------
 
-inline
-constexpr void sum_x(int n,
-                 const double *x,
-                 int incx,
-                 double *sum,
-                 enum blas_prec_type prec)
+template<typename T,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void sum(IdxType n,
+                   const T *x,
+                   IdxType incx,
+                   T *sum)
 /*
  * Purpose
  * =======
@@ -25,18 +28,92 @@ constexpr void sum_x(int n,
  * Arguments
  * =========
  *
- * n     (input) int
+ * n     (input) IdxType
  *       The length of vector x.
  *
- * x     (input) const double*
+ * x     (input) const T*
  *       Array of length n.
  *
- * incx  (input) int
+ * incx  (input) IdxType
  *       The stride used to access components x[i].
  *
- * sum   (output) double*
+ * sum   (output) T*
  *
- * prec  (input) enum blas_prec_type
+ */
+{
+  static const char routine_name[] = "XBLAS::sum";
+
+  FPU_FIX_DECL;
+
+  /* Test the input parameters. */
+  if (n < 0)
+    BLAS_error(routine_name, -1, n, NULL);
+  if (incx == 0)
+    BLAS_error(routine_name, -3, incx, NULL);
+
+  /* Immediate return. */
+  if (n <= 0) {
+    *sum = impl::zero_v<T>;
+    return;
+  }
+
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_START;
+  }
+
+  TmpType tmp = impl::zero_v<TmpType>;
+
+  IdxType xi;
+  if (incx < 0)
+    xi = -(n - 1) * incx;
+  else
+    xi = 0;
+
+  for (IdxType i = 0; i < n; i++, xi += incx) {
+    tmp += x[xi];
+  }
+  *sum = impl::to<T>(tmp);
+
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_STOP;
+  }
+} /* end XBLAS::sum */
+
+//-----------------
+
+template<typename T,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void sum_x(IdxType n,
+                     const T *x,
+                     IdxType incx,
+                     T *sum,
+                     blas_prec_type prec)
+/*
+ * Purpose
+ * =======
+ *
+ * This routine computes the summation:
+ *
+ *     sum <- SUM_{i=0, n-1} x[i].
+ *
+ * Arguments
+ * =========
+ *
+ * n     (input) IdxType
+ *       The length of vector x.
+ *
+ * x     (input) const T*
+ *       Array of length n.
+ *
+ * incx  (input) IdxType
+ *       The stride used to access components x[i].
+ *
+ * sum   (output) T*
+ *
+ * prec  (input) blas_prec_type
  *       Specifies the internal precision to be used.
  *       = blas_prec_single: single precision.
  *       = blas_prec_double: double precision.
@@ -46,91 +123,19 @@ constexpr void sum_x(int n,
  *
  */
 {
-  static const char routine_name[] = "BLAS_dsum_x";
+//static const char routine_name[] = "XBLAS::sum_x";
   switch (prec) {
   case blas_prec_single:
+    XBLAS::sum<T, impl::internal_precision_t<T, blas_prec_single>, IdxType>(n, x, incx, sum);
+    break;
   case blas_prec_double:
-  case blas_prec_indigenous:{
-
-      int i, xi;
-      double *sum_i = sum;
-      const double *x_i = x;
-      double x_elem;
-      double tmp;
-
-
-      /* Test the input parameters. */
-      if (n < 0)
-        BLAS_error(routine_name, -1, n, NULL);
-      if (incx == 0)
-        BLAS_error(routine_name, -3, incx, NULL);
-
-      /* Immediate return. */
-      if (n <= 0) {
-        *sum_i = 0.0;
-        return;
-      }
-
-
-
-      tmp = 0.0;
-
-
-      if (incx < 0)
-        xi = -(n - 1) * incx;
-      else
-        xi = 0;
-
-      for (i = 0; i < n; i++, xi += incx) {
-        x_elem = x_i[xi];
-        tmp = tmp + x_elem;
-      }
-      *sum = tmp;
-
-
-
-      break;
-    }
-
+    XBLAS::sum<T, impl::internal_precision_t<T, blas_prec_double>, IdxType>(n, x, incx, sum);
+    break;
+  case blas_prec_indigenous:
+    XBLAS::sum<T, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(n, x, incx, sum);
+    break;
   case blas_prec_extra:
-    {
-      int i, xi;
-      double *sum_i = sum;
-      const double *x_i = x;
-      double x_elem;
-      double head_tmp, tail_tmp;
-      FPU_FIX_DECL;
-
-      /* Test the input parameters. */
-      if (n < 0)
-        BLAS_error(routine_name, -1, n, NULL);
-      if (incx == 0)
-        BLAS_error(routine_name, -3, incx, NULL);
-
-      /* Immediate return. */
-      if (n <= 0) {
-        *sum_i = 0.0;
-        return;
-      }
-
-      FPU_FIX_START;
-
-      head_tmp = tail_tmp = 0.0;
-
-
-      if (incx < 0)
-        xi = -(n - 1) * incx;
-      else
-        xi = 0;
-
-      for (i = 0; i < n; i++, xi += incx) {
-        x_elem = x_i[xi];
-        compute_doubledouble_eq_doubledouble_add_double(&head_tmp, &tail_tmp, head_tmp, tail_tmp, x_elem);
-      }
-      *sum = head_tmp;
-
-      FPU_FIX_STOP;
-    }
+    XBLAS::sum<T, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(n, x, incx, sum);
     break;
   }
 } /* end XBLAS::sum_x */
