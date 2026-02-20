@@ -8,17 +8,23 @@
 namespace XBLAS {
 //---------------
 
-inline
-constexpr void trmv(enum blas_order_type order,
-                  enum blas_uplo_type uplo,
-                  enum blas_trans_type trans,
-                  enum blas_diag_type diag,
-                  int n,
-                  double alpha,
-                  const float *T,
-                  int ldt,
-                  double *x,
-                  int incx)
+template<typename T,
+         typename X,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<X, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void trmv(blas_order_type order,
+                    blas_uplo_type uplo,
+                    blas_trans_type trans,
+                    blas_diag_type diag,
+                    IdxType n,
+                    T alpha,
+                    const A *t,
+                    IdxType ldt,
+                    X *x,
+                    IdxType incx)
 /*
  * Purpose
  * =======

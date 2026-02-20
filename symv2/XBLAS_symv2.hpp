@@ -8,19 +8,27 @@
 namespace XBLAS {
 //---------------
 
-inline
-constexpr void symv2(enum blas_order_type order,
-                     enum blas_uplo_type uplo,
-                     int n,
-                     double alpha,
-                     const double *a,
-                     int lda,
-                     const float *x_head,
-                     const float *x_tail,
-                     int incx,
-                     double beta,
-                     double *y,
-                     int incy)
+template<typename T,
+         typename A,
+         typename X,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<A, T> &&
+          impl::size_le_v<X, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void symv2(blas_order_type order,
+                     blas_uplo_type uplo,
+                     IdxType n,
+                     T alpha,
+                     const A *a,
+                     IdxType lda,
+                     const X *x_head,
+                     const X *x_tail,
+                     IdxType incx,
+                     T beta,
+                     T *y,
+                     IdxType incy)
 /*
  * Purpose
  * =======
