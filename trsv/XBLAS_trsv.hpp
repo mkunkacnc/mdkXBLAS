@@ -36,30 +36,30 @@ constexpr void trsv(blas_order_type order,
  * Arguments
  * =========
  *
- * order  (input) enum blas_order_type
+ * order  (input) blas_order_type
  *        column major, row major
  *
- * uplo   (input) enum blas_uplo_type
+ * uplo   (input) blas_uplo_type
  *        upper, lower
  *
- * trans  (input) enum blas_trans_type
+ * trans  (input) blas_trans_type
  *        no trans, trans, conj trans
  *
- * diag   (input) enum blas_diag_type
+ * diag   (input) blas_diag_type
  *        unit, non unit
  *
- * n      (input) int
+ * n      (input) IdxType
  *        the dimension of T
  *
- * alpha  (input) double
+ * alpha  (input) T
  *
- * T      (input) const float*
+ * t      (input) const A*
  *        Triangular matrix
  *
- * x      (input/output) double*
+ * x      (input/output) X*
  *        Array of length n.
  *
- * incx   (input) int
+ * incx   (input) IdxType
  *        The stride used to access components x[i].
  *
  */
@@ -69,7 +69,7 @@ constexpr void trsv(blas_order_type order,
   int i, j;                        /* used to idx matrix */
   int ix, jx;                        /* used to idx vector x */
   int start_x;                        /* used as the starting idx to vector x */
-  const float *T_i = T;                /* internal matrix T */
+  const float *t_i = t;                /* internal matrix T */
   double *x_i = x;                /* internal x */
   double alpha_i = alpha;        /* internal alpha */
   float T_element;                /* temporary variable for an element of matrix A */
@@ -126,7 +126,7 @@ constexpr void trsv(blas_order_type order,
 
         ix = start_x + (n - 1) * incx;
         for (i = n - 1; i >= j + 1; i--) {
-          T_element = T_i[i * incT + j * ldt * incT];
+          T_element = t_i[i * incT + j * ldt * incT];
 
           temp3 = x_i[ix];
           temp2 = temp3 * T_element;
@@ -137,7 +137,7 @@ constexpr void trsv(blas_order_type order,
         /* if the diagonal entry is not equal to one, then divide Xj by
            the entry */
         if (diag == blas_non_unit_diag) {
-          T_element = T_i[j * incT + j * ldt * incT];
+          T_element = t_i[j * incT + j * ldt * incT];
 
 
           temp1 = temp1 / T_element;
@@ -164,7 +164,7 @@ constexpr void trsv(blas_order_type order,
 
         ix = start_x;
         for (i = 0; i < j; i++) {
-          T_element = T_i[i * incT + j * ldt * incT];
+          T_element = t_i[i * incT + j * ldt * incT];
 
           temp3 = x_i[ix];
           temp2 = temp3 * T_element;
@@ -175,7 +175,7 @@ constexpr void trsv(blas_order_type order,
         /* if the diagonal entry is not equal to one, then divide Xj by
            the entry */
         if (diag == blas_non_unit_diag) {
-          T_element = T_i[j * incT + j * ldt * incT];
+          T_element = t_i[j * incT + j * ldt * incT];
 
 
           temp1 = temp1 / T_element;
@@ -200,7 +200,7 @@ constexpr void trsv(blas_order_type order,
 
         ix = start_x + (n - 1) * incx;
         for (i = n - 1; i >= j + 1; i--) {
-          T_element = T_i[j * incT + i * ldt * incT];
+          T_element = t_i[j * incT + i * ldt * incT];
 
           temp3 = x_i[ix];
           temp2 = temp3 * T_element;
@@ -211,7 +211,7 @@ constexpr void trsv(blas_order_type order,
         /* if the diagonal entry is not equal to one, then divide Xj by
            the entry */
         if (diag == blas_non_unit_diag) {
-          T_element = T_i[j * incT + j * ldt * incT];
+          T_element = t_i[j * incT + j * ldt * incT];
 
 
           temp1 = temp1 / T_element;
@@ -238,7 +238,7 @@ constexpr void trsv(blas_order_type order,
 
         ix = start_x;
         for (i = 0; i < j; i++) {
-          T_element = T_i[j * incT + i * ldt * incT];
+          T_element = t_i[j * incT + i * ldt * incT];
 
           temp3 = x_i[ix];
           temp2 = temp3 * T_element;
@@ -249,7 +249,7 @@ constexpr void trsv(blas_order_type order,
         /* if the diagonal entry is not equal to one, then divide Xj by
            the entry */
         if (diag == blas_non_unit_diag) {
-          T_element = T_i[j * incT + j * ldt * incT];
+          T_element = t_i[j * incT + j * ldt * incT];
 
 
           temp1 = temp1 / T_element;

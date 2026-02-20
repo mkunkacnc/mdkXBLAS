@@ -37,33 +37,33 @@ constexpr void tbsv(blas_order_type order,
  * Arguments
  * =========
  *
- * order  (input) enum blas_order_type
+ * order  (input) blas_order_type
  *        column major, row major (blas_rowmajor, blas_colmajor)
  *
- * uplo   (input) enum blas_uplo_type
+ * uplo   (input) blas_uplo_type
  *        upper, lower (blas_upper, blas_lower)
  *
- * trans  (input) enum blas_trans_type
+ * trans  (input) blas_trans_type
  *        no trans, trans, conj trans
  *
- * diag   (input) enum blas_diag_type
+ * diag   (input) blas_diag_type
  *        unit, non unit (blas_unit_diag, blas_non_unit_diag)
  *
- * n      (input) int
+ * n      (input) IdxType
  *        the dimension of t
  *
- * k      (input) int
+ * k      (input) IdxType
  *        the number of subdiagonals/superdiagonals of t
  *
- * alpha  (input) double
+ * alpha  (input) T
  *
- * t      (input) const float*
+ * t      (input) const A*
  *        Triangular Banded matrix
  *
- * x      (input/output) double*
+ * x      (input/output) T*
  *        Array of length n.
  *
- * incx   (input) int
+ * incx   (input) IdxType
  *        The stride used to access components x[i].
  *
  */

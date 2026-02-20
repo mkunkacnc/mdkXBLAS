@@ -42,39 +42,39 @@ constexpr void symv2(blas_order_type order,
  * Arguments
  * =========
  *
- * order   (input) enum blas_order_type
+ * order   (input) blas_order_type
  *         Storage format of input symmetric matrix A.
  *
- * uplo    (input) enum blas_uplo_type
+ * uplo    (input) blas_uplo_type
  *         Determines which half of matrix A (upper or lower triangle)
  *           is accessed.
  *
- * n       (input) int
+ * n       (input) IdxType
  *         Dimension of A and size of vectors x, y.
  *
- * alpha   (input) double
+ * alpha   (input) T
  *
- * a       (input) const double*
+ * a       (input) const A*
  *         Matrix A.
  *
- * lda     (input) int
+ * lda     (input) IdxType
  *         Leading dimension of matrix A.
  *
- * x_head  (input) const float*
+ * x_head  (input) const X*
  *         Vector x_head
  *
- * x_tail  (input) const float*
+ * x_tail  (input) const X*
  *         Vector x_tail
  *
- * incx    (input) int
+ * incx    (input) IdxType
  *         Stride for vector x.
  *
- * beta    (input) double
+ * beta    (input) T
  *
- * y       (input/output) double*
+ * y       (input/output) T*
  *         Vector y.
  *
- * incy    (input) int
+ * incy    (input) IdxType
  *         Stride for vector y.
  *
  */

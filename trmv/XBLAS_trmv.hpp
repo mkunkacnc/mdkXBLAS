@@ -34,33 +34,33 @@ constexpr void trmv(blas_order_type order,
  * Arguments
  * =========
  *
- * order  (input) enum blas_order_type
+ * order  (input) blas_order_type
  *        column major, row major
  *
- * uplo   (input) enum blas_uplo_type
+ * uplo   (input) blas_uplo_type
  *        upper, lower
  *
- * trans  (input) enum blas_trans_type
+ * trans  (input) blas_trans_type
  *        no trans, trans, conj trans
  *
- * diag   (input) enum blas_diag_type
+ * diag   (input) blas_diag_type
  *        unit, non unit
  *
- * n      (input) int
+ * n      (input) IdxType
  *        the dimension of T
  *
- * alpha  (input) double
+ * alpha  (input) T
  *
- * T      (input) const float*
+ * t      (input) const A*
  *        Triangular matrix
  *
- * ldt    (input) int
+ * ldt    (input) IdxType
  *        Leading dimension of T
  *
- * x      (input/output) double*
+ * x      (input/output) X*
  *        Array of length n.
  *
- * incx   (input) int
+ * incx   (input) IdxType
  *        The stride used to access components x[i].
  *
  */
@@ -74,7 +74,7 @@ constexpr void trmv(blas_order_type order,
   int inc_ti, inc_tij;
   int inc_x;
 
-  const float *T_i = T;                /* internal matrix T */
+  const float *t_i = t;                /* internal matrix T */
   double *x_i = x;                /* internal x */
   double alpha_i = alpha;        /* internal alpha */
 
@@ -169,7 +169,7 @@ constexpr void trmv(blas_order_type order,
         tij = ti + tij0;
         for (j = i; j < (n - 1); j++) {
 
-          t_elem = T_i[tij];
+          t_elem = t_i[tij];
 
           x_elem = x_i[xj];
           prod = x_elem * t_elem;
@@ -205,7 +205,7 @@ constexpr void trmv(blas_order_type order,
         tij = ti + tij0;
         for (j = i; j < n; j++) {
 
-          t_elem = T_i[tij];
+          t_elem = t_i[tij];
 
           x_elem = x_i[xj];
           prod = x_elem * t_elem;
