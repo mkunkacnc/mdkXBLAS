@@ -9,10 +9,12 @@ namespace XBLAS {
 //---------------
 
 template<typename T,
+         typename A,
          typename X,
          typename TmpType = T,
          typename IdxType = int>
-requires (impl::size_le_v<X, T> &&
+requires (impl::size_le_v<A, T> &&
+          impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
           std::signed_integral<IdxType>)
 constexpr void trmv(blas_order_type order,
@@ -67,7 +69,7 @@ constexpr void trmv(blas_order_type order,
 {
   static const char routine_name[] = "XBLAS::trmv";
 
-  using PrdType = impl::get_inner_type_t<A, B, TmpType>;
+  using PrdType = impl::get_inner_type_t<A, X, TmpType>;
 
   FPU_FIX_DECL;
 

@@ -62,7 +62,7 @@ constexpr void tpmv(blas_order_type order,
 {
   static const char routine_name[] = "XBLAS::tpmv";
 
-  using PrdType = impl::get_inner_type_t<A, B, TmpType>;
+  using PrdType = impl::get_inner_type_t<A, T, TmpType>;
 
   FPU_FIX_DECL;
 

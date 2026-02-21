@@ -66,7 +66,7 @@ constexpr void waxpby(IdxType n,
 {
   static const char routine_name[] = "XBLAS::waxpby";
 
-  using PrdType = impl::get_inner_type_t<A, B, TmpType>;
+//using PrdType = impl::get_inner_type_t<X, Y, TmpType>;
 
   FPU_FIX_DECL;
 

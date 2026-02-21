@@ -78,7 +78,7 @@ constexpr void symv(blas_order_type order,
   /* Routine name */
   static const char routine_name[] = "XBLAS::symv";
 
-  using PrdType = impl::get_inner_type_t<A, B, TmpType>;
+  using PrdType = impl::get_inner_type_t<A, X, TmpType>;
 
   FPU_FIX_DECL;
 
