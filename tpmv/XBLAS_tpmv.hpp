@@ -108,7 +108,9 @@ constexpr void tpmv(blas_order_type order,
       BLAS_error(routine_name, -9, incx, NULL);
     }
 
-
+    if constexpr (impl::uses_double_double_v<TmpType>) {
+      FPU_FIX_START;
+    }
 
     {
       if ((uplo == blas_upper &&

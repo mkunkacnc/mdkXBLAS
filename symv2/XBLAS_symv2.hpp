@@ -152,7 +152,9 @@ constexpr void symv2(blas_order_type order,
   xi0 = (incx > 0) ? 0 : ((-n + 1) * incx);
   yi0 = (incy > 0) ? 0 : ((-n + 1) * incy);
 
-
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_START;
+  }
 
   /* The most general form,   y <--- alpha * A * (x_head + x_tail) + beta * y   */
   for (i = 0, yi = yi0, ai = 0; i < n; i++, yi += incy, ai += incai) {

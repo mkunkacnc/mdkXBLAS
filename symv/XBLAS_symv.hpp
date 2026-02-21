@@ -166,7 +166,9 @@ constexpr void symv(blas_order_type order,
     y_starti = 0;
   }
 
-
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_START;
+  }
 
   /* alpha = 0.  In this case, just return beta * y */
   if (alpha_i == T(0)) {

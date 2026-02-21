@@ -66,22 +66,7 @@ constexpr void waxpby(IdxType n,
 {
   static const char routine_name[] = "XBLAS::waxpby";
 
-//using PrdType = impl::get_inner_type_t<X, Y, TmpType>;
-
   FPU_FIX_DECL;
-
-  IdxType i, ix = 0, iy = 0, iw = 0;
-  T *w_i = w;
-  const X *x_i = x;
-  const Y *y_i = y;
-  T alpha_i = alpha;
-  T beta_i = beta;
-  X x_ii;
-  Y y_ii;
-  TmpType tmpx;
-  TmpType tmpy;
-
-
 
   /* Test the input parameters. */
   if (incx == 0)
@@ -91,17 +76,16 @@ constexpr void waxpby(IdxType n,
   else if (incw == 0)
     BLAS_error(routine_name, -9, incw, NULL);
 
-
   /* Immediate return */
   if (n <= 0) {
     return;
   }
 
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_START;
+  }
 
-
-
-
-
+  IdxType ix = 0, iy = 0, iw = 0;
   if (incx < 0)
     ix = (-n + 1) * incx;
   if (incy < 0)
@@ -109,19 +93,14 @@ constexpr void waxpby(IdxType n,
   if (incw < 0)
     iw = (-n + 1) * incw;
 
-  for (i = 0; i < n; ++i) {
-    x_ii = x_i[ix];
-    y_ii = y_i[iy];
-    tmpx = impl::mul<TmpType>(alpha_i, x_ii);        /* tmpx  = alpha * x[ix] */
-    tmpy = impl::mul<TmpType>(beta_i, y_ii);        /* tmpy = beta * y[iy] */
-    tmpy = tmpy + tmpx;
-    w_i[iw] = impl::to<T>(tmpy);
+  for (IdxType i = 0; i < n; ++i) {
+    TmpType tmpx = impl::mul<TmpType>(alpha, x[ix]);  /* tmpx = alpha * x[ix] */
+    TmpType tmpy = impl::mul<TmpType>(beta, y[iy]);   /* tmpy = beta * y[iy] */
+    w[iw] = impl::add<T>(tmpx, tmpy);
     ix += incx;
     iy += incy;
     iw += incw;
-  }                                /* endfor */
-
-
+  } /* endfor */
 
   if constexpr (impl::uses_double_double_v<TmpType>) {
     FPU_FIX_STOP;

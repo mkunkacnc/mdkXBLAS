@@ -194,10 +194,9 @@ constexpr void tbsv(blas_order_type order,
       T x_elem;
       A T_element;
 
-
-
-
-
+      if constexpr (impl::uses_double_double_v<TmpType>) {
+        FPU_FIX_START;
+      }
 
       /*loop 1 */
       xi = start_xi;

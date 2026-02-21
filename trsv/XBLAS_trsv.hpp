@@ -112,6 +112,10 @@ constexpr void trsv(blas_order_type order,
     return;
   }
 
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_START;
+  }
+
   {
     TmpType temp1;
     TmpType temp2;

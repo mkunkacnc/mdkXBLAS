@@ -107,6 +107,10 @@ constexpr void trmv(blas_order_type order,
     BLAS_error(routine_name, -9, incx, NULL);
   }
 
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_START;
+  }
+
   if (trans == blas_no_trans) {
     if (uplo == blas_upper) {
       inc_x = -incx;
