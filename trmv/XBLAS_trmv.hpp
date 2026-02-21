@@ -65,24 +65,28 @@ constexpr void trmv(blas_order_type order,
  *
  */
 {
-  static const char routine_name[] = "BLAS_dtrmv_s";
+  static const char routine_name[] = "XBLAS::trmv";
 
-  int i, j;                        /* used to idx matrix */
-  int xj, xj0;
-  int ti, tij, tij0;
+  using PrdType = impl::get_inner_type_t<A, B, TmpType>;
 
-  int inc_ti, inc_tij;
-  int inc_x;
+  FPU_FIX_DECL;
 
-  const float *t_i = t;                /* internal matrix T */
-  double *x_i = x;                /* internal x */
-  double alpha_i = alpha;        /* internal alpha */
+  IdxType i, j;
+  IdxType xj, xj0;
+  IdxType ti, tij, tij0;
 
-  float t_elem;
-  double x_elem;
-  double prod;
-  double sum;
-  double tmp;
+  IdxType inc_ti, inc_tij;
+  IdxType inc_x;
+
+  const A *t_i = t;
+  X *x_i = x;
+  T alpha_i = alpha;
+
+  A t_elem;
+  X x_elem;
+  PrdType prod;
+  PrdType sum;
+  TmpType tmp;
 
 
 

@@ -76,38 +76,42 @@ constexpr void symv(blas_order_type order,
  */
 {
   /* Routine name */
-  static const char routine_name[] = "BLAS_dsymv_d_s";
+  static const char routine_name[] = "XBLAS::symv";
+
+  using PrdType = impl::get_inner_type_t<A, B, TmpType>;
+
+  FPU_FIX_DECL;
 
   /* Integer Index Variables */
-  int i, k;
+  IdxType i, k;
 
-  int xi, yi;
-  int aik, astarti, x_starti, y_starti;
+  IdxType xi, yi;
+  IdxType aik, astarti, x_starti, y_starti;
 
-  int incai;
-  int incaik, incaik2;
+  IdxType incai;
+  IdxType incaik, incaik2;
 
-  int n_i;
+  IdxType n_i;
 
   /* Input Matrices */
-  const double *a_i = a;
-  const float *x_i = x;
+  const A *a_i = a;
+  const X *x_i = x;
 
   /* Output Vector */
-  double *y_i = y;
+  T *y_i = y;
 
   /* Input Scalars */
-  double alpha_i = alpha;
-  double beta_i = beta;
+  T alpha_i = alpha;
+  T beta_i = beta;
 
   /* Temporary Floating-Point Variables */
-  double a_elem;
-  float x_elem;
-  double y_elem;
-  double prod;
-  double sum;
-  double tmp1;
-  double tmp2;
+  A a_elem;
+  X x_elem;
+  T y_elem;
+  PrdType prod;
+  PrdType sum;
+  TmpType tmp1;
+  TmpType tmp2;
 
 
 

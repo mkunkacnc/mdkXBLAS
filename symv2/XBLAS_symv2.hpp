@@ -80,30 +80,34 @@ constexpr void symv2(blas_order_type order,
  */
 {
   /* Routine name */
-  const char routine_name[] = "BLAS_dsymv2_d_s";
+  static const char routine_name[] = "XBLAS::symv2";
 
-  int i, j;
-  int xi, yi, xi0, yi0;
-  int aij, ai;
-  int incai;
-  int incaij, incaij2;
+  using PrdType = impl::get_inner_type_t<A, B, TmpType>;
 
-  const double *a_i = a;
-  const float *x_head_i = x_head;
-  const float *x_tail_i = x_tail;
-  double *y_i = y;
-  double alpha_i = alpha;
-  double beta_i = beta;
-  double a_elem;
-  float x_elem;
-  double y_elem;
-  double prod1;
-  double prod2;
-  double sum1;
-  double sum2;
-  double tmp1;
-  double tmp2;
-  double tmp3;
+  FPU_FIX_DECL;
+
+  IdxType i, j;
+  IdxType xi, yi, xi0, yi0;
+  IdxType aij, ai;
+  IdxType incai;
+  IdxType incaij, incaij2;
+
+  const A *a_i = a;
+  const X *x_head_i = x_head;
+  const X *x_tail_i = x_tail;
+  T *y_i = y;
+  T alpha_i = alpha;
+  T beta_i = beta;
+  A a_elem;
+  X x_elem;
+  T y_elem;
+  PrdType prod1;
+  PrdType prod2;
+  PrdType sum1;
+  PrdType sum2;
+  TmpType tmp1;
+  TmpType tmp2;
+  TmpType tmp3;
 
 
 

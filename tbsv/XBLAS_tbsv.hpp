@@ -69,18 +69,22 @@ constexpr void tbsv(blas_order_type order,
  */
 {
   /* Routine name */
-  static const char routine_name[] = "BLAS_dtbsv_s";
+  static const char routine_name[] = "XBLAS::tbsv";
 
-  int i, j;                        /* used to keep track of loop counts */
-  int xi;                        /* used to index vector x */
-  int start_xi;                        /* used as the starting idx to vector x */
-  int incxi;
-  int Tij;                        /* index inside of Banded structure */
-  int dot_start, dot_start_inc1, dot_start_inc2, dot_inc;
+  using PrdType = impl::get_inner_type_t<A, B, TmpType>;
 
-  const float *t_i = t;                /* internal matrix t */
-  double *x_i = x;                /* internal x */
-  double alpha_i = alpha;        /* internal alpha */
+  FPU_FIX_DECL;
+
+  IdxType i, j;
+  IdxType xi;
+  IdxType start_xi;
+  IdxType incxi;
+  IdxType Tij;
+  IdxType dot_start, dot_start_inc1, dot_start_inc2, dot_inc;
+
+  const A *t_i = t;
+  T *x_i = x;
+  T alpha_i = alpha;
 
   if (order != blas_rowmajor && order != blas_colmajor) {
     BLAS_error(routine_name, -1, order, 0);
@@ -185,9 +189,9 @@ constexpr void tbsv(blas_order_type order,
   {
 
     {
-      double temp1;                /* temporary variable for calculations */
-      double temp2;                /* temporary variable for calculations */
-      double x_elem;
+      TmpType temp1;
+      TmpType temp2;
+      T x_elem;
       float T_element;
 
 

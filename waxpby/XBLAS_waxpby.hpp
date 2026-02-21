@@ -64,18 +64,22 @@ constexpr void waxpby(IdxType n,
  *
  */
 {
-  static const char routine_name[] = "BLAS_dwaxpby_d_s";
+  static const char routine_name[] = "XBLAS::waxpby";
 
-  int i, ix = 0, iy = 0, iw = 0;
-  double *w_i = w;
-  const double *x_i = x;
-  const float *y_i = y;
-  double alpha_i = alpha;
-  double beta_i = beta;
-  double x_ii;
-  float y_ii;
-  double tmpx;
-  double tmpy;
+  using PrdType = impl::get_inner_type_t<A, B, TmpType>;
+
+  FPU_FIX_DECL;
+
+  IdxType i, ix = 0, iy = 0, iw = 0;
+  T *w_i = w;
+  const X *x_i = x;
+  const Y *y_i = y;
+  T alpha_i = alpha;
+  T beta_i = beta;
+  X x_ii;
+  Y y_ii;
+  TmpType tmpx;
+  TmpType tmpy;
 
 
 

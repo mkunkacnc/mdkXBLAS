@@ -60,22 +60,26 @@ constexpr void tpmv(blas_order_type order,
  *
  */
 {
-  static const char routine_name[] = "BLAS_dtpmv_s";
+  static const char routine_name[] = "XBLAS::tpmv";
+
+  using PrdType = impl::get_inner_type_t<A, B, TmpType>;
+
+  FPU_FIX_DECL;
 
   {
-    int matrix_row, step, tp_index, tp_start, x_index, x_start;
-    int inctp, x_index2, stride, col_index, inctp2;
+    IdxType matrix_row, step, tp_index, tp_start, x_index, x_start;
+    IdxType inctp, x_index2, stride, col_index, inctp2;
 
-    double alpha_i = alpha;
+    T alpha_i = alpha;
 
-    const float *tp_i = tp;
-    double *x_i = x;
-    double rowsum;
-    double rowtmp;
-    double result;
-    float matval;
-    double vecval;
-    float one;
+    const A *tp_i = tp;
+    T *x_i = x;
+    PrdType rowsum;
+    TmpType rowtmp;
+    TmpType result;
+    A matval;
+    T vecval;
+    A one;
 
 
     one = 1.0;

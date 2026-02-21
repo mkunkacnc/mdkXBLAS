@@ -64,16 +64,20 @@ constexpr void trsv(blas_order_type order,
  *
  */
 {
-  static const char routine_name[] = "BLAS_dtrsv_s";
+  static const char routine_name[] = "XBLAS::trsv";
 
-  int i, j;                        /* used to idx matrix */
-  int ix, jx;                        /* used to idx vector x */
-  int start_x;                        /* used as the starting idx to vector x */
-  const float *t_i = t;                /* internal matrix T */
-  double *x_i = x;                /* internal x */
-  double alpha_i = alpha;        /* internal alpha */
-  float T_element;                /* temporary variable for an element of matrix A */
-  int incT = 1;                        /* internal ldt */
+  using PrdType = impl::get_inner_type_t<A, B, TmpType>;
+
+  FPU_FIX_DECL;
+
+  IdxType i, j;
+  IdxType ix, jx;
+  IdxType start_x;
+  const A *t_i = t;
+  X *x_i = x;
+  T alpha_i = alpha;
+  float T_element;
+  IdxType incT = 1;
 
   if ((order != blas_rowmajor && order != blas_colmajor) ||
       (uplo != blas_upper && uplo != blas_lower) ||
@@ -107,9 +111,9 @@ constexpr void trsv(blas_order_type order,
   }
 
   {
-    double temp1;                /* temporary variable for calculations */
-    double temp2;                /* temporary variable for calculations */
-    double temp3;                /* temporary variable for calculations */
+    TmpType temp1;
+    TmpType temp2;
+    TmpType temp3;
 
     if ((order == blas_rowmajor &&
          trans == blas_no_trans && uplo == blas_upper) ||
