@@ -224,7 +224,7 @@ void BLAS_ctbsv_x(enum blas_order_type order,
               x_elem[0] = x_i[xi];
               x_elem[1] = x_i[xi + 1];
               /* preform the multiplication -
-                 in this implementation we do not seperate the alpha = 1 case */
+                 in this implementation we do not separate the alpha = 1 case */
               {
                 temp1[0] = x_elem[0] * alpha_i[0] - x_elem[1] * alpha_i[1];
                 temp1[1] = x_elem[0] * alpha_i[1] + x_elem[1] * alpha_i[0];
@@ -451,7 +451,7 @@ void BLAS_ctbsv_x(enum blas_order_type order,
               x_elem[0] = x_i[xi];
               x_elem[1] = x_i[xi + 1];
               /* preform the multiplication -
-                 in this implementation we do not seperate the alpha = 1 case */
+                 in this implementation we do not separate the alpha = 1 case */
               {
                 temp1[0] = x_elem[0] * alpha_i[0] - x_elem[1] * alpha_i[1];
                 temp1[1] = x_elem[0] * alpha_i[1] + x_elem[1] * alpha_i[0];
@@ -710,7 +710,7 @@ void BLAS_ctbsv_x(enum blas_order_type order,
               x_elem[0] = x_i[xi];
               x_elem[1] = x_i[xi + 1];
               /* preform the multiplication -
-                 in this implementation we do not seperate the alpha = 1 case */
+                 in this implementation we do not separate the alpha = 1 case */
               {
                 temp1[0] =
                   (double) x_elem[0] * alpha_i[0] -
@@ -989,7 +989,7 @@ void BLAS_ctbsv_x(enum blas_order_type order,
               x_elem[0] = x_i[xi];
               x_elem[1] = x_i[xi + 1];
               /* preform the multiplication -
-                 in this implementation we do not seperate the alpha = 1 case */
+                 in this implementation we do not separate the alpha = 1 case */
               {
                 temp1[0] =
                   (double) x_elem[0] * alpha_i[0] -
@@ -1305,7 +1305,7 @@ void BLAS_ctbsv_x(enum blas_order_type order,
               x_elem[0] = x_i[xi];
               x_elem[1] = x_i[xi + 1];
               /* preform the multiplication -
-                 in this implementation we do not seperate the alpha = 1 case */
+                 in this implementation we do not separate the alpha = 1 case */
               {
                 double head_e1, tail_e1;
                 double d1;
@@ -1953,7 +1953,7 @@ void BLAS_ctbsv_x(enum blas_order_type order,
               x_elem[0] = x_i[xi];
               x_elem[1] = x_i[xi + 1];
               /* preform the multiplication -
-                 in this implementation we do not seperate the alpha = 1 case */
+                 in this implementation we do not separate the alpha = 1 case */
               {
                 double head_e1, tail_e1;
                 double d1;

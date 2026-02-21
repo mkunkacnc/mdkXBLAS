@@ -91,7 +91,7 @@ constexpr void tbsv(blas_order_type order,
     BLAS_error(routine_name, -2, uplo, 0);
   }
   if ((trans != blas_trans) && (trans != blas_no_trans) &&
-      (trans != blas_conj) && (trans != blas_conj_trans)) {
+      (trans != static_cast<blas_trans_type>(blas_conj)) && (trans != blas_conj_trans)) {
     BLAS_error(routine_name, -2, uplo, 0);
   }
   if (diag != blas_non_unit_diag && diag != blas_unit_diag) {
@@ -127,7 +127,7 @@ constexpr void tbsv(blas_order_type order,
   if (alpha_i == T(0)) {
     xi = start_xi;
     for (i = 0; i < n; i++) {
-      x_i[xi] = 0.0;
+      x_i[xi] = T(0);
       xi += incxi;
     }
     return;
@@ -178,23 +178,18 @@ constexpr void tbsv(blas_order_type order,
     incxi = -incxi;
   }
 
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_START;
+  }
 
+  if constexpr (impl::is_complex_v<A>) {
+    TmpType temp1;
+    TmpType temp2;
+    T x_elem;
+    A T_element;
 
-
-
-
-
-  {
-
-    {
-      TmpType temp1;
-      TmpType temp2;
-      T x_elem;
-      A T_element;
-
-      if constexpr (impl::uses_double_double_v<TmpType>) {
-        FPU_FIX_START;
-      }
+    if (trans == static_cast<blas_trans_type>(blas_conj) || trans == blas_conj_trans) {
+      /* conjugated */
 
       /*loop 1 */
       xi = start_xi;
@@ -203,7 +198,197 @@ constexpr void tbsv(blas_order_type order,
         /* each time through loop, xi lands on next x to compute. */
         x_elem = x_i[xi];
         /* preform the multiplication -
-           in this implementation we do not seperate the alpha = 1 case */
+           in this implementation we do not separate the alpha = 1 case */
+        temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+
+        xi = start_xi;
+
+        Tij = dot_start;
+        dot_start += dot_start_inc1;
+
+        for (i = j; i > 0; i--) {
+          T_element = impl::Conj::func(t_i[Tij]);
+          x_elem = x_i[xi];
+          temp2 = impl::mul<TmpType>(x_elem, T_element);
+          temp1 = temp1 - temp2;
+          xi += incxi;
+          Tij += dot_inc;
+        }                        /* for across row */
+
+
+        /* if the diagonal entry is not equal to one, then divide Xj by
+           the entry */
+        if (diag == blas_non_unit_diag) {
+          T_element = impl::Conj::func(t_i[Tij]);
+
+          if constexpr (std::is_same_v<impl::inner_type_t<A>, double>) {
+            // scaled division to avoid overflow.
+            double S = 1.0, eps, ov, un, eps1, ov1, un1;
+            double abs_a, abs_b, abs_c, abs_d, ab, cd;
+            double r;
+            double t;
+            double q[2];
+
+            eps = pow(2.0, -24.0);
+            un = pow(2.0, -126.0);
+            ov = pow(2.0, 128.0) * (1 - eps);
+            eps1 = pow(2.0, -53.0);
+            un1 = pow(2.0, -1022.0);
+            ov1 = 1.79769313486231571e+308;
+            /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
+            abs_a = fabs(std::real(temp1));
+            abs_b = fabs(std::imag(temp1));
+            abs_c = fabs(static_cast<double>(std::real(T_element)));
+            abs_d = fabs(static_cast<double>(std::imag(T_element)));
+            ab = std::max(abs_a, abs_b);
+            cd = std::max(abs_c, abs_d);
+
+            /* Scaling */
+            if (ab > ov1 / 16) {        /* scale down a, b */
+              temp1 /= 16;
+              S = S * 16;
+            }
+            if (cd > ov / 16) {        /* scale down c, d */
+              T_element /= 16;
+              S = S / 16;
+            }
+            if (ab < un1 / eps1 * 2) {        /* scale up a, b */
+              t = 2.0 / (eps1 * eps1);
+              temp1 *= t;
+              S = S / t;
+            }
+            if (cd < un / eps * 2) {        /* scale up c, d */
+              t = 2.0 / (eps * eps);
+              T_element *= t;
+              S = S * t;
+            }
+
+            /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
+            if (abs_c > abs_d) {
+              r = std::imag(T_element) / std::real(T_element);
+              t = 1 / (std::real(T_element) + std::imag(T_element) * r);
+              q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+              q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
+            } else {
+              r = std::real(T_element) / std::imag(T_element);
+              t = 1 / (std::imag(T_element) + std::real(T_element) * r);
+              q[0] = ( std::imag(temp1) + std::real(temp1) * r) * t;
+              q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
+            }
+            /* Scale back */
+            temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
+          } else {
+            temp1 = temp1 / static_cast<TmpType>(T_element);
+          }
+        }
+        /* if (diag == blas_non_unit_diag) */
+        x_i[xi] = impl::to<T>(temp1);
+        xi += incxi;
+      }                        /* for j<k */
+      /*end loop 1 */
+
+      /*loop 2 continue without changing j to start */
+      for (; j < n; j++) {
+
+        /* each time through loop, xi lands on next x to compute. */
+        x_elem = x_i[xi];
+        temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+
+        xi = start_xi;
+        start_xi += incxi;
+
+        Tij = dot_start;
+        dot_start += dot_start_inc2;
+
+        for (i = k; i > 0; i--) {
+          T_element = impl::Conj::func(t_i[Tij]);
+          x_elem = x_i[xi];
+          temp2 = impl::mul<TmpType>(x_elem, T_element);
+          temp1 = temp1 - temp2;
+          xi += incxi;
+          Tij += dot_inc;
+        }                        /* for across row */
+
+
+        /* if the diagonal entry is not equal to one, then divide by
+           the entry */
+        if (diag == blas_non_unit_diag) {
+          T_element = impl::Conj::func(t_i[Tij]);
+
+          if constexpr (std::is_same_v<impl::inner_type_t<A>, double>) {
+            // scaled division to avoid overflow.
+            double S = 1.0, eps, ov, un, eps1, ov1, un1;
+            double abs_a, abs_b, abs_c, abs_d, ab, cd;
+            double r;
+            double t;
+            double q[2];
+
+            eps = pow(2.0, -24.0);
+            un = pow(2.0, -126.0);
+            ov = pow(2.0, 128.0) * (1 - eps);
+            eps1 = pow(2.0, -53.0);
+            un1 = pow(2.0, -1022.0);
+            ov1 = 1.79769313486231571e+308;
+            /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
+            abs_a = fabs(std::real(temp1));
+            abs_b = fabs(std::imag(temp1));
+            abs_c = fabs(static_cast<double>(std::real(T_element)));
+            abs_d = fabs(static_cast<double>(std::imag(T_element)));
+            ab = std::max(abs_a, abs_b);
+            cd = std::max(abs_c, abs_d);
+
+            /* Scaling */
+            if (ab > ov1 / 16) {        /* scale down a, b */
+              temp1 /= 16;
+              S = S * 16;
+            }
+            if (cd > ov / 16) {        /* scale down c, d */
+              T_element /= 16;
+              S = S / 16;
+            }
+            if (ab < un1 / eps1 * 2) {        /* scale up a, b */
+              t = 2.0 / (eps1 * eps1);
+              temp1 *= t;
+              S = S / t;
+            }
+            if (cd < un / eps * 2) {        /* scale up c, d */
+              t = 2.0 / (eps * eps);
+              T_element *= t;
+              S = S * t;
+            }
+
+            /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
+            if (abs_c > abs_d) {
+              r = std::imag(T_element) / std::real(T_element);
+              t = 1 / (std::real(T_element) + std::imag(T_element) * r);
+              q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+              q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
+            } else {
+              r = std::real(T_element) / std::imag(T_element);
+              t = 1 / (std::imag(T_element) + std::real(T_element) * r);
+              q[0] = ( std::imag(temp1) + std::real(temp1) * r) * t;
+              q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
+            }
+            /* Scale back */
+            temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
+          } else {
+            temp1 = temp1 / static_cast<TmpType>(T_element);
+          }
+        }
+        /* if (diag == blas_non_unit_diag) */
+        x_i[xi] = impl::to<T>(temp1);
+        xi += incxi;
+      }                        /* for j<n */
+
+    } else {
+      /* not conjugated */
+      /* loop 1 */
+      xi = start_xi;
+      for (j = 0; j < k; j++) {
+        /* each time through loop, xi lands on next x to compute. */
+        x_elem = x_i[xi];
+        /* preform the multiplication -
+           in this implementation we do not separate the alpha = 1 case */
         temp1 = impl::mul<TmpType>(x_elem, alpha_i);
 
         xi = start_xi;
@@ -213,28 +398,82 @@ constexpr void tbsv(blas_order_type order,
 
         for (i = j; i > 0; i--) {
           T_element = t_i[Tij];
-
           x_elem = x_i[xi];
           temp2 = impl::mul<TmpType>(x_elem, T_element);
-          temp1 = temp1 + (-temp2);
+          temp1 = temp1 - temp2;
           xi += incxi;
           Tij += dot_inc;
         }                        /* for across row */
-
 
         /* if the diagonal entry is not equal to one, then divide Xj by
            the entry */
         if (diag == blas_non_unit_diag) {
           T_element = t_i[Tij];
 
+          if constexpr (std::is_same_v<impl::inner_type_t<A>, double>) {
+            // scaled division to avoid overflow.
+            double S = 1.0, eps, ov, un, eps1, ov1, un1;
+            double abs_a, abs_b, abs_c, abs_d, ab, cd;
+            double r;
+            double t;
+            double q[2];
 
-          temp1 = temp1 / static_cast<TmpType>(T_element);
+            eps = pow(2.0, -24.0);
+            un = pow(2.0, -126.0);
+            ov = pow(2.0, 128.0) * (1 - eps);
+            eps1 = pow(2.0, -53.0);
+            un1 = pow(2.0, -1022.0);
+            ov1 = 1.79769313486231571e+308;
+            /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
+            abs_a = fabs(std::real(temp1));
+            abs_b = fabs(std::imag(temp1));
+            abs_c = fabs(static_cast<double>(std::real(T_element)));
+            abs_d = fabs(static_cast<double>(std::imag(T_element)));
+            ab = std::max(abs_a, abs_b);
+            cd = std::max(abs_c, abs_d);
 
+            /* Scaling */
+            if (ab > ov1 / 16) {        /* scale down a, b */
+              temp1 /= 16;
+              S = S * 16;
+            }
+            if (cd > ov / 16) {        /* scale down c, d */
+              T_element /= 16;
+              S = S / 16;
+            }
+            if (ab < un1 / eps1 * 2) {        /* scale up a, b */
+              t = 2.0 / (eps1 * eps1);
+              temp1 *= t;
+              S = S / t;
+            }
+            if (cd < un / eps * 2) {        /* scale up c, d */
+              t = 2.0 / (eps * eps);
+              T_element *= t;
+              S = S * t;
+            }
+
+            /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
+            if (abs_c > abs_d) {
+              r = std::imag(T_element) / std::real(T_element);
+              t = 1 / (std::real(T_element) + std::imag(T_element) * r);
+              q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+              q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
+            } else {
+              r = std::real(T_element) / std::imag(T_element);
+              t = 1 / (std::imag(T_element) + std::real(T_element) * r);
+              q[0] = ( std::imag(temp1) + std::real(temp1) * r) * t;
+              q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
+            }
+            /* Scale back */
+            temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
+          } else {
+            temp1 = temp1 / static_cast<TmpType>(T_element);
+          }
         }
         /* if (diag == blas_non_unit_diag) */
         x_i[xi] = impl::to<T>(temp1);
         xi += incxi;
-      }                                /* for j<k */
+      }                        /* for j<k */
       /*end loop 1 */
 
       /*loop 2 continue without changing j to start */
@@ -252,10 +491,9 @@ constexpr void tbsv(blas_order_type order,
 
         for (i = k; i > 0; i--) {
           T_element = t_i[Tij];
-
           x_elem = x_i[xi];
           temp2 = impl::mul<TmpType>(x_elem, T_element);
-          temp1 = temp1 + (-temp2);
+          temp1 = temp1 - temp2;
           xi += incxi;
           Tij += dot_inc;
         }                        /* for across row */
@@ -266,17 +504,156 @@ constexpr void tbsv(blas_order_type order,
         if (diag == blas_non_unit_diag) {
           T_element = t_i[Tij];
 
+          if constexpr (std::is_same_v<impl::inner_type_t<A>, double>) {
+            // scaled division to avoid overflow.
+            double S = 1.0, eps, ov, un, eps1, ov1, un1;
+            double abs_a, abs_b, abs_c, abs_d, ab, cd;
+            double r;
+            double t;
+            double q[2];
 
-          temp1 = temp1 / static_cast<TmpType>(T_element);
+            eps = pow(2.0, -24.0);
+            un = pow(2.0, -126.0);
+            ov = pow(2.0, 128.0) * (1 - eps);
+            eps1 = pow(2.0, -53.0);
+            un1 = pow(2.0, -1022.0);
+            ov1 = 1.79769313486231571e+308;
+            /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
+            abs_a = fabs(std::real(temp1));
+            abs_b = fabs(std::imag(temp1));
+            abs_c = fabs(static_cast<double>(std::real(T_element)));
+            abs_d = fabs(static_cast<double>(std::imag(T_element)));
+            ab = std::max(abs_a, abs_b);
+            cd = std::max(abs_c, abs_d);
 
+            /* Scaling */
+            if (ab > ov1 / 16) {        /* scale down a, b */
+              temp1 /= 16;
+              S = S * 16;
+            }
+            if (cd > ov / 16) {        /* scale down c, d */
+              T_element /= 16;
+              S = S / 16;
+            }
+            if (ab < un1 / eps1 * 2) {        /* scale up a, b */
+              t = 2.0 / (eps1 * eps1);
+              temp1 *= t;
+              S = S / t;
+            }
+            if (cd < un / eps * 2) {        /* scale up c, d */
+              t = 2.0 / (eps * eps);
+              T_element *= t;
+              S = S * t;
+            }
+
+            /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
+            if (abs_c > abs_d) {
+              r = std::imag(T_element) / std::real(T_element);
+              t = 1 / (std::real(T_element) + std::imag(T_element) * r);
+              q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+              q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
+            } else {
+              r = std::real(T_element) / std::imag(T_element);
+              t = 1 / (std::imag(T_element) + std::real(T_element) * r);
+              q[0] = ( std::imag(temp1) + std::real(temp1) * r) * t;
+              q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
+            }
+            /* Scale back */
+            temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
+          } else {
+            temp1 = temp1 / static_cast<TmpType>(T_element);
+          }
         }
         /* if (diag == blas_non_unit_diag) */
         x_i[xi] = impl::to<T>(temp1);
         xi += incxi;
-      }                                /* for j<n */
-
+      }                        /* for j<n */
 
     }
+  } else {
+    TmpType temp1;
+    TmpType temp2;
+    T x_elem;
+    A T_element;
+
+    /*loop 1 */
+    xi = start_xi;
+    for (j = 0; j < k; j++) {
+
+      /* each time through loop, xi lands on next x to compute. */
+      x_elem = x_i[xi];
+      /* preform the multiplication -
+         in this implementation we do not separate the alpha = 1 case */
+      temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+
+      xi = start_xi;
+
+      Tij = dot_start;
+      dot_start += dot_start_inc1;
+
+      for (i = j; i > 0; i--) {
+        T_element = t_i[Tij];
+
+        x_elem = x_i[xi];
+        temp2 = impl::mul<TmpType>(x_elem, T_element);
+        temp1 = temp1 + (-temp2);
+        xi += incxi;
+        Tij += dot_inc;
+      }                        /* for across row */
+
+
+      /* if the diagonal entry is not equal to one, then divide Xj by
+         the entry */
+      if (diag == blas_non_unit_diag) {
+        T_element = t_i[Tij];
+
+
+        temp1 = temp1 / static_cast<TmpType>(T_element);
+
+      }
+      /* if (diag == blas_non_unit_diag) */
+      x_i[xi] = impl::to<T>(temp1);
+      xi += incxi;
+    }                                /* for j<k */
+    /*end loop 1 */
+
+    /*loop 2 continue without changing j to start */
+    for (; j < n; j++) {
+
+      /* each time through loop, xi lands on next x to compute. */
+      x_elem = x_i[xi];
+      temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+
+      xi = start_xi;
+      start_xi += incxi;
+
+      Tij = dot_start;
+      dot_start += dot_start_inc2;
+
+      for (i = k; i > 0; i--) {
+        T_element = t_i[Tij];
+
+        x_elem = x_i[xi];
+        temp2 = impl::mul<TmpType>(x_elem, T_element);
+        temp1 = temp1 + (-temp2);
+        xi += incxi;
+        Tij += dot_inc;
+      }                        /* for across row */
+
+
+      /* if the diagonal entry is not equal to one, then divide by
+         the entry */
+      if (diag == blas_non_unit_diag) {
+        T_element = t_i[Tij];
+
+
+        temp1 = temp1 / static_cast<TmpType>(T_element);
+
+      }
+      /* if (diag == blas_non_unit_diag) */
+      x_i[xi] = impl::to<T>(temp1);
+      xi += incxi;
+    }                                /* for j<n */
   }
   if constexpr (impl::uses_double_double_v<TmpType>) {
     FPU_FIX_STOP;
@@ -369,7 +746,7 @@ constexpr void tbsv_x(enum blas_order_type order,
     BLAS_error(routine_name, -2, uplo, 0);
   }
   if ((trans != blas_trans) && (trans != blas_no_trans) &&
-      (trans != blas_conj) && (trans != blas_conj_trans)) {
+      (trans != static_cast<blas_trans_type>(blas_conj)) && (trans != blas_conj_trans)) {
     BLAS_error(routine_name, -2, uplo, 0);
   }
   if (diag != blas_non_unit_diag && diag != blas_unit_diag) {
@@ -488,7 +865,7 @@ constexpr void tbsv_x(enum blas_order_type order,
             /* each time through loop, xi lands on next x to compute. */
             x_elem = x_i[xi];
             /* preform the multiplication -
-               in this implementation we do not seperate the alpha = 1 case */
+               in this implementation we do not separate the alpha = 1 case */
             temp1 = x_elem * alpha_i;
 
             xi = start_xi;
@@ -600,7 +977,7 @@ constexpr void tbsv_x(enum blas_order_type order,
             /* each time through loop, xi lands on next x to compute. */
             x_elem = x_i[xi];
             /* preform the multiplication -
-               in this implementation we do not seperate the alpha = 1 case */
+               in this implementation we do not separate the alpha = 1 case */
             compute_doubledouble_eq_double_mul_double(&head_temp1, &tail_temp1, x_elem, alpha_i);
 
             Tij = dot_start;

@@ -195,7 +195,7 @@ void BLAS_dtbsv_s(enum blas_order_type order,
         /* each time through loop, xi lands on next x to compute. */
         x_elem = x_i[xi];
         /* preform the multiplication -
-           in this implementation we do not seperate the alpha = 1 case */
+           in this implementation we do not separate the alpha = 1 case */
         temp1 = x_elem * alpha_i;
 
         xi = start_xi;

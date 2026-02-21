@@ -208,7 +208,7 @@ void BLAS_ztbsv_d(enum blas_order_type order,
         x_elem[0] = x_i[xi];
         x_elem[1] = x_i[xi + 1];
         /* preform the multiplication -
-           in this implementation we do not seperate the alpha = 1 case */
+           in this implementation we do not separate the alpha = 1 case */
         {
           temp1[0] =
             (double) x_elem[0] * alpha_i[0] - (double) x_elem[1] * alpha_i[1];
