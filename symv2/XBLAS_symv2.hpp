@@ -115,7 +115,7 @@ constexpr void symv2(blas_order_type order,
   if (n <= 0) {
     return;
   }
-  if (alpha_i == 0.0 && beta_i == 1.0) {
+  if (alpha_i == T(0) && beta_i == T(1)) {
     return;
   }
 
@@ -156,37 +156,40 @@ constexpr void symv2(blas_order_type order,
 
   /* The most general form,   y <--- alpha * A * (x_head + x_tail) + beta * y   */
   for (i = 0, yi = yi0, ai = 0; i < n; i++, yi += incy, ai += incai) {
-    sum1 = 0.0;
-    sum2 = 0.0;
+    sum1 = impl::zero_v<PrdType>;
+    sum2 = impl::zero_v<PrdType>;
 
     for (j = 0, aij = ai, xi = xi0; j < i; j++, aij += incaij, xi += incx) {
       a_elem = a_i[aij];
       x_elem = x_head_i[xi];
-      prod1 = a_elem * x_elem;
+      prod1 = impl::mul<PrdType>(a_elem, x_elem);
       sum1 = sum1 + prod1;
       x_elem = x_tail_i[xi];
-      prod2 = a_elem * x_elem;
+      prod2 = impl::mul<PrdType>(a_elem, x_elem);
       sum2 = sum2 + prod2;
     }
     for (; j < n; j++, aij += incaij2, xi += incx) {
       a_elem = a_i[aij];
       x_elem = x_head_i[xi];
-      prod1 = a_elem * x_elem;
+      prod1 = impl::mul<PrdType>(a_elem, x_elem);
       sum1 = sum1 + prod1;
       x_elem = x_tail_i[xi];
-      prod2 = a_elem * x_elem;
+      prod2 = impl::mul<PrdType>(a_elem, x_elem);
       sum2 = sum2 + prod2;
     }
     sum1 = sum1 + sum2;
-    tmp1 = sum1 * alpha_i;
+    tmp1 = impl::mul<TmpType>(sum1, alpha_i);
     y_elem = y_i[yi];
-    tmp2 = y_elem * beta_i;
+    tmp2 = impl::mul<TmpType>(y_elem, beta_i);
     tmp3 = tmp1 + tmp2;
-    y_i[yi] = tmp3;
+    y_i[yi] = impl::to<T>(tmp3);
   }
 
 
 
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_STOP;
+  }
 } /* end XBLAS::symv2 */
 
 //-----------------

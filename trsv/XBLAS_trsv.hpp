@@ -103,7 +103,7 @@ constexpr void trsv(blas_order_type order,
   }
 
   /* if alpha is zero, then return x as a zero vector */
-  if (alpha_i == 0.0) {
+  if (alpha_i == T(0)) {
     ix = start_x;
     for (i = 0; i < n; i++) {
       x_i[ix] = 0.0;
@@ -128,14 +128,14 @@ constexpr void trsv(blas_order_type order,
         /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
            i=j+1 to n-1           */
         temp3 = x_i[jx];
-        temp1 = temp3 * alpha_i;
+        temp1 = impl::mul<TmpType>(temp3, alpha_i);
 
         ix = start_x + (n - 1) * incx;
         for (i = n - 1; i >= j + 1; i--) {
           T_element = t_i[i * incT + j * ldt * incT];
 
           temp3 = x_i[ix];
-          temp2 = temp3 * T_element;
+          temp2 = impl::mul<TmpType>(temp3, T_element);
           temp1 = temp1 + (-temp2);
           ix -= incx;
         }                        /* for j<n */
@@ -150,7 +150,7 @@ constexpr void trsv(blas_order_type order,
 
         }
         /* if (diag == blas_non_unit_diag) */
-        x_i[jx] = temp1;
+        x_i[jx] = impl::to<X>(temp1);
 
         jx -= incx;
       }                                /* for j>=0 */
@@ -166,14 +166,14 @@ constexpr void trsv(blas_order_type order,
            i=j+1 to n-1           */
         temp3 = x_i[jx];
         /* multiply by alpha */
-        temp1 = temp3 * alpha_i;
+        temp1 = impl::mul<TmpType>(temp3, alpha_i);
 
         ix = start_x;
         for (i = 0; i < j; i++) {
           T_element = t_i[i * incT + j * ldt * incT];
 
           temp3 = x_i[ix];
-          temp2 = temp3 * T_element;
+          temp2 = impl::mul<TmpType>(temp3, T_element);
           temp1 = temp1 + (-temp2);
           ix += incx;
         }                        /* for i<j */
@@ -188,7 +188,7 @@ constexpr void trsv(blas_order_type order,
 
         }
         /* if (diag == blas_non_unit_diag) */
-        x_i[jx] = temp1;
+        x_i[jx] = impl::to<X>(temp1);
         jx += incx;
       }                                /* for j<n */
     } else if ((order == blas_rowmajor &&
@@ -202,14 +202,14 @@ constexpr void trsv(blas_order_type order,
         /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
            i=j+1 to n-1           */
         temp3 = x_i[jx];
-        temp1 = temp3 * alpha_i;
+        temp1 = impl::mul<TmpType>(temp3, alpha_i);
 
         ix = start_x + (n - 1) * incx;
         for (i = n - 1; i >= j + 1; i--) {
           T_element = t_i[j * incT + i * ldt * incT];
 
           temp3 = x_i[ix];
-          temp2 = temp3 * T_element;
+          temp2 = impl::mul<TmpType>(temp3, T_element);
           temp1 = temp1 + (-temp2);
           ix -= incx;
         }                        /* for j<n */
@@ -224,7 +224,7 @@ constexpr void trsv(blas_order_type order,
 
         }
         /* if (diag == blas_non_unit_diag) */
-        x_i[jx] = temp1;
+        x_i[jx] = impl::to<X>(temp1);
 
         jx -= incx;
       }                                /* for j>=0 */
@@ -240,14 +240,14 @@ constexpr void trsv(blas_order_type order,
            i=j+1 to n-1           */
         temp3 = x_i[jx];
         /* multiply by alpha */
-        temp1 = temp3 * alpha_i;
+        temp1 = impl::mul<TmpType>(temp3, alpha_i);
 
         ix = start_x;
         for (i = 0; i < j; i++) {
           T_element = t_i[j * incT + i * ldt * incT];
 
           temp3 = x_i[ix];
-          temp2 = temp3 * T_element;
+          temp2 = impl::mul<TmpType>(temp3, T_element);
           temp1 = temp1 + (-temp2);
           ix += incx;
         }                        /* for i<j */
@@ -262,10 +262,13 @@ constexpr void trsv(blas_order_type order,
 
         }
         /* if (diag == blas_non_unit_diag) */
-        x_i[jx] = temp1;
+        x_i[jx] = impl::to<X>(temp1);
         jx += incx;
       }                                /* for j<n */
     }
+  }
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_STOP;
   }
 } /* end XBLAS::trsv */
 

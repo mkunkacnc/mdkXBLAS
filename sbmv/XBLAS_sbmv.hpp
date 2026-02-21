@@ -309,7 +309,7 @@ constexpr void sbmv(blas_order_type order,
         /* Case alpha != 1, but beta == 0.
            We compute  y  <--- A * x * a */
         for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-          sum = 0.0;
+          sum = impl::zero_v<PrdType>;
 
           for (j = 0, aij = astarti, xi = x_starti;
                j < maxj_first; j++, aij += incaij, xi += incx) {
@@ -340,7 +340,7 @@ constexpr void sbmv(blas_order_type order,
       } else {
         /* The most general form,   y <--- alpha * A * x + beta * y */
         for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-          sum = 0.0;
+          sum = impl::zero_v<PrdType>;
 
           for (j = 0, aij = astarti, xi = x_starti;
                j < maxj_first; j++, aij += incaij, xi += incx) {

@@ -112,10 +112,10 @@ constexpr void waxpby(IdxType n,
   for (i = 0; i < n; ++i) {
     x_ii = x_i[ix];
     y_ii = y_i[iy];
-    tmpx = alpha_i * x_ii;        /* tmpx  = alpha * x[ix] */
-    tmpy = beta_i * y_ii;        /* tmpy = beta * y[iy] */
+    tmpx = impl::mul<TmpType>(alpha_i, x_ii);        /* tmpx  = alpha * x[ix] */
+    tmpy = impl::mul<TmpType>(beta_i, y_ii);        /* tmpy = beta * y[iy] */
     tmpy = tmpy + tmpx;
-    w_i[iw] = tmpy;
+    w_i[iw] = impl::to<T>(tmpy);
     ix += incx;
     iy += incy;
     iw += incw;
@@ -123,6 +123,9 @@ constexpr void waxpby(IdxType n,
 
 
 
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_STOP;
+  }
 } /* end XBLAS::waxpby */
 
 //-----------------

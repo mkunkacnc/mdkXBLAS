@@ -126,7 +126,7 @@ constexpr void tbsv(blas_order_type order,
   }
 
   /* if alpha is zero, then return x as a zero vector */
-  if (alpha_i == 0.0) {
+  if (alpha_i == T(0)) {
     xi = start_xi;
     for (i = 0; i < n; i++) {
       x_i[xi] = 0.0;
@@ -136,7 +136,7 @@ constexpr void tbsv(blas_order_type order,
   }
   /* check to see if k=0.  if so, we can optimize somewhat */
   if (k == 0) {
-    if ((alpha_i == 1.0) && (diag == blas_unit_diag)) {
+    if ((alpha_i == T(1)) && (diag == blas_unit_diag)) {
       /* nothing to do */
       return;
     } else {
@@ -207,7 +207,7 @@ constexpr void tbsv(blas_order_type order,
         x_elem = x_i[xi];
         /* preform the multiplication -
            in this implementation we do not seperate the alpha = 1 case */
-        temp1 = x_elem * alpha_i;
+        temp1 = impl::mul<TmpType>(x_elem, alpha_i);
 
         xi = start_xi;
 
@@ -218,7 +218,7 @@ constexpr void tbsv(blas_order_type order,
           T_element = t_i[Tij];
 
           x_elem = x_i[xi];
-          temp2 = x_elem * T_element;
+          temp2 = impl::mul<TmpType>(x_elem, T_element);
           temp1 = temp1 + (-temp2);
           xi += incxi;
           Tij += dot_inc;
@@ -235,7 +235,7 @@ constexpr void tbsv(blas_order_type order,
 
         }
         /* if (diag == blas_non_unit_diag) */
-        x_i[xi] = temp1;
+        x_i[xi] = impl::to<T>(temp1);
         xi += incxi;
       }                                /* for j<k */
       /*end loop 1 */
@@ -245,7 +245,7 @@ constexpr void tbsv(blas_order_type order,
 
         /* each time through loop, xi lands on next x to compute. */
         x_elem = x_i[xi];
-        temp1 = x_elem * alpha_i;
+        temp1 = impl::mul<TmpType>(x_elem, alpha_i);
 
         xi = start_xi;
         start_xi += incxi;
@@ -257,7 +257,7 @@ constexpr void tbsv(blas_order_type order,
           T_element = t_i[Tij];
 
           x_elem = x_i[xi];
-          temp2 = x_elem * T_element;
+          temp2 = impl::mul<TmpType>(x_elem, T_element);
           temp1 = temp1 + (-temp2);
           xi += incxi;
           Tij += dot_inc;
@@ -274,12 +274,15 @@ constexpr void tbsv(blas_order_type order,
 
         }
         /* if (diag == blas_non_unit_diag) */
-        x_i[xi] = temp1;
+        x_i[xi] = impl::to<T>(temp1);
         xi += incxi;
       }                                /* for j<n */
 
 
     }
+  }
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_STOP;
   }
 } /* end XBLAS::tbsv */
 

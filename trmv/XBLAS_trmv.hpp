@@ -154,7 +154,7 @@ constexpr void trmv(blas_order_type order,
 
 
   xj0 = (inc_x > 0 ? 0 : -(n - 1) * inc_x);
-  if (alpha_i == 0.0) {
+  if (alpha_i == T(0)) {
     xj = xj0;
     for (j = 0; j < n; j++) {
       x_i[xj] = 0.0;
@@ -169,7 +169,7 @@ constexpr void trmv(blas_order_type order,
       tij0 = (inc_tij > 0 ? 0 : -(n - 1) * inc_tij);
       for (i = 0; i < n; i++) {
 
-        sum = 0.0;
+        sum = impl::zero_v<PrdType>;
 
         xj = xj0;
         tij = ti + tij0;
@@ -178,7 +178,7 @@ constexpr void trmv(blas_order_type order,
           t_elem = t_i[tij];
 
           x_elem = x_i[xj];
-          prod = x_elem * t_elem;
+          prod = impl::mul<PrdType>(x_elem, t_elem);
           sum = sum + prod;
 
           xj += inc_x;
@@ -188,11 +188,11 @@ constexpr void trmv(blas_order_type order,
         x_elem = x_i[xj];
         sum = sum + x_elem;
 
-        if (alpha_i == 1.0) {
-          x_i[xj] = sum;
+        if (alpha_i == T(1)) {
+          x_i[xj] = impl::to<X>(sum);
         } else {
-          tmp = sum * alpha_i;
-          x_i[xj] = tmp;
+          tmp = impl::mul<TmpType>(sum, alpha_i);
+          x_i[xj] = impl::to<X>(tmp);
         }
 
         ti += inc_ti;
@@ -205,7 +205,7 @@ constexpr void trmv(blas_order_type order,
       tij0 = (inc_tij > 0 ? 0 : -(n - 1) * inc_tij);
       for (i = 0; i < n; i++) {
 
-        sum = 0.0;
+        sum = impl::zero_v<PrdType>;
 
         xj = xj0;
         tij = ti + tij0;
@@ -214,18 +214,18 @@ constexpr void trmv(blas_order_type order,
           t_elem = t_i[tij];
 
           x_elem = x_i[xj];
-          prod = x_elem * t_elem;
+          prod = impl::mul<PrdType>(x_elem, t_elem);
           sum = sum + prod;
 
           xj += inc_x;
           tij += inc_tij;
         }
 
-        if (alpha_i == 1.0) {
-          x_i[xj - inc_x] = sum;
+        if (alpha_i == T(1)) {
+          x_i[xj - inc_x] = impl::to<X>(sum);
         } else {
-          tmp = sum * alpha_i;
-          x_i[xj - inc_x] = tmp;
+          tmp = impl::mul<TmpType>(sum, alpha_i);
+          x_i[xj - inc_x] = impl::to<X>(tmp);
         }
 
         ti += inc_ti;
@@ -237,6 +237,9 @@ constexpr void trmv(blas_order_type order,
 
 
 
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_STOP;
+  }
 } /* end XBLAS::trmv */
 
 //-----------------

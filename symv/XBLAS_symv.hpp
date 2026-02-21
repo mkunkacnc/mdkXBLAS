@@ -119,7 +119,7 @@ constexpr void symv(blas_order_type order,
   if (n <= 0) {
     return;
   }
-  if (alpha_i == 0.0 && beta_i == 1.0) {
+  if (alpha_i == T(0) && beta_i == T(1)) {
     return;
   }
 
@@ -169,13 +169,13 @@ constexpr void symv(blas_order_type order,
 
 
   /* alpha = 0.  In this case, just return beta * y */
-  if (alpha_i == 0.0) {
+  if (alpha_i == T(0)) {
     for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
       y_elem = y_i[yi];
-      tmp1 = y_elem * beta_i;
-      y_i[yi] = tmp1;
+      tmp1 = impl::mul<TmpType>(y_elem, beta_i);
+      y_i[yi] = impl::to<T>(tmp1);
     }
-  } else if (alpha_i == 1.0) {
+  } else if (alpha_i == T(1)) {
 
     /* Case alpha == 1. */
 
@@ -183,48 +183,48 @@ constexpr void symv(blas_order_type order,
       /* Case alpha = 1, beta = 0.  We compute  y <--- A * x */
       for (i = 0, yi = y_starti, astarti = 0;
            i < n_i; i++, yi += incy, astarti += incai) {
-        sum = 0.0;
+        sum = impl::zero_v<PrdType>;
 
         for (k = 0, aik = astarti, xi = x_starti; k < i;
              k++, aik += incaik, xi += incx) {
           a_elem = a_i[aik];
           x_elem = x_i[xi];
-          prod = a_elem * x_elem;
+          prod = impl::mul<PrdType>(a_elem, x_elem);
           sum = sum + prod;
         }
         for (; k < n_i; k++, aik += incaik2, xi += incx) {
           a_elem = a_i[aik];
           x_elem = x_i[xi];
-          prod = a_elem * x_elem;
+          prod = impl::mul<PrdType>(a_elem, x_elem);
           sum = sum + prod;
         }
-        y_i[yi] = sum;
+        y_i[yi] = impl::to<T>(sum);
       }
     } else {
       /* Case alpha = 1, but beta != 0.
          We compute  y  <--- A * x + beta * y */
       for (i = 0, yi = y_starti, astarti = 0;
            i < n_i; i++, yi += incy, astarti += incai) {
-        sum = 0.0;
+        sum = impl::zero_v<PrdType>;
 
         for (k = 0, aik = astarti, xi = x_starti;
              k < i; k++, aik += incaik, xi += incx) {
           a_elem = a_i[aik];
           x_elem = x_i[xi];
-          prod = a_elem * x_elem;
+          prod = impl::mul<PrdType>(a_elem, x_elem);
           sum = sum + prod;
         }
         for (; k < n_i; k++, aik += incaik2, xi += incx) {
           a_elem = a_i[aik];
           x_elem = x_i[xi];
-          prod = a_elem * x_elem;
+          prod = impl::mul<PrdType>(a_elem, x_elem);
           sum = sum + prod;
         }
         y_elem = y_i[yi];
-        tmp2 = y_elem * beta_i;
+        tmp2 = impl::mul<TmpType>(y_elem, beta_i);
         tmp1 = sum;
         tmp1 = tmp2 + tmp1;
-        y_i[yi] = tmp1;
+        y_i[yi] = impl::to<T>(tmp1);
       }
     }
 
@@ -232,31 +232,34 @@ constexpr void symv(blas_order_type order,
     /* The most general form,   y <--- alpha * A * x + beta * y */
     for (i = 0, yi = y_starti, astarti = 0;
          i < n_i; i++, yi += incy, astarti += incai) {
-      sum = 0.0;
+      sum = impl::zero_v<PrdType>;
 
       for (k = 0, aik = astarti, xi = x_starti;
            k < i; k++, aik += incaik, xi += incx) {
         a_elem = a_i[aik];
         x_elem = x_i[xi];
-        prod = a_elem * x_elem;
+        prod = impl::mul<PrdType>(a_elem, x_elem);
         sum = sum + prod;
       }
       for (; k < n_i; k++, aik += incaik2, xi += incx) {
         a_elem = a_i[aik];
         x_elem = x_i[xi];
-        prod = a_elem * x_elem;
+        prod = impl::mul<PrdType>(a_elem, x_elem);
         sum = sum + prod;
       }
       y_elem = y_i[yi];
-      tmp2 = y_elem * beta_i;
-      tmp1 = sum * alpha_i;
+      tmp2 = impl::mul<TmpType>(y_elem, beta_i);
+      tmp1 = impl::mul<TmpType>(sum, alpha_i);
       tmp1 = tmp2 + tmp1;
-      y_i[yi] = tmp1;
+      y_i[yi] = impl::to<T>(tmp1);
     }
   }
 
 
 
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_STOP;
+  }
 } /* end XBLAS::symv */
 
 //-----------------
