@@ -100,7 +100,7 @@ constexpr void trsv(blas_order_type order,
   if (alpha_i == T(0)) {
     ix = start_x;
     for (i = 0; i < n; i++) {
-      x_i[ix] = 0.0;
+      x_i[ix] = T(0);
       ix += incx;
     }
     return;
@@ -110,7 +110,753 @@ constexpr void trsv(blas_order_type order,
     FPU_FIX_START;
   }
 
-  {
+  if constexpr (impl::is_complex_v<A>) {
+    TmpType temp1;                /* temporary variable for calculations */
+    TmpType temp2;                /* temporary variable for calculations */
+    TmpType temp3;                /* temporary variable for calculations */
+
+    if ((order == blas_rowmajor &&
+         trans == blas_no_trans && uplo == blas_upper) ||
+        (order == blas_colmajor &&
+         trans != blas_no_trans && uplo == blas_lower)) {
+      if (trans == blas_conj_trans) {
+
+        jx = start_x + (n - 1) * incx;
+        for (j = n - 1; j >= 0; j--) {
+
+          /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
+             i=j+1 to n-1           */
+          temp3 = x_i[jx];
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+          ix = start_x + (n - 1) * incx;
+          for (i = n - 1; i >= j + 1; i--) {
+            T_element = impl::Conj::func(t_i[i * incT + j * ldt * incT]);
+            temp3 = x_i[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix -= incx;
+          } /* for j<n */
+
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = impl::Conj::func(t_i[j * incT + j * ldt * incT]);
+
+            if constexpr (std::is_same_v<impl::inner_type_t<A>, double>) {
+              // scaled division to avoid overflow.
+              double S = 1.0, eps, ov, un, eps1, ov1, un1;
+              double abs_a, abs_b, abs_c, abs_d, ab, cd;
+              double r;
+              double t;
+              double q[2];
+
+              eps = pow(2.0, -24.0);
+              un = pow(2.0, -126.0);
+              ov = pow(2.0, 128.0) * (1 - eps);
+              eps1 = pow(2.0, -53.0);
+              un1 = pow(2.0, -1022.0);
+              ov1 = 1.79769313486231571e+308;
+              /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
+              abs_a = fabs(std::real(temp1));
+              abs_b = fabs(std::imag(temp1));
+              abs_c = fabs(static_cast<double>(std::real(T_element)));
+              abs_d = fabs(static_cast<double>(std::imag(T_element)));
+              ab = std::max(abs_a, abs_b);
+              cd = std::max(abs_c, abs_d);
+
+              /* Scaling */
+              if (ab > ov1 / 16) {        /* scale down a, b */
+                temp1 /= 16;
+                S = S * 16;
+              }
+              if (cd > ov / 16) {        /* scale down c, d */
+                T_element /= 16;
+                S = S / 16;
+              }
+              if (ab < un1 / eps1 * 2) {        /* scale up a, b */
+                t = 2.0 / (eps1 * eps1);
+                temp1 *= t;
+                S = S / t;
+              }
+              if (cd < un / eps * 2) {        /* scale up c, d */
+                t = 2.0 / (eps * eps);
+                T_element *= t;
+                S = S * t;
+              }
+
+              /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
+              if (abs_c > abs_d) {
+                r = std::imag(T_element) / std::real(T_element);
+                t = 1 / (std::real(T_element) + std::imag(T_element) * r);
+                q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
+              } else {
+                r = std::real(T_element) / std::imag(T_element);
+                t = 1 / (std::imag(T_element) + std::real(T_element) * r);
+                q[0] = ( std::imag(temp1) + std::real(temp1) * r) * t;
+                q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
+              }
+              /* Scale back */
+              temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
+            } else {
+              temp1 = temp1 / static_cast<TmpType>(T_element);
+            }
+          }
+          /* if (diag == blas_non_unit_diag) */
+          x_i[jx] = impl::to<T>(temp1);
+
+          jx -= incx;
+        } /* for j>=0 */
+      } else {
+
+        jx = start_x + (n - 1) * incx;
+        for (j = n - 1; j >= 0; j--) {
+
+          /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
+             i=j+1 to n-1           */
+          temp3 = x_i[jx];
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+          ix = start_x + (n - 1) * incx;
+          for (i = n - 1; i >= j + 1; i--) {
+            T_element = t_i[i * incT + j * ldt * incT];
+
+            temp3 = x_i[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix -= incx;
+          } /* for j<n */
+
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = t_i[j * incT + j * ldt * incT];
+
+            if constexpr (std::is_same_v<impl::inner_type_t<A>, double>) {
+              // scaled division to avoid overflow.
+              double S = 1.0, eps, ov, un, eps1, ov1, un1;
+              double abs_a, abs_b, abs_c, abs_d, ab, cd;
+              double r;
+              double t;
+              double q[2];
+
+              eps = pow(2.0, -24.0);
+              un = pow(2.0, -126.0);
+              ov = pow(2.0, 128.0) * (1 - eps);
+              eps1 = pow(2.0, -53.0);
+              un1 = pow(2.0, -1022.0);
+              ov1 = 1.79769313486231571e+308;
+              /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
+              abs_a = fabs(std::real(temp1));
+              abs_b = fabs(std::imag(temp1));
+              abs_c = fabs(static_cast<double>(std::real(T_element)));
+              abs_d = fabs(static_cast<double>(std::imag(T_element)));
+              ab = std::max(abs_a, abs_b);
+              cd = std::max(abs_c, abs_d);
+
+              /* Scaling */
+              if (ab > ov1 / 16) {        /* scale down a, b */
+                temp1 /= 16;
+                S = S * 16;
+              }
+              if (cd > ov / 16) {        /* scale down c, d */
+                T_element /= 16;
+                S = S / 16;
+              }
+              if (ab < un1 / eps1 * 2) {        /* scale up a, b */
+                t = 2.0 / (eps1 * eps1);
+                temp1 *= t;
+                S = S / t;
+              }
+              if (cd < un / eps * 2) {        /* scale up c, d */
+                t = 2.0 / (eps * eps);
+                T_element *= t;
+                S = S * t;
+              }
+
+              /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
+              if (abs_c > abs_d) {
+                r = std::imag(T_element) / std::real(T_element);
+                t = 1 / (std::real(T_element) + std::imag(T_element) * r);
+                q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
+              } else {
+                r = std::real(T_element) / T_element[1];
+                t = 1 / (std::imag(T_element) + std::real(T_element) * r);
+                q[0] = ( std::imag(temp1) + std::real(temp1) * r) * t;
+                q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
+              }
+              /* Scale back */
+              temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
+            } else {
+              temp1 = temp1 / static_cast<TmpType>(T_element);
+            }
+          }
+          /* if (diag == blas_non_unit_diag) */
+          x_i[jx] = impl::to<T>(temp1);
+
+          jx -= incx;
+        }                        /* for j>=0 */
+      }
+    } else if ((order == blas_rowmajor &&
+                trans == blas_no_trans && uplo == blas_lower) ||
+               (order == blas_colmajor &&
+                trans != blas_no_trans && uplo == blas_upper)) {
+      if (trans == blas_conj_trans) {
+
+        jx = start_x;
+        for (j = 0; j < n; j++) {
+
+          /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
+             i=j+1 to n-1           */
+          temp3 = x_i[jx];
+          /* multiply by alpha */
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+          ix = start_x;
+          for (i = 0; i < j; i++) {
+            T_element = impl::Conj::func(t_i[i * incT + j * ldt * incT]);
+            temp3 = x_i[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix += incx;
+          }                        /* for i<j */
+
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = impl::Conj::func(t_i[j * incT + j * ldt * incT]);
+
+            if constexpr (std::is_same_v<impl::inner_type_t<A>, double>) {
+              // scaled division to avoid overflow.
+              double S = 1.0, eps, ov, un, eps1, ov1, un1;
+              double abs_a, abs_b, abs_c, abs_d, ab, cd;
+              double r;
+              double t;
+              double q[2];
+
+              eps = pow(2.0, -24.0);
+              un = pow(2.0, -126.0);
+              ov = pow(2.0, 128.0) * (1 - eps);
+              eps1 = pow(2.0, -53.0);
+              un1 = pow(2.0, -1022.0);
+              ov1 = 1.79769313486231571e+308;
+              /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
+              abs_a = fabs(std::real(temp1));
+              abs_b = fabs(std::imag(temp1));
+              abs_c = fabs(static_cast<double>(std::real(T_element)));
+              abs_d = fabs(static_cast<double>(std::imag(T_element)));
+              ab = std::max(abs_a, abs_b);
+              cd = std::max(abs_c, abs_d);
+
+              /* Scaling */
+              if (ab > ov1 / 16) {        /* scale down a, b */
+                temp1 /= 16;
+                S = S * 16;
+              }
+              if (cd > ov / 16) {        /* scale down c, d */
+                T_element /= 16;
+                S = S / 16;
+              }
+              if (ab < un1 / eps1 * 2) {        /* scale up a, b */
+                t = 2.0 / (eps1 * eps1);
+                temp1 *= t;
+                S = S / t;
+              }
+              if (cd < un / eps * 2) {        /* scale up c, d */
+                t = 2.0 / (eps * eps);
+                T_element *= t;
+                S = S * t;
+              }
+
+              /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
+              if (abs_c > abs_d) {
+                r = std::imag(T_element) / std::real(T_element);
+                t = 1 / (std::real(T_element) + std::imag(T_element) * r);
+                q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
+              } else {
+                r = std::real(T_element) / std::imag(T_element);
+                t = 1 / (std::imag(T_element) + std::real(T_element) * r);
+                q[0] = ( std::imag(temp1) + std::real(temp1) * r) * t;
+                q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
+              }
+              /* Scale back */
+              temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
+            } else {
+              temp1 = temp1 / static_cast<TmpType>(T_element);
+            }
+          }
+          /* if (diag == blas_non_unit_diag) */
+          x_i[jx] = impl::to<T>(temp1);
+
+          jx += incx;
+        }                        /* for j<n */
+      } else {
+
+        jx = start_x;
+        for (j = 0; j < n; j++) {
+
+          /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
+             i=j+1 to n-1           */
+          temp3 = x_i[jx];
+          /* multiply by alpha */
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+          ix = start_x;
+          for (i = 0; i < j; i++) {
+            T_element = t_i[i * incT + j * ldt * incT];
+
+            temp3 = x_i[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix += incx;
+          }                        /* for i<j */
+
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = t_i[j * incT + j * ldt * incT];
+
+            if constexpr (std::is_same_v<impl::inner_type_t<A>, double>) {
+              // scaled division to avoid overflow.
+              double S = 1.0, eps, ov, un, eps1, ov1, un1;
+              double abs_a, abs_b, abs_c, abs_d, ab, cd;
+              double r;
+              double t;
+              double q[2];
+
+              eps = pow(2.0, -24.0);
+              un = pow(2.0, -126.0);
+              ov = pow(2.0, 128.0) * (1 - eps);
+              eps1 = pow(2.0, -53.0);
+              un1 = pow(2.0, -1022.0);
+              ov1 = 1.79769313486231571e+308;
+              /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
+              abs_a = fabs(std::real(temp1));
+              abs_b = fabs(std::imag(temp1));
+              abs_c = fabs(static_cast<double>(std::real(T_element)));
+              abs_d = fabs(static_cast<double>(std::imag(T_element)));
+              ab = std::max(abs_a, abs_b);
+              cd = std::max(abs_c, abs_d);
+
+              /* Scaling */
+              if (ab > ov1 / 16) {        /* scale down a, b */
+                temp1 /= 16;
+                S = S * 16;
+              }
+              if (cd > ov / 16) {        /* scale down c, d */
+                T_element /= 16;
+                S = S / 16;
+              }
+              if (ab < un1 / eps1 * 2) {        /* scale up a, b */
+                t = 2.0 / (eps1 * eps1);
+                temp1 *= t;
+                S = S / t;
+              }
+              if (cd < un / eps * 2) {        /* scale up c, d */
+                t = 2.0 / (eps * eps);
+                T_element *= t;
+                S = S * t;
+              }
+
+              /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
+              if (abs_c > abs_d) {
+                r = std::imag(T_element) / std::real(T_element);
+                t = 1 / (std::real(T_element) + std::imag(T_element) * r);
+                q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
+              } else {
+                r = std::real(T_element) / T_element[1];
+                t = 1 / (std::imag(T_element) + std::real(T_element) * r);
+                q[0] = ( std::imag(temp1) + std::real(temp1) * r) * t;
+                q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
+              }
+              /* Scale back */
+              temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
+            } else {
+              temp1 = temp1 / static_cast<TmpType>(T_element);
+            }
+          }
+          /* if (diag == blas_non_unit_diag) */
+          x_i[jx] = impl::to<T>(temp1);
+
+          jx += incx;
+        }                        /* for j<n */
+      }
+    } else if ((order == blas_rowmajor &&
+                trans != blas_no_trans && uplo == blas_lower) ||
+               (order == blas_colmajor &&
+                trans == blas_no_trans && uplo == blas_upper)) {
+      if (trans == blas_conj_trans) {
+
+        jx = start_x + (n - 1) * incx;
+        for (j = n - 1; j >= 0; j--) {
+
+          /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
+             i=j+1 to n-1           */
+          temp3 = x_i[jx];
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+          ix = start_x + (n - 1) * incx;
+          for (i = n - 1; i >= j + 1; i--) {
+            T_element = impl::Conj::func(t_i[j * incT + i * ldt * incT]);
+            temp3 = x_i[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix -= incx;
+          }                        /* for j<n */
+
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = impl::Conj::func(t_i[j * incT + j * ldt * incT]);
+
+            if constexpr (std::is_same_v<impl::inner_type_t<A>, double>) {
+              // scaled division to avoid overflow.
+              double S = 1.0, eps, ov, un, eps1, ov1, un1;
+              double abs_a, abs_b, abs_c, abs_d, ab, cd;
+              double r;
+              double t;
+              double q[2];
+
+              eps = pow(2.0, -24.0);
+              un = pow(2.0, -126.0);
+              ov = pow(2.0, 128.0) * (1 - eps);
+              eps1 = pow(2.0, -53.0);
+              un1 = pow(2.0, -1022.0);
+              ov1 = 1.79769313486231571e+308;
+              /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
+              abs_a = fabs(std::real(temp1));
+              abs_b = fabs(std::imag(temp1));
+              abs_c = fabs(static_cast<double>(std::real(T_element)));
+              abs_d = fabs(static_cast<double>(std::imag(T_element)));
+              ab = std::max(abs_a, abs_b);
+              cd = std::max(abs_c, abs_d);
+
+              /* Scaling */
+              if (ab > ov1 / 16) {        /* scale down a, b */
+                temp1 /= 16;
+                S = S * 16;
+              }
+              if (cd > ov / 16) {        /* scale down c, d */
+                T_element /= 16;
+                S = S / 16;
+              }
+              if (ab < un1 / eps1 * 2) {        /* scale up a, b */
+                t = 2.0 / (eps1 * eps1);
+                temp1 *= t;
+                S = S / t;
+              }
+              if (cd < un / eps * 2) {        /* scale up c, d */
+                t = 2.0 / (eps * eps);
+                T_element *= t;
+                S = S * t;
+              }
+
+              /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
+              if (abs_c > abs_d) {
+                r = std::imag(T_element) / std::real(T_element);
+                t = 1 / (std::real(T_element) + std::imag(T_element) * r);
+                q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
+              } else {
+                r = std::real(T_element) / std::imag(T_element);
+                t = 1 / (std::imag(T_element) + std::real(T_element) * r);
+                q[0] = ( std::imag(temp1) + std::real(temp1) * r) * t;
+                q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
+              }
+              /* Scale back */
+              temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
+            } else {
+              temp1 = temp1 / static_cast<TmpType>(T_element);
+            }
+          }
+          /* if (diag == blas_non_unit_diag) */
+          x_i[jx] = impl::to<T>(temp1);
+
+          jx -= incx;
+        }                        /* for j>=0 */
+      } else {
+
+        jx = start_x + (n - 1) * incx;
+        for (j = n - 1; j >= 0; j--) {
+
+          /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
+             i=j+1 to n-1           */
+          temp3 = x_i[jx];
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+          ix = start_x + (n - 1) * incx;
+          for (i = n - 1; i >= j + 1; i--) {
+            T_element = t_i[j * incT + i * ldt * incT];
+
+            temp3 = x_i[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix -= incx;
+          }                        /* for j<n */
+
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = t_i[j * incT + j * ldt * incT];
+
+            if constexpr (std::is_same_v<impl::inner_type_t<A>, double>) {
+              // scaled division to avoid overflow.
+              double S = 1.0, eps, ov, un, eps1, ov1, un1;
+              double abs_a, abs_b, abs_c, abs_d, ab, cd;
+              double r;
+              double t;
+              double q[2];
+
+              eps = pow(2.0, -24.0);
+              un = pow(2.0, -126.0);
+              ov = pow(2.0, 128.0) * (1 - eps);
+              eps1 = pow(2.0, -53.0);
+              un1 = pow(2.0, -1022.0);
+              ov1 = 1.79769313486231571e+308;
+              /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
+              abs_a = fabs(std::real(temp1));
+              abs_b = fabs(std::imag(temp1));
+              abs_c = fabs(static_cast<double>(std::real(T_element)));
+              abs_d = fabs(static_cast<double>(std::imag(T_element)));
+              ab = std::max(abs_a, abs_b);
+              cd = std::max(abs_c, abs_d);
+
+              /* Scaling */
+              if (ab > ov1 / 16) {        /* scale down a, b */
+                temp1 /= 16;
+                S = S * 16;
+              }
+              if (cd > ov / 16) {        /* scale down c, d */
+                T_element /= 16;
+                S = S / 16;
+              }
+              if (ab < un1 / eps1 * 2) {        /* scale up a, b */
+                t = 2.0 / (eps1 * eps1);
+                temp1 *= t;
+                S = S / t;
+              }
+              if (cd < un / eps * 2) {        /* scale up c, d */
+                t = 2.0 / (eps * eps);
+                T_element *= t;
+                S = S * t;
+              }
+
+              /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
+              if (abs_c > abs_d) {
+                r = std::imag(T_element) / std::real(T_element);
+                t = 1 / (std::real(T_element) + std::imag(T_element) * r);
+                q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
+              } else {
+                r = std::real(T_element) / T_element[1];
+                t = 1 / (std::imag(T_element) + std::real(T_element) * r);
+                q[0] = ( std::imag(temp1) + std::real(temp1) * r) * t;
+                q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
+              }
+              /* Scale back */
+              temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
+            } else {
+              temp1 = temp1 / static_cast<TmpType>(T_element);
+            }
+          }
+          /* if (diag == blas_non_unit_diag) */
+          x_i[jx] = impl::to<T>(temp1);
+
+          jx -= incx;
+        }                        /* for j>=0 */
+      }
+    } else if ((order == blas_rowmajor &&
+                trans != blas_no_trans && uplo == blas_upper) ||
+               (order == blas_colmajor &&
+                trans == blas_no_trans && uplo == blas_lower)) {
+      if (trans == blas_conj_trans) {
+
+        jx = start_x;
+        for (j = 0; j < n; j++) {
+
+          /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
+             i=j+1 to n-1           */
+          temp3 = x_i[jx];
+          /* multiply by alpha */
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+          ix = start_x;
+          for (i = 0; i < j; i++) {
+            T_element = impl::Conj::func(t_i[j * incT + i * ldt * incT]);
+            temp3 = x_i[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix += incx;
+          }                        /* for i<j */
+
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = impl::Conj::func(t_i[j * incT + j * ldt * incT]);
+
+            if constexpr (std::is_same_v<impl::inner_type_t<A>, double>) {
+              // scaled division to avoid overflow.
+              double S = 1.0, eps, ov, un, eps1, ov1, un1;
+              double abs_a, abs_b, abs_c, abs_d, ab, cd;
+              double r;
+              double t;
+              double q[2];
+
+              eps = pow(2.0, -24.0);
+              un = pow(2.0, -126.0);
+              ov = pow(2.0, 128.0) * (1 - eps);
+              eps1 = pow(2.0, -53.0);
+              un1 = pow(2.0, -1022.0);
+              ov1 = 1.79769313486231571e+308;
+              /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
+              abs_a = fabs(std::real(temp1));
+              abs_b = fabs(std::imag(temp1));
+              abs_c = fabs(static_cast<double>(std::real(T_element)));
+              abs_d = fabs(static_cast<double>(std::imag(T_element)));
+              ab = std::max(abs_a, abs_b);
+              cd = std::max(abs_c, abs_d);
+
+              /* Scaling */
+              if (ab > ov1 / 16) {        /* scale down a, b */
+                temp1 /= 16;
+                S = S * 16;
+              }
+              if (cd > ov / 16) {        /* scale down c, d */
+                T_element /= 16;
+                S = S / 16;
+              }
+              if (ab < un1 / eps1 * 2) {        /* scale up a, b */
+                t = 2.0 / (eps1 * eps1);
+                temp1 *= t;
+                S = S / t;
+              }
+              if (cd < un / eps * 2) {        /* scale up c, d */
+                t = 2.0 / (eps * eps);
+                T_element *= t;
+                S = S * t;
+              }
+
+              /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
+              if (abs_c > abs_d) {
+                r = std::imag(T_element) / std::real(T_element);
+                t = 1 / (std::real(T_element) + std::imag(T_element) * r);
+                q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
+              } else {
+                r = std::real(T_element) / std::imag(T_element);
+                t = 1 / (std::imag(T_element) + std::real(T_element) * r);
+                q[0] = ( std::imag(temp1) + std::real(temp1) * r) * t;
+                q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
+              }
+              /* Scale back */
+              temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
+            } else {
+              temp1 = temp1 / static_cast<TmpType>(T_element);
+            }
+          }
+          /* if (diag == blas_non_unit_diag) */
+          x_i[jx] = impl::to<T>(temp1);
+
+          jx += incx;
+        }                        /* for j<n */
+      } else {
+
+        jx = start_x;
+        for (j = 0; j < n; j++) {
+
+          /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
+             i=j+1 to n-1           */
+          temp3 = x_i[jx];
+          /* multiply by alpha */
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+          ix = start_x;
+          for (i = 0; i < j; i++) {
+            T_element = t_i[j * incT + i * ldt * incT];
+
+            temp3 = x_i[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix += incx;
+          }                        /* for i<j */
+
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = t_i[j * incT + j * ldt * incT];
+
+            if constexpr (std::is_same_v<impl::inner_type_t<A>, double>) {
+              // scaled division to avoid overflow.
+              double S = 1.0, eps, ov, un, eps1, ov1, un1;
+              double abs_a, abs_b, abs_c, abs_d, ab, cd;
+              double r;
+              double t;
+              double q[2];
+
+              eps = pow(2.0, -24.0);
+              un = pow(2.0, -126.0);
+              ov = pow(2.0, 128.0) * (1 - eps);
+              eps1 = pow(2.0, -53.0);
+              un1 = pow(2.0, -1022.0);
+              ov1 = 1.79769313486231571e+308;
+              /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
+              abs_a = fabs(std::real(temp1));
+              abs_b = fabs(std::imag(temp1));
+              abs_c = fabs(static_cast<double>(std::real(T_element)));
+              abs_d = fabs(static_cast<double>(std::imag(T_element)));
+              ab = std::max(abs_a, abs_b);
+              cd = std::max(abs_c, abs_d);
+
+              /* Scaling */
+              if (ab > ov1 / 16) {        /* scale down a, b */
+                temp1 /= 16;
+                S = S * 16;
+              }
+              if (cd > ov / 16) {        /* scale down c, d */
+                T_element /= 16;
+                S = S / 16;
+              }
+              if (ab < un1 / eps1 * 2) {        /* scale up a, b */
+                t = 2.0 / (eps1 * eps1);
+                temp1 *= t;
+                S = S / t;
+              }
+              if (cd < un / eps * 2) {        /* scale up c, d */
+                t = 2.0 / (eps * eps);
+                T_element *= t;
+                S = S * t;
+              }
+
+              /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
+              if (abs_c > abs_d) {
+                r = std::imag(T_element) / std::real(T_element);
+                t = 1 / (std::real(T_element) + std::imag(T_element) * r);
+                q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
+              } else {
+                r = std::real(T_element) / T_element[1];
+                t = 1 / (std::imag(T_element) + std::real(T_element) * r);
+                q[0] = ( std::imag(temp1) + std::real(temp1) * r) * t;
+                q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
+              }
+              /* Scale back */
+              temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
+            } else {
+              temp1 = temp1 / static_cast<TmpType>(T_element);
+            }
+          }
+          /* if (diag == blas_non_unit_diag) */
+          x_i[jx] = impl::to<T>(temp1);
+
+          jx += incx;
+        }                        /* for j<n */
+      }
+    }
+  } else {
     TmpType temp1;
     TmpType temp2;
     TmpType temp3;
@@ -134,7 +880,7 @@ constexpr void trsv(blas_order_type order,
 
           temp3 = x_i[ix];
           temp2 = impl::mul<TmpType>(temp3, T_element);
-          temp1 = temp1 + (-temp2);
+          temp1 = temp1 - temp2;
           ix -= incx;
         }                        /* for j<n */
 
@@ -172,7 +918,7 @@ constexpr void trsv(blas_order_type order,
 
           temp3 = x_i[ix];
           temp2 = impl::mul<TmpType>(temp3, T_element);
-          temp1 = temp1 + (-temp2);
+          temp1 = temp1 - temp2;
           ix += incx;
         }                        /* for i<j */
 
@@ -208,7 +954,7 @@ constexpr void trsv(blas_order_type order,
 
           temp3 = x_i[ix];
           temp2 = impl::mul<TmpType>(temp3, T_element);
-          temp1 = temp1 + (-temp2);
+          temp1 = temp1 - temp2;
           ix -= incx;
         }                        /* for j<n */
 
@@ -246,7 +992,7 @@ constexpr void trsv(blas_order_type order,
 
           temp3 = x_i[ix];
           temp2 = impl::mul<TmpType>(temp3, T_element);
-          temp1 = temp1 + (-temp2);
+          temp1 = temp1 - temp2;
           ix += incx;
         }                        /* for i<j */
 
