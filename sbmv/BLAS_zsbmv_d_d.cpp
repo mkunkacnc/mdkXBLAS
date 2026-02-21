@@ -117,7 +117,7 @@ void BLAS_zsbmv_d_d(enum blas_order_type order,
  */
 {
 //static const char routine_name[] = "BLAS_zsbmv_d_d";
-#if 0
+#if 1
   XBLAS::sbmv(order,
               uplo,
               n,

@@ -66,7 +66,7 @@ void BLAS_dsymv2_s_d(enum blas_order_type order,
  */
 {
 //static const char routine_name[] = "BLAS_dsymv2_s_d";
-#if 0
+#if 1
   XBLAS::symv2(order, uplo, n, alpha, a, lda, x_head, x_tail, incx, beta, y, incy);
 } /* end BLAS_dsymv2_s_d */
 #else

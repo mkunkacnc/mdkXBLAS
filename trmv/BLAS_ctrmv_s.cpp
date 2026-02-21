@@ -53,7 +53,7 @@ void BLAS_ctrmv_s(enum blas_order_type order,
  */
 {
 //static const char routine_name[] = "BLAS_ctrmv_s";
-#if 0
+#if 1
   XBLAS::trmv(order,
               uplo,
               trans,
