@@ -62,8 +62,6 @@ constexpr void tpmv(blas_order_type order,
 {
   static const char routine_name[] = "XBLAS::tpmv";
 
-  using PrdType = impl::get_inner_type_t<A, T, TmpType>;
-
   FPU_FIX_DECL;
 
   {
@@ -74,7 +72,7 @@ constexpr void tpmv(blas_order_type order,
 
     const A *tp_i = tp;
     T *x_i = x;
-    PrdType rowsum;
+    TmpType rowsum;
     TmpType rowtmp;
     TmpType result;
     A matval;
@@ -123,7 +121,7 @@ constexpr void tpmv(blas_order_type order,
           x_index = x_start + incx * matrix_row;
           x_index2 = x_index;
           col_index = matrix_row;
-          rowsum = impl::zero_v<PrdType>;
+          rowsum = impl::zero_v<TmpType>;
           rowtmp = impl::zero_v<TmpType>;
           result = impl::zero_v<TmpType>;
           while (col_index < n) {
@@ -153,7 +151,7 @@ constexpr void tpmv(blas_order_type order,
           x_index = x_start + incx * (n - 1);
           tp_index = (tp_start + matrix_row) * inctp;
           col_index = (n - 1) - matrix_row;
-          rowsum = impl::zero_v<PrdType>;
+          rowsum = impl::zero_v<TmpType>;
           rowtmp = impl::zero_v<TmpType>;
           result = impl::zero_v<TmpType>;
           while (col_index >= 0) {
@@ -184,7 +182,7 @@ constexpr void tpmv(blas_order_type order,
 
         for (matrix_row = n - 1; matrix_row >= 0; matrix_row--) {
           x_index2 = x_index;
-          rowsum = impl::zero_v<PrdType>;
+          rowsum = impl::zero_v<TmpType>;
           rowtmp = impl::zero_v<TmpType>;
           result = impl::zero_v<TmpType>;
           for (step = 0; step <= matrix_row; step++) {
@@ -209,7 +207,7 @@ constexpr void tpmv(blas_order_type order,
         for (matrix_row = n - 1; matrix_row >= 0; matrix_row--) {
           tp_index = matrix_row * inctp;
           x_index2 = x_start;
-          rowsum = impl::zero_v<PrdType>;
+          rowsum = impl::zero_v<TmpType>;
           rowtmp = impl::zero_v<TmpType>;
           result = impl::zero_v<TmpType>;
           stride = n;

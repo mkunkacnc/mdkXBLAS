@@ -10,11 +10,9 @@ namespace XBLAS {
 
 template<typename T,
          typename A,
-         typename X,
          typename TmpType = T,
          typename IdxType = int>
 requires (impl::size_le_v<A, T> &&
-          impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
           std::signed_integral<IdxType>)
 constexpr void trmv(blas_order_type order,
@@ -25,7 +23,7 @@ constexpr void trmv(blas_order_type order,
                     T alpha,
                     const A *t,
                     IdxType ldt,
-                    X *x,
+                    T *x,
                     IdxType incx)
 /*
  * Purpose
@@ -59,7 +57,7 @@ constexpr void trmv(blas_order_type order,
  * ldt    (input) IdxType
  *        Leading dimension of T
  *
- * x      (input/output) X*
+ * x      (input/output) T*
  *        Array of length n.
  *
  * incx   (input) IdxType
@@ -68,8 +66,6 @@ constexpr void trmv(blas_order_type order,
  */
 {
   static const char routine_name[] = "XBLAS::trmv";
-
-  using PrdType = impl::get_inner_type_t<A, X, TmpType>;
 
   FPU_FIX_DECL;
 
@@ -81,13 +77,13 @@ constexpr void trmv(blas_order_type order,
   IdxType inc_x;
 
   const A *t_i = t;
-  X *x_i = x;
+  T *x_i = x;
   T alpha_i = alpha;
 
   A t_elem;
-  X x_elem;
-  PrdType prod;
-  PrdType sum;
+  T x_elem;
+  TmpType prod;
+  TmpType sum;
   TmpType tmp;
 
 
@@ -173,7 +169,7 @@ constexpr void trmv(blas_order_type order,
       tij0 = (inc_tij > 0 ? 0 : -(n - 1) * inc_tij);
       for (i = 0; i < n; i++) {
 
-        sum = impl::zero_v<PrdType>;
+        sum = impl::zero_v<TmpType>;
 
         xj = xj0;
         tij = ti + tij0;
@@ -182,7 +178,7 @@ constexpr void trmv(blas_order_type order,
           t_elem = t_i[tij];
 
           x_elem = x_i[xj];
-          prod = impl::mul<PrdType>(x_elem, t_elem);
+          prod = impl::mul<TmpType>(x_elem, t_elem);
           sum = sum + prod;
 
           xj += inc_x;
@@ -193,10 +189,10 @@ constexpr void trmv(blas_order_type order,
         sum = sum + x_elem;
 
         if (alpha_i == T(1)) {
-          x_i[xj] = impl::to<X>(sum);
+          x_i[xj] = impl::to<T>(sum);
         } else {
           tmp = impl::mul<TmpType>(sum, alpha_i);
-          x_i[xj] = impl::to<X>(tmp);
+          x_i[xj] = impl::to<T>(tmp);
         }
 
         ti += inc_ti;
@@ -209,7 +205,7 @@ constexpr void trmv(blas_order_type order,
       tij0 = (inc_tij > 0 ? 0 : -(n - 1) * inc_tij);
       for (i = 0; i < n; i++) {
 
-        sum = impl::zero_v<PrdType>;
+        sum = impl::zero_v<TmpType>;
 
         xj = xj0;
         tij = ti + tij0;
@@ -218,7 +214,7 @@ constexpr void trmv(blas_order_type order,
           t_elem = t_i[tij];
 
           x_elem = x_i[xj];
-          prod = impl::mul<PrdType>(x_elem, t_elem);
+          prod = impl::mul<TmpType>(x_elem, t_elem);
           sum = sum + prod;
 
           xj += inc_x;
@@ -226,10 +222,10 @@ constexpr void trmv(blas_order_type order,
         }
 
         if (alpha_i == T(1)) {
-          x_i[xj - inc_x] = impl::to<X>(sum);
+          x_i[xj - inc_x] = impl::to<T>(sum);
         } else {
           tmp = impl::mul<TmpType>(sum, alpha_i);
-          x_i[xj - inc_x] = impl::to<X>(tmp);
+          x_i[xj - inc_x] = impl::to<T>(tmp);
         }
 
         ti += inc_ti;

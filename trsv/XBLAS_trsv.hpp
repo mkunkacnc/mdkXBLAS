@@ -10,11 +10,9 @@ namespace XBLAS {
 
 template<typename T,
          typename A,
-         typename X,
          typename TmpType = T,
          typename IdxType = int>
 requires (impl::size_le_v<A, T> &&
-          impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
           std::signed_integral<IdxType>)
 constexpr void trsv(blas_order_type order,
@@ -25,7 +23,7 @@ constexpr void trsv(blas_order_type order,
                     T alpha,
                     const A *t,
                     IdxType ldt,
-                    X *x,
+                    T *x,
                     IdxType incx)
 /*
  * Purpose
@@ -58,7 +56,7 @@ constexpr void trsv(blas_order_type order,
  * t      (input) const A*
  *        Triangular matrix
  *
- * x      (input/output) X*
+ * x      (input/output) T*
  *        Array of length n.
  *
  * incx   (input) IdxType
@@ -68,15 +66,13 @@ constexpr void trsv(blas_order_type order,
 {
   static const char routine_name[] = "XBLAS::trsv";
 
-//using PrdType = impl::get_inner_type_t<A, X, TmpType>;
-
   FPU_FIX_DECL;
 
   IdxType i, j;
   IdxType ix, jx;
   IdxType start_x;
   const A *t_i = t;
-  X *x_i = x;
+  T *x_i = x;
   T alpha_i = alpha;
   A T_element;
   IdxType incT = 1;
@@ -92,8 +88,6 @@ constexpr void trsv(blas_order_type order,
 
   if (n <= 0)
     return;
-
-
 
   /* configuring the vector starting idx */
   if (incx <= 0) {
@@ -154,7 +148,7 @@ constexpr void trsv(blas_order_type order,
 
         }
         /* if (diag == blas_non_unit_diag) */
-        x_i[jx] = impl::to<X>(temp1);
+        x_i[jx] = impl::to<T>(temp1);
 
         jx -= incx;
       }                                /* for j>=0 */
@@ -192,7 +186,7 @@ constexpr void trsv(blas_order_type order,
 
         }
         /* if (diag == blas_non_unit_diag) */
-        x_i[jx] = impl::to<X>(temp1);
+        x_i[jx] = impl::to<T>(temp1);
         jx += incx;
       }                                /* for j<n */
     } else if ((order == blas_rowmajor &&
@@ -228,7 +222,7 @@ constexpr void trsv(blas_order_type order,
 
         }
         /* if (diag == blas_non_unit_diag) */
-        x_i[jx] = impl::to<X>(temp1);
+        x_i[jx] = impl::to<T>(temp1);
 
         jx -= incx;
       }                                /* for j>=0 */
@@ -266,7 +260,7 @@ constexpr void trsv(blas_order_type order,
 
         }
         /* if (diag == blas_non_unit_diag) */
-        x_i[jx] = impl::to<X>(temp1);
+        x_i[jx] = impl::to<T>(temp1);
         jx += incx;
       }                                /* for j<n */
     }
