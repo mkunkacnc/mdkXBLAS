@@ -68,7 +68,7 @@ constexpr void trsv(blas_order_type order,
 {
   static const char routine_name[] = "XBLAS::trsv";
 
-  using PrdType = impl::get_inner_type_t<A, X, TmpType>;
+//using PrdType = impl::get_inner_type_t<A, X, TmpType>;
 
   FPU_FIX_DECL;
 
