@@ -192,7 +192,7 @@ constexpr void tbsv(blas_order_type order,
       TmpType temp1;
       TmpType temp2;
       T x_elem;
-      float T_element;
+      A T_element;
 
 
 
@@ -231,7 +231,7 @@ constexpr void tbsv(blas_order_type order,
           T_element = t_i[Tij];
 
 
-          temp1 = temp1 / T_element;
+          temp1 = temp1 / static_cast<TmpType>(T_element);
 
         }
         /* if (diag == blas_non_unit_diag) */
@@ -270,7 +270,7 @@ constexpr void tbsv(blas_order_type order,
           T_element = t_i[Tij];
 
 
-          temp1 = temp1 / T_element;
+          temp1 = temp1 / static_cast<TmpType>(T_element);
 
         }
         /* if (diag == blas_non_unit_diag) */

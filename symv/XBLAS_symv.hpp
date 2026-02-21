@@ -179,7 +179,7 @@ constexpr void symv(blas_order_type order,
 
     /* Case alpha == 1. */
 
-    if (beta_i == 0.0) {
+    if (beta_i == T(0)) {
       /* Case alpha = 1, beta = 0.  We compute  y <--- A * x */
       for (i = 0, yi = y_starti, astarti = 0;
            i < n_i; i++, yi += incy, astarti += incai) {

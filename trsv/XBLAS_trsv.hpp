@@ -146,7 +146,7 @@ constexpr void trsv(blas_order_type order,
           T_element = t_i[j * incT + j * ldt * incT];
 
 
-          temp1 = temp1 / T_element;
+          temp1 = temp1 / static_cast<TmpType>(T_element);
 
         }
         /* if (diag == blas_non_unit_diag) */
@@ -184,7 +184,7 @@ constexpr void trsv(blas_order_type order,
           T_element = t_i[j * incT + j * ldt * incT];
 
 
-          temp1 = temp1 / T_element;
+          temp1 = temp1 / static_cast<TmpType>(T_element);
 
         }
         /* if (diag == blas_non_unit_diag) */
@@ -220,7 +220,7 @@ constexpr void trsv(blas_order_type order,
           T_element = t_i[j * incT + j * ldt * incT];
 
 
-          temp1 = temp1 / T_element;
+          temp1 = temp1 / static_cast<TmpType>(T_element);
 
         }
         /* if (diag == blas_non_unit_diag) */
@@ -258,7 +258,7 @@ constexpr void trsv(blas_order_type order,
           T_element = t_i[j * incT + j * ldt * incT];
 
 
-          temp1 = temp1 / T_element;
+          temp1 = temp1 / static_cast<TmpType>(T_element);
 
         }
         /* if (diag == blas_non_unit_diag) */
