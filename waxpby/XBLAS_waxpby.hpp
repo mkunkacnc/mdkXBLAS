@@ -139,32 +139,32 @@ constexpr void waxpby_x(IdxType n,
  * Arguments
  * =========
  *
- * n      (input) int
+ * n      (input) IdxType
  *        The length of vectors x, y, and w.
  *
- * alpha  (input) double
+ * alpha  (input) T
  *
- * x      (input) const double*
+ * x      (input) const X*
  *        Array of length n.
  *
- * incx   (input) int
+ * incx   (input) IdxType
  *        The stride used to access components x[i].
  *
- * beta   (input) double
+ * beta   (input) T
  *
- * y      (input) const float*
+ * y      (input) const Y*
  *        Array of length n.
  *
- * incy   (input) int
+ * incy   (input) IdxType
  *        The stride used to access components y[i].
  *
- * w      (output) double*
+ * w      (output) T*
  *        Array of length n.
  *
- * incw   (input) int
+ * incw   (input) IdxType
  *        The stride used to write components w[i].
  *
- * prec   (input) enum blas_prec_type
+ * prec   (input) blas_prec_type
  *        Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
  *        = blas_prec_double: double precision.

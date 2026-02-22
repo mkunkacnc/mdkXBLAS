@@ -339,40 +339,40 @@ constexpr void ge_sum_mv_x(blas_order_type order,
  * Arguments
  * =========
  *
- * order  (input) enum blas_order_type
+ * order  (input) blas_order_type
  *        Order of A; row or column major
  *
- * m      (input) int
+ * m      (input) IdxType
  *        Row Dimension of A, B, length of output vector y
  *
- * n      (input) int
+ * n      (input) IdxType
  *        Column Dimension of A, B and the length of vector x
  *
- * alpha  (input) double
+ * alpha  (input) T
  *
- * A      (input) const double*
+ * A      (input) const A*
  *
- * lda    (input) int
+ * lda    (input) IdxType
  *        Leading dimension of A
  *
- * x      (input) const float*
+ * x      (input) const X*
  *
- * incx   (input) int
+ * incx   (input) IdxType
  *        The stride for vector x.
  *
- * beta   (input) double
+ * beta   (input) T
  *
- * b      (input) const double*
+ * b      (input) const A*
  *
- * ldb    (input) int
+ * ldb    (input) IdxType
  *        Leading dimension of B
  *
- * y      (input/output) double*
+ * y      (input/output) T*
  *
- * incy   (input) int
+ * incy   (input) IdxType
  *        The stride for vector y.
  *
- * prec   (input) enum blas_prec_type
+ * prec   (input) blas_prec_type
  *        Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
  *        = blas_prec_double: double precision.

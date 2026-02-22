@@ -401,36 +401,36 @@ constexpr void trmv_x(blas_order_type order,
  * Arguments
  * =========
  *
- * order  (input) enum blas_order_type
+ * order  (input) blas_order_type
  *        column major, row major
  *
- * uplo   (input) enum blas_uplo_type
+ * uplo   (input) blas_uplo_type
  *        upper, lower
  *
- * trans  (input) enum blas_trans_type
+ * trans  (input) blas_trans_type
  *        no trans, trans, conj trans
  *
- * diag   (input) enum blas_diag_type
+ * diag   (input) blas_diag_type
  *        unit, non unit
  *
- * n      (input) int
+ * n      (input) IdxType
  *        the dimension of T
  *
- * alpha  (input) double
+ * alpha  (input) T
  *
- * t      (input) const float*
+ * t      (input) const A*
  *        Triangular matrix
  *
- * ldt    (input) int
+ * ldt    (input) IdxType
  *        Leading dimension of T
  *
- * x      (input/output) double*
+ * x      (input/output) T*
  *        Array of length n.
  *
- * incx   (input) int
+ * incx   (input) IdxType
  *        The stride used to access components x[i].
  *
- * prec   (input) enum blas_prec_type
+ * prec   (input) blas_prec_type
  *        Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
  *        = blas_prec_double: double precision.

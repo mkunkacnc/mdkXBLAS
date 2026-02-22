@@ -343,45 +343,45 @@ constexpr void hemm_x(blas_order_type order,
  * Arguments
  * =========
  *
- * order  (input) enum blas_order_type
+ * order  (input) blas_order_type
  *        Storage format of input matrices A, B, and C.
  *
- * side   (input) enum blas_side_type
+ * side   (input) blas_side_type
  *        Determines which side of matrix B is matrix A is multiplied.
  *
- * uplo   (input) enum blas_uplo_type
+ * uplo   (input) blas_uplo_type
  *        Determines which half of matrix A (upper or lower triangle)
  *          is accessed.
  *
- * m n     (input) int
+ * m n     (input) IdxType
  *         Size of matrices A, B, and C.
  *         Matrix A is m-by-m if it is multiplied on the left,
  *                     n-by-n otherwise.
  *         Matrices B and C are m-by-n.
  *
- * alpha  (input) const void*
+ * alpha  (input) T
  *
- * a      (input) const void*
+ * a      (input) const A*
  *        Matrix A.
  *
- * lda    (input) int
+ * lda    (input) IdxType
  *        Leading dimension of matrix A.
  *
- * b      (input) const void*
+ * b      (input) const B*
  *        Matrix B.
  *
- * ldb    (input) int
+ * ldb    (input) IdxType
  *        Leading dimension of matrix B.
  *
- * beta   (input) const void*
+ * beta   (input) T
  *
- * c      (input/output) void*
+ * c      (input/output) T*
  *        Matrix C.
  *
- * ldc    (input) int
+ * ldc    (input) IdxType
  *        Leading dimension of matrix C.
  *
- * prec   (input) enum blas_prec_type
+ * prec   (input) blas_prec_type
  *        Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
  *        = blas_prec_double: double precision.

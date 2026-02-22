@@ -569,39 +569,39 @@ constexpr void gemv2_x(blas_order_type order,
  * Arguments
  * =========
  *
- * order   (input) enum blas_order_type
+ * order   (input) blas_order_type
  *         Order of A; row or column major
  *
- * trans   (input) enum blas_trans_type
+ * trans   (input) blas_trans_type
  *         Transpose of A: no trans, trans, or conjugate trans
  *
- * m       (input) int
+ * m       (input) IdxType
  *         Dimension of A
  *
- * n       (input) int
+ * n       (input) IdxType
  *         Dimension of A and the length of vector x and z
  *
- * alpha   (input) double
+ * alpha   (input) T
  *
- * A       (input) const double*
+ * A       (input) const A*
  *
- * lda     (input) int
+ * lda     (input) IdxType
  *         Leading dimension of A
  *
  * head_x
- * tail_x  (input) const float*
+ * tail_x  (input) const X*
  *
- * incx    (input) int
+ * incx    (input) IdxType
  *         The stride for vector x.
  *
- * beta    (input) double
+ * beta    (input) T
  *
- * y       (input/output) double*
+ * y       (input/output) T*
  *
- * incy    (input) int
+ * incy    (input) IdxType
  *         The stride for vector y.
  *
- * prec    (input) enum blas_prec_type
+ * prec    (input) blas_prec_type
  *         Specifies the internal precision to be used.
  *         = blas_prec_single: single precision.
  *         = blas_prec_double: double precision.

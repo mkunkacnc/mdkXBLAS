@@ -380,18 +380,18 @@ constexpr void gemm_x(blas_order_type order,
  * Arguments
  * =========
  *
- * order   (input) enum blas_order_type
+ * order   (input) blas_order_type
  *         Storage format of input matrices A, B, and C.
  *
- * transa  (input) enum blas_trans_type
+ * transa  (input) blas_trans_type
  *         Operation to be done on matrix A before multiplication.
  *           Can be no operation, transposition, or conjugate transposition.
  *
- * transb  (input) enum blas_trans_type
+ * transb  (input) blas_trans_type
  *         Operation to be done on matrix B before multiplication.
  *           Can be no operation, transposition, or conjugate transposition.
  *
- * m n k   (input) int
+ * m n k   (input) IdxType
  *         The dimensions of matrices A, B, and C.
  *         Matrix C is m-by-n matrix.
  *         Matrix A is m-by-k if A is not transposed,
@@ -399,29 +399,29 @@ constexpr void gemm_x(blas_order_type order,
  *         Matrix B is k-by-n if B is not transposed,
  *                     n-by-k otherwise.
  *
- * alpha   (input) double
+ * alpha   (input) T
  *
- * a       (input) const double*
+ * a       (input) const A*
  *         matrix A.
  *
- * lda     (input) int
+ * lda     (input) IdxType
  *         leading dimension of A.
  *
- * b       (input) const float*
+ * b       (input) const B*
  *         matrix B
  *
- * ldb     (input) int
+ * ldb     (input) IdxType
  *         leading dimension of B.
  *
- * beta    (input) double
+ * beta    (input) T
  *
- * c       (input/output) double*
+ * c       (input/output) T*
  *         matrix C
  *
- * ldc     (input) int
+ * ldc     (input) IdxType
  *         leading dimension of C.
  *
- * prec    (input) enum blas_prec_type
+ * prec    (input) blas_prec_type
  *         Specifies the internal precision to be used.
  *         = blas_prec_single: single precision.
  *         = blas_prec_double: double precision.

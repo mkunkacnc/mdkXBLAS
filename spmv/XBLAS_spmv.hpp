@@ -446,31 +446,31 @@ constexpr void spmv_x(blas_order_type order,
  * Arguments
  * =========
  *
- * order  (input) enum blas_order_type
+ * order  (input) blas_order_type
  *        Order of ap; row or column major
  *
- * uplo   (input) enum blas_uplo_type
+ * uplo   (input) blas_uplo_type
  *        Whether ap is upper or lower
  *
- * n      (input) int
+ * n      (input) IdxType
  *        Dimension of ap and the length of vector x
  *
- * alpha  (input) double
+ * alpha  (input) T
  *
- * ap     (input) const double*
+ * ap     (input) const A*
  *
- * x      (input) const float*
+ * x      (input) const X*
  *
- * incx   (input) int
+ * incx   (input) IdxType
  *        The stride for vector x.
  *
- * beta   (input) double
+ * beta   (input) T
  *
- * y      (input/output) double*
+ * y      (input/output) T*
  *
- * incy   (input) int
+ * incy   (input) IdxType
  *        The stride for vector y.
- * prec   (input) enum blas_prec_type
+ * prec   (input) blas_prec_type
  *        Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
  *        = blas_prec_double: double precision.

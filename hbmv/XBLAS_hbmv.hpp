@@ -534,42 +534,42 @@ constexpr void hbmv_x(blas_order_type order,
  * Arguments
  * =========
  *
- * order  (input) enum blas_order_type
+ * order  (input) blas_order_type
  *        Storage format of input hermitian matrix A.
  *
- * uplo   (input) enum blas_uplo_type
+ * uplo   (input) blas_uplo_type
  *        Determines which half of matrix A (upper or lower triangle)
  *          is accessed.
  *
- * n      (input) int
+ * n      (input) IdxType
  *        Dimension of A and size of vectors x, y.
  *
- * k      (input) int
+ * k      (input) IdxType
  *        Number of subdiagonals ( = number of superdiagonals)
  *
- * alpha  (input) const void*
+ * alpha  (input) T
  *
- * a      (input) const void*
+ * a      (input) const A*
  *        Matrix A.
  *
- * lda    (input) int
+ * lda    (input) IdxType
  *        Leading dimension of matrix A.
  *
- * x      (input) const void*
+ * x      (input) const X*
  *        Vector x.
  *
- * incx   (input) int
+ * incx   (input) IdxType
  *        Stride for vector x.
  *
- * beta   (input) const void*
+ * beta   (input) T
  *
- * y      (input/output) void*
+ * y      (input/output) T*
  *        Vector y.
  *
- * incy   (input) int
+ * incy   (input) IdxType
  *        Stride for vector y.
  *
- * prec   (input) enum blas_prec_type
+ * prec   (input) blas_prec_type
  *        Specifies the internal precision to be used.
  *        = blas_prec_single: single precision.
  *        = blas_prec_double: double precision.
