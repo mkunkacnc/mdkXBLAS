@@ -306,21 +306,29 @@ constexpr void ge_sum_mv(blas_order_type order,
 
 //-----------------
 
-inline
-constexpr void ge_sum_mv_x(enum blas_order_type order,
-                           int m,
-                           int n,
-                           double alpha,
-                           const double *a,
-                           int lda,
-                           const float *x,
-                           int incx,
-                           double beta,
-                           const double *b,
-                           int ldb,
-                           double *y,
-                           int incy,
-                           enum blas_prec_type prec)
+template<typename T,
+         typename A,
+         typename X,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<A, T> &&
+          impl::size_le_v<X, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void ge_sum_mv_x(blas_order_type order,
+                           IdxType m,
+                           IdxType n,
+                           T alpha,
+                           const A *a,
+                           IdxType lda,
+                           const X *x,
+                           IdxType incx,
+                           T beta,
+                           const A *b,
+                           IdxType ldb,
+                           T *y,
+                           IdxType incy,
+                           blas_prec_type prec)
 /*
  * Purpose
  * =======

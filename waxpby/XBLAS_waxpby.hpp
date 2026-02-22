@@ -109,17 +109,25 @@ constexpr void waxpby(IdxType n,
 
 //-----------------
 
-inline
-constexpr void waxpby_x(int n,
-                        double alpha,
-                        const double *x,
-                        int incx,
-                        double beta,
-                        const float *y,
-                        int incy,
-                        double *w,
-                        int incw,
-                        enum blas_prec_type prec)
+template<typename T,
+         typename X,
+         typename Y,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<X, T> &&
+          impl::size_le_v<Y, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void waxpby_x(IdxType n,
+                        T alpha,
+                        const X *x,
+                        IdxType incx,
+                        T beta,
+                        const Y *y,
+                        IdxType incy,
+                        T *w,
+                        IdxType incw,
+                        blas_prec_type prec)
 /*
  * Purpose
  * =======

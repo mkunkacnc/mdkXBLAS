@@ -306,21 +306,29 @@ constexpr void hemm(blas_order_type order,
 
 //-----------------
 
-inline
-constexpr void hemm_x(enum blas_order_type order,
-                      enum blas_side_type side,
-                      enum blas_uplo_type uplo,
-                      int m,
-                      int n,
-                      const void *alpha,
-                      const void *a,
-                      int lda,
-                      const void *b,
-                      int ldb,
-                      const void *beta,
-                      void *c,
-                      int ldc,
-                      enum blas_prec_type prec)
+template<typename T,
+         typename A,
+         typename B,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<A, T> &&
+          impl::size_le_v<B, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void hemm_x(blas_order_type order,
+                      blas_side_type side,
+                      blas_uplo_type uplo,
+                      IdxType m,
+                      IdxType n,
+                      T alpha,
+                      const A *a,
+                      IdxType lda,
+                      const B *b,
+                      IdxType ldb,
+                      T beta,
+                      T *c,
+                      IdxType ldc,
+                      blas_prec_type prec)
 /*
  * Purpose
  * =======

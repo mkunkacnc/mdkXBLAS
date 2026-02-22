@@ -342,22 +342,30 @@ constexpr void gemm(blas_order_type order,
 
 //-----------------
 
-inline
-constexpr void gemm_x(enum blas_order_type order,
-                      enum blas_trans_type transa,
-                      enum blas_trans_type transb,
-                      int m,
-                      int n,
-                      int k,
-                      double alpha,
-                      const double *a,
-                      int lda,
-                      const float *b,
-                      int ldb,
-                      double beta,
-                      double *c,
-                      int ldc,
-                      enum blas_prec_type prec)
+template<typename T,
+         typename A,
+         typename B,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<A, T> &&
+          impl::size_le_v<B, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void gemm_x(blas_order_type order,
+                      blas_trans_type transa,
+                      blas_trans_type transb,
+                      IdxType m,
+                      IdxType n,
+                      IdxType k,
+                      T alpha,
+                      const A *a,
+                      IdxType lda,
+                      const B *b,
+                      IdxType ldb,
+                      T beta,
+                      T *c,
+                      IdxType ldc,
+                      blas_prec_type prec)
 /*
  * Purpose
  * =======

@@ -134,8 +134,12 @@ constexpr void dot(blas_conj_type conj,
 template<typename T,
          typename X,
          typename Y,
+         typename TmpType = T,
          typename IdxType = int>
-requires std::signed_integral<IdxType>
+requires (impl::size_le_v<X, T> &&
+          impl::size_le_v<Y, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
 constexpr void dot_x(blas_conj_type conj,
                      IdxType n,
                      T alpha,

@@ -499,20 +499,28 @@ constexpr void hbmv(blas_order_type order,
 
 //-----------------
 
-inline
-constexpr void hbmv_x(enum blas_order_type order,
-                      enum blas_uplo_type uplo,
-                      int n,
-                      int k,
-                      const void *alpha,
-                      const void *a,
-                      int lda,
-                      const void *x,
-                      int incx,
-                      const void *beta,
-                      void *y,
-                      int incy,
-                      enum blas_prec_type prec)
+template<typename T,
+         typename A,
+         typename X,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<A, T> &&
+          impl::size_le_v<X, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void hbmv_x(blas_order_type order,
+                      blas_uplo_type uplo,
+                      IdxType n,
+                      IdxType k,
+                      T alpha,
+                      const A *a,
+                      IdxType lda,
+                      const X *x,
+                      IdxType incx,
+                      T beta,
+                      T *y,
+                      IdxType incy,
+                      blas_prec_type prec)
 /*
  * Purpose
  * =======

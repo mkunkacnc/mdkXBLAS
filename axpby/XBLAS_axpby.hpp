@@ -95,8 +95,11 @@ constexpr void axpby(IdxType n,
 
 template<typename T,
          typename X,
+         typename TmpType = T,
          typename IdxType = int>
-requires std::signed_integral<IdxType>
+requires (impl::size_le_v<X, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
 constexpr void axpby_x(IdxType n,
                        T alpha,
                        const X *x,

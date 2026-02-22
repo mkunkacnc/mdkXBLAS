@@ -1018,18 +1018,24 @@ constexpr void trsv(blas_order_type order,
 
 //-----------------
 
-inline
-constexpr void trsv_x(enum blas_order_type order,
-                    enum blas_uplo_type uplo,
-                    enum blas_trans_type trans,
-                    enum blas_diag_type diag,
-                    int n,
-                    double alpha,
-                    const float *T,
-                    int ldt,
-                    double *x,
-                    int incx,
-                    enum blas_prec_type prec)
+template<typename T,
+         typename A,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<A, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void trsv_x(blas_order_type order,
+                      blas_uplo_type uplo,
+                      blas_trans_type trans,
+                      blas_diag_type diag,
+                      IdxType n,
+                      T alpha,
+                      const A *t,
+                      IdxType ldt,
+                      T *x,
+                      IdxType incx,
+                      blas_prec_type prec)
 /*
  * Purpose
  * =======
@@ -1058,7 +1064,7 @@ constexpr void trsv_x(enum blas_order_type order,
  *
  * alpha  (input) double
  *
- * T      (input) const float*
+ * t      (input) const float*
  *        Triangular matrix
  *
  * x      (input/output) double*
@@ -1082,7 +1088,7 @@ constexpr void trsv_x(enum blas_order_type order,
   int i, j;                        /* used to idx matrix */
   int ix, jx;                        /* used to idx vector x */
   int start_x;                        /* used as the starting idx to vector x */
-  const float *T_i = T;                /* internal matrix T */
+  const float *T_i = t;                /* internal matrix T */
   double *x_i = x;                /* internal x */
   double alpha_i = alpha;        /* internal alpha */
   float T_element;                /* temporary variable for an element of matrix A */

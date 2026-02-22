@@ -416,18 +416,26 @@ constexpr void spmv(blas_order_type order,
 
 //-----------------
 
-inline
-constexpr void spmv_x(enum blas_order_type order,
-                      enum blas_uplo_type uplo,
-                      int n,
-                      double alpha,
-                      const double *ap,
-                      const float *x,
-                      int incx,
-                      double beta,
-                      double *y,
-                      int incy,
-                      enum blas_prec_type prec)
+template<typename T,
+         typename A,
+         typename X,
+         typename TmpType = T,
+         typename IdxType = int>
+requires (impl::size_le_v<A, T> &&
+          impl::size_le_v<X, T> &&
+          impl::size_le_v<T, TmpType> &&
+          std::signed_integral<IdxType>)
+constexpr void spmv_x(blas_order_type order,
+                      blas_uplo_type uplo,
+                      IdxType n,
+                      T alpha,
+                      const A *ap,
+                      const X *x,
+                      IdxType incx,
+                      T beta,
+                      T *y,
+                      IdxType incy,
+                      blas_prec_type prec)
 /*
  * Purpose
  * =======
