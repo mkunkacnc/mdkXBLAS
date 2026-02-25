@@ -402,7 +402,7 @@ constexpr void gbmv2_x(blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::gbmv_x";
+//static const char routine_name[] = "XBLAS::gbmv2_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::gbmv2<T, A, X, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);

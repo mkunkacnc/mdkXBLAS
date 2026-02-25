@@ -151,16 +151,16 @@ constexpr void axpby_x(IdxType n,
 //static const char routine_name[] = "XBLAS::axpby_x";
   switch (prec) {
   case blas_prec_single:
-    axpby<T, X, impl::internal_precision_t<T, blas_prec_single>, IdxType>(n, alpha, x, incx, beta, y, incy);
+    XBLAS::axpby<T, X, impl::internal_precision_t<T, blas_prec_single>, IdxType>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_double:
-    axpby<T, X, impl::internal_precision_t<T, blas_prec_double>, IdxType>(n, alpha, x, incx, beta, y, incy);
+    XBLAS::axpby<T, X, impl::internal_precision_t<T, blas_prec_double>, IdxType>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_indigenous:
-    axpby<T, X, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(n, alpha, x, incx, beta, y, incy);
+    XBLAS::axpby<T, X, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    axpby<T, X, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(n, alpha, x, incx, beta, y, incy);
+    XBLAS::axpby<T, X, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(n, alpha, x, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::axpby_x */

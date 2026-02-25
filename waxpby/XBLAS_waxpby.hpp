@@ -174,128 +174,20 @@ constexpr void waxpby_x(IdxType n,
  *
  */
 {
-  static const char routine_name[] = "BLAS_dwaxpby_d_s_x";
+//static const char routine_name[] = "XBLAS::waxpby_x";
   switch (prec) {
   case blas_prec_single:
+    XBLAS::waxpby<T, X, Y, impl::internal_precision_t<T, blas_prec_single>, IdxType>(n, alpha, x, incx, beta, y, incy, w, incw);
+    break;
   case blas_prec_double:
-  case blas_prec_indigenous:{
-
-      int i, ix = 0, iy = 0, iw = 0;
-      double *w_i = w;
-      const double *x_i = x;
-      const float *y_i = y;
-      double alpha_i = alpha;
-      double beta_i = beta;
-      double x_ii;
-      float y_ii;
-      double tmpx;
-      double tmpy;
-
-
-
-      /* Test the input parameters. */
-      if (incx == 0)
-        BLAS_error(routine_name, -4, incx, NULL);
-      else if (incy == 0)
-        BLAS_error(routine_name, -7, incy, NULL);
-      else if (incw == 0)
-        BLAS_error(routine_name, -9, incw, NULL);
-
-
-      /* Immediate return */
-      if (n <= 0) {
-        return;
-      }
-
-
-
-
-
-
-      if (incx < 0)
-        ix = (-n + 1) * incx;
-      if (incy < 0)
-        iy = (-n + 1) * incy;
-      if (incw < 0)
-        iw = (-n + 1) * incw;
-
-      for (i = 0; i < n; ++i) {
-        x_ii = x_i[ix];
-        y_ii = y_i[iy];
-        tmpx = alpha_i * x_ii;        /* tmpx  = alpha * x[ix] */
-        tmpy = beta_i * y_ii;        /* tmpy = beta * y[iy] */
-        tmpy = tmpy + tmpx;
-        w_i[iw] = tmpy;
-        ix += incx;
-        iy += incy;
-        iw += incw;
-      }                                /* endfor */
-
-
-
-      break;
-    }
-
-  case blas_prec_extra:{
-
-      int i, ix = 0, iy = 0, iw = 0;
-      double *w_i = w;
-      const double *x_i = x;
-      const float *y_i = y;
-      double alpha_i = alpha;
-      double beta_i = beta;
-      double x_ii;
-      float y_ii;
-      double head_tmpx, tail_tmpx;
-      double head_tmpy, tail_tmpy;
-
-      FPU_FIX_DECL;
-
-      /* Test the input parameters. */
-      if (incx == 0)
-        BLAS_error(routine_name, -4, incx, NULL);
-      else if (incy == 0)
-        BLAS_error(routine_name, -7, incy, NULL);
-      else if (incw == 0)
-        BLAS_error(routine_name, -9, incw, NULL);
-
-
-      /* Immediate return */
-      if (n <= 0) {
-        return;
-      }
-
-      FPU_FIX_START;
-
-
-
-
-      if (incx < 0)
-        ix = (-n + 1) * incx;
-      if (incy < 0)
-        iy = (-n + 1) * incy;
-      if (incw < 0)
-        iw = (-n + 1) * incw;
-
-      for (i = 0; i < n; ++i) {
-        x_ii = x_i[ix];
-        y_ii = y_i[iy];
-        compute_doubledouble_eq_double_mul_double(&head_tmpx, &tail_tmpx, alpha_i, x_ii);
-        {
-          double dt = (double) y_ii;
-          compute_doubledouble_eq_double_mul_double(&head_tmpy, &tail_tmpy, beta_i, dt);
-        }                        /* tmpy = beta * y[iy] */
-        compute_doubledouble_eq_doubledouble_add_doubledouble(&head_tmpy, &tail_tmpy, head_tmpy, tail_tmpy, head_tmpx, tail_tmpx);
-        w_i[iw] = head_tmpy;
-        ix += incx;
-        iy += incy;
-        iw += incw;
-      }                                /* endfor */
-
-      FPU_FIX_STOP;
-
-      break;
-    }
+    XBLAS::waxpby<T, X, Y, impl::internal_precision_t<T, blas_prec_double>, IdxType>(n, alpha, x, incx, beta, y, incy, w, incw);
+    break;
+  case blas_prec_indigenous:
+    XBLAS::waxpby<T, X, Y, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(n, alpha, x, incx, beta, y, incy, w, incw);
+    break;
+  case blas_prec_extra:
+    XBLAS::waxpby<T, X, Y, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(n, alpha, x, incx, beta, y, incy, w, incw);
+    break;
   }
 } /* end XBLAS::waxpby_x */
 
