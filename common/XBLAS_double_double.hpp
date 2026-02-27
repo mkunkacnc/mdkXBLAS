@@ -12,75 +12,83 @@ namespace XBLAS {
 
 class double_double
 {
-    friend constexpr double_double operator *(const double_double& a, float b);
-    friend constexpr double_double operator *(const double_double& a, double b);
+  friend constexpr double_double operator *(const double_double& a, float b);
+  friend constexpr double_double operator *(const double_double& a, double b);
 
-    template<typename T>
-    requires std::floating_point<T>
-    friend constexpr std::complex<double_double> operator *(const std::complex<double_double>& a, const std::complex<T>& b);
+  template<typename T>
+  requires std::floating_point<T>
+  friend constexpr std::complex<double_double> operator *(const std::complex<double_double>& a, const std::complex<T>& b);
 
-    template<typename T>
-    requires std::floating_point<T>
-    friend constexpr std::complex<double_double> operator *(const std::complex<T>& a, const std::complex<double_double>& b);
+  template<typename T>
+  requires std::floating_point<T>
+  friend constexpr std::complex<double_double> operator *(const std::complex<T>& a, const std::complex<double_double>& b);
 
-    template<typename T>
-    requires std::floating_point<T>
-    friend constexpr std::complex<double_double> operator *(const double_double& a, const std::complex<T>& b);
+  template<typename T>
+  requires std::floating_point<T>
+  friend constexpr std::complex<double_double> operator *(const double_double& a, const std::complex<T>& b);
 
-    friend constexpr double_double operator +(const double_double& a, const double_double& b);
-    friend constexpr double_double operator +(const double_double& a, double b);
-    friend constexpr double_double operator +(const double_double& a, float b);
+  friend constexpr double_double operator +(const double_double& a, const double_double& b);
+  friend constexpr double_double operator +(const double_double& a, double b);
+  friend constexpr double_double operator +(const double_double& a, float b);
+
+  friend constexpr double_double operator -(const double_double& a, const double_double& b);
+
+  friend constexpr double_double operator /(const double_double& a, const double_double& b);
+  friend constexpr double_double operator /(const double_double& a, double b);
+  friend constexpr double_double operator /(const double_double& a, float b);
 
 public:
-    constexpr double_double() {}
-    constexpr explicit double_double(double x);
-    constexpr double_double(double h, double t);
+  static constexpr double split = SPLIT;
 
-    static constexpr double_double add(double a, double b);
-    static constexpr double add(double_double a, double_double b);
+  constexpr double_double() {}
+  constexpr explicit double_double(double x);
+  constexpr double_double(double h, double t);
 
-    static constexpr double_double mul(float a, float b);
-    static constexpr double_double mul(float a, double b);
-    static constexpr double_double mul(double a, float b);
-    static constexpr double_double mul(double a, double b);
-    static constexpr std::complex<double_double> mul(std::complex<float> a, std::complex<float> b);
-    static constexpr std::complex<double_double> mul(std::complex<float> a, std::complex<double> b);
-    static constexpr std::complex<double_double> mul(std::complex<double> a, std::complex<float> b);
-    static constexpr std::complex<double_double> mul(std::complex<double> a, std::complex<double> b);
+  static constexpr double_double add(double a, double b);
+  static constexpr double add(double_double a, double_double b);
 
-    template<typename T>
-    requires std::floating_point<T>
-    static constexpr std::complex<double_double> mul(std::complex<T> a, T b);
+  static constexpr double_double mul(float a, float b);
+  static constexpr double_double mul(float a, double b);
+  static constexpr double_double mul(double a, float b);
+  static constexpr double_double mul(double a, double b);
+  static constexpr std::complex<double_double> mul(std::complex<float> a, std::complex<float> b);
+  static constexpr std::complex<double_double> mul(std::complex<float> a, std::complex<double> b);
+  static constexpr std::complex<double_double> mul(std::complex<double> a, std::complex<float> b);
+  static constexpr std::complex<double_double> mul(std::complex<double> a, std::complex<double> b);
 
-    template<typename T>
-    requires std::floating_point<T>
-    static constexpr std::complex<double_double> mul(T a, std::complex<T> b);
+  template<typename T>
+  requires std::floating_point<T>
+  static constexpr std::complex<double_double> mul(std::complex<T> a, T b);
 
-    template<typename T>
-    requires std::floating_point<T>
-    static constexpr std::complex<double_double> mul(std::complex<double_double> a, std::complex<T> b) { return a * b; }
+  template<typename T>
+  requires std::floating_point<T>
+  static constexpr std::complex<double_double> mul(T a, std::complex<T> b);
 
-    template<typename T>
-    requires std::floating_point<T>
-    static constexpr std::complex<double_double> mul(std::complex<T> a, std::complex<double_double> b) { return a * b; }
+  template<typename T>
+  requires std::floating_point<T>
+  static constexpr std::complex<double_double> mul(std::complex<double_double> a, std::complex<T> b) { return a * b; }
 
-    template<typename T>
-    requires std::floating_point<T>
-    static constexpr std::complex<double_double> mul(double_double a, std::complex<T> b) { return a * b; }
+  template<typename T>
+  requires std::floating_point<T>
+  static constexpr std::complex<double_double> mul(std::complex<T> a, std::complex<double_double> b) { return a * b; }
 
-    constexpr double_double& operator +=(const double_double& rhs);
-    constexpr double_double& operator +=(double rhs);
-    constexpr double_double& operator +=(float rhs);
+  template<typename T>
+  requires std::floating_point<T>
+  static constexpr std::complex<double_double> mul(double_double a, std::complex<T> b) { return a * b; }
 
-    constexpr double to_double() const { return head; }
-    constexpr double head_() const { return head; } // eventually remove
-    constexpr double tail_() const { return tail; } // eventually remove
+  constexpr double_double& operator +=(const double_double& rhs);
+  constexpr double_double& operator +=(double rhs);
+  constexpr double_double& operator +=(float rhs);
+
+  constexpr double_double& operator -=(const double_double& rhs);
+
+  constexpr double to_double() const { return head; }
+  constexpr double head_() const { return head; } // eventually remove
+  constexpr double tail_() const { return tail; } // eventually remove
 
 private:
-    static constexpr double split = SPLIT;
-
-    double head;
-    double tail;
+  double head;
+  double tail;
 };
 
 constexpr double_double operator *(const double_double& a, float b);
@@ -101,6 +109,12 @@ constexpr std::complex<double_double> operator *(const double_double& a, const s
 constexpr double_double operator +(const double_double& a, const double_double& b);
 constexpr double_double operator +(const double_double& a, double b);
 constexpr double_double operator +(const double_double& a, float b);
+
+constexpr double_double operator -(const double_double& a, const double_double& b);
+
+constexpr double_double operator /(const double_double& a, const double_double& b);
+constexpr double_double operator /(const double_double& a, double b);
+constexpr double_double operator /(const double_double& a, float b);
 
 //-----------------
 
@@ -287,6 +301,14 @@ constexpr double_double& double_double::operator +=(float rhs)
   return *this;
 }
 
+inline
+constexpr double_double& double_double::operator -=(const double_double& rhs)
+{
+  double_double lhs(*this);
+  *this = lhs - rhs;
+  return *this;
+}
+
 //-----------------
 
 inline
@@ -407,6 +429,165 @@ inline
 constexpr double_double operator +(const double_double& a, float b)
 {
   return a + static_cast<double>(b);
+}
+
+inline
+constexpr double_double operator -(const double_double& a, const double_double& b)
+{
+  double_double rhs(b);
+  rhs.head = -rhs.head;
+  rhs.tail = -rhs.tail;
+  return a + rhs;
+}
+
+inline
+constexpr double_double operator /(const double_double& a, const double_double& b)
+{
+  double q1, q2, q3;
+  double a1, a2, b1, b2;
+  double p1, p2, c;
+  double s1, s2, v;
+  double t1, t2;
+  double r1, r2;
+  double cona, conb;
+
+  q1 = a.head / b.head;        /*  approximate quotient */
+
+  /*  Compute  q1 * b  */
+  cona = q1 * double_double::split;
+  conb = b.head * double_double::split;
+  a1 = cona - (cona - q1);
+  b1 = conb - (conb - b.head);
+  a2 = q1 - a1;
+  b2 = b.head - b1;
+
+  /*  (p1, p2) is the product of high order terms. */
+  p1 = q1 * b.head;
+  p2 = (((a1 * b1 - p1) + a1 * b2) + a2 * b1) + a2 * b2;
+
+  /*  Compute the low-order term */
+  c = q1 * b.tail;
+
+  /*  Compute  (s1, s2) = (p1, p2) + c */
+  s1 = p1 + c;
+  v = s1 - p1;
+  s2 = ((c - v) + (p1 - (s1 - v))) + p2;
+
+  /*  Renormalize. */
+  p1 = s1 + s2;
+  p2 = s2 - (p1 - s1);
+
+  /*  Compute  a - (p1, p2) */
+  s1 = a.head - p1;
+  v = s1 - a.head;
+  s2 = (a.head - (s1 - v)) - (p1 + v);
+
+  t1 = a.tail - p2;
+  v = t1 - a.tail;
+  t2 = (a.tail - (t1 - v)) - (p2 + v);
+
+  s2 += t1;
+  t1 = s1 + s2;
+  s2 = s2 - (t1 - s1);
+
+  t2 += s2;
+  r1 = t1 + t2;
+  r2 = t2 - (r1 - t1);
+
+  /*  Compute the next quotient. */
+  q2 = r1 / b.head;
+
+  /*  Compute residual   r1 - q2 * b */
+  cona = q2 * double_double::split;
+  a1 = cona - (cona - q2);
+  a2 = q2 - a1;
+
+  /*  (p1, p2) is the product of high order terms. */
+  p1 = q2 * b.head;
+  p2 = (((a1 * b1 - p1) + a1 * b2) + a2 * b1) + a2 * b2;
+
+  /*  Compute the low-order term */
+  c = q2 * b.tail;
+
+  /*  Compute  (s1, s2) = (p1, p2) + c */
+  s1 = p1 + c;
+  v = s1 - p1;
+  s2 = ((c - v) + (p1 - (s1 - v))) + p2;
+
+  /*  Renormalize. */
+  p1 = s1 + s2;
+  p2 = s2 - (p1 - s1);
+
+  /*  Compute  (r1, r2) - (p1, p2)    */
+  s1 = r1 - p1;
+  v = s1 - r1;
+  s2 = (r1 - (s1 - v)) - (p1 + v);
+
+  t1 = r2 - p2;
+  v = t1 - r2;
+  t2 = (r2 - (t1 - v)) - (p2 + v);
+
+  s2 += t1;
+  t1 = s1 + s2;
+  s2 = s2 - (t1 - s1);
+
+  t2 += s2;
+  s1 = t1 + t2;
+
+  /*  Compute the last correction. */
+  q3 = s1 / b.head;
+
+  /* Renormalize q1, q2, q3. */
+  s1 = q2 + q3;
+  s2 = q3 - (s1 - q2);
+
+  double_double quotient(q1 + s1);
+  t1 = s1 - (quotient.head - q1);
+  quotient.tail = s2 + t1;
+  return quotient;
+}
+
+inline
+constexpr double_double operator /(const double_double& a, double b)
+{
+  /* Compute double-double = double-double / double,
+     using a Newton iteration scheme. */
+  double b1, b2, con, e, t1, t2, t11, t21, t12, t22;
+
+  /* Compute a DP approximation to the quotient. */
+  t1 = a.head / b;
+
+  /* Split t1 and b into two parts with at most 26 bits each,
+     using the Dekker-Veltkamp method. */
+  con = t1 * double_double::split;
+  t11 = con - (con - t1);
+  t21 = t1 - t11;
+  con = b * double_double::split;
+  b1 = con - (con - b);
+  b2 = b - b1;
+
+  /* Compute t1 * b using Dekker method. */
+  t12 = t1 * b;
+  t22 = (((t11 * b1 - t12) + t11 * b2) + t21 * b1) + t21 * b2;
+
+  /* Compute dda - (t12, t22) using Knuth trick. */
+  t11 = a.head - t12;
+  e = t11 - a.head;
+  t21 = ((-t12 - e) + (a.head - (t11 - e))) + a.tail - t22;
+
+  /* Compute high-order word of (t11, t21) and divide by b. */
+  t2 = (t11 + t21) / b;
+
+  /* The result is t1 + t2, after normalization. */
+  double_double c(t1 + t2);
+  c.tail = t2 - (c.head - t1);
+  return c;
+}
+
+inline
+constexpr double_double operator /(const double_double& a, float b)
+{
+  return a / static_cast<double>(b);
 }
 
 //------------------

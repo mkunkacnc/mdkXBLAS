@@ -246,6 +246,20 @@ struct zero<std::complex<T>> { static constexpr auto value = std::complex<T>(T(0
 template<typename T>
 inline constexpr auto zero_v = zero<T>::value;
 
+//---------------------------
+// DIV
+
+template<typename A,
+         typename B>
+constexpr A div(A a, B b)
+{
+  if constexpr (std::is_same_v<inner_type_t<A>, double_double>) {
+    return a / b;
+  } else {
+    return a / static_cast<A>(b);
+  }
+}
+
 //-----------------
 } // namespace impl
 //-----------------

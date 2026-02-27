@@ -200,7 +200,7 @@ constexpr void trsv(blas_order_type order,
               /* Scale back */
               temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
             } else {
-              temp1 = temp1 / static_cast<TmpType>(T_element);
+              temp1 = impl::div(temp1, T_element);
             }
           }
           /* if (diag == blas_non_unit_diag) */
@@ -290,7 +290,7 @@ constexpr void trsv(blas_order_type order,
               /* Scale back */
               temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
             } else {
-              temp1 = temp1 / static_cast<TmpType>(T_element);
+              temp1 = impl::div(temp1, T_element);
             }
           }
           /* if (diag == blas_non_unit_diag) */
@@ -385,7 +385,7 @@ constexpr void trsv(blas_order_type order,
               /* Scale back */
               temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
             } else {
-              temp1 = temp1 / static_cast<TmpType>(T_element);
+              temp1 = impl::div(temp1, T_element);
             }
           }
           /* if (diag == blas_non_unit_diag) */
@@ -476,7 +476,7 @@ constexpr void trsv(blas_order_type order,
               /* Scale back */
               temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
             } else {
-              temp1 = temp1 / static_cast<TmpType>(T_element);
+              temp1 = impl::div(temp1, T_element);
             }
           }
           /* if (diag == blas_non_unit_diag) */
@@ -570,7 +570,7 @@ constexpr void trsv(blas_order_type order,
               /* Scale back */
               temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
             } else {
-              temp1 = temp1 / static_cast<TmpType>(T_element);
+              temp1 = impl::div(temp1, T_element);
             }
           }
           /* if (diag == blas_non_unit_diag) */
@@ -660,7 +660,7 @@ constexpr void trsv(blas_order_type order,
               /* Scale back */
               temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
             } else {
-              temp1 = temp1 / static_cast<TmpType>(T_element);
+              temp1 = impl::div(temp1, T_element);
             }
           }
           /* if (diag == blas_non_unit_diag) */
@@ -755,7 +755,7 @@ constexpr void trsv(blas_order_type order,
               /* Scale back */
               temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
             } else {
-              temp1 = temp1 / static_cast<TmpType>(T_element);
+              temp1 = impl::div(temp1, T_element);
             }
           }
           /* if (diag == blas_non_unit_diag) */
@@ -846,7 +846,7 @@ constexpr void trsv(blas_order_type order,
               /* Scale back */
               temp1 = impl::mul<TmpType>(A(q[0], q[1]), S);
             } else {
-              temp1 = temp1 / static_cast<TmpType>(T_element);
+              temp1 = impl::div(temp1, T_element);
             }
           }
           /* if (diag == blas_non_unit_diag) */
@@ -888,10 +888,7 @@ constexpr void trsv(blas_order_type order,
            the entry */
         if (diag == blas_non_unit_diag) {
           T_element = t_i[j * incT + j * ldt * incT];
-
-
-          temp1 = temp1 / static_cast<TmpType>(T_element);
-
+          temp1 = impl::div(temp1, T_element);
         }
         /* if (diag == blas_non_unit_diag) */
         x_i[jx] = impl::to<T>(temp1);
@@ -926,10 +923,7 @@ constexpr void trsv(blas_order_type order,
            the entry */
         if (diag == blas_non_unit_diag) {
           T_element = t_i[j * incT + j * ldt * incT];
-
-
-          temp1 = temp1 / static_cast<TmpType>(T_element);
-
+          temp1 = impl::div(temp1, T_element);
         }
         /* if (diag == blas_non_unit_diag) */
         x_i[jx] = impl::to<T>(temp1);
@@ -962,10 +956,7 @@ constexpr void trsv(blas_order_type order,
            the entry */
         if (diag == blas_non_unit_diag) {
           T_element = t_i[j * incT + j * ldt * incT];
-
-
-          temp1 = temp1 / static_cast<TmpType>(T_element);
-
+          temp1 = impl::div(temp1, T_element);
         }
         /* if (diag == blas_non_unit_diag) */
         x_i[jx] = impl::to<T>(temp1);
@@ -1000,10 +991,7 @@ constexpr void trsv(blas_order_type order,
            the entry */
         if (diag == blas_non_unit_diag) {
           T_element = t_i[j * incT + j * ldt * incT];
-
-
-          temp1 = temp1 / static_cast<TmpType>(T_element);
-
+          temp1 = impl::div(temp1, T_element);
         }
         /* if (diag == blas_non_unit_diag) */
         x_i[jx] = impl::to<T>(temp1);

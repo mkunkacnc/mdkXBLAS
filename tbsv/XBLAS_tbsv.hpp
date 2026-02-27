@@ -165,10 +165,10 @@ constexpr void tbsv(blas_order_type order,
   if (((trans == blas_trans) || (trans == blas_conj_trans)) ^
       (uplo == blas_lower)) {
     /*start at the first element of x */
-    /* substitution will proceed forwards (forwardsubstitution) */
+    /* substitution will proceed forwards (forward substitution) */
   } else {
     /*start at the last element of x */
-    /* substitution will proceed backwards (backsubstitution) */
+    /* substitution will proceed backwards (back substitution) */
     dot_inc = -dot_inc;
     dot_start_inc1 = -dot_start_inc1;
     dot_start_inc2 = -dot_start_inc2;
@@ -606,10 +606,7 @@ constexpr void tbsv(blas_order_type order,
          the entry */
       if (diag == blas_non_unit_diag) {
         T_element = t_i[Tij];
-
-
-        temp1 = temp1 / static_cast<TmpType>(T_element);
-
+        temp1 = impl::div(temp1, T_element);
       }
       /* if (diag == blas_non_unit_diag) */
       x_i[xi] = impl::to<T>(temp1);
