@@ -857,146 +857,323 @@ constexpr void trsv(blas_order_type order,
       }
     }
   } else {
-    TmpType temp1;
-    TmpType temp2;
-    TmpType temp3;
+    if constexpr (sizeof(TmpType) > sizeof(T)) {
+      IdxType inc_intx;             /* inc for intx */
+      TmpType temp1;                /* temporary variable for calculations */
+      TmpType temp2;                /* temporary variable for calculations */
+      TmpType temp3;                /* temporary variable for calculations */
+      TmpType *intx;                /* copy of x used for calculations */
 
-    if ((order == blas_rowmajor &&
-         trans == blas_no_trans && uplo == blas_upper) ||
-        (order == blas_colmajor &&
-         trans != blas_no_trans && uplo == blas_lower)) {
+      /* allocate space for intx */
+      intx = (TmpType *) blas_malloc(n * sizeof(TmpType));
+      if (n > 0 && intx == NULL) {
+        BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
+      }
 
-      jx = start_x + (n - 1) * incx;
-      for (j = n - 1; j >= 0; j--) {
+      /* since intx is for internal usage, set it to 1 and then adjust
+         it if necessary */
+      inc_intx = 1;
 
-        /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
-           i=j+1 to n-1           */
-        temp3 = x_i[jx];
-        temp1 = impl::mul<TmpType>(temp3, alpha_i);
+      /* copy x to intx */
+      ix = start_x;
+      jx = 0;
+      for (i = 0; i < n; i++) {
+        temp1 = TmpType(x_i[ix]);
+        intx[jx] = temp1;
+        ix += incx;
+        jx += inc_intx;
+      }
 
-        ix = start_x + (n - 1) * incx;
-        for (i = n - 1; i >= j + 1; i--) {
-          T_element = t_i[i * incT + j * ldt * incT];
+      if ((order == blas_rowmajor &&
+           trans == blas_no_trans && uplo == blas_upper) ||
+          (order == blas_colmajor &&
+           trans != blas_no_trans && uplo == blas_lower)) {
 
-          temp3 = x_i[ix];
-          temp2 = impl::mul<TmpType>(temp3, T_element);
-          temp1 = temp1 - temp2;
-          ix -= incx;
+        jx = (n - 1) * inc_intx;
+        for (j = n - 1; j >= 0; j--) {
+
+          /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
+             i=j+1 to n-1           */
+          temp3 = intx[jx];
+          /* multiply by alpha */
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+          ix = (n - 1) * inc_intx;
+          for (i = n - 1; i >= j + 1; i--) {
+            T_element = t_i[i * incT + j * ldt * incT];
+            temp3 = intx[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix -= inc_intx;
+          }                        /* for j<n */
+
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = t_i[j * incT + j * ldt * incT];
+            temp1 = impl::div(temp1, T_element);
+          }
+          /* if (diag == blas_non_unit_diag) */
+          intx[jx] = temp1;
+
+          jx -= inc_intx;
+        }                        /* for j>=0 */
+      } else if ((order == blas_rowmajor &&
+                  trans == blas_no_trans && uplo == blas_lower) ||
+                 (order == blas_colmajor &&
+                  trans != blas_no_trans && uplo == blas_upper)) {
+
+        jx = 0;
+        for (j = 0; j < n; j++) {
+          /* compute Xj = Xj - SUM Aij(or Aji) * Xi
+             i=j+1 to n-1           */
+          temp3 = intx[jx];
+          /* multiply by alpha */
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+          ix = 0;
+          for (i = 0; i < j; i++) {
+            T_element = t_i[i * incT + j * ldt * incT];
+
+            temp3 = intx[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix += inc_intx;
+          }                        /* for i<j */
+
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = t_i[j * incT + j * ldt * incT];
+            temp1 = impl::div(temp1, T_element);
+          }
+          /* if (diag == blas_non_unit_diag) */
+          intx[jx] = temp1;
+          jx += inc_intx;
         }                        /* for j<n */
+      } else if ((order == blas_rowmajor &&
+                  trans != blas_no_trans && uplo == blas_lower) ||
+                 (order == blas_colmajor &&
+                  trans == blas_no_trans && uplo == blas_upper)) {
 
-        /* if the diagonal entry is not equal to one, then divide Xj by
-           the entry */
-        if (diag == blas_non_unit_diag) {
-          T_element = t_i[j * incT + j * ldt * incT];
-          temp1 = impl::div(temp1, T_element);
-        }
-        /* if (diag == blas_non_unit_diag) */
-        x_i[jx] = impl::to<T>(temp1);
+        jx = (n - 1) * inc_intx;
+        for (j = n - 1; j >= 0; j--) {
+          /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
+             i=j+1 to n-1           */
+          temp3 = intx[jx];
+          /* multiply by alpha */
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
 
-        jx -= incx;
-      }                                /* for j>=0 */
-    } else if ((order == blas_rowmajor &&
-                trans == blas_no_trans && uplo == blas_lower) ||
-               (order == blas_colmajor &&
-                trans != blas_no_trans && uplo == blas_upper)) {
+          ix = (n - 1) * inc_intx;
+          for (i = n - 1; i >= j + 1; i--) {
+            T_element = t_i[j * incT + i * ldt * incT];
 
-      jx = start_x;
-      for (j = 0; j < n; j++) {
+            temp3 = intx[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix -= inc_intx;
+          }                        /* for j<n */
 
-        /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
-           i=j+1 to n-1           */
-        temp3 = x_i[jx];
-        /* multiply by alpha */
-        temp1 = impl::mul<TmpType>(temp3, alpha_i);
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = t_i[j * incT + j * ldt * incT];
+            temp1 = impl::div(temp1, T_element);
+          }
+          /* if (diag == blas_non_unit_diag) */
+          intx[jx] = temp1;
 
-        ix = start_x;
-        for (i = 0; i < j; i++) {
-          T_element = t_i[i * incT + j * ldt * incT];
+          jx -= inc_intx;
+        }                        /* for j>=0 */
+      } else if ((order == blas_rowmajor &&
+                  trans != blas_no_trans && uplo == blas_upper) ||
+                 (order == blas_colmajor &&
+                  trans == blas_no_trans && uplo == blas_lower)) {
 
-          temp3 = x_i[ix];
-          temp2 = impl::mul<TmpType>(temp3, T_element);
-          temp1 = temp1 - temp2;
-          ix += incx;
-        }                        /* for i<j */
+        jx = 0;
+        for (j = 0; j < n; j++) {
 
-        /* if the diagonal entry is not equal to one, then divide Xj by
-           the entry */
-        if (diag == blas_non_unit_diag) {
-          T_element = t_i[j * incT + j * ldt * incT];
-          temp1 = impl::div(temp1, T_element);
-        }
-        /* if (diag == blas_non_unit_diag) */
-        x_i[jx] = impl::to<T>(temp1);
-        jx += incx;
-      }                                /* for j<n */
-    } else if ((order == blas_rowmajor &&
-                trans != blas_no_trans && uplo == blas_lower) ||
-               (order == blas_colmajor &&
-                trans == blas_no_trans && uplo == blas_upper)) {
+          /* compute Xj = Xj - SUM Aij(or Aji) * Xi
+             i=j+1 to n-1           */
+          temp3 = intx[jx];
+          /* multiply by alpha */
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
 
-      jx = start_x + (n - 1) * incx;
-      for (j = n - 1; j >= 0; j--) {
+          ix = 0;
+          for (i = 0; i < j; i++) {
+            T_element = t_i[j * incT + i * ldt * incT];
 
-        /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
-           i=j+1 to n-1           */
-        temp3 = x_i[jx];
-        temp1 = impl::mul<TmpType>(temp3, alpha_i);
+            temp3 = intx[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix += inc_intx;
+          }                        /* for i<j */
 
-        ix = start_x + (n - 1) * incx;
-        for (i = n - 1; i >= j + 1; i--) {
-          T_element = t_i[j * incT + i * ldt * incT];
-
-          temp3 = x_i[ix];
-          temp2 = impl::mul<TmpType>(temp3, T_element);
-          temp1 = temp1 - temp2;
-          ix -= incx;
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = t_i[j * incT + j * ldt * incT];
+            temp1 = impl::div(temp1, T_element);
+          }
+          /* if (diag == blas_non_unit_diag) */
+          intx[jx] = temp1;
+          jx += inc_intx;
         }                        /* for j<n */
+      }
 
-        /* if the diagonal entry is not equal to one, then divide Xj by
-           the entry */
-        if (diag == blas_non_unit_diag) {
-          T_element = t_i[j * incT + j * ldt * incT];
-          temp1 = impl::div(temp1, T_element);
-        }
-        /* if (diag == blas_non_unit_diag) */
-        x_i[jx] = impl::to<T>(temp1);
+      /* copy the final results from intx to x */
+      ix = start_x;
+      jx = 0;
+      for (i = 0; i < n; i++) {
+        temp1 = intx[jx];
+        x_i[ix] = impl::to<T>(temp1);
+        ix += incx;
+        jx += inc_intx;
+      }
 
-        jx -= incx;
-      }                                /* for j>=0 */
-    } else if ((order == blas_rowmajor &&
-                trans != blas_no_trans && uplo == blas_upper) ||
-               (order == blas_colmajor &&
-                trans == blas_no_trans && uplo == blas_lower)) {
+      blas_free(intx);
+    } else {
+      TmpType temp1;
+      TmpType temp2;
+      TmpType temp3;
 
-      jx = start_x;
-      for (j = 0; j < n; j++) {
+      if ((order == blas_rowmajor &&
+           trans == blas_no_trans && uplo == blas_upper) ||
+          (order == blas_colmajor &&
+           trans != blas_no_trans && uplo == blas_lower)) {
 
-        /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
-           i=j+1 to n-1           */
-        temp3 = x_i[jx];
-        /* multiply by alpha */
-        temp1 = impl::mul<TmpType>(temp3, alpha_i);
+        jx = start_x + (n - 1) * incx;
+        for (j = n - 1; j >= 0; j--) {
 
-        ix = start_x;
-        for (i = 0; i < j; i++) {
-          T_element = t_i[j * incT + i * ldt * incT];
+          /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
+             i=j+1 to n-1           */
+          temp3 = x_i[jx];
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
 
-          temp3 = x_i[ix];
-          temp2 = impl::mul<TmpType>(temp3, T_element);
-          temp1 = temp1 - temp2;
-          ix += incx;
-        }                        /* for i<j */
+          ix = start_x + (n - 1) * incx;
+          for (i = n - 1; i >= j + 1; i--) {
+            T_element = t_i[i * incT + j * ldt * incT];
 
-        /* if the diagonal entry is not equal to one, then divide Xj by
-           the entry */
-        if (diag == blas_non_unit_diag) {
-          T_element = t_i[j * incT + j * ldt * incT];
-          temp1 = impl::div(temp1, T_element);
-        }
-        /* if (diag == blas_non_unit_diag) */
-        x_i[jx] = impl::to<T>(temp1);
-        jx += incx;
-      }                                /* for j<n */
+            temp3 = x_i[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix -= incx;
+          }                        /* for j<n */
+
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = t_i[j * incT + j * ldt * incT];
+            temp1 = impl::div(temp1, T_element);
+          }
+          /* if (diag == blas_non_unit_diag) */
+          x_i[jx] = impl::to<T>(temp1);
+
+          jx -= incx;
+        }                                /* for j>=0 */
+      } else if ((order == blas_rowmajor &&
+                  trans == blas_no_trans && uplo == blas_lower) ||
+                 (order == blas_colmajor &&
+                  trans != blas_no_trans && uplo == blas_upper)) {
+
+        jx = start_x;
+        for (j = 0; j < n; j++) {
+
+          /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
+             i=j+1 to n-1           */
+          temp3 = x_i[jx];
+          /* multiply by alpha */
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+          ix = start_x;
+          for (i = 0; i < j; i++) {
+            T_element = t_i[i * incT + j * ldt * incT];
+
+            temp3 = x_i[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix += incx;
+          }                        /* for i<j */
+
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = t_i[j * incT + j * ldt * incT];
+            temp1 = impl::div(temp1, T_element);
+          }
+          /* if (diag == blas_non_unit_diag) */
+          x_i[jx] = impl::to<T>(temp1);
+          jx += incx;
+        }                                /* for j<n */
+      } else if ((order == blas_rowmajor &&
+                  trans != blas_no_trans && uplo == blas_lower) ||
+                 (order == blas_colmajor &&
+                  trans == blas_no_trans && uplo == blas_upper)) {
+
+        jx = start_x + (n - 1) * incx;
+        for (j = n - 1; j >= 0; j--) {
+
+          /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
+             i=j+1 to n-1           */
+          temp3 = x_i[jx];
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+          ix = start_x + (n - 1) * incx;
+          for (i = n - 1; i >= j + 1; i--) {
+            T_element = t_i[j * incT + i * ldt * incT];
+
+            temp3 = x_i[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix -= incx;
+          }                        /* for j<n */
+
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = t_i[j * incT + j * ldt * incT];
+            temp1 = impl::div(temp1, T_element);
+          }
+          /* if (diag == blas_non_unit_diag) */
+          x_i[jx] = impl::to<T>(temp1);
+
+          jx -= incx;
+        }                                /* for j>=0 */
+      } else if ((order == blas_rowmajor &&
+                  trans != blas_no_trans && uplo == blas_upper) ||
+                 (order == blas_colmajor &&
+                  trans == blas_no_trans && uplo == blas_lower)) {
+
+        jx = start_x;
+        for (j = 0; j < n; j++) {
+
+          /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
+             i=j+1 to n-1           */
+          temp3 = x_i[jx];
+          /* multiply by alpha */
+          temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+          ix = start_x;
+          for (i = 0; i < j; i++) {
+            T_element = t_i[j * incT + i * ldt * incT];
+
+            temp3 = x_i[ix];
+            temp2 = impl::mul<TmpType>(temp3, T_element);
+            temp1 = temp1 - temp2;
+            ix += incx;
+          }                        /* for i<j */
+
+          /* if the diagonal entry is not equal to one, then divide Xj by
+             the entry */
+          if (diag == blas_non_unit_diag) {
+            T_element = t_i[j * incT + j * ldt * incT];
+            temp1 = impl::div(temp1, T_element);
+          }
+          /* if (diag == blas_non_unit_diag) */
+          x_i[jx] = impl::to<T>(temp1);
+          jx += incx;
+        }                                /* for j<n */
+      }
     }
   }
   if constexpr (impl::uses_double_double_v<TmpType>) {
