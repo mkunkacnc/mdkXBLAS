@@ -86,7 +86,7 @@ void BLAS_zhemv2_c_z_x(enum blas_order_type order,
                  static_cast<const std::complex<double> *>(x_tail),
                  incx,
                  *static_cast<const std::complex<double> *>(beta),
-                 static_cast<const std::complex<double> *>(y),
+                 static_cast<std::complex<double> *>(y),
                  incy,
                  prec);
 } /* end BLAS_zhemv2_c_z_x */

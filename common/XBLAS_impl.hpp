@@ -222,6 +222,11 @@ constexpr inline C add(A a, B b)
                        std::is_same_v<B, std::complex<double_double>>) {
     return C(double_double::add(std::real(a), std::real(b)), double_double::add(std::imag(a), std::imag(b)));
 
+  } else if constexpr (is_complex_v<C> &&
+                       is_complex_v<A> &&
+                       is_complex_v<B>) {
+    return C(std::real(a) + std::real(b), std::imag(a) + std::imag(b));
+
   } else {
     return to<C>(a + b);
   }

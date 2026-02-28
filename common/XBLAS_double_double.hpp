@@ -27,6 +27,10 @@ class double_double
   requires std::floating_point<T>
   friend constexpr std::complex<double_double> operator *(const double_double& a, const std::complex<T>& b);
 
+  template<typename T>
+  requires std::floating_point<T>
+  friend constexpr std::complex<double_double> operator *(const std::complex<double_double>& a, T b);
+
   friend constexpr double_double operator +(const double_double& a, const double_double& b);
   friend constexpr double_double operator +(const double_double& a, double b);
   friend constexpr double_double operator +(const double_double& a, float b);
@@ -56,13 +60,13 @@ public:
   static constexpr std::complex<double_double> mul(std::complex<double> a, std::complex<float> b);
   static constexpr std::complex<double_double> mul(std::complex<double> a, std::complex<double> b);
 
-  template<typename T>
-  requires std::floating_point<T>
-  static constexpr std::complex<double_double> mul(std::complex<T> a, T b);
+  template<typename T, typename U>
+  requires (std::floating_point<T> && std::floating_point<U>)
+  static constexpr std::complex<double_double> mul(std::complex<T> a, U b);
 
-  template<typename T>
-  requires std::floating_point<T>
-  static constexpr std::complex<double_double> mul(T a, std::complex<T> b);
+  template<typename T, typename U>
+  requires (std::floating_point<T> && std::floating_point<U>)
+  static constexpr std::complex<double_double> mul(T a, std::complex<U> b);
 
   template<typename T>
   requires std::floating_point<T>
@@ -75,6 +79,10 @@ public:
   template<typename T>
   requires std::floating_point<T>
   static constexpr std::complex<double_double> mul(double_double a, std::complex<T> b) { return a * b; }
+
+  template<typename T>
+  requires std::floating_point<T>
+  static constexpr std::complex<double_double> mul(std::complex<double_double> a, T b) { return a * b; }
 
   constexpr double_double& operator +=(const double_double& rhs);
   constexpr double_double& operator +=(double rhs);
@@ -106,6 +114,14 @@ template<typename T>
 requires std::floating_point<T>
 constexpr std::complex<double_double> operator *(const double_double& a, const std::complex<T>& b);
 
+template<typename T>
+requires std::floating_point<T>
+constexpr std::complex<double_double> operator *(const std::complex<double_double>& a, T b);
+
+template<typename T>
+requires std::floating_point<T>
+constexpr std::complex<double_double>& operator *=(std::complex<double_double>& a, T b);
+
 constexpr double_double operator +(const double_double& a, const double_double& b);
 constexpr double_double operator +(const double_double& a, double b);
 constexpr double_double operator +(const double_double& a, float b);
@@ -115,6 +131,12 @@ constexpr double_double operator -(const double_double& a, const double_double& 
 constexpr double_double operator /(const double_double& a, const double_double& b);
 constexpr double_double operator /(const double_double& a, double b);
 constexpr double_double operator /(const double_double& a, float b);
+
+template<typename T>
+requires std::floating_point<T>
+constexpr std::complex<double_double> operator /(const std::complex<double_double>& a, T b);
+
+constexpr std::complex<double_double>& operator /=(std::complex<double_double>& a, double b);
 
 //-----------------
 
@@ -261,19 +283,19 @@ constexpr std::complex<double_double> double_double::mul(std::complex<double> a,
   return std::complex<double_double>(cr, ci);
 }
 
-template<typename T>
-requires std::floating_point<T>
-constexpr std::complex<double_double> double_double::mul(std::complex<T> a, T b)
+template<typename T, typename U>
+requires (std::floating_point<T> && std::floating_point<U>)
+constexpr std::complex<double_double> double_double::mul(std::complex<T> a, U b)
 {
-  // complex<double_double> mul(complex<T>, T), T is floating point
+  // complex<double_double> mul(complex<T>, U), T, U is floating point
   return std::complex<double_double>(double_double::mul(std::real(a), b), double_double::mul(std::imag(a), b));
 }
 
-template<typename T>
-requires std::floating_point<T>
-constexpr std::complex<double_double> double_double::mul(T a, std::complex<T> b)
+template<typename T, typename U>
+requires (std::floating_point<T> && std::floating_point<U>)
+constexpr std::complex<double_double> double_double::mul(T a, std::complex<U> b)
 {
-  // complex<double_double> mul(T, complex<T>), T is floating point
+  // complex<double_double> mul(T, complex<U>), T, U is floating point
   return double_double::mul(b, a);
 }
 
@@ -375,6 +397,22 @@ constexpr std::complex<double_double> operator *(const double_double& a, const s
 {
   // complex<double_double> mul(double_double, complex<T>)
   return std::complex<double_double>(a * std::real(b), a * std::imag(b));
+}
+
+template<typename T>
+requires std::floating_point<T>
+constexpr std::complex<double_double> operator *(const std::complex<double_double>& a, T b)
+{
+  // complex<double_double> mul(complex<double_double>, T)
+  return std::complex<double_double>(std::real(a) * b, std::imag(a) * b);
+}
+
+template<typename T>
+requires std::floating_point<T>
+constexpr std::complex<double_double>& operator *=(std::complex<double_double>& a, T b)
+{
+  a = a * b;
+  return a;
 }
 
 inline
@@ -588,6 +626,20 @@ inline
 constexpr double_double operator /(const double_double& a, float b)
 {
   return a / static_cast<double>(b);
+}
+
+template<typename T>
+requires std::floating_point<T>
+constexpr std::complex<double_double> operator /(const std::complex<double_double>& a, T b)
+{
+  return std::complex<double_double>(std::real(a) / b, std::imag(a) / b);
+}
+
+inline
+constexpr std::complex<double_double>& operator /=(std::complex<double_double>& a, double b)
+{
+  a = a / b;
+  return a;
 }
 
 //------------------
