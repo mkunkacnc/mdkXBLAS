@@ -102,7 +102,7 @@ void BLAS_ztbsv_c_x(enum blas_order_type order,
     BLAS_error(routine_name, -2, uplo, 0);
   }
   if ((trans != blas_trans) && (trans != blas_no_trans) &&
-      (trans != blas_conj) && (trans != blas_conj_trans)) {
+      (trans != static_cast<blas_trans_type>(blas_conj)) && (trans != blas_conj_trans)) {
     BLAS_error(routine_name, -2, uplo, 0);
   }
   if (diag != blas_non_unit_diag && diag != blas_unit_diag) {
@@ -214,7 +214,7 @@ void BLAS_ztbsv_c_x(enum blas_order_type order,
 
 
 
-          if ((trans == blas_conj) || (trans == blas_conj_trans)) {
+          if ((trans == static_cast<blas_trans_type>(blas_conj)) || (trans == blas_conj_trans)) {
             /* conjugated */
 
 
@@ -735,7 +735,7 @@ void BLAS_ztbsv_c_x(enum blas_order_type order,
           FPU_FIX_START;
 
 
-          if ((trans == blas_conj) || (trans == blas_conj_trans)) {
+          if ((trans == static_cast<blas_trans_type>(blas_conj)) || (trans == blas_conj_trans)) {
             /* conjugated */
             /*loop 1 */
             xi = start_xi;
