@@ -102,37 +102,11 @@ void compute_doubledouble_eq_doubledouble_div_double(double* head_c,
                                                      double tail_a,
                                                      double b)
 {
-  /* Compute double-double = double-double / double,
-     using a Newton iteration scheme. */
-  double b1, b2, con, e, t1, t2, t11, t21, t12, t22;
-
-  /* Compute a DP approximation to the quotient. */
-  t1 = head_a / b;
-
-  /* Split t1 and b into two parts with at most 26 bits each,
-     using the Dekker-Veltkamp method. */
-  con = t1 * SPLIT;
-  t11 = con - (con - t1);
-  t21 = t1 - t11;
-  con = b * SPLIT;
-  b1 = con - (con - b);
-  b2 = b - b1;
-
-  /* Compute t1 * b using Dekker method. */
-  t12 = t1 * b;
-  t22 = (((t11 * b1 - t12) + t11 * b2) + t21 * b1) + t21 * b2;
-
-  /* Compute dda - (t12, t22) using Knuth trick. */
-  t11 = head_a - t12;
-  e = t11 - head_a;
-  t21 = ((-t12 - e) + (head_a - (t11 - e))) + tail_a - t22;
-
-  /* Compute high-order word of (t11, t21) and divide by b. */
-  t2 = (t11 + t21) / b;
-
-  /* The result is t1 + t2, after normalization. */
-  *head_c = t1 + t2;
-  *tail_c = t2 - (*head_c - t1);
+  /* Compute double-double = double-double / double. */
+  double_double a(head_a, tail_a);
+  double_double c = a / b;
+  *head_c = c.head_();
+  *tail_c = c.tail_();
 }
 
 /* compute c = a / b */
@@ -143,108 +117,12 @@ void compute_doubledouble_eq_doubledouble_div_doubledouble(double* head_c,
                                                            double head_b,
                                                            double tail_b)
 {
-  double q1, q2, q3;
-  double a1, a2, b1, b2;
-  double p1, p2, c;
-  double s1, s2, v;
-  double t1, t2;
-  double r1, r2;
-  double cona, conb;
-
-  q1 = head_a / head_b;        /*  approximate quotient */
-
-  /*  Compute  q1 * b  */
-  cona = q1 * SPLIT;
-  conb = head_b * SPLIT;
-  a1 = cona - (cona - q1);
-  b1 = conb - (conb - head_b);
-  a2 = q1 - a1;
-  b2 = head_b - b1;
-
-  /*  (p1, p2) is the product of high order terms. */
-  p1 = q1 * head_b;
-  p2 = (((a1 * b1 - p1) + a1 * b2) + a2 * b1) + a2 * b2;
-
-  /*  Compute the low-order term */
-  c = q1 * tail_b;
-
-  /*  Compute  (s1, s2) = (p1, p2) + c */
-  s1 = p1 + c;
-  v = s1 - p1;
-  s2 = ((c - v) + (p1 - (s1 - v))) + p2;
-
-  /*  Renormalize. */
-  p1 = s1 + s2;
-  p2 = s2 - (p1 - s1);
-
-  /*  Compute  a - (p1, p2)    */
-  s1 = head_a - p1;
-  v = s1 - head_a;
-  s2 = (head_a - (s1 - v)) - (p1 + v);
-
-  t1 = tail_a - p2;
-  v = t1 - tail_a;
-  t2 = (tail_a - (t1 - v)) - (p2 + v);
-
-  s2 += t1;
-  t1 = s1 + s2;
-  s2 = s2 - (t1 - s1);
-
-  t2 += s2;
-  r1 = t1 + t2;
-  r2 = t2 - (r1 - t1);
-
-  /*  Compute the next quotient. */
-  q2 = r1 / head_b;
-
-  /*  Compute residual   r1 - q2 * b          */
-  cona = q2 * SPLIT;
-  a1 = cona - (cona - q2);
-  a2 = q2 - a1;
-
-  /*  (p1, p2) is the product of high order terms. */
-  p1 = q2 * head_b;
-  p2 = (((a1 * b1 - p1) + a1 * b2) + a2 * b1) + a2 * b2;
-
-  /*  Compute the low-order term */
-  c = q2 * tail_b;
-
-  /*  Compute  (s1, s2) = (p1, p2) + c */
-  s1 = p1 + c;
-  v = s1 - p1;
-  s2 = ((c - v) + (p1 - (s1 - v))) + p2;
-
-  /*  Renormalize. */
-  p1 = s1 + s2;
-  p2 = s2 - (p1 - s1);
-
-  /*  Compute  (r1, r2) - (p1, p2)    */
-  s1 = r1 - p1;
-  v = s1 - r1;
-  s2 = (r1 - (s1 - v)) - (p1 + v);
-
-  t1 = r2 - p2;
-  v = t1 - r2;
-  t2 = (r2 - (t1 - v)) - (p2 + v);
-
-  s2 += t1;
-  t1 = s1 + s2;
-  s2 = s2 - (t1 - s1);
-
-  t2 += s2;
-  s1 = t1 + t2;
-
-  /*  Compute the last correction. */
-  q3 = s1 / head_b;
-
-  /* Renormalize q1, q2, q3. */
-  s1 = q2 + q3;
-  s2 = q3 - (s1 - q2);
-
-  *head_c = q1 + s1;
-  t1 = s1 - (*head_c - q1);
-
-  *tail_c = s2 + t1;
+  /* Compute double-double = double-double / double-double. */
+  double_double a(head_a, tail_a);
+  double_double b(head_b, tail_b);
+  double_double c = a / b;
+  *head_c = c.head_();
+  *tail_c = c.tail_();
 }
 
 /* compute c = a * b */

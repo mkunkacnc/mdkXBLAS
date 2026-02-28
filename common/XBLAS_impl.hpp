@@ -138,6 +138,13 @@ constexpr inline C mul(A a, B b)
     return double_double::mul(a, b);
 
   // All complex<double_double> should have been handled above.
+  // complex<T> mul(A, B)
+  } else if constexpr (is_complex_v<C> &&
+                       std::floating_point<A> &&
+                       std::floating_point<B>) {
+    static_assert(!std::is_same_v<C, std::complex<double_double>>);
+    return static_cast<inner_type_t<C>>(a) * b;
+
   // complex<T> mul(complex<U>, B)
   } else if constexpr (is_complex_v<C> &&
                        is_complex_v<A> &&

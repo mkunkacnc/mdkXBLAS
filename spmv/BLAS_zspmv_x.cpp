@@ -59,7 +59,7 @@ void BLAS_zspmv_x(enum blas_order_type order,
  */
 {
 //static const char routine_name[] = "BLAS_zspmv_x";
-#if 0
+#if 1
   XBLAS::spmv_x(order,
                 uplo,
                 n,

@@ -67,7 +67,7 @@ void BLAS_zgemv_x(enum blas_order_type order,
  */
 {
 //static const char routine_name[] = "BLAS_zgemv_x";
-#if 0
+#if 1
   XBLAS::gemv_x(order,
                 trans,
                 m,
