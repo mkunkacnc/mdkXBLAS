@@ -5249,7 +5249,7 @@ constexpr void my_trsv_x(blas_order_type order,
   int start_x;                        /* used as the starting idx to vector x */
   const float *T_i = (float *) t;        /* internal matrix T */
   double *x_i = (double *) x;        /* internal x */
-  double *alpha_i = (double *) &alpha;        /* internal alpha */
+  T alpha_i = alpha;        /* internal alpha */
   float T_element[2];                /* temporary variable for an element of matrix A */
   int incT = 1;                        /* internal ldt */
 
@@ -5275,7 +5275,7 @@ constexpr void my_trsv_x(blas_order_type order,
   }
 
   /* if alpha is zero, then return x as a zero vector */
-  if (alpha_i[0] == 0.0 && alpha_i[1] == 0.0) {
+  if (std::real(alpha_i) == 0.0 && std::imag(alpha_i) == 0.0) {
     ix = start_x;
     for (i = 0; i < n; i++) {
       x_i[ix] = 0.0;
@@ -5309,11 +5309,11 @@ constexpr void my_trsv_x(blas_order_type order,
             temp3[1] = x_i[1 + jx];
             {
               temp1[0] =
-                (double) temp3[0] * alpha_i[0] -
-                (double) temp3[1] * alpha_i[1];
+                (double) temp3[0] * std::real(alpha_i) -
+                (double) temp3[1] * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * alpha_i[1] +
-                (double) temp3[1] * alpha_i[0];
+                (double) temp3[0] * std::imag(alpha_i) +
+                (double) temp3[1] * std::real(alpha_i);
             }
 
             ix = start_x + (n - 1) * incx;
@@ -5423,11 +5423,11 @@ constexpr void my_trsv_x(blas_order_type order,
             temp3[1] = x_i[1 + jx];
             {
               temp1[0] =
-                (double) temp3[0] * alpha_i[0] -
-                (double) temp3[1] * alpha_i[1];
+                (double) temp3[0] * std::real(alpha_i) -
+                (double) temp3[1] * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * alpha_i[1] +
-                (double) temp3[1] * alpha_i[0];
+                (double) temp3[0] * std::imag(alpha_i) +
+                (double) temp3[1] * std::real(alpha_i);
             }
 
             ix = start_x + (n - 1) * incx;
@@ -5543,11 +5543,11 @@ constexpr void my_trsv_x(blas_order_type order,
             /* multiply by alpha */
             {
               temp1[0] =
-                (double) temp3[0] * alpha_i[0] -
-                (double) temp3[1] * alpha_i[1];
+                (double) temp3[0] * std::real(alpha_i) -
+                (double) temp3[1] * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * alpha_i[1] +
-                (double) temp3[1] * alpha_i[0];
+                (double) temp3[0] * std::imag(alpha_i) +
+                (double) temp3[1] * std::real(alpha_i);
             }
 
             ix = start_x;
@@ -5657,11 +5657,11 @@ constexpr void my_trsv_x(blas_order_type order,
             /* multiply by alpha */
             {
               temp1[0] =
-                (double) temp3[0] * alpha_i[0] -
-                (double) temp3[1] * alpha_i[1];
+                (double) temp3[0] * std::real(alpha_i) -
+                (double) temp3[1] * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * alpha_i[1] +
-                (double) temp3[1] * alpha_i[0];
+                (double) temp3[0] * std::imag(alpha_i) +
+                (double) temp3[1] * std::real(alpha_i);
             }
 
             ix = start_x;
@@ -5775,11 +5775,11 @@ constexpr void my_trsv_x(blas_order_type order,
             temp3[1] = x_i[1 + jx];
             {
               temp1[0] =
-                (double) temp3[0] * alpha_i[0] -
-                (double) temp3[1] * alpha_i[1];
+                (double) temp3[0] * std::real(alpha_i) -
+                (double) temp3[1] * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * alpha_i[1] +
-                (double) temp3[1] * alpha_i[0];
+                (double) temp3[0] * std::imag(alpha_i) +
+                (double) temp3[1] * std::real(alpha_i);
             }
 
             ix = start_x + (n - 1) * incx;
@@ -5889,11 +5889,11 @@ constexpr void my_trsv_x(blas_order_type order,
             temp3[1] = x_i[1 + jx];
             {
               temp1[0] =
-                (double) temp3[0] * alpha_i[0] -
-                (double) temp3[1] * alpha_i[1];
+                (double) temp3[0] * std::real(alpha_i) -
+                (double) temp3[1] * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * alpha_i[1] +
-                (double) temp3[1] * alpha_i[0];
+                (double) temp3[0] * std::imag(alpha_i) +
+                (double) temp3[1] * std::real(alpha_i);
             }
 
             ix = start_x + (n - 1) * incx;
@@ -6009,11 +6009,11 @@ constexpr void my_trsv_x(blas_order_type order,
             /* multiply by alpha */
             {
               temp1[0] =
-                (double) temp3[0] * alpha_i[0] -
-                (double) temp3[1] * alpha_i[1];
+                (double) temp3[0] * std::real(alpha_i) -
+                (double) temp3[1] * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * alpha_i[1] +
-                (double) temp3[1] * alpha_i[0];
+                (double) temp3[0] * std::imag(alpha_i) +
+                (double) temp3[1] * std::real(alpha_i);
             }
 
             ix = start_x;
@@ -6123,11 +6123,11 @@ constexpr void my_trsv_x(blas_order_type order,
             /* multiply by alpha */
             {
               temp1[0] =
-                (double) temp3[0] * alpha_i[0] -
-                (double) temp3[1] * alpha_i[1];
+                (double) temp3[0] * std::real(alpha_i) -
+                (double) temp3[1] * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * alpha_i[1] +
-                (double) temp3[1] * alpha_i[0];
+                (double) temp3[0] * std::imag(alpha_i) +
+                (double) temp3[1] * std::real(alpha_i);
             }
 
             ix = start_x;
@@ -6297,16 +6297,16 @@ constexpr void my_trsv_x(blas_order_type order,
                   head_a1 = head_temp3[1];
                   tail_a1 = tail_temp3[1];
                   /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[0] = head_t1;
                   tail_temp1[0] = tail_t1;
                   /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[1] = head_t1;
                   tail_temp1[1] = tail_t1;
@@ -6585,16 +6585,16 @@ constexpr void my_trsv_x(blas_order_type order,
                   head_a1 = head_temp3[1];
                   tail_a1 = tail_temp3[1];
                   /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[0] = head_t1;
                   tail_temp1[0] = tail_t1;
                   /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[1] = head_t1;
                   tail_temp1[1] = tail_t1;
@@ -6878,16 +6878,16 @@ constexpr void my_trsv_x(blas_order_type order,
                   head_a1 = head_temp3[1];
                   tail_a1 = tail_temp3[1];
                   /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[0] = head_t1;
                   tail_temp1[0] = tail_t1;
                   /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[1] = head_t1;
                   tail_temp1[1] = tail_t1;
@@ -7165,16 +7165,16 @@ constexpr void my_trsv_x(blas_order_type order,
                   head_a1 = head_temp3[1];
                   tail_a1 = tail_temp3[1];
                   /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[0] = head_t1;
                   tail_temp1[0] = tail_t1;
                   /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[1] = head_t1;
                   tail_temp1[1] = tail_t1;
@@ -7457,16 +7457,16 @@ constexpr void my_trsv_x(blas_order_type order,
                   head_a1 = head_temp3[1];
                   tail_a1 = tail_temp3[1];
                   /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[0] = head_t1;
                   tail_temp1[0] = tail_t1;
                   /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[1] = head_t1;
                   tail_temp1[1] = tail_t1;
@@ -7745,16 +7745,16 @@ constexpr void my_trsv_x(blas_order_type order,
                   head_a1 = head_temp3[1];
                   tail_a1 = tail_temp3[1];
                   /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[0] = head_t1;
                   tail_temp1[0] = tail_t1;
                   /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[1] = head_t1;
                   tail_temp1[1] = tail_t1;
@@ -8038,16 +8038,16 @@ constexpr void my_trsv_x(blas_order_type order,
                   head_a1 = head_temp3[1];
                   tail_a1 = tail_temp3[1];
                   /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[0] = head_t1;
                   tail_temp1[0] = tail_t1;
                   /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[1] = head_t1;
                   tail_temp1[1] = tail_t1;
@@ -8325,16 +8325,16 @@ constexpr void my_trsv_x(blas_order_type order,
                   head_a1 = head_temp3[1];
                   tail_a1 = tail_temp3[1];
                   /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
                   head_t2 = -head_t2;
                   tail_t2 = -tail_t2;
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[0] = head_t1;
                   tail_temp1[0] = tail_t1;
                   /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, alpha_i[0]);
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, alpha_i[1]);
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
+                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
                   compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                   head_temp1[1] = head_t1;
                   tail_temp1[1] = tail_t1;
