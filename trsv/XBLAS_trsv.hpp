@@ -5248,7 +5248,7 @@ constexpr void my_trsv_x(blas_order_type order,
   int ix, jx;                        /* used to idx vector x */
   int start_x;                        /* used as the starting idx to vector x */
   const float *T_i = (float *) t;        /* internal matrix T */
-  double *x_i = (double *) x;        /* internal x */
+  T *x_i = x;        /* internal x */
   T alpha_i = alpha;        /* internal alpha */
   float T_element[2];                /* temporary variable for an element of matrix A */
   int incT = 1;                        /* internal ldt */
@@ -5266,7 +5266,7 @@ constexpr void my_trsv_x(blas_order_type order,
     return;
 
   incT *= 2;
-  incx *= 2;
+
   /* configuring the vector starting idx */
   if (incx <= 0) {
     start_x = -(n - 1) * incx;
@@ -5278,8 +5278,7 @@ constexpr void my_trsv_x(blas_order_type order,
   if (std::real(alpha_i) == 0.0 && std::imag(alpha_i) == 0.0) {
     ix = start_x;
     for (i = 0; i < n; i++) {
-      x_i[ix] = 0.0;
-      x_i[ix + 1] = 0.0;
+      x_i[ix] = T(0);
       ix += incx;
     }
     return;
@@ -5305,8 +5304,8 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = x_i[jx];
-            temp3[1] = x_i[1 + jx];
+            temp3[0] = std::real(x_i[jx]);
+            temp3[1] = std::imag(x_i[jx]);
             {
               temp1[0] =
                 (double) temp3[0] * std::real(alpha_i) -
@@ -5321,8 +5320,8 @@ constexpr void my_trsv_x(blas_order_type order,
               T_element[0] = T_i[i * incT + j * ldt * incT];
               T_element[1] = T_i[i * incT + j * ldt * incT + 1];
               T_element[1] = -T_element[1];
-              temp3[0] = x_i[ix];
-              temp3[1] = x_i[1 + ix];
+              temp3[0] = std::real(x_i[ix]);
+              temp3[1] = std::imag(x_i[ix]);
               {
                 temp2[0] =
                   (double) temp3[0] * T_element[0] -
@@ -5407,8 +5406,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = temp1[0];
-            x_i[jx + 1] = temp1[1];
+            x_i[jx] = T(temp1[0], temp1[1]);
 
             jx -= incx;
           }                        /* for j>=0 */
@@ -5419,8 +5417,8 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = x_i[jx];
-            temp3[1] = x_i[1 + jx];
+            temp3[0] = std::real(x_i[jx]);
+            temp3[1] = std::imag(x_i[jx]);
             {
               temp1[0] =
                 (double) temp3[0] * std::real(alpha_i) -
@@ -5435,8 +5433,8 @@ constexpr void my_trsv_x(blas_order_type order,
               T_element[0] = T_i[i * incT + j * ldt * incT];
               T_element[1] = T_i[i * incT + j * ldt * incT + 1];
 
-              temp3[0] = x_i[ix];
-              temp3[1] = x_i[1 + ix];
+              temp3[0] = std::real(x_i[ix]);
+              temp3[1] = std::imag(x_i[ix]);
               {
                 temp2[0] =
                   (double) temp3[0] * T_element[0] -
@@ -5521,8 +5519,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = temp1[0];
-            x_i[jx + 1] = temp1[1];
+            x_i[jx] = T(temp1[0], temp1[1]);
 
             jx -= incx;
           }                        /* for j>=0 */
@@ -5538,8 +5535,8 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = x_i[jx];
-            temp3[1] = x_i[1 + jx];
+            temp3[0] = std::real(x_i[jx]);
+            temp3[1] = std::imag(x_i[jx]);
             /* multiply by alpha */
             {
               temp1[0] =
@@ -5555,8 +5552,8 @@ constexpr void my_trsv_x(blas_order_type order,
               T_element[0] = T_i[i * incT + j * ldt * incT];
               T_element[1] = T_i[i * incT + j * ldt * incT + 1];
               T_element[1] = -T_element[1];
-              temp3[0] = x_i[ix];
-              temp3[1] = x_i[1 + ix];
+              temp3[0] = std::real(x_i[ix]);
+              temp3[1] = std::imag(x_i[ix]);
               {
                 temp2[0] =
                   (double) temp3[0] * T_element[0] -
@@ -5641,8 +5638,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = temp1[0];
-            x_i[jx + 1] = temp1[1];
+            x_i[jx] = T(temp1[0], temp1[1]);
             jx += incx;
           }                        /* for j<n */
         } else {
@@ -5652,8 +5648,8 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = x_i[jx];
-            temp3[1] = x_i[1 + jx];
+            temp3[0] = std::real(x_i[jx]);
+            temp3[1] = std::imag(x_i[jx]);
             /* multiply by alpha */
             {
               temp1[0] =
@@ -5669,8 +5665,8 @@ constexpr void my_trsv_x(blas_order_type order,
               T_element[0] = T_i[i * incT + j * ldt * incT];
               T_element[1] = T_i[i * incT + j * ldt * incT + 1];
 
-              temp3[0] = x_i[ix];
-              temp3[1] = x_i[1 + ix];
+              temp3[0] = std::real(x_i[ix]);
+              temp3[1] = std::imag(x_i[ix]);
               {
                 temp2[0] =
                   (double) temp3[0] * T_element[0] -
@@ -5755,8 +5751,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = temp1[0];
-            x_i[jx + 1] = temp1[1];
+            x_i[jx] = T(temp1[0], temp1[1]);
             jx += incx;
           }                        /* for j<n */
         }
@@ -5771,8 +5766,8 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = x_i[jx];
-            temp3[1] = x_i[1 + jx];
+            temp3[0] = std::real(x_i[jx]);
+            temp3[1] = std::imag(x_i[jx]);
             {
               temp1[0] =
                 (double) temp3[0] * std::real(alpha_i) -
@@ -5787,8 +5782,8 @@ constexpr void my_trsv_x(blas_order_type order,
               T_element[0] = T_i[j * incT + i * ldt * incT];
               T_element[1] = T_i[j * incT + i * ldt * incT + 1];
               T_element[1] = -T_element[1];
-              temp3[0] = x_i[ix];
-              temp3[1] = x_i[1 + ix];
+              temp3[0] = std::real(x_i[ix]);
+              temp3[1] = std::imag(x_i[ix]);
               {
                 temp2[0] =
                   (double) temp3[0] * T_element[0] -
@@ -5873,8 +5868,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = temp1[0];
-            x_i[jx + 1] = temp1[1];
+            x_i[jx] = T(temp1[0], temp1[1]);
 
             jx -= incx;
           }                        /* for j>=0 */
@@ -5885,8 +5879,8 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = x_i[jx];
-            temp3[1] = x_i[1 + jx];
+            temp3[0] = std::real(x_i[jx]);
+            temp3[1] = std::imag(x_i[jx]);
             {
               temp1[0] =
                 (double) temp3[0] * std::real(alpha_i) -
@@ -5901,8 +5895,8 @@ constexpr void my_trsv_x(blas_order_type order,
               T_element[0] = T_i[j * incT + i * ldt * incT];
               T_element[1] = T_i[j * incT + i * ldt * incT + 1];
 
-              temp3[0] = x_i[ix];
-              temp3[1] = x_i[1 + ix];
+              temp3[0] = std::real(x_i[ix]);
+              temp3[1] = std::imag(x_i[ix]);
               {
                 temp2[0] =
                   (double) temp3[0] * T_element[0] -
@@ -5987,8 +5981,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = temp1[0];
-            x_i[jx + 1] = temp1[1];
+            x_i[jx] = T(temp1[0], temp1[1]);
 
             jx -= incx;
           }                        /* for j>=0 */
@@ -6004,8 +5997,8 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = x_i[jx];
-            temp3[1] = x_i[1 + jx];
+            temp3[0] = std::real(x_i[jx]);
+            temp3[1] = std::imag(x_i[jx]);
             /* multiply by alpha */
             {
               temp1[0] =
@@ -6021,8 +6014,8 @@ constexpr void my_trsv_x(blas_order_type order,
               T_element[0] = T_i[j * incT + i * ldt * incT];
               T_element[1] = T_i[j * incT + i * ldt * incT + 1];
               T_element[1] = -T_element[1];
-              temp3[0] = x_i[ix];
-              temp3[1] = x_i[1 + ix];
+              temp3[0] = std::real(x_i[ix]);
+              temp3[1] = std::imag(x_i[ix]);
               {
                 temp2[0] =
                   (double) temp3[0] * T_element[0] -
@@ -6107,8 +6100,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = temp1[0];
-            x_i[jx + 1] = temp1[1];
+            x_i[jx] = T(temp1[0], temp1[1]);
             jx += incx;
           }                        /* for j<n */
         } else {
@@ -6118,8 +6110,8 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = x_i[jx];
-            temp3[1] = x_i[1 + jx];
+            temp3[0] = std::real(x_i[jx]);
+            temp3[1] = std::imag(x_i[jx]);
             /* multiply by alpha */
             {
               temp1[0] =
@@ -6135,8 +6127,8 @@ constexpr void my_trsv_x(blas_order_type order,
               T_element[0] = T_i[j * incT + i * ldt * incT];
               T_element[1] = T_i[j * incT + i * ldt * incT + 1];
 
-              temp3[0] = x_i[ix];
-              temp3[1] = x_i[1 + ix];
+              temp3[0] = std::real(x_i[ix]);
+              temp3[1] = std::imag(x_i[ix]);
               {
                 temp2[0] =
                   (double) temp3[0] * T_element[0] -
@@ -6221,8 +6213,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = temp1[0];
-            x_i[jx + 1] = temp1[1];
+            x_i[jx] = T(temp1[0], temp1[1]);
             jx += incx;
           }                        /* for j<n */
         }
@@ -6231,6 +6222,14 @@ constexpr void my_trsv_x(blas_order_type order,
     break;
   case blas_prec_extra:
     {
+      double *x_i = (double *) x;        /* internal x */
+      incx *= 2;
+      if (incx <= 0) {
+        start_x = -(n - 1) * incx;
+      } else {
+        start_x = 0;
+      }
+
       FPU_FIX_DECL;
       FPU_FIX_START;
       {
