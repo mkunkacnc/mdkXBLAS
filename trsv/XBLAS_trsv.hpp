@@ -5275,7 +5275,7 @@ constexpr void my_trsv_x(blas_order_type order,
   }
 
   /* if alpha is zero, then return x as a zero vector */
-  if (std::real(alpha_i) == 0.0 && std::imag(alpha_i) == 0.0) {
+  if (alpha_i == T(0)) {
     ix = start_x;
     for (i = 0; i < n; i++) {
       x_i[ix] = T(0);
@@ -5291,7 +5291,7 @@ constexpr void my_trsv_x(blas_order_type order,
     {
       double temp1[2];                /* temporary variable for calculations */
       double temp2[2];                /* temporary variable for calculations */
-      double temp3[2];                /* temporary variable for calculations */
+      TmpType temp3;                /* temporary variable for calculations */
 
       if ((order == blas_rowmajor &&
            trans == blas_no_trans && uplo == blas_upper) ||
@@ -5304,29 +5304,27 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = std::real(x_i[jx]);
-            temp3[1] = std::imag(x_i[jx]);
+            temp3 = impl::to<TmpType>(x_i[jx]);
             {
               temp1[0] =
-                (double) temp3[0] * std::real(alpha_i) -
-                (double) temp3[1] * std::imag(alpha_i);
+                (double) std::real(temp3) * std::real(alpha_i) -
+                (double) std::imag(temp3) * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * std::imag(alpha_i) +
-                (double) temp3[1] * std::real(alpha_i);
+                (double) std::real(temp3) * std::imag(alpha_i) +
+                (double) std::imag(temp3) * std::real(alpha_i);
             }
 
             ix = start_x + (n - 1) * incx;
             for (i = n - 1; i >= j + 1; i--) {
               T_element = impl::Conj::func(T_i[i * incT + j * ldt * incT]);
-              temp3[0] = std::real(x_i[ix]);
-              temp3[1] = std::imag(x_i[ix]);
+              temp3 = impl::to<TmpType>(x_i[ix]);
               {
                 temp2[0] =
-                  (double) temp3[0] * std::real(T_element) -
-                  (double) temp3[1] * std::imag(T_element);
+                  (double) std::real(temp3) * std::real(T_element) -
+                  (double) std::imag(temp3) * std::imag(T_element);
                 temp2[1] =
-                  (double) temp3[0] * std::imag(T_element) +
-                  (double) temp3[1] * std::real(T_element);
+                  (double) std::real(temp3) * std::imag(T_element) +
+                  (double) std::imag(temp3) * std::real(T_element);
               }
               temp1[0] = temp1[0] - temp2[0];
               temp1[1] = temp1[1] - temp2[1];
@@ -5411,30 +5409,28 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = std::real(x_i[jx]);
-            temp3[1] = std::imag(x_i[jx]);
+            temp3 = impl::to<TmpType>(x_i[jx]);
             {
               temp1[0] =
-                (double) temp3[0] * std::real(alpha_i) -
-                (double) temp3[1] * std::imag(alpha_i);
+                (double) std::real(temp3) * std::real(alpha_i) -
+                (double) std::imag(temp3) * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * std::imag(alpha_i) +
-                (double) temp3[1] * std::real(alpha_i);
+                (double) std::real(temp3) * std::imag(alpha_i) +
+                (double) std::imag(temp3) * std::real(alpha_i);
             }
 
             ix = start_x + (n - 1) * incx;
             for (i = n - 1; i >= j + 1; i--) {
               T_element = T_i[i * incT + j * ldt * incT];
 
-              temp3[0] = std::real(x_i[ix]);
-              temp3[1] = std::imag(x_i[ix]);
+              temp3 = impl::to<TmpType>(x_i[ix]);
               {
                 temp2[0] =
-                  (double) temp3[0] * std::real(T_element) -
-                  (double) temp3[1] * std::imag(T_element);
+                  (double) std::real(temp3) * std::real(T_element) -
+                  (double) std::imag(temp3) * std::imag(T_element);
                 temp2[1] =
-                  (double) temp3[0] * std::imag(T_element) +
-                  (double) temp3[1] * std::real(T_element);
+                  (double) std::real(temp3) * std::imag(T_element) +
+                  (double) std::imag(temp3) * std::real(T_element);
               }
               temp1[0] = temp1[0] - temp2[0];
               temp1[1] = temp1[1] - temp2[1];
@@ -5525,30 +5521,28 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = std::real(x_i[jx]);
-            temp3[1] = std::imag(x_i[jx]);
+            temp3 = impl::to<TmpType>(x_i[jx]);
             /* multiply by alpha */
             {
               temp1[0] =
-                (double) temp3[0] * std::real(alpha_i) -
-                (double) temp3[1] * std::imag(alpha_i);
+                (double) std::real(temp3) * std::real(alpha_i) -
+                (double) std::imag(temp3) * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * std::imag(alpha_i) +
-                (double) temp3[1] * std::real(alpha_i);
+                (double) std::real(temp3) * std::imag(alpha_i) +
+                (double) std::imag(temp3) * std::real(alpha_i);
             }
 
             ix = start_x;
             for (i = 0; i < j; i++) {
               T_element = impl::Conj::func(T_i[i * incT + j * ldt * incT]);
-              temp3[0] = std::real(x_i[ix]);
-              temp3[1] = std::imag(x_i[ix]);
+              temp3 = impl::to<TmpType>(x_i[ix]);
               {
                 temp2[0] =
-                  (double) temp3[0] * std::real(T_element) -
-                  (double) temp3[1] * std::imag(T_element);
+                  (double) std::real(temp3) * std::real(T_element) -
+                  (double) std::imag(temp3) * std::imag(T_element);
                 temp2[1] =
-                  (double) temp3[0] * std::imag(T_element) +
-                  (double) temp3[1] * std::real(T_element);
+                  (double) std::real(temp3) * std::imag(T_element) +
+                  (double) std::imag(temp3) * std::real(T_element);
               }
               temp1[0] = temp1[0] - temp2[0];
               temp1[1] = temp1[1] - temp2[1];
@@ -5632,31 +5626,29 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = std::real(x_i[jx]);
-            temp3[1] = std::imag(x_i[jx]);
+            temp3 = impl::to<TmpType>(x_i[jx]);
             /* multiply by alpha */
             {
               temp1[0] =
-                (double) temp3[0] * std::real(alpha_i) -
-                (double) temp3[1] * std::imag(alpha_i);
+                (double) std::real(temp3) * std::real(alpha_i) -
+                (double) std::imag(temp3) * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * std::imag(alpha_i) +
-                (double) temp3[1] * std::real(alpha_i);
+                (double) std::real(temp3) * std::imag(alpha_i) +
+                (double) std::imag(temp3) * std::real(alpha_i);
             }
 
             ix = start_x;
             for (i = 0; i < j; i++) {
               T_element = T_i[i * incT + j * ldt * incT];
 
-              temp3[0] = std::real(x_i[ix]);
-              temp3[1] = std::imag(x_i[ix]);
+              temp3 = impl::to<TmpType>(x_i[ix]);
               {
                 temp2[0] =
-                  (double) temp3[0] * std::real(T_element) -
-                  (double) temp3[1] * std::imag(T_element);
+                  (double) std::real(temp3) * std::real(T_element) -
+                  (double) std::imag(temp3) * std::imag(T_element);
                 temp2[1] =
-                  (double) temp3[0] * std::imag(T_element) +
-                  (double) temp3[1] * std::real(T_element);
+                  (double) std::real(temp3) * std::imag(T_element) +
+                  (double) std::imag(temp3) * std::real(T_element);
               }
               temp1[0] = temp1[0] - temp2[0];
               temp1[1] = temp1[1] - temp2[1];
@@ -5746,29 +5738,27 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = std::real(x_i[jx]);
-            temp3[1] = std::imag(x_i[jx]);
+            temp3 = impl::to<TmpType>(x_i[jx]);
             {
               temp1[0] =
-                (double) temp3[0] * std::real(alpha_i) -
-                (double) temp3[1] * std::imag(alpha_i);
+                (double) std::real(temp3) * std::real(alpha_i) -
+                (double) std::imag(temp3) * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * std::imag(alpha_i) +
-                (double) temp3[1] * std::real(alpha_i);
+                (double) std::real(temp3) * std::imag(alpha_i) +
+                (double) std::imag(temp3) * std::real(alpha_i);
             }
 
             ix = start_x + (n - 1) * incx;
             for (i = n - 1; i >= j + 1; i--) {
               T_element = impl::Conj::func(T_i[j * incT + i * ldt * incT]);
-              temp3[0] = std::real(x_i[ix]);
-              temp3[1] = std::imag(x_i[ix]);
+              temp3 = impl::to<TmpType>(x_i[ix]);
               {
                 temp2[0] =
-                  (double) temp3[0] * std::real(T_element) -
-                  (double) temp3[1] * std::imag(T_element);
+                  (double) std::real(temp3) * std::real(T_element) -
+                  (double) std::imag(temp3) * std::imag(T_element);
                 temp2[1] =
-                  (double) temp3[0] * std::imag(T_element) +
-                  (double) temp3[1] * std::real(T_element);
+                  (double) std::real(temp3) * std::imag(T_element) +
+                  (double) std::imag(temp3) * std::real(T_element);
               }
               temp1[0] = temp1[0] - temp2[0];
               temp1[1] = temp1[1] - temp2[1];
@@ -5853,30 +5843,28 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = std::real(x_i[jx]);
-            temp3[1] = std::imag(x_i[jx]);
+            temp3 = impl::to<TmpType>(x_i[jx]);
             {
               temp1[0] =
-                (double) temp3[0] * std::real(alpha_i) -
-                (double) temp3[1] * std::imag(alpha_i);
+                (double) std::real(temp3) * std::real(alpha_i) -
+                (double) std::imag(temp3) * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * std::imag(alpha_i) +
-                (double) temp3[1] * std::real(alpha_i);
+                (double) std::real(temp3) * std::imag(alpha_i) +
+                (double) std::imag(temp3) * std::real(alpha_i);
             }
 
             ix = start_x + (n - 1) * incx;
             for (i = n - 1; i >= j + 1; i--) {
               T_element = T_i[j * incT + i * ldt * incT];
 
-              temp3[0] = std::real(x_i[ix]);
-              temp3[1] = std::imag(x_i[ix]);
+              temp3 = impl::to<TmpType>(x_i[ix]);
               {
                 temp2[0] =
-                  (double) temp3[0] * std::real(T_element) -
-                  (double) temp3[1] * std::imag(T_element);
+                  (double) std::real(temp3) * std::real(T_element) -
+                  (double) std::imag(temp3) * std::imag(T_element);
                 temp2[1] =
-                  (double) temp3[0] * std::imag(T_element) +
-                  (double) temp3[1] * std::real(T_element);
+                  (double) std::real(temp3) * std::imag(T_element) +
+                  (double) std::imag(temp3) * std::real(T_element);
               }
               temp1[0] = temp1[0] - temp2[0];
               temp1[1] = temp1[1] - temp2[1];
@@ -5967,30 +5955,28 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = std::real(x_i[jx]);
-            temp3[1] = std::imag(x_i[jx]);
+            temp3 = impl::to<TmpType>(x_i[jx]);
             /* multiply by alpha */
             {
               temp1[0] =
-                (double) temp3[0] * std::real(alpha_i) -
-                (double) temp3[1] * std::imag(alpha_i);
+                (double) std::real(temp3) * std::real(alpha_i) -
+                (double) std::imag(temp3) * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * std::imag(alpha_i) +
-                (double) temp3[1] * std::real(alpha_i);
+                (double) std::real(temp3) * std::imag(alpha_i) +
+                (double) std::imag(temp3) * std::real(alpha_i);
             }
 
             ix = start_x;
             for (i = 0; i < j; i++) {
               T_element = impl::Conj::func(T_i[j * incT + i * ldt * incT]);
-              temp3[0] = std::real(x_i[ix]);
-              temp3[1] = std::imag(x_i[ix]);
+              temp3 = impl::to<TmpType>(x_i[ix]);
               {
                 temp2[0] =
-                  (double) temp3[0] * std::real(T_element) -
-                  (double) temp3[1] * std::imag(T_element);
+                  (double) std::real(temp3) * std::real(T_element) -
+                  (double) std::imag(temp3) * std::imag(T_element);
                 temp2[1] =
-                  (double) temp3[0] * std::imag(T_element) +
-                  (double) temp3[1] * std::real(T_element);
+                  (double) std::real(temp3) * std::imag(T_element) +
+                  (double) std::imag(temp3) * std::real(T_element);
               }
               temp1[0] = temp1[0] - temp2[0];
               temp1[1] = temp1[1] - temp2[1];
@@ -6074,31 +6060,29 @@ constexpr void my_trsv_x(blas_order_type order,
 
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
-            temp3[0] = std::real(x_i[jx]);
-            temp3[1] = std::imag(x_i[jx]);
+            temp3 = impl::to<TmpType>(x_i[jx]);
             /* multiply by alpha */
             {
               temp1[0] =
-                (double) temp3[0] * std::real(alpha_i) -
-                (double) temp3[1] * std::imag(alpha_i);
+                (double) std::real(temp3) * std::real(alpha_i) -
+                (double) std::imag(temp3) * std::imag(alpha_i);
               temp1[1] =
-                (double) temp3[0] * std::imag(alpha_i) +
-                (double) temp3[1] * std::real(alpha_i);
+                (double) std::real(temp3) * std::imag(alpha_i) +
+                (double) std::imag(temp3) * std::real(alpha_i);
             }
 
             ix = start_x;
             for (i = 0; i < j; i++) {
               T_element = T_i[j * incT + i * ldt * incT];
 
-              temp3[0] = std::real(x_i[ix]);
-              temp3[1] = std::imag(x_i[ix]);
+              temp3 = impl::to<TmpType>(x_i[ix]);
               {
                 temp2[0] =
-                  (double) temp3[0] * std::real(T_element) -
-                  (double) temp3[1] * std::imag(T_element);
+                  (double) std::real(temp3) * std::real(T_element) -
+                  (double) std::imag(temp3) * std::imag(T_element);
                 temp2[1] =
-                  (double) temp3[0] * std::imag(T_element) +
-                  (double) temp3[1] * std::real(T_element);
+                  (double) std::real(temp3) * std::imag(T_element) +
+                  (double) std::imag(temp3) * std::real(T_element);
               }
               temp1[0] = temp1[0] - temp2[0];
               temp1[1] = temp1[1] - temp2[1];
