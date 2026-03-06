@@ -5289,8 +5289,8 @@ constexpr void my_trsv_x(blas_order_type order,
   case blas_prec_indigenous:
 
     {
-      double temp1[2];                /* temporary variable for calculations */
-      double temp2[2];                /* temporary variable for calculations */
+      TmpType temp1;                /* temporary variable for calculations */
+      TmpType temp2;                /* temporary variable for calculations */
       TmpType temp3;                /* temporary variable for calculations */
 
       if ((order == blas_rowmajor &&
@@ -5305,29 +5305,14 @@ constexpr void my_trsv_x(blas_order_type order,
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
             temp3 = impl::to<TmpType>(x_i[jx]);
-            {
-              temp1[0] =
-                (double) std::real(temp3) * std::real(alpha_i) -
-                (double) std::imag(temp3) * std::imag(alpha_i);
-              temp1[1] =
-                (double) std::real(temp3) * std::imag(alpha_i) +
-                (double) std::imag(temp3) * std::real(alpha_i);
-            }
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
 
             ix = start_x + (n - 1) * incx;
             for (i = n - 1; i >= j + 1; i--) {
               T_element = impl::Conj::func(T_i[i * incT + j * ldt * incT]);
               temp3 = impl::to<TmpType>(x_i[ix]);
-              {
-                temp2[0] =
-                  (double) std::real(temp3) * std::real(T_element) -
-                  (double) std::imag(temp3) * std::imag(T_element);
-                temp2[1] =
-                  (double) std::real(temp3) * std::imag(T_element) +
-                  (double) std::imag(temp3) * std::real(T_element);
-              }
-              temp1[0] = temp1[0] - temp2[0];
-              temp1[1] = temp1[1] - temp2[1];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
               ix -= incx;
             }                        /* for j<n */
 
@@ -5350,8 +5335,8 @@ constexpr void my_trsv_x(blas_order_type order,
                 un1 = pow(2.0, -1022.0);
                 ov1 = 1.79769313486231571e+308;
                 /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
-                abs_a = fabs(temp1[0]);
-                abs_b = fabs(temp1[1]);
+                abs_a = fabs(std::real(temp1));
+                abs_b = fabs(std::imag(temp1));
                 abs_c = fabs((double) std::real(T_element));
                 abs_d = fabs((double) std::imag(T_element));
                 ab = MAX(abs_a, abs_b);
@@ -5359,8 +5344,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* Scaling */
                 if (ab > ov1 / 16) {        /* scale down a, b */
-                  temp1[0] /= 16;
-                  temp1[1] /= 16;
+                  temp1 /= 16;
                   S = S * 16;
                 }
                 if (cd > ov / 16) {        /* scale down c, d */
@@ -5369,8 +5353,7 @@ constexpr void my_trsv_x(blas_order_type order,
                 }
                 if (ab < un1 / eps1 * 2) {        /* scale up a, b */
                   t = 2.0 / (eps1 * eps1);
-                  temp1[0] *= t;
-                  temp1[1] *= t;
+                  temp1 *= t;
                   S = S / t;
                 }
                 if (cd < un / eps * 2) {        /* scale up c, d */
@@ -5383,22 +5366,21 @@ constexpr void my_trsv_x(blas_order_type order,
                 if (abs_c > abs_d) {
                   r = std::imag(T_element) / std::real(T_element);
                   t = 1 / (std::real(T_element) + std::imag(T_element) * r);
-                  q[0] = (temp1[0] + temp1[1] * r) * t;
-                  q[1] = (temp1[1] - temp1[0] * r) * t;
+                  q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                  q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
                 } else {
                   r = std::real(T_element) / std::imag(T_element);
                   t = 1 / (std::imag(T_element) + std::real(T_element) * r);
-                  q[0] = (temp1[1] + temp1[0] * r) * t;
-                  q[1] = (-temp1[0] + temp1[1] * r) * t;
+                  q[0] = (std::imag(temp1) + std::real(temp1) * r) * t;
+                  q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
                 }
                 /* Scale back */
-                temp1[0] = q[0] * S;
-                temp1[1] = q[1] * S;
+                temp1 = TmpType(q[0] * S, q[1] * S);
               }
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = T(temp1[0], temp1[1]);
+            x_i[jx] = impl::to<T>(temp1);
 
             jx -= incx;
           }                        /* for j>=0 */
@@ -5410,30 +5392,15 @@ constexpr void my_trsv_x(blas_order_type order,
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
             temp3 = impl::to<TmpType>(x_i[jx]);
-            {
-              temp1[0] =
-                (double) std::real(temp3) * std::real(alpha_i) -
-                (double) std::imag(temp3) * std::imag(alpha_i);
-              temp1[1] =
-                (double) std::real(temp3) * std::imag(alpha_i) +
-                (double) std::imag(temp3) * std::real(alpha_i);
-            }
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
 
             ix = start_x + (n - 1) * incx;
             for (i = n - 1; i >= j + 1; i--) {
               T_element = T_i[i * incT + j * ldt * incT];
 
               temp3 = impl::to<TmpType>(x_i[ix]);
-              {
-                temp2[0] =
-                  (double) std::real(temp3) * std::real(T_element) -
-                  (double) std::imag(temp3) * std::imag(T_element);
-                temp2[1] =
-                  (double) std::real(temp3) * std::imag(T_element) +
-                  (double) std::imag(temp3) * std::real(T_element);
-              }
-              temp1[0] = temp1[0] - temp2[0];
-              temp1[1] = temp1[1] - temp2[1];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
               ix -= incx;
             }                        /* for j<n */
 
@@ -5457,8 +5424,8 @@ constexpr void my_trsv_x(blas_order_type order,
                 un1 = pow(2.0, -1022.0);
                 ov1 = 1.79769313486231571e+308;
                 /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
-                abs_a = fabs(temp1[0]);
-                abs_b = fabs(temp1[1]);
+                abs_a = fabs(std::real(temp1));
+                abs_b = fabs(std::imag(temp1));
                 abs_c = fabs((double) std::real(T_element));
                 abs_d = fabs((double) std::imag(T_element));
                 ab = MAX(abs_a, abs_b);
@@ -5466,8 +5433,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* Scaling */
                 if (ab > ov1 / 16) {        /* scale down a, b */
-                  temp1[0] /= 16;
-                  temp1[1] /= 16;
+                  temp1 /= 16;
                   S = S * 16;
                 }
                 if (cd > ov / 16) {        /* scale down c, d */
@@ -5476,8 +5442,7 @@ constexpr void my_trsv_x(blas_order_type order,
                 }
                 if (ab < un1 / eps1 * 2) {        /* scale up a, b */
                   t = 2.0 / (eps1 * eps1);
-                  temp1[0] *= t;
-                  temp1[1] *= t;
+                  temp1 *= t;
                   S = S / t;
                 }
                 if (cd < un / eps * 2) {        /* scale up c, d */
@@ -5490,22 +5455,21 @@ constexpr void my_trsv_x(blas_order_type order,
                 if (abs_c > abs_d) {
                   r = std::imag(T_element) / std::real(T_element);
                   t = 1 / (std::real(T_element) + std::imag(T_element) * r);
-                  q[0] = (temp1[0] + temp1[1] * r) * t;
-                  q[1] = (temp1[1] - temp1[0] * r) * t;
+                  q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                  q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
                 } else {
                   r = std::real(T_element) / std::imag(T_element);
                   t = 1 / (std::imag(T_element) + std::real(T_element) * r);
-                  q[0] = (temp1[1] + temp1[0] * r) * t;
-                  q[1] = (-temp1[0] + temp1[1] * r) * t;
+                  q[0] = (std::imag(temp1) + std::real(temp1) * r) * t;
+                  q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
                 }
                 /* Scale back */
-                temp1[0] = q[0] * S;
-                temp1[1] = q[1] * S;
+                temp1 = TmpType(q[0] * S, q[1] * S);
               }
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = T(temp1[0], temp1[1]);
+            x_i[jx] = impl::to<T>(temp1);
 
             jx -= incx;
           }                        /* for j>=0 */
@@ -5523,29 +5487,14 @@ constexpr void my_trsv_x(blas_order_type order,
                i=j+1 to n-1           */
             temp3 = impl::to<TmpType>(x_i[jx]);
             /* multiply by alpha */
-            {
-              temp1[0] =
-                (double) std::real(temp3) * std::real(alpha_i) -
-                (double) std::imag(temp3) * std::imag(alpha_i);
-              temp1[1] =
-                (double) std::real(temp3) * std::imag(alpha_i) +
-                (double) std::imag(temp3) * std::real(alpha_i);
-            }
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
 
             ix = start_x;
             for (i = 0; i < j; i++) {
               T_element = impl::Conj::func(T_i[i * incT + j * ldt * incT]);
               temp3 = impl::to<TmpType>(x_i[ix]);
-              {
-                temp2[0] =
-                  (double) std::real(temp3) * std::real(T_element) -
-                  (double) std::imag(temp3) * std::imag(T_element);
-                temp2[1] =
-                  (double) std::real(temp3) * std::imag(T_element) +
-                  (double) std::imag(temp3) * std::real(T_element);
-              }
-              temp1[0] = temp1[0] - temp2[0];
-              temp1[1] = temp1[1] - temp2[1];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
               ix += incx;
             }                        /* for i<j */
 
@@ -5568,8 +5517,8 @@ constexpr void my_trsv_x(blas_order_type order,
                 un1 = pow(2.0, -1022.0);
                 ov1 = 1.79769313486231571e+308;
                 /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
-                abs_a = fabs(temp1[0]);
-                abs_b = fabs(temp1[1]);
+                abs_a = fabs(std::real(temp1));
+                abs_b = fabs(std::imag(temp1));
                 abs_c = fabs((double) std::real(T_element));
                 abs_d = fabs((double) std::imag(T_element));
                 ab = MAX(abs_a, abs_b);
@@ -5577,8 +5526,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* Scaling */
                 if (ab > ov1 / 16) {        /* scale down a, b */
-                  temp1[0] /= 16;
-                  temp1[1] /= 16;
+                  temp1 /= 16;
                   S = S * 16;
                 }
                 if (cd > ov / 16) {        /* scale down c, d */
@@ -5587,8 +5535,7 @@ constexpr void my_trsv_x(blas_order_type order,
                 }
                 if (ab < un1 / eps1 * 2) {        /* scale up a, b */
                   t = 2.0 / (eps1 * eps1);
-                  temp1[0] *= t;
-                  temp1[1] *= t;
+                  temp1 *= t;
                   S = S / t;
                 }
                 if (cd < un / eps * 2) {        /* scale up c, d */
@@ -5601,22 +5548,21 @@ constexpr void my_trsv_x(blas_order_type order,
                 if (abs_c > abs_d) {
                   r = std::imag(T_element) / std::real(T_element);
                   t = 1 / (std::real(T_element) + std::imag(T_element) * r);
-                  q[0] = (temp1[0] + temp1[1] * r) * t;
-                  q[1] = (temp1[1] - temp1[0] * r) * t;
+                  q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                  q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
                 } else {
                   r = std::real(T_element) / std::imag(T_element);
                   t = 1 / (std::imag(T_element) + std::real(T_element) * r);
-                  q[0] = (temp1[1] + temp1[0] * r) * t;
-                  q[1] = (-temp1[0] + temp1[1] * r) * t;
+                  q[0] = (std::imag(temp1) + std::real(temp1) * r) * t;
+                  q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
                 }
                 /* Scale back */
-                temp1[0] = q[0] * S;
-                temp1[1] = q[1] * S;
+                temp1 = TmpType(q[0] * S, q[1] * S);
               }
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = T(temp1[0], temp1[1]);
+            x_i[jx] = impl::to<T>(temp1);
             jx += incx;
           }                        /* for j<n */
         } else {
@@ -5628,30 +5574,15 @@ constexpr void my_trsv_x(blas_order_type order,
                i=j+1 to n-1           */
             temp3 = impl::to<TmpType>(x_i[jx]);
             /* multiply by alpha */
-            {
-              temp1[0] =
-                (double) std::real(temp3) * std::real(alpha_i) -
-                (double) std::imag(temp3) * std::imag(alpha_i);
-              temp1[1] =
-                (double) std::real(temp3) * std::imag(alpha_i) +
-                (double) std::imag(temp3) * std::real(alpha_i);
-            }
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
 
             ix = start_x;
             for (i = 0; i < j; i++) {
               T_element = T_i[i * incT + j * ldt * incT];
 
               temp3 = impl::to<TmpType>(x_i[ix]);
-              {
-                temp2[0] =
-                  (double) std::real(temp3) * std::real(T_element) -
-                  (double) std::imag(temp3) * std::imag(T_element);
-                temp2[1] =
-                  (double) std::real(temp3) * std::imag(T_element) +
-                  (double) std::imag(temp3) * std::real(T_element);
-              }
-              temp1[0] = temp1[0] - temp2[0];
-              temp1[1] = temp1[1] - temp2[1];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
               ix += incx;
             }                        /* for i<j */
 
@@ -5675,8 +5606,8 @@ constexpr void my_trsv_x(blas_order_type order,
                 un1 = pow(2.0, -1022.0);
                 ov1 = 1.79769313486231571e+308;
                 /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
-                abs_a = fabs(temp1[0]);
-                abs_b = fabs(temp1[1]);
+                abs_a = fabs(std::real(temp1));
+                abs_b = fabs(std::imag(temp1));
                 abs_c = fabs((double) std::real(T_element));
                 abs_d = fabs((double) std::imag(T_element));
                 ab = MAX(abs_a, abs_b);
@@ -5684,8 +5615,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* Scaling */
                 if (ab > ov1 / 16) {        /* scale down a, b */
-                  temp1[0] /= 16;
-                  temp1[1] /= 16;
+                  temp1 /= 16;
                   S = S * 16;
                 }
                 if (cd > ov / 16) {        /* scale down c, d */
@@ -5694,8 +5624,7 @@ constexpr void my_trsv_x(blas_order_type order,
                 }
                 if (ab < un1 / eps1 * 2) {        /* scale up a, b */
                   t = 2.0 / (eps1 * eps1);
-                  temp1[0] *= t;
-                  temp1[1] *= t;
+                  temp1 *= t;
                   S = S / t;
                 }
                 if (cd < un / eps * 2) {        /* scale up c, d */
@@ -5708,22 +5637,21 @@ constexpr void my_trsv_x(blas_order_type order,
                 if (abs_c > abs_d) {
                   r = std::imag(T_element) / std::real(T_element);
                   t = 1 / (std::real(T_element) + std::imag(T_element) * r);
-                  q[0] = (temp1[0] + temp1[1] * r) * t;
-                  q[1] = (temp1[1] - temp1[0] * r) * t;
+                  q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                  q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
                 } else {
                   r = std::real(T_element) / std::imag(T_element);
                   t = 1 / (std::imag(T_element) + std::real(T_element) * r);
-                  q[0] = (temp1[1] + temp1[0] * r) * t;
-                  q[1] = (-temp1[0] + temp1[1] * r) * t;
+                  q[0] = (std::imag(temp1) + std::real(temp1) * r) * t;
+                  q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
                 }
                 /* Scale back */
-                temp1[0] = q[0] * S;
-                temp1[1] = q[1] * S;
+                temp1 = TmpType(q[0] * S, q[1] * S);
               }
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = T(temp1[0], temp1[1]);
+            x_i[jx] = impl::to<T>(temp1);
             jx += incx;
           }                        /* for j<n */
         }
@@ -5739,29 +5667,14 @@ constexpr void my_trsv_x(blas_order_type order,
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
             temp3 = impl::to<TmpType>(x_i[jx]);
-            {
-              temp1[0] =
-                (double) std::real(temp3) * std::real(alpha_i) -
-                (double) std::imag(temp3) * std::imag(alpha_i);
-              temp1[1] =
-                (double) std::real(temp3) * std::imag(alpha_i) +
-                (double) std::imag(temp3) * std::real(alpha_i);
-            }
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
 
             ix = start_x + (n - 1) * incx;
             for (i = n - 1; i >= j + 1; i--) {
               T_element = impl::Conj::func(T_i[j * incT + i * ldt * incT]);
               temp3 = impl::to<TmpType>(x_i[ix]);
-              {
-                temp2[0] =
-                  (double) std::real(temp3) * std::real(T_element) -
-                  (double) std::imag(temp3) * std::imag(T_element);
-                temp2[1] =
-                  (double) std::real(temp3) * std::imag(T_element) +
-                  (double) std::imag(temp3) * std::real(T_element);
-              }
-              temp1[0] = temp1[0] - temp2[0];
-              temp1[1] = temp1[1] - temp2[1];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
               ix -= incx;
             }                        /* for j<n */
 
@@ -5784,8 +5697,8 @@ constexpr void my_trsv_x(blas_order_type order,
                 un1 = pow(2.0, -1022.0);
                 ov1 = 1.79769313486231571e+308;
                 /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
-                abs_a = fabs(temp1[0]);
-                abs_b = fabs(temp1[1]);
+                abs_a = fabs(std::real(temp1));
+                abs_b = fabs(std::imag(temp1));
                 abs_c = fabs((double) std::real(T_element));
                 abs_d = fabs((double) std::imag(T_element));
                 ab = MAX(abs_a, abs_b);
@@ -5793,8 +5706,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* Scaling */
                 if (ab > ov1 / 16) {        /* scale down a, b */
-                  temp1[0] /= 16;
-                  temp1[1] /= 16;
+                  temp1 /= 16;
                   S = S * 16;
                 }
                 if (cd > ov / 16) {        /* scale down c, d */
@@ -5803,8 +5715,7 @@ constexpr void my_trsv_x(blas_order_type order,
                 }
                 if (ab < un1 / eps1 * 2) {        /* scale up a, b */
                   t = 2.0 / (eps1 * eps1);
-                  temp1[0] *= t;
-                  temp1[1] *= t;
+                  temp1 *= t;
                   S = S / t;
                 }
                 if (cd < un / eps * 2) {        /* scale up c, d */
@@ -5817,22 +5728,21 @@ constexpr void my_trsv_x(blas_order_type order,
                 if (abs_c > abs_d) {
                   r = std::imag(T_element) / std::real(T_element);
                   t = 1 / (std::real(T_element) + std::imag(T_element) * r);
-                  q[0] = (temp1[0] + temp1[1] * r) * t;
-                  q[1] = (temp1[1] - temp1[0] * r) * t;
+                  q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                  q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
                 } else {
                   r = std::real(T_element) / std::imag(T_element);
                   t = 1 / (std::imag(T_element) + std::real(T_element) * r);
-                  q[0] = (temp1[1] + temp1[0] * r) * t;
-                  q[1] = (-temp1[0] + temp1[1] * r) * t;
+                  q[0] = (std::imag(temp1) + std::real(temp1) * r) * t;
+                  q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
                 }
                 /* Scale back */
-                temp1[0] = q[0] * S;
-                temp1[1] = q[1] * S;
+                temp1 = TmpType(q[0] * S, q[1] * S);
               }
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = T(temp1[0], temp1[1]);
+            x_i[jx] = impl::to<T>(temp1);
 
             jx -= incx;
           }                        /* for j>=0 */
@@ -5844,30 +5754,15 @@ constexpr void my_trsv_x(blas_order_type order,
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
             temp3 = impl::to<TmpType>(x_i[jx]);
-            {
-              temp1[0] =
-                (double) std::real(temp3) * std::real(alpha_i) -
-                (double) std::imag(temp3) * std::imag(alpha_i);
-              temp1[1] =
-                (double) std::real(temp3) * std::imag(alpha_i) +
-                (double) std::imag(temp3) * std::real(alpha_i);
-            }
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
 
             ix = start_x + (n - 1) * incx;
             for (i = n - 1; i >= j + 1; i--) {
               T_element = T_i[j * incT + i * ldt * incT];
 
               temp3 = impl::to<TmpType>(x_i[ix]);
-              {
-                temp2[0] =
-                  (double) std::real(temp3) * std::real(T_element) -
-                  (double) std::imag(temp3) * std::imag(T_element);
-                temp2[1] =
-                  (double) std::real(temp3) * std::imag(T_element) +
-                  (double) std::imag(temp3) * std::real(T_element);
-              }
-              temp1[0] = temp1[0] - temp2[0];
-              temp1[1] = temp1[1] - temp2[1];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
               ix -= incx;
             }                        /* for j<n */
 
@@ -5891,8 +5786,8 @@ constexpr void my_trsv_x(blas_order_type order,
                 un1 = pow(2.0, -1022.0);
                 ov1 = 1.79769313486231571e+308;
                 /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
-                abs_a = fabs(temp1[0]);
-                abs_b = fabs(temp1[1]);
+                abs_a = fabs(std::real(temp1));
+                abs_b = fabs(std::imag(temp1));
                 abs_c = fabs((double) std::real(T_element));
                 abs_d = fabs((double) std::imag(T_element));
                 ab = MAX(abs_a, abs_b);
@@ -5900,8 +5795,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* Scaling */
                 if (ab > ov1 / 16) {        /* scale down a, b */
-                  temp1[0] /= 16;
-                  temp1[1] /= 16;
+                  temp1 /= 16;
                   S = S * 16;
                 }
                 if (cd > ov / 16) {        /* scale down c, d */
@@ -5910,8 +5804,7 @@ constexpr void my_trsv_x(blas_order_type order,
                 }
                 if (ab < un1 / eps1 * 2) {        /* scale up a, b */
                   t = 2.0 / (eps1 * eps1);
-                  temp1[0] *= t;
-                  temp1[1] *= t;
+                  temp1 *= t;
                   S = S / t;
                 }
                 if (cd < un / eps * 2) {        /* scale up c, d */
@@ -5924,22 +5817,21 @@ constexpr void my_trsv_x(blas_order_type order,
                 if (abs_c > abs_d) {
                   r = std::imag(T_element) / std::real(T_element);
                   t = 1 / (std::real(T_element) + std::imag(T_element) * r);
-                  q[0] = (temp1[0] + temp1[1] * r) * t;
-                  q[1] = (temp1[1] - temp1[0] * r) * t;
+                  q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                  q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
                 } else {
                   r = std::real(T_element) / std::imag(T_element);
                   t = 1 / (std::imag(T_element) + std::real(T_element) * r);
-                  q[0] = (temp1[1] + temp1[0] * r) * t;
-                  q[1] = (-temp1[0] + temp1[1] * r) * t;
+                  q[0] = (std::imag(temp1) + std::real(temp1) * r) * t;
+                  q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
                 }
                 /* Scale back */
-                temp1[0] = q[0] * S;
-                temp1[1] = q[1] * S;
+                temp1 = TmpType(q[0] * S, q[1] * S);
               }
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = T(temp1[0], temp1[1]);
+            x_i[jx] = impl::to<T>(temp1);
 
             jx -= incx;
           }                        /* for j>=0 */
@@ -5957,29 +5849,14 @@ constexpr void my_trsv_x(blas_order_type order,
                i=j+1 to n-1           */
             temp3 = impl::to<TmpType>(x_i[jx]);
             /* multiply by alpha */
-            {
-              temp1[0] =
-                (double) std::real(temp3) * std::real(alpha_i) -
-                (double) std::imag(temp3) * std::imag(alpha_i);
-              temp1[1] =
-                (double) std::real(temp3) * std::imag(alpha_i) +
-                (double) std::imag(temp3) * std::real(alpha_i);
-            }
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
 
             ix = start_x;
             for (i = 0; i < j; i++) {
               T_element = impl::Conj::func(T_i[j * incT + i * ldt * incT]);
               temp3 = impl::to<TmpType>(x_i[ix]);
-              {
-                temp2[0] =
-                  (double) std::real(temp3) * std::real(T_element) -
-                  (double) std::imag(temp3) * std::imag(T_element);
-                temp2[1] =
-                  (double) std::real(temp3) * std::imag(T_element) +
-                  (double) std::imag(temp3) * std::real(T_element);
-              }
-              temp1[0] = temp1[0] - temp2[0];
-              temp1[1] = temp1[1] - temp2[1];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
               ix += incx;
             }                        /* for i<j */
 
@@ -6002,8 +5879,8 @@ constexpr void my_trsv_x(blas_order_type order,
                 un1 = pow(2.0, -1022.0);
                 ov1 = 1.79769313486231571e+308;
                 /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
-                abs_a = fabs(temp1[0]);
-                abs_b = fabs(temp1[1]);
+                abs_a = fabs(std::real(temp1));
+                abs_b = fabs(std::imag(temp1));
                 abs_c = fabs((double) std::real(T_element));
                 abs_d = fabs((double) std::imag(T_element));
                 ab = MAX(abs_a, abs_b);
@@ -6011,8 +5888,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* Scaling */
                 if (ab > ov1 / 16) {        /* scale down a, b */
-                  temp1[0] /= 16;
-                  temp1[1] /= 16;
+                  temp1 /= 16;
                   S = S * 16;
                 }
                 if (cd > ov / 16) {        /* scale down c, d */
@@ -6021,8 +5897,7 @@ constexpr void my_trsv_x(blas_order_type order,
                 }
                 if (ab < un1 / eps1 * 2) {        /* scale up a, b */
                   t = 2.0 / (eps1 * eps1);
-                  temp1[0] *= t;
-                  temp1[1] *= t;
+                  temp1 *= t;
                   S = S / t;
                 }
                 if (cd < un / eps * 2) {        /* scale up c, d */
@@ -6035,22 +5910,21 @@ constexpr void my_trsv_x(blas_order_type order,
                 if (abs_c > abs_d) {
                   r = std::imag(T_element) / std::real(T_element);
                   t = 1 / (std::real(T_element) + std::imag(T_element) * r);
-                  q[0] = (temp1[0] + temp1[1] * r) * t;
-                  q[1] = (temp1[1] - temp1[0] * r) * t;
+                  q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                  q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
                 } else {
                   r = std::real(T_element) / std::imag(T_element);
                   t = 1 / (std::imag(T_element) + std::real(T_element) * r);
-                  q[0] = (temp1[1] + temp1[0] * r) * t;
-                  q[1] = (-temp1[0] + temp1[1] * r) * t;
+                  q[0] = (std::imag(temp1) + std::real(temp1) * r) * t;
+                  q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
                 }
                 /* Scale back */
-                temp1[0] = q[0] * S;
-                temp1[1] = q[1] * S;
+                temp1 = TmpType(q[0] * S, q[1] * S);
               }
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = T(temp1[0], temp1[1]);
+            x_i[jx] = impl::to<T>(temp1);
             jx += incx;
           }                        /* for j<n */
         } else {
@@ -6062,30 +5936,15 @@ constexpr void my_trsv_x(blas_order_type order,
                i=j+1 to n-1           */
             temp3 = impl::to<TmpType>(x_i[jx]);
             /* multiply by alpha */
-            {
-              temp1[0] =
-                (double) std::real(temp3) * std::real(alpha_i) -
-                (double) std::imag(temp3) * std::imag(alpha_i);
-              temp1[1] =
-                (double) std::real(temp3) * std::imag(alpha_i) +
-                (double) std::imag(temp3) * std::real(alpha_i);
-            }
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
 
             ix = start_x;
             for (i = 0; i < j; i++) {
               T_element = T_i[j * incT + i * ldt * incT];
 
               temp3 = impl::to<TmpType>(x_i[ix]);
-              {
-                temp2[0] =
-                  (double) std::real(temp3) * std::real(T_element) -
-                  (double) std::imag(temp3) * std::imag(T_element);
-                temp2[1] =
-                  (double) std::real(temp3) * std::imag(T_element) +
-                  (double) std::imag(temp3) * std::real(T_element);
-              }
-              temp1[0] = temp1[0] - temp2[0];
-              temp1[1] = temp1[1] - temp2[1];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
               ix += incx;
             }                        /* for i<j */
 
@@ -6109,8 +5968,8 @@ constexpr void my_trsv_x(blas_order_type order,
                 un1 = pow(2.0, -1022.0);
                 ov1 = 1.79769313486231571e+308;
                 /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
-                abs_a = fabs(temp1[0]);
-                abs_b = fabs(temp1[1]);
+                abs_a = fabs(std::real(temp1));
+                abs_b = fabs(std::imag(temp1));
                 abs_c = fabs((double) std::real(T_element));
                 abs_d = fabs((double) std::imag(T_element));
                 ab = MAX(abs_a, abs_b);
@@ -6118,8 +5977,7 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* Scaling */
                 if (ab > ov1 / 16) {        /* scale down a, b */
-                  temp1[0] /= 16;
-                  temp1[1] /= 16;
+                  temp1 /= 16;
                   S = S * 16;
                 }
                 if (cd > ov / 16) {        /* scale down c, d */
@@ -6128,8 +5986,7 @@ constexpr void my_trsv_x(blas_order_type order,
                 }
                 if (ab < un1 / eps1 * 2) {        /* scale up a, b */
                   t = 2.0 / (eps1 * eps1);
-                  temp1[0] *= t;
-                  temp1[1] *= t;
+                  temp1 *= t;
                   S = S / t;
                 }
                 if (cd < un / eps * 2) {        /* scale up c, d */
@@ -6142,22 +5999,21 @@ constexpr void my_trsv_x(blas_order_type order,
                 if (abs_c > abs_d) {
                   r = std::imag(T_element) / std::real(T_element);
                   t = 1 / (std::real(T_element) + std::imag(T_element) * r);
-                  q[0] = (temp1[0] + temp1[1] * r) * t;
-                  q[1] = (temp1[1] - temp1[0] * r) * t;
+                  q[0] = (std::real(temp1) + std::imag(temp1) * r) * t;
+                  q[1] = (std::imag(temp1) - std::real(temp1) * r) * t;
                 } else {
                   r = std::real(T_element) / std::imag(T_element);
                   t = 1 / (std::imag(T_element) + std::real(T_element) * r);
-                  q[0] = (temp1[1] + temp1[0] * r) * t;
-                  q[1] = (-temp1[0] + temp1[1] * r) * t;
+                  q[0] = (std::imag(temp1) + std::real(temp1) * r) * t;
+                  q[1] = (-std::real(temp1) + std::imag(temp1) * r) * t;
                 }
                 /* Scale back */
-                temp1[0] = q[0] * S;
-                temp1[1] = q[1] * S;
+                temp1 = TmpType(q[0] * S, q[1] * S);
               }
 
             }
             /* if (diag == blas_non_unit_diag) */
-            x_i[jx] = T(temp1[0], temp1[1]);
+            x_i[jx] = impl::to<T>(temp1);
             jx += incx;
           }                        /* for j<n */
         }
