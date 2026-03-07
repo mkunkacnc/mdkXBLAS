@@ -1247,6 +1247,9 @@ constexpr void my_trsv_x(blas_order_type order,
     break;
   case blas_prec_extra:
     {
+      static_assert(std::is_same_v<TmpType, std::complex<double>>);
+      using TmpType_t = std::complex<double_double>;
+
       FPU_FIX_DECL;
       FPU_FIX_START;
       {
@@ -1397,6 +1400,15 @@ constexpr void my_trsv_x(blas_order_type order,
                 if (diag == blas_non_unit_diag) {
                   T_element = impl::Conj::func(T_i[j * incT + j * ldt * incT]);
 
+                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
+                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
+                  TmpType_t temp1(temp1r, temp1i);
+                  temp1 = impl::div(temp1, T_element);
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
+#if 0
                   {
                     double S = 1.0, eps, ov, un, eps1, ov1, un1;
                     double abs_a, abs_b, abs_c, abs_d, ab, cd;
@@ -1562,7 +1574,7 @@ constexpr void my_trsv_x(blas_order_type order,
                     }
 
                   }
-
+#endif
                 }
                 /* if (diag == blas_non_unit_diag) */
                 head_intx[jx] = head_temp1[0];
