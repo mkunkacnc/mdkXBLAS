@@ -112,6 +112,291 @@ constexpr void trsv(blas_order_type order,
 
   if constexpr (impl::is_complex_v<A>) {
     if constexpr (sizeof(TmpType) > sizeof(T)) {
+      int inc_intx;                /* inc for intx */
+      TmpType temp1;
+      TmpType temp2;
+      TmpType temp3;
+      TmpType *intx;
+
+      /* copy of x used for calculations */
+
+      /* allocate space for intx */
+      intx = new(std::nothrow) TmpType[n];
+
+      if (n > 0 && intx == NULL) {
+        BLAS_error(routine_name, 0, 0, "allocation failed.\n");
+      }
+
+      /* since intx is for internal usage, set it to 1 and then adjust
+         it if necessary */
+      inc_intx = 1;
+
+      /* copy x to intx */
+      ix = start_x;
+      jx = 0;
+      for (i = 0; i < n; i++) {
+        temp1 = impl::to<TmpType>(x_i[ix]);
+        intx[jx] = temp1;
+        ix += incx;
+        jx += inc_intx;
+      }
+
+      if ((order == blas_rowmajor &&
+           trans == blas_no_trans && uplo == blas_upper) ||
+          (order == blas_colmajor &&
+           trans != blas_no_trans && uplo == blas_lower)) {
+        if (trans == blas_conj_trans) {
+
+          jx = (n - 1) * inc_intx;
+          for (j = n - 1; j >= 0; j--) {
+            /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
+               i=j+1 to n-1           */
+            temp3 = intx[jx];
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+            ix = (n - 1) * inc_intx;
+            for (i = n - 1; i >= j + 1; i--) {
+              T_element = impl::Conj::func(t_i[i * incT + j * ldt * incT]);
+              temp3 = intx[ix];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
+              ix -= inc_intx;
+            }                /* for j<n */
+
+            /* if the diagonal entry is not equal to one, then divide Xj by
+               the entry */
+            if (diag == blas_non_unit_diag) {
+              T_element = impl::Conj::func(t_i[j * incT + j * ldt * incT]);
+              temp1 = impl::div(temp1, T_element);
+            }
+            /* if (diag == blas_non_unit_diag) */
+            intx[jx] = temp1;
+            jx -= inc_intx;
+          }                        /* for j>=0 */
+        } else {
+
+          jx = (n - 1) * inc_intx;
+          for (j = n - 1; j >= 0; j--) {
+
+            /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
+               i=j+1 to n-1           */
+            temp3 = intx[jx];
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+            ix = (n - 1) * inc_intx;
+            for (i = n - 1; i >= j + 1; i--) {
+              T_element = t_i[i * incT + j * ldt * incT];
+              temp3 = intx[ix];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
+              ix -= inc_intx;
+            }                /* for j<n */
+
+            /* if the diagonal entry is not equal to one, then divide Xj by
+               the entry */
+            if (diag == blas_non_unit_diag) {
+              T_element = t_i[j * incT + j * ldt * incT];
+              temp1 = impl::div(temp1, T_element);
+            }
+            /* if (diag == blas_non_unit_diag) */
+            intx[jx] = temp1;
+            jx -= inc_intx;
+          }                        /* for j>=0 */
+        }
+      } else if ((order == blas_rowmajor &&
+                  trans == blas_no_trans && uplo == blas_lower) ||
+                 (order == blas_colmajor &&
+                  trans != blas_no_trans && uplo == blas_upper)) {
+        if (trans == blas_conj_trans) {
+          jx = 0;
+          for (j = 0; j < n; j++) {
+            /* compute Xj = Xj - SUM Aij(or Aji) * Xi
+               i=j+1 to n-1           */
+            temp3 = intx[jx];
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+            ix = 0;
+            for (i = 0; i < j; i++) {
+              T_element = impl::Conj::func(t_i[i * incT + j * ldt * incT]);
+              temp3 = intx[ix];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
+              ix += inc_intx;
+            }                /* for i<j */
+
+            /* if the diagonal entry is not equal to one, then divide Xj by
+               the entry */
+            if (diag == blas_non_unit_diag) {
+              T_element = impl::Conj::func(t_i[j * incT + j * ldt * incT]);
+              temp1 = impl::div(temp1, T_element);
+            }
+            /* if (diag == blas_non_unit_diag) */
+            intx[jx] = temp1;
+            jx += inc_intx;
+          }                        /* for j<n */
+        } else {
+          jx = 0;
+          for (j = 0; j < n; j++) {
+            /* compute Xj = Xj - SUM Aij(or Aji) * Xi
+               i=j+1 to n-1           */
+            temp3 = intx[jx];
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+            ix = 0;
+            for (i = 0; i < j; i++) {
+              T_element = t_i[i * incT + j * ldt * incT];
+              temp3 = intx[ix];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
+              ix += inc_intx;
+            }                /* for i<j */
+
+            /* if the diagonal entry is not equal to one, then divide Xj by
+               the entry */
+            if (diag == blas_non_unit_diag) {
+              T_element = t_i[j * incT + j * ldt * incT];
+              temp1 = impl::div(temp1, T_element);
+            }
+            /* if (diag == blas_non_unit_diag) */
+            intx[jx] = temp1;
+            jx += inc_intx;
+          }                        /* for j<n */
+        }
+      } else if ((order == blas_rowmajor &&
+                  trans != blas_no_trans && uplo == blas_lower) ||
+                 (order == blas_colmajor &&
+                  trans == blas_no_trans && uplo == blas_upper)) {
+        if (trans == blas_conj_trans) {
+
+          jx = (n - 1) * inc_intx;
+          for (j = n - 1; j >= 0; j--) {
+            /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
+               i=j+1 to n-1           */
+            temp3 = intx[jx];
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+            ix = (n - 1) * inc_intx;
+            for (i = n - 1; i >= j + 1; i--) {
+              T_element = impl::Conj::func(t_i[j * incT + i * ldt * incT]);
+              temp3 = intx[ix];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
+              ix -= inc_intx;
+            }                /* for j<n */
+
+            /* if the diagonal entry is not equal to one, then divide Xj by
+               the entry */
+            if (diag == blas_non_unit_diag) {
+              T_element = impl::Conj::func(t_i[j * incT + j * ldt * incT]);
+              temp1 = impl::div(temp1, T_element);
+            }
+            /* if (diag == blas_non_unit_diag) */
+            intx[jx] = temp1;
+            jx -= inc_intx;
+          }                        /* for j>=0 */
+        } else {
+
+          jx = (n - 1) * inc_intx;
+          for (j = n - 1; j >= 0; j--) {
+            /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
+               i=j+1 to n-1           */
+            temp3 = intx[jx];
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+            ix = (n - 1) * inc_intx;
+            for (i = n - 1; i >= j + 1; i--) {
+              T_element = t_i[j * incT + i * ldt * incT];
+              temp3 = intx[ix];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
+              ix -= inc_intx;
+            }                /* for j<n */
+
+            /* if the diagonal entry is not equal to one, then divide Xj by
+               the entry */
+            if (diag == blas_non_unit_diag) {
+              T_element = t_i[j * incT + j * ldt * incT];
+              temp1 = impl::div(temp1, T_element);
+            }
+            /* if (diag == blas_non_unit_diag) */
+            intx[jx] = temp1;
+            jx -= inc_intx;
+          }                        /* for j>=0 */
+        }
+      } else if ((order == blas_rowmajor &&
+                  trans != blas_no_trans && uplo == blas_upper) ||
+                 (order == blas_colmajor &&
+                  trans == blas_no_trans && uplo == blas_lower)) {
+        if (trans == blas_conj_trans) {
+
+          jx = 0;
+          for (j = 0; j < n; j++) {
+            /* compute Xj = Xj - SUM Aij(or Aji) * Xi
+               i=j+1 to n-1           */
+            temp3 = intx[jx];
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+            ix = 0;
+            for (i = 0; i < j; i++) {
+              T_element = impl::Conj::func(t_i[j * incT + i * ldt * incT]);
+              temp3 = intx[ix];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
+              ix += inc_intx;
+            }                /* for i<j */
+
+            /* if the diagonal entry is not equal to one, then divide Xj by
+               the entry */
+            if (diag == blas_non_unit_diag) {
+              T_element = impl::Conj::func(t_i[j * incT + j * ldt * incT]);
+              temp1 = impl::div(temp1, T_element);
+            }
+            /* if (diag == blas_non_unit_diag) */
+            intx[jx] = temp1;
+            jx += inc_intx;
+          }                        /* for j<n */
+        } else {
+
+          jx = 0;
+          for (j = 0; j < n; j++) {
+            /* compute Xj = Xj - SUM Aij(or Aji) * Xi
+               i=j+1 to n-1           */
+            temp3 = intx[jx];
+            temp1 = impl::mul<TmpType>(temp3, alpha_i);
+
+            ix = 0;
+            for (i = 0; i < j; i++) {
+              T_element = t_i[j * incT + i * ldt * incT];
+              temp3 = intx[ix];
+              temp2 = impl::mul<TmpType>(temp3, T_element);
+              temp1 = temp1 - temp2;
+              ix += inc_intx;
+            }                /* for i<j */
+
+            /* if the diagonal entry is not equal to one, then divide Xj by
+               the entry */
+            if (diag == blas_non_unit_diag) {
+              T_element = t_i[j * incT + j * ldt * incT];
+              temp1 = impl::div(temp1, T_element);
+            }
+            /* if (diag == blas_non_unit_diag) */
+            intx[jx] = temp1;
+            jx += inc_intx;
+          }                        /* for j<n */
+        }
+      }
+
+      /* copy the final results from intx to x */
+      ix = start_x;
+      jx = 0;
+      for (i = 0; i < n; i++) {
+        temp1 = intx[jx];
+        x_i[ix] = impl::to<T>(temp1);
+        ix += incx;
+        jx += inc_intx;
+      }
+
+      delete[] intx;
 
     } else {
       TmpType temp1;                /* temporary variable for calculations */
@@ -1255,36 +1540,31 @@ constexpr void my_trsv_x(blas_order_type order,
       {
         {
           int inc_intx;                /* inc for intx */
-          double head_temp1[2], tail_temp1[2];        /* temporary variable for calculations */
-          double head_temp2[2], tail_temp2[2];        /* temporary variable for calculations */
-          double head_temp3[2], tail_temp3[2];        /* temporary variable for calculations */
-          double *head_intx, *tail_intx;
+          TmpType_t temp1;
+          TmpType_t temp2;
+          TmpType_t temp3;
+          TmpType_t *intx;
+
           /* copy of x used for calculations */
 
           /* allocate space for intx */
-          head_intx = (double *) blas_malloc(n * sizeof(double) * 2);
-          tail_intx = (double *) blas_malloc(n * sizeof(double) * 2);
-          if (n > 0 && (head_intx == NULL || tail_intx == NULL)) {
-            BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
+          intx = new(std::nothrow) TmpType_t[n];
+
+          if (n > 0 && intx == NULL) {
+            BLAS_error(routine_name, 0, 0, "allocation failed.\n");
           }
 
           /* since intx is for internal usage, set it to 1 and then adjust
              it if necessary */
           inc_intx = 1;
-          inc_intx *= 2;
+          //inc_intx *= 2;
 
           /* copy x to intx */
           ix = start_x;
           jx = 0;
           for (i = 0; i < n; i++) {
-            head_temp1[0] = std::real(x_i[ix]);
-            tail_temp1[0] = 0.0;
-            head_temp1[1] = std::imag(x_i[ix]);
-            tail_temp1[1] = 0.0;
-            head_intx[jx] = head_temp1[0];
-            tail_intx[jx] = tail_temp1[0];
-            head_intx[1 + jx] = head_temp1[1];
-            tail_intx[1 + jx] = tail_temp1[1];
+            temp1 = impl::to<TmpType_t>(x_i[ix]);
+            intx[jx] = temp1;
             ix += incx;
             jx += inc_intx;
           }
@@ -1300,52 +1580,17 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                    i=j+1 to n-1           */
-                head_temp3[0] = head_intx[jx];
-                head_temp3[1] = head_intx[1 + jx];
-                tail_temp3[0] = tail_intx[jx];
-                tail_temp3[1] = tail_intx[1 + jx];
+                temp3 = intx[jx];
                 /* multiply by alpha */
-                {
-                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                  TmpType_t temp3(temp3r, temp3i);
-                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
-                }
+                temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
 
 
                 ix = (n - 1) * inc_intx;
                 for (i = n - 1; i >= j + 1; i--) {
                   T_element = impl::Conj::func(T_i[i * incT + j * ldt * incT]);
-                  head_temp3[0] = head_intx[ix];
-                  head_temp3[1] = head_intx[1 + ix];
-                  tail_temp3[0] = tail_intx[ix];
-                  tail_temp3[1] = tail_intx[1 + ix];
-                  {
-                    impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                    impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                    TmpType_t temp3(temp3r, temp3i);
-                    TmpType_t temp2 = impl::mul<TmpType_t>(temp3, T_element);
-                    head_temp2[0] = std::real(temp2).head_();
-                    head_temp2[1] = std::imag(temp2).head_();
-                    tail_temp2[0] = std::real(temp2).tail_();
-                    tail_temp2[1] = std::imag(temp2).tail_();
-
-                  }
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
-                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
-                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
-                  TmpType_t temp2(temp2r, temp2i);
+                  temp3 = intx[ix];
+                  temp2 = impl::mul<TmpType_t>(temp3, T_element);
                   temp1 = temp1 - temp2;
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix -= inc_intx;
                 }                /* for j<n */
 
@@ -1354,20 +1599,10 @@ constexpr void my_trsv_x(blas_order_type order,
                 if (diag == blas_non_unit_diag) {
                   T_element = impl::Conj::func(T_i[j * incT + j * ldt * incT]);
 
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
                   temp1 = impl::div(temp1, T_element);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
                 }
                 /* if (diag == blas_non_unit_diag) */
-                head_intx[jx] = head_temp1[0];
-                tail_intx[jx] = tail_temp1[0];
-                head_intx[1 + jx] = head_temp1[1];
-                tail_intx[1 + jx] = tail_temp1[1];
+                intx[jx] = temp1;
 
                 jx -= inc_intx;
               }                        /* for j>=0 */
@@ -1378,53 +1613,18 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                    i=j+1 to n-1           */
-                head_temp3[0] = head_intx[jx];
-                head_temp3[1] = head_intx[1 + jx];
-                tail_temp3[0] = tail_intx[jx];
-                tail_temp3[1] = tail_intx[1 + jx];
+                temp3 = intx[jx];
                 /* multiply by alpha */
-                {
-                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                  TmpType_t temp3(temp3r, temp3i);
-                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
-                }
+                temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
 
 
                 ix = (n - 1) * inc_intx;
                 for (i = n - 1; i >= j + 1; i--) {
                   T_element = T_i[i * incT + j * ldt * incT];
 
-                  head_temp3[0] = head_intx[ix];
-                  head_temp3[1] = head_intx[1 + ix];
-                  tail_temp3[0] = tail_intx[ix];
-                  tail_temp3[1] = tail_intx[1 + ix];
-                  {
-                    impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                    impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                    TmpType_t temp3(temp3r, temp3i);
-                    TmpType_t temp2 = impl::mul<TmpType_t>(temp3, T_element);
-                    head_temp2[0] = std::real(temp2).head_();
-                    head_temp2[1] = std::imag(temp2).head_();
-                    tail_temp2[0] = std::real(temp2).tail_();
-                    tail_temp2[1] = std::imag(temp2).tail_();
-
-                  }
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
-                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
-                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
-                  TmpType_t temp2(temp2r, temp2i);
+                  temp3 = intx[ix];
+                  temp2 = impl::mul<TmpType_t>(temp3, T_element);
                   temp1 = temp1 - temp2;
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix -= inc_intx;
                 }                /* for j<n */
 
@@ -1434,21 +1634,11 @@ constexpr void my_trsv_x(blas_order_type order,
                   T_element = T_i[j * incT + j * ldt * incT];
 
 
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
                   temp1 = impl::div(temp1, T_element);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
 
                 }
                 /* if (diag == blas_non_unit_diag) */
-                head_intx[jx] = head_temp1[0];
-                tail_intx[jx] = tail_temp1[0];
-                head_intx[1 + jx] = head_temp1[1];
-                tail_intx[1 + jx] = tail_temp1[1];
+                intx[jx] = temp1;
 
                 jx -= inc_intx;
               }                        /* for j>=0 */
@@ -1464,52 +1654,17 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* compute Xj = Xj - SUM Aij(or Aji) * Xi
                    i=j+1 to n-1           */
-                head_temp3[0] = head_intx[jx];
-                head_temp3[1] = head_intx[1 + jx];
-                tail_temp3[0] = tail_intx[jx];
-                tail_temp3[1] = tail_intx[1 + jx];
+                temp3 = intx[jx];
                 /* multiply by alpha */
-                {
-                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                  TmpType_t temp3(temp3r, temp3i);
-                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
-                }
+                temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
 
 
                 ix = 0;
                 for (i = 0; i < j; i++) {
                   T_element = impl::Conj::func(T_i[i * incT + j * ldt * incT]);
-                  head_temp3[0] = head_intx[ix];
-                  head_temp3[1] = head_intx[1 + ix];
-                  tail_temp3[0] = tail_intx[ix];
-                  tail_temp3[1] = tail_intx[1 + ix];
-                  {
-                    impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                    impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                    TmpType_t temp3(temp3r, temp3i);
-                    TmpType_t temp2 = impl::mul<TmpType_t>(temp3, T_element);
-                    head_temp2[0] = std::real(temp2).head_();
-                    head_temp2[1] = std::imag(temp2).head_();
-                    tail_temp2[0] = std::real(temp2).tail_();
-                    tail_temp2[1] = std::imag(temp2).tail_();
-
-                  }
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
-                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
-                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
-                  TmpType_t temp2(temp2r, temp2i);
+                  temp3 = intx[ix];
+                  temp2 = impl::mul<TmpType_t>(temp3, T_element);
                   temp1 = temp1 - temp2;
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix += inc_intx;
                 }                /* for i<j */
 
@@ -1518,21 +1673,11 @@ constexpr void my_trsv_x(blas_order_type order,
                 if (diag == blas_non_unit_diag) {
                   T_element = impl::Conj::func(T_i[j * incT + j * ldt * incT]);
 
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
                   temp1 = impl::div(temp1, T_element);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
 
                 }
                 /* if (diag == blas_non_unit_diag) */
-                head_intx[jx] = head_temp1[0];
-                tail_intx[jx] = tail_temp1[0];
-                head_intx[1 + jx] = head_temp1[1];
-                tail_intx[1 + jx] = tail_temp1[1];
+                intx[jx] = temp1;
                 jx += inc_intx;
               }                        /* for j<n */
             } else {
@@ -1542,53 +1687,18 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* compute Xj = Xj - SUM Aij(or Aji) * Xi
                    i=j+1 to n-1           */
-                head_temp3[0] = head_intx[jx];
-                head_temp3[1] = head_intx[1 + jx];
-                tail_temp3[0] = tail_intx[jx];
-                tail_temp3[1] = tail_intx[1 + jx];
+                temp3 = intx[jx];
                 /* multiply by alpha */
-                {
-                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                  TmpType_t temp3(temp3r, temp3i);
-                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
-                }
+                temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
 
 
                 ix = 0;
                 for (i = 0; i < j; i++) {
                   T_element = T_i[i * incT + j * ldt * incT];
 
-                  head_temp3[0] = head_intx[ix];
-                  head_temp3[1] = head_intx[1 + ix];
-                  tail_temp3[0] = tail_intx[ix];
-                  tail_temp3[1] = tail_intx[1 + ix];
-                  {
-                    impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                    impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                    TmpType_t temp3(temp3r, temp3i);
-                    TmpType_t temp2 = impl::mul<TmpType_t>(temp3, T_element);
-                    head_temp2[0] = std::real(temp2).head_();
-                    head_temp2[1] = std::imag(temp2).head_();
-                    tail_temp2[0] = std::real(temp2).tail_();
-                    tail_temp2[1] = std::imag(temp2).tail_();
-
-                  }
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
-                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
-                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
-                  TmpType_t temp2(temp2r, temp2i);
+                  temp3 = intx[ix];
+                  temp2 = impl::mul<TmpType_t>(temp3, T_element);
                   temp1 = temp1 - temp2;
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix += inc_intx;
                 }                /* for i<j */
 
@@ -1598,21 +1708,11 @@ constexpr void my_trsv_x(blas_order_type order,
                   T_element = T_i[j * incT + j * ldt * incT];
 
 
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
                   temp1 = impl::div(temp1, T_element);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
 
                 }
                 /* if (diag == blas_non_unit_diag) */
-                head_intx[jx] = head_temp1[0];
-                tail_intx[jx] = tail_temp1[0];
-                head_intx[1 + jx] = head_temp1[1];
-                tail_intx[1 + jx] = tail_temp1[1];
+                intx[jx] = temp1;
                 jx += inc_intx;
               }                        /* for j<n */
             }
@@ -1627,52 +1727,17 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                    i=j+1 to n-1           */
-                head_temp3[0] = head_intx[jx];
-                head_temp3[1] = head_intx[1 + jx];
-                tail_temp3[0] = tail_intx[jx];
-                tail_temp3[1] = tail_intx[1 + jx];
+                temp3 = intx[jx];
                 /* multiply by alpha */
-                {
-                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                  TmpType_t temp3(temp3r, temp3i);
-                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
-                }
+                temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
 
 
                 ix = (n - 1) * inc_intx;
                 for (i = n - 1; i >= j + 1; i--) {
                   T_element = impl::Conj::func(T_i[j * incT + i * ldt * incT]);
-                  head_temp3[0] = head_intx[ix];
-                  head_temp3[1] = head_intx[1 + ix];
-                  tail_temp3[0] = tail_intx[ix];
-                  tail_temp3[1] = tail_intx[1 + ix];
-                  {
-                    impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                    impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                    TmpType_t temp3(temp3r, temp3i);
-                    TmpType_t temp2 = impl::mul<TmpType_t>(temp3, T_element);
-                    head_temp2[0] = std::real(temp2).head_();
-                    head_temp2[1] = std::imag(temp2).head_();
-                    tail_temp2[0] = std::real(temp2).tail_();
-                    tail_temp2[1] = std::imag(temp2).tail_();
-
-                  }
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
-                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
-                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
-                  TmpType_t temp2(temp2r, temp2i);
+                  temp3 = intx[ix];
+                  temp2 = impl::mul<TmpType_t>(temp3, T_element);
                   temp1 = temp1 - temp2;
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix -= inc_intx;
                 }                /* for j<n */
 
@@ -1681,21 +1746,11 @@ constexpr void my_trsv_x(blas_order_type order,
                 if (diag == blas_non_unit_diag) {
                   T_element = impl::Conj::func(T_i[j * incT + j * ldt * incT]);
 
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
                   temp1 = impl::div(temp1, T_element);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
 
                 }
                 /* if (diag == blas_non_unit_diag) */
-                head_intx[jx] = head_temp1[0];
-                tail_intx[jx] = tail_temp1[0];
-                head_intx[1 + jx] = head_temp1[1];
-                tail_intx[1 + jx] = tail_temp1[1];
+                intx[jx] = temp1;
 
                 jx -= inc_intx;
               }                        /* for j>=0 */
@@ -1706,53 +1761,18 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                    i=j+1 to n-1           */
-                head_temp3[0] = head_intx[jx];
-                head_temp3[1] = head_intx[1 + jx];
-                tail_temp3[0] = tail_intx[jx];
-                tail_temp3[1] = tail_intx[1 + jx];
+                temp3 = intx[jx];
                 /* multiply by alpha */
-                {
-                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                  TmpType_t temp3(temp3r, temp3i);
-                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
-                }
+                temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
 
 
                 ix = (n - 1) * inc_intx;
                 for (i = n - 1; i >= j + 1; i--) {
                   T_element = T_i[j * incT + i * ldt * incT];
 
-                  head_temp3[0] = head_intx[ix];
-                  head_temp3[1] = head_intx[1 + ix];
-                  tail_temp3[0] = tail_intx[ix];
-                  tail_temp3[1] = tail_intx[1 + ix];
-                  {
-                    impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                    impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                    TmpType_t temp3(temp3r, temp3i);
-                    TmpType_t temp2 = impl::mul<TmpType_t>(temp3, T_element);
-                    head_temp2[0] = std::real(temp2).head_();
-                    head_temp2[1] = std::imag(temp2).head_();
-                    tail_temp2[0] = std::real(temp2).tail_();
-                    tail_temp2[1] = std::imag(temp2).tail_();
-
-                  }
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
-                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
-                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
-                  TmpType_t temp2(temp2r, temp2i);
+                  temp3 = intx[ix];
+                  temp2 = impl::mul<TmpType_t>(temp3, T_element);
                   temp1 = temp1 - temp2;
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix -= inc_intx;
                 }                /* for j<n */
 
@@ -1762,21 +1782,11 @@ constexpr void my_trsv_x(blas_order_type order,
                   T_element = T_i[j * incT + j * ldt * incT];
 
 
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
                   temp1 = impl::div(temp1, T_element);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
 
                 }
                 /* if (diag == blas_non_unit_diag) */
-                head_intx[jx] = head_temp1[0];
-                tail_intx[jx] = tail_temp1[0];
-                head_intx[1 + jx] = head_temp1[1];
-                tail_intx[1 + jx] = tail_temp1[1];
+                intx[jx] = temp1;
 
                 jx -= inc_intx;
               }                        /* for j>=0 */
@@ -1792,52 +1802,17 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* compute Xj = Xj - SUM Aij(or Aji) * Xi
                    i=j+1 to n-1           */
-                head_temp3[0] = head_intx[jx];
-                head_temp3[1] = head_intx[1 + jx];
-                tail_temp3[0] = tail_intx[jx];
-                tail_temp3[1] = tail_intx[1 + jx];
+                temp3 = intx[jx];
                 /* multiply by alpha */
-                {
-                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                  TmpType_t temp3(temp3r, temp3i);
-                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
-                }
+                temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
 
 
                 ix = 0;
                 for (i = 0; i < j; i++) {
                   T_element = impl::Conj::func(T_i[j * incT + i * ldt * incT]);
-                  head_temp3[0] = head_intx[ix];
-                  head_temp3[1] = head_intx[1 + ix];
-                  tail_temp3[0] = tail_intx[ix];
-                  tail_temp3[1] = tail_intx[1 + ix];
-                  {
-                    impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                    impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                    TmpType_t temp3(temp3r, temp3i);
-                    TmpType_t temp2 = impl::mul<TmpType_t>(temp3, T_element);
-                    head_temp2[0] = std::real(temp2).head_();
-                    head_temp2[1] = std::imag(temp2).head_();
-                    tail_temp2[0] = std::real(temp2).tail_();
-                    tail_temp2[1] = std::imag(temp2).tail_();
-
-                  }
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
-                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
-                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
-                  TmpType_t temp2(temp2r, temp2i);
+                  temp3 = intx[ix];
+                  temp2 = impl::mul<TmpType_t>(temp3, T_element);
                   temp1 = temp1 - temp2;
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix += inc_intx;
                 }                /* for i<j */
 
@@ -1846,21 +1821,11 @@ constexpr void my_trsv_x(blas_order_type order,
                 if (diag == blas_non_unit_diag) {
                   T_element = impl::Conj::func(T_i[j * incT + j * ldt * incT]);
 
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
                   temp1 = impl::div(temp1, T_element);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
 
                 }
                 /* if (diag == blas_non_unit_diag) */
-                head_intx[jx] = head_temp1[0];
-                tail_intx[jx] = tail_temp1[0];
-                head_intx[1 + jx] = head_temp1[1];
-                tail_intx[1 + jx] = tail_temp1[1];
+                intx[jx] = temp1;
                 jx += inc_intx;
               }                        /* for j<n */
             } else {
@@ -1870,53 +1835,18 @@ constexpr void my_trsv_x(blas_order_type order,
 
                 /* compute Xj = Xj - SUM Aij(or Aji) * Xi
                    i=j+1 to n-1           */
-                head_temp3[0] = head_intx[jx];
-                head_temp3[1] = head_intx[1 + jx];
-                tail_temp3[0] = tail_intx[jx];
-                tail_temp3[1] = tail_intx[1 + jx];
+                temp3 = intx[jx];
                 /* multiply by alpha */
-                {
-                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                  TmpType_t temp3(temp3r, temp3i);
-                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
-                }
+                temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
 
 
                 ix = 0;
                 for (i = 0; i < j; i++) {
                   T_element = T_i[j * incT + i * ldt * incT];
 
-                  head_temp3[0] = head_intx[ix];
-                  head_temp3[1] = head_intx[1 + ix];
-                  tail_temp3[0] = tail_intx[ix];
-                  tail_temp3[1] = tail_intx[1 + ix];
-                  {
-                    impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
-                    impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
-                    TmpType_t temp3(temp3r, temp3i);
-                    TmpType_t temp2 = impl::mul<TmpType_t>(temp3, T_element);
-                    head_temp2[0] = std::real(temp2).head_();
-                    head_temp2[1] = std::imag(temp2).head_();
-                    tail_temp2[0] = std::real(temp2).tail_();
-                    tail_temp2[1] = std::imag(temp2).tail_();
-
-                  }
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
-                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
-                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
-                  TmpType_t temp2(temp2r, temp2i);
+                  temp3 = intx[ix];
+                  temp2 = impl::mul<TmpType_t>(temp3, T_element);
                   temp1 = temp1 - temp2;
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix += inc_intx;
                 }                /* for i<j */
 
@@ -1926,21 +1856,11 @@ constexpr void my_trsv_x(blas_order_type order,
                   T_element = T_i[j * incT + j * ldt * incT];
 
 
-                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
-                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
-                  TmpType_t temp1(temp1r, temp1i);
                   temp1 = impl::div(temp1, T_element);
-                  head_temp1[0] = std::real(temp1).head_();
-                  head_temp1[1] = std::imag(temp1).head_();
-                  tail_temp1[0] = std::real(temp1).tail_();
-                  tail_temp1[1] = std::imag(temp1).tail_();
 
                 }
                 /* if (diag == blas_non_unit_diag) */
-                head_intx[jx] = head_temp1[0];
-                tail_intx[jx] = tail_temp1[0];
-                head_intx[1 + jx] = head_temp1[1];
-                tail_intx[1 + jx] = tail_temp1[1];
+                intx[jx] = temp1;
                 jx += inc_intx;
               }                        /* for j<n */
             }
@@ -1950,17 +1870,13 @@ constexpr void my_trsv_x(blas_order_type order,
           ix = start_x;
           jx = 0;
           for (i = 0; i < n; i++) {
-            head_temp1[0] = head_intx[jx];
-            head_temp1[1] = head_intx[1 + jx];
-            tail_temp1[0] = tail_intx[jx];
-            tail_temp1[1] = tail_intx[1 + jx];
-            x_i[ix] = T(head_temp1[0], head_temp1[1]);
+            temp1 = intx[jx];
+            x_i[ix] = impl::to<T>(temp1);
             ix += incx;
             jx += inc_intx;
           }
 
-          blas_free(head_intx);
-          blas_free(tail_intx);
+          delete[] intx;
         }
       }
       FPU_FIX_STOP;
