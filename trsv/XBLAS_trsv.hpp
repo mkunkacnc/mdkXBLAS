@@ -1247,14 +1247,6 @@ constexpr void my_trsv_x(blas_order_type order,
     break;
   case blas_prec_extra:
     {
-      double *x_i = (double *) x;        /* internal x */
-      incx *= 2;
-      if (incx <= 0) {
-        start_x = -(n - 1) * incx;
-      } else {
-        start_x = 0;
-      }
-
       FPU_FIX_DECL;
       FPU_FIX_START;
       {
@@ -1282,9 +1274,9 @@ constexpr void my_trsv_x(blas_order_type order,
           ix = start_x;
           jx = 0;
           for (i = 0; i < n; i++) {
-            head_temp1[0] = x_i[ix];
+            head_temp1[0] = std::real(x_i[ix]);
             tail_temp1[0] = 0.0;
-            head_temp1[1] = x_i[1 + ix];
+            head_temp1[1] = std::imag(x_i[ix]);
             tail_temp1[1] = 0.0;
             head_intx[jx] = head_temp1[0];
             tail_intx[jx] = tail_temp1[0];
@@ -3584,8 +3576,7 @@ constexpr void my_trsv_x(blas_order_type order,
             head_temp1[1] = head_intx[1 + jx];
             tail_temp1[0] = tail_intx[jx];
             tail_temp1[1] = tail_intx[1 + jx];
-            x_i[ix] = head_temp1[0];
-            x_i[ix + 1] = head_temp1[1];
+            x_i[ix] = T(head_temp1[0], head_temp1[1]);
             ix += incx;
             jx += inc_intx;
           }
