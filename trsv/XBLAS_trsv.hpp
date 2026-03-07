@@ -1306,29 +1306,14 @@ constexpr void my_trsv_x(blas_order_type order,
                 tail_temp3[1] = tail_intx[1 + jx];
                 /* multiply by alpha */
                 {
-                  /* Compute complex-extra = complex-extra * complex-double. */
-                  double head_a0, tail_a0;
-                  double head_a1, tail_a1;
-                  double head_t1, tail_t1;
-                  double head_t2, tail_t2;
-                  head_a0 = head_temp3[0];
-                  tail_a0 = tail_temp3[0];
-                  head_a1 = head_temp3[1];
-                  tail_a1 = tail_temp3[1];
-                  /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
-                  head_t2 = -head_t2;
-                  tail_t2 = -tail_t2;
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[0] = head_t1;
-                  tail_temp1[0] = tail_t1;
-                  /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[1] = head_t1;
-                  tail_temp1[1] = tail_t1;
+                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
+                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
+                  TmpType_t temp3(temp3r, temp3i);
+                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                 }
 
 
@@ -1399,29 +1384,14 @@ constexpr void my_trsv_x(blas_order_type order,
                 tail_temp3[1] = tail_intx[1 + jx];
                 /* multiply by alpha */
                 {
-                  /* Compute complex-extra = complex-extra * complex-double. */
-                  double head_a0, tail_a0;
-                  double head_a1, tail_a1;
-                  double head_t1, tail_t1;
-                  double head_t2, tail_t2;
-                  head_a0 = head_temp3[0];
-                  tail_a0 = tail_temp3[0];
-                  head_a1 = head_temp3[1];
-                  tail_a1 = tail_temp3[1];
-                  /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
-                  head_t2 = -head_t2;
-                  tail_t2 = -tail_t2;
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[0] = head_t1;
-                  tail_temp1[0] = tail_t1;
-                  /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[1] = head_t1;
-                  tail_temp1[1] = tail_t1;
+                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
+                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
+                  TmpType_t temp3(temp3r, temp3i);
+                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                 }
 
 
@@ -1500,29 +1470,14 @@ constexpr void my_trsv_x(blas_order_type order,
                 tail_temp3[1] = tail_intx[1 + jx];
                 /* multiply by alpha */
                 {
-                  /* Compute complex-extra = complex-extra * complex-double. */
-                  double head_a0, tail_a0;
-                  double head_a1, tail_a1;
-                  double head_t1, tail_t1;
-                  double head_t2, tail_t2;
-                  head_a0 = head_temp3[0];
-                  tail_a0 = tail_temp3[0];
-                  head_a1 = head_temp3[1];
-                  tail_a1 = tail_temp3[1];
-                  /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
-                  head_t2 = -head_t2;
-                  tail_t2 = -tail_t2;
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[0] = head_t1;
-                  tail_temp1[0] = tail_t1;
-                  /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[1] = head_t1;
-                  tail_temp1[1] = tail_t1;
+                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
+                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
+                  TmpType_t temp3(temp3r, temp3i);
+                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                 }
 
 
@@ -1593,29 +1548,14 @@ constexpr void my_trsv_x(blas_order_type order,
                 tail_temp3[1] = tail_intx[1 + jx];
                 /* multiply by alpha */
                 {
-                  /* Compute complex-extra = complex-extra * complex-double. */
-                  double head_a0, tail_a0;
-                  double head_a1, tail_a1;
-                  double head_t1, tail_t1;
-                  double head_t2, tail_t2;
-                  head_a0 = head_temp3[0];
-                  tail_a0 = tail_temp3[0];
-                  head_a1 = head_temp3[1];
-                  tail_a1 = tail_temp3[1];
-                  /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
-                  head_t2 = -head_t2;
-                  tail_t2 = -tail_t2;
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[0] = head_t1;
-                  tail_temp1[0] = tail_t1;
-                  /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[1] = head_t1;
-                  tail_temp1[1] = tail_t1;
+                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
+                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
+                  TmpType_t temp3(temp3r, temp3i);
+                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                 }
 
 
@@ -1693,29 +1633,14 @@ constexpr void my_trsv_x(blas_order_type order,
                 tail_temp3[1] = tail_intx[1 + jx];
                 /* multiply by alpha */
                 {
-                  /* Compute complex-extra = complex-extra * complex-double. */
-                  double head_a0, tail_a0;
-                  double head_a1, tail_a1;
-                  double head_t1, tail_t1;
-                  double head_t2, tail_t2;
-                  head_a0 = head_temp3[0];
-                  tail_a0 = tail_temp3[0];
-                  head_a1 = head_temp3[1];
-                  tail_a1 = tail_temp3[1];
-                  /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
-                  head_t2 = -head_t2;
-                  tail_t2 = -tail_t2;
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[0] = head_t1;
-                  tail_temp1[0] = tail_t1;
-                  /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[1] = head_t1;
-                  tail_temp1[1] = tail_t1;
+                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
+                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
+                  TmpType_t temp3(temp3r, temp3i);
+                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                 }
 
 
@@ -1787,29 +1712,14 @@ constexpr void my_trsv_x(blas_order_type order,
                 tail_temp3[1] = tail_intx[1 + jx];
                 /* multiply by alpha */
                 {
-                  /* Compute complex-extra = complex-extra * complex-double. */
-                  double head_a0, tail_a0;
-                  double head_a1, tail_a1;
-                  double head_t1, tail_t1;
-                  double head_t2, tail_t2;
-                  head_a0 = head_temp3[0];
-                  tail_a0 = tail_temp3[0];
-                  head_a1 = head_temp3[1];
-                  tail_a1 = tail_temp3[1];
-                  /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
-                  head_t2 = -head_t2;
-                  tail_t2 = -tail_t2;
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[0] = head_t1;
-                  tail_temp1[0] = tail_t1;
-                  /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[1] = head_t1;
-                  tail_temp1[1] = tail_t1;
+                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
+                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
+                  TmpType_t temp3(temp3r, temp3i);
+                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                 }
 
 
@@ -1888,29 +1798,14 @@ constexpr void my_trsv_x(blas_order_type order,
                 tail_temp3[1] = tail_intx[1 + jx];
                 /* multiply by alpha */
                 {
-                  /* Compute complex-extra = complex-extra * complex-double. */
-                  double head_a0, tail_a0;
-                  double head_a1, tail_a1;
-                  double head_t1, tail_t1;
-                  double head_t2, tail_t2;
-                  head_a0 = head_temp3[0];
-                  tail_a0 = tail_temp3[0];
-                  head_a1 = head_temp3[1];
-                  tail_a1 = tail_temp3[1];
-                  /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
-                  head_t2 = -head_t2;
-                  tail_t2 = -tail_t2;
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[0] = head_t1;
-                  tail_temp1[0] = tail_t1;
-                  /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[1] = head_t1;
-                  tail_temp1[1] = tail_t1;
+                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
+                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
+                  TmpType_t temp3(temp3r, temp3i);
+                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                 }
 
 
@@ -1981,29 +1876,14 @@ constexpr void my_trsv_x(blas_order_type order,
                 tail_temp3[1] = tail_intx[1 + jx];
                 /* multiply by alpha */
                 {
-                  /* Compute complex-extra = complex-extra * complex-double. */
-                  double head_a0, tail_a0;
-                  double head_a1, tail_a1;
-                  double head_t1, tail_t1;
-                  double head_t2, tail_t2;
-                  head_a0 = head_temp3[0];
-                  tail_a0 = tail_temp3[0];
-                  head_a1 = head_temp3[1];
-                  tail_a1 = tail_temp3[1];
-                  /* real part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a0, tail_a0, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a1, tail_a1, std::imag(alpha_i));
-                  head_t2 = -head_t2;
-                  tail_t2 = -tail_t2;
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[0] = head_t1;
-                  tail_temp1[0] = tail_t1;
-                  /* imaginary part */
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t1, &tail_t1, head_a1, tail_a1, std::real(alpha_i));
-                  compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_a0, tail_a0, std::imag(alpha_i));
-                  compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                  head_temp1[1] = head_t1;
-                  tail_temp1[1] = tail_t1;
+                  impl::inner_type_t<TmpType_t> temp3r(head_temp3[0], tail_temp3[0]);
+                  impl::inner_type_t<TmpType_t> temp3i(head_temp3[1], tail_temp3[1]);
+                  TmpType_t temp3(temp3r, temp3i);
+                  TmpType_t temp1 = impl::mul<TmpType_t>(temp3, alpha_i);
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                 }
 
 
