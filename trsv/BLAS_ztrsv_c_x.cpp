@@ -63,7 +63,7 @@ void BLAS_ztrsv_c_x(enum blas_order_type order,
 {
 //static const char routine_name[] = "BLAS_ztrsv_c_x";
 #if 1
-  XBLAS::my_trsv_x(order,
+  XBLAS::trsv_x(order,
                 uplo,
                 trans,
                 diag,

@@ -266,18 +266,71 @@ template<typename A,
 constexpr A div(A a, B b)
 {
   if constexpr (std::is_same_v<A, std::complex<double>> &&
-                std::is_same_v<B, std::complex<float>>) {
+                std::is_same_v<B, std::complex<double>>) {
+    double S = 1.0, eps, ov, un;
+    double abs_a, abs_b, abs_c, abs_d, ab, cd;
+    double r;
+    double t;
+    double q[2];
+
+    eps = std::pow(2.0, -24.0);
+    un = std::pow(2.0, -126.0);
+    ov = std::pow(2.0, 128.0) * (1 - eps);
+    abs_a = std::fabs(std::real(a));
+    abs_b = std::fabs(std::imag(a));
+    abs_c = std::fabs(static_cast<double>(std::real(b)));
+    abs_d = std::fabs(static_cast<double>(std::imag(b)));
+    ab = std::max(abs_a, abs_b);
+    cd = std::max(abs_c, abs_d);
+
+    /* Scaling */
+    if (ab > ov / 16) {        /* scale down a, b */
+      a /= 16;
+      S = S * 16;
+    }
+    if (cd > ov / 16) {        /* scale down c, d */
+      b /= 16;
+      S = S / 16;
+    }
+    if (ab < un / eps * 2) {        /* scale up a, b */
+      t = 2.0 / (eps * eps);
+      a *= t;
+      S = S / t;
+    }
+    if (cd < un / eps * 2) {        /* scale up c, d */
+      t = 2.0 / (eps * eps);
+      b *= t;
+      S = S * t;
+    }
+
+    /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
+    if (abs_c > abs_d) {
+      r = std::imag(b) / std::real(b);
+      t = 1 / (std::real(b) + std::imag(b) * r);
+      q[0] = (std::real(a) + std::imag(a) * r) * t;
+      q[1] = (std::imag(a) - std::real(a) * r) * t;
+    } else {
+      r = std::real(b) / std::imag(b);
+      t = 1 / (std::imag(b) + std::real(b) * r);
+      q[0] = ( std::imag(a) + std::real(a) * r) * t;
+      q[1] = (-std::real(a) + std::imag(a) * r) * t;
+    }
+    /* Scale back */
+    return A(q[0] * S, q[1] * S);
+
+  } else if constexpr (std::is_same_v<A, std::complex<double>> &&
+                       std::is_same_v<B, std::complex<float>>) {
     double S = 1.0, eps, ov, un, eps1, ov1, un1;
     double abs_a, abs_b, abs_c, abs_d, ab, cd;
     double r;
     double t;
     double q[2];
 
-    eps = pow(2.0, -24.0);
-    un = pow(2.0, -126.0);
-    ov = pow(2.0, 128.0) * (1 - eps);
-    eps1 = pow(2.0, -53.0);
-    un1 = pow(2.0, -1022.0);
+    eps = std::pow(2.0, -24.0);
+    un = std::pow(2.0, -126.0);
+    ov = std::pow(2.0, 128.0) * (1 - eps);
+    eps1 = std::pow(2.0, -53.0);
+    un1 = std::pow(2.0, -1022.0);
     ov1 = 1.79769313486231571e+308;
     /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
     abs_a = std::fabs(std::real(a));
@@ -323,6 +376,171 @@ constexpr A div(A a, B b)
     return A(q[0] * S, q[1] * S);
 
   } else if constexpr (std::is_same_v<A, std::complex<double_double>> &&
+                       std::is_same_v<B, std::complex<double>>) {
+    double head_temp1[2], tail_temp1[2];
+    head_temp1[0] = std::real(a).head_();
+    head_temp1[1] = std::imag(a).head_();
+    tail_temp1[0] = std::real(a).tail_();
+    tail_temp1[1] = std::imag(a).tail_();
+    B T_element = b;
+
+    double S = 1.0, eps, ov, un, eps1, ov1, un1;
+    double abs_a, abs_b, abs_c, abs_d, ab, cd;
+    double s;
+    double r;
+    double head_t, tail_t;
+    double head_t1, tail_t1;
+    double head_t2, tail_t2;
+    double head_q[2], tail_q[2];
+
+    eps = std::pow(2.0, -53.0);        /* double precision */
+    un = std::pow(2.0, -1022.0);
+    ov = 1.79769313486231571e+308;
+    /* = (pow(2.0, 1023.0) * (1 - eps)) * 2.0 */
+    eps1 = std::pow(2.0, -104.0);        /* extra precision */
+    un1 = std::pow(2.0, -1022.0);
+    ov1 = 1.79769313486231571e+308;
+    /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0 */
+    abs_a = std::fabs(head_temp1[0]);
+    abs_b = std::fabs(head_temp1[1]);
+    abs_c = std::fabs((double) std::real(T_element));
+    abs_d = std::fabs((double) std::imag(T_element));
+    ab = std::max(abs_a, abs_b);
+    cd = std::max(abs_c, abs_d);
+
+    /* Scaling */
+    if (ab > ov1 / 16) {        /* scale down a, b */
+      {
+        double head_a, tail_a;
+        double head_b, tail_b;
+        head_a = head_temp1[0];
+        tail_a = tail_temp1[0];
+        compute_doubledouble_eq_doubledouble_div_double(&head_b, &tail_b, head_a, tail_a, 16.0);
+        head_temp1[0] = head_b;
+        tail_temp1[0] = tail_b;
+        head_a = head_temp1[1];
+        tail_a = tail_temp1[1];
+        compute_doubledouble_eq_doubledouble_div_double(&head_b, &tail_b, head_a, tail_a, 16.0);
+        head_temp1[1] = head_b;
+        tail_temp1[1] = tail_b;
+      }
+      S = S * 16;
+    }
+    if (cd > ov / 16) {        /* scale down c, d */
+      T_element /= 16;
+      S = S / 16;
+    }
+    if (ab < un1 / eps1 * 2) {        /* scale up a, b */
+      s = 2.0 / (eps1 * eps1);
+      {
+        /* Compute complex-extra = complex-extra * real. */
+        double head_a0, tail_a0;
+        double head_a1, tail_a1;
+        double head_t, tail_t;
+        head_a0 = head_temp1[0];
+        tail_a0 = tail_temp1[0];
+        head_a1 = head_temp1[1];
+        tail_a1 = tail_temp1[1];
+        compute_doubledouble_eq_doubledouble_mul_double(&head_t, &tail_t, head_a0, tail_a0, s);
+        head_temp1[0] = head_t;
+        tail_temp1[0] = tail_t;
+        compute_doubledouble_eq_doubledouble_mul_double(&head_t, &tail_t, head_a1, tail_a1, s);
+        head_temp1[1] = head_t;
+        tail_temp1[1] = tail_t;
+      }
+
+      S = S / s;
+    }
+    if (cd < un / eps * 2) {        /* scale up c, d */
+      s = 2.0 / (eps * eps);
+      T_element *= s;
+      S = S * s;
+    }
+
+    /* Now un1/eps1*2 <= (a,b) >= ov1/16, un/eps*2 <= (c,d) >= ov/16 */
+    if (abs_c > abs_d) {
+      r = std::imag(T_element) / std::real(T_element);
+      compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, std::imag(T_element));
+      compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_t, tail_t, std::real(T_element));
+      head_t1 = head_temp1[1];
+      tail_t1 = tail_temp1[1];        /* b */
+      compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_t1, tail_t1, r);
+      head_t1 = head_temp1[0];
+      tail_t1 = tail_temp1[0];        /* a */
+      compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t2, &tail_t2, head_t2, tail_t2, head_t1, tail_t1);
+      compute_doubledouble_eq_doubledouble_div_doubledouble(&head_t2, &tail_t2, head_t2, tail_t2, head_t, tail_t);
+      head_q[0] = head_t2;
+      tail_q[0] = tail_t2;
+      head_t1 = head_temp1[0];
+      tail_t1 = tail_temp1[0];        /* a */
+      compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_t1, tail_t1, r);
+      head_t1 = head_temp1[1];
+      tail_t1 = tail_temp1[1];        /* b */
+      {
+        double head_bt, tail_bt;
+        head_bt = -head_t2;
+        tail_bt = -tail_t2;
+        compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t2, &tail_t2, head_t1, tail_t1, head_bt, tail_bt);
+      }                /* b - a*r */
+      compute_doubledouble_eq_doubledouble_div_doubledouble(&head_t2, &tail_t2, head_t2, tail_t2, head_t, tail_t);
+      head_q[1] = head_t2;
+      tail_q[1] = tail_t2;
+    } else {
+      r = std::real(T_element) / std::imag(T_element);
+      compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, std::real(T_element));
+      compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_t, tail_t, std::imag(T_element));
+      head_t1 = head_temp1[0];
+      tail_t1 = tail_temp1[0];        /* a */
+      compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_t1, tail_t1, r);
+      head_t1 = head_temp1[1];
+      tail_t1 = tail_temp1[1];        /* b */
+      compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t2, &tail_t2, head_t2, tail_t2, head_t1, tail_t1);
+      compute_doubledouble_eq_doubledouble_div_doubledouble(&head_t2, &tail_t2, head_t2, tail_t2, head_t, tail_t);
+      head_q[0] = head_t2;
+      tail_q[0] = tail_t2;
+      head_t1 = head_temp1[1];
+      tail_t1 = tail_temp1[1];        /* b */
+      compute_doubledouble_eq_doubledouble_mul_double(&head_t2, &tail_t2, head_t1, tail_t1, r);
+      head_t1 = head_temp1[0];
+      tail_t1 = tail_temp1[0];        /* a */
+      {
+        double head_bt, tail_bt;
+        head_bt = -head_t1;
+        tail_bt = -tail_t1;
+        compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t2, &tail_t2, head_t2, tail_t2, head_bt, tail_bt);
+      }                /* -a + b*r */
+      compute_doubledouble_eq_doubledouble_div_doubledouble(&head_t2, &tail_t2, head_t2, tail_t2, head_t, tail_t);
+      head_q[1] = head_t2;
+      tail_q[1] = tail_t2;
+    }
+    /* Scale back */
+    if (S == 1.0) {
+      head_temp1[0] = head_q[0];
+      tail_temp1[0] = tail_q[0];
+      head_temp1[1] = head_q[1];
+      tail_temp1[1] = tail_q[1];
+    } else {
+      /* Compute complex-extra = complex-extra * real. */
+      double head_a0, tail_a0;
+      double head_a1, tail_a1;
+      double head_t, tail_t;
+      head_a0 = head_q[0];
+      tail_a0 = tail_q[0];
+      head_a1 = head_q[1];
+      tail_a1 = tail_q[1];
+      compute_doubledouble_eq_doubledouble_mul_double(&head_t, &tail_t, head_a0, tail_a0, S);
+      head_temp1[0] = head_t;
+      tail_temp1[0] = tail_t;
+      compute_doubledouble_eq_doubledouble_mul_double(&head_t, &tail_t, head_a1, tail_a1, S);
+      head_temp1[1] = head_t;
+      tail_temp1[1] = tail_t;
+    }
+
+    impl::inner_type_t<A> cr(head_temp1[0], tail_temp1[0]);
+    impl::inner_type_t<A> ci(head_temp1[1], tail_temp1[1]);
+    return A(cr, ci);
+
+  } else if constexpr (std::is_same_v<A, std::complex<double_double>> &&
                        std::is_same_v<B, std::complex<float>>) {
     double head_temp1[2], tail_temp1[2];
     head_temp1[0] = std::real(a).head_();
@@ -340,11 +558,11 @@ constexpr A div(A a, B b)
     double head_t2, tail_t2;
     double head_q[2], tail_q[2];
 
-    eps = pow(2.0, -24.0);        /* single precision */
-    un = pow(2.0, -126.0);
-    ov = pow(2.0, 128.0) * (1 - eps);
-    eps1 = pow(2.0, -104.0);        /* extra precision */
-    un1 = pow(2.0, -1022.0);
+    eps = std::pow(2.0, -24.0);        /* single precision */
+    un = std::pow(2.0, -126.0);
+    ov = std::pow(2.0, 128.0) * (1 - eps);
+    eps1 = std::pow(2.0, -104.0);        /* extra precision */
+    un1 = std::pow(2.0, -1022.0);
     ov1 = 1.79769313486231571e+308;
     /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0 */
     abs_a = std::fabs(head_temp1[0]);
