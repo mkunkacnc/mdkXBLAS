@@ -1370,28 +1370,17 @@ constexpr void my_trsv_x(blas_order_type order,
                     }
 
                   }
-                  {
-                    double head_at, tail_at;
-                    double head_bt, tail_bt;
-                    double head_ct, tail_ct;
-
-                    /* Real part */
-                    head_at = head_temp1[0];
-                    tail_at = tail_temp1[0];
-                    head_bt = -head_temp2[0];
-                    tail_bt = -tail_temp2[0];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[0] = head_ct;
-                    tail_temp1[0] = tail_ct;
-                    /* Imaginary part */
-                    head_at = head_temp1[1];
-                    tail_at = tail_temp1[1];
-                    head_bt = -head_temp2[1];
-                    tail_bt = -tail_temp2[1];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[1] = head_ct;
-                    tail_temp1[1] = tail_ct;
-                  }
+                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
+                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
+                  TmpType_t temp1(temp1r, temp1i);
+                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
+                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
+                  TmpType_t temp2(temp2r, temp2i);
+                  temp1 = temp1 - temp2;
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix -= inc_intx;
                 }                /* for j<n */
 
@@ -1495,28 +1484,17 @@ constexpr void my_trsv_x(blas_order_type order,
                     }
 
                   }
-                  {
-                    double head_at, tail_at;
-                    double head_bt, tail_bt;
-                    double head_ct, tail_ct;
-
-                    /* Real part */
-                    head_at = head_temp1[0];
-                    tail_at = tail_temp1[0];
-                    head_bt = -head_temp2[0];
-                    tail_bt = -tail_temp2[0];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[0] = head_ct;
-                    tail_temp1[0] = tail_ct;
-                    /* Imaginary part */
-                    head_at = head_temp1[1];
-                    tail_at = tail_temp1[1];
-                    head_bt = -head_temp2[1];
-                    tail_bt = -tail_temp2[1];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[1] = head_ct;
-                    tail_temp1[1] = tail_ct;
-                  }
+                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
+                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
+                  TmpType_t temp1(temp1r, temp1i);
+                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
+                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
+                  TmpType_t temp2(temp2r, temp2i);
+                  temp1 = temp1 - temp2;
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix -= inc_intx;
                 }                /* for j<n */
 
@@ -1626,28 +1604,17 @@ constexpr void my_trsv_x(blas_order_type order,
                     }
 
                   }
-                  {
-                    double head_at, tail_at;
-                    double head_bt, tail_bt;
-                    double head_ct, tail_ct;
-
-                    /* Real part */
-                    head_at = head_temp1[0];
-                    tail_at = tail_temp1[0];
-                    head_bt = -head_temp2[0];
-                    tail_bt = -tail_temp2[0];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[0] = head_ct;
-                    tail_temp1[0] = tail_ct;
-                    /* Imaginary part */
-                    head_at = head_temp1[1];
-                    tail_at = tail_temp1[1];
-                    head_bt = -head_temp2[1];
-                    tail_bt = -tail_temp2[1];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[1] = head_ct;
-                    tail_temp1[1] = tail_ct;
-                  }
+                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
+                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
+                  TmpType_t temp1(temp1r, temp1i);
+                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
+                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
+                  TmpType_t temp2(temp2r, temp2i);
+                  temp1 = temp1 - temp2;
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix += inc_intx;
                 }                /* for i<j */
 
@@ -1751,28 +1718,17 @@ constexpr void my_trsv_x(blas_order_type order,
                     }
 
                   }
-                  {
-                    double head_at, tail_at;
-                    double head_bt, tail_bt;
-                    double head_ct, tail_ct;
-
-                    /* Real part */
-                    head_at = head_temp1[0];
-                    tail_at = tail_temp1[0];
-                    head_bt = -head_temp2[0];
-                    tail_bt = -tail_temp2[0];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[0] = head_ct;
-                    tail_temp1[0] = tail_ct;
-                    /* Imaginary part */
-                    head_at = head_temp1[1];
-                    tail_at = tail_temp1[1];
-                    head_bt = -head_temp2[1];
-                    tail_bt = -tail_temp2[1];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[1] = head_ct;
-                    tail_temp1[1] = tail_ct;
-                  }
+                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
+                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
+                  TmpType_t temp1(temp1r, temp1i);
+                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
+                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
+                  TmpType_t temp2(temp2r, temp2i);
+                  temp1 = temp1 - temp2;
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix += inc_intx;
                 }                /* for i<j */
 
@@ -1881,28 +1837,17 @@ constexpr void my_trsv_x(blas_order_type order,
                     }
 
                   }
-                  {
-                    double head_at, tail_at;
-                    double head_bt, tail_bt;
-                    double head_ct, tail_ct;
-
-                    /* Real part */
-                    head_at = head_temp1[0];
-                    tail_at = tail_temp1[0];
-                    head_bt = -head_temp2[0];
-                    tail_bt = -tail_temp2[0];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[0] = head_ct;
-                    tail_temp1[0] = tail_ct;
-                    /* Imaginary part */
-                    head_at = head_temp1[1];
-                    tail_at = tail_temp1[1];
-                    head_bt = -head_temp2[1];
-                    tail_bt = -tail_temp2[1];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[1] = head_ct;
-                    tail_temp1[1] = tail_ct;
-                  }
+                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
+                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
+                  TmpType_t temp1(temp1r, temp1i);
+                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
+                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
+                  TmpType_t temp2(temp2r, temp2i);
+                  temp1 = temp1 - temp2;
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix -= inc_intx;
                 }                /* for j<n */
 
@@ -2007,28 +1952,17 @@ constexpr void my_trsv_x(blas_order_type order,
                     }
 
                   }
-                  {
-                    double head_at, tail_at;
-                    double head_bt, tail_bt;
-                    double head_ct, tail_ct;
-
-                    /* Real part */
-                    head_at = head_temp1[0];
-                    tail_at = tail_temp1[0];
-                    head_bt = -head_temp2[0];
-                    tail_bt = -tail_temp2[0];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[0] = head_ct;
-                    tail_temp1[0] = tail_ct;
-                    /* Imaginary part */
-                    head_at = head_temp1[1];
-                    tail_at = tail_temp1[1];
-                    head_bt = -head_temp2[1];
-                    tail_bt = -tail_temp2[1];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[1] = head_ct;
-                    tail_temp1[1] = tail_ct;
-                  }
+                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
+                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
+                  TmpType_t temp1(temp1r, temp1i);
+                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
+                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
+                  TmpType_t temp2(temp2r, temp2i);
+                  temp1 = temp1 - temp2;
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix -= inc_intx;
                 }                /* for j<n */
 
@@ -2138,28 +2072,17 @@ constexpr void my_trsv_x(blas_order_type order,
                     }
 
                   }
-                  {
-                    double head_at, tail_at;
-                    double head_bt, tail_bt;
-                    double head_ct, tail_ct;
-
-                    /* Real part */
-                    head_at = head_temp1[0];
-                    tail_at = tail_temp1[0];
-                    head_bt = -head_temp2[0];
-                    tail_bt = -tail_temp2[0];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[0] = head_ct;
-                    tail_temp1[0] = tail_ct;
-                    /* Imaginary part */
-                    head_at = head_temp1[1];
-                    tail_at = tail_temp1[1];
-                    head_bt = -head_temp2[1];
-                    tail_bt = -tail_temp2[1];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[1] = head_ct;
-                    tail_temp1[1] = tail_ct;
-                  }
+                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
+                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
+                  TmpType_t temp1(temp1r, temp1i);
+                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
+                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
+                  TmpType_t temp2(temp2r, temp2i);
+                  temp1 = temp1 - temp2;
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix += inc_intx;
                 }                /* for i<j */
 
@@ -2263,28 +2186,17 @@ constexpr void my_trsv_x(blas_order_type order,
                     }
 
                   }
-                  {
-                    double head_at, tail_at;
-                    double head_bt, tail_bt;
-                    double head_ct, tail_ct;
-
-                    /* Real part */
-                    head_at = head_temp1[0];
-                    tail_at = tail_temp1[0];
-                    head_bt = -head_temp2[0];
-                    tail_bt = -tail_temp2[0];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[0] = head_ct;
-                    tail_temp1[0] = tail_ct;
-                    /* Imaginary part */
-                    head_at = head_temp1[1];
-                    tail_at = tail_temp1[1];
-                    head_bt = -head_temp2[1];
-                    tail_bt = -tail_temp2[1];
-                    compute_doubledouble_eq_doubledouble_add_doubledouble(&head_ct, &tail_ct, head_at, tail_at, head_bt, tail_bt);
-                    head_temp1[1] = head_ct;
-                    tail_temp1[1] = tail_ct;
-                  }
+                  impl::inner_type_t<TmpType_t> temp1r(head_temp1[0], tail_temp1[0]);
+                  impl::inner_type_t<TmpType_t> temp1i(head_temp1[1], tail_temp1[1]);
+                  TmpType_t temp1(temp1r, temp1i);
+                  impl::inner_type_t<TmpType_t> temp2r(head_temp2[0], tail_temp2[0]);
+                  impl::inner_type_t<TmpType_t> temp2i(head_temp2[1], tail_temp2[1]);
+                  TmpType_t temp2(temp2r, temp2i);
+                  temp1 = temp1 - temp2;
+                  head_temp1[0] = std::real(temp1).head_();
+                  head_temp1[1] = std::imag(temp1).head_();
+                  tail_temp1[0] = std::real(temp1).tail_();
+                  tail_temp1[1] = std::imag(temp1).tail_();
                   ix += inc_intx;
                 }                /* for i<j */
 
