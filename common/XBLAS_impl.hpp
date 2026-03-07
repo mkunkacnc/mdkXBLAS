@@ -323,6 +323,9 @@ constexpr A div(A a, B b)
     return A(q[0] * S, q[1] * S);
   } else if constexpr (std::is_same_v<inner_type_t<A>, double_double>) {
     return a / b;
+  } else if constexpr (impl::is_complex_v<A>) {
+    static_assert(!impl::is_complex_v<B>);
+    return a / static_cast<impl::inner_type_t<A>>(b);
   } else {
     return a / static_cast<A>(b);
   }
