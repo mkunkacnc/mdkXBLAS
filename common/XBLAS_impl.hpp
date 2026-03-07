@@ -375,6 +375,60 @@ constexpr A div(A a, B b)
     /* Scale back */
     return A(q[0] * S, q[1] * S);
 
+  } else if constexpr (std::is_same_v<A, std::complex<float>> &&
+                       std::is_same_v<B, std::complex<float>>) {
+
+    double S = 1.0, eps, ov, un;
+    double abs_a, abs_b, abs_c, abs_d, ab, cd;
+    double r;
+    double t;
+    double q[2];
+
+    eps = std::pow(2.0, -24.0);
+    un = std::pow(2.0, -126.0);
+    ov = std::pow(2.0, 128.0) * (1 - eps);
+    abs_a = std::fabs(static_cast<double>(std::real(a)));
+    abs_b = std::fabs(static_cast<double>(std::imag(a)));
+    abs_c = std::fabs(static_cast<double>(std::real(b)));
+    abs_d = std::fabs(static_cast<double>(std::imag(b)));
+    ab = std::max(abs_a, abs_b);
+    cd = std::max(abs_c, abs_d);
+
+    /* Scaling */
+    if (ab > ov / 16) {        /* scale down a, b */
+      a /= 16;
+      S = S * 16;
+    }
+    if (cd > ov / 16) {        /* scale down c, d */
+      b /= 16;
+      S = S / 16;
+    }
+    if (ab < un / eps * 2) {        /* scale up a, b */
+      t = 2.0 / (eps * eps);
+      a *= t;
+      S = S / t;
+    }
+    if (cd < un / eps * 2) {        /* scale up c, d */
+      t = 2.0 / (eps * eps);
+      b *= t;
+      S = S * t;
+    }
+
+    /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
+    if (abs_c > abs_d) {
+      r = std::imag(b) / std::real(b);
+      t = 1 / (std::real(b) + std::imag(b) * r);
+      q[0] = (std::real(a) + std::imag(a) * r) * t;
+      q[1] = (std::imag(a) - std::real(a) * r) * t;
+    } else {
+      r = std::real(b) / std::imag(b);
+      t = 1 / (std::imag(b) + std::real(b) * r);
+      q[0] = ( std::imag(a) + std::real(a) * r) * t;
+      q[1] = (-std::real(a) + std::imag(a) * r) * t;
+    }
+    /* Scale back */
+    return A(q[0] * S, q[1] * S);
+
   } else if constexpr (std::is_same_v<A, std::complex<double_double>> &&
                        std::is_same_v<B, std::complex<double>>) {
     double head_temp1[2], tail_temp1[2];
