@@ -3311,9 +3311,9 @@ constexpr void my_tbsv_x(blas_order_type order,
   int Tij;                        /* index inside of Banded structure */
   int dot_start, dot_start_inc1, dot_start_inc2, dot_inc;
 
-  const float *t_i = (float *) t;        /* internal matrix t */
+  const A *t_i = t;        /* internal matrix t */
   double *x_i = (double *) x;        /* internal x */
-  double *alpha_i = (double *) &alpha;        /* internal alpha */
+  T alpha_i = alpha;        /* internal alpha */
 
   if (order != blas_rowmajor && order != blas_colmajor) {
     BLAS_error(routine_name, -1, order, 0);
@@ -3355,7 +3355,7 @@ constexpr void my_tbsv_x(blas_order_type order,
   }
 
   /* if alpha is zero, then return x as a zero vector */
-  if (alpha_i[0] == 0.0 && alpha_i[1] == 0.0) {
+  if (std::real(alpha_i) == 0.0 && std::imag(alpha_i) == 0.0) {
     xi = start_xi;
     for (i = 0; i < n; i++) {
       x_i[xi] = 0.0;
@@ -3366,7 +3366,7 @@ constexpr void my_tbsv_x(blas_order_type order,
   }
   /* check to see if k=0.  if so, we can optimize somewhat */
   if (k == 0) {
-    if (((alpha_i[0] == 1.0 && alpha_i[1] == 0.0))
+    if (((std::real(alpha_i) == 1.0 && std::imag(alpha_i) == 0.0))
         && (diag == blas_unit_diag)) {
       /* nothing to do */
       return;
@@ -3412,12 +3412,6 @@ constexpr void my_tbsv_x(blas_order_type order,
     incxi = -incxi;
   }
 
-  dot_inc *= 2;
-  dot_start *= 2;
-  dot_start_inc1 *= 2;
-  dot_start_inc2 *= 2;
-
-
   switch (prec) {
 
   case blas_prec_single:
@@ -3429,7 +3423,7 @@ constexpr void my_tbsv_x(blas_order_type order,
           double temp1[2];        /* temporary variable for calculations */
           double temp2[2];        /* temporary variable for calculations */
           double x_elem[2];
-          float T_element[2];
+          A T_element;
 
 
 
@@ -3449,11 +3443,11 @@ constexpr void my_tbsv_x(blas_order_type order,
                  in this implementation we do not separate the alpha = 1 case */
               {
                 temp1[0] =
-                  (double) x_elem[0] * alpha_i[0] -
-                  (double) x_elem[1] * alpha_i[1];
+                  (double) x_elem[0] * std::real(alpha_i) -
+                  (double) x_elem[1] * std::imag(alpha_i);
                 temp1[1] =
-                  (double) x_elem[0] * alpha_i[1] +
-                  (double) x_elem[1] * alpha_i[0];
+                  (double) x_elem[0] * std::imag(alpha_i) +
+                  (double) x_elem[1] * std::real(alpha_i);
               }
 
               xi = start_xi;
@@ -3462,18 +3456,16 @@ constexpr void my_tbsv_x(blas_order_type order,
               dot_start += dot_start_inc1;
 
               for (i = j; i > 0; i--) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
-                T_element[1] = -T_element[1];
+                T_element = impl::Conj::func(t_i[Tij]);
                 x_elem[0] = x_i[xi];
                 x_elem[1] = x_i[xi + 1];
                 {
                   temp2[0] =
-                    (double) x_elem[0] * T_element[0] -
-                    (double) x_elem[1] * T_element[1];
+                    (double) x_elem[0] * std::real(T_element) -
+                    (double) x_elem[1] * std::imag(T_element);
                   temp2[1] =
-                    (double) x_elem[0] * T_element[1] +
-                    (double) x_elem[1] * T_element[0];
+                    (double) x_elem[0] * std::imag(T_element) +
+                    (double) x_elem[1] * std::real(T_element);
                 }
                 temp1[0] = temp1[0] - temp2[0];
                 temp1[1] = temp1[1] - temp2[1];
@@ -3485,9 +3477,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               /* if the diagonal entry is not equal to one, then divide Xj by
                  the entry */
               if (diag == blas_non_unit_diag) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
-                T_element[1] = -T_element[1];
+                T_element = impl::Conj::func(t_i[Tij]);
 
                 {
                   double S = 1.0, eps, ov, un, eps1, ov1, un1;
@@ -3505,8 +3495,8 @@ constexpr void my_tbsv_x(blas_order_type order,
                   /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
                   abs_a = fabs(temp1[0]);
                   abs_b = fabs(temp1[1]);
-                  abs_c = fabs((double) T_element[0]);
-                  abs_d = fabs((double) T_element[1]);
+                  abs_c = fabs((double) std::real(T_element));
+                  abs_d = fabs((double) std::imag(T_element));
                   ab = MAX(abs_a, abs_b);
                   cd = MAX(abs_c, abs_d);
 
@@ -3517,8 +3507,7 @@ constexpr void my_tbsv_x(blas_order_type order,
                     S = S * 16;
                   }
                   if (cd > ov / 16) {        /* scale down c, d */
-                    T_element[0] /= 16;
-                    T_element[1] /= 16;
+                    T_element /= 16;
                     S = S / 16;
                   }
                   if (ab < un1 / eps1 * 2) {        /* scale up a, b */
@@ -3529,20 +3518,19 @@ constexpr void my_tbsv_x(blas_order_type order,
                   }
                   if (cd < un / eps * 2) {        /* scale up c, d */
                     t = 2.0 / (eps * eps);
-                    T_element[0] *= t;
-                    T_element[1] *= t;
+                    T_element *= t;
                     S = S * t;
                   }
 
                   /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
                   if (abs_c > abs_d) {
-                    r = T_element[1] / T_element[0];
-                    t = 1 / (T_element[0] + T_element[1] * r);
+                    r = std::imag(T_element) / std::real(T_element);
+                    t = 1 / (std::real(T_element) + std::imag(T_element) * r);
                     q[0] = (temp1[0] + temp1[1] * r) * t;
                     q[1] = (temp1[1] - temp1[0] * r) * t;
                   } else {
-                    r = T_element[0] / T_element[1];
-                    t = 1 / (T_element[1] + T_element[0] * r);
+                    r = std::real(T_element) / std::imag(T_element);
+                    t = 1 / (std::imag(T_element) + std::real(T_element) * r);
                     q[0] = (temp1[1] + temp1[0] * r) * t;
                     q[1] = (-temp1[0] + temp1[1] * r) * t;
                   }
@@ -3567,11 +3555,11 @@ constexpr void my_tbsv_x(blas_order_type order,
               x_elem[1] = x_i[xi + 1];
               {
                 temp1[0] =
-                  (double) x_elem[0] * alpha_i[0] -
-                  (double) x_elem[1] * alpha_i[1];
+                  (double) x_elem[0] * std::real(alpha_i) -
+                  (double) x_elem[1] * std::imag(alpha_i);
                 temp1[1] =
-                  (double) x_elem[0] * alpha_i[1] +
-                  (double) x_elem[1] * alpha_i[0];
+                  (double) x_elem[0] * std::imag(alpha_i) +
+                  (double) x_elem[1] * std::real(alpha_i);
               }
 
               xi = start_xi;
@@ -3581,18 +3569,16 @@ constexpr void my_tbsv_x(blas_order_type order,
               dot_start += dot_start_inc2;
 
               for (i = k; i > 0; i--) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
-                T_element[1] = -T_element[1];
+                T_element = impl::Conj::func(t_i[Tij]);
                 x_elem[0] = x_i[xi];
                 x_elem[1] = x_i[xi + 1];
                 {
                   temp2[0] =
-                    (double) x_elem[0] * T_element[0] -
-                    (double) x_elem[1] * T_element[1];
+                    (double) x_elem[0] * std::real(T_element) -
+                    (double) x_elem[1] * std::imag(T_element);
                   temp2[1] =
-                    (double) x_elem[0] * T_element[1] +
-                    (double) x_elem[1] * T_element[0];
+                    (double) x_elem[0] * std::imag(T_element) +
+                    (double) x_elem[1] * std::real(T_element);
                 }
                 temp1[0] = temp1[0] - temp2[0];
                 temp1[1] = temp1[1] - temp2[1];
@@ -3604,9 +3590,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               /* if the diagonal entry is not equal to one, then divide by
                  the entry */
               if (diag == blas_non_unit_diag) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
-                T_element[1] = -T_element[1];
+                T_element = impl::Conj::func(t_i[Tij]);
 
                 {
                   double S = 1.0, eps, ov, un, eps1, ov1, un1;
@@ -3624,8 +3608,8 @@ constexpr void my_tbsv_x(blas_order_type order,
                   /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
                   abs_a = fabs(temp1[0]);
                   abs_b = fabs(temp1[1]);
-                  abs_c = fabs((double) T_element[0]);
-                  abs_d = fabs((double) T_element[1]);
+                  abs_c = fabs((double) std::real(T_element));
+                  abs_d = fabs((double) std::imag(T_element));
                   ab = MAX(abs_a, abs_b);
                   cd = MAX(abs_c, abs_d);
 
@@ -3636,8 +3620,7 @@ constexpr void my_tbsv_x(blas_order_type order,
                     S = S * 16;
                   }
                   if (cd > ov / 16) {        /* scale down c, d */
-                    T_element[0] /= 16;
-                    T_element[1] /= 16;
+                    T_element /= 16;
                     S = S / 16;
                   }
                   if (ab < un1 / eps1 * 2) {        /* scale up a, b */
@@ -3648,20 +3631,19 @@ constexpr void my_tbsv_x(blas_order_type order,
                   }
                   if (cd < un / eps * 2) {        /* scale up c, d */
                     t = 2.0 / (eps * eps);
-                    T_element[0] *= t;
-                    T_element[1] *= t;
+                    T_element *= t;
                     S = S * t;
                   }
 
                   /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
                   if (abs_c > abs_d) {
-                    r = T_element[1] / T_element[0];
-                    t = 1 / (T_element[0] + T_element[1] * r);
+                    r = std::imag(T_element) / std::real(T_element);
+                    t = 1 / (std::real(T_element) + std::imag(T_element) * r);
                     q[0] = (temp1[0] + temp1[1] * r) * t;
                     q[1] = (temp1[1] - temp1[0] * r) * t;
                   } else {
-                    r = T_element[0] / T_element[1];
-                    t = 1 / (T_element[1] + T_element[0] * r);
+                    r = std::real(T_element) / std::imag(T_element);
+                    t = 1 / (std::imag(T_element) + std::real(T_element) * r);
                     q[0] = (temp1[1] + temp1[0] * r) * t;
                     q[1] = (-temp1[0] + temp1[1] * r) * t;
                   }
@@ -3692,11 +3674,11 @@ constexpr void my_tbsv_x(blas_order_type order,
                  in this implementation we do not separate the alpha = 1 case */
               {
                 temp1[0] =
-                  (double) x_elem[0] * alpha_i[0] -
-                  (double) x_elem[1] * alpha_i[1];
+                  (double) x_elem[0] * std::real(alpha_i) -
+                  (double) x_elem[1] * std::imag(alpha_i);
                 temp1[1] =
-                  (double) x_elem[0] * alpha_i[1] +
-                  (double) x_elem[1] * alpha_i[0];
+                  (double) x_elem[0] * std::imag(alpha_i) +
+                  (double) x_elem[1] * std::real(alpha_i);
               }
 
               xi = start_xi;
@@ -3705,18 +3687,17 @@ constexpr void my_tbsv_x(blas_order_type order,
               dot_start += dot_start_inc1;
 
               for (i = j; i > 0; i--) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
+                T_element = t_i[Tij];
 
                 x_elem[0] = x_i[xi];
                 x_elem[1] = x_i[xi + 1];
                 {
                   temp2[0] =
-                    (double) x_elem[0] * T_element[0] -
-                    (double) x_elem[1] * T_element[1];
+                    (double) x_elem[0] * std::real(T_element) -
+                    (double) x_elem[1] * std::imag(T_element);
                   temp2[1] =
-                    (double) x_elem[0] * T_element[1] +
-                    (double) x_elem[1] * T_element[0];
+                    (double) x_elem[0] * std::imag(T_element) +
+                    (double) x_elem[1] * std::real(T_element);
                 }
                 temp1[0] = temp1[0] - temp2[0];
                 temp1[1] = temp1[1] - temp2[1];
@@ -3728,8 +3709,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               /* if the diagonal entry is not equal to one, then divide Xj by
                  the entry */
               if (diag == blas_non_unit_diag) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
+                T_element = t_i[Tij];
 
 
                 {
@@ -3748,8 +3728,8 @@ constexpr void my_tbsv_x(blas_order_type order,
                   /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
                   abs_a = fabs(temp1[0]);
                   abs_b = fabs(temp1[1]);
-                  abs_c = fabs((double) T_element[0]);
-                  abs_d = fabs((double) T_element[1]);
+                  abs_c = fabs((double) std::real(T_element));
+                  abs_d = fabs((double) std::imag(T_element));
                   ab = MAX(abs_a, abs_b);
                   cd = MAX(abs_c, abs_d);
 
@@ -3760,8 +3740,7 @@ constexpr void my_tbsv_x(blas_order_type order,
                     S = S * 16;
                   }
                   if (cd > ov / 16) {        /* scale down c, d */
-                    T_element[0] /= 16;
-                    T_element[1] /= 16;
+                    T_element /= 16;
                     S = S / 16;
                   }
                   if (ab < un1 / eps1 * 2) {        /* scale up a, b */
@@ -3772,20 +3751,19 @@ constexpr void my_tbsv_x(blas_order_type order,
                   }
                   if (cd < un / eps * 2) {        /* scale up c, d */
                     t = 2.0 / (eps * eps);
-                    T_element[0] *= t;
-                    T_element[1] *= t;
+                    T_element *= t;
                     S = S * t;
                   }
 
                   /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
                   if (abs_c > abs_d) {
-                    r = T_element[1] / T_element[0];
-                    t = 1 / (T_element[0] + T_element[1] * r);
+                    r = std::imag(T_element) / std::real(T_element);
+                    t = 1 / (std::real(T_element) + std::imag(T_element) * r);
                     q[0] = (temp1[0] + temp1[1] * r) * t;
                     q[1] = (temp1[1] - temp1[0] * r) * t;
                   } else {
-                    r = T_element[0] / T_element[1];
-                    t = 1 / (T_element[1] + T_element[0] * r);
+                    r = std::real(T_element) / std::imag(T_element);
+                    t = 1 / (std::imag(T_element) + std::real(T_element) * r);
                     q[0] = (temp1[1] + temp1[0] * r) * t;
                     q[1] = (-temp1[0] + temp1[1] * r) * t;
                   }
@@ -3810,11 +3788,11 @@ constexpr void my_tbsv_x(blas_order_type order,
               x_elem[1] = x_i[xi + 1];
               {
                 temp1[0] =
-                  (double) x_elem[0] * alpha_i[0] -
-                  (double) x_elem[1] * alpha_i[1];
+                  (double) x_elem[0] * std::real(alpha_i) -
+                  (double) x_elem[1] * std::imag(alpha_i);
                 temp1[1] =
-                  (double) x_elem[0] * alpha_i[1] +
-                  (double) x_elem[1] * alpha_i[0];
+                  (double) x_elem[0] * std::imag(alpha_i) +
+                  (double) x_elem[1] * std::real(alpha_i);
               }
 
               xi = start_xi;
@@ -3824,18 +3802,17 @@ constexpr void my_tbsv_x(blas_order_type order,
               dot_start += dot_start_inc2;
 
               for (i = k; i > 0; i--) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
+                T_element = t_i[Tij];
 
                 x_elem[0] = x_i[xi];
                 x_elem[1] = x_i[xi + 1];
                 {
                   temp2[0] =
-                    (double) x_elem[0] * T_element[0] -
-                    (double) x_elem[1] * T_element[1];
+                    (double) x_elem[0] * std::real(T_element) -
+                    (double) x_elem[1] * std::imag(T_element);
                   temp2[1] =
-                    (double) x_elem[0] * T_element[1] +
-                    (double) x_elem[1] * T_element[0];
+                    (double) x_elem[0] * std::imag(T_element) +
+                    (double) x_elem[1] * std::real(T_element);
                 }
                 temp1[0] = temp1[0] - temp2[0];
                 temp1[1] = temp1[1] - temp2[1];
@@ -3847,8 +3824,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               /* if the diagonal entry is not equal to one, then divide by
                  the entry */
               if (diag == blas_non_unit_diag) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
+                T_element = t_i[Tij];
 
 
                 {
@@ -3867,8 +3843,8 @@ constexpr void my_tbsv_x(blas_order_type order,
                   /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0; */
                   abs_a = fabs(temp1[0]);
                   abs_b = fabs(temp1[1]);
-                  abs_c = fabs((double) T_element[0]);
-                  abs_d = fabs((double) T_element[1]);
+                  abs_c = fabs((double) std::real(T_element));
+                  abs_d = fabs((double) std::imag(T_element));
                   ab = MAX(abs_a, abs_b);
                   cd = MAX(abs_c, abs_d);
 
@@ -3879,8 +3855,7 @@ constexpr void my_tbsv_x(blas_order_type order,
                     S = S * 16;
                   }
                   if (cd > ov / 16) {        /* scale down c, d */
-                    T_element[0] /= 16;
-                    T_element[1] /= 16;
+                    T_element /= 16;
                     S = S / 16;
                   }
                   if (ab < un1 / eps1 * 2) {        /* scale up a, b */
@@ -3891,20 +3866,19 @@ constexpr void my_tbsv_x(blas_order_type order,
                   }
                   if (cd < un / eps * 2) {        /* scale up c, d */
                     t = 2.0 / (eps * eps);
-                    T_element[0] *= t;
-                    T_element[1] *= t;
+                    T_element *= t;
                     S = S * t;
                   }
 
                   /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
                   if (abs_c > abs_d) {
-                    r = T_element[1] / T_element[0];
-                    t = 1 / (T_element[0] + T_element[1] * r);
+                    r = std::imag(T_element) / std::real(T_element);
+                    t = 1 / (std::real(T_element) + std::imag(T_element) * r);
                     q[0] = (temp1[0] + temp1[1] * r) * t;
                     q[1] = (temp1[1] - temp1[0] * r) * t;
                   } else {
-                    r = T_element[0] / T_element[1];
-                    t = 1 / (T_element[1] + T_element[0] * r);
+                    r = std::real(T_element) / std::imag(T_element);
+                    t = 1 / (std::imag(T_element) + std::real(T_element) * r);
                     q[0] = (temp1[1] + temp1[0] * r) * t;
                     q[1] = (-temp1[0] + temp1[1] * r) * t;
                   }
@@ -3935,7 +3909,7 @@ constexpr void my_tbsv_x(blas_order_type order,
           double head_temp2[2], tail_temp2[2];        /* temporary variable for calculations */
           double head_temp3[2], tail_temp3[2];        /* temporary variable for calculations */
           double x_elem[2];
-          float T_element[2];        /* temporary variable for an element of matrix T */
+          A T_element;        /* temporary variable for an element of matrix T */
 
           int x_inti = 0, inc_x_inti = 1;
           int k_compare = k;        /*used for comparisons with x_inti */
@@ -3972,16 +3946,16 @@ constexpr void my_tbsv_x(blas_order_type order,
                 double head_t1, tail_t1;
                 double head_t2, tail_t2;
                 /* Real part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[0], alpha_i[0]);
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[1], alpha_i[1]);
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[0], std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[1], std::imag(alpha_i));
                 head_t2 = -head_t2;
                 tail_t2 = -tail_t2;
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[0] = head_t1;
                 tail_temp1[0] = tail_t1;
                 /* Imaginary part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[1], alpha_i[0]);
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[0], alpha_i[1]);
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[1], std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[0], std::imag(alpha_i));
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[1] = head_t1;
                 tail_temp1[1] = tail_t1;
@@ -3993,17 +3967,15 @@ constexpr void my_tbsv_x(blas_order_type order,
               /*start loop buffer over in loop 1 */
               x_inti = 0;
               for (i = j; i > 0; i--) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
-                T_element[1] = -T_element[1];
+                T_element = impl::Conj::func(t_i[Tij]);
                 head_temp3[0] = head_x_internal[x_inti];
                 head_temp3[1] = head_x_internal[1 + x_inti];
                 tail_temp3[0] = tail_x_internal[x_inti];
                 tail_temp3[1] = tail_x_internal[1 + x_inti];
                 {
                   double cd[2];
-                  cd[0] = (double) T_element[0];
-                  cd[1] = (double) T_element[1];
+                  cd[0] = (double) std::real(T_element);
+                  cd[1] = (double) std::imag(T_element);
                   {
                     /* Compute complex-extra = complex-extra * complex-double. */
                     double head_a0, tail_a0;
@@ -4061,9 +4033,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               /* if the diagonal entry is not equal to one, then divide Xj by
                  the entry */
               if (diag == blas_non_unit_diag) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
-                T_element[1] = -T_element[1];
+                T_element = impl::Conj::func(t_i[Tij]);
 
                 {
                   double S = 1.0, eps, ov, un, eps1, ov1, un1;
@@ -4084,8 +4054,8 @@ constexpr void my_tbsv_x(blas_order_type order,
                   /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0 */
                   abs_a = fabs(head_temp1[0]);
                   abs_b = fabs(head_temp1[1]);
-                  abs_c = fabs((double) T_element[0]);
-                  abs_d = fabs((double) T_element[1]);
+                  abs_c = fabs((double) std::real(T_element));
+                  abs_d = fabs((double) std::imag(T_element));
                   ab = MAX(abs_a, abs_b);
                   cd = MAX(abs_c, abs_d);
 
@@ -4108,8 +4078,7 @@ constexpr void my_tbsv_x(blas_order_type order,
                     S = S * 16;
                   }
                   if (cd > ov / 16) {        /* scale down c, d */
-                    T_element[0] /= 16;
-                    T_element[1] /= 16;
+                    T_element /= 16;
                     S = S / 16;
                   }
                   if (ab < un1 / eps1 * 2) {        /* scale up a, b */
@@ -4135,20 +4104,19 @@ constexpr void my_tbsv_x(blas_order_type order,
                   }
                   if (cd < un / eps * 2) {        /* scale up c, d */
                     s = 2.0 / (eps * eps);
-                    T_element[0] *= s;
-                    T_element[1] *= s;
+                    T_element *= s;
                     S = S * s;
                   }
 
                   /* Now un1/eps1*2 <= (a,b) >= ov1/16, un/eps*2 <= (c,d) >= ov/16 */
                   if (abs_c > abs_d) {
-                    r = T_element[1] / T_element[0];
+                    r = std::imag(T_element) / std::real(T_element);
                     {
-                      double dt = (double) T_element[1];
+                      double dt = (double) std::imag(T_element);
                       compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
                     }
                     {
-                      double dt = (double) T_element[0];
+                      double dt = (double) std::real(T_element);
                       compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_t, tail_t, dt);
                     }
                     head_t1 = head_temp1[1];
@@ -4175,13 +4143,13 @@ constexpr void my_tbsv_x(blas_order_type order,
                     head_q[1] = head_t2;
                     tail_q[1] = tail_t2;
                   } else {
-                    r = T_element[0] / T_element[1];
+                    r = std::real(T_element) / std::imag(T_element);
                     {
-                      double dt = (double) T_element[0];
+                      double dt = (double) std::real(T_element);
                       compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
                     }
                     {
-                      double dt = (double) T_element[1];
+                      double dt = (double) std::imag(T_element);
                       compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_t, tail_t, dt);
                     }
                     head_t1 = head_temp1[0];
@@ -4263,16 +4231,16 @@ constexpr void my_tbsv_x(blas_order_type order,
                 double head_t1, tail_t1;
                 double head_t2, tail_t2;
                 /* Real part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[0], alpha_i[0]);
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[1], alpha_i[1]);
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[0], std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[1], std::imag(alpha_i));
                 head_t2 = -head_t2;
                 tail_t2 = -tail_t2;
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[0] = head_t1;
                 tail_temp1[0] = tail_t1;
                 /* Imaginary part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[1], alpha_i[0]);
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[0], alpha_i[1]);
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[1], std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[0], std::imag(alpha_i));
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[1] = head_t1;
                 tail_temp1[1] = tail_t1;
@@ -4283,17 +4251,15 @@ constexpr void my_tbsv_x(blas_order_type order,
               dot_start += dot_start_inc2;
 
               for (i = k; i > 0 && (x_inti < k_compare); i--) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
-                T_element[1] = -T_element[1];
+                T_element = impl::Conj::func(t_i[Tij]);
                 head_temp3[0] = head_x_internal[x_inti];
                 head_temp3[1] = head_x_internal[1 + x_inti];
                 tail_temp3[0] = tail_x_internal[x_inti];
                 tail_temp3[1] = tail_x_internal[1 + x_inti];
                 {
                   double cd[2];
-                  cd[0] = (double) T_element[0];
-                  cd[1] = (double) T_element[1];
+                  cd[0] = (double) std::real(T_element);
+                  cd[1] = (double) std::imag(T_element);
                   {
                     /* Compute complex-extra = complex-extra * complex-double. */
                     double head_a0, tail_a0;
@@ -4349,17 +4315,15 @@ constexpr void my_tbsv_x(blas_order_type order,
               /*reset index to internal storage loop buffer. */
               x_inti = 0;
               for (; i > 0; i--) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
-                T_element[1] = -T_element[1];
+                T_element = impl::Conj::func(t_i[Tij]);
                 head_temp3[0] = head_x_internal[x_inti];
                 head_temp3[1] = head_x_internal[1 + x_inti];
                 tail_temp3[0] = tail_x_internal[x_inti];
                 tail_temp3[1] = tail_x_internal[1 + x_inti];
                 {
                   double cd[2];
-                  cd[0] = (double) T_element[0];
-                  cd[1] = (double) T_element[1];
+                  cd[0] = (double) std::real(T_element);
+                  cd[1] = (double) std::imag(T_element);
                   {
                     /* Compute complex-extra = complex-extra * complex-double. */
                     double head_a0, tail_a0;
@@ -4417,9 +4381,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               /* if the diagonal entry is not equal to one, then divide by
                  the entry */
               if (diag == blas_non_unit_diag) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
-                T_element[1] = -T_element[1];
+                T_element = impl::Conj::func(t_i[Tij]);
 
                 {
                   double S = 1.0, eps, ov, un, eps1, ov1, un1;
@@ -4440,8 +4402,8 @@ constexpr void my_tbsv_x(blas_order_type order,
                   /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0 */
                   abs_a = fabs(head_temp1[0]);
                   abs_b = fabs(head_temp1[1]);
-                  abs_c = fabs((double) T_element[0]);
-                  abs_d = fabs((double) T_element[1]);
+                  abs_c = fabs((double) std::real(T_element));
+                  abs_d = fabs((double) std::imag(T_element));
                   ab = MAX(abs_a, abs_b);
                   cd = MAX(abs_c, abs_d);
 
@@ -4464,8 +4426,7 @@ constexpr void my_tbsv_x(blas_order_type order,
                     S = S * 16;
                   }
                   if (cd > ov / 16) {        /* scale down c, d */
-                    T_element[0] /= 16;
-                    T_element[1] /= 16;
+                    T_element /= 16;
                     S = S / 16;
                   }
                   if (ab < un1 / eps1 * 2) {        /* scale up a, b */
@@ -4491,20 +4452,19 @@ constexpr void my_tbsv_x(blas_order_type order,
                   }
                   if (cd < un / eps * 2) {        /* scale up c, d */
                     s = 2.0 / (eps * eps);
-                    T_element[0] *= s;
-                    T_element[1] *= s;
+                    T_element *= s;
                     S = S * s;
                   }
 
                   /* Now un1/eps1*2 <= (a,b) >= ov1/16, un/eps*2 <= (c,d) >= ov/16 */
                   if (abs_c > abs_d) {
-                    r = T_element[1] / T_element[0];
+                    r = std::imag(T_element) / std::real(T_element);
                     {
-                      double dt = (double) T_element[1];
+                      double dt = (double) std::imag(T_element);
                       compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
                     }
                     {
-                      double dt = (double) T_element[0];
+                      double dt = (double) std::real(T_element);
                       compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_t, tail_t, dt);
                     }
                     head_t1 = head_temp1[1];
@@ -4531,13 +4491,13 @@ constexpr void my_tbsv_x(blas_order_type order,
                     head_q[1] = head_t2;
                     tail_q[1] = tail_t2;
                   } else {
-                    r = T_element[0] / T_element[1];
+                    r = std::real(T_element) / std::imag(T_element);
                     {
-                      double dt = (double) T_element[0];
+                      double dt = (double) std::real(T_element);
                       compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
                     }
                     {
-                      double dt = (double) T_element[1];
+                      double dt = (double) std::imag(T_element);
                       compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_t, tail_t, dt);
                     }
                     head_t1 = head_temp1[0];
@@ -4624,16 +4584,16 @@ constexpr void my_tbsv_x(blas_order_type order,
                 double head_t1, tail_t1;
                 double head_t2, tail_t2;
                 /* Real part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[0], alpha_i[0]);
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[1], alpha_i[1]);
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[0], std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[1], std::imag(alpha_i));
                 head_t2 = -head_t2;
                 tail_t2 = -tail_t2;
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[0] = head_t1;
                 tail_temp1[0] = tail_t1;
                 /* Imaginary part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[1], alpha_i[0]);
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[0], alpha_i[1]);
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[1], std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[0], std::imag(alpha_i));
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[1] = head_t1;
                 tail_temp1[1] = tail_t1;
@@ -4645,8 +4605,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               /*start loop buffer over in loop 1 */
               x_inti = 0;
               for (i = j; i > 0; i--) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
+                T_element = t_i[Tij];
 
                 head_temp3[0] = head_x_internal[x_inti];
                 head_temp3[1] = head_x_internal[1 + x_inti];
@@ -4654,8 +4613,8 @@ constexpr void my_tbsv_x(blas_order_type order,
                 tail_temp3[1] = tail_x_internal[1 + x_inti];
                 {
                   double cd[2];
-                  cd[0] = (double) T_element[0];
-                  cd[1] = (double) T_element[1];
+                  cd[0] = (double) std::real(T_element);
+                  cd[1] = (double) std::imag(T_element);
                   {
                     /* Compute complex-extra = complex-extra * complex-double. */
                     double head_a0, tail_a0;
@@ -4713,8 +4672,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               /* if the diagonal entry is not equal to one, then divide Xj by
                  the entry */
               if (diag == blas_non_unit_diag) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
+                T_element = t_i[Tij];
 
 
                 {
@@ -4736,8 +4694,8 @@ constexpr void my_tbsv_x(blas_order_type order,
                   /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0 */
                   abs_a = fabs(head_temp1[0]);
                   abs_b = fabs(head_temp1[1]);
-                  abs_c = fabs((double) T_element[0]);
-                  abs_d = fabs((double) T_element[1]);
+                  abs_c = fabs((double) std::real(T_element));
+                  abs_d = fabs((double) std::imag(T_element));
                   ab = MAX(abs_a, abs_b);
                   cd = MAX(abs_c, abs_d);
 
@@ -4760,8 +4718,7 @@ constexpr void my_tbsv_x(blas_order_type order,
                     S = S * 16;
                   }
                   if (cd > ov / 16) {        /* scale down c, d */
-                    T_element[0] /= 16;
-                    T_element[1] /= 16;
+                    T_element /= 16;
                     S = S / 16;
                   }
                   if (ab < un1 / eps1 * 2) {        /* scale up a, b */
@@ -4787,20 +4744,19 @@ constexpr void my_tbsv_x(blas_order_type order,
                   }
                   if (cd < un / eps * 2) {        /* scale up c, d */
                     s = 2.0 / (eps * eps);
-                    T_element[0] *= s;
-                    T_element[1] *= s;
+                    T_element *= s;
                     S = S * s;
                   }
 
                   /* Now un1/eps1*2 <= (a,b) >= ov1/16, un/eps*2 <= (c,d) >= ov/16 */
                   if (abs_c > abs_d) {
-                    r = T_element[1] / T_element[0];
+                    r = std::imag(T_element) / std::real(T_element);
                     {
-                      double dt = (double) T_element[1];
+                      double dt = (double) std::imag(T_element);
                       compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
                     }
                     {
-                      double dt = (double) T_element[0];
+                      double dt = (double) std::real(T_element);
                       compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_t, tail_t, dt);
                     }
                     head_t1 = head_temp1[1];
@@ -4827,13 +4783,13 @@ constexpr void my_tbsv_x(blas_order_type order,
                     head_q[1] = head_t2;
                     tail_q[1] = tail_t2;
                   } else {
-                    r = T_element[0] / T_element[1];
+                    r = std::real(T_element) / std::imag(T_element);
                     {
-                      double dt = (double) T_element[0];
+                      double dt = (double) std::real(T_element);
                       compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
                     }
                     {
-                      double dt = (double) T_element[1];
+                      double dt = (double) std::imag(T_element);
                       compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_t, tail_t, dt);
                     }
                     head_t1 = head_temp1[0];
@@ -4915,16 +4871,16 @@ constexpr void my_tbsv_x(blas_order_type order,
                 double head_t1, tail_t1;
                 double head_t2, tail_t2;
                 /* Real part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[0], alpha_i[0]);
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[1], alpha_i[1]);
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[0], std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[1], std::imag(alpha_i));
                 head_t2 = -head_t2;
                 tail_t2 = -tail_t2;
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[0] = head_t1;
                 tail_temp1[0] = tail_t1;
                 /* Imaginary part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[1], alpha_i[0]);
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[0], alpha_i[1]);
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[1], std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[0], std::imag(alpha_i));
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[1] = head_t1;
                 tail_temp1[1] = tail_t1;
@@ -4935,8 +4891,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               dot_start += dot_start_inc2;
 
               for (i = k; i > 0 && (x_inti < k_compare); i--) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
+                T_element = t_i[Tij];
 
                 head_temp3[0] = head_x_internal[x_inti];
                 head_temp3[1] = head_x_internal[1 + x_inti];
@@ -4944,8 +4899,8 @@ constexpr void my_tbsv_x(blas_order_type order,
                 tail_temp3[1] = tail_x_internal[1 + x_inti];
                 {
                   double cd[2];
-                  cd[0] = (double) T_element[0];
-                  cd[1] = (double) T_element[1];
+                  cd[0] = (double) std::real(T_element);
+                  cd[1] = (double) std::imag(T_element);
                   {
                     /* Compute complex-extra = complex-extra * complex-double. */
                     double head_a0, tail_a0;
@@ -5001,8 +4956,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               /*reset index to internal storage loop buffer. */
               x_inti = 0;
               for (; i > 0; i--) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
+                T_element = t_i[Tij];
 
                 head_temp3[0] = head_x_internal[x_inti];
                 head_temp3[1] = head_x_internal[1 + x_inti];
@@ -5010,8 +4964,8 @@ constexpr void my_tbsv_x(blas_order_type order,
                 tail_temp3[1] = tail_x_internal[1 + x_inti];
                 {
                   double cd[2];
-                  cd[0] = (double) T_element[0];
-                  cd[1] = (double) T_element[1];
+                  cd[0] = (double) std::real(T_element);
+                  cd[1] = (double) std::imag(T_element);
                   {
                     /* Compute complex-extra = complex-extra * complex-double. */
                     double head_a0, tail_a0;
@@ -5069,8 +5023,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               /* if the diagonal entry is not equal to one, then divide by
                  the entry */
               if (diag == blas_non_unit_diag) {
-                T_element[0] = t_i[Tij];
-                T_element[1] = t_i[Tij + 1];
+                T_element = t_i[Tij];
 
 
                 {
@@ -5092,8 +5045,8 @@ constexpr void my_tbsv_x(blas_order_type order,
                   /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0 */
                   abs_a = fabs(head_temp1[0]);
                   abs_b = fabs(head_temp1[1]);
-                  abs_c = fabs((double) T_element[0]);
-                  abs_d = fabs((double) T_element[1]);
+                  abs_c = fabs((double) std::real(T_element));
+                  abs_d = fabs((double) std::imag(T_element));
                   ab = MAX(abs_a, abs_b);
                   cd = MAX(abs_c, abs_d);
 
@@ -5116,8 +5069,7 @@ constexpr void my_tbsv_x(blas_order_type order,
                     S = S * 16;
                   }
                   if (cd > ov / 16) {        /* scale down c, d */
-                    T_element[0] /= 16;
-                    T_element[1] /= 16;
+                    T_element /= 16;
                     S = S / 16;
                   }
                   if (ab < un1 / eps1 * 2) {        /* scale up a, b */
@@ -5143,20 +5095,19 @@ constexpr void my_tbsv_x(blas_order_type order,
                   }
                   if (cd < un / eps * 2) {        /* scale up c, d */
                     s = 2.0 / (eps * eps);
-                    T_element[0] *= s;
-                    T_element[1] *= s;
+                    T_element *= s;
                     S = S * s;
                   }
 
                   /* Now un1/eps1*2 <= (a,b) >= ov1/16, un/eps*2 <= (c,d) >= ov/16 */
                   if (abs_c > abs_d) {
-                    r = T_element[1] / T_element[0];
+                    r = std::imag(T_element) / std::real(T_element);
                     {
-                      double dt = (double) T_element[1];
+                      double dt = (double) std::imag(T_element);
                       compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
                     }
                     {
-                      double dt = (double) T_element[0];
+                      double dt = (double) std::real(T_element);
                       compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_t, tail_t, dt);
                     }
                     head_t1 = head_temp1[1];
@@ -5183,13 +5134,13 @@ constexpr void my_tbsv_x(blas_order_type order,
                     head_q[1] = head_t2;
                     tail_q[1] = tail_t2;
                   } else {
-                    r = T_element[0] / T_element[1];
+                    r = std::real(T_element) / std::imag(T_element);
                     {
-                      double dt = (double) T_element[0];
+                      double dt = (double) std::real(T_element);
                       compute_doubledouble_eq_double_mul_double(&head_t, &tail_t, r, dt);
                     }
                     {
-                      double dt = (double) T_element[1];
+                      double dt = (double) std::imag(T_element);
                       compute_doubledouble_eq_doubledouble_add_double(&head_t, &tail_t, head_t, tail_t, dt);
                     }
                     head_t1 = head_temp1[0];
