@@ -3,6 +3,7 @@
 
 #include "blas_extended_private.h"
 #include "common/XBLAS_impl.hpp"
+#include <new>
 
 //---------------
 namespace XBLAS {
@@ -698,9 +699,9 @@ constexpr void trsv(blas_order_type order,
       TmpType *intx;                /* copy of x used for calculations */
 
       /* allocate space for intx */
-      intx = (TmpType *) blas_malloc(n * sizeof(TmpType));
+      intx = new(std::nothrow) TmpType[n];
       if (n > 0 && intx == NULL) {
-        BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
+        BLAS_error(routine_name, 0, 0, "allocation failed.\n");
       }
 
       /* since intx is for internal usage, set it to 1 and then adjust
@@ -864,7 +865,7 @@ constexpr void trsv(blas_order_type order,
         jx += inc_intx;
       }
 
-      blas_free(intx);
+      delete[] intx;
     } else {
       TmpType temp1;
       TmpType temp2;
