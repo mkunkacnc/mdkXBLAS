@@ -3312,7 +3312,7 @@ constexpr void my_tbsv_x(blas_order_type order,
   int dot_start, dot_start_inc1, dot_start_inc2, dot_inc;
 
   const A *t_i = t;        /* internal matrix t */
-  double *x_i = (double *) x;        /* internal x */
+  T *x_i = x;        /* internal x */
   T alpha_i = alpha;        /* internal alpha */
 
   if (order != blas_rowmajor && order != blas_colmajor) {
@@ -3345,7 +3345,6 @@ constexpr void my_tbsv_x(blas_order_type order,
     return;
 
   incxi = incx;
-  incxi *= 2;
 
   /* configuring the vector starting idx */
   if (incxi < 0) {
@@ -3358,8 +3357,7 @@ constexpr void my_tbsv_x(blas_order_type order,
   if (std::real(alpha_i) == 0.0 && std::imag(alpha_i) == 0.0) {
     xi = start_xi;
     for (i = 0; i < n; i++) {
-      x_i[xi] = 0.0;
-      x_i[xi + 1] = 0.0;
+      x_i[xi] = T(0);
       xi += incxi;
     }
     return;
@@ -3422,7 +3420,7 @@ constexpr void my_tbsv_x(blas_order_type order,
         {
           double temp1[2];        /* temporary variable for calculations */
           double temp2[2];        /* temporary variable for calculations */
-          double x_elem[2];
+          T x_elem;
           A T_element;
 
 
@@ -3437,17 +3435,16 @@ constexpr void my_tbsv_x(blas_order_type order,
             for (j = 0; j < k; j++) {
 
               /* each time through loop, xi lands on next x to compute. */
-              x_elem[0] = x_i[xi];
-              x_elem[1] = x_i[xi + 1];
+              x_elem = impl::to<TmpType>(x_i[xi]);
               /* preform the multiplication -
                  in this implementation we do not separate the alpha = 1 case */
               {
                 temp1[0] =
-                  (double) x_elem[0] * std::real(alpha_i) -
-                  (double) x_elem[1] * std::imag(alpha_i);
+                  (double) std::real(x_elem) * std::real(alpha_i) -
+                  (double) std::imag(x_elem) * std::imag(alpha_i);
                 temp1[1] =
-                  (double) x_elem[0] * std::imag(alpha_i) +
-                  (double) x_elem[1] * std::real(alpha_i);
+                  (double) std::real(x_elem) * std::imag(alpha_i) +
+                  (double) std::imag(x_elem) * std::real(alpha_i);
               }
 
               xi = start_xi;
@@ -3457,15 +3454,14 @@ constexpr void my_tbsv_x(blas_order_type order,
 
               for (i = j; i > 0; i--) {
                 T_element = impl::Conj::func(t_i[Tij]);
-                x_elem[0] = x_i[xi];
-                x_elem[1] = x_i[xi + 1];
+                x_elem = impl::to<TmpType>(x_i[xi]);
                 {
                   temp2[0] =
-                    (double) x_elem[0] * std::real(T_element) -
-                    (double) x_elem[1] * std::imag(T_element);
+                    (double) std::real(x_elem) * std::real(T_element) -
+                    (double) std::imag(x_elem) * std::imag(T_element);
                   temp2[1] =
-                    (double) x_elem[0] * std::imag(T_element) +
-                    (double) x_elem[1] * std::real(T_element);
+                    (double) std::real(x_elem) * std::imag(T_element) +
+                    (double) std::imag(x_elem) * std::real(T_element);
                 }
                 temp1[0] = temp1[0] - temp2[0];
                 temp1[1] = temp1[1] - temp2[1];
@@ -3541,8 +3537,7 @@ constexpr void my_tbsv_x(blas_order_type order,
 
               }
               /* if (diag == blas_non_unit_diag) */
-              x_i[xi] = temp1[0];
-              x_i[xi + 1] = temp1[1];
+              x_i[xi] = T(temp1[0], temp1[1]);
               xi += incxi;
             }                        /* for j<k */
             /*end loop 1 */
@@ -3551,15 +3546,14 @@ constexpr void my_tbsv_x(blas_order_type order,
             for (; j < n; j++) {
 
               /* each time through loop, xi lands on next x to compute. */
-              x_elem[0] = x_i[xi];
-              x_elem[1] = x_i[xi + 1];
+              x_elem = impl::to<TmpType>(x_i[xi]);
               {
                 temp1[0] =
-                  (double) x_elem[0] * std::real(alpha_i) -
-                  (double) x_elem[1] * std::imag(alpha_i);
+                  (double) std::real(x_elem) * std::real(alpha_i) -
+                  (double) std::imag(x_elem) * std::imag(alpha_i);
                 temp1[1] =
-                  (double) x_elem[0] * std::imag(alpha_i) +
-                  (double) x_elem[1] * std::real(alpha_i);
+                  (double) std::real(x_elem) * std::imag(alpha_i) +
+                  (double) std::imag(x_elem) * std::real(alpha_i);
               }
 
               xi = start_xi;
@@ -3570,15 +3564,14 @@ constexpr void my_tbsv_x(blas_order_type order,
 
               for (i = k; i > 0; i--) {
                 T_element = impl::Conj::func(t_i[Tij]);
-                x_elem[0] = x_i[xi];
-                x_elem[1] = x_i[xi + 1];
+                x_elem = impl::to<TmpType>(x_i[xi]);
                 {
                   temp2[0] =
-                    (double) x_elem[0] * std::real(T_element) -
-                    (double) x_elem[1] * std::imag(T_element);
+                    (double) std::real(x_elem) * std::real(T_element) -
+                    (double) std::imag(x_elem) * std::imag(T_element);
                   temp2[1] =
-                    (double) x_elem[0] * std::imag(T_element) +
-                    (double) x_elem[1] * std::real(T_element);
+                    (double) std::real(x_elem) * std::imag(T_element) +
+                    (double) std::imag(x_elem) * std::real(T_element);
                 }
                 temp1[0] = temp1[0] - temp2[0];
                 temp1[1] = temp1[1] - temp2[1];
@@ -3654,8 +3647,7 @@ constexpr void my_tbsv_x(blas_order_type order,
 
               }
               /* if (diag == blas_non_unit_diag) */
-              x_i[xi] = temp1[0];
-              x_i[xi + 1] = temp1[1];
+              x_i[xi] = T(temp1[0], temp1[1]);
               xi += incxi;
             }                        /* for j<n */
 
@@ -3668,17 +3660,16 @@ constexpr void my_tbsv_x(blas_order_type order,
             for (j = 0; j < k; j++) {
 
               /* each time through loop, xi lands on next x to compute. */
-              x_elem[0] = x_i[xi];
-              x_elem[1] = x_i[xi + 1];
+              x_elem = impl::to<TmpType>(x_i[xi]);
               /* preform the multiplication -
                  in this implementation we do not separate the alpha = 1 case */
               {
                 temp1[0] =
-                  (double) x_elem[0] * std::real(alpha_i) -
-                  (double) x_elem[1] * std::imag(alpha_i);
+                  (double) std::real(x_elem) * std::real(alpha_i) -
+                  (double) std::imag(x_elem) * std::imag(alpha_i);
                 temp1[1] =
-                  (double) x_elem[0] * std::imag(alpha_i) +
-                  (double) x_elem[1] * std::real(alpha_i);
+                  (double) std::real(x_elem) * std::imag(alpha_i) +
+                  (double) std::imag(x_elem) * std::real(alpha_i);
               }
 
               xi = start_xi;
@@ -3689,15 +3680,14 @@ constexpr void my_tbsv_x(blas_order_type order,
               for (i = j; i > 0; i--) {
                 T_element = t_i[Tij];
 
-                x_elem[0] = x_i[xi];
-                x_elem[1] = x_i[xi + 1];
+                x_elem = impl::to<TmpType>(x_i[xi]);
                 {
                   temp2[0] =
-                    (double) x_elem[0] * std::real(T_element) -
-                    (double) x_elem[1] * std::imag(T_element);
+                    (double) std::real(x_elem) * std::real(T_element) -
+                    (double) std::imag(x_elem) * std::imag(T_element);
                   temp2[1] =
-                    (double) x_elem[0] * std::imag(T_element) +
-                    (double) x_elem[1] * std::real(T_element);
+                    (double) std::real(x_elem) * std::imag(T_element) +
+                    (double) std::imag(x_elem) * std::real(T_element);
                 }
                 temp1[0] = temp1[0] - temp2[0];
                 temp1[1] = temp1[1] - temp2[1];
@@ -3774,8 +3764,7 @@ constexpr void my_tbsv_x(blas_order_type order,
 
               }
               /* if (diag == blas_non_unit_diag) */
-              x_i[xi] = temp1[0];
-              x_i[xi + 1] = temp1[1];
+              x_i[xi] = T(temp1[0], temp1[1]);
               xi += incxi;
             }                        /* for j<k */
             /*end loop 1 */
@@ -3784,15 +3773,14 @@ constexpr void my_tbsv_x(blas_order_type order,
             for (; j < n; j++) {
 
               /* each time through loop, xi lands on next x to compute. */
-              x_elem[0] = x_i[xi];
-              x_elem[1] = x_i[xi + 1];
+              x_elem = impl::to<TmpType>(x_i[xi]);
               {
                 temp1[0] =
-                  (double) x_elem[0] * std::real(alpha_i) -
-                  (double) x_elem[1] * std::imag(alpha_i);
+                  (double) std::real(x_elem) * std::real(alpha_i) -
+                  (double) std::imag(x_elem) * std::imag(alpha_i);
                 temp1[1] =
-                  (double) x_elem[0] * std::imag(alpha_i) +
-                  (double) x_elem[1] * std::real(alpha_i);
+                  (double) std::real(x_elem) * std::imag(alpha_i) +
+                  (double) std::imag(x_elem) * std::real(alpha_i);
               }
 
               xi = start_xi;
@@ -3804,15 +3792,14 @@ constexpr void my_tbsv_x(blas_order_type order,
               for (i = k; i > 0; i--) {
                 T_element = t_i[Tij];
 
-                x_elem[0] = x_i[xi];
-                x_elem[1] = x_i[xi + 1];
+                x_elem = impl::to<TmpType>(x_i[xi]);
                 {
                   temp2[0] =
-                    (double) x_elem[0] * std::real(T_element) -
-                    (double) x_elem[1] * std::imag(T_element);
+                    (double) std::real(x_elem) * std::real(T_element) -
+                    (double) std::imag(x_elem) * std::imag(T_element);
                   temp2[1] =
-                    (double) x_elem[0] * std::imag(T_element) +
-                    (double) x_elem[1] * std::real(T_element);
+                    (double) std::real(x_elem) * std::imag(T_element) +
+                    (double) std::imag(x_elem) * std::real(T_element);
                 }
                 temp1[0] = temp1[0] - temp2[0];
                 temp1[1] = temp1[1] - temp2[1];
@@ -3889,8 +3876,7 @@ constexpr void my_tbsv_x(blas_order_type order,
 
               }
               /* if (diag == blas_non_unit_diag) */
-              x_i[xi] = temp1[0];
-              x_i[xi + 1] = temp1[1];
+              x_i[xi] = T(temp1[0], temp1[1]);
               xi += incxi;
             }                        /* for j<n */
 
@@ -3903,12 +3889,11 @@ constexpr void my_tbsv_x(blas_order_type order,
 
   case blas_prec_extra:{
       {
-
         {
           double head_temp1[2], tail_temp1[2];        /* temporary variable for calculations */
           double head_temp2[2], tail_temp2[2];        /* temporary variable for calculations */
           double head_temp3[2], tail_temp3[2];        /* temporary variable for calculations */
-          double x_elem[2];
+          T x_elem;
           A T_element;        /* temporary variable for an element of matrix T */
 
           int x_inti = 0, inc_x_inti = 1;
@@ -3937,8 +3922,7 @@ constexpr void my_tbsv_x(blas_order_type order,
             for (j = 0; j < k; j++) {
 
               /* each time through loop, xi lands on next x to compute. */
-              x_elem[0] = x_i[xi];
-              x_elem[1] = x_i[xi + 1];
+              x_elem = impl::to<TmpType>(x_i[xi]);
               /* preform the multiplication -
                  in this implementation we do not separate the alpha = 1 case */
               {
@@ -3946,16 +3930,16 @@ constexpr void my_tbsv_x(blas_order_type order,
                 double head_t1, tail_t1;
                 double head_t2, tail_t2;
                 /* Real part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[0], std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[1], std::imag(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::real(x_elem), std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::imag(x_elem), std::imag(alpha_i));
                 head_t2 = -head_t2;
                 tail_t2 = -tail_t2;
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[0] = head_t1;
                 tail_temp1[0] = tail_t1;
                 /* Imaginary part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[1], std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[0], std::imag(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::imag(x_elem), std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::real(x_elem), std::imag(alpha_i));
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[1] = head_t1;
                 tail_temp1[1] = tail_t1;
@@ -4211,8 +4195,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               tail_x_internal[1 + x_inti] = tail_temp1[1];
 
               /* place result x in same place as got x this loop */
-              x_i[xi] = head_temp1[0];
-              x_i[xi + 1] = head_temp1[1];
+              x_i[xi] = T(head_temp1[0], head_temp1[1]);
               xi += incxi;
             }                        /* for j<k */
             /*end loop 1 */
@@ -4224,23 +4207,22 @@ constexpr void my_tbsv_x(blas_order_type order,
             for (; j < n; j++) {
 
               /* each time through loop, xi lands on next x to compute. */
-              x_elem[0] = x_i[xi];
-              x_elem[1] = x_i[xi + 1];
+              x_elem = impl::to<TmpType>(x_i[xi]);
               {
                 /* Compute complex-extra = complex-double * complex-double. */
                 double head_t1, tail_t1;
                 double head_t2, tail_t2;
                 /* Real part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[0], std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[1], std::imag(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::real(x_elem), std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::imag(x_elem), std::imag(alpha_i));
                 head_t2 = -head_t2;
                 tail_t2 = -tail_t2;
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[0] = head_t1;
                 tail_temp1[0] = tail_t1;
                 /* Imaginary part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[1], std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[0], std::imag(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::imag(x_elem), std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::real(x_elem), std::imag(alpha_i));
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[1] = head_t1;
                 tail_temp1[1] = tail_t1;
@@ -4562,8 +4544,7 @@ constexpr void my_tbsv_x(blas_order_type order,
                 x_inti = 0;
 
               /* place result x in same place as got x this loop */
-              x_i[xi] = head_temp1[0];
-              x_i[xi + 1] = head_temp1[1];
+              x_i[xi] = T(head_temp1[0], head_temp1[1]);
               xi += incxi;
             }                        /* for j<n */
 
@@ -4575,8 +4556,7 @@ constexpr void my_tbsv_x(blas_order_type order,
             for (j = 0; j < k; j++) {
 
               /* each time through loop, xi lands on next x to compute. */
-              x_elem[0] = x_i[xi];
-              x_elem[1] = x_i[xi + 1];
+              x_elem = impl::to<TmpType>(x_i[xi]);
               /* preform the multiplication -
                  in this implementation we do not separate the alpha = 1 case */
               {
@@ -4584,16 +4564,16 @@ constexpr void my_tbsv_x(blas_order_type order,
                 double head_t1, tail_t1;
                 double head_t2, tail_t2;
                 /* Real part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[0], std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[1], std::imag(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::real(x_elem), std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::imag(x_elem), std::imag(alpha_i));
                 head_t2 = -head_t2;
                 tail_t2 = -tail_t2;
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[0] = head_t1;
                 tail_temp1[0] = tail_t1;
                 /* Imaginary part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[1], std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[0], std::imag(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::imag(x_elem), std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::real(x_elem), std::imag(alpha_i));
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[1] = head_t1;
                 tail_temp1[1] = tail_t1;
@@ -4851,8 +4831,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               tail_x_internal[1 + x_inti] = tail_temp1[1];
 
               /* place result x in same place as got x this loop */
-              x_i[xi] = head_temp1[0];
-              x_i[xi + 1] = head_temp1[1];
+              x_i[xi] = T(head_temp1[0], head_temp1[1]);
               xi += incxi;
             }                        /* for j<k */
             /*end loop 1 */
@@ -4864,23 +4843,22 @@ constexpr void my_tbsv_x(blas_order_type order,
             for (; j < n; j++) {
 
               /* each time through loop, xi lands on next x to compute. */
-              x_elem[0] = x_i[xi];
-              x_elem[1] = x_i[xi + 1];
+              x_elem = impl::to<TmpType>(x_i[xi]);
               {
                 /* Compute complex-extra = complex-double * complex-double. */
                 double head_t1, tail_t1;
                 double head_t2, tail_t2;
                 /* Real part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[0], std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[1], std::imag(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::real(x_elem), std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::imag(x_elem), std::imag(alpha_i));
                 head_t2 = -head_t2;
                 tail_t2 = -tail_t2;
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[0] = head_t1;
                 tail_temp1[0] = tail_t1;
                 /* Imaginary part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, x_elem[1], std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, x_elem[0], std::imag(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::imag(x_elem), std::real(alpha_i));
+                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::real(x_elem), std::imag(alpha_i));
                 compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
                 head_temp1[1] = head_t1;
                 tail_temp1[1] = tail_t1;
@@ -5205,8 +5183,7 @@ constexpr void my_tbsv_x(blas_order_type order,
                 x_inti = 0;
 
               /* place result x in same place as got x this loop */
-              x_i[xi] = head_temp1[0];
-              x_i[xi + 1] = head_temp1[1];
+              x_i[xi] = T(head_temp1[0], head_temp1[1]);
               xi += incxi;
             }                        /* for j<n */
 
