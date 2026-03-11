@@ -1040,25 +1040,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               x_elem = x_i[xi];
               /* preform the multiplication -
                  in this implementation we do not separate the alpha = 1 case */
-              {
-                /* Compute complex-extra = complex-double * complex-double. */
-                double head_t1, tail_t1;
-                double head_t2, tail_t2;
-                /* Real part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::real(x_elem), std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::imag(x_elem), std::imag(alpha_i));
-                head_t2 = -head_t2;
-                tail_t2 = -tail_t2;
-                compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                head_temp1[0] = head_t1;
-                tail_temp1[0] = tail_t1;
-                /* Imaginary part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::imag(x_elem), std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::real(x_elem), std::imag(alpha_i));
-                compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                head_temp1[1] = head_t1;
-                tail_temp1[1] = tail_t1;
-              }
+              temp1 = impl::mul<TmpType>(x_elem, alpha_i);
 
               Tij = dot_start;
               dot_start += dot_start_inc1;
@@ -1067,10 +1049,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               x_inti = 0;
               for (i = j; i > 0; i--) {
                 T_element = impl::Conj::func(t_i[Tij]);
-                head_temp3[0] = head_x_internal[x_inti];
-                head_temp3[1] = head_x_internal[1 + x_inti];
-                tail_temp3[0] = tail_x_internal[x_inti];
-                tail_temp3[1] = tail_x_internal[1 + x_inti];
+                temp3 = x_internal[x_inti];
                 {
                   double cd[2];
                   cd[0] = (double) std::real(T_element);
@@ -1323,25 +1302,7 @@ constexpr void my_tbsv_x(blas_order_type order,
 
               /* each time through loop, xi lands on next x to compute. */
               x_elem = x_i[xi];
-              {
-                /* Compute complex-extra = complex-double * complex-double. */
-                double head_t1, tail_t1;
-                double head_t2, tail_t2;
-                /* Real part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::real(x_elem), std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::imag(x_elem), std::imag(alpha_i));
-                head_t2 = -head_t2;
-                tail_t2 = -tail_t2;
-                compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                head_temp1[0] = head_t1;
-                tail_temp1[0] = tail_t1;
-                /* Imaginary part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::imag(x_elem), std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::real(x_elem), std::imag(alpha_i));
-                compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                head_temp1[1] = head_t1;
-                tail_temp1[1] = tail_t1;
-              }
+              temp1 = impl::mul<TmpType>(x_elem, alpha_i);
 
 
               Tij = dot_start;
@@ -1349,10 +1310,7 @@ constexpr void my_tbsv_x(blas_order_type order,
 
               for (i = k; i > 0 && (x_inti < k_compare); i--) {
                 T_element = impl::Conj::func(t_i[Tij]);
-                head_temp3[0] = head_x_internal[x_inti];
-                head_temp3[1] = head_x_internal[1 + x_inti];
-                tail_temp3[0] = tail_x_internal[x_inti];
-                tail_temp3[1] = tail_x_internal[1 + x_inti];
+                temp3 = x_internal[x_inti];
                 {
                   double cd[2];
                   cd[0] = (double) std::real(T_element);
@@ -1413,10 +1371,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               x_inti = 0;
               for (; i > 0; i--) {
                 T_element = impl::Conj::func(t_i[Tij]);
-                head_temp3[0] = head_x_internal[x_inti];
-                head_temp3[1] = head_x_internal[1 + x_inti];
-                tail_temp3[0] = tail_x_internal[x_inti];
-                tail_temp3[1] = tail_x_internal[1 + x_inti];
+                temp3 = x_internal[x_inti];
                 {
                   double cd[2];
                   cd[0] = (double) std::real(T_element);
@@ -1674,25 +1629,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               x_elem = x_i[xi];
               /* preform the multiplication -
                  in this implementation we do not separate the alpha = 1 case */
-              {
-                /* Compute complex-extra = complex-double * complex-double. */
-                double head_t1, tail_t1;
-                double head_t2, tail_t2;
-                /* Real part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::real(x_elem), std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::imag(x_elem), std::imag(alpha_i));
-                head_t2 = -head_t2;
-                tail_t2 = -tail_t2;
-                compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                head_temp1[0] = head_t1;
-                tail_temp1[0] = tail_t1;
-                /* Imaginary part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::imag(x_elem), std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::real(x_elem), std::imag(alpha_i));
-                compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                head_temp1[1] = head_t1;
-                tail_temp1[1] = tail_t1;
-              }
+              temp1 = impl::mul<TmpType>(x_elem, alpha_i);
 
               Tij = dot_start;
               dot_start += dot_start_inc1;
@@ -1702,10 +1639,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               for (i = j; i > 0; i--) {
                 T_element = t_i[Tij];
 
-                head_temp3[0] = head_x_internal[x_inti];
-                head_temp3[1] = head_x_internal[1 + x_inti];
-                tail_temp3[0] = tail_x_internal[x_inti];
-                tail_temp3[1] = tail_x_internal[1 + x_inti];
+                temp3 = x_internal[x_inti];
                 {
                   double cd[2];
                   cd[0] = (double) std::real(T_element);
@@ -1959,25 +1893,7 @@ constexpr void my_tbsv_x(blas_order_type order,
 
               /* each time through loop, xi lands on next x to compute. */
               x_elem = x_i[xi];
-              {
-                /* Compute complex-extra = complex-double * complex-double. */
-                double head_t1, tail_t1;
-                double head_t2, tail_t2;
-                /* Real part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::real(x_elem), std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::imag(x_elem), std::imag(alpha_i));
-                head_t2 = -head_t2;
-                tail_t2 = -tail_t2;
-                compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                head_temp1[0] = head_t1;
-                tail_temp1[0] = tail_t1;
-                /* Imaginary part */
-                compute_doubledouble_eq_double_mul_double(&head_t1, &tail_t1, std::imag(x_elem), std::real(alpha_i));
-                compute_doubledouble_eq_double_mul_double(&head_t2, &tail_t2, std::real(x_elem), std::imag(alpha_i));
-                compute_doubledouble_eq_doubledouble_add_doubledouble(&head_t1, &tail_t1, head_t1, tail_t1, head_t2, tail_t2);
-                head_temp1[1] = head_t1;
-                tail_temp1[1] = tail_t1;
-              }
+              temp1 = impl::mul<TmpType>(x_elem, alpha_i);
 
 
               Tij = dot_start;
@@ -1986,10 +1902,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               for (i = k; i > 0 && (x_inti < k_compare); i--) {
                 T_element = t_i[Tij];
 
-                head_temp3[0] = head_x_internal[x_inti];
-                head_temp3[1] = head_x_internal[1 + x_inti];
-                tail_temp3[0] = tail_x_internal[x_inti];
-                tail_temp3[1] = tail_x_internal[1 + x_inti];
+                temp3 = x_internal[x_inti];
                 {
                   double cd[2];
                   cd[0] = (double) std::real(T_element);
@@ -2051,10 +1964,7 @@ constexpr void my_tbsv_x(blas_order_type order,
               for (; i > 0; i--) {
                 T_element = t_i[Tij];
 
-                head_temp3[0] = head_x_internal[x_inti];
-                head_temp3[1] = head_x_internal[1 + x_inti];
-                tail_temp3[0] = tail_x_internal[x_inti];
-                tail_temp3[1] = tail_x_internal[1 + x_inti];
+                temp3 = x_internal[x_inti];
                 {
                   double cd[2];
                   cd[0] = (double) std::real(T_element);
