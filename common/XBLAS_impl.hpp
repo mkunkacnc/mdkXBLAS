@@ -457,8 +457,8 @@ constexpr A div(A a, B b)
     /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0 */
     abs_a = std::fabs(head_temp1[0]);
     abs_b = std::fabs(head_temp1[1]);
-    abs_c = std::fabs((double) std::real(T_element));
-    abs_d = std::fabs((double) std::imag(T_element));
+    abs_c = std::fabs(static_cast<double>(std::real(T_element)));
+    abs_d = std::fabs(static_cast<double>(std::imag(T_element)));
     ab = std::max(abs_a, abs_b);
     cd = std::max(abs_c, abs_d);
 
@@ -621,8 +621,8 @@ constexpr A div(A a, B b)
     /* = (pow(2.0, 1023.0) * (1 - eps1)) * 2.0 */
     abs_a = std::fabs(head_temp1[0]);
     abs_b = std::fabs(head_temp1[1]);
-    abs_c = std::fabs((double) std::real(T_element));
-    abs_d = std::fabs((double) std::imag(T_element));
+    abs_c = std::fabs(static_cast<double>(std::real(T_element)));
+    abs_d = std::fabs(static_cast<double>(std::imag(T_element)));
     ab = std::max(abs_a, abs_b);
     cd = std::max(abs_c, abs_d);
 
