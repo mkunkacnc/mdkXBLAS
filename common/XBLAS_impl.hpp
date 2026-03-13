@@ -191,6 +191,7 @@ constexpr inline To to(From from)
 }
 
 template<typename To>
+requires std::floating_point<inner_type_t<To>>
 constexpr inline To to(double_double from)
 {
   return static_cast<To>(from.to_double());
