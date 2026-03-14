@@ -124,6 +124,7 @@ constexpr std::complex<double_double>& operator *=(std::complex<double_double>& 
 
 constexpr double_double operator +(const double_double& a, const double_double& b);
 constexpr double_double operator +(const double_double& a, double b);
+constexpr double_double operator +(double a, const double_double& b);
 constexpr double_double operator +(const double_double& a, float b);
 
 constexpr double_double operator -(const double_double& a, const double_double& b);
@@ -461,6 +462,12 @@ constexpr double_double operator +(const double_double& a, double b)
   double_double c(t1 + t2);
   c.tail = t2 - (c.head - t1);
   return c;
+}
+
+inline
+constexpr double_double operator +(double a, const double_double& b)
+{
+  return b + a;
 }
 
 inline
