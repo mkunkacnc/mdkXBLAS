@@ -61,9 +61,9 @@ constexpr void axpby(N n,
 
   /* Test the input parameters. */
   if (incx == 0)
-    BLAS_error(routine_name, -4, incx, NULL);
+    BLAS_error(routine_name, -4, incx, nullptr);
   else if (incy == 0)
-    BLAS_error(routine_name, -7, incy, NULL);
+    BLAS_error(routine_name, -7, incy, nullptr);
 
   /* Immediate return */
   if (n <= 0 || (alpha == T(0) && beta == T(1)))
@@ -167,7 +167,7 @@ constexpr void axpby_x(N n,
     XBLAS::axpby<T, X, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(n, alpha, x, incx, beta, y, incy);
     break;
   default:
-    BLAS_error(routine_name, -8, prec, 0);
+    BLAS_error(routine_name, -8, prec, nullptr);
     break;
   }
 } /* end XBLAS::axpby_x */

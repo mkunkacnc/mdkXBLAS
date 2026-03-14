@@ -70,11 +70,11 @@ constexpr void waxpby(IdxType n,
 
   /* Test the input parameters. */
   if (incx == 0)
-    BLAS_error(routine_name, -4, incx, NULL);
+    BLAS_error(routine_name, -4, incx, nullptr);
   else if (incy == 0)
-    BLAS_error(routine_name, -7, incy, NULL);
+    BLAS_error(routine_name, -7, incy, nullptr);
   else if (incw == 0)
-    BLAS_error(routine_name, -9, incw, NULL);
+    BLAS_error(routine_name, -9, incw, nullptr);
 
   /* Immediate return */
   if (n <= 0) {

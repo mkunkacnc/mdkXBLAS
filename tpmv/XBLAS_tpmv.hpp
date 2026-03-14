@@ -91,13 +91,13 @@ constexpr void tpmv(blas_order_type order,
 
   /* Check for error conditions. */
   if (order != blas_colmajor && order != blas_rowmajor) {
-    BLAS_error(routine_name, -1, order, NULL);
+    BLAS_error(routine_name, -1, order, nullptr);
   }
   if (uplo != blas_upper && uplo != blas_lower) {
-    BLAS_error(routine_name, -2, uplo, NULL);
+    BLAS_error(routine_name, -2, uplo, nullptr);
   }
   if (incx == 0) {
-    BLAS_error(routine_name, -9, incx, NULL);
+    BLAS_error(routine_name, -9, incx, nullptr);
   }
 
   if constexpr (impl::uses_double_double_v<TmpType>) {

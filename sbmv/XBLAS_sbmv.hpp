@@ -175,25 +175,25 @@ constexpr void sbmv(blas_order_type order,
 
   /* Check for error conditions. */
   if (order != blas_colmajor && order != blas_rowmajor) {
-    BLAS_error(routine_name, -1, order, 0);
+    BLAS_error(routine_name, -1, order, nullptr);
   }
   if (uplo != blas_upper && uplo != blas_lower) {
-    BLAS_error(routine_name, -2, uplo, 0);
+    BLAS_error(routine_name, -2, uplo, nullptr);
   }
   if (n < 0) {
-    BLAS_error(routine_name, -3, n, 0);
+    BLAS_error(routine_name, -3, n, nullptr);
   }
   if (k < 0 || k > n) {
-    BLAS_error(routine_name, -4, k, 0);
+    BLAS_error(routine_name, -4, k, nullptr);
   }
   if ((lda < k + 1) || (lda < 1)) {
-    BLAS_error(routine_name, -7, lda, 0);
+    BLAS_error(routine_name, -7, lda, nullptr);
   }
   if (incx == 0) {
-    BLAS_error(routine_name, -9, incx, 0);
+    BLAS_error(routine_name, -9, incx, nullptr);
   }
   if (incy == 0) {
-    BLAS_error(routine_name, -12, incy, 0);
+    BLAS_error(routine_name, -12, incy, nullptr);
   }
 
   /* Set Index Parameters */

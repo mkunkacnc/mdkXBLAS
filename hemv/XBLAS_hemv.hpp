@@ -123,19 +123,19 @@ constexpr void hemv(blas_order_type order,
 
   /* Check for error conditions. */
   if (order != blas_colmajor && order != blas_rowmajor) {
-    BLAS_error(routine_name, -1, order, NULL);
+    BLAS_error(routine_name, -1, order, nullptr);
   }
   if (uplo != blas_upper && uplo != blas_lower) {
-    BLAS_error(routine_name, -2, uplo, NULL);
+    BLAS_error(routine_name, -2, uplo, nullptr);
   }
   if (lda < n) {
-    BLAS_error(routine_name, -3, n, NULL);
+    BLAS_error(routine_name, -3, n, nullptr);
   }
   if (incx == 0) {
-    BLAS_error(routine_name, -8, incx, NULL);
+    BLAS_error(routine_name, -8, incx, nullptr);
   }
   if (incy == 0) {
-    BLAS_error(routine_name, -11, incy, NULL);
+    BLAS_error(routine_name, -11, incy, nullptr);
   }
 
   /* Set Index Parameters */

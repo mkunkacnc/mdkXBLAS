@@ -103,22 +103,22 @@ constexpr void ge_sum_mv(blas_order_type order,
     incbij = ldb;
   } else {
     /* error, order not blas_colmajor not blas_rowmajor */
-    BLAS_error(routine_name, -1, order, 0);
+    BLAS_error(routine_name, -1, order, nullptr);
     return;
   }
 
   if (m < 0)
-    BLAS_error(routine_name, -2, m, 0);
+    BLAS_error(routine_name, -2, m, nullptr);
   else if (n < 0)
-    BLAS_error(routine_name, -3, n, 0);
+    BLAS_error(routine_name, -3, n, nullptr);
   if (lda < lda_min)
-    BLAS_error(routine_name, -6, lda, 0);
+    BLAS_error(routine_name, -6, lda, nullptr);
   else if (ldb < lda_min)
-    BLAS_error(routine_name, -11, ldb, 0);
+    BLAS_error(routine_name, -11, ldb, nullptr);
   else if (incx == 0)
-    BLAS_error(routine_name, -8, incx, 0);
+    BLAS_error(routine_name, -8, incx, nullptr);
   else if (incy == 0)
-    BLAS_error(routine_name, -13, incy, 0);
+    BLAS_error(routine_name, -13, incy, nullptr);
 
   IdxType incxi = incx;
   IdxType incyi = incy;

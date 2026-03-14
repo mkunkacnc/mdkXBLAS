@@ -129,25 +129,25 @@ constexpr void gbmv(blas_order_type order,
   FPU_FIX_DECL;
 
   if (order != blas_colmajor && order != blas_rowmajor)
-    BLAS_error(routine_name, -1, order, NULL);
+    BLAS_error(routine_name, -1, order, nullptr);
   if (trans != blas_no_trans &&
       trans != blas_trans && trans != blas_conj_trans) {
-    BLAS_error(routine_name, -2, trans, NULL);
+    BLAS_error(routine_name, -2, trans, nullptr);
   }
   if (m < 0)
-    BLAS_error(routine_name, -3, m, NULL);
+    BLAS_error(routine_name, -3, m, nullptr);
   if (n < 0)
-    BLAS_error(routine_name, -4, n, NULL);
+    BLAS_error(routine_name, -4, n, nullptr);
   if (kl < 0 || kl >= m)
-    BLAS_error(routine_name, -5, kl, NULL);
+    BLAS_error(routine_name, -5, kl, nullptr);
   if (ku < 0 || ku >= n)
-    BLAS_error(routine_name, -6, ku, NULL);
+    BLAS_error(routine_name, -6, ku, nullptr);
   if (lda < kl + ku + 1)
-    BLAS_error(routine_name, -9, lda, NULL);
+    BLAS_error(routine_name, -9, lda, nullptr);
   if (incx == 0)
-    BLAS_error(routine_name, -11, incx, NULL);
+    BLAS_error(routine_name, -11, incx, nullptr);
   if (incy == 0)
-    BLAS_error(routine_name, -14, incy, NULL);
+    BLAS_error(routine_name, -14, incy, nullptr);
 
   if (m == 0 || n == 0 || (alpha == T(0) && beta == T(1)))
     return;

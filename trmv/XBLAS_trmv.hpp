@@ -94,11 +94,11 @@ constexpr void trmv(blas_order_type order,
        trans != blas_conj_trans) ||
       (diag != blas_non_unit_diag && diag != blas_unit_diag) ||
       (ldt < n) || (incx == 0)) {
-    BLAS_error(routine_name, 0, 0, NULL);
+    BLAS_error(routine_name, 0, 0, nullptr);
   } else if (n <= 0) {
-    BLAS_error(routine_name, -4, n, NULL);
+    BLAS_error(routine_name, -4, n, nullptr);
   } else if (incx == 0) {
-    BLAS_error(routine_name, -9, incx, NULL);
+    BLAS_error(routine_name, -9, incx, nullptr);
   }
 
   if (trans == blas_no_trans) {

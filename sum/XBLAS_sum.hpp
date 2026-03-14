@@ -47,9 +47,9 @@ constexpr void sum(IdxType n,
 
   /* Test the input parameters. */
   if (n < 0)
-    BLAS_error(routine_name, -1, n, NULL);
+    BLAS_error(routine_name, -1, n, nullptr);
   if (incx == 0)
-    BLAS_error(routine_name, -3, incx, NULL);
+    BLAS_error(routine_name, -3, incx, nullptr);
 
   /* Immediate return. */
   if (n <= 0) {

@@ -84,7 +84,7 @@ constexpr void trsv(blas_order_type order,
        blas_no_trans && trans != blas_conj_trans) ||
       (diag != blas_non_unit_diag && diag != blas_unit_diag) ||
       (ldt < n) || (incx == 0)) {
-    BLAS_error(routine_name, 0, 0, NULL);
+    BLAS_error(routine_name, 0, 0, nullptr);
   }
 
   if (n <= 0)
@@ -124,7 +124,7 @@ constexpr void trsv(blas_order_type order,
       /* allocate space for intx */
       intx = new(std::nothrow) TmpType[n];
 
-      if (n > 0 && intx == NULL) {
+      if (n > 0 && intx == nullptr) {
         BLAS_error(routine_name, 0, 0, "allocation failed.\n");
       }
 
@@ -700,7 +700,7 @@ constexpr void trsv(blas_order_type order,
 
       /* allocate space for intx */
       intx = new(std::nothrow) TmpType[n];
-      if (n > 0 && intx == NULL) {
+      if (n > 0 && intx == nullptr) {
         BLAS_error(routine_name, 0, 0, "allocation failed.\n");
       }
 

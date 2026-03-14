@@ -126,50 +126,50 @@ constexpr void gemm(blas_order_type order,
 
   /* Test for error conditions */
   if (m < 0)
-    BLAS_error(routine_name, -4, m, NULL);
+    BLAS_error(routine_name, -4, m, nullptr);
   if (n < 0)
-    BLAS_error(routine_name, -5, n, NULL);
+    BLAS_error(routine_name, -5, n, nullptr);
   if (k < 0)
-    BLAS_error(routine_name, -6, k, NULL);
+    BLAS_error(routine_name, -6, k, nullptr);
 
   if (order == blas_colmajor) {
     if (ldc < m)
-      BLAS_error(routine_name, -14, ldc, NULL);
+      BLAS_error(routine_name, -14, ldc, nullptr);
 
     if (transa == blas_no_trans) {
       if (lda < m)
-        BLAS_error(routine_name, -9, lda, NULL);
+        BLAS_error(routine_name, -9, lda, nullptr);
     } else {
       if (lda < k)
-        BLAS_error(routine_name, -9, lda, NULL);
+        BLAS_error(routine_name, -9, lda, nullptr);
     }
 
     if (transb == blas_no_trans) {
       if (ldb < k)
-        BLAS_error(routine_name, -11, ldb, NULL);
+        BLAS_error(routine_name, -11, ldb, nullptr);
     } else {
       if (ldb < n)
-        BLAS_error(routine_name, -11, ldb, NULL);
+        BLAS_error(routine_name, -11, ldb, nullptr);
     }
   } else {
     /* row major */
     if (ldc < n)
-      BLAS_error(routine_name, -14, ldc, NULL);
+      BLAS_error(routine_name, -14, ldc, nullptr);
 
     if (transa == blas_no_trans) {
       if (lda < k)
-        BLAS_error(routine_name, -9, lda, NULL);
+        BLAS_error(routine_name, -9, lda, nullptr);
     } else {
       if (lda < m)
-        BLAS_error(routine_name, -9, lda, NULL);
+        BLAS_error(routine_name, -9, lda, nullptr);
     }
 
     if (transb == blas_no_trans) {
       if (ldb < n)
-        BLAS_error(routine_name, -11, ldb, NULL);
+        BLAS_error(routine_name, -11, ldb, nullptr);
     } else {
       if (ldb < k)
-        BLAS_error(routine_name, -11, ldb, NULL);
+        BLAS_error(routine_name, -11, ldb, nullptr);
     }
   }
 

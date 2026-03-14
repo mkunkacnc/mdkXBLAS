@@ -120,16 +120,16 @@ constexpr void hemv2(blas_order_type order,
 
   /* Check for error conditions. */
   if (n < 0) {
-    BLAS_error(routine_name, -3, n, NULL);
+    BLAS_error(routine_name, -3, n, nullptr);
   }
   if (lda < n) {
-    BLAS_error(routine_name, -6, n, NULL);
+    BLAS_error(routine_name, -6, n, nullptr);
   }
   if (incx == 0) {
-    BLAS_error(routine_name, -9, incx, NULL);
+    BLAS_error(routine_name, -9, incx, nullptr);
   }
   if (incy == 0) {
-    BLAS_error(routine_name, -12, incy, NULL);
+    BLAS_error(routine_name, -12, incy, nullptr);
   }
 
   if ((order == blas_colmajor && uplo == blas_upper) ||

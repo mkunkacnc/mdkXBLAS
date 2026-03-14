@@ -85,29 +85,29 @@ constexpr void tbsv(blas_order_type order,
   T alpha_i = alpha;
 
   if (order != blas_rowmajor && order != blas_colmajor) {
-    BLAS_error(routine_name, -1, order, 0);
+    BLAS_error(routine_name, -1, order, nullptr);
   }
   if (uplo != blas_upper && uplo != blas_lower) {
-    BLAS_error(routine_name, -2, uplo, 0);
+    BLAS_error(routine_name, -2, uplo, nullptr);
   }
   if ((trans != blas_trans) && (trans != blas_no_trans) &&
       (trans != static_cast<blas_trans_type>(blas_conj)) && (trans != blas_conj_trans)) {
-    BLAS_error(routine_name, -2, uplo, 0);
+    BLAS_error(routine_name, -2, uplo, nullptr);
   }
   if (diag != blas_non_unit_diag && diag != blas_unit_diag) {
-    BLAS_error(routine_name, -4, diag, 0);
+    BLAS_error(routine_name, -4, diag, nullptr);
   }
   if (n < 0) {
-    BLAS_error(routine_name, -5, n, 0);
+    BLAS_error(routine_name, -5, n, nullptr);
   }
   if (k >= n) {
-    BLAS_error(routine_name, -6, k, 0);
+    BLAS_error(routine_name, -6, k, nullptr);
   }
   if ((ldt < 1) || (ldt <= k)) {
-    BLAS_error(routine_name, -9, ldt, 0);
+    BLAS_error(routine_name, -9, ldt, nullptr);
   }
   if (incx == 0) {
-    BLAS_error(routine_name, -11, incx, 0);
+    BLAS_error(routine_name, -11, incx, nullptr);
   }
 
   if (n <= 0)
@@ -194,7 +194,7 @@ constexpr void tbsv(blas_order_type order,
       TmpType *x_internal;
 
       x_internal = new(std::nothrow) TmpType[k];
-      if (k > 0 && x_internal == NULL) {
+      if (k > 0 && x_internal == nullptr) {
         BLAS_error(routine_name, 0, 0, "allocation failed.\n");
       }
 
@@ -545,7 +545,7 @@ constexpr void tbsv(blas_order_type order,
       TmpType *x_internal;
 
       x_internal = new(std::nothrow) TmpType[k]; // *) blas_malloc(k * sizeof(TmpType));
-      if (k > 0 && x_internal == NULL) {
+      if (k > 0 && x_internal == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "temp allocation failed.\n");
       }
 
@@ -818,7 +818,7 @@ constexpr void tbsv_x(blas_order_type order,
     XBLAS::tbsv<T, A, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, trans, diag, n, k, alpha, t, ldt, x, incx);
     break;
   default:
-    BLAS_error(routine_name, -12, prec, 0);
+    BLAS_error(routine_name, -12, prec, nullptr);
     break;
   }
 } /* end XBLAS::tbsv_x */

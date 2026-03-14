@@ -99,13 +99,13 @@ constexpr void gemv(blas_order_type order,
 
   /* all error calls */
   if (m < 0)
-    BLAS_error(routine_name, -3, m, 0);
+    BLAS_error(routine_name, -3, m, nullptr);
   else if (n <= 0)
-    BLAS_error(routine_name, -4, n, 0);
+    BLAS_error(routine_name, -4, n, nullptr);
   else if (incx == 0)
-    BLAS_error(routine_name, -9, incx, 0);
+    BLAS_error(routine_name, -9, incx, nullptr);
   else if (incy == 0)
-    BLAS_error(routine_name, -12, incy, 0);
+    BLAS_error(routine_name, -12, incy, nullptr);
 
   if ((order == blas_rowmajor) && (trans == blas_no_trans)) {
     lenx = n;
@@ -131,7 +131,7 @@ constexpr void gemv(blas_order_type order,
 
   if ((order == blas_colmajor && lda < m) ||
       (order == blas_rowmajor && lda < n))
-    BLAS_error(routine_name, -7, lda, NULL);
+    BLAS_error(routine_name, -7, lda, nullptr);
 
   if constexpr (impl::uses_double_double_v<TmpType>) {
     FPU_FIX_START;
