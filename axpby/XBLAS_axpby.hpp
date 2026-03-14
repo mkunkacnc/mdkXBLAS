@@ -9,18 +9,20 @@ namespace XBLAS {
 
 template<typename T,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
+          std::signed_integral<N> &&
           std::signed_integral<IdxType>)
-constexpr void axpby(IdxType n,
+constexpr void axpby(N n,
                      T alpha,
                      const X *x,
-                     IdxType incx,
+                     N incx,
                      T beta,
                      T *y,
-                     IdxType incy)
+                     N incy)
 /*
  * Purpose
  * =======
@@ -32,7 +34,7 @@ constexpr void axpby(IdxType n,
  * Arguments
  * =========
  *
- * n      (input) IdxType
+ * n      (input) N
  *        The length of vectors x and y.
  *
  * alpha  (input) T
@@ -40,7 +42,7 @@ constexpr void axpby(IdxType n,
  * x      (input) const X*
  *        Array of length n.
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride used to access components x[i].
  *
  * beta   (input) T
@@ -48,7 +50,7 @@ constexpr void axpby(IdxType n,
  * y      (input/output) T*
  *        Array of length n.
  *
- * incy   (input) IdxType
+ * incy   (input) N
  *        The stride used to access components y[i].
  *
  */
@@ -79,12 +81,12 @@ constexpr void axpby(IdxType n,
     iy = (-n + 1) * incy;
 
   for (IdxType i = 0; i < n; ++i) {
-    TmpType tmpx = impl::mul<TmpType>(alpha, x[ix]); /* tmpx = alpha * x[ix] */
-    TmpType tmpy = impl::mul<TmpType>(beta, y[iy]);  /* tmpy = beta * y[iy] */
+    TmpType tmpx = impl::mul<TmpType>(alpha, x[ix]);
+    TmpType tmpy = impl::mul<TmpType>(beta, y[iy]);
     y[iy] = impl::add<T>(tmpx, tmpy);
     ix += incx;
     iy += incy;
-  } /* endfor */
+  }
 
   if constexpr (impl::uses_double_double_v<TmpType>) {
     FPU_FIX_STOP;
@@ -95,18 +97,20 @@ constexpr void axpby(IdxType n,
 
 template<typename T,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
+          std::signed_integral<N> &&
           std::signed_integral<IdxType>)
-constexpr void axpby_x(IdxType n,
+constexpr void axpby_x(N n,
                        T alpha,
                        const X *x,
-                       IdxType incx,
+                       N incx,
                        T beta,
                        T *y,
-                       IdxType incy,
+                       N incy,
                        blas_prec_type prec)
 /*
  * Purpose
@@ -119,7 +123,7 @@ constexpr void axpby_x(IdxType n,
  * Arguments
  * =========
  *
- * n      (input) IdxType
+ * n      (input) N
  *        The length of vectors x and y.
  *
  * alpha  (input) T
@@ -127,7 +131,7 @@ constexpr void axpby_x(IdxType n,
  * x      (input) const X*
  *        Array of length n.
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride used to access components x[i].
  *
  * beta   (input) T
@@ -135,7 +139,7 @@ constexpr void axpby_x(IdxType n,
  * y      (input/output) T*
  *        Array of length n.
  *
- * incy   (input) IdxType
+ * incy   (input) N
  *        The stride used to access components y[i].
  *
  * prec   (input) blas_prec_type
@@ -148,19 +152,22 @@ constexpr void axpby_x(IdxType n,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::axpby_x";
+  static const char routine_name[] = "XBLAS::axpby_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::axpby<T, X, impl::internal_precision_t<T, blas_prec_single>, IdxType>(n, alpha, x, incx, beta, y, incy);
+    XBLAS::axpby<T, X, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_double:
-    XBLAS::axpby<T, X, impl::internal_precision_t<T, blas_prec_double>, IdxType>(n, alpha, x, incx, beta, y, incy);
+    XBLAS::axpby<T, X, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_indigenous:
-    XBLAS::axpby<T, X, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(n, alpha, x, incx, beta, y, incy);
+    XBLAS::axpby<T, X, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(n, alpha, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    XBLAS::axpby<T, X, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(n, alpha, x, incx, beta, y, incy);
+    XBLAS::axpby<T, X, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(n, alpha, x, incx, beta, y, incy);
+    break;
+  default:
+    BLAS_error(routine_name, -8, prec, 0);
     break;
   }
 } /* end XBLAS::axpby_x */
