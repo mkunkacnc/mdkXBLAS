@@ -91,8 +91,6 @@ public:
   constexpr double_double& operator -=(const double_double& rhs);
 
   constexpr double to_double() const { return head; }
-  constexpr double head_() const { return head; } // eventually remove
-  constexpr double tail_() const { return tail; } // eventually remove
 
 private:
   double head;
