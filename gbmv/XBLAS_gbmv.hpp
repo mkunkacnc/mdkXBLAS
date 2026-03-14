@@ -8,29 +8,63 @@
 namespace XBLAS {
 //---------------
 
+//--------------
+namespace impl {
+//--------------
+
+template<int do_conj,
+         typename A,
+         typename X,
+         typename N,
+         typename PrdType,
+         typename IdxType>
+constexpr void gbmv_impl(const A *a,
+                         const X *x,
+                         N incx,
+                         PrdType& sum,
+                         IdxType& ra,
+                         IdxType& la,
+                         IdxType aij,
+                         IdxType jx,
+                         IdxType incaij)
+{
+  for (IdxType j = ra - la; j >= 0; --j) {
+    PrdType prod = impl::mul<PrdType>(x[jx], impl::Conj_h<do_conj>::func(a[aij]));
+    sum += prod;
+    aij += incaij;
+    jx += incx;
+  }
+} /* end XBLAS::impl::gbmv_impl */
+
+//-----------------
+} // namespace impl
+//-----------------
+
 template<typename T,
          typename A,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
+          std::signed_integral<N> &&
           std::signed_integral<IdxType>)
 constexpr void gbmv(blas_order_type order,
                     blas_trans_type trans,
-                    IdxType m,
-                    IdxType n,
-                    IdxType kl,
-                    IdxType ku,
+                    N m,
+                    N n,
+                    N kl,
+                    N ku,
                     T alpha,
                     const A *a,
-                    IdxType lda,
+                    N lda,
                     const X *x,
-                    IdxType incx,
+                    N incx,
                     T beta,
                     T *y,
-                    IdxType incy)
+                    N incy)
 /*
  * Purpose
  * =======
@@ -53,36 +87,36 @@ constexpr void gbmv(blas_order_type order,
  *        Transpose of AB; no trans,
  *          trans, or conjugate trans
  *
- * m      (input) IdxType
+ * m      (input) N
  *        Dimension of AB
  *
- * n      (input) IdxType
+ * n      (input) N
  *        Dimension of AB and the length of vector x
  *
- * kl     (input) IdxType
+ * kl     (input) N
  *        Number of lower diagonals of AB
  *
- * ku     (input) IdxType
+ * ku     (input) N
  *        Number of upper diagonals of AB
  *
  * alpha  (input) T
  *
  * AB     (input) const A*
  *
- * lda    (input) IdxType
+ * lda    (input) N
  *        Leading dimension of AB
  *          lda >= ku + kl + 1
  *
  * x      (input) const X*
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride for vector x.
  *
  * beta   (input) T
  *
  * y      (input/output) T*
  *
- * incy   (input) IdxType
+ * incy   (input) N
  *        The stride for vector y.
  *
  *
@@ -227,27 +261,12 @@ constexpr void gbmv(blas_order_type order,
 
     if constexpr (impl::is_complex_v<A>) {
       if (trans == blas_conj_trans) {
-        for (IdxType j = ra - la; j >= 0; --j) {
-          PrdType prod = impl::mul<PrdType>(x[jx], impl::Conj::func(a[aij]));
-          sum += prod;
-          aij += incaij;
-          jx += incx;
-        }
+        impl::gbmv_impl<1>(a, x, incx, sum, ra, la, aij, jx, incaij);
       } else {
-        for (IdxType j = ra - la; j >= 0; --j) {
-          PrdType prod = impl::mul<PrdType>(x[jx], a[aij]);
-          sum += prod;
-          aij += incaij;
-          jx += incx;
-        }
+        impl::gbmv_impl<0>(a, x, incx, sum, ra, la, aij, jx, incaij);
       }
     } else {
-      for (IdxType j = ra - la; j >= 0; --j) {
-        PrdType prod = impl::mul<PrdType>(x[jx], a[aij]);
-        sum += prod;
-        aij += incaij;
-        jx += incx;
-      }
+      impl::gbmv_impl<0>(a, x, incx, sum, ra, la, aij, jx, incaij);
     }
 
     TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
@@ -277,26 +296,28 @@ constexpr void gbmv(blas_order_type order,
 template<typename T,
          typename A,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
+          std::signed_integral<N> &&
           std::signed_integral<IdxType>)
 constexpr void gbmv_x(blas_order_type order,
                       blas_trans_type trans,
-                      IdxType m,
-                      IdxType n,
-                      IdxType kl,
-                      IdxType ku,
+                      N m,
+                      N n,
+                      N kl,
+                      N ku,
                       T alpha,
                       const A *a,
-                      IdxType lda,
+                      N lda,
                       const X *x,
-                      IdxType incx,
+                      N incx,
                       T beta,
                       T *y,
-                      IdxType incy,
+                      N incy,
                       blas_prec_type prec)
 /*
  * Purpose
@@ -320,36 +341,36 @@ constexpr void gbmv_x(blas_order_type order,
  *        Transpose of AB; no trans,
  *          trans, or conjugate trans
  *
- * m      (input) IdxType
+ * m      (input) N
  *        Dimension of AB
  *
- * n      (input) IdxType
+ * n      (input) N
  *        Dimension of AB and the length of vector x
  *
- * kl     (input) IdxType
+ * kl     (input) N
  *        Number of lower diagonals of AB
  *
- * ku     (input) IdxType
+ * ku     (input) N
  *        Number of upper diagonals of AB
  *
  * alpha  (input) T
  *
  * AB     (input) const A*
  *
- * lda    (input) IdxType
+ * lda    (input) N
  *        Leading dimension of AB
  *          lda >= ku + kl + 1
  *
  * x      (input) const X*
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride for vector x.
  *
  * beta   (input) T
  *
  * y      (input/output) T*
  *
- * incy   (input) IdxType
+ * incy   (input) N
  *        The stride for vector y.
  *
  * prec   (input) blas_prec_type
@@ -397,19 +418,22 @@ constexpr void gbmv_x(blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::gbmv_x";
+  static const char routine_name[] = "XBLAS::gbmv_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::gbmv<T, A, X, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
+    XBLAS::gbmv<T, A, X, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
     break;
   case blas_prec_double:
-    XBLAS::gbmv<T, A, X, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
+    XBLAS::gbmv<T, A, X, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
     break;
   case blas_prec_indigenous:
-    XBLAS::gbmv<T, A, X, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
+    XBLAS::gbmv<T, A, X, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    XBLAS::gbmv<T, A, X, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
+    XBLAS::gbmv<T, A, X, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, x, incx, beta, y, incy);
+    break;
+  default:
+    BLAS_error(routine_name, -15, prec, nullptr);
     break;
   }
 } /* end XBLAS::gbmv_x */
