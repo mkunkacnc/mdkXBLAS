@@ -70,26 +70,18 @@ constexpr void ge_sum_mv_impl(N m,
     } else if constexpr (need_alpha == 1) {
       if constexpr (need_beta == 0) {
         y[yi] = impl::to<T>(sumA);
-      } else if constexpr (need_beta == 1) {
-        TmpType tmp1 = sumA;
-        TmpType tmp2 = sumB;
-        y[yi] = impl::add<T>(tmp1, tmp2);
       } else {
         TmpType tmp1 = sumA;
-        TmpType tmp2 = impl::mul<TmpType>(sumB, beta);
+        TmpType tmp2 = (need_beta == 1 ? sumB : impl::mul<TmpType>(sumB, beta));
         y[yi] = impl::add<T>(tmp1, tmp2);
       }
     } else {
       if constexpr (need_beta == 0) {
         TmpType tmp1 = impl::mul<TmpType>(sumA, alpha);
         y[yi] = impl::to<T>(tmp1);
-      } else if constexpr (need_beta == 1) {
+      } else  {
         TmpType tmp1 = impl::mul<TmpType>(sumA, alpha);
-        TmpType tmp2 = sumB;
-        y[yi] = impl::add<T>(tmp1, tmp2);
-      } else {
-        TmpType tmp1 = impl::mul<TmpType>(sumA, alpha);
-        TmpType tmp2 = impl::mul<TmpType>(sumB, beta);
+        TmpType tmp2 = (need_beta == 1 ? sumB : impl::mul<TmpType>(sumB, beta));
         y[yi] = impl::add<T>(tmp1, tmp2);
       }
     }
