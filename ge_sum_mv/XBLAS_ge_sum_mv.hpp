@@ -1,35 +1,134 @@
 #ifndef XBLAS_GE_SUM_MV_HPP
 #define XBLAS_GE_SUM_MV_HPP
 
-#include "blas_extended_private.h"
 #include "common/XBLAS_impl.hpp"
 
 //---------------
 namespace XBLAS {
 //---------------
 
+//--------------
+namespace impl {
+//--------------
+
+template<int need_alpha,
+         int need_beta,
+         typename TmpType,
+         typename PrdType,
+         typename T,
+         typename A,
+         typename X,
+         typename N,
+         typename IdxType>
+constexpr void ge_sum_mv_impl(N m,
+                              N n,
+                              T alpha,
+                              const A *a,
+                              const X *x,
+                              T beta,
+                              const A *b,
+                              T *y,
+                              IdxType incai,
+                              IdxType incaij,
+                              IdxType x_starti,
+                              IdxType incxi,
+                              IdxType incbi,
+                              IdxType incbij,
+                              IdxType y_starti,
+                              IdxType incyi)
+{
+  IdxType ai = 0;
+  IdxType bi = 0;
+
+  for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
+    PrdType sumA = impl::zero_v<PrdType>;
+    IdxType aij = ai;
+    PrdType sumB = impl::zero_v<PrdType>;
+    IdxType bij = bi;
+
+    for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
+      if (need_alpha != 0) {
+        sumA += impl::mul<PrdType>(a[aij], x[xi]);
+        aij += incaij;
+      }
+      if (need_beta != 0) {
+        sumB += impl::mul<PrdType>(b[bij], x[xi]);
+        bij += incbij;
+      }
+    }
+
+    /* now put the result into y */
+    if constexpr (need_alpha == 0) {
+      if constexpr (need_beta == 0) {
+        y[yi] = T(0); // not actually used.
+      } else if constexpr (need_beta == 1) {
+        y[yi] = impl::to<T>(sumB);
+      } else {
+        TmpType tmp2 = impl::mul<TmpType>(sumB, beta);
+        y[yi] = impl::to<T>(tmp2);
+      }
+    } else if constexpr (need_alpha == 1) {
+      if constexpr (need_beta == 0) {
+        y[yi] = impl::to<T>(sumA);
+      } else if constexpr (need_beta == 1) {
+        TmpType tmp1 = sumA;
+        TmpType tmp2 = sumB;
+        y[yi] = impl::add<T>(tmp1, tmp2);
+      } else {
+        TmpType tmp1 = sumA;
+        TmpType tmp2 = impl::mul<TmpType>(sumB, beta);
+        y[yi] = impl::add<T>(tmp1, tmp2);
+      }
+    } else {
+      if constexpr (need_beta == 0) {
+        TmpType tmp1 = impl::mul<TmpType>(sumA, alpha);
+        y[yi] = impl::to<T>(tmp1);
+      } else if constexpr (need_beta == 1) {
+        TmpType tmp1 = impl::mul<TmpType>(sumA, alpha);
+        TmpType tmp2 = sumB;
+        y[yi] = impl::add<T>(tmp1, tmp2);
+      } else {
+        TmpType tmp1 = impl::mul<TmpType>(sumA, alpha);
+        TmpType tmp2 = impl::mul<TmpType>(sumB, beta);
+        y[yi] = impl::add<T>(tmp1, tmp2);
+      }
+    }
+
+    if constexpr (need_alpha != 0)
+      ai += incai;
+    if constexpr (need_beta != 0)
+      bi += incbi;
+  }
+} /* end XBLAS::impl::ge_sum_mv_impl */
+
+//-----------------
+} // namespace impl
+//-----------------
+
 template<typename T,
          typename A,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
+          std::signed_integral<N> &&
           std::signed_integral<IdxType>)
 constexpr void ge_sum_mv(blas_order_type order,
-                         IdxType m,
-                         IdxType n,
+                         N m,
+                         N n,
                          T alpha,
                          const A *a,
-                         IdxType lda,
+                         N lda,
                          const X *x,
-                         IdxType incx,
+                         N incx,
                          T beta,
                          const A *b,
-                         IdxType ldb,
+                         N ldb,
                          T *y,
-                         IdxType incy)
+                         N incy)
 /*
  * Purpose
  * =======
@@ -43,34 +142,34 @@ constexpr void ge_sum_mv(blas_order_type order,
  * order  (input) blas_order_type
  *        Order of A; row or column major
  *
- * m      (input) IdxType
+ * m      (input) N
  *        Row Dimension of A, B, length of output vector y
  *
- * n      (input) IdxType
+ * n      (input) N
  *        Column Dimension of A, B and the length of vector x
  *
  * alpha  (input) T
  *
  * A      (input) const A*
  *
- * lda    (input) IdxType
+ * lda    (input) N
  *        Leading dimension of A
  *
  * x      (input) const X*
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride for vector x.
  *
  * beta   (input) T
  *
  * b      (input) const A*
  *
- * ldb    (input) IdxType
+ * ldb    (input) N
  *        Leading dimension of B
  *
  * y      (input/output) T*
  *
- * incy   (input) IdxType
+ * incy   (input) N
  *        The stride for vector y.
  *
  */
@@ -147,155 +246,32 @@ constexpr void ge_sum_mv(blas_order_type order,
       }
     } else if (beta == T(1)) {
       /* alpha is 0, beta is 1 */
-      IdxType bi = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
-        PrdType sumB = impl::zero_v<PrdType>;
-        IdxType bij = bi;
-        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
-          sumB += impl::mul<PrdType>(b[bij], x[xi]);
-          bij += incbij;
-        }
-        /* now put the result into y */
-        y[yi] = impl::to<T>(sumB);
-        bi += incbi;
-      }
+      impl::ge_sum_mv_impl<0, 1, TmpType, PrdType>(m, n, alpha, a, x, beta, b, y, incai, incaij, x_starti, incxi, incbi, incbij, y_starti, incyi);
     } else {
-      /* alpha is 0, beta not 1 nor 0 */
-      IdxType bi = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
-        PrdType sumB = impl::zero_v<PrdType>;
-        IdxType bij = bi;
-        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
-          sumB += impl::mul<PrdType>(b[bij], x[xi]);
-          bij += incbij;
-        }
-        /* now put the result into y */
-        TmpType tmp1 = impl::mul<TmpType>(sumB, beta);
-        y[yi] = impl::to<T>(tmp1);
-        bi += incbi;
-      }
+      /* alpha is 0, beta is other */
+      impl::ge_sum_mv_impl<0, -1, TmpType, PrdType>(m, n, alpha, a, x, beta, b, y, incai, incaij, x_starti, incxi, incbi, incbij, y_starti, incyi);
     }
   } else if (alpha == T(1)) {
     if (beta == T(0)) {
       /* alpha is 1, beta is 0 */
-      IdxType ai = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
-        PrdType sumA = impl::zero_v<PrdType>;
-        IdxType aij = ai;
-        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
-          sumA += impl::mul<PrdType>(a[aij], x[xi]);
-          aij += incaij;
-        }
-        /* now put the result into y */
-        y[yi] = impl::to<T>(sumA);
-        ai += incai;
-
-      }
+      impl::ge_sum_mv_impl<1, 0, TmpType, PrdType>(m, n, alpha, a, x, beta, b, y, incai, incaij, x_starti, incxi, incbi, incbij, y_starti, incyi);
     } else if (beta == T(1)) {
       /* alpha is 1, beta is 1 */
-      IdxType ai = 0;
-      IdxType bi = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
-        PrdType sumA = impl::zero_v<PrdType>;
-        IdxType aij = ai;
-        PrdType sumB = impl::zero_v<PrdType>;
-        IdxType bij = bi;
-        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
-          sumA += impl::mul<PrdType>(a[aij], x[xi]);
-          aij += incaij;
-          sumB += impl::mul<PrdType>(b[bij], x[xi]);
-          bij += incbij;
-        }
-        /* now put the result into y */
-        TmpType tmp1 = sumA;
-        TmpType tmp2 = sumB;
-        y[yi] = impl::add<T>(tmp1, tmp2);
-        ai += incai;
-        bi += incbi;
-      }
+      impl::ge_sum_mv_impl<1, 1, TmpType, PrdType>(m, n, alpha, a, x, beta, b, y, incai, incaij, x_starti, incxi, incbi, incbij, y_starti, incyi);
     } else {
       /* alpha is 1, beta is other */
-      IdxType ai = 0;
-      IdxType bi = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
-        PrdType sumA = impl::zero_v<PrdType>;
-        IdxType aij = ai;
-        PrdType sumB = impl::zero_v<PrdType>;
-        IdxType bij = bi;
-        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
-          sumA += impl::mul<PrdType>(a[aij], x[xi]);
-          aij += incaij;
-          sumB += impl::mul<PrdType>(b[bij], x[xi]);
-          bij += incbij;
-        }
-        /* now put the result into y */
-        TmpType tmp1 = sumA;
-        TmpType tmp2 = impl::mul<TmpType>(sumB, beta);
-        y[yi] = impl::add<T>(tmp1, tmp2);
-        ai += incai;
-        bi += incbi;
-      }
+      impl::ge_sum_mv_impl<1, -1, TmpType, PrdType>(m, n, alpha, a, x, beta, b, y, incai, incaij, x_starti, incxi, incbi, incbij, y_starti, incyi);
     }
   } else {
     if (beta == T(0)) {
       /* alpha is other, beta is 0 */
-      IdxType ai = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
-        PrdType sumA = impl::zero_v<PrdType>;
-        IdxType aij = ai;
-        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
-          sumA += impl::mul<PrdType>(a[aij], x[xi]);
-          aij += incaij;
-        }
-        /* now put the result into y */
-        TmpType tmp1 = impl::mul<TmpType>(sumA, alpha);
-        y[yi] = impl::to<T>(tmp1);
-        ai += incai;
-      }
+      impl::ge_sum_mv_impl<-1, 0, TmpType, PrdType>(m, n, alpha, a, x, beta, b, y, incai, incaij, x_starti, incxi, incbi, incbij, y_starti, incyi);
     } else if (beta == T(1)) {
       /* alpha is other, beta is 1 */
-      IdxType ai = 0;
-      IdxType bi = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
-        PrdType sumA = impl::zero_v<PrdType>;
-        IdxType aij = ai;
-        PrdType sumB = impl::zero_v<PrdType>;
-        IdxType bij = bi;
-        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
-          sumA += impl::mul<PrdType>(a[aij], x[xi]);
-          aij += incaij;
-          sumB += impl::mul<PrdType>(b[bij], x[xi]);
-          bij += incbij;
-        }
-        /* now put the result into y */
-        TmpType tmp1 = impl::mul<TmpType>(sumA, alpha);
-        TmpType tmp2 = sumB;
-        y[yi] = impl::add<T>(tmp1, tmp2);
-        ai += incai;
-        bi += incbi;
-      }
+      impl::ge_sum_mv_impl<-1, 1, TmpType, PrdType>(m, n, alpha, a, x, beta, b, y, incai, incaij, x_starti, incxi, incbi, incbij, y_starti, incyi);
     } else {
       /* most general form, alpha, beta are other */
-      IdxType ai = 0;
-      IdxType bi = 0;
-      for (IdxType i = 0, yi = y_starti; i < m; ++i, yi += incyi) {
-        PrdType sumA = impl::zero_v<PrdType>;
-        IdxType aij = ai;
-        PrdType sumB = impl::zero_v<PrdType>;
-        IdxType bij = bi;
-        for (IdxType j = 0, xi = x_starti; j < n; ++j, xi += incxi) {
-          sumA += impl::mul<PrdType>(a[aij], x[xi]);
-          aij += incaij;
-          sumB += impl::mul<PrdType>(b[bij], x[xi]);
-          bij += incbij;
-        }
-        /* now put the result into y */
-        TmpType tmp1 = impl::mul<TmpType>(sumA, alpha);
-        TmpType tmp2 = impl::mul<TmpType>(sumB, beta);
-        y[yi] = impl::add<T>(tmp1, tmp2);
-        ai += incai;
-        bi += incbi;
-      }
+      impl::ge_sum_mv_impl<-1, -1, TmpType, PrdType>(m, n, alpha, a, x, beta, b, y, incai, incaij, x_starti, incxi, incbi, incbij, y_starti, incyi);
     }
   }
 
@@ -309,25 +285,27 @@ constexpr void ge_sum_mv(blas_order_type order,
 template<typename T,
          typename A,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
+          std::signed_integral<N> &&
           std::signed_integral<IdxType>)
 constexpr void ge_sum_mv_x(blas_order_type order,
-                           IdxType m,
-                           IdxType n,
+                           N m,
+                           N n,
                            T alpha,
                            const A *a,
-                           IdxType lda,
+                           N lda,
                            const X *x,
-                           IdxType incx,
+                           N incx,
                            T beta,
                            const A *b,
-                           IdxType ldb,
+                           N ldb,
                            T *y,
-                           IdxType incy,
+                           N incy,
                            blas_prec_type prec)
 /*
  * Purpose
@@ -342,34 +320,34 @@ constexpr void ge_sum_mv_x(blas_order_type order,
  * order  (input) blas_order_type
  *        Order of A; row or column major
  *
- * m      (input) IdxType
+ * m      (input) N
  *        Row Dimension of A, B, length of output vector y
  *
- * n      (input) IdxType
+ * n      (input) N
  *        Column Dimension of A, B and the length of vector x
  *
  * alpha  (input) T
  *
  * A      (input) const A*
  *
- * lda    (input) IdxType
+ * lda    (input) N
  *        Leading dimension of A
  *
  * x      (input) const X*
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride for vector x.
  *
  * beta   (input) T
  *
  * b      (input) const A*
  *
- * ldb    (input) IdxType
+ * ldb    (input) N
  *        Leading dimension of B
  *
  * y      (input/output) T*
  *
- * incy   (input) IdxType
+ * incy   (input) N
  *        The stride for vector y.
  *
  * prec   (input) blas_prec_type
@@ -382,19 +360,22 @@ constexpr void ge_sum_mv_x(blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::ge_sum_mv_x";
+  static const char routine_name[] = "XBLAS::ge_sum_mv_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::ge_sum_mv<T, A, X, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, m, n, alpha, a, lda, x, incx, beta, b, ldb, y, incy);
+    XBLAS::ge_sum_mv<T, A, X, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, m, n, alpha, a, lda, x, incx, beta, b, ldb, y, incy);
     break;
   case blas_prec_double:
-    XBLAS::ge_sum_mv<T, A, X, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, m, n, alpha, a, lda, x, incx, beta, b, ldb, y, incy);
+    XBLAS::ge_sum_mv<T, A, X, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, m, n, alpha, a, lda, x, incx, beta, b, ldb, y, incy);
     break;
   case blas_prec_indigenous:
-    XBLAS::ge_sum_mv<T, A, X, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, m, n, alpha, a, lda, x, incx, beta, b, ldb, y, incy);
+    XBLAS::ge_sum_mv<T, A, X, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, m, n, alpha, a, lda, x, incx, beta, b, ldb, y, incy);
     break;
   case blas_prec_extra:
-    XBLAS::ge_sum_mv<T, A, X, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, m, n, alpha, a, lda, x, incx, beta, b, ldb, y, incy);
+    XBLAS::ge_sum_mv<T, A, X, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, m, n, alpha, a, lda, x, incx, beta, b, ldb, y, incy);
+    break;
+  default:
+    BLAS_error(routine_name, -14, prec, nullptr);
     break;
   }
 } /* end XBLAS::ge_sum_mv_x */

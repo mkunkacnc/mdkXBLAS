@@ -1,7 +1,7 @@
 #ifndef XBLAS_GBMV_HPP
 #define XBLAS_GBMV_HPP
 
-#include "blas_extended_private.h"
+#include "blas_enum.h"
 #include "common/XBLAS_impl.hpp"
 
 //---------------

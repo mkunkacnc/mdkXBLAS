@@ -1,7 +1,7 @@
 #ifndef XBLAS_GBMV2_HPP
 #define XBLAS_GBMV2_HPP
 
-#include "blas_extended_private.h"
+#include "blas_enum.h"
 #include "common/XBLAS_impl.hpp"
 
 //---------------
@@ -46,27 +46,29 @@ constexpr void gbmv2_impl(const A *a,
 template<typename T,
          typename A,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
+          std::signed_integral<N> &&
           std::signed_integral<IdxType>)
 constexpr void gbmv2(blas_order_type order,
                      blas_trans_type trans,
-                     IdxType m,
-                     IdxType n,
-                     IdxType kl,
-                     IdxType ku,
+                     N m,
+                     N n,
+                     N kl,
+                     N ku,
                      T alpha,
                      const A *a,
-                     IdxType lda,
+                     N lda,
                      const X *head_x,
                      const X *tail_x,
-                     IdxType incx,
+                     N incx,
                      T beta,
                      T *y,
-                     IdxType incy)
+                     N incy)
 /*
  * Purpose
  * =======
@@ -92,37 +94,37 @@ constexpr void gbmv2(blas_order_type order,
  *         Transpose of AB; no trans,
  *           trans, or conjugate trans
  *
- * m       (input) IdxType
+ * m       (input) N
  *         Dimension of AB
  *
- * n       (input) IdxType
+ * n       (input) N
  *         Dimension of AB and the length of vector x and z
  *
- * kl      (input) IdxType
+ * kl      (input) N
  *         Number of lower diagonals of AB
  *
- * ku      (input) IdxType
+ * ku      (input) N
  *         Number of upper diagonals of AB
  *
  * alpha   (input) T
  *
  * AB      (input) const A*
  *
- * lda     (input) IdxType
+ * lda     (input) N
  *         Leading dimension of AB
  *           lda >= ku + kl + 1
  *
  * head_x
  * tail_x  (input) const X*
  *
- * incx    (input) IdxType
+ * incx    (input) N
  *         The stride for vector x.
  *
  * beta    (input) T
  *
  * y       (input/output) T*
  *
- * incy    (input) IdxType
+ * incy    (input) N
  *         The stride for vector y.
  *
  *
@@ -295,27 +297,29 @@ constexpr void gbmv2(blas_order_type order,
 template<typename T,
          typename A,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
+          std::signed_integral<N> &&
           std::signed_integral<IdxType>)
 constexpr void gbmv2_x(blas_order_type order,
                        blas_trans_type trans,
-                       IdxType m,
-                       IdxType n,
-                       IdxType kl,
-                       IdxType ku,
+                       N m,
+                       N n,
+                       N kl,
+                       N ku,
                        T alpha,
                        const A *a,
-                       IdxType lda,
+                       N lda,
                        const X *head_x,
                        const X *tail_x,
-                       IdxType incx,
+                       N incx,
                        T beta,
                        T *y,
-                       IdxType incy,
+                       N incy,
                        blas_prec_type prec)
 /*
  * Purpose
@@ -342,37 +346,37 @@ constexpr void gbmv2_x(blas_order_type order,
  *         Transpose of AB; no trans,
  *           trans, or conjugate trans
  *
- * m       (input) IdxType
+ * m       (input) N
  *         Dimension of AB
  *
- * n       (input) IdxType
+ * n       (input) N
  *         Dimension of AB and the length of vector x and z
  *
- * kl      (input) IdxType
+ * kl      (input) N
  *         Number of lower diagonals of AB
  *
- * ku      (input) IdxType
+ * ku      (input) N
  *         Number of upper diagonals of AB
  *
  * alpha   (input) T
  *
  * AB      (input) const A*
  *
- * lda     (input) IdxType
+ * lda     (input) N
  *         Leading dimension of AB
  *           lda >= ku + kl + 1
  *
  * head_x
  * tail_x  (input) const X*
  *
- * incx    (input) IdxType
+ * incx    (input) N
  *         The stride for vector x.
  *
  * beta    (input) T
  *
  * y       (input/output) T*
  *
- * incy    (input) IdxType
+ * incy    (input) N
  *         The stride for vector y.
  *
  * prec    (input) blas_prec_type
@@ -423,16 +427,16 @@ constexpr void gbmv2_x(blas_order_type order,
   static const char routine_name[] = "XBLAS::gbmv2_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::gbmv2<T, A, X, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
+    XBLAS::gbmv2<T, A, X, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
     break;
   case blas_prec_double:
-    XBLAS::gbmv2<T, A, X, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
+    XBLAS::gbmv2<T, A, X, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
     break;
   case blas_prec_indigenous:
-    XBLAS::gbmv2<T, A, X, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
+    XBLAS::gbmv2<T, A, X, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    XBLAS::gbmv2<T, A, X, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
+    XBLAS::gbmv2<T, A, X, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
     break;
   default:
     BLAS_error(routine_name, -16, prec, nullptr);
