@@ -8,6 +8,41 @@
 namespace XBLAS {
 //---------------
 
+//--------------
+namespace impl {
+//--------------
+
+template<int do_conj,
+         typename A,
+         typename X,
+         typename N,
+         typename PrdType,
+         typename IdxType>
+constexpr void gbmv2_impl(const A *a,
+                          const X *head_x,
+                          const X *tail_x,
+                          N incx,
+                          PrdType& sum1,
+                          PrdType& sum2,
+                          IdxType ra,
+                          IdxType la,
+                          IdxType aij,
+                          IdxType jx,
+                          IdxType incaij)
+{
+  for (IdxType j = ra - la; j >= 0; --j) {
+    A a_elem = impl::Conj_h<do_conj>::func(a[aij]);
+    sum1 += impl::mul<PrdType>(a_elem, head_x[jx]);
+    sum2 += impl::mul<PrdType>(a_elem, tail_x[jx]);
+    aij += incaij;
+    jx += incx;
+  }
+} /* end XBLAS::impl::gbmv2_impl */
+
+//-----------------
+} // namespace impl
+//-----------------
+
 template<typename T,
          typename A,
          typename X,
@@ -175,8 +210,7 @@ constexpr void gbmv2(blas_order_type order,
     FPU_FIX_START;
   }
 
-  /* if alpha = 0, return y = y*beta (not implemented as a special case?) */
-
+  /* TODO: if alpha = 0, return y = y*beta */
   IdxType astart, incai1, incai2, incaij, lbound, rbound, ra;
   if (order == blas_colmajor && trans == blas_no_trans) {
     astart = ku;
@@ -224,28 +258,12 @@ constexpr void gbmv2(blas_order_type order,
 
     if constexpr (impl::is_complex_v<A>) {
       if (trans == blas_conj_trans) {
-        for (IdxType j = ra - la; j >= 0; --j) {
-          A a_elem = impl::Conj::func(a[aij]);
-          sum1 += impl::mul<PrdType>(a_elem, head_x[jx]);
-          sum2 += impl::mul<PrdType>(a_elem, tail_x[jx]);
-          aij += incaij;
-          jx += incx;
-        }
+        impl::gbmv2_impl<1>(a, head_x, tail_x, incx, sum1, sum2, ra, la, aij, jx, incaij);
       } else {
-        for (IdxType j = ra - la; j >= 0; --j) {
-          sum1 += impl::mul<PrdType>(a[aij], head_x[jx]);
-          sum2 += impl::mul<PrdType>(a[aij], tail_x[jx]);
-          aij += incaij;
-          jx += incx;
-        }
+        impl::gbmv2_impl<0>(a, head_x, tail_x, incx, sum1, sum2, ra, la, aij, jx, incaij);
       }
     } else {
-      for (IdxType j = ra - la; j >= 0; --j) {
-        sum1 += impl::mul<PrdType>(a[aij], head_x[jx]);
-        sum2 += impl::mul<PrdType>(a[aij], tail_x[jx]);
-        aij += incaij;
-        jx += incx;
-      }
+      impl::gbmv2_impl<0>(a, head_x, tail_x, incx, sum1, sum2, ra, la, aij, jx, incaij);
     }
 
     TmpType tmp1 = impl::mul<TmpType>(sum1, alpha);
@@ -402,7 +420,7 @@ constexpr void gbmv2_x(blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::gbmv2_x";
+  static const char routine_name[] = "XBLAS::gbmv2_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::gbmv2<T, A, X, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
@@ -415,6 +433,9 @@ constexpr void gbmv2_x(blas_order_type order,
     break;
   case blas_prec_extra:
     XBLAS::gbmv2<T, A, X, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
+    break;
+  default:
+    BLAS_error(routine_name, -16, prec, nullptr);
     break;
   }
 } /* end XBLAS::gbmv2_x */
