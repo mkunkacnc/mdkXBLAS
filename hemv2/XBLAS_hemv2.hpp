@@ -11,24 +11,27 @@ namespace XBLAS {
 template<typename T,
          typename A,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void hemv2(blas_order_type order,
                      blas_uplo_type uplo,
-                     IdxType n,
+                     N n,
                      T alpha,
                      const A *a,
-                     IdxType lda,
+                     N lda,
                      const X *x_head,
                      const X *x_tail,
-                     IdxType incx,
+                     N incx,
                      T beta,
                      T *y,
-                     IdxType incy)
+                     N incy)
 /*
  * Purpose
  * =======
@@ -49,7 +52,7 @@ constexpr void hemv2(blas_order_type order,
  *         Determines which half of matrix A (upper or lower triangle)
  *           is accessed.
  *
- * n       (input) IdxType
+ * n       (input) N
  *         Dimension of A and size of vectors x, y.
  *
  * alpha   (input) T
@@ -57,7 +60,7 @@ constexpr void hemv2(blas_order_type order,
  * a       (input) const A*
  *         Matrix A.
  *
- * lda     (input) IdxType
+ * lda     (input) N
  *         Leading dimension of matrix A.
  *
  * x_head  (input) const X*
@@ -66,7 +69,7 @@ constexpr void hemv2(blas_order_type order,
  * x_tail  (input) const X*
  *         Vector x_tail
  *
- * incx    (input) IdxType
+ * incx    (input) N
  *         Stride for vector x.
  *
  * beta    (input) T
@@ -74,7 +77,7 @@ constexpr void hemv2(blas_order_type order,
  * y       (input) T*
  *         Vector y.
  *
- * incy    (input) IdxType
+ * incy    (input) N
  *         Stride for vector y.
  *
  */
@@ -243,24 +246,27 @@ constexpr void hemv2(blas_order_type order,
 template<typename T,
          typename A,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void hemv2_x(blas_order_type order,
                        blas_uplo_type uplo,
-                       IdxType n,
+                       N n,
                        T alpha,
                        const A *a,
-                       IdxType lda,
+                       N lda,
                        const X *x_head,
                        const X *x_tail,
-                       IdxType incx,
+                       N incx,
                        T beta,
                        T *y,
-                       IdxType incy,
+                       N incy,
                        blas_prec_type prec)
 /*
  * Purpose
@@ -282,7 +288,7 @@ constexpr void hemv2_x(blas_order_type order,
  *         Determines which half of matrix A (upper or lower triangle)
  *           is accessed.
  *
- * n       (input) IdxType
+ * n       (input) N
  *         Dimension of A and size of vectors x, y.
  *
  * alpha   (input) T
@@ -290,7 +296,7 @@ constexpr void hemv2_x(blas_order_type order,
  * a       (input) const A*
  *         Matrix A.
  *
- * lda     (input) IdxType
+ * lda     (input) N
  *         Leading dimension of matrix A.
  *
  * x_head  (input) const X*
@@ -299,7 +305,7 @@ constexpr void hemv2_x(blas_order_type order,
  * x_tail  (input) const X*
  *         Vector x_tail
  *
- * incx    (input) IdxType
+ * incx    (input) N
  *         Stride for vector x.
  *
  * beta    (input) T
@@ -307,7 +313,7 @@ constexpr void hemv2_x(blas_order_type order,
  * y       (input) T*
  *         Vector y.
  *
- * incy    (input) IdxType
+ * incy    (input) N
  *         Stride for vector y.
  *
  * prec    (input) blas_prec_type
@@ -323,16 +329,16 @@ constexpr void hemv2_x(blas_order_type order,
 //static const char routine_name[] = "XBLAS::hemv2_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::hemv2<T, A, X, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, uplo, n, alpha, a, lda, x_head, x_tail, incx, beta, y, incy);
+    XBLAS::hemv2<T, A, X, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, uplo, n, alpha, a, lda, x_head, x_tail, incx, beta, y, incy);
     break;
   case blas_prec_double:
-    XBLAS::hemv2<T, A, X, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, uplo, n, alpha, a, lda, x_head, x_tail, incx, beta, y, incy);
+    XBLAS::hemv2<T, A, X, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, uplo, n, alpha, a, lda, x_head, x_tail, incx, beta, y, incy);
     break;
   case blas_prec_indigenous:
-    XBLAS::hemv2<T, A, X, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, uplo, n, alpha, a, lda, x_head, x_tail, incx, beta, y, incy);
+    XBLAS::hemv2<T, A, X, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, uplo, n, alpha, a, lda, x_head, x_tail, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    XBLAS::hemv2<T, A, X, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, n, alpha, a, lda, x_head, x_tail, incx, beta, y, incy);
+    XBLAS::hemv2<T, A, X, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, n, alpha, a, lda, x_head, x_tail, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::hemv2_x */

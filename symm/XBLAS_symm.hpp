@@ -11,25 +11,28 @@ namespace XBLAS {
 template<typename T,
          typename A,
          typename B,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<B, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void symm(blas_order_type order,
                     blas_side_type side,
                     blas_uplo_type uplo,
-                    IdxType m,
-                    IdxType n,
+                    N m,
+                    N n,
                     T alpha,
                     const A *a,
-                    IdxType lda,
+                    N lda,
                     const B *b,
-                    IdxType ldb,
+                    N ldb,
                     T beta,
                     T *c,
-                    IdxType ldc)
+                    N ldc)
 /*
  * Purpose
  * =======
@@ -54,7 +57,7 @@ constexpr void symm(blas_order_type order,
  *        Determines which half of matrix A (upper or lower triangle)
  *          is accessed.
  *
- * m n     (input) IdxType
+ * m n     (input) N
  *         Size of matrices A, B, and C.
  *         Matrix A is m-by-m if it is multiplied on the left,
  *                     n-by-n otherwise.
@@ -65,13 +68,13 @@ constexpr void symm(blas_order_type order,
  * a      (input) const A*
  *        Matrix A.
  *
- * lda    (input) IdxType
+ * lda    (input) N
  *        Leading dimension of matrix A.
  *
  * b      (input) const B*
  *        Matrix B.
  *
- * ldb    (input) IdxType
+ * ldb    (input) N
  *        Leading dimension of matrix B.
  *
  * beta   (input) T
@@ -79,7 +82,7 @@ constexpr void symm(blas_order_type order,
  * c      (input/output) T*
  *        Matrix C.
  *
- * ldc    (input) IdxType
+ * ldc    (input) N
  *        Leading dimension of matrix C.
  *
  */
@@ -285,25 +288,28 @@ constexpr void symm(blas_order_type order,
 template<typename T,
          typename A,
          typename B,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<B, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void symm_x(blas_order_type order,
                       blas_side_type side,
                       blas_uplo_type uplo,
-                      IdxType m,
-                      IdxType n,
+                      N m,
+                      N n,
                       T alpha,
                       const A *a,
-                      IdxType lda,
+                      N lda,
                       const B *b,
-                      IdxType ldb,
+                      N ldb,
                       T beta,
                       T *c,
-                      IdxType ldc,
+                      N ldc,
                       blas_prec_type prec)
 /*
  * Purpose
@@ -329,7 +335,7 @@ constexpr void symm_x(blas_order_type order,
  *        Determines which half of matrix A (upper or lower triangle)
  *          is accessed.
  *
- * m n     (input) IdxType
+ * m n     (input) N
  *         Size of matrices A, B, and C.
  *         Matrix A is m-by-m if it is multiplied on the left,
  *                     n-by-n otherwise.
@@ -340,13 +346,13 @@ constexpr void symm_x(blas_order_type order,
  * a      (input) const A*
  *        Matrix A.
  *
- * lda    (input) IdxType
+ * lda    (input) N
  *        Leading dimension of matrix A.
  *
  * b      (input) const B*
  *        Matrix B.
  *
- * ldb    (input) IdxType
+ * ldb    (input) N
  *        Leading dimension of matrix B.
  *
  * beta   (input) T
@@ -354,7 +360,7 @@ constexpr void symm_x(blas_order_type order,
  * c      (input/output) T*
  *        Matrix C.
  *
- * ldc    (input) IdxType
+ * ldc    (input) N
  *        Leading dimension of matrix C.
  *
  * prec   (input) blas_prec_type
@@ -370,16 +376,16 @@ constexpr void symm_x(blas_order_type order,
 //static const char routine_name[] = "XBLAS::symm_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::symm<T, A, B, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
+    XBLAS::symm<T, A, B, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
     break;
   case blas_prec_double:
-    XBLAS::symm<T, A, B, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
+    XBLAS::symm<T, A, B, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
     break;
   case blas_prec_indigenous:
-    XBLAS::symm<T, A, B, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
+    XBLAS::symm<T, A, B, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
     break;
   case blas_prec_extra:
-    XBLAS::symm<T, A, B, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
+    XBLAS::symm<T, A, B, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
     break;
   }
 } /* end XBLAS::symm_x */

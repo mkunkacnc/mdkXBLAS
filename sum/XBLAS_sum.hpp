@@ -9,13 +9,16 @@ namespace XBLAS {
 //---------------
 
 template<typename T,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
-constexpr void sum(IdxType n,
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
+constexpr void sum(N n,
                    const T *x,
-                   IdxType incx,
+                   N incx,
                    T *sum)
 /*
  * Purpose
@@ -28,13 +31,13 @@ constexpr void sum(IdxType n,
  * Arguments
  * =========
  *
- * n     (input) IdxType
+ * n     (input) N
  *       The length of vector x.
  *
  * x     (input) const T*
  *       Array of length n.
  *
- * incx  (input) IdxType
+ * incx  (input) N
  *       The stride used to access components x[i].
  *
  * sum   (output) T*
@@ -82,13 +85,16 @@ constexpr void sum(IdxType n,
 //-----------------
 
 template<typename T,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
-constexpr void sum_x(IdxType n,
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
+constexpr void sum_x(N n,
                      const T *x,
-                     IdxType incx,
+                     N incx,
                      T *sum,
                      blas_prec_type prec)
 /*
@@ -102,13 +108,13 @@ constexpr void sum_x(IdxType n,
  * Arguments
  * =========
  *
- * n     (input) IdxType
+ * n     (input) N
  *       The length of vector x.
  *
  * x     (input) const T*
  *       Array of length n.
  *
- * incx  (input) IdxType
+ * incx  (input) N
  *       The stride used to access components x[i].
  *
  * sum   (output) T*
@@ -126,16 +132,16 @@ constexpr void sum_x(IdxType n,
 //static const char routine_name[] = "XBLAS::sum_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::sum<T, impl::internal_precision_t<T, blas_prec_single>, IdxType>(n, x, incx, sum);
+    XBLAS::sum<T, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(n, x, incx, sum);
     break;
   case blas_prec_double:
-    XBLAS::sum<T, impl::internal_precision_t<T, blas_prec_double>, IdxType>(n, x, incx, sum);
+    XBLAS::sum<T, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(n, x, incx, sum);
     break;
   case blas_prec_indigenous:
-    XBLAS::sum<T, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(n, x, incx, sum);
+    XBLAS::sum<T, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(n, x, incx, sum);
     break;
   case blas_prec_extra:
-    XBLAS::sum<T, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(n, x, incx, sum);
+    XBLAS::sum<T, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(n, x, incx, sum);
     break;
   }
 } /* end XBLAS::sum_x */

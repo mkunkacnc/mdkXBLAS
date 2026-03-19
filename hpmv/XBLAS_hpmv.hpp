@@ -11,22 +11,25 @@ namespace XBLAS {
 template<typename T,
          typename A,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void hpmv(blas_order_type order,
                     blas_uplo_type uplo,
-                    IdxType n,
+                    N n,
                     T alpha,
                     const A *ap,
                     const X *x,
-                    IdxType incx,
+                    N incx,
                     T beta,
                     T *y,
-                    IdxType incy)
+                    N incy)
 /*
  * Purpose
  * =======
@@ -43,7 +46,7 @@ constexpr void hpmv(blas_order_type order,
  * uplo   (input) blas_uplo_type
  *        Whether ap is upper or lower
  *
- * n      (input) IdxType
+ * n      (input) N
  *        Dimension of ap and the length of vector x
  *
  * alpha  (input) T
@@ -52,14 +55,14 @@ constexpr void hpmv(blas_order_type order,
  *
  * x      (input) const X*
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride for vector x.
  *
  * beta   (input) T
  *
  * y      (input/output) T*
  *
- * incy   (input) IdxType
+ * incy   (input) N
  *        The stride for vector y.
  *
  */
@@ -762,22 +765,25 @@ constexpr void hpmv(blas_order_type order,
 template<typename T,
          typename A,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void hpmv_x(blas_order_type order,
                       blas_uplo_type uplo,
-                      IdxType n,
+                      N n,
                       T alpha,
                       const A *ap,
                       const X *x,
-                      IdxType incx,
+                      N incx,
                       T beta,
                       T *y,
-                      IdxType incy,
+                      N incy,
                       blas_prec_type prec)
 /*
  * Purpose
@@ -795,7 +801,7 @@ constexpr void hpmv_x(blas_order_type order,
  * uplo   (input) blas_uplo_type
  *        Whether ap is upper or lower
  *
- * n      (input) IdxType
+ * n      (input) N
  *        Dimension of ap and the length of vector x
  *
  * alpha  (input) T
@@ -804,14 +810,14 @@ constexpr void hpmv_x(blas_order_type order,
  *
  * x      (input) const X*
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride for vector x.
  *
  * beta   (input) T
  *
  * y      (input/output) T*
  *
- * incy   (input) IdxType
+ * incy   (input) N
  *        The stride for vector y.
  *
  * prec   (input) blas_prec_type
@@ -827,16 +833,16 @@ constexpr void hpmv_x(blas_order_type order,
 //static const char routine_name[] = "XBLAS::hpmv_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::hpmv<T, A, X, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, uplo, n, alpha, ap, x, incx, beta, y, incy);
+    XBLAS::hpmv<T, A, X, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, uplo, n, alpha, ap, x, incx, beta, y, incy);
     break;
   case blas_prec_double:
-    XBLAS::hpmv<T, A, X, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, uplo, n, alpha, ap, x, incx, beta, y, incy);
+    XBLAS::hpmv<T, A, X, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, uplo, n, alpha, ap, x, incx, beta, y, incy);
     break;
   case blas_prec_indigenous:
-    XBLAS::hpmv<T, A, X, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, uplo, n, alpha, ap, x, incx, beta, y, incy);
+    XBLAS::hpmv<T, A, X, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, uplo, n, alpha, ap, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    XBLAS::hpmv<T, A, X, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, n, alpha, ap, x, incx, beta, y, incy);
+    XBLAS::hpmv<T, A, X, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, n, alpha, ap, x, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::hpmv_x */

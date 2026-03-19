@@ -10,22 +10,25 @@ namespace XBLAS {
 
 template<typename T,
          typename A,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void tbsv(blas_order_type order,
                     blas_uplo_type uplo,
                     blas_trans_type trans,
                     blas_diag_type diag,
-                    IdxType n,
-                    IdxType k,
+                    N n,
+                    N k,
                     T alpha,
                     const A *t,
-                    IdxType ldt,
+                    N ldt,
                     T *x,
-                    IdxType incx)
+                    N incx)
 /*
  * Purpose
  * =======
@@ -49,10 +52,10 @@ constexpr void tbsv(blas_order_type order,
  * diag   (input) blas_diag_type
  *        unit, non unit (blas_unit_diag, blas_non_unit_diag)
  *
- * n      (input) IdxType
+ * n      (input) N
  *        the dimension of t
  *
- * k      (input) IdxType
+ * k      (input) N
  *        the number of subdiagonals/superdiagonals of t
  *
  * alpha  (input) T
@@ -63,7 +66,7 @@ constexpr void tbsv(blas_order_type order,
  * x      (input/output) T*
  *        Array of length n.
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride used to access components x[i].
  *
  */
@@ -726,22 +729,25 @@ constexpr void tbsv(blas_order_type order,
 
 template<typename T,
          typename A,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void tbsv_x(blas_order_type order,
                       blas_uplo_type uplo,
                       blas_trans_type trans,
                       blas_diag_type diag,
-                      IdxType n,
-                      IdxType k,
+                      N n,
+                      N k,
                       T alpha,
                       const A *t,
-                      IdxType ldt,
+                      N ldt,
                       T *x,
-                      IdxType incx,
+                      N incx,
                       blas_prec_type prec)
 /*
  * Purpose
@@ -766,10 +772,10 @@ constexpr void tbsv_x(blas_order_type order,
  * diag   (input) blas_diag_type
  *        unit, non unit (blas_unit_diag, blas_non_unit_diag)
  *
- * n      (input) IdxType
+ * n      (input) N
  *        the dimension of t
  *
- * k      (input) IdxType
+ * k      (input) N
  *        the number of subdiagonals/superdiagonals of t
  *
  * alpha  (input) T
@@ -780,7 +786,7 @@ constexpr void tbsv_x(blas_order_type order,
  * x      (input/output) T*
  *        Array of length n.
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride used to access components x[i].
  *
  * prec   (input) blas_prec_type
@@ -806,16 +812,16 @@ constexpr void tbsv_x(blas_order_type order,
 
   switch (prec) {
   case blas_prec_single:
-    XBLAS::tbsv<T, A, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, uplo, trans, diag, n, k, alpha, t, ldt, x, incx);
+    XBLAS::tbsv<T, A, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, uplo, trans, diag, n, k, alpha, t, ldt, x, incx);
     break;
   case blas_prec_double:
-    XBLAS::tbsv<T, A, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, uplo, trans, diag, n, k, alpha, t, ldt, x, incx);
+    XBLAS::tbsv<T, A, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, uplo, trans, diag, n, k, alpha, t, ldt, x, incx);
     break;
   case blas_prec_indigenous:
-    XBLAS::tbsv<T, A, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, uplo, trans, diag, n, k, alpha, t, ldt, x, incx);
+    XBLAS::tbsv<T, A, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, uplo, trans, diag, n, k, alpha, t, ldt, x, incx);
     break;
   case blas_prec_extra:
-    XBLAS::tbsv<T, A, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, trans, diag, n, k, alpha, t, ldt, x, incx);
+    XBLAS::tbsv<T, A, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, trans, diag, n, k, alpha, t, ldt, x, incx);
     break;
   default:
     BLAS_error(routine_name, -12, prec, nullptr);

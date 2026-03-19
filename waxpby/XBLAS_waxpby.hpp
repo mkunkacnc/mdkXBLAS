@@ -11,21 +11,24 @@ namespace XBLAS {
 template<typename T,
          typename X,
          typename Y,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<X, T> &&
           impl::size_le_v<Y, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
-constexpr void waxpby(IdxType n,
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
+constexpr void waxpby(N n,
                       T alpha,
                       const X *x,
-                      IdxType incx,
+                      N incx,
                       T beta,
                       const Y *y,
-                      IdxType incy,
+                      N incy,
                       T *w,
-                      IdxType incw)
+                      N incw)
 /*
  * Purpose
  * =======
@@ -37,7 +40,7 @@ constexpr void waxpby(IdxType n,
  * Arguments
  * =========
  *
- * n      (input) IdxType
+ * n      (input) N
  *        The length of vectors x, y, and w.
  *
  * alpha  (input) T
@@ -45,7 +48,7 @@ constexpr void waxpby(IdxType n,
  * x      (input) const X*
  *        Array of length n.
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride used to access components x[i].
  *
  * beta   (input) T
@@ -53,13 +56,13 @@ constexpr void waxpby(IdxType n,
  * y      (input) const Y*
  *        Array of length n.
  *
- * incy   (input) IdxType
+ * incy   (input) N
  *        The stride used to access components y[i].
  *
  * w      (output) T*
  *        Array of length n.
  *
- * incw   (input) IdxType
+ * incw   (input) N
  *        The stride used to write components w[i].
  *
  */
@@ -112,21 +115,24 @@ constexpr void waxpby(IdxType n,
 template<typename T,
          typename X,
          typename Y,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<X, T> &&
           impl::size_le_v<Y, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
-constexpr void waxpby_x(IdxType n,
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
+constexpr void waxpby_x(N n,
                         T alpha,
                         const X *x,
-                        IdxType incx,
+                        N incx,
                         T beta,
                         const Y *y,
-                        IdxType incy,
+                        N incy,
                         T *w,
-                        IdxType incw,
+                        N incw,
                         blas_prec_type prec)
 /*
  * Purpose
@@ -139,7 +145,7 @@ constexpr void waxpby_x(IdxType n,
  * Arguments
  * =========
  *
- * n      (input) IdxType
+ * n      (input) N
  *        The length of vectors x, y, and w.
  *
  * alpha  (input) T
@@ -147,7 +153,7 @@ constexpr void waxpby_x(IdxType n,
  * x      (input) const X*
  *        Array of length n.
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride used to access components x[i].
  *
  * beta   (input) T
@@ -155,13 +161,13 @@ constexpr void waxpby_x(IdxType n,
  * y      (input) const Y*
  *        Array of length n.
  *
- * incy   (input) IdxType
+ * incy   (input) N
  *        The stride used to access components y[i].
  *
  * w      (output) T*
  *        Array of length n.
  *
- * incw   (input) IdxType
+ * incw   (input) N
  *        The stride used to write components w[i].
  *
  * prec   (input) blas_prec_type
@@ -177,16 +183,16 @@ constexpr void waxpby_x(IdxType n,
 //static const char routine_name[] = "XBLAS::waxpby_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::waxpby<T, X, Y, impl::internal_precision_t<T, blas_prec_single>, IdxType>(n, alpha, x, incx, beta, y, incy, w, incw);
+    XBLAS::waxpby<T, X, Y, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(n, alpha, x, incx, beta, y, incy, w, incw);
     break;
   case blas_prec_double:
-    XBLAS::waxpby<T, X, Y, impl::internal_precision_t<T, blas_prec_double>, IdxType>(n, alpha, x, incx, beta, y, incy, w, incw);
+    XBLAS::waxpby<T, X, Y, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(n, alpha, x, incx, beta, y, incy, w, incw);
     break;
   case blas_prec_indigenous:
-    XBLAS::waxpby<T, X, Y, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(n, alpha, x, incx, beta, y, incy, w, incw);
+    XBLAS::waxpby<T, X, Y, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(n, alpha, x, incx, beta, y, incy, w, incw);
     break;
   case blas_prec_extra:
-    XBLAS::waxpby<T, X, Y, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(n, alpha, x, incx, beta, y, incy, w, incw);
+    XBLAS::waxpby<T, X, Y, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(n, alpha, x, incx, beta, y, incy, w, incw);
     break;
   }
 } /* end XBLAS::waxpby_x */

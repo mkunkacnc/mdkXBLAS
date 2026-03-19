@@ -11,24 +11,27 @@ namespace XBLAS {
 template<typename T,
          typename A,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void gemv(blas_order_type order,
                     blas_trans_type trans,
-                    IdxType m,
-                    IdxType n,
+                    N m,
+                    N n,
                     T alpha,
                     const A *a,
-                    IdxType lda,
+                    N lda,
                     const X *x,
-                    IdxType incx,
+                    N incx,
                     T beta,
                     T *y,
-                    IdxType incy)
+                    N incy)
 /*
  * Purpose
  * =======
@@ -45,29 +48,29 @@ constexpr void gemv(blas_order_type order,
  *        Transpose of AB; no trans,
  *          trans, or conjugate trans
  *
- * m      (input) IdxType
+ * m      (input) N
  *        Dimension of AB
  *
- * n      (input) IdxType
+ * n      (input) N
  *        Dimension of AB and the length of vector x
  *
  * alpha  (input) T
  *
  * A      (input) const A*
  *
- * lda    (input) IdxType
+ * lda    (input) N
  *        Leading dimension of A
  *
  * x      (input) const X*
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride for vector x.
  *
  * beta   (input) T
  *
  * y      (input/output) T*
  *
- * incy   (input) IdxType
+ * incy   (input) N
  *        The stride for vector y.
  *
  */
@@ -386,24 +389,27 @@ constexpr void gemv(blas_order_type order,
 template<typename T,
          typename A,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void gemv_x(blas_order_type order,
                       blas_trans_type trans,
-                      IdxType m,
-                      IdxType n,
+                      N m,
+                      N n,
                       T alpha,
                       const A *a,
-                      IdxType lda,
+                      N lda,
                       const X *x,
-                      IdxType incx,
+                      N incx,
                       T beta,
                       T *y,
-                      IdxType incy,
+                      N incy,
                       blas_prec_type prec)
 /*
  * Purpose
@@ -421,29 +427,29 @@ constexpr void gemv_x(blas_order_type order,
  *        Transpose of AB; no trans,
  *          trans, or conjugate trans
  *
- * m      (input) IdxType
+ * m      (input) N
  *        Dimension of AB
  *
- * n      (input) IdxType
+ * n      (input) N
  *        Dimension of AB and the length of vector x
  *
  * alpha  (input) T
  *
  * A      (input) const A*
  *
- * lda    (input) IdxType
+ * lda    (input) N
  *        Leading dimension of A
  *
  * x      (input) const X*
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride for vector x.
  *
  * beta   (input) T
  *
  * y      (input/output) T*
  *
- * incy   (input) IdxType
+ * incy   (input) N
  *        The stride for vector y.
  *
  * prec   (input) blas_prec_type
@@ -459,16 +465,16 @@ constexpr void gemv_x(blas_order_type order,
 //static const char routine_name[] = "XBLAS::gemv_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::gemv<T, A, X, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
+    XBLAS::gemv<T, A, X, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
     break;
   case blas_prec_double:
-    XBLAS::gemv<T, A, X, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
+    XBLAS::gemv<T, A, X, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
     break;
   case blas_prec_indigenous:
-    XBLAS::gemv<T, A, X, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
+    XBLAS::gemv<T, A, X, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    XBLAS::gemv<T, A, X, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
+    XBLAS::gemv<T, A, X, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::gemv_x */

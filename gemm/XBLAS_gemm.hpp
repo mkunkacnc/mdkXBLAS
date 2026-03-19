@@ -11,26 +11,29 @@ namespace XBLAS {
 template<typename T,
          typename A,
          typename B,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<B, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void gemm(blas_order_type order,
                     blas_trans_type transa,
                     blas_trans_type transb,
-                    IdxType m,
-                    IdxType n,
-                    IdxType k,
+                    N m,
+                    N n,
+                    N k,
                     T alpha,
                     const A *a,
-                    IdxType lda,
+                    N lda,
                     const B *b,
-                    IdxType ldb,
+                    N ldb,
                     T beta,
                     T *c,
-                    IdxType ldc)
+                    N ldc)
 /*
  * Purpose
  * =======
@@ -56,7 +59,7 @@ constexpr void gemm(blas_order_type order,
  *         Operation to be done on matrix B before multiplication.
  *           Can be no operation, transposition, or conjugate transposition.
  *
- * m n k   (input) IdxType
+ * m n k   (input) N
  *         The dimensions of matrices A, B, and C.
  *         Matrix C is m-by-n matrix.
  *         Matrix A is m-by-k if A is not transposed,
@@ -69,13 +72,13 @@ constexpr void gemm(blas_order_type order,
  * a       (input) const A*
  *         matrix A.
  *
- * lda     (input) IdxType
+ * lda     (input) N
  *         leading dimension of A.
  *
  * b       (input) const B*
  *         matrix B
  *
- * ldb     (input) IdxType
+ * ldb     (input) N
  *         leading dimension of B.
  *
  * beta    (input) T
@@ -83,7 +86,7 @@ constexpr void gemm(blas_order_type order,
  * c       (input/output) T*
  *         matrix C
  *
- * ldc     (input) IdxType
+ * ldc     (input) N
  *         leading dimension of C.
  *
  */
@@ -345,26 +348,29 @@ constexpr void gemm(blas_order_type order,
 template<typename T,
          typename A,
          typename B,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<B, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void gemm_x(blas_order_type order,
                       blas_trans_type transa,
                       blas_trans_type transb,
-                      IdxType m,
-                      IdxType n,
-                      IdxType k,
+                      N m,
+                      N n,
+                      N k,
                       T alpha,
                       const A *a,
-                      IdxType lda,
+                      N lda,
                       const B *b,
-                      IdxType ldb,
+                      N ldb,
                       T beta,
                       T *c,
-                      IdxType ldc,
+                      N ldc,
                       blas_prec_type prec)
 /*
  * Purpose
@@ -391,7 +397,7 @@ constexpr void gemm_x(blas_order_type order,
  *         Operation to be done on matrix B before multiplication.
  *           Can be no operation, transposition, or conjugate transposition.
  *
- * m n k   (input) IdxType
+ * m n k   (input) N
  *         The dimensions of matrices A, B, and C.
  *         Matrix C is m-by-n matrix.
  *         Matrix A is m-by-k if A is not transposed,
@@ -404,13 +410,13 @@ constexpr void gemm_x(blas_order_type order,
  * a       (input) const A*
  *         matrix A.
  *
- * lda     (input) IdxType
+ * lda     (input) N
  *         leading dimension of A.
  *
  * b       (input) const B*
  *         matrix B
  *
- * ldb     (input) IdxType
+ * ldb     (input) N
  *         leading dimension of B.
  *
  * beta    (input) T
@@ -418,7 +424,7 @@ constexpr void gemm_x(blas_order_type order,
  * c       (input/output) T*
  *         matrix C
  *
- * ldc     (input) IdxType
+ * ldc     (input) N
  *         leading dimension of C.
  *
  * prec    (input) blas_prec_type
@@ -434,16 +440,16 @@ constexpr void gemm_x(blas_order_type order,
 //static const char routine_name[] = "XBLAS::gemm_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::gemm<T, A, B, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+    XBLAS::gemm<T, A, B, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
     break;
   case blas_prec_double:
-    XBLAS::gemm<T, A, B, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+    XBLAS::gemm<T, A, B, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
     break;
   case blas_prec_indigenous:
-    XBLAS::gemm<T, A, B, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+    XBLAS::gemm<T, A, B, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
     break;
   case blas_prec_extra:
-    XBLAS::gemm<T, A, B, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+    XBLAS::gemm<T, A, B, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
     break;
   }
 } /* end XBLAS::gemm_x */

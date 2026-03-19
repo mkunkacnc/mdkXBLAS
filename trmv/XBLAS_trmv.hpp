@@ -10,21 +10,24 @@ namespace XBLAS {
 
 template<typename T,
          typename A,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void trmv(blas_order_type order,
                     blas_uplo_type uplo,
                     blas_trans_type trans,
                     blas_diag_type diag,
-                    IdxType n,
+                    N n,
                     T alpha,
                     const A *t,
-                    IdxType ldt,
+                    N ldt,
                     T *x,
-                    IdxType incx)
+                    N incx)
 /*
  * Purpose
  * =======
@@ -46,7 +49,7 @@ constexpr void trmv(blas_order_type order,
  * diag   (input) blas_diag_type
  *        unit, non unit
  *
- * n      (input) IdxType
+ * n      (input) N
  *        the dimension of T
  *
  * alpha  (input) T
@@ -54,13 +57,13 @@ constexpr void trmv(blas_order_type order,
  * t      (input) const A*
  *        Triangular matrix
  *
- * ldt    (input) IdxType
+ * ldt    (input) N
  *        Leading dimension of T
  *
  * x      (input/output) T*
  *        Array of length n.
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride used to access components x[i].
  *
  */
@@ -341,21 +344,24 @@ constexpr void trmv(blas_order_type order,
 
 template<typename T,
          typename A,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void trmv_x(blas_order_type order,
                       blas_uplo_type uplo,
                       blas_trans_type trans,
                       blas_diag_type diag,
-                      IdxType n,
+                      N n,
                       T alpha,
                       const A *t,
-                      IdxType ldt,
+                      N ldt,
                       T *x,
-                      IdxType incx,
+                      N incx,
                       blas_prec_type prec)
 /*
  * Purpose
@@ -378,7 +384,7 @@ constexpr void trmv_x(blas_order_type order,
  * diag   (input) blas_diag_type
  *        unit, non unit
  *
- * n      (input) IdxType
+ * n      (input) N
  *        the dimension of T
  *
  * alpha  (input) T
@@ -386,13 +392,13 @@ constexpr void trmv_x(blas_order_type order,
  * t      (input) const A*
  *        Triangular matrix
  *
- * ldt    (input) IdxType
+ * ldt    (input) N
  *        Leading dimension of T
  *
  * x      (input/output) T*
  *        Array of length n.
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride used to access components x[i].
  *
  * prec   (input) blas_prec_type
@@ -408,16 +414,16 @@ constexpr void trmv_x(blas_order_type order,
 //static const char routine_name[] = "XBLAS::trmv_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::trmv<T, A, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, uplo, trans, diag, n, alpha, t, ldt, x, incx);
+    XBLAS::trmv<T, A, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, uplo, trans, diag, n, alpha, t, ldt, x, incx);
     break;
   case blas_prec_double:
-    XBLAS::trmv<T, A, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, uplo, trans, diag, n, alpha, t, ldt, x, incx);
+    XBLAS::trmv<T, A, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, uplo, trans, diag, n, alpha, t, ldt, x, incx);
     break;
   case blas_prec_indigenous:
-    XBLAS::trmv<T, A, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, uplo, trans, diag, n, alpha, t, ldt, x, incx);
+    XBLAS::trmv<T, A, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, uplo, trans, diag, n, alpha, t, ldt, x, incx);
     break;
   case blas_prec_extra:
-    XBLAS::trmv<T, A, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, trans, diag, n, alpha, t, ldt, x, incx);
+    XBLAS::trmv<T, A, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, trans, diag, n, alpha, t, ldt, x, incx);
     break;
   }
 } /* end XBLAS::trmv_x */

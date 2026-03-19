@@ -10,20 +10,23 @@ namespace XBLAS {
 
 template<typename T,
          typename A,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void tpmv(blas_order_type order,
                     blas_uplo_type uplo,
                     blas_trans_type trans,
                     blas_diag_type diag,
-                    IdxType n,
+                    N n,
                     T alpha,
                     const A *tp,
                     T *x,
-                    IdxType incx)
+                    N incx)
 /*
  * Purpose
  * =======
@@ -46,7 +49,7 @@ constexpr void tpmv(blas_order_type order,
  * diag   (input) blas_diag_type
  *        Whether the diagonal entries of tp are 1
  *
- * n      (input) IdxType
+ * n      (input) N
  *        Dimension of tp and the length of vector x
  *
  * alpha  (input) T
@@ -55,7 +58,7 @@ constexpr void tpmv(blas_order_type order,
  *
  * x      (input/output) T*
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride for vector x.
  *
  */
@@ -356,20 +359,23 @@ constexpr void tpmv(blas_order_type order,
 
 template<typename T,
          typename A,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void tpmv_x(blas_order_type order,
                       blas_uplo_type uplo,
                       blas_trans_type trans,
                       blas_diag_type diag,
-                      IdxType n,
+                      N n,
                       T alpha,
                       const A *tp,
                       T *x,
-                      IdxType incx,
+                      N incx,
                       blas_prec_type prec)
 /*
  * Purpose
@@ -393,7 +399,7 @@ constexpr void tpmv_x(blas_order_type order,
  * diag   (input) blas_diag_type
  *        Whether the diagonal entries of tp are 1
  *
- * n      (input) IdxType
+ * n      (input) N
  *        Dimension of tp and the length of vector x
  *
  * alpha  (input) T
@@ -402,7 +408,7 @@ constexpr void tpmv_x(blas_order_type order,
  *
  * x      (input/output) T*
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        The stride for vector x.
  *
  * prec   (input) blas_prec_type
@@ -418,16 +424,16 @@ constexpr void tpmv_x(blas_order_type order,
 //static const char routine_name[] = "XBLAS::tpmv_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::tpmv<T, A, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, uplo, trans, diag, n, alpha, tp, x, incx);
+    XBLAS::tpmv<T, A, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, uplo, trans, diag, n, alpha, tp, x, incx);
     break;
   case blas_prec_double:
-    XBLAS::tpmv<T, A, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, uplo, trans, diag, n, alpha, tp, x, incx);
+    XBLAS::tpmv<T, A, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, uplo, trans, diag, n, alpha, tp, x, incx);
     break;
   case blas_prec_indigenous:
-    XBLAS::tpmv<T, A, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, uplo, trans, diag, n, alpha, tp, x, incx);
+    XBLAS::tpmv<T, A, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, uplo, trans, diag, n, alpha, tp, x, incx);
     break;
   case blas_prec_extra:
-    XBLAS::tpmv<T, A, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, trans, diag, n, alpha, tp, x, incx);
+    XBLAS::tpmv<T, A, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, trans, diag, n, alpha, tp, x, incx);
     break;
   }
 } /* end XBLAS::tpmv_x */

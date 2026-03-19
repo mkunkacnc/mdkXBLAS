@@ -11,24 +11,27 @@ namespace XBLAS {
 template<typename T,
          typename A,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void hbmv(blas_order_type order,
                     blas_uplo_type uplo,
-                    IdxType n,
-                    IdxType k,
+                    N n,
+                    N k,
                     T alpha,
                     const A *a,
-                    IdxType lda,
+                    N lda,
                     const X *x,
-                    IdxType incx,
+                    N incx,
                     T beta,
                     T *y,
-                    IdxType incy)
+                    N incy)
 /*
  * Purpose
  * =======
@@ -49,10 +52,10 @@ constexpr void hbmv(blas_order_type order,
  *        Determines which half of matrix A (upper or lower triangle)
  *          is accessed.
  *
- * n      (input) IdxType
+ * n      (input) N
  *        Dimension of A and size of vectors x, y.
  *
- * k      (input) IdxType
+ * k      (input) N
  *        Number of subdiagonals ( = number of superdiagonals)
  *
  * alpha  (input) T
@@ -60,13 +63,13 @@ constexpr void hbmv(blas_order_type order,
  * a      (input) const A*
  *        Matrix A.
  *
- * lda    (input) IdxType
+ * lda    (input) N
  *        Leading dimension of matrix A.
  *
  * x      (input) const X*
  *        Vector x.
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        Stride for vector x.
  *
  * beta   (input) T
@@ -74,7 +77,7 @@ constexpr void hbmv(blas_order_type order,
  * y      (input/output) T*
  *        Vector y.
  *
- * incy   (input) IdxType
+ * incy   (input) N
  *        Stride for vector y.
  *
  *
@@ -502,24 +505,27 @@ constexpr void hbmv(blas_order_type order,
 template<typename T,
          typename A,
          typename X,
+         typename N,
          typename TmpType = T,
-         typename IdxType = int>
+         typename IdxType = N>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void hbmv_x(blas_order_type order,
                       blas_uplo_type uplo,
-                      IdxType n,
-                      IdxType k,
+                      N n,
+                      N k,
                       T alpha,
                       const A *a,
-                      IdxType lda,
+                      N lda,
                       const X *x,
-                      IdxType incx,
+                      N incx,
                       T beta,
                       T *y,
-                      IdxType incy,
+                      N incy,
                       blas_prec_type prec)
 /*
  * Purpose
@@ -541,10 +547,10 @@ constexpr void hbmv_x(blas_order_type order,
  *        Determines which half of matrix A (upper or lower triangle)
  *          is accessed.
  *
- * n      (input) IdxType
+ * n      (input) N
  *        Dimension of A and size of vectors x, y.
  *
- * k      (input) IdxType
+ * k      (input) N
  *        Number of subdiagonals ( = number of superdiagonals)
  *
  * alpha  (input) T
@@ -552,13 +558,13 @@ constexpr void hbmv_x(blas_order_type order,
  * a      (input) const A*
  *        Matrix A.
  *
- * lda    (input) IdxType
+ * lda    (input) N
  *        Leading dimension of matrix A.
  *
  * x      (input) const X*
  *        Vector x.
  *
- * incx   (input) IdxType
+ * incx   (input) N
  *        Stride for vector x.
  *
  * beta   (input) T
@@ -566,7 +572,7 @@ constexpr void hbmv_x(blas_order_type order,
  * y      (input/output) T*
  *        Vector y.
  *
- * incy   (input) IdxType
+ * incy   (input) N
  *        Stride for vector y.
  *
  * prec   (input) blas_prec_type
@@ -637,16 +643,16 @@ constexpr void hbmv_x(blas_order_type order,
 //static const char routine_name[] = "XBLAS::hbmv_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::hbmv<T, A, X, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, uplo, n, k, alpha, a, lda, x, incx, beta, y, incy);
+    XBLAS::hbmv<T, A, X, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, uplo, n, k, alpha, a, lda, x, incx, beta, y, incy);
     break;
   case blas_prec_double:
-    XBLAS::hbmv<T, A, X, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, uplo, n, k, alpha, a, lda, x, incx, beta, y, incy);
+    XBLAS::hbmv<T, A, X, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, uplo, n, k, alpha, a, lda, x, incx, beta, y, incy);
     break;
   case blas_prec_indigenous:
-    XBLAS::hbmv<T, A, X, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, uplo, n, k, alpha, a, lda, x, incx, beta, y, incy);
+    XBLAS::hbmv<T, A, X, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, uplo, n, k, alpha, a, lda, x, incx, beta, y, incy);
     break;
   case blas_prec_extra:
-    XBLAS::hbmv<T, A, X, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, n, k, alpha, a, lda, x, incx, beta, y, incy);
+    XBLAS::hbmv<T, A, X, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, n, k, alpha, a, lda, x, incx, beta, y, incy);
     break;
   }
 } /* end XBLAS::hbmv_x */
