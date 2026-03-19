@@ -107,7 +107,8 @@ requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
           std::signed_integral<N> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void ge_sum_mv(blas_order_type order,
                          N m,
                          N n,
@@ -284,7 +285,8 @@ requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
           std::signed_integral<N> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void ge_sum_mv_x(blas_order_type order,
                            N m,
                            N n,

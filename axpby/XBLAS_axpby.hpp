@@ -15,7 +15,8 @@ template<typename T,
 requires (impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
           std::signed_integral<N> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void axpby(N n,
                      T alpha,
                      const X *x,
@@ -103,7 +104,8 @@ template<typename T,
 requires (impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
           std::signed_integral<N> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void axpby_x(N n,
                        T alpha,
                        const X *x,

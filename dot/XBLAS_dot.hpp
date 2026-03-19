@@ -48,7 +48,8 @@ requires (impl::size_le_v<X, T> &&
           impl::size_le_v<Y, T> &&
           impl::size_le_v<T, TmpType> &&
           std::signed_integral<N> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void dot(blas_conj_type conj,
                    N n,
                    T alpha,
@@ -160,7 +161,8 @@ requires (impl::size_le_v<X, T> &&
           impl::size_le_v<Y, T> &&
           impl::size_le_v<T, TmpType> &&
           std::signed_integral<N> &&
-          std::signed_integral<IdxType>)
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void dot_x(blas_conj_type conj,
                      N n,
                      T alpha,
