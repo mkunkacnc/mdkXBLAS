@@ -52,7 +52,7 @@ void BLAS_ztrmv_d(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_ztrmv_d";
+//static const char *routine_name = "BLAS_ztrmv_d";
   XBLAS::trmv(order,
               uplo,
               trans,

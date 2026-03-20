@@ -39,7 +39,7 @@ void BLAS_csum_x(int n,
  *
  */
 {
-//static const char routine_name[] = "BLAS_csum_x";
+//static const char *routine_name = "BLAS_csum_x";
   XBLAS::sum_x(n,
                static_cast<const std::complex<float> *>(x),
                incx,

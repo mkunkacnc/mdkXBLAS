@@ -87,7 +87,7 @@ constexpr void hemm(blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::hemm";
+//static const char *routine_name = "XBLAS::hemm";
 
   using PrdType = impl::get_inner_type_t<A, B, TmpType>;
 
@@ -397,7 +397,7 @@ constexpr void hemm_x(blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::hemm_x";
+  static const char *routine_name = "XBLAS::hemm_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::hemm<T, A, B, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
@@ -410,6 +410,9 @@ constexpr void hemm_x(blas_order_type order,
     break;
   case blas_prec_extra:
     XBLAS::hemm<T, A, B, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
+    break;
+  default:
+    BLAS_error(routine_name, -14, prec, nullptr);
     break;
   }
 } /* end XBLAS::hemm_x */

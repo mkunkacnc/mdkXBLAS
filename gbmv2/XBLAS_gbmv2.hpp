@@ -165,7 +165,7 @@ constexpr void gbmv2(blas_order_type order,
  *
  */
 {
-  static const char routine_name[] = "XBLAS::gbmv2";
+  static const char *routine_name = "XBLAS::gbmv2";
 
   using PrdType = impl::get_inner_type_t<A, X, TmpType>;
 
@@ -426,7 +426,7 @@ constexpr void gbmv2_x(blas_order_type order,
  *
  */
 {
-  static const char routine_name[] = "XBLAS::gbmv2_x";
+  static const char *routine_name = "XBLAS::gbmv2_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::gbmv2<T, A, X, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, trans, m, n, kl, ku, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);

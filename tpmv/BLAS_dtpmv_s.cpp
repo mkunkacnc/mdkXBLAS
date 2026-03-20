@@ -47,6 +47,6 @@ void BLAS_dtpmv_s(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_dtpmv_s";
+//static const char *routine_name = "BLAS_dtpmv_s";
   XBLAS::tpmv(order, uplo, trans, diag, n, alpha, tp, x, incx);
 } /* end BLAS_dtpmv_s */

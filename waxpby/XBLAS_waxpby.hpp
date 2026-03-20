@@ -67,7 +67,7 @@ constexpr void waxpby(N n,
  *
  */
 {
-  static const char routine_name[] = "XBLAS::waxpby";
+  static const char *routine_name = "XBLAS::waxpby";
 
   FPU_FIX_DECL;
 
@@ -180,7 +180,7 @@ constexpr void waxpby_x(N n,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::waxpby_x";
+  static const char *routine_name = "XBLAS::waxpby_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::waxpby<T, X, Y, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(n, alpha, x, incx, beta, y, incy, w, incw);
@@ -193,6 +193,9 @@ constexpr void waxpby_x(N n,
     break;
   case blas_prec_extra:
     XBLAS::waxpby<T, X, Y, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(n, alpha, x, incx, beta, y, incy, w, incw);
+    break;
+  default:
+    BLAS_error(routine_name, -10, prec, nullptr);
     break;
   }
 } /* end XBLAS::waxpby_x */

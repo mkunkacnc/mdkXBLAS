@@ -326,7 +326,7 @@ constexpr void hemv2_x(blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::hemv2_x";
+  static const char *routine_name = "XBLAS::hemv2_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::hemv2<T, A, X, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, uplo, n, alpha, a, lda, x_head, x_tail, incx, beta, y, incy);
@@ -339,6 +339,9 @@ constexpr void hemv2_x(blas_order_type order,
     break;
   case blas_prec_extra:
     XBLAS::hemv2<T, A, X, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, n, alpha, a, lda, x_head, x_tail, incx, beta, y, incy);
+    break;
+  default:
+    BLAS_error(routine_name, -13, prec, nullptr);
     break;
   }
 } /* end XBLAS::hemv2_x */

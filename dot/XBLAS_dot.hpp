@@ -97,7 +97,7 @@ constexpr void dot(blas_conj_type conj,
  *
  */
 {
-  static const char routine_name[] = "XBLAS::dot";
+  static const char *routine_name = "XBLAS::dot";
 
   using PrdType = impl::get_inner_type_t<X, Y, TmpType>;
 
@@ -219,7 +219,7 @@ constexpr void dot_x(blas_conj_type conj,
  *
  */
 {
-  static const char routine_name[] = "XBLAS::dot_x";
+  static const char *routine_name = "XBLAS::dot_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::dot<T, X, Y, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(conj, n, alpha, x, incx, beta, y, incy, r);

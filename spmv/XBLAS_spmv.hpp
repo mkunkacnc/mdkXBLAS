@@ -67,7 +67,7 @@ constexpr void spmv(blas_order_type order,
  *
  */
 {
-  static const char routine_name[] = "XBLAS::spmv";
+  static const char *routine_name = "XBLAS::spmv";
 
   using PrdType = impl::get_inner_type_t<A, X, TmpType>;
 
@@ -487,7 +487,7 @@ constexpr void spmv_x(blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::spmv_x";
+  static const char *routine_name = "XBLAS::spmv_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::spmv<T, A, X, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, uplo, n, alpha, ap, x, incx, beta, y, incy);
@@ -500,6 +500,9 @@ constexpr void spmv_x(blas_order_type order,
     break;
   case blas_prec_extra:
     XBLAS::spmv<T, A, X, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, n, alpha, ap, x, incx, beta, y, incy);
+    break;
+  default:
+    BLAS_error(routine_name, -11, prec, nullptr);
     break;
   }
 } /* end XBLAS::spmv_x */

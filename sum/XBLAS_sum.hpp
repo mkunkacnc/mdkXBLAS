@@ -44,7 +44,7 @@ constexpr void sum(N n,
  *
  */
 {
-  static const char routine_name[] = "XBLAS::sum";
+  static const char *routine_name = "XBLAS::sum";
 
   FPU_FIX_DECL;
 
@@ -129,7 +129,7 @@ constexpr void sum_x(N n,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::sum_x";
+  static const char *routine_name = "XBLAS::sum_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::sum<T, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(n, x, incx, sum);
@@ -142,6 +142,9 @@ constexpr void sum_x(N n,
     break;
   case blas_prec_extra:
     XBLAS::sum<T, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(n, x, incx, sum);
+    break;
+  default:
+    BLAS_error(routine_name, -5, prec, nullptr);
     break;
   }
 } /* end XBLAS::sum_x */

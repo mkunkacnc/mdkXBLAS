@@ -63,7 +63,7 @@ constexpr void tpmv(blas_order_type order,
  *
  */
 {
-  static const char routine_name[] = "XBLAS::tpmv";
+  static const char *routine_name = "XBLAS::tpmv";
 
   FPU_FIX_DECL;
 
@@ -421,7 +421,7 @@ constexpr void tpmv_x(blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::tpmv_x";
+  static const char *routine_name = "XBLAS::tpmv_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::tpmv<T, A, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, uplo, trans, diag, n, alpha, tp, x, incx);
@@ -434,6 +434,9 @@ constexpr void tpmv_x(blas_order_type order,
     break;
   case blas_prec_extra:
     XBLAS::tpmv<T, A, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, uplo, trans, diag, n, alpha, tp, x, incx);
+    break;
+  default:
+    BLAS_error(routine_name, -10, prec, nullptr);
     break;
   }
 } /* end XBLAS::tpmv_x */

@@ -72,7 +72,7 @@ constexpr void tbsv(blas_order_type order,
  */
 {
   /* Routine name */
-  static const char routine_name[] = "XBLAS::tbsv";
+  static const char *routine_name = "XBLAS::tbsv";
 
   FPU_FIX_DECL;
 
@@ -799,7 +799,7 @@ constexpr void tbsv_x(blas_order_type order,
  *
  */
 {
-  static const char routine_name[] = "XBLAS::tbsv_x";
+  static const char *routine_name = "XBLAS::tbsv_x";
   if (k == 0) {
     if constexpr (std::is_same_v<impl::inner_type_t<T>, float>) {
       /* must set prec to output. Ignore user input of prec */

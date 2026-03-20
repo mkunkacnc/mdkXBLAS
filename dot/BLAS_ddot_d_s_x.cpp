@@ -58,6 +58,6 @@ void BLAS_ddot_d_s_x(enum blas_conj_type conj,
  *
  */
 {
-//static const char routine_name[] = "BLAS_ddot_d_s_x";
+//static const char *routine_name = "BLAS_ddot_d_s_x";
   XBLAS::dot_x(conj, n, alpha, x, incx, beta, y, incy, r, prec);
 } /* end BLAS_ddot_d_s_x */

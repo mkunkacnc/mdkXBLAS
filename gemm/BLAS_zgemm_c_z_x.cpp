@@ -82,7 +82,7 @@ void BLAS_zgemm_c_z_x(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_zgemm_c_z_x";
+//static const char *routine_name = "BLAS_zgemm_c_z_x";
   XBLAS::gemm_x(order,
                 transa,
                 transb,

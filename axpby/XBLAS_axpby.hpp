@@ -56,7 +56,7 @@ constexpr void axpby(N n,
  *
  */
 {
-  static const char routine_name[] = "XBLAS::axpby";
+  static const char *routine_name = "XBLAS::axpby";
 
   FPU_FIX_DECL;
 
@@ -154,7 +154,7 @@ constexpr void axpby_x(N n,
  *
  */
 {
-  static const char routine_name[] = "XBLAS::axpby_x";
+  static const char *routine_name = "XBLAS::axpby_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::axpby<T, X, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(n, alpha, x, incx, beta, y, incy);

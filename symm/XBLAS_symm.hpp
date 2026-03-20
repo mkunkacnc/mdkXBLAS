@@ -87,7 +87,7 @@ constexpr void symm(blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::symm";
+//static const char *routine_name = "XBLAS::symm";
 
   using PrdType = impl::get_inner_type_t<A, B, TmpType>;
 
@@ -373,7 +373,7 @@ constexpr void symm_x(blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::symm_x";
+  static const char *routine_name = "XBLAS::symm_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::symm<T, A, B, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
@@ -386,6 +386,9 @@ constexpr void symm_x(blas_order_type order,
     break;
   case blas_prec_extra:
     XBLAS::symm<T, A, B, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
+    break;
+  default:
+    BLAS_error(routine_name, -14, prec, nullptr);
     break;
   }
 } /* end XBLAS::symm_x */

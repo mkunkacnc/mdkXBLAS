@@ -58,6 +58,6 @@ void BLAS_dwaxpby_s_s_x(int n,
  *
  */
 {
-//static const char routine_name[] = "BLAS_dwaxpby_s_s_x";
+//static const char *routine_name = "BLAS_dwaxpby_s_s_x";
   XBLAS::waxpby_x(n, alpha, x, incx, beta, y, incy, w, incw, prec);
 } /* end BLAS_dwaxpby_s_s_x */

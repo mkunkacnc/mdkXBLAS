@@ -58,6 +58,6 @@ void BLAS_sspmv_x(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_sspmv_x";
+//static const char *routine_name = "BLAS_sspmv_x";
   XBLAS::spmv_x(order, uplo, n, alpha, ap, x, incx, beta, y, incy, prec);
 } /* end BLAS_sspmv_x */

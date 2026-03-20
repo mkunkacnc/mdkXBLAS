@@ -69,7 +69,7 @@ void BLAS_zsymm_d_z(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_zsymm_d_z";
+//static const char *routine_name = "BLAS_zsymm_d_z";
   XBLAS::symm(order,
               side,
               uplo,

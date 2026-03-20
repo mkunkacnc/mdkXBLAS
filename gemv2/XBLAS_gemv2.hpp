@@ -77,7 +77,7 @@ constexpr void gemv2(blas_order_type order,
  *
  */
 {
-  static const char routine_name[] = "XBLAS::gemv2";
+  static const char *routine_name = "XBLAS::gemv2";
 
   using PrdType = impl::get_inner_type_t<A, X, TmpType>;
 
@@ -617,7 +617,7 @@ constexpr void gemv2_x(blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::gemv2_x";
+  static const char *routine_name = "XBLAS::gemv2_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::gemv2<T, A, X, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, trans, m, n, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
@@ -630,6 +630,9 @@ constexpr void gemv2_x(blas_order_type order,
     break;
   case blas_prec_extra:
     XBLAS::gemv2<T, A, X, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, trans, m, n, alpha, a, lda, head_x, tail_x, incx, beta, y, incy);
+    break;
+  default:
+    BLAS_error(routine_name, -14, prec, nullptr);
     break;
   }
 } /* end XBLAS::gemv2_x */

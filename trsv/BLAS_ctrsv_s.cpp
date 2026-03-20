@@ -52,7 +52,7 @@ void BLAS_ctrsv_s(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_ctrsv_s";
+//static const char *routine_name = "BLAS_ctrsv_s";
   XBLAS::trsv(order,
               uplo,
               trans,

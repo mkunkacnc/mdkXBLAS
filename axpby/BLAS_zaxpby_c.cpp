@@ -41,7 +41,7 @@ void BLAS_zaxpby_c(int n,
  *
  */
 {
-//static const char routine_name[] = "BLAS_zaxpby_c";
+//static const char *routine_name = "BLAS_zaxpby_c";
   XBLAS::axpby(n,
                *static_cast<const std::complex<double> *>(alpha),
                static_cast<const std::complex<float> *>(x),

@@ -61,6 +61,6 @@ void BLAS_strmv_x(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_strmv_x";
+//static const char *routine_name = "BLAS_strmv_x";
   XBLAS::trmv_x(order, uplo, trans, diag, n, alpha, T, ldt, x, incx, prec);
 } /* end BLAS_strmv_x */

@@ -49,7 +49,7 @@ void BLAS_zhpmv_c_z(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_zhpmv_c_z";
+//static const char *routine_name = "BLAS_zhpmv_c_z";
   XBLAS::hpmv(order,
               uplo,
               n,

@@ -167,7 +167,7 @@ constexpr void ge_sum_mv(blas_order_type order,
  *
  */
 {
-  static const char routine_name[] = "XBLAS::ge_sum_mv";
+  static const char *routine_name = "XBLAS::ge_sum_mv";
 
   using PrdType = impl::get_inner_type_t<A, X, TmpType>;
 
@@ -354,7 +354,7 @@ constexpr void ge_sum_mv_x(blas_order_type order,
  *
  */
 {
-  static const char routine_name[] = "XBLAS::ge_sum_mv_x";
+  static const char *routine_name = "XBLAS::ge_sum_mv_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::ge_sum_mv<T, A, X, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, m, n, alpha, a, lda, x, incx, beta, b, ldb, y, incy);

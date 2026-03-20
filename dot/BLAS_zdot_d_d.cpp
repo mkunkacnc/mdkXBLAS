@@ -49,7 +49,7 @@ void BLAS_zdot_d_d(enum blas_conj_type conj,
  *
  */
 {
-//static const char routine_name[] = "BLAS_zdot_d_d";
+//static const char *routine_name = "BLAS_zdot_d_d";
   XBLAS::dot(conj,
              n,
              *static_cast<const std::complex<double> *>(alpha),

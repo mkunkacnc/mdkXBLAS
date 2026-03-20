@@ -50,7 +50,7 @@ void BLAS_caxpby_x(int n,
  *
  */
 {
-//static const char routine_name[] = "BLAS_caxpby_x";
+//static const char *routine_name = "BLAS_caxpby_x";
   XBLAS::axpby_x(n,
                  *static_cast<const std::complex<float> *>(alpha),
                  static_cast<const std::complex<float> *>(x),

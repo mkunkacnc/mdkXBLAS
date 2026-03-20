@@ -50,6 +50,6 @@ void BLAS_daxpby_s_x(int n,
  *
  */
 {
-  //static const char routine_name[] = "BLAS_daxpby_s_x";
+  //static const char *routine_name = "BLAS_daxpby_s_x";
   XBLAS::axpby_x(n, alpha, x, incx, beta, y, incy, prec);
 } /* end BLAS_daxpby_s_x */

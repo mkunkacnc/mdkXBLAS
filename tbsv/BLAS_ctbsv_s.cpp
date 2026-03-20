@@ -56,7 +56,7 @@ void BLAS_ctbsv_s(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_ctbsv_s";
+//static const char *routine_name = "BLAS_ctbsv_s";
   XBLAS::tbsv(order,
               uplo,
               trans,

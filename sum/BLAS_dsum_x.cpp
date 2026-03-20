@@ -39,6 +39,6 @@ void BLAS_dsum_x(int n,
  *
  */
 {
-//static const char routine_name[] = "BLAS_dsum_x";
+//static const char *routine_name = "BLAS_dsum_x";
   XBLAS::sum_x(n, x, incx, sum, prec);
 } /* end BLAS_dsum_x */

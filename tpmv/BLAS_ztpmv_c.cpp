@@ -47,7 +47,7 @@ void BLAS_ztpmv_c(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_ztpmv_c";
+//static const char *routine_name = "BLAS_ztpmv_c";
   XBLAS::tpmv(order,
               uplo,
               trans,

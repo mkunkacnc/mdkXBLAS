@@ -61,6 +61,6 @@ void BLAS_strsv_x(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_strsv_x";
+//static const char *routine_name = "BLAS_strsv_x";
   XBLAS::trsv_x(order, uplo, trans, diag, n, alpha, T, ldt, x, incx, prec);
 } /* end BLAS_strsv_x */

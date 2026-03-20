@@ -60,6 +60,6 @@ void BLAS_dge_sum_mv_d_s(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_dge_sum_mv_d_s";
+//static const char *routine_name = "BLAS_dge_sum_mv_d_s";
   XBLAS::ge_sum_mv(order, m, n, alpha, a, lda, x, incx, beta, b, ldb, y, incy);
 } /* end BLAS_dge_sum_mv_d_s */

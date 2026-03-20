@@ -119,7 +119,7 @@ void BLAS_zhbmv_z_d(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_zhbmv_z_d";
+//static const char *routine_name = "BLAS_zhbmv_z_d";
   XBLAS::hbmv(order,
               uplo,
               n,

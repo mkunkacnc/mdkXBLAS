@@ -75,7 +75,7 @@ constexpr void gemv(blas_order_type order,
  *
  */
 {
-  static const char routine_name[] = "XBLAS::gemv";
+  static const char *routine_name = "XBLAS::gemv";
 
   using PrdType = impl::get_inner_type_t<A, X, TmpType>;
 
@@ -462,7 +462,7 @@ constexpr void gemv_x(blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "XBLAS::gemv_x";
+  static const char *routine_name = "XBLAS::gemv_x";
   switch (prec) {
   case blas_prec_single:
     XBLAS::gemv<T, A, X, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(order, trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
@@ -475,6 +475,9 @@ constexpr void gemv_x(blas_order_type order,
     break;
   case blas_prec_extra:
     XBLAS::gemv<T, A, X, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
+    break;
+  default:
+    BLAS_error(routine_name, -13, prec, nullptr);
     break;
   }
 } /* end XBLAS::gemv_x */

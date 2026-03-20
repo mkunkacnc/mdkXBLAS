@@ -69,7 +69,7 @@ void BLAS_zhemv_z_d_x(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_zhemv_z_d_x";
+//static const char *routine_name = "BLAS_zhemv_z_d_x";
   XBLAS::hemv_x(order,
                 uplo,
                 n,

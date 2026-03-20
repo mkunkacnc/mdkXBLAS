@@ -69,7 +69,7 @@ void BLAS_zge_sum_mv_z_c_x(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_zge_sum_mv_z_c_x";
+//static const char *routine_name = "BLAS_zge_sum_mv_z_c_x";
   XBLAS::ge_sum_mv_x(order,
                      m,
                      n,

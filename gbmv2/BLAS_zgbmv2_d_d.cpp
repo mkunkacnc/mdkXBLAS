@@ -112,7 +112,7 @@ void BLAS_zgbmv2_d_d(enum blas_order_type order,
  *
  */
 {
-//static const char routine_name[] = "BLAS_zgbmv2_d_d";
+//static const char *routine_name = "BLAS_zgbmv2_d_d";
   XBLAS::gbmv2(order,
                trans,
                m,

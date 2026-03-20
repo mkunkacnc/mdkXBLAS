@@ -49,7 +49,7 @@ void BLAS_zwaxpby_d_d(int n,
  *
  */
 {
-//static const char routine_name[] = "BLAS_zwaxpby_d_d";
+//static const char *routine_name = "BLAS_zwaxpby_d_d";
   XBLAS::waxpby(n,
                 *static_cast<const std::complex<double> *>(alpha),
                 x,
