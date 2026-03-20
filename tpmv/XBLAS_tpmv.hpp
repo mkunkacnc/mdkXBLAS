@@ -70,7 +70,6 @@ constexpr void tpmv(blas_order_type order,
   IdxType matrix_row, step, tp_index, tp_start, x_index, x_start;
   IdxType inctp, x_index2, stride, col_index, inctp2;
 
-  T alpha_i = alpha;
 
   const A *tp_i = tp;
   T *x_i = x;
@@ -135,7 +134,7 @@ constexpr void tpmv(blas_order_type order,
           tp_index += inctp;
           col_index++;
         }
-        result = impl::mul<TmpType>(rowsum, alpha_i);
+        result = impl::mul<TmpType>(rowsum, alpha);
         x_i[x_index2] = impl::to<T>(result);
       }
     } else if ((uplo == blas_upper &&
@@ -167,7 +166,7 @@ constexpr void tpmv(blas_order_type order,
           inctp2--;
           col_index--;
         }
-        result = impl::mul<TmpType>(rowsum, alpha_i);
+        result = impl::mul<TmpType>(rowsum, alpha);
         x_i[x_index2] = impl::to<T>(result);
         x_index2 += incx;
       }
@@ -197,7 +196,7 @@ constexpr void tpmv(blas_order_type order,
           x_index2 -= incx;
           tp_index -= inctp;
         }
-        result = impl::mul<TmpType>(rowsum, alpha_i);
+        result = impl::mul<TmpType>(rowsum, alpha);
         x_i[x_index] = impl::to<T>(result);
         x_index -= incx;
       }
@@ -225,7 +224,7 @@ constexpr void tpmv(blas_order_type order,
           tp_index += stride * inctp;
           x_index2 += incx;
         }
-        result = impl::mul<TmpType>(rowsum, alpha_i);
+        result = impl::mul<TmpType>(rowsum, alpha);
         x_i[x_index] = impl::to<T>(result);
         x_index -= incx;
       }
@@ -257,7 +256,7 @@ constexpr void tpmv(blas_order_type order,
           tp_index += inctp;
           col_index++;
         }
-        result = impl::mul<TmpType>(rowsum, alpha_i);
+        result = impl::mul<TmpType>(rowsum, alpha);
         x_i[x_index2] = impl::to<T>(result);
       }
     } else if ((uplo == blas_upper &&
@@ -288,7 +287,7 @@ constexpr void tpmv(blas_order_type order,
           inctp2--;
           col_index--;
         }
-        result = impl::mul<TmpType>(rowsum, alpha_i);
+        result = impl::mul<TmpType>(rowsum, alpha);
         x_i[x_index2] = impl::to<T>(result);
         x_index2 += incx;
       }
@@ -317,7 +316,7 @@ constexpr void tpmv(blas_order_type order,
           x_index2 -= incx;
           tp_index -= inctp;
         }
-        result = impl::mul<TmpType>(rowsum, alpha_i);
+        result = impl::mul<TmpType>(rowsum, alpha);
         x_i[x_index] = impl::to<T>(result);
         x_index -= incx;
       }
@@ -344,7 +343,7 @@ constexpr void tpmv(blas_order_type order,
           tp_index += stride * inctp;
           x_index2 += incx;
         }
-        result = impl::mul<TmpType>(rowsum, alpha_i);
+        result = impl::mul<TmpType>(rowsum, alpha);
         x_i[x_index] = impl::to<T>(result);
         x_index -= incx;
       }

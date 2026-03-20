@@ -85,7 +85,6 @@ constexpr void tbsv(blas_order_type order,
 
   const A *t_i = t;
   T *x_i = x;
-  T alpha_i = alpha;
 
   if (order != blas_rowmajor && order != blas_colmajor) {
     BLAS_error(routine_name, -1, order, nullptr);
@@ -127,7 +126,7 @@ constexpr void tbsv(blas_order_type order,
   }
 
   /* if alpha is zero, then return x as a zero vector */
-  if (alpha_i == T(0)) {
+  if (alpha == T(0)) {
     xi = start_xi;
     for (i = 0; i < n; i++) {
       x_i[xi] = T(0);
@@ -137,7 +136,7 @@ constexpr void tbsv(blas_order_type order,
   }
   /* check to see if k=0.  if so, we can optimize somewhat */
   if (k == 0) {
-    if ((alpha_i == T(1)) && (diag == blas_unit_diag)) {
+    if ((alpha == T(1)) && (diag == blas_unit_diag)) {
       /* nothing to do */
       return;
     } else {
@@ -212,7 +211,7 @@ constexpr void tbsv(blas_order_type order,
           x_elem = x_i[xi];
           /* preform the multiplication -
              in this implementation we do not separate the alpha = 1 case */
-          temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+          temp1 = impl::mul<TmpType>(x_elem, alpha);
 
           Tij = dot_start;
           dot_start += dot_start_inc1;
@@ -251,7 +250,7 @@ constexpr void tbsv(blas_order_type order,
         for (; j < n; j++) {
           /* each time through loop, xi lands on next x to compute. */
           x_elem = x_i[xi];
-          temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+          temp1 = impl::mul<TmpType>(x_elem, alpha);
 
           Tij = dot_start;
           dot_start += dot_start_inc2;
@@ -304,7 +303,7 @@ constexpr void tbsv(blas_order_type order,
           x_elem = x_i[xi];
           /* preform the multiplication -
              in this implementation we do not separate the alpha = 1 case */
-          temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+          temp1 = impl::mul<TmpType>(x_elem, alpha);
 
           Tij = dot_start;
           dot_start += dot_start_inc1;
@@ -343,7 +342,7 @@ constexpr void tbsv(blas_order_type order,
         for (; j < n; j++) {
           /* each time through loop, xi lands on next x to compute. */
           x_elem = x_i[xi];
-          temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+          temp1 = impl::mul<TmpType>(x_elem, alpha);
 
           Tij = dot_start;
           dot_start += dot_start_inc2;
@@ -406,7 +405,7 @@ constexpr void tbsv(blas_order_type order,
           x_elem = x_i[xi];
           /* preform the multiplication -
              in this implementation we do not separate the alpha = 1 case */
-          temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+          temp1 = impl::mul<TmpType>(x_elem, alpha);
 
           xi = start_xi;
           Tij = dot_start;
@@ -437,7 +436,7 @@ constexpr void tbsv(blas_order_type order,
         for (; j < n; j++) {
           /* each time through loop, xi lands on next x to compute. */
           x_elem = x_i[xi];
-          temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+          temp1 = impl::mul<TmpType>(x_elem, alpha);
 
           xi = start_xi;
           start_xi += incxi;
@@ -473,7 +472,7 @@ constexpr void tbsv(blas_order_type order,
           x_elem = x_i[xi];
           /* preform the multiplication -
              in this implementation we do not separate the alpha = 1 case */
-          temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+          temp1 = impl::mul<TmpType>(x_elem, alpha);
 
           xi = start_xi;
           Tij = dot_start;
@@ -505,7 +504,7 @@ constexpr void tbsv(blas_order_type order,
 
           /* each time through loop, xi lands on next x to compute. */
           x_elem = x_i[xi];
-          temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+          temp1 = impl::mul<TmpType>(x_elem, alpha);
 
           xi = start_xi;
           start_xi += incxi;
@@ -560,7 +559,7 @@ constexpr void tbsv(blas_order_type order,
         x_elem = x_i[xi];
         /* preform the multiplication -
            in this implementation we do not separate the alpha = 1 case */
-        temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+        temp1 = impl::mul<TmpType>(x_elem, alpha);
 
         Tij = dot_start;
         dot_start += dot_start_inc1;
@@ -600,7 +599,7 @@ constexpr void tbsv(blas_order_type order,
       for (; j < n; j++) {
         /* each time through loop, xi lands on next x to compute. */
         x_elem = x_i[xi];
-        temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+        temp1 = impl::mul<TmpType>(x_elem, alpha);
 
         Tij = dot_start;
         dot_start += dot_start_inc2;
@@ -659,7 +658,7 @@ constexpr void tbsv(blas_order_type order,
         x_elem = x_i[xi];
         /* preform the multiplication -
            in this implementation we do not separate the alpha = 1 case */
-        temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+        temp1 = impl::mul<TmpType>(x_elem, alpha);
 
         xi = start_xi;
         Tij = dot_start;
@@ -691,7 +690,7 @@ constexpr void tbsv(blas_order_type order,
       for (; j < n; j++) {
         /* each time through loop, xi lands on next x to compute. */
         x_elem = x_i[xi];
-        temp1 = impl::mul<TmpType>(x_elem, alpha_i);
+        temp1 = impl::mul<TmpType>(x_elem, alpha);
 
         xi = start_xi;
         start_xi += incxi;

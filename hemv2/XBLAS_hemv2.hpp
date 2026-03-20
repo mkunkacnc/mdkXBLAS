@@ -99,8 +99,6 @@ constexpr void hemv2(blas_order_type order,
   const X *x_head_i = x_head;
   const X *x_tail_i = x_tail;
   T *y_i = y;
-  T alpha_i = alpha;
-  T beta_i = beta;
   A a_elem;
   X x_elem;
   T y_elem;
@@ -117,7 +115,7 @@ constexpr void hemv2(blas_order_type order,
   if (n <= 0) {
     return;
   }
-  if (alpha_i == T(0) && beta_i == T(1)) {
+  if (alpha == T(0) && beta == T(1)) {
     return;
   }
 
@@ -187,9 +185,9 @@ constexpr void hemv2(blas_order_type order,
         sum2 = sum2 + prod2;
       }
       sum1 = sum1 + sum2;
-      tmp1 = impl::mul<TmpType>(sum1, alpha_i);
+      tmp1 = impl::mul<TmpType>(sum1, alpha);
       y_elem = y_i[yi];
-      tmp2 = impl::mul<TmpType>(y_elem, beta_i);
+      tmp2 = impl::mul<TmpType>(y_elem, beta);
       tmp3 = tmp1 + tmp2;
       y_i[yi] = impl::to<T>(tmp3);
     }
@@ -227,9 +225,9 @@ constexpr void hemv2(blas_order_type order,
         sum2 = sum2 + prod2;
       }
       sum1 = sum1 + sum2;
-      tmp1 = impl::mul<TmpType>(sum1, alpha_i);
+      tmp1 = impl::mul<TmpType>(sum1, alpha);
       y_elem = y_i[yi];
-      tmp2 = impl::mul<TmpType>(y_elem, beta_i);
+      tmp2 = impl::mul<TmpType>(y_elem, beta);
       tmp3 = tmp1 + tmp2;
       y_i[yi] = impl::to<T>(tmp3);
     }

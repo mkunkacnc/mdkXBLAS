@@ -115,8 +115,6 @@ constexpr void gemm(blas_order_type order,
   T *c_i = c;
 
   /* Input Scalars */
-  T alpha_i = alpha;
-  T beta_i = beta;
 
   /* Temporary Floating-Point Variables */
   A a_elem;
@@ -179,7 +177,7 @@ constexpr void gemm(blas_order_type order,
   /* Test for no-op */
   if (n == 0 || m == 0 || k == 0)
     return;
-  if (alpha_i == T(0) && beta_i == T(1)) {
+  if (alpha == T(0) && beta == T(1)) {
     return;
   }
 
@@ -230,19 +228,19 @@ constexpr void gemm(blas_order_type order,
   }
 
   /* alpha = 0.  In this case, just return beta * C */
-  if (alpha_i == T(0)) {
+  if (alpha == T(0)) {
     ci = 0;
     for (i = 0; i < m; i++, ci += incci) {
       cij = ci;
       for (j = 0; j < n; j++, cij += inccij) {
         c_elem = c_i[cij];
-        tmp1 = impl::mul<TmpType>(c_elem, beta_i);
+        tmp1 = impl::mul<TmpType>(c_elem, beta);
         c_i[cij] = impl::to<T>(tmp1);
       }
     }
-  } else if (alpha_i == T(1)) {
+  } else if (alpha == T(1)) {
     /* Case alpha == 1. */
-    if (beta_i == T(0)) {
+    if (beta == T(0)) {
       /* Case alpha == 1, beta == 0.   We compute  C <--- A * B */
       ci = 0;
       ai = 0;
@@ -297,7 +295,7 @@ constexpr void gemm(blas_order_type order,
             sum = sum + prod;
           }
           c_elem = c_i[cij];
-          tmp2 = impl::mul<TmpType>(c_elem, beta_i);
+          tmp2 = impl::mul<TmpType>(c_elem, beta);
           tmp1 = sum;
           tmp1 = tmp2 + tmp1;
           c_i[cij] = impl::to<T>(tmp1);
@@ -329,9 +327,9 @@ constexpr void gemm(blas_order_type order,
           prod = impl::mul<PrdType>(a_elem, b_elem);
           sum = sum + prod;
         }
-        tmp1 = impl::mul<TmpType>(sum, alpha_i);
+        tmp1 = impl::mul<TmpType>(sum, alpha);
         c_elem = c_i[cij];
-        tmp2 = impl::mul<TmpType>(c_elem, beta_i);
+        tmp2 = impl::mul<TmpType>(c_elem, beta);
         tmp1 = tmp1 + tmp2;
         c_i[cij] = impl::to<T>(tmp1);
       }

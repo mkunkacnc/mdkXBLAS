@@ -75,8 +75,6 @@ constexpr void hpmv(blas_order_type order,
 
   enum blas_order_type order_i;
 
-  T alpha_i = alpha;
-  T beta_i = beta;
   IdxType matrix_row, step, ap_index, ap_start, x_index, x_start;
   IdxType y_start, y_index, incap;
 
@@ -93,7 +91,7 @@ constexpr void hpmv(blas_order_type order,
 
   if (n < 1)
     return;
-  if (alpha_i == T(0) && beta_i == T(1))
+  if (alpha == T(0) && beta == T(1))
     return;
 
   /* Check for error conditions. */
@@ -127,18 +125,18 @@ constexpr void hpmv(blas_order_type order,
   else
     order_i = order;
 
-  if (alpha_i == T(0)) {
+  if (alpha == T(0)) {
     y_index = y_start;
     for (matrix_row = 0; matrix_row < n; matrix_row++) {
       resval = y_i[y_index];
-      tmp2 = impl::mul<TmpType>(beta_i, resval);
+      tmp2 = impl::mul<TmpType>(beta, resval);
       y_i[y_index] = impl::to<T>(tmp2);
       y_index += incy;
     }
   } else {
     if (order_i == blas_rowmajor) {
-      if (alpha_i == T(1)) {
-        if (beta_i == T(0)) {
+      if (alpha == T(1)) {
+        if (beta == T(0)) {
           y_index = y_start;
           ap_start = 0;
           if (uplo == blas_upper) {
@@ -244,7 +242,7 @@ constexpr void hpmv(blas_order_type order,
               }
               resval = y_i[y_index];
               tmp1 = rowsum;
-              tmp2 = impl::mul<TmpType>(beta_i, resval);
+              tmp2 = impl::mul<TmpType>(beta, resval);
               tmp2 = tmp1 + tmp2;
               y_i[y_index] = impl::to<T>(tmp2);
               y_index += incy;
@@ -281,7 +279,7 @@ constexpr void hpmv(blas_order_type order,
               }
               resval = y_i[y_index];
               tmp1 = rowsum;
-              tmp2 = impl::mul<TmpType>(beta_i, resval);
+              tmp2 = impl::mul<TmpType>(beta, resval);
               tmp2 = tmp1 + tmp2;
               y_i[y_index] = impl::to<T>(tmp2);
               y_index += incy;
@@ -290,7 +288,7 @@ constexpr void hpmv(blas_order_type order,
           } /* end if uplo == blas_upper ... */
         }
       } else {
-        if (beta_i == T(0)) {
+        if (beta == T(0)) {
           y_index = y_start;
           ap_start = 0;
           if (uplo == blas_upper) {
@@ -322,7 +320,7 @@ constexpr void hpmv(blas_order_type order,
                 ap_index += incap;
                 x_index += incx;
               }
-              tmp1 = impl::mul<TmpType>(rowsum, alpha_i);
+              tmp1 = impl::mul<TmpType>(rowsum, alpha);
               y_i[y_index] = impl::to<T>(tmp1);
               y_index += incy;
               ap_start += incap;
@@ -356,7 +354,7 @@ constexpr void hpmv(blas_order_type order,
                 ap_index += incap;
                 x_index += incx;
               }
-              tmp1 = impl::mul<TmpType>(rowsum, alpha_i);
+              tmp1 = impl::mul<TmpType>(rowsum, alpha);
               y_i[y_index] = impl::to<T>(tmp1);
               y_index += incy;
               ap_start += incap;
@@ -395,8 +393,8 @@ constexpr void hpmv(blas_order_type order,
                 x_index += incx;
               }
               resval = y_i[y_index];
-              tmp1 = impl::mul<TmpType>(rowsum, alpha_i);
-              tmp2 = impl::mul<TmpType>(beta_i, resval);
+              tmp1 = impl::mul<TmpType>(rowsum, alpha);
+              tmp2 = impl::mul<TmpType>(beta, resval);
               tmp2 = tmp1 + tmp2;
               y_i[y_index] = impl::to<T>(tmp2);
               y_index += incy;
@@ -432,8 +430,8 @@ constexpr void hpmv(blas_order_type order,
                 x_index += incx;
               }
               resval = y_i[y_index];
-              tmp1 = impl::mul<TmpType>(rowsum, alpha_i);
-              tmp2 = impl::mul<TmpType>(beta_i, resval);
+              tmp1 = impl::mul<TmpType>(rowsum, alpha);
+              tmp2 = impl::mul<TmpType>(beta, resval);
               tmp2 = tmp1 + tmp2;
               y_i[y_index] = impl::to<T>(tmp2);
               y_index += incy;
@@ -443,8 +441,8 @@ constexpr void hpmv(blas_order_type order,
         }
       }
     } else {
-      if (alpha_i == T(1)) {
-        if (beta_i == T(0)) {
+      if (alpha == T(1)) {
+        if (beta == T(0)) {
           y_index = y_start;
           ap_start = 0;
           if (uplo == blas_upper) {
@@ -551,7 +549,7 @@ constexpr void hpmv(blas_order_type order,
                 }
                 resval = y_i[y_index];
                 tmp1 = rowsum;
-                tmp2 = impl::mul<TmpType>(beta_i, resval);
+                tmp2 = impl::mul<TmpType>(beta, resval);
                 tmp2 = tmp1 + tmp2;
                 y_i[y_index] = impl::to<T>(tmp2);
                 y_index += incy;
@@ -588,7 +586,7 @@ constexpr void hpmv(blas_order_type order,
                 }
                 resval = y_i[y_index];
                 tmp1 = rowsum;
-                tmp2 = impl::mul<TmpType>(beta_i, resval);
+                tmp2 = impl::mul<TmpType>(beta, resval);
                 tmp2 = tmp1 + tmp2;
                 y_i[y_index] = impl::to<T>(tmp2);
                 y_index += incy;
@@ -598,7 +596,7 @@ constexpr void hpmv(blas_order_type order,
           }
         }
       } else {
-        if (beta_i == T(0)) {
+        if (beta == T(0)) {
           y_index = y_start;
           ap_start = 0;
           if (uplo == blas_upper) {
@@ -630,7 +628,7 @@ constexpr void hpmv(blas_order_type order,
                 ap_index += (step + 1) * incap;
                 x_index += incx;
               }
-              tmp1 = impl::mul<TmpType>(rowsum, alpha_i);
+              tmp1 = impl::mul<TmpType>(rowsum, alpha);
               y_i[y_index] = impl::to<T>(tmp1);
               y_index += incy;
               ap_start += (matrix_row + 1) * incap;
@@ -664,7 +662,7 @@ constexpr void hpmv(blas_order_type order,
                 ap_index += (step + 1) * incap;
                 x_index += incx;
               }
-              tmp1 = impl::mul<TmpType>(rowsum, alpha_i);
+              tmp1 = impl::mul<TmpType>(rowsum, alpha);
               y_i[y_index] = impl::to<T>(tmp1);
               y_index += incy;
               ap_start += (matrix_row + 1) * incap;
@@ -704,8 +702,8 @@ constexpr void hpmv(blas_order_type order,
                   x_index += incx;
                 }
                 resval = y_i[y_index];
-                tmp1 = impl::mul<TmpType>(rowsum, alpha_i);
-                tmp2 = impl::mul<TmpType>(beta_i, resval);
+                tmp1 = impl::mul<TmpType>(rowsum, alpha);
+                tmp2 = impl::mul<TmpType>(beta, resval);
                 tmp2 = tmp1 + tmp2;
                 y_i[y_index] = impl::to<T>(tmp2);
                 y_index += incy;
@@ -741,8 +739,8 @@ constexpr void hpmv(blas_order_type order,
                   x_index += incx;
                 }
                 resval = y_i[y_index];
-                tmp1 = impl::mul<TmpType>(rowsum, alpha_i);
-                tmp2 = impl::mul<TmpType>(beta_i, resval);
+                tmp1 = impl::mul<TmpType>(rowsum, alpha);
+                tmp2 = impl::mul<TmpType>(beta, resval);
                 tmp2 = tmp1 + tmp2;
                 y_i[y_index] = impl::to<T>(tmp2);
                 y_index += incy;

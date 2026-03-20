@@ -81,7 +81,6 @@ constexpr void trmv(blas_order_type order,
 
   const A *t_i = t;
   T *x_i = x;
-  T alpha_i = alpha;
 
   A t_elem;
   T x_elem;
@@ -147,7 +146,7 @@ constexpr void trmv(blas_order_type order,
   }
 
   xj0 = (inc_x > 0 ? 0 : -(n - 1) * inc_x);
-  if (alpha_i == T(0)) {
+  if (alpha == T(0)) {
     xj = xj0;
     for (j = 0; j < n; j++) {
       x_i[xj] = T(0);
@@ -182,10 +181,10 @@ constexpr void trmv(blas_order_type order,
           x_elem = x_i[xj];
           sum = impl::add<TmpType>(sum, x_elem);
 
-          if (alpha_i == T(1)) {
+          if (alpha == T(1)) {
             x_i[xj] = impl::to<T>(sum);
           } else {
-            tmp = impl::mul<TmpType>(sum, alpha_i);
+            tmp = impl::mul<TmpType>(sum, alpha);
             x_i[xj] = impl::to<T>(tmp);
           }
 
@@ -211,10 +210,10 @@ constexpr void trmv(blas_order_type order,
           x_elem = x_i[xj];
           sum = impl::add<TmpType>(sum, x_elem);
 
-          if (alpha_i == T(1)) {
+          if (alpha == T(1)) {
             x_i[xj] = impl::to<T>(sum);
           } else {
-            tmp = impl::mul<TmpType>(sum, alpha_i);
+            tmp = impl::mul<TmpType>(sum, alpha);
             x_i[xj] = impl::to<T>(tmp);
           }
 
@@ -239,10 +238,10 @@ constexpr void trmv(blas_order_type order,
             tij += inc_tij;
           }
 
-          if (alpha_i == T(1)) {
+          if (alpha == T(1)) {
             x_i[xj - inc_x] = impl::to<T>(sum);
           } else {
-            tmp = impl::mul<TmpType>(sum, alpha_i);
+            tmp = impl::mul<TmpType>(sum, alpha);
             x_i[xj - inc_x] = impl::to<T>(tmp);
           }
 
@@ -265,10 +264,10 @@ constexpr void trmv(blas_order_type order,
             tij += inc_tij;
           }
 
-          if (alpha_i == T(1)) {
+          if (alpha == T(1)) {
             x_i[xj - inc_x] = impl::to<T>(sum);
           } else {
-            tmp = impl::mul<TmpType>(sum, alpha_i);
+            tmp = impl::mul<TmpType>(sum, alpha);
             x_i[xj - inc_x] = impl::to<T>(tmp);
           }
 
@@ -297,10 +296,10 @@ constexpr void trmv(blas_order_type order,
         x_elem = x_i[xj];
         sum = sum + x_elem;
 
-        if (alpha_i == T(1)) {
+        if (alpha == T(1)) {
           x_i[xj] = impl::to<T>(sum);
         } else {
-          tmp = impl::mul<TmpType>(sum, alpha_i);
+          tmp = impl::mul<TmpType>(sum, alpha);
           x_i[xj] = impl::to<T>(tmp);
         }
 
@@ -323,10 +322,10 @@ constexpr void trmv(blas_order_type order,
           tij += inc_tij;
         }
 
-        if (alpha_i == T(1)) {
+        if (alpha == T(1)) {
           x_i[xj - inc_x] = impl::to<T>(sum);
         } else {
-          tmp = impl::mul<TmpType>(sum, alpha_i);
+          tmp = impl::mul<TmpType>(sum, alpha);
           x_i[xj - inc_x] = impl::to<T>(tmp);
         }
 

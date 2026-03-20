@@ -90,8 +90,6 @@ constexpr void gemv(blas_order_type order,
   const A *a_i = a;
   const X *x_i = x;
   T *y_i = y;
-  T alpha_i = alpha;
-  T beta_i = beta;
   A a_elem;
   X x_elem;
   T y_elem;
@@ -150,18 +148,18 @@ constexpr void gemv(blas_order_type order,
     ky = (1 - leny) * incy;
 
   /* No extra-precision needed for alpha = 0 */
-  if (alpha_i == T(0)) {
-    if (beta_i == T(0)) {
+  if (alpha == T(0)) {
+    if (beta == T(0)) {
       iy = ky;
       for (i = 0; i < leny; i++) {
         y_i[iy] = T(0);
         iy += incy;
       }
-    } else if (beta_i != T(0)) {
+    } else if (beta != T(0)) {
       iy = ky;
       for (i = 0; i < leny; i++) {
         y_elem = y_i[iy];
-        tmp1 = impl::mul<TmpType>(y_elem, beta_i);
+        tmp1 = impl::mul<TmpType>(y_elem, beta);
         y_i[iy] = impl::to<T>(tmp1);
         iy += incy;
       }
@@ -170,9 +168,9 @@ constexpr void gemv(blas_order_type order,
     if constexpr (impl::is_complex_v<A>) {
       if (trans == blas_conj_trans) {
         /* if beta = 0, we can save m multiplies: y = alpha*A*x */
-        if (beta_i == T(0)) {
+        if (beta == T(0)) {
           /* save m more multiplies if alpha = 1 */
-          if (alpha_i == T(1)) {
+          if (alpha == T(1)) {
             ai = 0;
             iy = ky;
             for (i = 0; i < leny; i++) {
@@ -206,7 +204,7 @@ constexpr void gemv(blas_order_type order,
                 aij += incaij;
                 jx += incx;
               }
-              tmp1 = impl::mul<TmpType>(sum, alpha_i);
+              tmp1 = impl::mul<TmpType>(sum, alpha);
               y_i[iy] = impl::to<T>(tmp1);
               ai += incai;
               iy += incy;
@@ -228,9 +226,9 @@ constexpr void gemv(blas_order_type order,
               aij += incaij;
               jx += incx;
             }
-            tmp1 = impl::mul<TmpType>(sum, alpha_i);
+            tmp1 = impl::mul<TmpType>(sum, alpha);
             y_elem = y_i[iy];
-            tmp2 = impl::mul<TmpType>(y_elem, beta_i);
+            tmp2 = impl::mul<TmpType>(y_elem, beta);
             tmp1 = tmp1 + tmp2;
             y_i[iy] = impl::to<T>(tmp1);
             ai += incai;
@@ -239,9 +237,9 @@ constexpr void gemv(blas_order_type order,
         }
       } else {
         /* if beta = 0, we can save m multiplies: y = alpha*A*x */
-        if (beta_i == T(0)) {
+        if (beta == T(0)) {
           /* save m more multiplies if alpha = 1 */
-          if (alpha_i == T(1)) {
+          if (alpha == T(1)) {
             ai = 0;
             iy = ky;
             for (i = 0; i < leny; i++) {
@@ -275,7 +273,7 @@ constexpr void gemv(blas_order_type order,
                 aij += incaij;
                 jx += incx;
               }
-              tmp1 = impl::mul<TmpType>(sum, alpha_i);
+              tmp1 = impl::mul<TmpType>(sum, alpha);
               y_i[iy] = impl::to<T>(tmp1);
               ai += incai;
               iy += incy;
@@ -297,9 +295,9 @@ constexpr void gemv(blas_order_type order,
               aij += incaij;
               jx += incx;
             }
-            tmp1 = impl::mul<TmpType>(sum, alpha_i);
+            tmp1 = impl::mul<TmpType>(sum, alpha);
             y_elem = y_i[iy];
-            tmp2 = impl::mul<TmpType>(y_elem, beta_i);
+            tmp2 = impl::mul<TmpType>(y_elem, beta);
             tmp1 = tmp1 + tmp2;
             y_i[iy] = impl::to<T>(tmp1);
             ai += incai;
@@ -309,9 +307,9 @@ constexpr void gemv(blas_order_type order,
       }
     } else {
       /* if beta = 0, we can save m multiplies: y = alpha*A*x */
-      if (beta_i == T(0)) {
+      if (beta == T(0)) {
         /* save m more multiplies if alpha = 1 */
-        if (alpha_i == T(1)) {
+        if (alpha == T(1)) {
           ai = 0;
           iy = ky;
           for (i = 0; i < leny; i++) {
@@ -345,7 +343,7 @@ constexpr void gemv(blas_order_type order,
               aij += incaij;
               jx += incx;
             }
-            tmp1 = impl::mul<TmpType>(sum, alpha_i);
+            tmp1 = impl::mul<TmpType>(sum, alpha);
             y_i[iy] = impl::to<T>(tmp1);
             ai += incai;
             iy += incy;
@@ -367,9 +365,9 @@ constexpr void gemv(blas_order_type order,
             aij += incaij;
             jx += incx;
           }
-          tmp1 = impl::mul<TmpType>(sum, alpha_i);
+          tmp1 = impl::mul<TmpType>(sum, alpha);
           y_elem = y_i[iy];
-          tmp2 = impl::mul<TmpType>(y_elem, beta_i);
+          tmp2 = impl::mul<TmpType>(y_elem, beta);
           tmp1 = tmp1 + tmp2;
           y_i[iy] = impl::to<T>(tmp1);
           ai += incai;

@@ -160,8 +160,6 @@ constexpr void hbmv(blas_order_type order,
   T *y_i = y;
 
   /* Input Scalars */
-  T alpha_i = alpha;
-  T beta_i = beta;
 
   /* Temporary Floating-Point Variables */
   A a_elem;
@@ -176,7 +174,7 @@ constexpr void hbmv(blas_order_type order,
   if (n <= 0) {
     return;
   }
-  if (alpha_i == T(0) && beta_i == T(1)) {
+  if (alpha == T(0) && beta == T(1)) {
     return;
   }
 
@@ -233,10 +231,10 @@ constexpr void hbmv(blas_order_type order,
   }
 
   /* alpha = 0.  In this case, just return beta * y */
-  if (alpha_i == T(0)) {
+  if (alpha == T(0)) {
     for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
       y_elem = y_i[yi];
-      tmp1 = impl::mul<TmpType>(y_elem, beta_i);
+      tmp1 = impl::mul<TmpType>(y_elem, beta);
       y_i[yi] = impl::to<T>(tmp1);
     }
   } else {
@@ -254,8 +252,8 @@ constexpr void hbmv(blas_order_type order,
       /*  conjugate second loop */
 
       /* Case alpha == 1. */
-      if (alpha_i == T(1)) {
-        if (beta_i == T(0)) {
+      if (alpha == T(1)) {
+        if (beta == T(0)) {
           /* Case alpha = 1, beta = 0.  We compute  y <--- A * x */
           for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
             sum = impl::zero_v<PrdType>;
@@ -315,7 +313,7 @@ constexpr void hbmv(blas_order_type order,
               sum = sum + prod;
             }
             y_elem = y_i[yi];
-            tmp2 = impl::mul<TmpType>(y_elem, beta_i);
+            tmp2 = impl::mul<TmpType>(y_elem, beta);
             tmp1 = sum;
             tmp1 = tmp2 + tmp1;
             y_i[yi] = impl::to<T>(tmp1);
@@ -355,8 +353,8 @@ constexpr void hbmv(blas_order_type order,
             sum = sum + prod;
           }
           y_elem = y_i[yi];
-          tmp2 = impl::mul<TmpType>(y_elem, beta_i);
-          tmp1 = impl::mul<TmpType>(sum, alpha_i);
+          tmp2 = impl::mul<TmpType>(y_elem, beta);
+          tmp1 = impl::mul<TmpType>(sum, alpha);
           tmp1 = tmp2 + tmp1;
           y_i[yi] = impl::to<T>(tmp1);
           if (i + 1 >= (n_i - k)) {
@@ -375,8 +373,8 @@ constexpr void hbmv(blas_order_type order,
       /*  conjugate first loop */
 
       /* Case alpha == 1. */
-      if (alpha_i == T(1)) {
-        if (beta_i == T(0)) {
+      if (alpha == T(1)) {
+        if (beta == T(0)) {
           /* Case alpha = 1, beta = 0.  We compute  y <--- A * x */
           for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
             sum = impl::zero_v<PrdType>;
@@ -436,7 +434,7 @@ constexpr void hbmv(blas_order_type order,
               sum = sum + prod;
             }
             y_elem = y_i[yi];
-            tmp2 = impl::mul<TmpType>(y_elem, beta_i);
+            tmp2 = impl::mul<TmpType>(y_elem, beta);
             tmp1 = sum;
             tmp1 = tmp2 + tmp1;
             y_i[yi] = impl::to<T>(tmp1);
@@ -476,8 +474,8 @@ constexpr void hbmv(blas_order_type order,
             sum = sum + prod;
           }
           y_elem = y_i[yi];
-          tmp2 = impl::mul<TmpType>(y_elem, beta_i);
-          tmp1 = impl::mul<TmpType>(sum, alpha_i);
+          tmp2 = impl::mul<TmpType>(y_elem, beta);
+          tmp1 = impl::mul<TmpType>(sum, alpha);
           tmp1 = tmp2 + tmp1;
           y_i[yi] = impl::to<T>(tmp1);
           if (i + 1 >= (n_i - k)) {
