@@ -153,10 +153,8 @@ constexpr void hbmv(blas_order_type order,
   IdxType maxj_first, maxj_second;
 
   /* Input Matrices */
-  const X *x_i = x;
 
   /* Output Vector */
-  T *y_i = y;
 
   /* Input Scalars */
 
@@ -232,9 +230,9 @@ constexpr void hbmv(blas_order_type order,
   /* alpha = 0.  In this case, just return beta * y */
   if (alpha == T(0)) {
     for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-      y_elem = y_i[yi];
+      y_elem = y[yi];
       tmp1 = impl::mul<TmpType>(y_elem, beta);
-      y_i[yi] = impl::to<T>(tmp1);
+      y[yi] = impl::to<T>(tmp1);
     }
   } else {
     /*  determine the loop iteration counts */
@@ -259,23 +257,23 @@ constexpr void hbmv(blas_order_type order,
             for (j = 0, aij = astarti, xi = x_starti;
                  j < maxj_first; j++, aij += incaij, xi += incx) {
               a_elem = a[aij];
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
             auto a_elem_r = std::real(a[aij]);
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem_r, x_elem);
             sum = sum + prod;
             aij += incaij2;
             xi += incx;
             for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
               a_elem = impl::Conj::func(a[aij]);
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
-            y_i[yi] = impl::to<T>(sum);
+            y[yi] = impl::to<T>(sum);
             if (i + 1 >= (n_i - k)) {
               maxj_second--;
             }
@@ -295,27 +293,27 @@ constexpr void hbmv(blas_order_type order,
             for (j = 0, aij = astarti, xi = x_starti;
                  j < maxj_first; j++, aij += incaij, xi += incx) {
               a_elem = a[aij];
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
             auto a_elem_r = std::real(a[aij]);
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem_r, x_elem);
             sum = sum + prod;
             aij += incaij2;
             xi += incx;
             for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
               a_elem = impl::Conj::func(a[aij]);
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
-            y_elem = y_i[yi];
+            y_elem = y[yi];
             tmp2 = impl::mul<TmpType>(y_elem, beta);
             tmp1 = sum;
             tmp1 = tmp2 + tmp1;
-            y_i[yi] = impl::to<T>(tmp1);
+            y[yi] = impl::to<T>(tmp1);
             if (i + 1 >= (n_i - k)) {
               maxj_second--;
             }
@@ -335,27 +333,27 @@ constexpr void hbmv(blas_order_type order,
           for (j = 0, aij = astarti, xi = x_starti;
                j < maxj_first; j++, aij += incaij, xi += incx) {
             a_elem = a[aij];
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           auto a_elem_r = std::real(a[aij]);
-          x_elem = x_i[xi];
+          x_elem = x[xi];
           prod = impl::mul<PrdType>(a_elem_r, x_elem);
           sum = sum + prod;
           aij += incaij2;
           xi += incx;
           for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
             a_elem = impl::Conj::func(a[aij]);
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
-          y_elem = y_i[yi];
+          y_elem = y[yi];
           tmp2 = impl::mul<TmpType>(y_elem, beta);
           tmp1 = impl::mul<TmpType>(sum, alpha);
           tmp1 = tmp2 + tmp1;
-          y_i[yi] = impl::to<T>(tmp1);
+          y[yi] = impl::to<T>(tmp1);
           if (i + 1 >= (n_i - k)) {
             maxj_second--;
           }
@@ -380,23 +378,23 @@ constexpr void hbmv(blas_order_type order,
             for (j = 0, aij = astarti, xi = x_starti;
                  j < maxj_first; j++, aij += incaij, xi += incx) {
               a_elem = impl::Conj::func(a[aij]);
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
             auto a_elem_r = std::real(a[aij]);
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem_r, x_elem);
             sum = sum + prod;
             aij += incaij2;
             xi += incx;
             for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
               a_elem = a[aij];
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
-            y_i[yi] = impl::to<T>(sum);
+            y[yi] = impl::to<T>(sum);
             if (i + 1 >= (n_i - k)) {
               maxj_second--;
             }
@@ -416,27 +414,27 @@ constexpr void hbmv(blas_order_type order,
             for (j = 0, aij = astarti, xi = x_starti;
                  j < maxj_first; j++, aij += incaij, xi += incx) {
               a_elem = impl::Conj::func(a[aij]);
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
             auto a_elem_r = std::real(a[aij]);
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem_r, x_elem);
             sum = sum + prod;
             aij += incaij2;
             xi += incx;
             for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
               a_elem = a[aij];
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
-            y_elem = y_i[yi];
+            y_elem = y[yi];
             tmp2 = impl::mul<TmpType>(y_elem, beta);
             tmp1 = sum;
             tmp1 = tmp2 + tmp1;
-            y_i[yi] = impl::to<T>(tmp1);
+            y[yi] = impl::to<T>(tmp1);
             if (i + 1 >= (n_i - k)) {
               maxj_second--;
             }
@@ -456,27 +454,27 @@ constexpr void hbmv(blas_order_type order,
           for (j = 0, aij = astarti, xi = x_starti;
                j < maxj_first; j++, aij += incaij, xi += incx) {
             a_elem = impl::Conj::func(a[aij]);
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           auto a_elem_r = std::real(a[aij]);
-          x_elem = x_i[xi];
+          x_elem = x[xi];
           prod = impl::mul<PrdType>(a_elem_r, x_elem);
           sum = sum + prod;
           aij += incaij2;
           xi += incx;
           for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
             a_elem = a[aij];
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
-          y_elem = y_i[yi];
+          y_elem = y[yi];
           tmp2 = impl::mul<TmpType>(y_elem, beta);
           tmp1 = impl::mul<TmpType>(sum, alpha);
           tmp1 = tmp2 + tmp1;
-          y_i[yi] = impl::to<T>(tmp1);
+          y[yi] = impl::to<T>(tmp1);
           if (i + 1 >= (n_i - k)) {
             maxj_second--;
           }

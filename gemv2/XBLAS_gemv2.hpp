@@ -89,9 +89,6 @@ constexpr void gemv2(blas_order_type order,
   IdxType ai, aij;
   IdxType incai, incaij;
 
-  const X *head_x_i = head_x;
-  const X *tail_x_i = tail_x;
-  T *y_i = y;
   A a_elem;
   X x_elem;
   T y_elem;
@@ -154,15 +151,15 @@ constexpr void gemv2(blas_order_type order,
     if (beta == T(0)) {
       iy = ky;
       for (i = 0; i < leny; i++) {
-        y_i[iy] = T(0);
+        y[iy] = T(0);
         iy += incy;
       }
     } else if (beta != T(0)) {
       iy = ky;
       for (i = 0; i < leny; i++) {
-        y_elem = y_i[iy];
+        y_elem = y[iy];
         tmp1 = impl::mul<TmpType>(y_elem, beta);
-        y_i[iy] = impl::to<T>(tmp1);
+        y[iy] = impl::to<T>(tmp1);
         iy += incy;
       }
     }
@@ -183,17 +180,17 @@ constexpr void gemv2(blas_order_type order,
               jx = kx;
               for (j = 0; j < lenx; j++) {
                 a_elem = impl::Conj::func(a[aij]);
-                x_elem = head_x_i[jx];
+                x_elem = head_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
-                x_elem = tail_x_i[jx];
+                x_elem = tail_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum2 = sum2 + prod;
                 aij += incaij;
                 jx += incx;
               }
               sum = sum + sum2;
-              y_i[iy] = impl::to<T>(sum);
+              y[iy] = impl::to<T>(sum);
               ai += incai;
               iy += incy;
             } /* end for */
@@ -208,10 +205,10 @@ constexpr void gemv2(blas_order_type order,
               jx = kx;
               for (j = 0; j < lenx; j++) {
                 a_elem = impl::Conj::func(a[aij]);
-                x_elem = head_x_i[jx];
+                x_elem = head_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
-                x_elem = tail_x_i[jx];
+                x_elem = tail_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum2 = sum2 + prod;
                 aij += incaij;
@@ -220,7 +217,7 @@ constexpr void gemv2(blas_order_type order,
               tmp1 = impl::mul<TmpType>(sum, alpha);
               tmp2 = impl::mul<TmpType>(sum2, alpha);
               tmp1 = tmp1 + tmp2;
-              y_i[iy] = impl::to<T>(tmp1);
+              y[iy] = impl::to<T>(tmp1);
               ai += incai;
               iy += incy;
             }
@@ -237,20 +234,20 @@ constexpr void gemv2(blas_order_type order,
               jx = kx;
               for (j = 0; j < lenx; j++) {
                 a_elem = impl::Conj::func(a[aij]);
-                x_elem = head_x_i[jx];
+                x_elem = head_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
-                x_elem = tail_x_i[jx];
+                x_elem = tail_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum2 = sum2 + prod;
                 aij += incaij;
                 jx += incx;
               }
               sum = sum + sum2;
-              y_elem = y_i[iy];
+              y_elem = y[iy];
               tmp1 = impl::mul<TmpType>(y_elem, beta);
               tmp2 = sum + tmp1;
-              y_i[iy] = impl::to<T>(tmp2);
+              y[iy] = impl::to<T>(tmp2);
               ai += incai;
               iy += incy;
             }
@@ -266,10 +263,10 @@ constexpr void gemv2(blas_order_type order,
               jx = kx;
               for (j = 0; j < lenx; j++) {
                 a_elem = impl::Conj::func(a[aij]);
-                x_elem = head_x_i[jx];
+                x_elem = head_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
-                x_elem = tail_x_i[jx];
+                x_elem = tail_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum2 = sum2 + prod;
                 aij += incaij;
@@ -278,10 +275,10 @@ constexpr void gemv2(blas_order_type order,
               tmp1 = impl::mul<TmpType>(sum, alpha);
               tmp2 = impl::mul<TmpType>(sum2, alpha);
               tmp1 = tmp1 + tmp2;
-              y_elem = y_i[iy];
+              y_elem = y[iy];
               tmp2 = impl::mul<TmpType>(y_elem, beta);
               tmp1 = tmp1 + tmp2;
-              y_i[iy] = impl::to<T>(tmp1);
+              y[iy] = impl::to<T>(tmp1);
               ai += incai;
               iy += incy;
             }
@@ -302,17 +299,17 @@ constexpr void gemv2(blas_order_type order,
               jx = kx;
               for (j = 0; j < lenx; j++) {
                 a_elem = a[aij];
-                x_elem = head_x_i[jx];
+                x_elem = head_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
-                x_elem = tail_x_i[jx];
+                x_elem = tail_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum2 = sum2 + prod;
                 aij += incaij;
                 jx += incx;
               }
               sum = sum + sum2;
-              y_i[iy] = impl::to<T>(sum);
+              y[iy] = impl::to<T>(sum);
               ai += incai;
               iy += incy;
             } /* end for */
@@ -327,10 +324,10 @@ constexpr void gemv2(blas_order_type order,
               jx = kx;
               for (j = 0; j < lenx; j++) {
                 a_elem = a[aij];
-                x_elem = head_x_i[jx];
+                x_elem = head_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
-                x_elem = tail_x_i[jx];
+                x_elem = tail_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum2 = sum2 + prod;
                 aij += incaij;
@@ -339,7 +336,7 @@ constexpr void gemv2(blas_order_type order,
               tmp1 = impl::mul<TmpType>(sum, alpha);
               tmp2 = impl::mul<TmpType>(sum2, alpha);
               tmp1 = tmp1 + tmp2;
-              y_i[iy] = impl::to<T>(tmp1);
+              y[iy] = impl::to<T>(tmp1);
               ai += incai;
               iy += incy;
             }
@@ -356,20 +353,20 @@ constexpr void gemv2(blas_order_type order,
               jx = kx;
               for (j = 0; j < lenx; j++) {
                 a_elem = a[aij];
-                x_elem = head_x_i[jx];
+                x_elem = head_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
-                x_elem = tail_x_i[jx];
+                x_elem = tail_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum2 = sum2 + prod;
                 aij += incaij;
                 jx += incx;
               }
               sum = sum + sum2;
-              y_elem = y_i[iy];
+              y_elem = y[iy];
               tmp1 = impl::mul<TmpType>(y_elem, beta);
               tmp2 = sum + tmp1;
-              y_i[iy] = impl::to<T>(tmp2);
+              y[iy] = impl::to<T>(tmp2);
               ai += incai;
               iy += incy;
             }
@@ -385,10 +382,10 @@ constexpr void gemv2(blas_order_type order,
               jx = kx;
               for (j = 0; j < lenx; j++) {
                 a_elem = a[aij];
-                x_elem = head_x_i[jx];
+                x_elem = head_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
-                x_elem = tail_x_i[jx];
+                x_elem = tail_x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum2 = sum2 + prod;
                 aij += incaij;
@@ -397,10 +394,10 @@ constexpr void gemv2(blas_order_type order,
               tmp1 = impl::mul<TmpType>(sum, alpha);
               tmp2 = impl::mul<TmpType>(sum2, alpha);
               tmp1 = tmp1 + tmp2;
-              y_elem = y_i[iy];
+              y_elem = y[iy];
               tmp2 = impl::mul<TmpType>(y_elem, beta);
               tmp1 = tmp1 + tmp2;
-              y_i[iy] = impl::to<T>(tmp1);
+              y[iy] = impl::to<T>(tmp1);
               ai += incai;
               iy += incy;
             }
@@ -422,17 +419,17 @@ constexpr void gemv2(blas_order_type order,
             jx = kx;
             for (j = 0; j < lenx; j++) {
               a_elem = a[aij];
-              x_elem = head_x_i[jx];
+              x_elem = head_x[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
-              x_elem = tail_x_i[jx];
+              x_elem = tail_x[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum2 = sum2 + prod;
               aij += incaij;
               jx += incx;
             }
             sum = sum + sum2;
-            y_i[iy] = impl::to<T>(sum);
+            y[iy] = impl::to<T>(sum);
             ai += incai;
             iy += incy;
           } /* end for */
@@ -447,10 +444,10 @@ constexpr void gemv2(blas_order_type order,
             jx = kx;
             for (j = 0; j < lenx; j++) {
               a_elem = a[aij];
-              x_elem = head_x_i[jx];
+              x_elem = head_x[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
-              x_elem = tail_x_i[jx];
+              x_elem = tail_x[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum2 = sum2 + prod;
               aij += incaij;
@@ -459,7 +456,7 @@ constexpr void gemv2(blas_order_type order,
             tmp1 = impl::mul<TmpType>(sum, alpha);
             tmp2 = impl::mul<TmpType>(sum2, alpha);
             tmp1 = tmp1 + tmp2;
-            y_i[iy] = impl::to<T>(tmp1);
+            y[iy] = impl::to<T>(tmp1);
             ai += incai;
             iy += incy;
           }
@@ -476,20 +473,20 @@ constexpr void gemv2(blas_order_type order,
             jx = kx;
             for (j = 0; j < lenx; j++) {
               a_elem = a[aij];
-              x_elem = head_x_i[jx];
+              x_elem = head_x[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
-              x_elem = tail_x_i[jx];
+              x_elem = tail_x[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum2 = sum2 + prod;
               aij += incaij;
               jx += incx;
             }
             sum = sum + sum2;
-            y_elem = y_i[iy];
+            y_elem = y[iy];
             tmp1 = impl::mul<TmpType>(y_elem, beta);
             tmp2 = sum + tmp1;
-            y_i[iy] = impl::to<T>(tmp2);
+            y[iy] = impl::to<T>(tmp2);
             ai += incai;
             iy += incy;
           }
@@ -505,10 +502,10 @@ constexpr void gemv2(blas_order_type order,
             jx = kx;
             for (j = 0; j < lenx; j++) {
               a_elem = a[aij];
-              x_elem = head_x_i[jx];
+              x_elem = head_x[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
-              x_elem = tail_x_i[jx];
+              x_elem = tail_x[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum2 = sum2 + prod;
               aij += incaij;
@@ -517,10 +514,10 @@ constexpr void gemv2(blas_order_type order,
             tmp1 = impl::mul<TmpType>(sum, alpha);
             tmp2 = impl::mul<TmpType>(sum2, alpha);
             tmp1 = tmp1 + tmp2;
-            y_elem = y_i[iy];
+            y_elem = y[iy];
             tmp2 = impl::mul<TmpType>(y_elem, beta);
             tmp1 = tmp1 + tmp2;
-            y_i[iy] = impl::to<T>(tmp1);
+            y[iy] = impl::to<T>(tmp1);
             ai += incai;
             iy += incy;
           }

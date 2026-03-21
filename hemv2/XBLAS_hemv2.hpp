@@ -95,9 +95,6 @@ constexpr void hemv2(blas_order_type order,
   IdxType incai;
   IdxType incaij, incaij2;
 
-  const X *x_head_i = x_head;
-  const X *x_tail_i = x_tail;
-  T *y_i = y;
   A a_elem;
   X x_elem;
   T y_elem;
@@ -157,18 +154,18 @@ constexpr void hemv2(blas_order_type order,
       sum2 = impl::zero_v<PrdType>;
       for (j = 0, aij = ai, xi = xi0; j < i; j++, aij += incaij, xi += incx) {
         a_elem = a[aij];
-        x_elem = x_head_i[xi];
+        x_elem = x_head[xi];
         prod1 = impl::mul<PrdType>(a_elem, x_elem);
         sum1 = sum1 + prod1;
-        x_elem = x_tail_i[xi];
+        x_elem = x_tail[xi];
         prod2 = impl::mul<PrdType>(a_elem, x_elem);
         sum2 = sum2 + prod2;
       }
       diag_elem = std::real(a[aij]);
-      x_elem = x_head_i[xi];
+      x_elem = x_head[xi];
       prod1 = impl::mul<PrdType>(diag_elem, x_elem);
       sum1 = sum1 + prod1;
-      x_elem = x_tail_i[xi];
+      x_elem = x_tail[xi];
       prod2 = impl::mul<PrdType>(diag_elem, x_elem);
       sum2 = sum2 + prod2;
       j++;
@@ -176,19 +173,19 @@ constexpr void hemv2(blas_order_type order,
       xi += incx;
       for (; j < n; j++, aij += incaij2, xi += incx) {
         a_elem = impl::Conj::func(a[aij]);
-        x_elem = x_head_i[xi];
+        x_elem = x_head[xi];
         prod1 = impl::mul<PrdType>(a_elem, x_elem);
         sum1 = sum1 + prod1;
-        x_elem = x_tail_i[xi];
+        x_elem = x_tail[xi];
         prod2 = impl::mul<PrdType>(a_elem, x_elem);
         sum2 = sum2 + prod2;
       }
       sum1 = sum1 + sum2;
       tmp1 = impl::mul<TmpType>(sum1, alpha);
-      y_elem = y_i[yi];
+      y_elem = y[yi];
       tmp2 = impl::mul<TmpType>(y_elem, beta);
       tmp3 = tmp1 + tmp2;
-      y_i[yi] = impl::to<T>(tmp3);
+      y[yi] = impl::to<T>(tmp3);
     }
   } else {
     /* uplo == blas_upper */
@@ -197,18 +194,18 @@ constexpr void hemv2(blas_order_type order,
       sum2 = impl::zero_v<PrdType>;
       for (j = 0, aij = ai, xi = xi0; j < i; j++, aij += incaij, xi += incx) {
         a_elem = impl::Conj::func(a[aij]);
-        x_elem = x_head_i[xi];
+        x_elem = x_head[xi];
         prod1 = impl::mul<PrdType>(a_elem, x_elem);
         sum1 = sum1 + prod1;
-        x_elem = x_tail_i[xi];
+        x_elem = x_tail[xi];
         prod2 = impl::mul<PrdType>(a_elem, x_elem);
         sum2 = sum2 + prod2;
       }
       diag_elem = std::real(a[aij]);
-      x_elem = x_head_i[xi];
+      x_elem = x_head[xi];
       prod1 = impl::mul<PrdType>(diag_elem, x_elem);
       sum1 = sum1 + prod1;
-      x_elem = x_tail_i[xi];
+      x_elem = x_tail[xi];
       prod2 = impl::mul<PrdType>(diag_elem, x_elem);
       sum2 = sum2 + prod2;
       j++;
@@ -216,19 +213,19 @@ constexpr void hemv2(blas_order_type order,
       xi += incx;
       for (; j < n; j++, aij += incaij2, xi += incx) {
         a_elem = a[aij];
-        x_elem = x_head_i[xi];
+        x_elem = x_head[xi];
         prod1 = impl::mul<PrdType>(a_elem, x_elem);
         sum1 = sum1 + prod1;
-        x_elem = x_tail_i[xi];
+        x_elem = x_tail[xi];
         prod2 = impl::mul<PrdType>(a_elem, x_elem);
         sum2 = sum2 + prod2;
       }
       sum1 = sum1 + sum2;
       tmp1 = impl::mul<TmpType>(sum1, alpha);
-      y_elem = y_i[yi];
+      y_elem = y[yi];
       tmp2 = impl::mul<TmpType>(y_elem, beta);
       tmp3 = tmp1 + tmp2;
-      y_i[yi] = impl::to<T>(tmp3);
+      y[yi] = impl::to<T>(tmp3);
     }
   }
 

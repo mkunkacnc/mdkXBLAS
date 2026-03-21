@@ -97,10 +97,8 @@ constexpr void hemv(blas_order_type order,
   IdxType n_i;
 
   /* Input Matrices */
-  const X *x_i = x;
 
   /* Output Vector */
-  T *y_i = y;
 
   /* Input Scalars */
 
@@ -170,9 +168,9 @@ constexpr void hemv(blas_order_type order,
   /* alpha = 0.  In this case, just return beta * y */
   if (alpha == T(0)) {
     for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-      y_elem = y_i[yi];
+      y_elem = y[yi];
       tmp1 = impl::mul<TmpType>(y_elem, beta);
-      y_i[yi] = impl::to<T>(tmp1);
+      y[yi] = impl::to<T>(tmp1);
     }
   } else {
     /*  determine whether we conjugate in first loop or second loop */
@@ -189,12 +187,12 @@ constexpr void hemv(blas_order_type order,
             for (k = 0, aik = astarti, xi = x_starti;
                  k < i; k++, aik += incaik, xi += incx) {
               a_elem = a[aik];
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
             auto a_elem_r = std::real(a[aik]);
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem_r, x_elem);
             sum = sum + prod;
             k++;
@@ -202,11 +200,11 @@ constexpr void hemv(blas_order_type order,
             xi += incx;
             for (; k < n_i; k++, aik += incaik2, xi += incx) {
               a_elem = impl::Conj::func(a[aik]);
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
-            y_i[yi] = impl::to<T>(sum);
+            y[yi] = impl::to<T>(sum);
           }
         } else {
           /* Case alpha = 1, but beta != 0.
@@ -217,12 +215,12 @@ constexpr void hemv(blas_order_type order,
             for (k = 0, aik = astarti, xi = x_starti;
                  k < i; k++, aik += incaik, xi += incx) {
               a_elem = a[aik];
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
             auto a_elem_r = std::real(a[aik]);
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem_r, x_elem);
             sum = sum + prod;
             k++;
@@ -230,15 +228,15 @@ constexpr void hemv(blas_order_type order,
             xi += incx;
             for (; k < n_i; k++, aik += incaik2, xi += incx) {
               a_elem = impl::Conj::func(a[aik]);
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
-            y_elem = y_i[yi];
+            y_elem = y[yi];
             tmp2 = impl::mul<TmpType>(y_elem, beta);
             tmp1 = sum;
             tmp1 = tmp2 + tmp1;
-            y_i[yi] = impl::to<T>(tmp1);
+            y[yi] = impl::to<T>(tmp1);
           }
         }
       } else {
@@ -249,12 +247,12 @@ constexpr void hemv(blas_order_type order,
           for (k = 0, aik = astarti, xi = x_starti;
                k < i; k++, aik += incaik, xi += incx) {
             a_elem = a[aik];
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           auto a_elem_r = std::real(a[aik]);
-          x_elem = x_i[xi];
+          x_elem = x[xi];
           prod = impl::mul<PrdType>(a_elem_r, x_elem);
           sum = sum + prod;
           k++;
@@ -262,15 +260,15 @@ constexpr void hemv(blas_order_type order,
           xi += incx;
           for (; k < n_i; k++, aik += incaik2, xi += incx) {
             a_elem = impl::Conj::func(a[aik]);
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
-          y_elem = y_i[yi];
+          y_elem = y[yi];
           tmp2 = impl::mul<TmpType>(y_elem, beta);
           tmp1 = impl::mul<TmpType>(sum, alpha);
           tmp1 = tmp1 + tmp2;
-          y_i[yi] = impl::to<T>(tmp1);
+          y[yi] = impl::to<T>(tmp1);
         }
       }
     } else {
@@ -286,12 +284,12 @@ constexpr void hemv(blas_order_type order,
             for (k = 0, aik = astarti, xi = x_starti;
                  k < i; k++, aik += incaik, xi += incx) {
               a_elem = impl::Conj::func(a[aik]);
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
             auto a_elem_r = std::real(a[aik]);
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem_r, x_elem);
             sum = sum + prod;
             k++;
@@ -299,11 +297,11 @@ constexpr void hemv(blas_order_type order,
             xi += incx;
             for (; k < n_i; k++, aik += incaik2, xi += incx) {
               a_elem = a[aik];
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
-            y_i[yi] = impl::to<T>(sum);
+            y[yi] = impl::to<T>(sum);
           }
         } else {
           /* Case alpha = 1, but beta != 0.
@@ -314,12 +312,12 @@ constexpr void hemv(blas_order_type order,
             for (k = 0, aik = astarti, xi = x_starti;
                  k < i; k++, aik += incaik, xi += incx) {
               a_elem = impl::Conj::func(a[aik]);
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
             auto a_elem_r = std::real(a[aik]);
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem_r, x_elem);
             sum = sum + prod;
             k++;
@@ -327,15 +325,15 @@ constexpr void hemv(blas_order_type order,
             xi += incx;
             for (; k < n_i; k++, aik += incaik2, xi += incx) {
               a_elem = a[aik];
-              x_elem = x_i[xi];
+              x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
-            y_elem = y_i[yi];
+            y_elem = y[yi];
             tmp2 = impl::mul<TmpType>(y_elem, beta);
             tmp1 = sum;
             tmp1 = tmp2 + tmp1;
-            y_i[yi] = impl::to<T>(tmp1);
+            y[yi] = impl::to<T>(tmp1);
           }
         }
       } else {
@@ -346,12 +344,12 @@ constexpr void hemv(blas_order_type order,
           for (k = 0, aik = astarti, xi = x_starti;
                k < i; k++, aik += incaik, xi += incx) {
             a_elem = impl::Conj::func(a[aik]);
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           auto a_elem_r = std::real(a[aik]);
-          x_elem = x_i[xi];
+          x_elem = x[xi];
           prod = impl::mul<PrdType>(a_elem_r, x_elem);
           sum = sum + prod;
           k++;
@@ -359,15 +357,15 @@ constexpr void hemv(blas_order_type order,
           xi += incx;
           for (; k < n_i; k++, aik += incaik2, xi += incx) {
             a_elem = a[aik];
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
-          y_elem = y_i[yi];
+          y_elem = y[yi];
           tmp2 = impl::mul<TmpType>(y_elem, beta);
           tmp1 = impl::mul<TmpType>(sum, alpha);
           tmp1 = tmp1 + tmp2;
-          y_i[yi] = impl::to<T>(tmp1);
+          y[yi] = impl::to<T>(tmp1);
         }
       }
     }

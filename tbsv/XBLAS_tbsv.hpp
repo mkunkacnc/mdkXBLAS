@@ -83,8 +83,6 @@ constexpr void tbsv(blas_order_type order,
   IdxType Tij;
   IdxType dot_start, dot_start_inc1, dot_start_inc2, dot_inc;
 
-  const A *t_i = t;
-  T *x_i = x;
 
   if (order != blas_rowmajor && order != blas_colmajor) {
     BLAS_error(routine_name, -1, order, nullptr);
@@ -129,7 +127,7 @@ constexpr void tbsv(blas_order_type order,
   if (alpha == T(0)) {
     xi = start_xi;
     for (i = 0; i < n; i++) {
-      x_i[xi] = T(0);
+      x[xi] = T(0);
       xi += incxi;
     }
     return;
@@ -208,7 +206,7 @@ constexpr void tbsv(blas_order_type order,
         /* x_inti already initialized to 0 */
         for (j = 0; j < k; j++) {
           /* each time through loop, xi lands on next x to compute. */
-          x_elem = x_i[xi];
+          x_elem = x[xi];
           /* preform the multiplication -
              in this implementation we do not separate the alpha = 1 case */
           temp1 = impl::mul<TmpType>(x_elem, alpha);
@@ -219,7 +217,7 @@ constexpr void tbsv(blas_order_type order,
           /*start loop buffer over in loop 1 */
           x_inti = 0;
           for (i = j; i > 0; i--) {
-            T_element = impl::Conj::func(t_i[Tij]);
+            T_element = impl::Conj::func(t[Tij]);
             temp3 = x_internal[x_inti];
             temp2 = impl::mul<TmpType>(temp3, T_element);
             temp1 = temp1 - temp2;
@@ -230,7 +228,7 @@ constexpr void tbsv(blas_order_type order,
           /* if the diagonal entry is not equal to one, then divide Xj by
              the entry */
           if (diag == blas_non_unit_diag) {
-            T_element = impl::Conj::func(t_i[Tij]);
+            T_element = impl::Conj::func(t[Tij]);
             temp1 = impl::div(temp1, T_element);
           }
 
@@ -239,7 +237,7 @@ constexpr void tbsv(blas_order_type order,
           x_internal[x_inti] = temp1;
 
           /* place result x in same place as got x this loop */
-          x_i[xi] = impl::to<T>(temp1);
+          x[xi] = impl::to<T>(temp1);
           xi += incxi;
         } /* for j<k */
         /*end loop 1 */
@@ -249,14 +247,14 @@ constexpr void tbsv(blas_order_type order,
         /*loop 2 continue without changing j to start */
         for (; j < n; j++) {
           /* each time through loop, xi lands on next x to compute. */
-          x_elem = x_i[xi];
+          x_elem = x[xi];
           temp1 = impl::mul<TmpType>(x_elem, alpha);
 
           Tij = dot_start;
           dot_start += dot_start_inc2;
 
           for (i = k; i > 0 && (x_inti < k_compare); i--) {
-            T_element = impl::Conj::func(t_i[Tij]);
+            T_element = impl::Conj::func(t[Tij]);
             temp3 = x_internal[x_inti];
             temp2 = impl::mul<TmpType>(temp3, T_element);
             temp1 = temp1 - temp2;
@@ -266,7 +264,7 @@ constexpr void tbsv(blas_order_type order,
           /*reset index to internal storage loop buffer. */
           x_inti = 0;
           for (; i > 0; i--) {
-            T_element = impl::Conj::func(t_i[Tij]);
+            T_element = impl::Conj::func(t[Tij]);
             temp3 = x_internal[x_inti];
             temp2 = impl::mul<TmpType>(temp3, T_element);
             temp1 = temp1 - temp2;
@@ -277,7 +275,7 @@ constexpr void tbsv(blas_order_type order,
           /* if the diagonal entry is not equal to one, then divide by
              the entry */
           if (diag == blas_non_unit_diag) {
-            T_element = impl::Conj::func(t_i[Tij]);
+            T_element = impl::Conj::func(t[Tij]);
             temp1 = impl::div(temp1, T_element);
           }
 
@@ -289,7 +287,7 @@ constexpr void tbsv(blas_order_type order,
             x_inti = 0;
 
           /* place result x in same place as got x this loop */
-          x_i[xi] = impl::to<T>(temp1);
+          x[xi] = impl::to<T>(temp1);
           xi += incxi;
         } /* for j<n */
       } else {
@@ -300,7 +298,7 @@ constexpr void tbsv(blas_order_type order,
         /* x_inti already initialized to 0 */
         for (j = 0; j < k; j++) {
           /* each time through loop, xi lands on next x to compute. */
-          x_elem = x_i[xi];
+          x_elem = x[xi];
           /* preform the multiplication -
              in this implementation we do not separate the alpha = 1 case */
           temp1 = impl::mul<TmpType>(x_elem, alpha);
@@ -311,7 +309,7 @@ constexpr void tbsv(blas_order_type order,
           /*start loop buffer over in loop 1 */
           x_inti = 0;
           for (i = j; i > 0; i--) {
-            T_element = t_i[Tij];
+            T_element = t[Tij];
             temp3 = x_internal[x_inti];
             temp2 = impl::mul<TmpType>(temp3, T_element);
             temp1 = temp1 - temp2;
@@ -322,7 +320,7 @@ constexpr void tbsv(blas_order_type order,
           /* if the diagonal entry is not equal to one, then divide Xj by
              the entry */
           if (diag == blas_non_unit_diag) {
-            T_element = t_i[Tij];
+            T_element = t[Tij];
             temp1 = impl::div(temp1, T_element);
           }
 
@@ -331,7 +329,7 @@ constexpr void tbsv(blas_order_type order,
           x_internal[x_inti] = temp1;
 
           /* place result x in same place as got x this loop */
-          x_i[xi] = impl::to<T>(temp1);
+          x[xi] = impl::to<T>(temp1);
           xi += incxi;
         } /* for j<k */
         /*end loop 1 */
@@ -341,14 +339,14 @@ constexpr void tbsv(blas_order_type order,
         /*loop 2 continue without changing j to start */
         for (; j < n; j++) {
           /* each time through loop, xi lands on next x to compute. */
-          x_elem = x_i[xi];
+          x_elem = x[xi];
           temp1 = impl::mul<TmpType>(x_elem, alpha);
 
           Tij = dot_start;
           dot_start += dot_start_inc2;
 
           for (i = k; i > 0 && (x_inti < k_compare); i--) {
-            T_element = t_i[Tij];
+            T_element = t[Tij];
             temp3 = x_internal[x_inti];
             temp2 = impl::mul<TmpType>(temp3, T_element);
             temp1 = temp1 - temp2;
@@ -359,7 +357,7 @@ constexpr void tbsv(blas_order_type order,
           /*reset index to internal storage loop buffer. */
           x_inti = 0;
           for (; i > 0; i--) {
-            T_element = t_i[Tij];
+            T_element = t[Tij];
             temp3 = x_internal[x_inti];
             temp2 = impl::mul<TmpType>(temp3, T_element);
             temp1 = temp1 - temp2;
@@ -370,7 +368,7 @@ constexpr void tbsv(blas_order_type order,
           /* if the diagonal entry is not equal to one, then divide by
              the entry */
           if (diag == blas_non_unit_diag) {
-            T_element = t_i[Tij];
+            T_element = t[Tij];
             temp1 = impl::div(temp1, T_element);
           }
 
@@ -382,7 +380,7 @@ constexpr void tbsv(blas_order_type order,
             x_inti = 0;
 
           /* place result x in same place as got x this loop */
-          x_i[xi] = impl::to<T>(temp1);
+          x[xi] = impl::to<T>(temp1);
           xi += incxi;
         }                        /* for j<n */
       }
@@ -402,7 +400,7 @@ constexpr void tbsv(blas_order_type order,
         xi = start_xi;
         for (j = 0; j < k; j++) {
           /* each time through loop, xi lands on next x to compute. */
-          x_elem = x_i[xi];
+          x_elem = x[xi];
           /* preform the multiplication -
              in this implementation we do not separate the alpha = 1 case */
           temp1 = impl::mul<TmpType>(x_elem, alpha);
@@ -412,8 +410,8 @@ constexpr void tbsv(blas_order_type order,
           dot_start += dot_start_inc1;
 
           for (i = j; i > 0; i--) {
-            T_element = impl::Conj::func(t_i[Tij]);
-            x_elem = x_i[xi];
+            T_element = impl::Conj::func(t[Tij]);
+            x_elem = x[xi];
             temp2 = impl::mul<TmpType>(x_elem, T_element);
             temp1 = temp1 - temp2;
             xi += incxi;
@@ -423,11 +421,11 @@ constexpr void tbsv(blas_order_type order,
           /* if the diagonal entry is not equal to one, then divide Xj by
              the entry */
           if (diag == blas_non_unit_diag) {
-            T_element = impl::Conj::func(t_i[Tij]);
+            T_element = impl::Conj::func(t[Tij]);
             temp1 = impl::div(temp1, T_element);
           } /* if (diag == blas_non_unit_diag) */
 
-          x_i[xi] = impl::to<T>(temp1);
+          x[xi] = impl::to<T>(temp1);
           xi += incxi;
         } /* for j<k */
         /*end loop 1 */
@@ -435,7 +433,7 @@ constexpr void tbsv(blas_order_type order,
         /*loop 2 continue without changing j to start */
         for (; j < n; j++) {
           /* each time through loop, xi lands on next x to compute. */
-          x_elem = x_i[xi];
+          x_elem = x[xi];
           temp1 = impl::mul<TmpType>(x_elem, alpha);
 
           xi = start_xi;
@@ -444,8 +442,8 @@ constexpr void tbsv(blas_order_type order,
           dot_start += dot_start_inc2;
 
           for (i = k; i > 0; i--) {
-            T_element = impl::Conj::func(t_i[Tij]);
-            x_elem = x_i[xi];
+            T_element = impl::Conj::func(t[Tij]);
+            x_elem = x[xi];
             temp2 = impl::mul<TmpType>(x_elem, T_element);
             temp1 = temp1 - temp2;
             xi += incxi;
@@ -455,11 +453,11 @@ constexpr void tbsv(blas_order_type order,
           /* if the diagonal entry is not equal to one, then divide by
              the entry */
           if (diag == blas_non_unit_diag) {
-            T_element = impl::Conj::func(t_i[Tij]);
+            T_element = impl::Conj::func(t[Tij]);
             temp1 = impl::div(temp1, T_element);
           } /* if (diag == blas_non_unit_diag) */
 
-          x_i[xi] = impl::to<T>(temp1);
+          x[xi] = impl::to<T>(temp1);
           xi += incxi;
         } /* for j<n */
       } else {
@@ -469,7 +467,7 @@ constexpr void tbsv(blas_order_type order,
         xi = start_xi;
         for (j = 0; j < k; j++) {
           /* each time through loop, xi lands on next x to compute. */
-          x_elem = x_i[xi];
+          x_elem = x[xi];
           /* preform the multiplication -
              in this implementation we do not separate the alpha = 1 case */
           temp1 = impl::mul<TmpType>(x_elem, alpha);
@@ -479,8 +477,8 @@ constexpr void tbsv(blas_order_type order,
           dot_start += dot_start_inc1;
 
           for (i = j; i > 0; i--) {
-            T_element = t_i[Tij];
-            x_elem = x_i[xi];
+            T_element = t[Tij];
+            x_elem = x[xi];
             temp2 = impl::mul<TmpType>(x_elem, T_element);
             temp1 = temp1 - temp2;
             xi += incxi;
@@ -490,11 +488,11 @@ constexpr void tbsv(blas_order_type order,
           /* if the diagonal entry is not equal to one, then divide Xj by
              the entry */
           if (diag == blas_non_unit_diag) {
-            T_element = t_i[Tij];
+            T_element = t[Tij];
             temp1 = impl::div(temp1, T_element);
           } /* if (diag == blas_non_unit_diag) */
 
-          x_i[xi] = impl::to<T>(temp1);
+          x[xi] = impl::to<T>(temp1);
           xi += incxi;
         } /* for j<k */
         /*end loop 1 */
@@ -503,7 +501,7 @@ constexpr void tbsv(blas_order_type order,
         for (; j < n; j++) {
 
           /* each time through loop, xi lands on next x to compute. */
-          x_elem = x_i[xi];
+          x_elem = x[xi];
           temp1 = impl::mul<TmpType>(x_elem, alpha);
 
           xi = start_xi;
@@ -513,9 +511,9 @@ constexpr void tbsv(blas_order_type order,
           dot_start += dot_start_inc2;
 
           for (i = k; i > 0; i--) {
-            T_element = t_i[Tij];
+            T_element = t[Tij];
 
-            x_elem = x_i[xi];
+            x_elem = x[xi];
             temp2 = impl::mul<TmpType>(x_elem, T_element);
             temp1 = temp1 - temp2;
             xi += incxi;
@@ -525,11 +523,11 @@ constexpr void tbsv(blas_order_type order,
           /* if the diagonal entry is not equal to one, then divide by
              the entry */
           if (diag == blas_non_unit_diag) {
-            T_element = t_i[Tij];
+            T_element = t[Tij];
             temp1 = impl::div(temp1, T_element);
           } /* if (diag == blas_non_unit_diag) */
 
-          x_i[xi] = impl::to<T>(temp1);
+          x[xi] = impl::to<T>(temp1);
           xi += incxi;
         } /* for j<n */
       }
@@ -556,7 +554,7 @@ constexpr void tbsv(blas_order_type order,
       /* x_inti already initialized to 0 */
       for (j = 0; j < k; j++) {
         /* each time through loop, xi lands on next x to compute. */
-        x_elem = x_i[xi];
+        x_elem = x[xi];
         /* preform the multiplication -
            in this implementation we do not separate the alpha = 1 case */
         temp1 = impl::mul<TmpType>(x_elem, alpha);
@@ -567,7 +565,7 @@ constexpr void tbsv(blas_order_type order,
         /*start loop buffer over in loop 1 */
         x_inti = 0;
         for (i = j; i > 0; i--) {
-          T_element = t_i[Tij];
+          T_element = t[Tij];
 
           temp3 = x_internal[x_inti];
           temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -579,7 +577,7 @@ constexpr void tbsv(blas_order_type order,
         /* if the diagonal entry is not equal to one, then divide Xj by
            the entry */
         if (diag == blas_non_unit_diag) {
-          T_element = t_i[Tij];
+          T_element = t[Tij];
           temp1 = impl::div(temp1, T_element);
         }
 
@@ -588,7 +586,7 @@ constexpr void tbsv(blas_order_type order,
         x_internal[x_inti] = temp1;
 
         /* place result x in same place as got x this loop */
-        x_i[xi] = impl::to<T>(temp1);
+        x[xi] = impl::to<T>(temp1);
         xi += incxi;
       } /* for j<k */
       /*end loop 1 */
@@ -598,14 +596,14 @@ constexpr void tbsv(blas_order_type order,
       /*loop 2 continue without changing j to start */
       for (; j < n; j++) {
         /* each time through loop, xi lands on next x to compute. */
-        x_elem = x_i[xi];
+        x_elem = x[xi];
         temp1 = impl::mul<TmpType>(x_elem, alpha);
 
         Tij = dot_start;
         dot_start += dot_start_inc2;
 
         for (i = k; i > 0 && (x_inti < k_compare); i--) {
-          T_element = t_i[Tij];
+          T_element = t[Tij];
           temp3 = x_internal[x_inti];
           temp2 = impl::mul<TmpType>(temp3, T_element);
           temp1 = temp1 - temp2;
@@ -616,7 +614,7 @@ constexpr void tbsv(blas_order_type order,
         /*reset index to internal storage loop buffer. */
         x_inti = 0;
         for (; i > 0; i--) {
-          T_element = t_i[Tij];
+          T_element = t[Tij];
           temp3 = x_internal[x_inti];
           temp2 = impl::mul<TmpType>(temp3, T_element);
           temp1 = temp1 - temp2;
@@ -627,7 +625,7 @@ constexpr void tbsv(blas_order_type order,
         /* if the diagonal entry is not equal to one, then divide by
            the entry */
         if (diag == blas_non_unit_diag) {
-          T_element = t_i[Tij];
+          T_element = t[Tij];
           temp1 = impl::div(temp1, T_element);
         }
 
@@ -639,7 +637,7 @@ constexpr void tbsv(blas_order_type order,
           x_inti = 0;
 
         /* place result x in same place as got x this loop */
-        x_i[xi] = impl::to<T>(temp1);
+        x[xi] = impl::to<T>(temp1);
         xi += incxi;
       } /* for j<n */
 
@@ -655,7 +653,7 @@ constexpr void tbsv(blas_order_type order,
       xi = start_xi;
       for (j = 0; j < k; j++) {
         /* each time through loop, xi lands on next x to compute. */
-        x_elem = x_i[xi];
+        x_elem = x[xi];
         /* preform the multiplication -
            in this implementation we do not separate the alpha = 1 case */
         temp1 = impl::mul<TmpType>(x_elem, alpha);
@@ -665,8 +663,8 @@ constexpr void tbsv(blas_order_type order,
         dot_start += dot_start_inc1;
 
         for (i = j; i > 0; i--) {
-          T_element = t_i[Tij];
-          x_elem = x_i[xi];
+          T_element = t[Tij];
+          x_elem = x[xi];
           temp2 = impl::mul<TmpType>(x_elem, T_element);
           temp1 = temp1 - temp2;
           xi += incxi;
@@ -676,12 +674,12 @@ constexpr void tbsv(blas_order_type order,
         /* if the diagonal entry is not equal to one, then divide Xj by
            the entry */
         if (diag == blas_non_unit_diag) {
-          T_element = t_i[Tij];
+          T_element = t[Tij];
           temp1 = impl::div(temp1, T_element);
         }
         /* if (diag == blas_non_unit_diag) */
 
-        x_i[xi] = impl::to<T>(temp1);
+        x[xi] = impl::to<T>(temp1);
         xi += incxi;
       } /* for j<k */
       /*end loop 1 */
@@ -689,7 +687,7 @@ constexpr void tbsv(blas_order_type order,
       /*loop 2 continue without changing j to start */
       for (; j < n; j++) {
         /* each time through loop, xi lands on next x to compute. */
-        x_elem = x_i[xi];
+        x_elem = x[xi];
         temp1 = impl::mul<TmpType>(x_elem, alpha);
 
         xi = start_xi;
@@ -698,8 +696,8 @@ constexpr void tbsv(blas_order_type order,
         dot_start += dot_start_inc2;
 
         for (i = k; i > 0; i--) {
-          T_element = t_i[Tij];
-          x_elem = x_i[xi];
+          T_element = t[Tij];
+          x_elem = x[xi];
           temp2 = impl::mul<TmpType>(x_elem, T_element);
           temp1 = temp1 - temp2;
           xi += incxi;
@@ -709,12 +707,12 @@ constexpr void tbsv(blas_order_type order,
         /* if the diagonal entry is not equal to one, then divide by
            the entry */
         if (diag == blas_non_unit_diag) {
-          T_element = t_i[Tij];
+          T_element = t[Tij];
           temp1 = temp1 / static_cast<TmpType>(T_element);
         }
         /* if (diag == blas_non_unit_diag) */
 
-        x_i[xi] = impl::to<T>(temp1);
+        x[xi] = impl::to<T>(temp1);
         xi += incxi;
       } /* for j<n */
     }
