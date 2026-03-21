@@ -86,13 +86,6 @@ constexpr void gemv(blas_order_type order,
   IdxType ai, aij;
   IdxType incai, incaij;
 
-  A a_elem;
-  X x_elem;
-  T y_elem;
-  PrdType prod;
-  PrdType sum;
-  TmpType tmp1;
-  TmpType tmp2;
 
   /* all error calls */
   if (m < 0)
@@ -154,8 +147,8 @@ constexpr void gemv(blas_order_type order,
     } else if (beta != T(0)) {
       iy = ky;
       for (IdxType i = 0; i < leny; i++) {
-        y_elem = y[iy];
-        tmp1 = impl::mul<TmpType>(y_elem, beta);
+        T y_elem = y[iy];
+        TmpType tmp1 = impl::mul<TmpType>(y_elem, beta);
         y[iy] = impl::to<T>(tmp1);
         iy += incy;
       }
@@ -170,13 +163,13 @@ constexpr void gemv(blas_order_type order,
             ai = 0;
             iy = ky;
             for (IdxType i = 0; i < leny; i++) {
-              sum = impl::zero_v<PrdType>;
+              PrdType sum = impl::zero_v<PrdType>;
               aij = ai;
               jx = kx;
               for (IdxType j = 0; j < lenx; j++) {
-                a_elem = impl::Conj::func(a[aij]);
-                x_elem = x[jx];
-                prod = impl::mul<PrdType>(a_elem, x_elem);
+                A a_elem = impl::Conj::func(a[aij]);
+                X x_elem = x[jx];
+                PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
                 aij += incaij;
                 jx += incx;
@@ -189,18 +182,18 @@ constexpr void gemv(blas_order_type order,
             ai = 0;
             iy = ky;
             for (IdxType i = 0; i < leny; i++) {
-              sum = impl::zero_v<PrdType>;
+              PrdType sum = impl::zero_v<PrdType>;
               aij = ai;
               jx = kx;
               for (IdxType j = 0; j < lenx; j++) {
-                a_elem = impl::Conj::func(a[aij]);
-                x_elem = x[jx];
-                prod = impl::mul<PrdType>(a_elem, x_elem);
+                A a_elem = impl::Conj::func(a[aij]);
+                X x_elem = x[jx];
+                PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
                 aij += incaij;
                 jx += incx;
               }
-              tmp1 = impl::mul<TmpType>(sum, alpha);
+              TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
               y[iy] = impl::to<T>(tmp1);
               ai += incai;
               iy += incy;
@@ -211,20 +204,20 @@ constexpr void gemv(blas_order_type order,
           ai = 0;
           iy = ky;
           for (IdxType i = 0; i < leny; i++) {
-            sum = impl::zero_v<PrdType>;
+            PrdType sum = impl::zero_v<PrdType>;
             aij = ai;
             jx = kx;
             for (IdxType j = 0; j < lenx; j++) {
-              a_elem = impl::Conj::func(a[aij]);
-              x_elem = x[jx];
-              prod = impl::mul<PrdType>(a_elem, x_elem);
+              A a_elem = impl::Conj::func(a[aij]);
+              X x_elem = x[jx];
+              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
               aij += incaij;
               jx += incx;
             }
-            tmp1 = impl::mul<TmpType>(sum, alpha);
-            y_elem = y[iy];
-            tmp2 = impl::mul<TmpType>(y_elem, beta);
+            TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
+            T y_elem = y[iy];
+            TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
             tmp1 = tmp1 + tmp2;
             y[iy] = impl::to<T>(tmp1);
             ai += incai;
@@ -239,13 +232,13 @@ constexpr void gemv(blas_order_type order,
             ai = 0;
             iy = ky;
             for (IdxType i = 0; i < leny; i++) {
-              sum = impl::zero_v<PrdType>;
+              PrdType sum = impl::zero_v<PrdType>;
               aij = ai;
               jx = kx;
               for (IdxType j = 0; j < lenx; j++) {
-                a_elem = a[aij];
-                x_elem = x[jx];
-                prod = impl::mul<PrdType>(a_elem, x_elem);
+                A a_elem = a[aij];
+                X x_elem = x[jx];
+                PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
                 aij += incaij;
                 jx += incx;
@@ -258,18 +251,18 @@ constexpr void gemv(blas_order_type order,
             ai = 0;
             iy = ky;
             for (IdxType i = 0; i < leny; i++) {
-              sum = impl::zero_v<PrdType>;
+              PrdType sum = impl::zero_v<PrdType>;
               aij = ai;
               jx = kx;
               for (IdxType j = 0; j < lenx; j++) {
-                a_elem = a[aij];
-                x_elem = x[jx];
-                prod = impl::mul<PrdType>(a_elem, x_elem);
+                A a_elem = a[aij];
+                X x_elem = x[jx];
+                PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
                 aij += incaij;
                 jx += incx;
               }
-              tmp1 = impl::mul<TmpType>(sum, alpha);
+              TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
               y[iy] = impl::to<T>(tmp1);
               ai += incai;
               iy += incy;
@@ -280,20 +273,20 @@ constexpr void gemv(blas_order_type order,
           ai = 0;
           iy = ky;
           for (IdxType i = 0; i < leny; i++) {
-            sum = impl::zero_v<PrdType>;
+            PrdType sum = impl::zero_v<PrdType>;
             aij = ai;
             jx = kx;
             for (IdxType j = 0; j < lenx; j++) {
-              a_elem = a[aij];
-              x_elem = x[jx];
-              prod = impl::mul<PrdType>(a_elem, x_elem);
+              A a_elem = a[aij];
+              X x_elem = x[jx];
+              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
               aij += incaij;
               jx += incx;
             }
-            tmp1 = impl::mul<TmpType>(sum, alpha);
-            y_elem = y[iy];
-            tmp2 = impl::mul<TmpType>(y_elem, beta);
+            TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
+            T y_elem = y[iy];
+            TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
             tmp1 = tmp1 + tmp2;
             y[iy] = impl::to<T>(tmp1);
             ai += incai;
@@ -309,13 +302,13 @@ constexpr void gemv(blas_order_type order,
           ai = 0;
           iy = ky;
           for (IdxType i = 0; i < leny; i++) {
-            sum = impl::zero_v<PrdType>;
+            PrdType sum = impl::zero_v<PrdType>;
             aij = ai;
             jx = kx;
             for (IdxType j = 0; j < lenx; j++) {
-              a_elem = a[aij];
-              x_elem = x[jx];
-              prod = impl::mul<PrdType>(a_elem, x_elem);
+              A a_elem = a[aij];
+              X x_elem = x[jx];
+              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
               aij += incaij;
               jx += incx;
@@ -328,18 +321,18 @@ constexpr void gemv(blas_order_type order,
           ai = 0;
           iy = ky;
           for (IdxType i = 0; i < leny; i++) {
-            sum = impl::zero_v<PrdType>;
+            PrdType sum = impl::zero_v<PrdType>;
             aij = ai;
             jx = kx;
             for (IdxType j = 0; j < lenx; j++) {
-              a_elem = a[aij];
-              x_elem = x[jx];
-              prod = impl::mul<PrdType>(a_elem, x_elem);
+              A a_elem = a[aij];
+              X x_elem = x[jx];
+              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
               aij += incaij;
               jx += incx;
             }
-            tmp1 = impl::mul<TmpType>(sum, alpha);
+            TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
             y[iy] = impl::to<T>(tmp1);
             ai += incai;
             iy += incy;
@@ -350,20 +343,20 @@ constexpr void gemv(blas_order_type order,
         ai = 0;
         iy = ky;
         for (IdxType i = 0; i < leny; i++) {
-          sum = impl::zero_v<PrdType>;
+          PrdType sum = impl::zero_v<PrdType>;
           aij = ai;
           jx = kx;
           for (IdxType j = 0; j < lenx; j++) {
-            a_elem = a[aij];
-            x_elem = x[jx];
-            prod = impl::mul<PrdType>(a_elem, x_elem);
+            A a_elem = a[aij];
+            X x_elem = x[jx];
+            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
             aij += incaij;
             jx += incx;
           }
-          tmp1 = impl::mul<TmpType>(sum, alpha);
-          y_elem = y[iy];
-          tmp2 = impl::mul<TmpType>(y_elem, beta);
+          TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
+          T y_elem = y[iy];
+          TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
           tmp1 = tmp1 + tmp2;
           y[iy] = impl::to<T>(tmp1);
           ai += incai;

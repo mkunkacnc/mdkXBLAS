@@ -155,13 +155,6 @@ constexpr void sbmv(blas_order_type order,
   /* Input Scalars */
 
   /* Temporary Floating-Point Variables */
-  A a_elem;
-  X x_elem;
-  T y_elem;
-  PrdType prod;
-  PrdType sum;
-  TmpType tmp1;
-  TmpType tmp2;
 
   /* Test for no-op */
   if (n <= 0) {
@@ -226,8 +219,8 @@ constexpr void sbmv(blas_order_type order,
   /* alpha = 0.  In this case, just return beta * y */
   if (alpha == T(0)) {
     for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-      y_elem = y[yi];
-      tmp1 = impl::mul<TmpType>(y_elem, beta);
+      T y_elem = y[yi];
+      TmpType tmp1 = impl::mul<TmpType>(y_elem, beta);
       y[yi] = impl::to<T>(tmp1);
     }
   } else {
@@ -243,18 +236,18 @@ constexpr void sbmv(blas_order_type order,
       if (beta == T(0)) {
         /* Case alpha = 1, beta = 0.  We compute  y <--- A * x */
         for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-          sum = impl::zero_v<PrdType>;
+          PrdType sum = impl::zero_v<PrdType>;
           for (j = 0, aij = astarti, xi = x_starti;
                j < maxj_first; j++, aij += incaij, xi += incx) {
-            a_elem = a[aij];
-            x_elem = x[xi];
-            prod = impl::mul<PrdType>(a_elem, x_elem);
+            A a_elem = a[aij];
+            X x_elem = x[xi];
+            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           for (IdxType j = 0; j < maxj_second; j++, aij += incaij2, xi += incx) {
-            a_elem = a[aij];
-            x_elem = x[xi];
-            prod = impl::mul<PrdType>(a_elem, x_elem);
+            A a_elem = a[aij];
+            X x_elem = x[xi];
+            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           y[yi] = impl::to<T>(sum);
@@ -272,23 +265,23 @@ constexpr void sbmv(blas_order_type order,
         /* Case alpha = 1, but beta != 0.
            We compute  y  <--- A * x + beta * y */
         for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-          sum = impl::zero_v<PrdType>;
+          PrdType sum = impl::zero_v<PrdType>;
           for (j = 0, aij = astarti, xi = x_starti;
                j < maxj_first; j++, aij += incaij, xi += incx) {
-            a_elem = a[aij];
-            x_elem = x[xi];
-            prod = impl::mul<PrdType>(a_elem, x_elem);
+            A a_elem = a[aij];
+            X x_elem = x[xi];
+            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           for (IdxType j = 0; j < maxj_second; j++, aij += incaij2, xi += incx) {
-            a_elem = a[aij];
-            x_elem = x[xi];
-            prod = impl::mul<PrdType>(a_elem, x_elem);
+            A a_elem = a[aij];
+            X x_elem = x[xi];
+            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
-          y_elem = y[yi];
-          tmp2 = impl::mul<TmpType>(y_elem, beta);
-          tmp1 = sum;
+          T y_elem = y[yi];
+          TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
+          TmpType tmp1 = sum;
           tmp1 = tmp2 + tmp1;
           y[yi] = impl::to<T>(tmp1);
           if (i + 1 >= (n_i - k))
@@ -307,23 +300,22 @@ constexpr void sbmv(blas_order_type order,
         /* Case alpha != 1, but beta == 0.
            We compute  y  <--- A * x * a */
         for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-          sum = impl::zero_v<PrdType>;
+          PrdType sum = impl::zero_v<PrdType>;
 
           for (j = 0, aij = astarti, xi = x_starti;
                j < maxj_first; j++, aij += incaij, xi += incx) {
-            a_elem = a[aij];
-            x_elem = x[xi];
-            prod = impl::mul<PrdType>(a_elem, x_elem);
+            A a_elem = a[aij];
+            X x_elem = x[xi];
+            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           for (IdxType j = 0; j < maxj_second; j++, aij += incaij2, xi += incx) {
-            a_elem = a[aij];
-            x_elem = x[xi];
-            prod = impl::mul<PrdType>(a_elem, x_elem);
+            A a_elem = a[aij];
+            X x_elem = x[xi];
+            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
-          y_elem = y[yi];
-          tmp1 = impl::mul<TmpType>(sum, alpha);
+          TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
           y[yi] = impl::to<T>(tmp1);
           if (i + 1 >= (n_i - k))
             maxj_second--;
@@ -338,24 +330,24 @@ constexpr void sbmv(blas_order_type order,
       } else {
         /* The most general form,   y <--- alpha * A * x + beta * y */
         for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-          sum = impl::zero_v<PrdType>;
+          PrdType sum = impl::zero_v<PrdType>;
 
           for (j = 0, aij = astarti, xi = x_starti;
                j < maxj_first; j++, aij += incaij, xi += incx) {
-            a_elem = a[aij];
-            x_elem = x[xi];
-            prod = impl::mul<PrdType>(a_elem, x_elem);
+            A a_elem = a[aij];
+            X x_elem = x[xi];
+            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
           for (IdxType j = 0; j < maxj_second; j++, aij += incaij2, xi += incx) {
-            a_elem = a[aij];
-            x_elem = x[xi];
-            prod = impl::mul<PrdType>(a_elem, x_elem);
+            A a_elem = a[aij];
+            X x_elem = x[xi];
+            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
-          y_elem = y[yi];
-          tmp2 = impl::mul<TmpType>(y_elem, beta);
-          tmp1 = impl::mul<TmpType>(sum, alpha);
+          T y_elem = y[yi];
+          TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
+          TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
           tmp1 = tmp2 + tmp1;
           y[yi] = impl::to<T>(tmp1);
           if (i + 1 >= (n_i - k))

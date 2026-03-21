@@ -76,13 +76,6 @@ constexpr void spmv(blas_order_type order,
   IdxType ap_index, ap_start, x_index, x_start;
   IdxType y_start, y_index, incap;
 
-  PrdType rowsum;
-  PrdType rowtmp;
-  A matval;
-  X vecval;
-  T resval;
-  TmpType tmp1;
-  TmpType tmp2;
 
   incap = 1;
 
@@ -123,8 +116,8 @@ constexpr void spmv(blas_order_type order,
   if (alpha == T(0)) {
     y_index = y_start;
     for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
-      resval = y[y_index];
-      tmp2 = impl::mul<TmpType>(beta, resval);
+      T resval = y[y_index];
+      TmpType tmp2 = impl::mul<TmpType>(beta, resval);
       y[y_index] = impl::to<T>(tmp2);
       y_index += incy;
     }
@@ -140,25 +133,24 @@ constexpr void spmv(blas_order_type order,
             for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
               x_index = x_start;
               ap_index = ap_start;
-              rowsum = impl::zero_v<PrdType>;
-              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              PrdType rowsum = impl::zero_v<PrdType>;
               for (IdxType step = 0; step < matrix_row; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += (n - step - 1) * incap;
                 x_index += incx;
               }
               for (IdxType step = matrix_row; step < n; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += incap;
                 x_index += incx;
               }
-              tmp1 = rowsum;
+              TmpType tmp1 = rowsum;
               y[y_index] = impl::to<T>(tmp1);
               y_index += incy;
               ap_start += incap;
@@ -171,27 +163,26 @@ constexpr void spmv(blas_order_type order,
             for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
               x_index = x_start;
               ap_index = ap_start;
-              rowsum = impl::zero_v<PrdType>;
-              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              PrdType rowsum = impl::zero_v<PrdType>;
               for (IdxType step = 0; step < matrix_row; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += (n - step - 1) * incap;
                 x_index += incx;
               }
               for (IdxType step = matrix_row; step < n; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += incap;
                 x_index += incx;
               }
-              resval = y[y_index];
-              tmp1 = rowsum;
-              tmp2 = impl::mul<TmpType>(beta, resval);
+              T resval = y[y_index];
+              TmpType tmp1 = rowsum;
+              TmpType tmp2 = impl::mul<TmpType>(beta, resval);
               tmp2 = tmp1 + tmp2;
               y[y_index] = impl::to<T>(tmp2);
 
@@ -208,25 +199,24 @@ constexpr void spmv(blas_order_type order,
             for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
               x_index = x_start;
               ap_index = ap_start;
-              rowsum = impl::zero_v<PrdType>;
-              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              PrdType rowsum = impl::zero_v<PrdType>;
               for (IdxType step = 0; step < matrix_row; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += (n - step - 1) * incap;
                 x_index += incx;
               }
               for (IdxType step = matrix_row; step < n; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += incap;
                 x_index += incx;
               }
-              tmp1 = impl::mul<TmpType>(rowsum, alpha);
+              TmpType tmp1 = impl::mul<TmpType>(rowsum, alpha);
               y[y_index] = impl::to<T>(tmp1);
               y_index += incy;
               ap_start += incap;
@@ -239,27 +229,26 @@ constexpr void spmv(blas_order_type order,
             for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
               x_index = x_start;
               ap_index = ap_start;
-              rowsum = impl::zero_v<PrdType>;
-              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              PrdType rowsum = impl::zero_v<PrdType>;
               for (IdxType step = 0; step < matrix_row; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += (n - step - 1) * incap;
                 x_index += incx;
               }
               for (IdxType step = matrix_row; step < n; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += incap;
                 x_index += incx;
               }
-              resval = y[y_index];
-              tmp1 = impl::mul<TmpType>(rowsum, alpha);
-              tmp2 = impl::mul<TmpType>(beta, resval);
+              T resval = y[y_index];
+              TmpType tmp1 = impl::mul<TmpType>(rowsum, alpha);
+              TmpType tmp2 = impl::mul<TmpType>(beta, resval);
               tmp2 = tmp1 + tmp2;
               y[y_index] = impl::to<T>(tmp2);
               y_index += incy;
@@ -277,25 +266,24 @@ constexpr void spmv(blas_order_type order,
             for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
               x_index = x_start;
               ap_index = ap_start;
-              rowsum = impl::zero_v<PrdType>;
-              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              PrdType rowsum = impl::zero_v<PrdType>;
               for (IdxType step = 0; step < matrix_row; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += incap;
                 x_index += incx;
               }
               for (IdxType step = matrix_row; step < n; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += (step + 1) * incap;
                 x_index += incx;
               }
-              tmp1 = rowsum;
+              TmpType tmp1 = rowsum;
               y[y_index] = impl::to<T>(tmp1);
               y_index += incy;
               ap_start += (matrix_row + 1) * incap;
@@ -308,27 +296,26 @@ constexpr void spmv(blas_order_type order,
             for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
               x_index = x_start;
               ap_index = ap_start;
-              rowsum = impl::zero_v<PrdType>;
-              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              PrdType rowsum = impl::zero_v<PrdType>;
               for (IdxType step = 0; step < matrix_row; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += incap;
                 x_index += incx;
               }
               for (IdxType step = matrix_row; step < n; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += (step + 1) * incap;
                 x_index += incx;
               }
-              resval = y[y_index];
-              tmp1 = rowsum;
-              tmp2 = impl::mul<TmpType>(beta, resval);
+              T resval = y[y_index];
+              TmpType tmp1 = rowsum;
+              TmpType tmp2 = impl::mul<TmpType>(beta, resval);
               tmp2 = tmp1 + tmp2;
               y[y_index] = impl::to<T>(tmp2);
               y_index += incy;
@@ -344,25 +331,24 @@ constexpr void spmv(blas_order_type order,
             for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
               x_index = x_start;
               ap_index = ap_start;
-              rowsum = impl::zero_v<PrdType>;
-              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              PrdType rowsum = impl::zero_v<PrdType>;
               for (IdxType step = 0; step < matrix_row; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += incap;
                 x_index += incx;
               }
               for (IdxType step = matrix_row; step < n; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += (step + 1) * incap;
                 x_index += incx;
               }
-              tmp1 = impl::mul<TmpType>(rowsum, alpha);
+              TmpType tmp1 = impl::mul<TmpType>(rowsum, alpha);
               y[y_index] = impl::to<T>(tmp1);
               y_index += incy;
               ap_start += (matrix_row + 1) * incap;
@@ -375,27 +361,26 @@ constexpr void spmv(blas_order_type order,
             for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
               x_index = x_start;
               ap_index = ap_start;
-              rowsum = impl::zero_v<PrdType>;
-              rowtmp = impl::zero_v<PrdType>; // unnecessary
+              PrdType rowsum = impl::zero_v<PrdType>;
               for (IdxType step = 0; step < matrix_row; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += incap;
                 x_index += incx;
               }
               for (IdxType step = matrix_row; step < n; step++) {
-                matval = ap[ap_index];
-                vecval = x[x_index];
-                rowtmp = impl::mul<PrdType>(matval, vecval);
+                A matval = ap[ap_index];
+                X vecval = x[x_index];
+                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
                 rowsum = rowsum + rowtmp;
                 ap_index += (step + 1) * incap;
                 x_index += incx;
               }
-              resval = y[y_index];
-              tmp1 = impl::mul<TmpType>(rowsum, alpha);
-              tmp2 = impl::mul<TmpType>(beta, resval);
+              T resval = y[y_index];
+              TmpType tmp1 = impl::mul<TmpType>(rowsum, alpha);
+              TmpType tmp2 = impl::mul<TmpType>(beta, resval);
               tmp2 = tmp1 + tmp2;
               y[y_index] = impl::to<T>(tmp2);
               y_index += incy;

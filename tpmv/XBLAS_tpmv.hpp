@@ -71,11 +71,6 @@ constexpr void tpmv(blas_order_type order,
   IdxType inctp, x_index2, stride, col_index, inctp2;
 
 
-  TmpType rowsum;
-  TmpType rowtmp;
-  TmpType result;
-  A matval;
-  T vecval;
   A one = A(1);
 
   inctp = 1;
@@ -115,16 +110,17 @@ constexpr void tpmv(blas_order_type order,
         x_index = x_start + incx * matrix_row;
         x_index2 = x_index;
         col_index = matrix_row;
-        rowsum = impl::zero_v<TmpType>;
-        rowtmp = impl::zero_v<TmpType>;
-        result = impl::zero_v<TmpType>;
+        TmpType rowsum = impl::zero_v<TmpType>;
+        TmpType rowtmp = impl::zero_v<TmpType>;
+        TmpType result = impl::zero_v<TmpType>;
 
         while (col_index < n) {
-          vecval = x[x_index];
+          T vecval = x[x_index];
           if ((diag == blas_unit_diag) && (col_index == matrix_row)) {
             rowtmp = impl::mul<TmpType>(vecval, one); // why multiply by one?
+
           } else {
-            matval = tp[tp_index];
+            A matval = tp[tp_index];
             rowtmp = impl::mul<TmpType>(matval, vecval);
           }
           rowsum = rowsum + rowtmp;
@@ -146,16 +142,16 @@ constexpr void tpmv(blas_order_type order,
         x_index = x_start + incx * (n - 1);
         tp_index = (tp_start + matrix_row) * inctp;
         col_index = (n - 1) - matrix_row;
-        rowsum = impl::zero_v<TmpType>;
-        rowtmp = impl::zero_v<TmpType>;
-        result = impl::zero_v<TmpType>;
+        TmpType rowsum = impl::zero_v<TmpType>;
+        TmpType rowtmp = impl::zero_v<TmpType>;
+        TmpType result = impl::zero_v<TmpType>;
 
         while (col_index >= 0) {
-          vecval = x[x_index];
+          T vecval = x[x_index];
           if ((diag == blas_unit_diag) && (col_index == 0)) {
             rowtmp = impl::mul<TmpType>(vecval, one);
           } else {
-            matval = tp[tp_index];
+            A matval = tp[tp_index];
             rowtmp = impl::mul<TmpType>(matval, vecval);
           }
           rowsum = rowsum + rowtmp;
@@ -178,16 +174,16 @@ constexpr void tpmv(blas_order_type order,
 
       for (IdxType matrix_row = n - 1; matrix_row >= 0; matrix_row--) {
         x_index2 = x_index;
-        rowsum = impl::zero_v<TmpType>;
-        rowtmp = impl::zero_v<TmpType>;
-        result = impl::zero_v<TmpType>;
+        TmpType rowsum = impl::zero_v<TmpType>;
+        TmpType rowtmp = impl::zero_v<TmpType>;
+        TmpType result = impl::zero_v<TmpType>;
 
         for (IdxType step = 0; step <= matrix_row; step++) {
-          vecval = x[x_index2];
+          T vecval = x[x_index2];
           if ((diag == blas_unit_diag) && (step == 0)) {
             rowtmp = impl::mul<TmpType>(vecval, one);
           } else {
-            matval = tp[tp_index];
+            A matval = tp[tp_index];
             rowtmp = impl::mul<TmpType>(matval, vecval);
           }
           rowsum = rowsum + rowtmp;
@@ -204,17 +200,17 @@ constexpr void tpmv(blas_order_type order,
       for (IdxType matrix_row = n - 1; matrix_row >= 0; matrix_row--) {
         tp_index = matrix_row * inctp;
         x_index2 = x_start;
-        rowsum = impl::zero_v<TmpType>;
-        rowtmp = impl::zero_v<TmpType>;
-        result = impl::zero_v<TmpType>;
+        TmpType rowsum = impl::zero_v<TmpType>;
+        TmpType rowtmp = impl::zero_v<TmpType>;
+        TmpType result = impl::zero_v<TmpType>;
 
         stride = n;
         for (IdxType step = 0; step <= matrix_row; step++) {
-          vecval = x[x_index2];
+          T vecval = x[x_index2];
           if ((diag == blas_unit_diag) && (step == matrix_row)) {
             rowtmp = impl::mul<TmpType>(vecval, one);
           } else {
-            matval = tp[tp_index];
+            A matval = tp[tp_index];
             rowtmp = impl::mul<TmpType>(matval, vecval);
           }
           rowsum = rowsum + rowtmp;
@@ -238,15 +234,15 @@ constexpr void tpmv(blas_order_type order,
         x_index = x_start + incx * matrix_row;
         x_index2 = x_index;
         col_index = matrix_row;
-        rowsum = impl::zero_v<TmpType>;
-        rowtmp = impl::zero_v<TmpType>;
-        result = impl::zero_v<TmpType>;
+        TmpType rowsum = impl::zero_v<TmpType>;
+        TmpType rowtmp = impl::zero_v<TmpType>;
+        TmpType result = impl::zero_v<TmpType>;
         while (col_index < n) {
-          vecval = x[x_index];
+          T vecval = x[x_index];
           if ((diag == blas_unit_diag) && (col_index == matrix_row)) {
             rowtmp = impl::mul<TmpType>(vecval, one);
           } else {
-            matval = tp[tp_index];
+            A matval = tp[tp_index];
             rowtmp = impl::mul<TmpType>(matval, vecval);
           }
           rowsum = rowsum + rowtmp;
@@ -268,15 +264,15 @@ constexpr void tpmv(blas_order_type order,
         x_index = x_start + incx * (n - 1);
         tp_index = (tp_start + matrix_row) * inctp;
         col_index = (n - 1) - matrix_row;
-        rowsum = impl::zero_v<TmpType>;
-        rowtmp = impl::zero_v<TmpType>;
-        result = impl::zero_v<TmpType>;
+        TmpType rowsum = impl::zero_v<TmpType>;
+        TmpType rowtmp = impl::zero_v<TmpType>;
+        TmpType result = impl::zero_v<TmpType>;
         while (col_index >= 0) {
-          vecval = x[x_index];
+          T vecval = x[x_index];
           if ((diag == blas_unit_diag) && (col_index == 0)) {
             rowtmp = impl::mul<TmpType>(vecval, one);
           } else {
-            matval = tp[tp_index];
+            A matval = tp[tp_index];
             rowtmp = impl::mul<TmpType>(matval, vecval);
           }
           rowsum = rowsum + rowtmp;
@@ -299,15 +295,15 @@ constexpr void tpmv(blas_order_type order,
 
       for (IdxType matrix_row = n - 1; matrix_row >= 0; matrix_row--) {
         x_index2 = x_index;
-        rowsum = impl::zero_v<TmpType>;
-        rowtmp = impl::zero_v<TmpType>;
-        result = impl::zero_v<TmpType>;
+        TmpType rowsum = impl::zero_v<TmpType>;
+        TmpType rowtmp = impl::zero_v<TmpType>;
+        TmpType result = impl::zero_v<TmpType>;
         for (IdxType step = 0; step <= matrix_row; step++) {
-          vecval = x[x_index2];
+          T vecval = x[x_index2];
           if ((diag == blas_unit_diag) && (step == 0)) {
             rowtmp = impl::mul<TmpType>(vecval, one);
           } else {
-            matval = tp[tp_index];
+            A matval = tp[tp_index];
             rowtmp = impl::mul<TmpType>(matval, vecval);
           }
           rowsum = rowsum + rowtmp;
@@ -324,16 +320,16 @@ constexpr void tpmv(blas_order_type order,
       for (IdxType matrix_row = n - 1; matrix_row >= 0; matrix_row--) {
         tp_index = matrix_row * inctp;
         x_index2 = x_start;
-        rowsum = impl::zero_v<TmpType>;
-        rowtmp = impl::zero_v<TmpType>;
-        result = impl::zero_v<TmpType>;
+        TmpType rowsum = impl::zero_v<TmpType>;
+        TmpType rowtmp = impl::zero_v<TmpType>;
+        TmpType result = impl::zero_v<TmpType>;
         stride = n;
         for (IdxType step = 0; step <= matrix_row; step++) {
-          vecval = x[x_index2];
+          T vecval = x[x_index2];
           if ((diag == blas_unit_diag) && (step == matrix_row)) {
             rowtmp = impl::mul<TmpType>(vecval, one);
           } else {
-            matval = tp[tp_index];
+            A matval = tp[tp_index];
             rowtmp = impl::mul<TmpType>(matval, vecval);
           }
           rowsum = rowsum + rowtmp;

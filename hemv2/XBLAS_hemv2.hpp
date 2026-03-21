@@ -95,17 +95,6 @@ constexpr void hemv2(blas_order_type order,
   IdxType incai;
   IdxType incaij, incaij2;
 
-  A a_elem;
-  X x_elem;
-  T y_elem;
-  impl::inner_type_t<A> diag_elem;
-  PrdType prod1;
-  PrdType prod2;
-  PrdType sum1;
-  PrdType sum2;
-  TmpType tmp1;
-  TmpType tmp2;
-  TmpType tmp3;
 
   /* Test for no-op */
   if (n <= 0) {
@@ -150,81 +139,81 @@ constexpr void hemv2(blas_order_type order,
   /* The most general form,   y <--- alpha * A * (x_head + x_tail) + beta * y   */
   if (uplo == blas_lower) {
     for (i = 0, yi = yi0, ai = 0; i < n; i++, yi += incy, ai += incai) {
-      sum1 = impl::zero_v<PrdType>;
-      sum2 = impl::zero_v<PrdType>;
+      PrdType sum1 = impl::zero_v<PrdType>;
+      PrdType sum2 = impl::zero_v<PrdType>;
       for (j = 0, aij = ai, xi = xi0; j < i; j++, aij += incaij, xi += incx) {
-        a_elem = a[aij];
-        x_elem = x_head[xi];
-        prod1 = impl::mul<PrdType>(a_elem, x_elem);
+        A a_elem = a[aij];
+        X x_elem = x_head[xi];
+        PrdType prod1 = impl::mul<PrdType>(a_elem, x_elem);
         sum1 = sum1 + prod1;
         x_elem = x_tail[xi];
-        prod2 = impl::mul<PrdType>(a_elem, x_elem);
+        PrdType prod2 = impl::mul<PrdType>(a_elem, x_elem);
         sum2 = sum2 + prod2;
       }
-      diag_elem = std::real(a[aij]);
-      x_elem = x_head[xi];
-      prod1 = impl::mul<PrdType>(diag_elem, x_elem);
+      impl::inner_type_t<A> diag_elem = std::real(a[aij]);
+      X x_elem = x_head[xi];
+      PrdType prod1 = impl::mul<PrdType>(diag_elem, x_elem);
       sum1 = sum1 + prod1;
       x_elem = x_tail[xi];
-      prod2 = impl::mul<PrdType>(diag_elem, x_elem);
+      PrdType prod2 = impl::mul<PrdType>(diag_elem, x_elem);
       sum2 = sum2 + prod2;
       j++;
       aij += incaij2;
       xi += incx;
       for (; j < n; j++, aij += incaij2, xi += incx) {
-        a_elem = impl::Conj::func(a[aij]);
-        x_elem = x_head[xi];
-        prod1 = impl::mul<PrdType>(a_elem, x_elem);
+        A a_elem = impl::Conj::func(a[aij]);
+        X x_elem = x_head[xi];
+        PrdType prod1 = impl::mul<PrdType>(a_elem, x_elem);
         sum1 = sum1 + prod1;
         x_elem = x_tail[xi];
-        prod2 = impl::mul<PrdType>(a_elem, x_elem);
+        PrdType prod2 = impl::mul<PrdType>(a_elem, x_elem);
         sum2 = sum2 + prod2;
       }
       sum1 = sum1 + sum2;
-      tmp1 = impl::mul<TmpType>(sum1, alpha);
-      y_elem = y[yi];
-      tmp2 = impl::mul<TmpType>(y_elem, beta);
-      tmp3 = tmp1 + tmp2;
+      TmpType tmp1 = impl::mul<TmpType>(sum1, alpha);
+      T y_elem = y[yi];
+      TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
+      TmpType tmp3 = tmp1 + tmp2;
       y[yi] = impl::to<T>(tmp3);
     }
   } else {
     /* uplo == blas_upper */
     for (i = 0, yi = yi0, ai = 0; i < n; i++, yi += incy, ai += incai) {
-      sum1 = impl::zero_v<PrdType>;
-      sum2 = impl::zero_v<PrdType>;
+      PrdType sum1 = impl::zero_v<PrdType>;
+      PrdType sum2 = impl::zero_v<PrdType>;
       for (j = 0, aij = ai, xi = xi0; j < i; j++, aij += incaij, xi += incx) {
-        a_elem = impl::Conj::func(a[aij]);
-        x_elem = x_head[xi];
-        prod1 = impl::mul<PrdType>(a_elem, x_elem);
+        A a_elem = impl::Conj::func(a[aij]);
+        X x_elem = x_head[xi];
+        PrdType prod1 = impl::mul<PrdType>(a_elem, x_elem);
         sum1 = sum1 + prod1;
         x_elem = x_tail[xi];
-        prod2 = impl::mul<PrdType>(a_elem, x_elem);
+        PrdType prod2 = impl::mul<PrdType>(a_elem, x_elem);
         sum2 = sum2 + prod2;
       }
-      diag_elem = std::real(a[aij]);
-      x_elem = x_head[xi];
-      prod1 = impl::mul<PrdType>(diag_elem, x_elem);
+      impl::inner_type_t<A> diag_elem = std::real(a[aij]);
+      X x_elem = x_head[xi];
+      PrdType prod1 = impl::mul<PrdType>(diag_elem, x_elem);
       sum1 = sum1 + prod1;
       x_elem = x_tail[xi];
-      prod2 = impl::mul<PrdType>(diag_elem, x_elem);
+      PrdType prod2 = impl::mul<PrdType>(diag_elem, x_elem);
       sum2 = sum2 + prod2;
       j++;
       aij += incaij2;
       xi += incx;
       for (; j < n; j++, aij += incaij2, xi += incx) {
-        a_elem = a[aij];
-        x_elem = x_head[xi];
-        prod1 = impl::mul<PrdType>(a_elem, x_elem);
+        A a_elem = a[aij];
+        X x_elem = x_head[xi];
+        PrdType prod1 = impl::mul<PrdType>(a_elem, x_elem);
         sum1 = sum1 + prod1;
         x_elem = x_tail[xi];
-        prod2 = impl::mul<PrdType>(a_elem, x_elem);
+        PrdType prod2 = impl::mul<PrdType>(a_elem, x_elem);
         sum2 = sum2 + prod2;
       }
       sum1 = sum1 + sum2;
-      tmp1 = impl::mul<TmpType>(sum1, alpha);
-      y_elem = y[yi];
-      tmp2 = impl::mul<TmpType>(y_elem, beta);
-      tmp3 = tmp1 + tmp2;
+      TmpType tmp1 = impl::mul<TmpType>(sum1, alpha);
+      T y_elem = y[yi];
+      TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
+      TmpType tmp3 = tmp1 + tmp2;
       y[yi] = impl::to<T>(tmp3);
     }
   }

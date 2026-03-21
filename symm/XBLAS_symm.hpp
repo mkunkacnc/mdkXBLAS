@@ -111,13 +111,6 @@ constexpr void symm(blas_order_type order,
   /* Input Scalars */
 
   /* Temporary Floating-Point Variables */
-  A a_elem;
-  B b_elem;
-  T c_elem;
-  PrdType prod;
-  PrdType sum;
-  TmpType tmp1;
-  TmpType tmp2;
 
   /* Check for error conditions. */
   if (m <= 0 || n <= 0) {
@@ -183,8 +176,8 @@ constexpr void symm(blas_order_type order,
   if (alpha == T(0)) {
     for (i = 0, ci = 0; i < m_i; i++, ci += incci) {
       for (j = 0, cij = ci; j < n_i; j++, cij += inccij) {
-        c_elem = c[cij];
-        tmp1 = impl::mul<TmpType>(c_elem, beta);
+        T c_elem = c[cij];
+        TmpType tmp1 = impl::mul<TmpType>(c_elem, beta);
         c[cij] = impl::to<T>(tmp1);
       }
     }
@@ -195,18 +188,18 @@ constexpr void symm(blas_order_type order,
       for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
         for (j = 0, cij = ci, bj = 0; j < n_i;
              j++, cij += inccij, bj += incbj) {
-          sum = impl::zero_v<PrdType>;
+          PrdType sum = impl::zero_v<PrdType>;
           for (k = 0, aik = ai, bkj = bj; k < i;
                k++, aik += incaik1, bkj += incbkj) {
-            a_elem = a[aik];
-            b_elem = b[bkj];
-            prod = impl::mul<PrdType>(a_elem, b_elem);
+            A a_elem = a[aik];
+            B b_elem = b[bkj];
+            PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
             sum = sum + prod;
           }
           for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-            a_elem = a[aik];
-            b_elem = b[bkj];
-            prod = impl::mul<PrdType>(a_elem, b_elem);
+            A a_elem = a[aik];
+            B b_elem = b[bkj];
+            PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
             sum = sum + prod;
           }
           c[cij] = impl::to<T>(sum);
@@ -219,23 +212,23 @@ constexpr void symm(blas_order_type order,
       for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
         for (j = 0, cij = ci, bj = 0; j < n_i;
              j++, cij += inccij, bj += incbj) {
-          sum = impl::zero_v<PrdType>;
+          PrdType sum = impl::zero_v<PrdType>;
           for (k = 0, aik = ai, bkj = bj; k < i;
                k++, aik += incaik1, bkj += incbkj) {
-            a_elem = a[aik];
-            b_elem = b[bkj];
-            prod = impl::mul<PrdType>(a_elem, b_elem);
+            A a_elem = a[aik];
+            B b_elem = b[bkj];
+            PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
             sum = sum + prod;
           }
           for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-            a_elem = a[aik];
-            b_elem = b[bkj];
-            prod = impl::mul<PrdType>(a_elem, b_elem);
+            A a_elem = a[aik];
+            B b_elem = b[bkj];
+            PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
             sum = sum + prod;
           }
-          c_elem = c[cij];
-          tmp2 = impl::mul<TmpType>(c_elem, beta);
-          tmp1 = sum;
+          T c_elem = c[cij];
+          TmpType tmp2 = impl::mul<TmpType>(c_elem, beta);
+          TmpType tmp1 = sum;
           tmp1 = tmp2 + tmp1;
           c[cij] = impl::to<T>(tmp1);
         }
@@ -249,24 +242,24 @@ constexpr void symm(blas_order_type order,
     for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
       for (j = 0, cij = ci, bj = 0; j < n_i; j++, cij += inccij, bj += incbj) {
 
-        sum = impl::zero_v<PrdType>;
+        PrdType sum = impl::zero_v<PrdType>;
 
         for (k = 0, aik = ai, bkj = bj; k < i;
              k++, aik += incaik1, bkj += incbkj) {
-          a_elem = a[aik];
-          b_elem = b[bkj];
-          prod = impl::mul<PrdType>(a_elem, b_elem);
+          A a_elem = a[aik];
+          B b_elem = b[bkj];
+          PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
           sum = sum + prod;
         }
         for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-          a_elem = a[aik];
-          b_elem = b[bkj];
-          prod = impl::mul<PrdType>(a_elem, b_elem);
+          A a_elem = a[aik];
+          B b_elem = b[bkj];
+          PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
           sum = sum + prod;
         }
-        tmp1 = impl::mul<TmpType>(sum, alpha);
-        c_elem = c[cij];
-        tmp2 = impl::mul<TmpType>(c_elem, beta);
+        TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
+        T c_elem = c[cij];
+        TmpType tmp2 = impl::mul<TmpType>(c_elem, beta);
         tmp1 = tmp1 + tmp2;
         c[cij] = impl::to<T>(tmp1);
       }

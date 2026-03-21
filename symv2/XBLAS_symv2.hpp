@@ -95,16 +95,6 @@ constexpr void symv2(blas_order_type order,
   IdxType incai;
   IdxType incaij, incaij2;
 
-  A a_elem;
-  X x_elem;
-  T y_elem;
-  PrdType prod1;
-  PrdType prod2;
-  PrdType sum1;
-  PrdType sum2;
-  TmpType tmp1;
-  TmpType tmp2;
-  TmpType tmp3;
 
 
 
@@ -155,32 +145,32 @@ constexpr void symv2(blas_order_type order,
 
   /* The most general form,   y <--- alpha * A * (x_head + x_tail) + beta * y   */
   for (i = 0, yi = yi0, ai = 0; i < n; i++, yi += incy, ai += incai) {
-    sum1 = impl::zero_v<PrdType>;
-    sum2 = impl::zero_v<PrdType>;
+    PrdType sum1 = impl::zero_v<PrdType>;
+    PrdType sum2 = impl::zero_v<PrdType>;
 
     for (j = 0, aij = ai, xi = xi0; j < i; j++, aij += incaij, xi += incx) {
-      a_elem = a[aij];
-      x_elem = x_head[xi];
-      prod1 = impl::mul<PrdType>(a_elem, x_elem);
+      A a_elem = a[aij];
+      X x_elem = x_head[xi];
+      PrdType prod1 = impl::mul<PrdType>(a_elem, x_elem);
       sum1 = sum1 + prod1;
       x_elem = x_tail[xi];
-      prod2 = impl::mul<PrdType>(a_elem, x_elem);
+      PrdType prod2 = impl::mul<PrdType>(a_elem, x_elem);
       sum2 = sum2 + prod2;
     }
     for (; j < n; j++, aij += incaij2, xi += incx) {
-      a_elem = a[aij];
-      x_elem = x_head[xi];
-      prod1 = impl::mul<PrdType>(a_elem, x_elem);
+      A a_elem = a[aij];
+      X x_elem = x_head[xi];
+      PrdType prod1 = impl::mul<PrdType>(a_elem, x_elem);
       sum1 = sum1 + prod1;
       x_elem = x_tail[xi];
-      prod2 = impl::mul<PrdType>(a_elem, x_elem);
+      PrdType prod2 = impl::mul<PrdType>(a_elem, x_elem);
       sum2 = sum2 + prod2;
     }
     sum1 = sum1 + sum2;
-    tmp1 = impl::mul<TmpType>(sum1, alpha);
-    y_elem = y[yi];
-    tmp2 = impl::mul<TmpType>(y_elem, beta);
-    tmp3 = tmp1 + tmp2;
+    TmpType tmp1 = impl::mul<TmpType>(sum1, alpha);
+    T y_elem = y[yi];
+    TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
+    TmpType tmp3 = tmp1 + tmp2;
     y[yi] = impl::to<T>(tmp3);
   }
 
