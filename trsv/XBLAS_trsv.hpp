@@ -72,7 +72,6 @@ constexpr void trsv(blas_order_type order,
 
   FPU_FIX_DECL;
 
-  IdxType i, j;
   IdxType ix, jx;
   IdxType start_x;
   A T_element;
@@ -100,7 +99,7 @@ constexpr void trsv(blas_order_type order,
   /* if alpha is zero, then return x as a zero vector */
   if (alpha == T(0)) {
     ix = start_x;
-    for (i = 0; i < n; i++) {
+    for (IdxType i = 0; i < n; i++) {
       x[ix] = T(0);
       ix += incx;
     }
@@ -135,7 +134,7 @@ constexpr void trsv(blas_order_type order,
       /* copy x to intx */
       ix = start_x;
       jx = 0;
-      for (i = 0; i < n; i++) {
+      for (IdxType i = 0; i < n; i++) {
         temp1 = impl::to<TmpType>(x[ix]);
         intx[jx] = temp1;
         ix += incx;
@@ -149,14 +148,14 @@ constexpr void trsv(blas_order_type order,
         if (trans == blas_conj_trans) {
 
           jx = (n - 1) * inc_intx;
-          for (j = n - 1; j >= 0; j--) {
+          for (IdxType j = n - 1; j >= 0; j--) {
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
             temp3 = intx[jx];
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = (n - 1) * inc_intx;
-            for (i = n - 1; i >= j + 1; i--) {
+            for (IdxType i = n - 1; i >= j + 1; i--) {
               T_element = impl::Conj::func(t[i * incT + j * ldt * incT]);
               temp3 = intx[ix];
               temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -177,7 +176,7 @@ constexpr void trsv(blas_order_type order,
         } else {
 
           jx = (n - 1) * inc_intx;
-          for (j = n - 1; j >= 0; j--) {
+          for (IdxType j = n - 1; j >= 0; j--) {
 
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
@@ -185,7 +184,7 @@ constexpr void trsv(blas_order_type order,
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = (n - 1) * inc_intx;
-            for (i = n - 1; i >= j + 1; i--) {
+            for (IdxType i = n - 1; i >= j + 1; i--) {
               T_element = t[i * incT + j * ldt * incT];
               temp3 = intx[ix];
               temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -210,14 +209,14 @@ constexpr void trsv(blas_order_type order,
                   trans != blas_no_trans && uplo == blas_upper)) {
         if (trans == blas_conj_trans) {
           jx = 0;
-          for (j = 0; j < n; j++) {
+          for (IdxType j = 0; j < n; j++) {
             /* compute Xj = Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
             temp3 = intx[jx];
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = 0;
-            for (i = 0; i < j; i++) {
+            for (IdxType i = 0; i < j; i++) {
               T_element = impl::Conj::func(t[i * incT + j * ldt * incT]);
               temp3 = intx[ix];
               temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -237,14 +236,14 @@ constexpr void trsv(blas_order_type order,
           }                        /* for j<n */
         } else {
           jx = 0;
-          for (j = 0; j < n; j++) {
+          for (IdxType j = 0; j < n; j++) {
             /* compute Xj = Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
             temp3 = intx[jx];
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = 0;
-            for (i = 0; i < j; i++) {
+            for (IdxType i = 0; i < j; i++) {
               T_element = t[i * incT + j * ldt * incT];
               temp3 = intx[ix];
               temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -270,14 +269,14 @@ constexpr void trsv(blas_order_type order,
         if (trans == blas_conj_trans) {
 
           jx = (n - 1) * inc_intx;
-          for (j = n - 1; j >= 0; j--) {
+          for (IdxType j = n - 1; j >= 0; j--) {
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
             temp3 = intx[jx];
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = (n - 1) * inc_intx;
-            for (i = n - 1; i >= j + 1; i--) {
+            for (IdxType i = n - 1; i >= j + 1; i--) {
               T_element = impl::Conj::func(t[j * incT + i * ldt * incT]);
               temp3 = intx[ix];
               temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -298,14 +297,14 @@ constexpr void trsv(blas_order_type order,
         } else {
 
           jx = (n - 1) * inc_intx;
-          for (j = n - 1; j >= 0; j--) {
+          for (IdxType j = n - 1; j >= 0; j--) {
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
             temp3 = intx[jx];
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = (n - 1) * inc_intx;
-            for (i = n - 1; i >= j + 1; i--) {
+            for (IdxType i = n - 1; i >= j + 1; i--) {
               T_element = t[j * incT + i * ldt * incT];
               temp3 = intx[ix];
               temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -331,14 +330,14 @@ constexpr void trsv(blas_order_type order,
         if (trans == blas_conj_trans) {
 
           jx = 0;
-          for (j = 0; j < n; j++) {
+          for (IdxType j = 0; j < n; j++) {
             /* compute Xj = Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
             temp3 = intx[jx];
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = 0;
-            for (i = 0; i < j; i++) {
+            for (IdxType i = 0; i < j; i++) {
               T_element = impl::Conj::func(t[j * incT + i * ldt * incT]);
               temp3 = intx[ix];
               temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -359,14 +358,14 @@ constexpr void trsv(blas_order_type order,
         } else {
 
           jx = 0;
-          for (j = 0; j < n; j++) {
+          for (IdxType j = 0; j < n; j++) {
             /* compute Xj = Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
             temp3 = intx[jx];
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = 0;
-            for (i = 0; i < j; i++) {
+            for (IdxType i = 0; i < j; i++) {
               T_element = t[j * incT + i * ldt * incT];
               temp3 = intx[ix];
               temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -390,7 +389,7 @@ constexpr void trsv(blas_order_type order,
       /* copy the final results from intx to x */
       ix = start_x;
       jx = 0;
-      for (i = 0; i < n; i++) {
+      for (IdxType i = 0; i < n; i++) {
         temp1 = intx[jx];
         x[ix] = impl::to<T>(temp1);
         ix += incx;
@@ -411,7 +410,7 @@ constexpr void trsv(blas_order_type order,
         if (trans == blas_conj_trans) {
 
           jx = start_x + (n - 1) * incx;
-          for (j = n - 1; j >= 0; j--) {
+          for (IdxType j = n - 1; j >= 0; j--) {
 
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
@@ -419,7 +418,7 @@ constexpr void trsv(blas_order_type order,
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = start_x + (n - 1) * incx;
-            for (i = n - 1; i >= j + 1; i--) {
+            for (IdxType i = n - 1; i >= j + 1; i--) {
               T_element = impl::Conj::func(t[i * incT + j * ldt * incT]);
               temp3 = impl::to<TmpType>(x[ix]);
               temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -443,7 +442,7 @@ constexpr void trsv(blas_order_type order,
         } else {
 
           jx = start_x + (n - 1) * incx;
-          for (j = n - 1; j >= 0; j--) {
+          for (IdxType j = n - 1; j >= 0; j--) {
 
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
@@ -451,7 +450,7 @@ constexpr void trsv(blas_order_type order,
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = start_x + (n - 1) * incx;
-            for (i = n - 1; i >= j + 1; i--) {
+            for (IdxType i = n - 1; i >= j + 1; i--) {
               T_element = t[i * incT + j * ldt * incT];
 
               temp3 = impl::to<TmpType>(x[ix]);
@@ -482,7 +481,7 @@ constexpr void trsv(blas_order_type order,
         if (trans == blas_conj_trans) {
 
           jx = start_x;
-          for (j = 0; j < n; j++) {
+          for (IdxType j = 0; j < n; j++) {
 
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
@@ -491,7 +490,7 @@ constexpr void trsv(blas_order_type order,
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = start_x;
-            for (i = 0; i < j; i++) {
+            for (IdxType i = 0; i < j; i++) {
               T_element = impl::Conj::func(t[i * incT + j * ldt * incT]);
               temp3 = impl::to<TmpType>(x[ix]);
               temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -514,7 +513,7 @@ constexpr void trsv(blas_order_type order,
         } else {
 
           jx = start_x;
-          for (j = 0; j < n; j++) {
+          for (IdxType j = 0; j < n; j++) {
 
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
@@ -523,7 +522,7 @@ constexpr void trsv(blas_order_type order,
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = start_x;
-            for (i = 0; i < j; i++) {
+            for (IdxType i = 0; i < j; i++) {
               T_element = t[i * incT + j * ldt * incT];
 
               temp3 = impl::to<TmpType>(x[ix]);
@@ -553,7 +552,7 @@ constexpr void trsv(blas_order_type order,
         if (trans == blas_conj_trans) {
 
           jx = start_x + (n - 1) * incx;
-          for (j = n - 1; j >= 0; j--) {
+          for (IdxType j = n - 1; j >= 0; j--) {
 
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
@@ -561,7 +560,7 @@ constexpr void trsv(blas_order_type order,
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = start_x + (n - 1) * incx;
-            for (i = n - 1; i >= j + 1; i--) {
+            for (IdxType i = n - 1; i >= j + 1; i--) {
               T_element = impl::Conj::func(t[j * incT + i * ldt * incT]);
               temp3 = impl::to<TmpType>(x[ix]);
               temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -585,7 +584,7 @@ constexpr void trsv(blas_order_type order,
         } else {
 
           jx = start_x + (n - 1) * incx;
-          for (j = n - 1; j >= 0; j--) {
+          for (IdxType j = n - 1; j >= 0; j--) {
 
             /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
                i=j+1 to n-1           */
@@ -593,7 +592,7 @@ constexpr void trsv(blas_order_type order,
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = start_x + (n - 1) * incx;
-            for (i = n - 1; i >= j + 1; i--) {
+            for (IdxType i = n - 1; i >= j + 1; i--) {
               T_element = t[j * incT + i * ldt * incT];
 
               temp3 = impl::to<TmpType>(x[ix]);
@@ -624,7 +623,7 @@ constexpr void trsv(blas_order_type order,
         if (trans == blas_conj_trans) {
 
           jx = start_x;
-          for (j = 0; j < n; j++) {
+          for (IdxType j = 0; j < n; j++) {
 
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
@@ -633,7 +632,7 @@ constexpr void trsv(blas_order_type order,
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = start_x;
-            for (i = 0; i < j; i++) {
+            for (IdxType i = 0; i < j; i++) {
               T_element = impl::Conj::func(t[j * incT + i * ldt * incT]);
               temp3 = impl::to<TmpType>(x[ix]);
               temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -656,7 +655,7 @@ constexpr void trsv(blas_order_type order,
         } else {
 
           jx = start_x;
-          for (j = 0; j < n; j++) {
+          for (IdxType j = 0; j < n; j++) {
 
             /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
                i=j+1 to n-1           */
@@ -665,7 +664,7 @@ constexpr void trsv(blas_order_type order,
             temp1 = impl::mul<TmpType>(temp3, alpha);
 
             ix = start_x;
-            for (i = 0; i < j; i++) {
+            for (IdxType i = 0; i < j; i++) {
               T_element = t[j * incT + i * ldt * incT];
 
               temp3 = impl::to<TmpType>(x[ix]);
@@ -711,7 +710,7 @@ constexpr void trsv(blas_order_type order,
       /* copy x to intx */
       ix = start_x;
       jx = 0;
-      for (i = 0; i < n; i++) {
+      for (IdxType i = 0; i < n; i++) {
         temp1 = TmpType(x[ix]);
         intx[jx] = temp1;
         ix += incx;
@@ -724,7 +723,7 @@ constexpr void trsv(blas_order_type order,
            trans != blas_no_trans && uplo == blas_lower)) {
 
         jx = (n - 1) * inc_intx;
-        for (j = n - 1; j >= 0; j--) {
+        for (IdxType j = n - 1; j >= 0; j--) {
 
           /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
              i=j+1 to n-1           */
@@ -733,7 +732,7 @@ constexpr void trsv(blas_order_type order,
           temp1 = impl::mul<TmpType>(temp3, alpha);
 
           ix = (n - 1) * inc_intx;
-          for (i = n - 1; i >= j + 1; i--) {
+          for (IdxType i = n - 1; i >= j + 1; i--) {
             T_element = t[i * incT + j * ldt * incT];
             temp3 = intx[ix];
             temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -758,7 +757,7 @@ constexpr void trsv(blas_order_type order,
                   trans != blas_no_trans && uplo == blas_upper)) {
 
         jx = 0;
-        for (j = 0; j < n; j++) {
+        for (IdxType j = 0; j < n; j++) {
           /* compute Xj = Xj - SUM Aij(or Aji) * Xi
              i=j+1 to n-1           */
           temp3 = intx[jx];
@@ -766,7 +765,7 @@ constexpr void trsv(blas_order_type order,
           temp1 = impl::mul<TmpType>(temp3, alpha);
 
           ix = 0;
-          for (i = 0; i < j; i++) {
+          for (IdxType i = 0; i < j; i++) {
             T_element = t[i * incT + j * ldt * incT];
 
             temp3 = intx[ix];
@@ -791,7 +790,7 @@ constexpr void trsv(blas_order_type order,
                   trans == blas_no_trans && uplo == blas_upper)) {
 
         jx = (n - 1) * inc_intx;
-        for (j = n - 1; j >= 0; j--) {
+        for (IdxType j = n - 1; j >= 0; j--) {
           /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
              i=j+1 to n-1           */
           temp3 = intx[jx];
@@ -799,7 +798,7 @@ constexpr void trsv(blas_order_type order,
           temp1 = impl::mul<TmpType>(temp3, alpha);
 
           ix = (n - 1) * inc_intx;
-          for (i = n - 1; i >= j + 1; i--) {
+          for (IdxType i = n - 1; i >= j + 1; i--) {
             T_element = t[j * incT + i * ldt * incT];
 
             temp3 = intx[ix];
@@ -825,7 +824,7 @@ constexpr void trsv(blas_order_type order,
                   trans == blas_no_trans && uplo == blas_lower)) {
 
         jx = 0;
-        for (j = 0; j < n; j++) {
+        for (IdxType j = 0; j < n; j++) {
 
           /* compute Xj = Xj - SUM Aij(or Aji) * Xi
              i=j+1 to n-1           */
@@ -834,7 +833,7 @@ constexpr void trsv(blas_order_type order,
           temp1 = impl::mul<TmpType>(temp3, alpha);
 
           ix = 0;
-          for (i = 0; i < j; i++) {
+          for (IdxType i = 0; i < j; i++) {
             T_element = t[j * incT + i * ldt * incT];
 
             temp3 = intx[ix];
@@ -858,7 +857,7 @@ constexpr void trsv(blas_order_type order,
       /* copy the final results from intx to x */
       ix = start_x;
       jx = 0;
-      for (i = 0; i < n; i++) {
+      for (IdxType i = 0; i < n; i++) {
         temp1 = intx[jx];
         x[ix] = impl::to<T>(temp1);
         ix += incx;
@@ -877,7 +876,7 @@ constexpr void trsv(blas_order_type order,
            trans != blas_no_trans && uplo == blas_lower)) {
 
         jx = start_x + (n - 1) * incx;
-        for (j = n - 1; j >= 0; j--) {
+        for (IdxType j = n - 1; j >= 0; j--) {
 
           /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
              i=j+1 to n-1           */
@@ -885,7 +884,7 @@ constexpr void trsv(blas_order_type order,
           temp1 = impl::mul<TmpType>(temp3, alpha);
 
           ix = start_x + (n - 1) * incx;
-          for (i = n - 1; i >= j + 1; i--) {
+          for (IdxType i = n - 1; i >= j + 1; i--) {
             T_element = t[i * incT + j * ldt * incT];
 
             temp3 = x[ix];
@@ -911,7 +910,7 @@ constexpr void trsv(blas_order_type order,
                   trans != blas_no_trans && uplo == blas_upper)) {
 
         jx = start_x;
-        for (j = 0; j < n; j++) {
+        for (IdxType j = 0; j < n; j++) {
 
           /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
              i=j+1 to n-1           */
@@ -920,7 +919,7 @@ constexpr void trsv(blas_order_type order,
           temp1 = impl::mul<TmpType>(temp3, alpha);
 
           ix = start_x;
-          for (i = 0; i < j; i++) {
+          for (IdxType i = 0; i < j; i++) {
             T_element = t[i * incT + j * ldt * incT];
 
             temp3 = x[ix];
@@ -945,7 +944,7 @@ constexpr void trsv(blas_order_type order,
                   trans == blas_no_trans && uplo == blas_upper)) {
 
         jx = start_x + (n - 1) * incx;
-        for (j = n - 1; j >= 0; j--) {
+        for (IdxType j = n - 1; j >= 0; j--) {
 
           /* compute Xj = alpha*Xj - SUM Tij(or Tji) * Xi
              i=j+1 to n-1           */
@@ -953,7 +952,7 @@ constexpr void trsv(blas_order_type order,
           temp1 = impl::mul<TmpType>(temp3, alpha);
 
           ix = start_x + (n - 1) * incx;
-          for (i = n - 1; i >= j + 1; i--) {
+          for (IdxType i = n - 1; i >= j + 1; i--) {
             T_element = t[j * incT + i * ldt * incT];
 
             temp3 = x[ix];
@@ -979,7 +978,7 @@ constexpr void trsv(blas_order_type order,
                   trans == blas_no_trans && uplo == blas_lower)) {
 
         jx = start_x;
-        for (j = 0; j < n; j++) {
+        for (IdxType j = 0; j < n; j++) {
 
           /* compute Xj = alpha*Xj - SUM Aij(or Aji) * Xi
              i=j+1 to n-1           */
@@ -988,7 +987,7 @@ constexpr void trsv(blas_order_type order,
           temp1 = impl::mul<TmpType>(temp3, alpha);
 
           ix = start_x;
-          for (i = 0; i < j; i++) {
+          for (IdxType i = 0; i < j; i++) {
             T_element = t[j * incT + i * ldt * incT];
 
             temp3 = x[ix];

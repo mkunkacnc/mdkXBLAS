@@ -267,7 +267,7 @@ constexpr void hbmv(blas_order_type order,
             sum = sum + prod;
             aij += incaij2;
             xi += incx;
-            for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
+            for (IdxType j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
               a_elem = impl::Conj::func(a[aij]);
               x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
@@ -303,7 +303,7 @@ constexpr void hbmv(blas_order_type order,
             sum = sum + prod;
             aij += incaij2;
             xi += incx;
-            for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
+            for (IdxType j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
               a_elem = impl::Conj::func(a[aij]);
               x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
@@ -343,7 +343,7 @@ constexpr void hbmv(blas_order_type order,
           sum = sum + prod;
           aij += incaij2;
           xi += incx;
-          for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
+          for (IdxType j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
             a_elem = impl::Conj::func(a[aij]);
             x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem, x_elem);
@@ -388,7 +388,7 @@ constexpr void hbmv(blas_order_type order,
             sum = sum + prod;
             aij += incaij2;
             xi += incx;
-            for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
+            for (IdxType j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
               a_elem = a[aij];
               x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
@@ -424,7 +424,7 @@ constexpr void hbmv(blas_order_type order,
             sum = sum + prod;
             aij += incaij2;
             xi += incx;
-            for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
+            for (IdxType j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
               a_elem = a[aij];
               x_elem = x[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
@@ -464,7 +464,7 @@ constexpr void hbmv(blas_order_type order,
           sum = sum + prod;
           aij += incaij2;
           xi += incx;
-          for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
+          for (IdxType j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
             a_elem = a[aij];
             x_elem = x[xi];
             prod = impl::mul<PrdType>(a_elem, x_elem);

@@ -81,7 +81,6 @@ constexpr void gemv(blas_order_type order,
 
   FPU_FIX_DECL;
 
-  IdxType i, j;
   IdxType iy, jx, kx, ky;
   IdxType lenx, leny;
   IdxType ai, aij;
@@ -148,13 +147,13 @@ constexpr void gemv(blas_order_type order,
   if (alpha == T(0)) {
     if (beta == T(0)) {
       iy = ky;
-      for (i = 0; i < leny; i++) {
+      for (IdxType i = 0; i < leny; i++) {
         y[iy] = T(0);
         iy += incy;
       }
     } else if (beta != T(0)) {
       iy = ky;
-      for (i = 0; i < leny; i++) {
+      for (IdxType i = 0; i < leny; i++) {
         y_elem = y[iy];
         tmp1 = impl::mul<TmpType>(y_elem, beta);
         y[iy] = impl::to<T>(tmp1);
@@ -170,11 +169,11 @@ constexpr void gemv(blas_order_type order,
           if (alpha == T(1)) {
             ai = 0;
             iy = ky;
-            for (i = 0; i < leny; i++) {
+            for (IdxType i = 0; i < leny; i++) {
               sum = impl::zero_v<PrdType>;
               aij = ai;
               jx = kx;
-              for (j = 0; j < lenx; j++) {
+              for (IdxType j = 0; j < lenx; j++) {
                 a_elem = impl::Conj::func(a[aij]);
                 x_elem = x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
@@ -189,11 +188,11 @@ constexpr void gemv(blas_order_type order,
           } else {
             ai = 0;
             iy = ky;
-            for (i = 0; i < leny; i++) {
+            for (IdxType i = 0; i < leny; i++) {
               sum = impl::zero_v<PrdType>;
               aij = ai;
               jx = kx;
-              for (j = 0; j < lenx; j++) {
+              for (IdxType j = 0; j < lenx; j++) {
                 a_elem = impl::Conj::func(a[aij]);
                 x_elem = x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
@@ -211,11 +210,11 @@ constexpr void gemv(blas_order_type order,
           /* the most general form, y = alpha*A*x + beta*y */
           ai = 0;
           iy = ky;
-          for (i = 0; i < leny; i++) {
+          for (IdxType i = 0; i < leny; i++) {
             sum = impl::zero_v<PrdType>;
             aij = ai;
             jx = kx;
-            for (j = 0; j < lenx; j++) {
+            for (IdxType j = 0; j < lenx; j++) {
               a_elem = impl::Conj::func(a[aij]);
               x_elem = x[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
@@ -239,11 +238,11 @@ constexpr void gemv(blas_order_type order,
           if (alpha == T(1)) {
             ai = 0;
             iy = ky;
-            for (i = 0; i < leny; i++) {
+            for (IdxType i = 0; i < leny; i++) {
               sum = impl::zero_v<PrdType>;
               aij = ai;
               jx = kx;
-              for (j = 0; j < lenx; j++) {
+              for (IdxType j = 0; j < lenx; j++) {
                 a_elem = a[aij];
                 x_elem = x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
@@ -258,11 +257,11 @@ constexpr void gemv(blas_order_type order,
           } else {
             ai = 0;
             iy = ky;
-            for (i = 0; i < leny; i++) {
+            for (IdxType i = 0; i < leny; i++) {
               sum = impl::zero_v<PrdType>;
               aij = ai;
               jx = kx;
-              for (j = 0; j < lenx; j++) {
+              for (IdxType j = 0; j < lenx; j++) {
                 a_elem = a[aij];
                 x_elem = x[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
@@ -280,11 +279,11 @@ constexpr void gemv(blas_order_type order,
           /* the most general form, y = alpha*A*x + beta*y */
           ai = 0;
           iy = ky;
-          for (i = 0; i < leny; i++) {
+          for (IdxType i = 0; i < leny; i++) {
             sum = impl::zero_v<PrdType>;
             aij = ai;
             jx = kx;
-            for (j = 0; j < lenx; j++) {
+            for (IdxType j = 0; j < lenx; j++) {
               a_elem = a[aij];
               x_elem = x[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
@@ -309,11 +308,11 @@ constexpr void gemv(blas_order_type order,
         if (alpha == T(1)) {
           ai = 0;
           iy = ky;
-          for (i = 0; i < leny; i++) {
+          for (IdxType i = 0; i < leny; i++) {
             sum = impl::zero_v<PrdType>;
             aij = ai;
             jx = kx;
-            for (j = 0; j < lenx; j++) {
+            for (IdxType j = 0; j < lenx; j++) {
               a_elem = a[aij];
               x_elem = x[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
@@ -328,11 +327,11 @@ constexpr void gemv(blas_order_type order,
         } else {
           ai = 0;
           iy = ky;
-          for (i = 0; i < leny; i++) {
+          for (IdxType i = 0; i < leny; i++) {
             sum = impl::zero_v<PrdType>;
             aij = ai;
             jx = kx;
-            for (j = 0; j < lenx; j++) {
+            for (IdxType j = 0; j < lenx; j++) {
               a_elem = a[aij];
               x_elem = x[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
@@ -350,11 +349,11 @@ constexpr void gemv(blas_order_type order,
         /* the most general form, y = alpha*A*x + beta*y */
         ai = 0;
         iy = ky;
-        for (i = 0; i < leny; i++) {
+        for (IdxType i = 0; i < leny; i++) {
           sum = impl::zero_v<PrdType>;
           aij = ai;
           jx = kx;
-          for (j = 0; j < lenx; j++) {
+          for (IdxType j = 0; j < lenx; j++) {
             a_elem = a[aij];
             x_elem = x[jx];
             prod = impl::mul<PrdType>(a_elem, x_elem);

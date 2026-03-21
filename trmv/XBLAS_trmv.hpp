@@ -72,7 +72,6 @@ constexpr void trmv(blas_order_type order,
 
   FPU_FIX_DECL;
 
-  IdxType i, j;
   IdxType xj, xj0;
   IdxType ti, tij, tij0;
 
@@ -146,7 +145,7 @@ constexpr void trmv(blas_order_type order,
   xj0 = (inc_x > 0 ? 0 : -(n - 1) * inc_x);
   if (alpha == T(0)) {
     xj = xj0;
-    for (j = 0; j < n; j++) {
+    for (IdxType j = 0; j < n; j++) {
       x[xj] = T(0);
       xj += inc_x;
     }
@@ -162,12 +161,12 @@ constexpr void trmv(blas_order_type order,
       if (trans == blas_conj_trans) {
         ti = (inc_ti > 0 ? 0 : -(n - 1) * inc_ti);
         tij0 = (inc_tij > 0 ? 0 : -(n - 1) * inc_tij);
-        for (i = 0; i < n; i++) {
+        for (IdxType i = 0; i < n; i++) {
           sum = impl::zero_v<TmpType>;
 
           xj = xj0;
           tij = ti + tij0;
-          for (j = i; j < (n - 1); j++) {
+          for (IdxType j = i; j < (n - 1); j++) {
             t_elem = impl::Conj::func(t[tij]);
             x_elem = x[xj];
             prod = impl::mul<TmpType>(x_elem, t_elem);
@@ -191,12 +190,12 @@ constexpr void trmv(blas_order_type order,
       } else {
         ti = (inc_ti > 0 ? 0 : -(n - 1) * inc_ti);
         tij0 = (inc_tij > 0 ? 0 : -(n - 1) * inc_tij);
-        for (i = 0; i < n; i++) {
+        for (IdxType i = 0; i < n; i++) {
           sum = impl::zero_v<TmpType>;
 
           xj = xj0;
           tij = ti + tij0;
-          for (j = i; j < (n - 1); j++) {
+          for (IdxType j = i; j < (n - 1); j++) {
             t_elem = t[tij];
             x_elem = x[xj];
             prod = impl::mul<TmpType>(x_elem, t_elem);
@@ -222,12 +221,12 @@ constexpr void trmv(blas_order_type order,
       if (trans == blas_conj_trans) {
         ti = (inc_ti > 0 ? 0 : -(n - 1) * inc_ti);
         tij0 = (inc_tij > 0 ? 0 : -(n - 1) * inc_tij);
-        for (i = 0; i < n; i++) {
+        for (IdxType i = 0; i < n; i++) {
           sum = impl::zero_v<TmpType>;
 
           xj = xj0;
           tij = ti + tij0;
-          for (j = i; j < n; j++) {
+          for (IdxType j = i; j < n; j++) {
             t_elem = impl::Conj::func(t[tij]);
             x_elem = x[xj];
             prod = impl::mul<TmpType>(x_elem, t_elem);
@@ -248,12 +247,12 @@ constexpr void trmv(blas_order_type order,
       } else {
         ti = (inc_ti > 0 ? 0 : -(n - 1) * inc_ti);
         tij0 = (inc_tij > 0 ? 0 : -(n - 1) * inc_tij);
-        for (i = 0; i < n; i++) {
+        for (IdxType i = 0; i < n; i++) {
           sum = impl::zero_v<TmpType>;
 
           xj = xj0;
           tij = ti + tij0;
-          for (j = i; j < n; j++) {
+          for (IdxType j = i; j < n; j++) {
             t_elem = t[tij];
             x_elem = x[xj];
             prod = impl::mul<TmpType>(x_elem, t_elem);
@@ -277,12 +276,12 @@ constexpr void trmv(blas_order_type order,
     if (diag == blas_unit_diag) {
       ti = (inc_ti > 0 ? 0 : -(n - 1) * inc_ti);
       tij0 = (inc_tij > 0 ? 0 : -(n - 1) * inc_tij);
-      for (i = 0; i < n; i++) {
+      for (IdxType i = 0; i < n; i++) {
         sum = impl::zero_v<TmpType>;
 
         xj = xj0;
         tij = ti + tij0;
-        for (j = i; j < (n - 1); j++) {
+        for (IdxType j = i; j < (n - 1); j++) {
           t_elem = t[tij];
           x_elem = x[xj];
           prod = impl::mul<TmpType>(x_elem, t_elem);
@@ -306,12 +305,12 @@ constexpr void trmv(blas_order_type order,
     } else {
       ti = (inc_ti > 0 ? 0 : -(n - 1) * inc_ti);
       tij0 = (inc_tij > 0 ? 0 : -(n - 1) * inc_tij);
-      for (i = 0; i < n; i++) {
+      for (IdxType i = 0; i < n; i++) {
         sum = impl::zero_v<TmpType>;
 
         xj = xj0;
         tij = ti + tij0;
-        for (j = i; j < n; j++) {
+        for (IdxType j = i; j < n; j++) {
           t_elem = t[tij];
           x_elem = x[xj];
           prod = impl::mul<TmpType>(x_elem, t_elem);

@@ -76,7 +76,6 @@ constexpr void tbsv(blas_order_type order,
 
   FPU_FIX_DECL;
 
-  IdxType i, j;
   IdxType xi;
   IdxType start_xi;
   IdxType incxi;
@@ -126,7 +125,7 @@ constexpr void tbsv(blas_order_type order,
   /* if alpha is zero, then return x as a zero vector */
   if (alpha == T(0)) {
     xi = start_xi;
-    for (i = 0; i < n; i++) {
+    for (IdxType i = 0; i < n; i++) {
       x[xi] = T(0);
       xi += incxi;
     }
@@ -204,7 +203,8 @@ constexpr void tbsv(blas_order_type order,
         /*loop 1 */
         xi = start_xi;
         /* x_inti already initialized to 0 */
-        for (j = 0; j < k; j++) {
+        IdxType j = 0;
+        for (; j < k; j++) {
           /* each time through loop, xi lands on next x to compute. */
           x_elem = x[xi];
           /* preform the multiplication -
@@ -216,7 +216,7 @@ constexpr void tbsv(blas_order_type order,
 
           /*start loop buffer over in loop 1 */
           x_inti = 0;
-          for (i = j; i > 0; i--) {
+          for (IdxType i = j; i > 0; i--) {
             T_element = impl::Conj::func(t[Tij]);
             temp3 = x_internal[x_inti];
             temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -253,7 +253,8 @@ constexpr void tbsv(blas_order_type order,
           Tij = dot_start;
           dot_start += dot_start_inc2;
 
-          for (i = k; i > 0 && (x_inti < k_compare); i--) {
+          IdxType i = k;
+          for (; i > 0 && (x_inti < k_compare); i--) {
             T_element = impl::Conj::func(t[Tij]);
             temp3 = x_internal[x_inti];
             temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -296,7 +297,8 @@ constexpr void tbsv(blas_order_type order,
         /*loop 1 */
         xi = start_xi;
         /* x_inti already initialized to 0 */
-        for (j = 0; j < k; j++) {
+        IdxType j = 0;
+        for (; j < k; j++) {
           /* each time through loop, xi lands on next x to compute. */
           x_elem = x[xi];
           /* preform the multiplication -
@@ -308,7 +310,7 @@ constexpr void tbsv(blas_order_type order,
 
           /*start loop buffer over in loop 1 */
           x_inti = 0;
-          for (i = j; i > 0; i--) {
+          for (IdxType i = j; i > 0; i--) {
             T_element = t[Tij];
             temp3 = x_internal[x_inti];
             temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -345,7 +347,8 @@ constexpr void tbsv(blas_order_type order,
           Tij = dot_start;
           dot_start += dot_start_inc2;
 
-          for (i = k; i > 0 && (x_inti < k_compare); i--) {
+          IdxType i = k;
+          for (; i > 0 && (x_inti < k_compare); i--) {
             T_element = t[Tij];
             temp3 = x_internal[x_inti];
             temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -398,7 +401,8 @@ constexpr void tbsv(blas_order_type order,
 
         /*loop 1 */
         xi = start_xi;
-        for (j = 0; j < k; j++) {
+        IdxType j = 0;
+        for (; j < k; j++) {
           /* each time through loop, xi lands on next x to compute. */
           x_elem = x[xi];
           /* preform the multiplication -
@@ -409,7 +413,7 @@ constexpr void tbsv(blas_order_type order,
           Tij = dot_start;
           dot_start += dot_start_inc1;
 
-          for (i = j; i > 0; i--) {
+          for (IdxType i = j; i > 0; i--) {
             T_element = impl::Conj::func(t[Tij]);
             x_elem = x[xi];
             temp2 = impl::mul<TmpType>(x_elem, T_element);
@@ -441,7 +445,7 @@ constexpr void tbsv(blas_order_type order,
           Tij = dot_start;
           dot_start += dot_start_inc2;
 
-          for (i = k; i > 0; i--) {
+          for (IdxType i = k; i > 0; i--) {
             T_element = impl::Conj::func(t[Tij]);
             x_elem = x[xi];
             temp2 = impl::mul<TmpType>(x_elem, T_element);
@@ -465,7 +469,8 @@ constexpr void tbsv(blas_order_type order,
 
         /*loop 1 */
         xi = start_xi;
-        for (j = 0; j < k; j++) {
+        IdxType j = 0;
+        for (; j < k; j++) {
           /* each time through loop, xi lands on next x to compute. */
           x_elem = x[xi];
           /* preform the multiplication -
@@ -476,7 +481,7 @@ constexpr void tbsv(blas_order_type order,
           Tij = dot_start;
           dot_start += dot_start_inc1;
 
-          for (i = j; i > 0; i--) {
+          for (IdxType i = j; i > 0; i--) {
             T_element = t[Tij];
             x_elem = x[xi];
             temp2 = impl::mul<TmpType>(x_elem, T_element);
@@ -510,7 +515,7 @@ constexpr void tbsv(blas_order_type order,
           Tij = dot_start;
           dot_start += dot_start_inc2;
 
-          for (i = k; i > 0; i--) {
+          for (IdxType i = k; i > 0; i--) {
             T_element = t[Tij];
 
             x_elem = x[xi];
@@ -552,7 +557,8 @@ constexpr void tbsv(blas_order_type order,
       /*loop 1 */
       xi = start_xi;
       /* x_inti already initialized to 0 */
-      for (j = 0; j < k; j++) {
+      IdxType j = 0;
+      for (; j < k; j++) {
         /* each time through loop, xi lands on next x to compute. */
         x_elem = x[xi];
         /* preform the multiplication -
@@ -564,7 +570,7 @@ constexpr void tbsv(blas_order_type order,
 
         /*start loop buffer over in loop 1 */
         x_inti = 0;
-        for (i = j; i > 0; i--) {
+        for (IdxType i = j; i > 0; i--) {
           T_element = t[Tij];
 
           temp3 = x_internal[x_inti];
@@ -602,7 +608,8 @@ constexpr void tbsv(blas_order_type order,
         Tij = dot_start;
         dot_start += dot_start_inc2;
 
-        for (i = k; i > 0 && (x_inti < k_compare); i--) {
+        IdxType i = k;
+        for (; i > 0 && (x_inti < k_compare); i--) {
           T_element = t[Tij];
           temp3 = x_internal[x_inti];
           temp2 = impl::mul<TmpType>(temp3, T_element);
@@ -651,7 +658,8 @@ constexpr void tbsv(blas_order_type order,
 
       /*loop 1 */
       xi = start_xi;
-      for (j = 0; j < k; j++) {
+      IdxType j = 0;
+      for (; j < k; j++) {
         /* each time through loop, xi lands on next x to compute. */
         x_elem = x[xi];
         /* preform the multiplication -
@@ -662,7 +670,7 @@ constexpr void tbsv(blas_order_type order,
         Tij = dot_start;
         dot_start += dot_start_inc1;
 
-        for (i = j; i > 0; i--) {
+        for (IdxType i = j; i > 0; i--) {
           T_element = t[Tij];
           x_elem = x[xi];
           temp2 = impl::mul<TmpType>(x_elem, T_element);
@@ -695,7 +703,7 @@ constexpr void tbsv(blas_order_type order,
         Tij = dot_start;
         dot_start += dot_start_inc2;
 
-        for (i = k; i > 0; i--) {
+        for (IdxType i = k; i > 0; i--) {
           T_element = t[Tij];
           x_elem = x[xi];
           temp2 = impl::mul<TmpType>(x_elem, T_element);
