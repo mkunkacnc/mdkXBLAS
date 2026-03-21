@@ -400,8 +400,8 @@ constexpr void hemm_x(blas_order_type order,
   case blas_prec_double:
     XBLAS::hemm<T, A, B, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
     break;
-  case blas_precndigenous:
-    XBLAS::hemm<T, A, B, N, impl::internal_precision_t<T, blas_precndigenous>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
+  case blas_prec_indigenous:
+    XBLAS::hemm<T, A, B, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
     break;
   case blas_prec_extra:
     XBLAS::hemm<T, A, B, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
