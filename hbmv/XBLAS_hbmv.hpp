@@ -153,7 +153,6 @@ constexpr void hbmv(blas_order_type order,
   IdxType maxj_first, maxj_second;
 
   /* Input Matrices */
-  const A *a_i = a;
   const X *x_i = x;
 
   /* Output Vector */
@@ -259,19 +258,19 @@ constexpr void hbmv(blas_order_type order,
             sum = impl::zero_v<PrdType>;
             for (j = 0, aij = astarti, xi = x_starti;
                  j < maxj_first; j++, aij += incaij, xi += incx) {
-              a_elem = a_i[aij];
+              a_elem = a[aij];
               x_elem = x_i[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
-            auto a_elem_r = std::real(a_i[aij]);
+            auto a_elem_r = std::real(a[aij]);
             x_elem = x_i[xi];
             prod = impl::mul<PrdType>(a_elem_r, x_elem);
             sum = sum + prod;
             aij += incaij2;
             xi += incx;
             for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
-              a_elem = impl::Conj::func(a_i[aij]);
+              a_elem = impl::Conj::func(a[aij]);
               x_elem = x_i[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
@@ -295,19 +294,19 @@ constexpr void hbmv(blas_order_type order,
             sum = impl::zero_v<PrdType>;
             for (j = 0, aij = astarti, xi = x_starti;
                  j < maxj_first; j++, aij += incaij, xi += incx) {
-              a_elem = a_i[aij];
+              a_elem = a[aij];
               x_elem = x_i[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
-            auto a_elem_r = std::real(a_i[aij]);
+            auto a_elem_r = std::real(a[aij]);
             x_elem = x_i[xi];
             prod = impl::mul<PrdType>(a_elem_r, x_elem);
             sum = sum + prod;
             aij += incaij2;
             xi += incx;
             for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
-              a_elem = impl::Conj::func(a_i[aij]);
+              a_elem = impl::Conj::func(a[aij]);
               x_elem = x_i[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
@@ -335,19 +334,19 @@ constexpr void hbmv(blas_order_type order,
           sum = impl::zero_v<PrdType>;
           for (j = 0, aij = astarti, xi = x_starti;
                j < maxj_first; j++, aij += incaij, xi += incx) {
-            a_elem = a_i[aij];
+            a_elem = a[aij];
             x_elem = x_i[xi];
             prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
-          auto a_elem_r = std::real(a_i[aij]);
+          auto a_elem_r = std::real(a[aij]);
           x_elem = x_i[xi];
           prod = impl::mul<PrdType>(a_elem_r, x_elem);
           sum = sum + prod;
           aij += incaij2;
           xi += incx;
           for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
-            a_elem = impl::Conj::func(a_i[aij]);
+            a_elem = impl::Conj::func(a[aij]);
             x_elem = x_i[xi];
             prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
@@ -380,19 +379,19 @@ constexpr void hbmv(blas_order_type order,
             sum = impl::zero_v<PrdType>;
             for (j = 0, aij = astarti, xi = x_starti;
                  j < maxj_first; j++, aij += incaij, xi += incx) {
-              a_elem = impl::Conj::func(a_i[aij]);
+              a_elem = impl::Conj::func(a[aij]);
               x_elem = x_i[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
-            auto a_elem_r = std::real(a_i[aij]);
+            auto a_elem_r = std::real(a[aij]);
             x_elem = x_i[xi];
             prod = impl::mul<PrdType>(a_elem_r, x_elem);
             sum = sum + prod;
             aij += incaij2;
             xi += incx;
             for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
-              a_elem = a_i[aij];
+              a_elem = a[aij];
               x_elem = x_i[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
@@ -416,19 +415,19 @@ constexpr void hbmv(blas_order_type order,
             sum = impl::zero_v<PrdType>;
             for (j = 0, aij = astarti, xi = x_starti;
                  j < maxj_first; j++, aij += incaij, xi += incx) {
-              a_elem = impl::Conj::func(a_i[aij]);
+              a_elem = impl::Conj::func(a[aij]);
               x_elem = x_i[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
             }
-            auto a_elem_r = std::real(a_i[aij]);
+            auto a_elem_r = std::real(a[aij]);
             x_elem = x_i[xi];
             prod = impl::mul<PrdType>(a_elem_r, x_elem);
             sum = sum + prod;
             aij += incaij2;
             xi += incx;
             for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
-              a_elem = a_i[aij];
+              a_elem = a[aij];
               x_elem = x_i[xi];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
@@ -456,19 +455,19 @@ constexpr void hbmv(blas_order_type order,
           sum = impl::zero_v<PrdType>;
           for (j = 0, aij = astarti, xi = x_starti;
                j < maxj_first; j++, aij += incaij, xi += incx) {
-            a_elem = impl::Conj::func(a_i[aij]);
+            a_elem = impl::Conj::func(a[aij]);
             x_elem = x_i[xi];
             prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;
           }
-          auto a_elem_r = std::real(a_i[aij]);
+          auto a_elem_r = std::real(a[aij]);
           x_elem = x_i[xi];
           prod = impl::mul<PrdType>(a_elem_r, x_elem);
           sum = sum + prod;
           aij += incaij2;
           xi += incx;
           for (j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
-            a_elem = a_i[aij];
+            a_elem = a[aij];
             x_elem = x_i[xi];
             prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;

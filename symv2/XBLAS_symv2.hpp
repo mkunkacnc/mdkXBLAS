@@ -95,7 +95,6 @@ constexpr void symv2(blas_order_type order,
   IdxType incai;
   IdxType incaij, incaij2;
 
-  const A *a_i = a;
   const X *x_head_i = x_head;
   const X *x_tail_i = x_tail;
   T *y_i = y;
@@ -163,7 +162,7 @@ constexpr void symv2(blas_order_type order,
     sum2 = impl::zero_v<PrdType>;
 
     for (j = 0, aij = ai, xi = xi0; j < i; j++, aij += incaij, xi += incx) {
-      a_elem = a_i[aij];
+      a_elem = a[aij];
       x_elem = x_head_i[xi];
       prod1 = impl::mul<PrdType>(a_elem, x_elem);
       sum1 = sum1 + prod1;
@@ -172,7 +171,7 @@ constexpr void symv2(blas_order_type order,
       sum2 = sum2 + prod2;
     }
     for (; j < n; j++, aij += incaij2, xi += incx) {
-      a_elem = a_i[aij];
+      a_elem = a[aij];
       x_elem = x_head_i[xi];
       prod1 = impl::mul<PrdType>(a_elem, x_elem);
       sum1 = sum1 + prod1;

@@ -105,11 +105,8 @@ constexpr void symm(blas_order_type order,
   IdxType m_i, n_i;
 
   /* Input Matrices */
-  const A *a_i = a;
-  const B *b_i = b;
 
   /* Output Matrix */
-  T *c_i = c;
 
   /* Input Scalars */
 
@@ -186,9 +183,9 @@ constexpr void symm(blas_order_type order,
   if (alpha == T(0)) {
     for (i = 0, ci = 0; i < m_i; i++, ci += incci) {
       for (j = 0, cij = ci; j < n_i; j++, cij += inccij) {
-        c_elem = c_i[cij];
+        c_elem = c[cij];
         tmp1 = impl::mul<TmpType>(c_elem, beta);
-        c_i[cij] = impl::to<T>(tmp1);
+        c[cij] = impl::to<T>(tmp1);
       }
     }
   } else if (alpha == T(1)) {
@@ -201,18 +198,18 @@ constexpr void symm(blas_order_type order,
           sum = impl::zero_v<PrdType>;
           for (k = 0, aik = ai, bkj = bj; k < i;
                k++, aik += incaik1, bkj += incbkj) {
-            a_elem = a_i[aik];
-            b_elem = b_i[bkj];
+            a_elem = a[aik];
+            b_elem = b[bkj];
             prod = impl::mul<PrdType>(a_elem, b_elem);
             sum = sum + prod;
           }
           for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-            a_elem = a_i[aik];
-            b_elem = b_i[bkj];
+            a_elem = a[aik];
+            b_elem = b[bkj];
             prod = impl::mul<PrdType>(a_elem, b_elem);
             sum = sum + prod;
           }
-          c_i[cij] = impl::to<T>(sum);
+          c[cij] = impl::to<T>(sum);
         }
       }
     } else {
@@ -225,22 +222,22 @@ constexpr void symm(blas_order_type order,
           sum = impl::zero_v<PrdType>;
           for (k = 0, aik = ai, bkj = bj; k < i;
                k++, aik += incaik1, bkj += incbkj) {
-            a_elem = a_i[aik];
-            b_elem = b_i[bkj];
+            a_elem = a[aik];
+            b_elem = b[bkj];
             prod = impl::mul<PrdType>(a_elem, b_elem);
             sum = sum + prod;
           }
           for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-            a_elem = a_i[aik];
-            b_elem = b_i[bkj];
+            a_elem = a[aik];
+            b_elem = b[bkj];
             prod = impl::mul<PrdType>(a_elem, b_elem);
             sum = sum + prod;
           }
-          c_elem = c_i[cij];
+          c_elem = c[cij];
           tmp2 = impl::mul<TmpType>(c_elem, beta);
           tmp1 = sum;
           tmp1 = tmp2 + tmp1;
-          c_i[cij] = impl::to<T>(tmp1);
+          c[cij] = impl::to<T>(tmp1);
         }
       }
     }
@@ -256,22 +253,22 @@ constexpr void symm(blas_order_type order,
 
         for (k = 0, aik = ai, bkj = bj; k < i;
              k++, aik += incaik1, bkj += incbkj) {
-          a_elem = a_i[aik];
-          b_elem = b_i[bkj];
+          a_elem = a[aik];
+          b_elem = b[bkj];
           prod = impl::mul<PrdType>(a_elem, b_elem);
           sum = sum + prod;
         }
         for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-          a_elem = a_i[aik];
-          b_elem = b_i[bkj];
+          a_elem = a[aik];
+          b_elem = b[bkj];
           prod = impl::mul<PrdType>(a_elem, b_elem);
           sum = sum + prod;
         }
         tmp1 = impl::mul<TmpType>(sum, alpha);
-        c_elem = c_i[cij];
+        c_elem = c[cij];
         tmp2 = impl::mul<TmpType>(c_elem, beta);
         tmp1 = tmp1 + tmp2;
-        c_i[cij] = impl::to<T>(tmp1);
+        c[cij] = impl::to<T>(tmp1);
       }
     }
   }
@@ -379,8 +376,8 @@ constexpr void symm_x(blas_order_type order,
   case blas_prec_double:
     XBLAS::symm<T, A, B, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
     break;
-  case blas_prec_indigenous:
-    XBLAS::symm<T, A, B, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
+  case blas_precndigenous:
+    XBLAS::symm<T, A, B, N, impl::internal_precision_t<T, blas_precndigenous>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);
     break;
   case blas_prec_extra:
     XBLAS::symm<T, A, B, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, side, uplo, m, n, alpha, a, lda, b, ldb, beta, c, ldc);

@@ -87,7 +87,6 @@ constexpr void gemv(blas_order_type order,
   IdxType ai, aij;
   IdxType incai, incaij;
 
-  const A *a_i = a;
   const X *x_i = x;
   T *y_i = y;
   A a_elem;
@@ -178,7 +177,7 @@ constexpr void gemv(blas_order_type order,
               aij = ai;
               jx = kx;
               for (j = 0; j < lenx; j++) {
-                a_elem = impl::Conj::func(a_i[aij]);
+                a_elem = impl::Conj::func(a[aij]);
                 x_elem = x_i[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
@@ -197,7 +196,7 @@ constexpr void gemv(blas_order_type order,
               aij = ai;
               jx = kx;
               for (j = 0; j < lenx; j++) {
-                a_elem = impl::Conj::func(a_i[aij]);
+                a_elem = impl::Conj::func(a[aij]);
                 x_elem = x_i[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
@@ -219,7 +218,7 @@ constexpr void gemv(blas_order_type order,
             aij = ai;
             jx = kx;
             for (j = 0; j < lenx; j++) {
-              a_elem = impl::Conj::func(a_i[aij]);
+              a_elem = impl::Conj::func(a[aij]);
               x_elem = x_i[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
@@ -247,7 +246,7 @@ constexpr void gemv(blas_order_type order,
               aij = ai;
               jx = kx;
               for (j = 0; j < lenx; j++) {
-                a_elem = a_i[aij];
+                a_elem = a[aij];
                 x_elem = x_i[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
@@ -266,7 +265,7 @@ constexpr void gemv(blas_order_type order,
               aij = ai;
               jx = kx;
               for (j = 0; j < lenx; j++) {
-                a_elem = a_i[aij];
+                a_elem = a[aij];
                 x_elem = x_i[jx];
                 prod = impl::mul<PrdType>(a_elem, x_elem);
                 sum = sum + prod;
@@ -288,7 +287,7 @@ constexpr void gemv(blas_order_type order,
             aij = ai;
             jx = kx;
             for (j = 0; j < lenx; j++) {
-              a_elem = a_i[aij];
+              a_elem = a[aij];
               x_elem = x_i[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
@@ -317,7 +316,7 @@ constexpr void gemv(blas_order_type order,
             aij = ai;
             jx = kx;
             for (j = 0; j < lenx; j++) {
-              a_elem = a_i[aij];
+              a_elem = a[aij];
               x_elem = x_i[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
@@ -336,7 +335,7 @@ constexpr void gemv(blas_order_type order,
             aij = ai;
             jx = kx;
             for (j = 0; j < lenx; j++) {
-              a_elem = a_i[aij];
+              a_elem = a[aij];
               x_elem = x_i[jx];
               prod = impl::mul<PrdType>(a_elem, x_elem);
               sum = sum + prod;
@@ -358,7 +357,7 @@ constexpr void gemv(blas_order_type order,
           aij = ai;
           jx = kx;
           for (j = 0; j < lenx; j++) {
-            a_elem = a_i[aij];
+            a_elem = a[aij];
             x_elem = x_i[jx];
             prod = impl::mul<PrdType>(a_elem, x_elem);
             sum = sum + prod;

@@ -108,11 +108,8 @@ constexpr void gemm(blas_order_type order,
   IdxType incci, inccij;                /* Index increments for matrix c */
 
   /* Input Matrices */
-  const A *a_i = a;
-  const B *b_i = b;
 
   /* Output Matrix */
-  T *c_i = c;
 
   /* Input Scalars */
 
@@ -233,9 +230,9 @@ constexpr void gemm(blas_order_type order,
     for (i = 0; i < m; i++, ci += incci) {
       cij = ci;
       for (j = 0; j < n; j++, cij += inccij) {
-        c_elem = c_i[cij];
+        c_elem = c[cij];
         tmp1 = impl::mul<TmpType>(c_elem, beta);
-        c_i[cij] = impl::to<T>(tmp1);
+        c[cij] = impl::to<T>(tmp1);
       }
     }
   } else if (alpha == T(1)) {
@@ -252,8 +249,8 @@ constexpr void gemm(blas_order_type order,
           bhj = bj;
           sum = impl::zero_v<PrdType>;
           for (h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
-            a_elem = a_i[aih];
-            b_elem = b_i[bhj];
+            a_elem = a[aih];
+            b_elem = b[bhj];
             if constexpr (impl::is_complex_v<A>) {
               if (transa == blas_conj_trans)
                 a_elem = impl::Conj::func(a_elem);
@@ -265,7 +262,7 @@ constexpr void gemm(blas_order_type order,
             prod = impl::mul<PrdType>(a_elem, b_elem);
             sum = sum + prod;
           }
-          c_i[cij] = impl::to<T>(sum);
+          c[cij] = impl::to<T>(sum);
         }
       }
     } else {
@@ -281,8 +278,8 @@ constexpr void gemm(blas_order_type order,
           bhj = bj;
           sum = impl::zero_v<PrdType>;
           for (h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
-            a_elem = a_i[aih];
-            b_elem = b_i[bhj];
+            a_elem = a[aih];
+            b_elem = b[bhj];
             if constexpr (impl::is_complex_v<A>) {
               if (transa == blas_conj_trans)
                 a_elem = impl::Conj::func(a_elem);
@@ -294,11 +291,11 @@ constexpr void gemm(blas_order_type order,
             prod = impl::mul<PrdType>(a_elem, b_elem);
             sum = sum + prod;
           }
-          c_elem = c_i[cij];
+          c_elem = c[cij];
           tmp2 = impl::mul<TmpType>(c_elem, beta);
           tmp1 = sum;
           tmp1 = tmp2 + tmp1;
-          c_i[cij] = impl::to<T>(tmp1);
+          c[cij] = impl::to<T>(tmp1);
         }
       }
     }
@@ -314,8 +311,8 @@ constexpr void gemm(blas_order_type order,
         bhj = bj;
         sum = impl::zero_v<PrdType>;
         for (h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
-          a_elem = a_i[aih];
-          b_elem = b_i[bhj];
+          a_elem = a[aih];
+          b_elem = b[bhj];
           if constexpr (impl::is_complex_v<A>) {
             if (transa == blas_conj_trans)
               a_elem = impl::Conj::func(a_elem);
@@ -328,10 +325,10 @@ constexpr void gemm(blas_order_type order,
           sum = sum + prod;
         }
         tmp1 = impl::mul<TmpType>(sum, alpha);
-        c_elem = c_i[cij];
+        c_elem = c[cij];
         tmp2 = impl::mul<TmpType>(c_elem, beta);
         tmp1 = tmp1 + tmp2;
-        c_i[cij] = impl::to<T>(tmp1);
+        c[cij] = impl::to<T>(tmp1);
       }
     }
   }
@@ -443,8 +440,8 @@ constexpr void gemm_x(blas_order_type order,
   case blas_prec_double:
     XBLAS::gemm<T, A, B, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(order, transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
     break;
-  case blas_prec_indigenous:
-    XBLAS::gemm<T, A, B, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(order, transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
+  case blas_precndigenous:
+    XBLAS::gemm<T, A, B, N, impl::internal_precision_t<T, blas_precndigenous>, IdxType>(order, transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
     break;
   case blas_prec_extra:
     XBLAS::gemm<T, A, B, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(order, transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
