@@ -1,12 +1,21 @@
 #ifndef XBLAS_TPMV_HPP
 #define XBLAS_TPMV_HPP
 
-#include "blas_extended_private.h"
+#include "blas_enum.h"
 #include "common/XBLAS_impl.hpp"
 
 //---------------
 namespace XBLAS {
 //---------------
+
+//--------------
+namespace impl {
+//--------------
+
+
+//-----------------
+} // namespace impl
+//-----------------
 
 template<typename T,
          typename A,
