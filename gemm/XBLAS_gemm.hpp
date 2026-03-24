@@ -8,6 +8,83 @@
 namespace XBLAS {
 //---------------
 
+//--------------
+namespace impl {
+//--------------
+
+template<int need_alpha,
+         int need_beta,
+         typename TmpType,
+         typename PrdType,
+         typename T,
+         typename A,
+         typename B,
+         typename N,
+         typename IdxType>
+constexpr void gemm_impl(blas_trans_type transa,
+                         blas_trans_type transb,
+                         N m,
+                         N n,
+                         N k,
+                         T alpha,
+                         const A *a,
+                         const B *b,
+                         T beta,
+                         T *c,
+                         IdxType incai,
+                         IdxType incbj,
+                         IdxType incci,
+                         IdxType incaih,
+                         IdxType incbhj,
+                         IdxType inccij)
+{
+  IdxType ci = 0;
+  IdxType ai = 0;
+  for (IdxType i = 0; i < m; i++, ci += incci, ai += incai) {
+    IdxType cij = ci;
+    IdxType bj = 0;
+    for (IdxType j = 0; j < n; j++, cij += inccij, bj += incbj) {
+      IdxType aih = ai;
+      IdxType bhj = bj;
+      PrdType sum = impl::zero_v<PrdType>;
+      for (IdxType h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
+        A a_elem = a[aih];
+        B b_elem = b[bhj];
+        if constexpr (impl::is_complex_v<A>) {
+          if (transa == blas_conj_trans)
+            a_elem = impl::Conj::func(a_elem);
+        }
+        if constexpr (impl::is_complex_v<B>) {
+          if (transb == blas_conj_trans)
+            b_elem = impl::Conj::func(b_elem);
+        }
+        PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
+        sum = sum + prod;
+      }
+
+      if constexpr (need_alpha == 1) {
+        if constexpr (need_beta == 0) {
+          c[cij] = impl::to<T>(sum);
+        } else {
+          TmpType tmp1 = sum;
+          TmpType tmp2 = impl::mul<TmpType>(c[cij], beta);
+          tmp1 += tmp2;
+          c[cij] = impl::to<T>(tmp1);
+        }
+      } else {
+        TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
+        TmpType tmp2 = impl::mul<TmpType>(c[cij], beta);
+        tmp1 += tmp2;
+        c[cij] = impl::to<T>(tmp1);
+      }
+    }
+  }
+} /* end XBLAS::impl::gemm_impl */
+
+//-----------------
+} // namespace impl
+//-----------------
+
 template<typename T,
          typename A,
          typename B,
@@ -219,98 +296,18 @@ constexpr void gemm(blas_order_type order,
     /* Case alpha == 1. */
     if (beta == T(0)) {
       /* Case alpha == 1, beta == 0.   We compute  C <--- A * B */
-      IdxType ci = 0;
-      IdxType ai = 0;
-      for (IdxType i = 0; i < m; i++, ci += incci, ai += incai) {
-        IdxType cij = ci;
-        IdxType bj = 0;
-        for (IdxType j = 0; j < n; j++, cij += inccij, bj += incbj) {
-          IdxType aih = ai;
-          IdxType bhj = bj;
-          PrdType sum = impl::zero_v<PrdType>;
-          for (IdxType h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
-            A a_elem = a[aih];
-            B b_elem = b[bhj];
-            if constexpr (impl::is_complex_v<A>) {
-              if (transa == blas_conj_trans)
-                a_elem = impl::Conj::func(a_elem);
-            }
-            if constexpr (impl::is_complex_v<B>) {
-              if (transb == blas_conj_trans)
-                b_elem = impl::Conj::func(b_elem);
-            }
-            PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
-            sum = sum + prod;
-          }
-          c[cij] = impl::to<T>(sum);
-        }
-      }
+      impl::gemm_impl<1, 0, TmpType, PrdType>(transa, transb, m, n, k, alpha, a, b, beta, c,
+                                              incai, incbj, incci, incaih, incbhj, inccij);
     } else {
       /* Case alpha == 1, but beta != 0.
          We compute   C <--- A * B + beta * C   */
-      IdxType ci = 0;
-      IdxType ai = 0;
-      for (IdxType i = 0; i < m; i++, ci += incci, ai += incai) {
-        IdxType cij = ci;
-        IdxType bj = 0;
-        for (IdxType j = 0; j < n; j++, cij += inccij, bj += incbj) {
-          IdxType aih = ai;
-          IdxType bhj = bj;
-          PrdType sum = impl::zero_v<PrdType>;
-          for (IdxType h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
-            A a_elem = a[aih];
-            B b_elem = b[bhj];
-            if constexpr (impl::is_complex_v<A>) {
-              if (transa == blas_conj_trans)
-                a_elem = impl::Conj::func(a_elem);
-            }
-            if constexpr (impl::is_complex_v<B>) {
-              if (transb == blas_conj_trans)
-                b_elem = impl::Conj::func(b_elem);
-            }
-            PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
-            sum = sum + prod;
-          }
-          T c_elem = c[cij];
-          TmpType tmp2 = impl::mul<TmpType>(c_elem, beta);
-          TmpType tmp1 = sum;
-          tmp1 = tmp2 + tmp1;
-          c[cij] = impl::to<T>(tmp1);
-        }
-      }
+      impl::gemm_impl<1, -1, TmpType, PrdType>(transa, transb, m, n, k, alpha, a, b, beta, c,
+                                               incai, incbj, incci, incaih, incbhj, inccij);
     }
   } else {
     /* The most general form,   C <-- alpha * A * B + beta * C  */
-    IdxType ci = 0;
-    IdxType ai = 0;
-    for (IdxType i = 0; i < m; i++, ci += incci, ai += incai) {
-      IdxType cij = ci;
-      IdxType bj = 0;
-      for (IdxType j = 0; j < n; j++, cij += inccij, bj += incbj) {
-        IdxType aih = ai;
-        IdxType bhj = bj;
-        PrdType sum = impl::zero_v<PrdType>;
-        for (IdxType h = 0; h < k; h++, aih += incaih, bhj += incbhj) {
-          A a_elem = a[aih];
-          B b_elem = b[bhj];
-          if constexpr (impl::is_complex_v<A>) {
-            if (transa == blas_conj_trans)
-              a_elem = impl::Conj::func(a_elem);
-          }
-          if constexpr (impl::is_complex_v<B>) {
-            if (transb == blas_conj_trans)
-              b_elem = impl::Conj::func(b_elem);
-          }
-          PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
-          sum = sum + prod;
-        }
-        TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
-        T c_elem = c[cij];
-        TmpType tmp2 = impl::mul<TmpType>(c_elem, beta);
-        tmp1 = tmp1 + tmp2;
-        c[cij] = impl::to<T>(tmp1);
-      }
-    }
+    impl::gemm_impl<-1, -1, TmpType, PrdType>(transa, transb, m, n, k, alpha, a, b, beta, c,
+                                              incai, incbj, incci, incaih, incbhj, inccij);
   }
 
   if constexpr (impl::uses_double_double_v<TmpType>) {
