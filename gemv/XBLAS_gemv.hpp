@@ -12,6 +12,64 @@ namespace XBLAS {
 namespace impl {
 //--------------
 
+template<int do_conj,
+         int need_alpha,
+         int need_beta,
+         typename TmpType,
+         typename PrdType,
+         typename T,
+         typename A,
+         typename X,
+         typename N,
+         typename IdxType>
+constexpr void gemv_impl(T alpha,
+                         const A *a,
+                         const X *x,
+                         N incx,
+                         T beta,
+                         T *y,
+                         N incy,
+                         IdxType kx,
+                         IdxType ky,
+                         IdxType lenx,
+                         IdxType leny,
+                         IdxType incai,
+                         IdxType incaij)
+{
+  IdxType ai = 0;
+  IdxType iy = ky;
+  for (IdxType i = 0; i < leny; i++) {
+    PrdType sum = impl::zero_v<PrdType>;
+    IdxType aij = ai;
+    IdxType jx = kx;
+    for (IdxType j = 0; j < lenx; j++) {
+      A a_elem = impl::Conj_h<do_conj>::func(a[aij]);
+      X x_elem = x[jx];
+      PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
+      sum = sum + prod;
+      aij += incaij;
+      jx += incx;
+    }
+
+    if constexpr (need_beta == 0) {
+      if constexpr (need_alpha == 1) {
+        y[iy] = impl::to<T>(sum);
+      } else {
+        TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
+        y[iy] = impl::to<T>(tmp1);
+      }
+    } else {
+      TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
+      T y_elem = y[iy];
+      TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
+      tmp1 = tmp1 + tmp2;
+      y[iy] = impl::to<T>(tmp1);
+    }
+
+    ai += incai;
+    iy += incy;
+  }
+}
 
 //-----------------
 } // namespace impl
@@ -90,12 +148,6 @@ constexpr void gemv(blas_order_type order,
 
   FPU_FIX_DECL;
 
-  IdxType iy, jx, kx, ky;
-  IdxType lenx, leny;
-  IdxType ai, aij;
-  IdxType incai, incaij;
-
-
   /* all error calls */
   if (m < 0)
     BLAS_error(routine_name, -3, m, nullptr);
@@ -106,6 +158,13 @@ constexpr void gemv(blas_order_type order,
   else if (incy == 0)
     BLAS_error(routine_name, -12, incy, nullptr);
 
+  if ((order == blas_colmajor && lda < m) ||
+      (order == blas_rowmajor && lda < n)) {
+    BLAS_error(routine_name, -7, lda, nullptr);
+  }
+
+  IdxType lenx, leny;
+  IdxType incai, incaij;
   if ((order == blas_rowmajor) && (trans == blas_no_trans)) {
     lenx = n;
     leny = m;
@@ -128,36 +187,34 @@ constexpr void gemv(blas_order_type order,
     incaij = 1;
   }
 
-  if ((order == blas_colmajor && lda < m) ||
-      (order == blas_rowmajor && lda < n))
-    BLAS_error(routine_name, -7, lda, nullptr);
-
-  if constexpr (impl::uses_double_double_v<TmpType>) {
-    FPU_FIX_START;
-  }
-
+  IdxType kx;
   if (incx > 0)
     kx = 0;
   else
     kx = (1 - lenx) * incx;
+
+  IdxType ky;
   if (incy > 0)
     ky = 0;
   else
     ky = (1 - leny) * incy;
 
+  if constexpr (impl::uses_double_double_v<TmpType>) {
+    FPU_FIX_START;
+  }
+
   /* No extra-precision needed for alpha = 0 */
   if (alpha == T(0)) {
     if (beta == T(0)) {
-      iy = ky;
+      IdxType iy = ky;
       for (IdxType i = 0; i < leny; i++) {
         y[iy] = T(0);
         iy += incy;
       }
     } else if (beta != T(0)) {
-      iy = ky;
+      IdxType iy = ky;
       for (IdxType i = 0; i < leny; i++) {
-        T y_elem = y[iy];
-        TmpType tmp1 = impl::mul<TmpType>(y_elem, beta);
+        TmpType tmp1 = impl::mul<TmpType>(y[iy], beta);
         y[iy] = impl::to<T>(tmp1);
         iy += incy;
       }
@@ -169,138 +226,32 @@ constexpr void gemv(blas_order_type order,
         if (beta == T(0)) {
           /* save m more multiplies if alpha = 1 */
           if (alpha == T(1)) {
-            ai = 0;
-            iy = ky;
-            for (IdxType i = 0; i < leny; i++) {
-              PrdType sum = impl::zero_v<PrdType>;
-              aij = ai;
-              jx = kx;
-              for (IdxType j = 0; j < lenx; j++) {
-                A a_elem = impl::Conj::func(a[aij]);
-                X x_elem = x[jx];
-                PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-                sum = sum + prod;
-                aij += incaij;
-                jx += incx;
-              }
-              y[iy] = impl::to<T>(sum);
-              ai += incai;
-              iy += incy;
-            }
+            impl::gemv_impl<1,  1, 0, TmpType, PrdType>(alpha, a, x, incx, beta, y, incy,
+                                                        kx, ky, lenx, leny, incai, incaij);
           } else {
-            ai = 0;
-            iy = ky;
-            for (IdxType i = 0; i < leny; i++) {
-              PrdType sum = impl::zero_v<PrdType>;
-              aij = ai;
-              jx = kx;
-              for (IdxType j = 0; j < lenx; j++) {
-                A a_elem = impl::Conj::func(a[aij]);
-                X x_elem = x[jx];
-                PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-                sum = sum + prod;
-                aij += incaij;
-                jx += incx;
-              }
-              TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
-              y[iy] = impl::to<T>(tmp1);
-              ai += incai;
-              iy += incy;
-            }
+            impl::gemv_impl<1, -1, 0, TmpType, PrdType>(alpha, a, x, incx, beta, y, incy,
+                                                        kx, ky, lenx, leny, incai, incaij);
           }
         } else {
           /* the most general form, y = alpha*A*x + beta*y */
-          ai = 0;
-          iy = ky;
-          for (IdxType i = 0; i < leny; i++) {
-            PrdType sum = impl::zero_v<PrdType>;
-            aij = ai;
-            jx = kx;
-            for (IdxType j = 0; j < lenx; j++) {
-              A a_elem = impl::Conj::func(a[aij]);
-              X x_elem = x[jx];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-              aij += incaij;
-              jx += incx;
-            }
-            TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
-            T y_elem = y[iy];
-            TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
-            tmp1 = tmp1 + tmp2;
-            y[iy] = impl::to<T>(tmp1);
-            ai += incai;
-            iy += incy;
-          }
+          impl::gemv_impl<1, -1, -1, TmpType, PrdType>(alpha, a, x, incx, beta, y, incy,
+                                                       kx, ky, lenx, leny, incai, incaij);
         }
       } else {
         /* if beta = 0, we can save m multiplies: y = alpha*A*x */
         if (beta == T(0)) {
           /* save m more multiplies if alpha = 1 */
           if (alpha == T(1)) {
-            ai = 0;
-            iy = ky;
-            for (IdxType i = 0; i < leny; i++) {
-              PrdType sum = impl::zero_v<PrdType>;
-              aij = ai;
-              jx = kx;
-              for (IdxType j = 0; j < lenx; j++) {
-                A a_elem = a[aij];
-                X x_elem = x[jx];
-                PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-                sum = sum + prod;
-                aij += incaij;
-                jx += incx;
-              }
-              y[iy] = impl::to<T>(sum);
-              ai += incai;
-              iy += incy;
-            }
+            impl::gemv_impl<0,  1, 0, TmpType, PrdType>(alpha, a, x, incx, beta, y, incy,
+                                                        kx, ky, lenx, leny, incai, incaij);
           } else {
-            ai = 0;
-            iy = ky;
-            for (IdxType i = 0; i < leny; i++) {
-              PrdType sum = impl::zero_v<PrdType>;
-              aij = ai;
-              jx = kx;
-              for (IdxType j = 0; j < lenx; j++) {
-                A a_elem = a[aij];
-                X x_elem = x[jx];
-                PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-                sum = sum + prod;
-                aij += incaij;
-                jx += incx;
-              }
-              TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
-              y[iy] = impl::to<T>(tmp1);
-              ai += incai;
-              iy += incy;
-            }
+            impl::gemv_impl<0, -1, 0, TmpType, PrdType>(alpha, a, x, incx, beta, y, incy,
+                                                        kx, ky, lenx, leny, incai, incaij);
           }
         } else {
           /* the most general form, y = alpha*A*x + beta*y */
-          ai = 0;
-          iy = ky;
-          for (IdxType i = 0; i < leny; i++) {
-            PrdType sum = impl::zero_v<PrdType>;
-            aij = ai;
-            jx = kx;
-            for (IdxType j = 0; j < lenx; j++) {
-              A a_elem = a[aij];
-              X x_elem = x[jx];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-              aij += incaij;
-              jx += incx;
-            }
-            TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
-            T y_elem = y[iy];
-            TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
-            tmp1 = tmp1 + tmp2;
-            y[iy] = impl::to<T>(tmp1);
-            ai += incai;
-            iy += incy;
-          }
+          impl::gemv_impl<0, -1, -1, TmpType, PrdType>(alpha, a, x, incx, beta, y, incy,
+                                                       kx, ky, lenx, leny, incai, incaij);
         }
       }
     } else {
@@ -308,69 +259,16 @@ constexpr void gemv(blas_order_type order,
       if (beta == T(0)) {
         /* save m more multiplies if alpha = 1 */
         if (alpha == T(1)) {
-          ai = 0;
-          iy = ky;
-          for (IdxType i = 0; i < leny; i++) {
-            PrdType sum = impl::zero_v<PrdType>;
-            aij = ai;
-            jx = kx;
-            for (IdxType j = 0; j < lenx; j++) {
-              A a_elem = a[aij];
-              X x_elem = x[jx];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-              aij += incaij;
-              jx += incx;
-            }
-            y[iy] = impl::to<T>(sum);
-            ai += incai;
-            iy += incy;
-          }
+          impl::gemv_impl<0,  1, 0, TmpType, PrdType>(alpha, a, x, incx, beta, y, incy,
+                                                      kx, ky, lenx, leny, incai, incaij);
         } else {
-          ai = 0;
-          iy = ky;
-          for (IdxType i = 0; i < leny; i++) {
-            PrdType sum = impl::zero_v<PrdType>;
-            aij = ai;
-            jx = kx;
-            for (IdxType j = 0; j < lenx; j++) {
-              A a_elem = a[aij];
-              X x_elem = x[jx];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-              aij += incaij;
-              jx += incx;
-            }
-            TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
-            y[iy] = impl::to<T>(tmp1);
-            ai += incai;
-            iy += incy;
-          }
+          impl::gemv_impl<0, -1, 0, TmpType, PrdType>(alpha, a, x, incx, beta, y, incy,
+                                                      kx, ky, lenx, leny, incai, incaij);
         }
       } else {
         /* the most general form, y = alpha*A*x + beta*y */
-        ai = 0;
-        iy = ky;
-        for (IdxType i = 0; i < leny; i++) {
-          PrdType sum = impl::zero_v<PrdType>;
-          aij = ai;
-          jx = kx;
-          for (IdxType j = 0; j < lenx; j++) {
-            A a_elem = a[aij];
-            X x_elem = x[jx];
-            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-            sum = sum + prod;
-            aij += incaij;
-            jx += incx;
-          }
-          TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
-          T y_elem = y[iy];
-          TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
-          tmp1 = tmp1 + tmp2;
-          y[iy] = impl::to<T>(tmp1);
-          ai += incai;
-          iy += incy;
-        }
+        impl::gemv_impl<0, -1, -1, TmpType, PrdType>(alpha, a, x, incx, beta, y, incy,
+                                                     kx, ky, lenx, leny, incai, incaij);
       }
     }
   }
