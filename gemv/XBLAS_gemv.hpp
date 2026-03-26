@@ -44,9 +44,8 @@ constexpr void gemv_impl(T alpha,
     IdxType jx = kx;
     for (IdxType j = 0; j < lenx; j++) {
       A a_elem = impl::Conj_h<do_conj>::func(a[aij]);
-      X x_elem = x[jx];
-      PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-      sum = sum + prod;
+      PrdType prod = impl::mul<PrdType>(a_elem, x[jx]);
+      sum += prod;
       aij += incaij;
       jx += incx;
     }
@@ -60,16 +59,15 @@ constexpr void gemv_impl(T alpha,
       }
     } else {
       TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
-      T y_elem = y[iy];
-      TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
-      tmp1 = tmp1 + tmp2;
+      TmpType tmp2 = impl::mul<TmpType>(y[iy], beta);
+      tmp1 += tmp2;
       y[iy] = impl::to<T>(tmp1);
     }
 
     ai += incai;
     iy += incy;
   }
-}
+} /* end XBLAS::impl::gemv_impl */
 
 //-----------------
 } // namespace impl
