@@ -12,6 +12,98 @@ namespace XBLAS {
 namespace impl {
 //--------------
 
+template<int do_conj1,
+         int do_conj2,
+         int need_alpha,
+         int need_beta,
+         typename TmpType,
+         typename PrdType,
+         typename T,
+         typename A,
+         typename X,
+         typename N,
+         typename IdxType>
+constexpr void hbmv_impl(N n,
+                         N k,
+                         T alpha,
+                         const A *a,
+                         const X *x,
+                         N incx,
+                         T beta,
+                         T *y,
+                         N incy,
+                         IdxType x_starti,
+                         IdxType y_starti,
+                         IdxType astarti,
+                         IdxType incaij,
+                         IdxType incaij2)
+{
+  /*  determine the loop iteration counts */
+  /* maj_first is number of elements done in first loop
+     (this will increase by one over each column up to a limit) */
+  IdxType maxj_first = 0;
+
+  /* maxj_second is number of elements done in
+     second loop the first time */
+  IdxType maxj_second = std::min(k + 1, n);
+
+  IdxType yi = y_starti;
+  for (IdxType i = 0; i < n; i++) {
+    PrdType sum = impl::zero_v<PrdType>;
+    IdxType aij = astarti;
+    IdxType xi = x_starti;
+
+    for (IdxType j = 0; j < maxj_first; j++) {
+      A a_elem = impl::Conj_h<do_conj1>::func(a[aij]);
+      PrdType prod = impl::mul<PrdType>(a_elem, x[xi]);
+      sum += prod;
+      aij += incaij;
+      xi += incx;
+    }
+
+    auto a_elem_r = impl::Real::func(a[aij]);
+    PrdType prod = impl::mul<PrdType>(a_elem_r, x[xi]);
+    sum += prod;
+    aij += incaij2;
+    xi += incx;
+
+    for (IdxType j = 1; j < maxj_second; j++) {
+      A a_elem = impl::Conj_h<do_conj2>::func(a[aij]);
+      PrdType prod = impl::mul<PrdType>(a_elem, x[xi]);
+      sum += prod;
+      aij += incaij2;
+      xi += incx;
+    }
+
+    if constexpr (need_alpha == 1) {
+      if constexpr (need_beta == 0) {
+        y[yi] = impl::to<T>(sum);
+      } else {
+        TmpType tmp1 = sum;
+        TmpType tmp2 = impl::mul<TmpType>(y[yi], beta);
+        tmp1 += tmp2;
+        y[yi] = impl::to<T>(tmp1);
+      }
+    } else {
+      TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
+      TmpType tmp2 = impl::mul<TmpType>(y[yi], beta);
+      tmp1 += tmp2;
+      y[yi] = impl::to<T>(tmp1);
+    }
+
+    yi += incy;
+    if (i + 1 >= (n - k)) {
+      maxj_second--;
+    }
+    if (i >= k) {
+      astarti += (incaij + incaij2);
+      x_starti += incx;
+    } else {
+      maxj_first++;
+      astarti += incaij2;
+    }
+  }
+} /* end XBLAS::impl::hbmv_impl */
 
 //-----------------
 } // namespace impl
@@ -153,22 +245,6 @@ constexpr void hbmv(blas_order_type order,
 
   FPU_FIX_DECL;
 
-  /* Integer Index Variables */
-  IdxType i, j;
-  IdxType xi, yi;
-  IdxType aij, astarti, x_starti, y_starti;
-  IdxType incaij, incaij2;
-  IdxType n_i;
-  IdxType maxj_first, maxj_second;
-
-  /* Input Matrices */
-
-  /* Output Vector */
-
-  /* Input Scalars */
-
-  /* Temporary Floating-Point Variables */
-
   /* Test for no-op */
   if (n <= 0) {
     return;
@@ -200,13 +276,11 @@ constexpr void hbmv(blas_order_type order,
     BLAS_error(routine_name, -12, incy, nullptr);
   }
 
-  /* Set Index Parameters */
-  n_i = n;
-
+  IdxType astarti, incaij, incaij2;
   if (((uplo == blas_upper) && (order == blas_colmajor)) ||
       ((uplo == blas_lower) && (order == blas_rowmajor))) {
-    incaij = 1;                        /* increment in first loop */
-    incaij2 = lda - 1;                /* increment in second loop */
+    incaij = 1;                 /* increment in first loop */
+    incaij2 = lda - 1;          /* increment in second loop */
     astarti = k;                /* does not start on zero element */
   } else {
     incaij = lda - 1;
@@ -214,13 +288,16 @@ constexpr void hbmv(blas_order_type order,
     astarti = 0;                /* start on first element of array */
   }
 
+  IdxType x_starti;
   if (incx < 0) {
-    x_starti = (-n_i + 1) * incx;
+    x_starti = (-n + 1) * incx;
   } else {
     x_starti = 0;
   }
+
+  IdxType y_starti;
   if (incy < 0) {
-    y_starti = (-n_i + 1) * incy;
+    y_starti = (-n + 1) * incy;
   } else {
     y_starti = 0;
   }
@@ -231,21 +308,13 @@ constexpr void hbmv(blas_order_type order,
 
   /* alpha = 0.  In this case, just return beta * y */
   if (alpha == T(0)) {
-    for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-      T y_elem = y[yi];
-      TmpType tmp1 = impl::mul<TmpType>(y_elem, beta);
+    IdxType yi = y_starti;
+    for (IdxType i = 0; i < n; i++) {
+      TmpType tmp1 = impl::mul<TmpType>(y[yi], beta);
       y[yi] = impl::to<T>(tmp1);
+      yi += incy;
     }
   } else {
-    /*  determine the loop iteration counts */
-    /* maj_first is number of elements done in first loop
-       (this will increase by one over each column up to a limit) */
-    maxj_first = 0;
-
-    /* maxj_second is number of elements done in
-       second loop the first time */
-    maxj_second = std::min(k + 1, n_i);
-
     /*  determine whether we conjugate in first loop or second loop */
     if (uplo == blas_lower) {
       /*  conjugate second loop */
@@ -254,119 +323,18 @@ constexpr void hbmv(blas_order_type order,
       if (alpha == T(1)) {
         if (beta == T(0)) {
           /* Case alpha = 1, beta = 0.  We compute  y <--- A * x */
-          for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-            PrdType sum = impl::zero_v<PrdType>;
-            for (j = 0, aij = astarti, xi = x_starti;
-                 j < maxj_first; j++, aij += incaij, xi += incx) {
-              A a_elem = a[aij];
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            auto a_elem_r = std::real(a[aij]);
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem_r, x_elem);
-            sum = sum + prod;
-            aij += incaij2;
-            xi += incx;
-            for (IdxType j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
-              A a_elem = impl::Conj::func(a[aij]);
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            y[yi] = impl::to<T>(sum);
-            if (i + 1 >= (n_i - k)) {
-              maxj_second--;
-            }
-            if (i >= k) {
-              astarti += (incaij + incaij2);
-              x_starti += incx;
-            } else {
-              maxj_first++;
-              astarti += incaij2;
-            }
-          }
+          impl::hbmv_impl<0, 1,  1,  0, TmpType, PrdType>(n, k, alpha, a, x, incx, beta, y, incy,
+                                                          x_starti, y_starti, astarti, incaij, incaij2);
         } else {
           /* Case alpha = 1, but beta != 0.
              We compute  y  <--- A * x + beta * y */
-          for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-            PrdType sum = impl::zero_v<PrdType>;
-            for (j = 0, aij = astarti, xi = x_starti;
-                 j < maxj_first; j++, aij += incaij, xi += incx) {
-              A a_elem = a[aij];
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            auto a_elem_r = std::real(a[aij]);
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem_r, x_elem);
-            sum = sum + prod;
-            aij += incaij2;
-            xi += incx;
-            for (IdxType j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
-              A a_elem = impl::Conj::func(a[aij]);
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            T y_elem = y[yi];
-            TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
-            TmpType tmp1 = sum;
-            tmp1 = tmp2 + tmp1;
-            y[yi] = impl::to<T>(tmp1);
-            if (i + 1 >= (n_i - k)) {
-              maxj_second--;
-            }
-            if (i >= k) {
-              astarti += (incaij + incaij2);
-              x_starti += incx;
-            } else {
-              maxj_first++;
-              astarti += incaij2;
-            }
-          }
+          impl::hbmv_impl<0, 1,  1, -1, TmpType, PrdType>(n, k, alpha, a, x, incx, beta, y, incy,
+                                                          x_starti, y_starti, astarti, incaij, incaij2);
         }
       } else {
         /* The most general form,   y <--- alpha * A * x + beta * y */
-        for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-          PrdType sum = impl::zero_v<PrdType>;
-          for (j = 0, aij = astarti, xi = x_starti;
-               j < maxj_first; j++, aij += incaij, xi += incx) {
-            A a_elem = a[aij];
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-            sum = sum + prod;
-          }
-          auto a_elem_r = std::real(a[aij]);
-          X x_elem = x[xi];
-          PrdType prod = impl::mul<PrdType>(a_elem_r, x_elem);
-          sum = sum + prod;
-          aij += incaij2;
-          xi += incx;
-          for (IdxType j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
-            A a_elem = impl::Conj::func(a[aij]);
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-            sum = sum + prod;
-          }
-          T y_elem = y[yi];
-          TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
-          TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
-          tmp1 = tmp2 + tmp1;
-          y[yi] = impl::to<T>(tmp1);
-          if (i + 1 >= (n_i - k)) {
-            maxj_second--;
-          }
-          if (i >= k) {
-            astarti += (incaij + incaij2);
-            x_starti += incx;
-          } else {
-            maxj_first++;
-            astarti += incaij2;
-          }
-        }
+        impl::hbmv_impl<0, 1, -1, -1, TmpType, PrdType>(n, k, alpha, a, x, incx, beta, y, incy,
+                                                        x_starti, y_starti, astarti, incaij, incaij2);
       }
     } else {
       /*  conjugate first loop */
@@ -375,119 +343,18 @@ constexpr void hbmv(blas_order_type order,
       if (alpha == T(1)) {
         if (beta == T(0)) {
           /* Case alpha = 1, beta = 0.  We compute  y <--- A * x */
-          for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-            PrdType sum = impl::zero_v<PrdType>;
-            for (j = 0, aij = astarti, xi = x_starti;
-                 j < maxj_first; j++, aij += incaij, xi += incx) {
-              A a_elem = impl::Conj::func(a[aij]);
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            auto a_elem_r = std::real(a[aij]);
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem_r, x_elem);
-            sum = sum + prod;
-            aij += incaij2;
-            xi += incx;
-            for (IdxType j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
-              A a_elem = a[aij];
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            y[yi] = impl::to<T>(sum);
-            if (i + 1 >= (n_i - k)) {
-              maxj_second--;
-            }
-            if (i >= k) {
-              astarti += (incaij + incaij2);
-              x_starti += incx;
-            } else {
-              maxj_first++;
-              astarti += incaij2;
-            }
-          }
+          impl::hbmv_impl<1, 0,  1,  0, TmpType, PrdType>(n, k, alpha, a, x, incx, beta, y, incy,
+                                                          x_starti, y_starti, astarti, incaij, incaij2);
         } else {
           /* Case alpha = 1, but beta != 0.
              We compute  y  <--- A * x + beta * y */
-          for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-            PrdType sum = impl::zero_v<PrdType>;
-            for (j = 0, aij = astarti, xi = x_starti;
-                 j < maxj_first; j++, aij += incaij, xi += incx) {
-              A a_elem = impl::Conj::func(a[aij]);
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            auto a_elem_r = std::real(a[aij]);
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem_r, x_elem);
-            sum = sum + prod;
-            aij += incaij2;
-            xi += incx;
-            for (IdxType j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
-              A a_elem = a[aij];
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            T y_elem = y[yi];
-            TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
-            TmpType tmp1 = sum;
-            tmp1 = tmp2 + tmp1;
-            y[yi] = impl::to<T>(tmp1);
-            if (i + 1 >= (n_i - k)) {
-              maxj_second--;
-            }
-            if (i >= k) {
-              astarti += (incaij + incaij2);
-              x_starti += incx;
-            } else {
-              maxj_first++;
-              astarti += incaij2;
-            }
-          }
+          impl::hbmv_impl<1, 0,  1, -1, TmpType, PrdType>(n, k, alpha, a, x, incx, beta, y, incy,
+                                                          x_starti, y_starti, astarti, incaij, incaij2);
         }
       } else {
         /* The most general form,   y <--- alpha * A * x + beta * y */
-        for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-          PrdType sum = impl::zero_v<PrdType>;
-          for (j = 0, aij = astarti, xi = x_starti;
-               j < maxj_first; j++, aij += incaij, xi += incx) {
-            A a_elem = impl::Conj::func(a[aij]);
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-            sum = sum + prod;
-          }
-          auto a_elem_r = std::real(a[aij]);
-          X x_elem = x[xi];
-          PrdType prod = impl::mul<PrdType>(a_elem_r, x_elem);
-          sum = sum + prod;
-          aij += incaij2;
-          xi += incx;
-          for (IdxType j = 1; j < maxj_second; j++, aij += incaij2, xi += incx) {
-            A a_elem = a[aij];
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-            sum = sum + prod;
-          }
-          T y_elem = y[yi];
-          TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
-          TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
-          tmp1 = tmp2 + tmp1;
-          y[yi] = impl::to<T>(tmp1);
-          if (i + 1 >= (n_i - k)) {
-            maxj_second--;
-          }
-          if (i >= k) {
-            astarti += (incaij + incaij2);
-            x_starti += incx;
-          } else {
-            maxj_first++;
-            astarti += incaij2;
-          }
-        }
+        impl::hbmv_impl<1, 0, -1, -1, TmpType, PrdType>(n, k, alpha, a, x, incx, beta, y, incy,
+                                                        x_starti, y_starti, astarti, incaij, incaij2);
       }
     }
   }

@@ -214,8 +214,6 @@ constexpr void gbmv(blas_order_type order,
     FPU_FIX_START;
   }
 
-  /* if alpha = 0, return y = y*beta (not implemented as a special case?) */
-
   IdxType astart, incai1, incai2, incaij, rbound, lbound, ra;
   if (order == blas_colmajor && trans == blas_no_trans) {
     astart = ku;
@@ -250,6 +248,8 @@ constexpr void gbmv(blas_order_type order,
     rbound = m - kl - 1;
     ra = kl;
   }
+
+  // TODO: simplifications based on alpha, beta = 0 or 1?
 
   IdxType la = 0;
   IdxType ai = astart;

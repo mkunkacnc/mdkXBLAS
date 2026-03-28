@@ -264,6 +264,66 @@ struct Conj_h<0> // symmetric, make no changes.
 };
 
 //---------------------------
+// REAL
+// use nothing (real) or real (complex)
+
+struct Real
+{
+    template<typename T> // for real types
+    static constexpr auto func(T x) { return x; }
+
+    template<typename T> // for complex types
+    static constexpr auto func(const std::complex<T>& z) { return std::real(z); }
+};
+
+template<int is_hermitian> // declaration, no implementation
+struct Real_h;
+
+template<>       // implement full specialization
+struct Real_h<1> // hermitian, use the real function appropriately
+{
+    template<typename T>
+    static constexpr auto func(T x) { return Real::func(x); }
+};
+
+template<>       // implement full specialization
+struct Real_h<0> // symmetric, make no changes.
+{
+    template<typename T>
+    static constexpr auto func(T x) { return x; }
+};
+
+//---------------------------
+// IMAG
+// use zero (real) or imag (complex)
+
+struct Imag
+{
+    template<typename T> // for real types
+    static constexpr auto func(T /*x*/) { return T{0}; }
+
+    template<typename T> // for complex types
+    static constexpr auto func(const std::complex<T>& z) { return std::imag(z); }
+};
+
+template<int is_hermitian> // declaration, no implementation
+struct Imag_h;
+
+template<>       // implement full specialization
+struct Imag_h<1> // hermitian, use the conj function appropriately
+{
+    template<typename T>
+    static constexpr auto func(T x) { return Imag::func(x); }
+};
+
+template<>       // implement full specialization
+struct Imag_h<0> // symmetric, make no changes.
+{
+    template<typename T>
+    static constexpr auto func(T x) { return x; }
+};
+
+//---------------------------
 // ZERO
 // return 0 with the correct type
 
