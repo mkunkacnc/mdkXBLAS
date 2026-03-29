@@ -274,12 +274,11 @@ constexpr void hemm(blas_order_type order,
         IdxType k = 0;
         for (; k < i; k++) {
           A a_elem = a[aik];
-          B b_elem = b[bkj];
           if (conj_flag == 1) {
             a_elem = impl::Conj::func(a_elem);
           }
-          PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
-          sum = sum + prod;
+          PrdType prod = impl::mul<PrdType>(a_elem, b[bkj]);
+          sum += prod;
 
           aik += incaik1;
           bkj += incbkj;
@@ -287,21 +286,19 @@ constexpr void hemm(blas_order_type order,
 
         for (; k < m_i; k++) {
           A a_elem = a[aik];
-          B b_elem = b[bkj];
           if (conj_flag == 0) {
             a_elem = impl::Conj::func(a_elem);
           }
-          PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
-          sum = sum + prod;
+          PrdType prod = impl::mul<PrdType>(a_elem, b[bkj]);
+          sum += prod;
 
           aik += incaik2;
           bkj += incbkj;
         }
 
         TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
-        T c_elem = c[cij];
-        TmpType tmp2 = impl::mul<TmpType>(c_elem, beta);
-        tmp1 = tmp1 + tmp2;
+        TmpType tmp2 = impl::mul<TmpType>(c[cij], beta);
+        tmp1 += tmp2;
         c[cij] = impl::to<T>(tmp1);
 
         bj += incbj;
