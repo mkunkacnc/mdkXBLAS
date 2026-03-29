@@ -71,10 +71,21 @@ constexpr void hemm_impl(IdxType m_i,
         bkj += incbkj;
       }
 
-      TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
-      TmpType tmp2 = impl::mul<TmpType>(c[cij], beta);
-      tmp1 += tmp2;
-      c[cij] = impl::to<T>(tmp1);
+      if constexpr (need_alpha == 1) {
+        if constexpr (need_beta == 0) {
+          c[cij] = impl::to<T>(sum);
+        } else {
+          TmpType tmp1 = sum;
+          TmpType tmp2 = impl::mul<TmpType>(c[cij], beta);
+          tmp1 += tmp2;
+          c[cij] = impl::to<T>(tmp1);
+        }
+      } else {
+        TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
+        TmpType tmp2 = impl::mul<TmpType>(c[cij], beta);
+        tmp1 += tmp2;
+        c[cij] = impl::to<T>(tmp1);
+      }
 
       bj += incbj;
       cij += inccij;
@@ -264,128 +275,22 @@ constexpr void hemm(blas_order_type order,
     }
   } else if (alpha == T(1)) {
     /* Case alpha == 1. */
-    IdxType i, j, k;
-    IdxType ai, bj, ci;
-    IdxType aik, bkj, cij;
-
     if (beta == T(0)) {
       /* Case alpha = 1, beta = 0.  We compute  C <--- A * B   or  B * A */
-      for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
-        for (j = 0, cij = ci, bj = 0; j < n_i;
-             j++, cij += inccij, bj += incbj) {
-          PrdType sum = impl::zero_v<PrdType>;
-          for (k = 0, aik = ai, bkj = bj; k < i;
-               k++, aik += incaik1, bkj += incbkj) {
-            A a_elem = a[aik];
-            B b_elem = b[bkj];
-            if (conj_flag == 1) {
-              a_elem = impl::Conj::func(a_elem);
-            }
-            PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
-            sum = sum + prod;
-          }
-          for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-            A a_elem = a[aik];
-            B b_elem = b[bkj];
-            if (conj_flag == 0) {
-              a_elem = impl::Conj::func(a_elem);
-            }
-            PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
-            sum = sum + prod;
-          }
-          c[cij] = impl::to<T>(sum);
-        }
-      }
+      impl::hemm_impl< 1,  0, TmpType, PrdType>(m_i, n_i, alpha, a, b, beta, c,
+                                                conj_flag, incai, incaik1, incaik2, incbj, incbkj, incci, inccij);
     } else {
       /* Case alpha = 1, but beta != 0.
          We compute  C  <--- A * B + beta * C
          or  C  <--- B * A + beta * C  */
-      for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
-        for (j = 0, cij = ci, bj = 0; j < n_i;
-             j++, cij += inccij, bj += incbj) {
-          PrdType sum = impl::zero_v<PrdType>;
-          for (k = 0, aik = ai, bkj = bj; k < i;
-               k++, aik += incaik1, bkj += incbkj) {
-            A a_elem = a[aik];
-            B b_elem = b[bkj];
-            if (conj_flag == 1) {
-              a_elem = impl::Conj::func(a_elem);
-            }
-            PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
-            sum = sum + prod;
-          }
-          for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
-            A a_elem = a[aik];
-            B b_elem = b[bkj];
-            if (conj_flag == 0) {
-              a_elem = impl::Conj::func(a_elem);
-            }
-            PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
-            sum = sum + prod;
-          }
-          T c_elem = c[cij];
-          TmpType tmp2 = impl::mul<TmpType>(c_elem, beta);
-          TmpType tmp1 = sum;
-          tmp1 = tmp2 + tmp1;
-          c[cij] = impl::to<T>(tmp1);
-        }
-      }
+      impl::hemm_impl< 1, -1, TmpType, PrdType>(m_i, n_i, alpha, a, b, beta, c,
+                                                conj_flag, incai, incaik1, incaik2, incbj, incbkj, incci, inccij);
     }
   } else {
     /* The most general form,   C <--- alpha * A * B + beta * C
        or   C <--- alpha * B * A + beta * C  */
     impl::hemm_impl<-1, -1, TmpType, PrdType>(m_i, n_i, alpha, a, b, beta, c,
                                               conj_flag, incai, incaik1, incaik2, incbj, incbkj, incci, inccij);
-
-#if 0
-    IdxType ai = 0;
-    IdxType ci = 0;
-    for (IdxType i = 0; i < m_i; i++) {
-      IdxType bj = 0;
-      IdxType cij = ci;
-      for (IdxType j = 0; j < n_i; j++) {
-        IdxType aik = ai;
-        IdxType bkj = bj;
-        PrdType sum = impl::zero_v<PrdType>;
-
-        IdxType k = 0;
-        for (; k < i; k++) {
-          A a_elem = a[aik];
-          if (conj_flag == 1) {
-            a_elem = impl::Conj::func(a_elem);
-          }
-          PrdType prod = impl::mul<PrdType>(a_elem, b[bkj]);
-          sum += prod;
-
-          aik += incaik1;
-          bkj += incbkj;
-        }
-
-        for (; k < m_i; k++) {
-          A a_elem = a[aik];
-          if (conj_flag == 0) {
-            a_elem = impl::Conj::func(a_elem);
-          }
-          PrdType prod = impl::mul<PrdType>(a_elem, b[bkj]);
-          sum += prod;
-
-          aik += incaik2;
-          bkj += incbkj;
-        }
-
-        TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
-        TmpType tmp2 = impl::mul<TmpType>(c[cij], beta);
-        tmp1 += tmp2;
-        c[cij] = impl::to<T>(tmp1);
-
-        bj += incbj;
-        cij += inccij;
-      }
-
-      ai += incai;
-      ci += incci;
-    }
-#endif
   }
 
   if constexpr (impl::uses_double_double_v<TmpType>) {
