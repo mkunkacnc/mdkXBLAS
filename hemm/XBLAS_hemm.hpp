@@ -12,6 +12,79 @@ namespace XBLAS {
 namespace impl {
 //--------------
 
+template<int need_alpha,
+         int need_beta,
+         typename TmpType,
+         typename PrdType,
+         typename T,
+         typename A,
+         typename B,
+         typename IdxType>
+constexpr void hemm_impl(IdxType m_i,
+                         IdxType n_i,
+                         T alpha,
+                         const A *a,
+                         const B *b,
+                         T beta,
+                         T *c,
+                         int conj_flag,
+                         IdxType incai,
+                         IdxType incaik1,
+                         IdxType incaik2,
+                         IdxType incbj,
+                         IdxType incbkj,
+                         IdxType incci,
+                         IdxType inccij)
+{
+  IdxType ai = 0;
+  IdxType ci = 0;
+  for (IdxType i = 0; i < m_i; i++) {
+    IdxType bj = 0;
+    IdxType cij = ci;
+    for (IdxType j = 0; j < n_i; j++) {
+      IdxType aik = ai;
+      IdxType bkj = bj;
+      PrdType sum = impl::zero_v<PrdType>;
+
+      IdxType k = 0;
+      for (; k < i; k++) {
+        A a_elem = a[aik];
+        if (conj_flag == 1) {
+          a_elem = impl::Conj::func(a_elem);
+        }
+        PrdType prod = impl::mul<PrdType>(a_elem, b[bkj]);
+        sum += prod;
+
+        aik += incaik1;
+        bkj += incbkj;
+      }
+
+      for (; k < m_i; k++) {
+        A a_elem = a[aik];
+        if (conj_flag == 0) {
+          a_elem = impl::Conj::func(a_elem);
+        }
+        PrdType prod = impl::mul<PrdType>(a_elem, b[bkj]);
+        sum += prod;
+
+        aik += incaik2;
+        bkj += incbkj;
+      }
+
+      TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
+      TmpType tmp2 = impl::mul<TmpType>(c[cij], beta);
+      tmp1 += tmp2;
+      c[cij] = impl::to<T>(tmp1);
+
+      bj += incbj;
+      cij += inccij;
+    }
+
+    ai += incai;
+    ci += incci;
+  }
+}
+
 
 //-----------------
 } // namespace impl
@@ -261,6 +334,10 @@ constexpr void hemm(blas_order_type order,
   } else {
     /* The most general form,   C <--- alpha * A * B + beta * C
        or   C <--- alpha * B * A + beta * C  */
+    impl::hemm_impl<-1, -1, TmpType, PrdType>(m_i, n_i, alpha, a, b, beta, c,
+                                              conj_flag, incai, incaik1, incaik2, incbj, incbkj, incci, inccij);
+
+#if 0
     IdxType ai = 0;
     IdxType ci = 0;
     for (IdxType i = 0; i < m_i; i++) {
@@ -308,6 +385,7 @@ constexpr void hemm(blas_order_type order,
       ai += incai;
       ci += incci;
     }
+#endif
   }
 
   if constexpr (impl::uses_double_double_v<TmpType>) {
