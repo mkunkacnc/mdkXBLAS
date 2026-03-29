@@ -102,27 +102,6 @@ constexpr void hemm(blas_order_type order,
 
   FPU_FIX_DECL;
 
-  /* Integer Index Variables */
-  IdxType i, j, k;
-
-  IdxType ai, bj, ci;
-  IdxType aik, bkj, cij;
-
-  IdxType incai, incbj, incci;
-  IdxType incaik1, incaik2, incbkj, inccij;
-
-  IdxType m_i, n_i;
-
-  IdxType conj_flag;
-
-  /* Input Matrices */
-
-  /* Output Matrix */
-
-  /* Input Scalars */
-
-  /* Temporary Floating-Point Variables */
-
   /* Check for error conditions. */
   if (m <= 0 || n <= 0) {
     return;
@@ -149,6 +128,7 @@ constexpr void hemm(blas_order_type order,
   }
 
   /* Set Index Parameters */
+  IdxType m_i, n_i;
   if (side == blas_left_side) {
     m_i = m;
     n_i = n;
@@ -157,6 +137,8 @@ constexpr void hemm(blas_order_type order,
     n_i = m;
   }
 
+  IdxType incbj, incci;
+  IdxType incbkj, inccij;
   if ((order == blas_colmajor && side == blas_left_side) ||
       (order == blas_rowmajor && side == blas_right_side)) {
     incbj = ldb;
@@ -170,6 +152,8 @@ constexpr void hemm(blas_order_type order,
     inccij = 1;
   }
 
+  IdxType incai;
+  IdxType incaik1, incaik2;
   if ((order == blas_colmajor && uplo == blas_upper) ||
       (order == blas_rowmajor && uplo == blas_lower)) {
     incai = lda;
@@ -181,6 +165,7 @@ constexpr void hemm(blas_order_type order,
     incaik2 = 1;
   }
 
+  IdxType conj_flag;
   if ((side == blas_left_side && uplo == blas_upper) ||
       (side == blas_right_side && uplo == blas_lower))
     conj_flag = 1;
@@ -193,15 +178,23 @@ constexpr void hemm(blas_order_type order,
 
   /* alpha = 0.  In this case, just return beta * C */
   if (alpha == T(0)) {
-    for (i = 0, ci = 0; i < m_i; i++, ci += incci) {
-      for (j = 0, cij = ci; j < n_i; j++, cij += inccij) {
+    IdxType ci = 0;
+    for (IdxType i = 0; i < m_i; i++) {
+      IdxType cij = ci;
+      for (IdxType j = 0; j < n_i; j++) {
         T c_elem = c[cij];
         TmpType tmp1 = impl::mul<TmpType>(c_elem, beta);
         c[cij] = impl::to<T>(tmp1);
+        cij += inccij;
       }
+      ci += incci;
     }
   } else if (alpha == T(1)) {
     /* Case alpha == 1. */
+    IdxType i, j, k;
+    IdxType ai, bj, ci;
+    IdxType aik, bkj, cij;
+
     if (beta == T(0)) {
       /* Case alpha = 1, beta = 0.  We compute  C <--- A * B   or  B * A */
       for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
@@ -268,6 +261,10 @@ constexpr void hemm(blas_order_type order,
   } else {
     /* The most general form,   C <--- alpha * A * B + beta * C
        or   C <--- alpha * B * A + beta * C  */
+    IdxType i, j, k;
+    IdxType ai, bj, ci;
+    IdxType aik, bkj, cij;
+
     for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
       for (j = 0, cij = ci, bj = 0; j < n_i; j++, cij += inccij, bj += incbj) {
         PrdType sum = impl::zero_v<PrdType>;
