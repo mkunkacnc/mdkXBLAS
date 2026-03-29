@@ -261,15 +261,18 @@ constexpr void hemm(blas_order_type order,
   } else {
     /* The most general form,   C <--- alpha * A * B + beta * C
        or   C <--- alpha * B * A + beta * C  */
-    IdxType i, j, k;
-    IdxType ai, bj, ci;
-    IdxType aik, bkj, cij;
-
-    for (i = 0, ci = 0, ai = 0; i < m_i; i++, ci += incci, ai += incai) {
-      for (j = 0, cij = ci, bj = 0; j < n_i; j++, cij += inccij, bj += incbj) {
+    IdxType ai = 0;
+    IdxType ci = 0;
+    for (IdxType i = 0; i < m_i; i++) {
+      IdxType bj = 0;
+      IdxType cij = ci;
+      for (IdxType j = 0; j < n_i; j++) {
+        IdxType aik = ai;
+        IdxType bkj = bj;
         PrdType sum = impl::zero_v<PrdType>;
-        for (k = 0, aik = ai, bkj = bj; k < i;
-             k++, aik += incaik1, bkj += incbkj) {
+
+        IdxType k = 0;
+        for (; k < i; k++) {
           A a_elem = a[aik];
           B b_elem = b[bkj];
           if (conj_flag == 1) {
@@ -277,8 +280,12 @@ constexpr void hemm(blas_order_type order,
           }
           PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
           sum = sum + prod;
+
+          aik += incaik1;
+          bkj += incbkj;
         }
-        for (; k < m_i; k++, aik += incaik2, bkj += incbkj) {
+
+        for (; k < m_i; k++) {
           A a_elem = a[aik];
           B b_elem = b[bkj];
           if (conj_flag == 0) {
@@ -286,13 +293,23 @@ constexpr void hemm(blas_order_type order,
           }
           PrdType prod = impl::mul<PrdType>(a_elem, b_elem);
           sum = sum + prod;
+
+          aik += incaik2;
+          bkj += incbkj;
         }
+
         TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
         T c_elem = c[cij];
         TmpType tmp2 = impl::mul<TmpType>(c_elem, beta);
         tmp1 = tmp1 + tmp2;
         c[cij] = impl::to<T>(tmp1);
+
+        bj += incbj;
+        cij += inccij;
       }
+
+      ai += incai;
+      ci += incci;
     }
   }
 
