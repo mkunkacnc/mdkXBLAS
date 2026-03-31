@@ -180,33 +180,35 @@ constexpr void hemm(blas_order_type order,
  *
  */
 {
-//static const char *routine_name = "XBLAS::hemm";
+  static const char *routine_name = "XBLAS::hemm";
 
   using PrdType = impl::get_inner_type_t<A, B, TmpType>;
 
   FPU_FIX_DECL;
 
   /* Check for error conditions. */
-  if (m <= 0 || n <= 0) {
-    return;
-  }
+  if (m < 0)
+    BLAS_error(routine_name, -4, m, nullptr);
+  if (n < 0)
+    BLAS_error(routine_name, -5, n, nullptr);
 
-  if (order == blas_colmajor && (ldb < m || ldc < m)) {
-    return;
+  if ((side == blas_left_side && lda < m) ||
+      (side == blas_right_side && lda < n)) {
+    BLAS_error(routine_name, -8, lda, nullptr);
   }
-  if (order == blas_rowmajor && (ldb < n || ldc < n)) {
-    return;
+  if ((order == blas_colmajor && ldb < m) ||
+      (order == blas_rowmajor && ldb < n)){
+    BLAS_error(routine_name, -10, ldb, nullptr);
   }
-
-  if (side == blas_left_side && lda < m) {
-    return;
-  }
-
-  if (side == blas_right_side && lda < n) {
-    return;
+  if ((order == blas_colmajor && ldc < m) ||
+      (order == blas_rowmajor && ldc < n)) {
+    BLAS_error(routine_name, -13, ldc, nullptr);
   }
 
   /* Test for no-op */
+  if (m == 0 || n == 0) {
+    return;
+  }
   if (alpha == T(0) && beta == T(1)) {
     return;
   }
@@ -266,8 +268,7 @@ constexpr void hemm(blas_order_type order,
     for (IdxType i = 0; i < m_i; i++) {
       IdxType cij = ci;
       for (IdxType j = 0; j < n_i; j++) {
-        T c_elem = c[cij];
-        TmpType tmp1 = impl::mul<TmpType>(c_elem, beta);
+        TmpType tmp1 = impl::mul<TmpType>(c[cij], beta);
         c[cij] = impl::to<T>(tmp1);
         cij += inccij;
       }
