@@ -94,8 +94,7 @@ constexpr void hemm_impl(IdxType m_i,
     ai += incai;
     ci += incci;
   }
-}
-
+} /* end XBLAS::impl::hemm_impl */
 
 //-----------------
 } // namespace impl

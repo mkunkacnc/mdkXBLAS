@@ -1,12 +1,96 @@
 #ifndef XBLAS_HEMV_HPP
 #define XBLAS_HEMV_HPP
 
-#include "blas_extended_private.h"
+#include "blas_enum.h"
 #include "common/XBLAS_impl.hpp"
 
 //---------------
 namespace XBLAS {
 //---------------
+
+//--------------
+namespace impl {
+//--------------
+
+template<int do_conj1,
+         int do_conj2,
+         int need_alpha,
+         int need_beta,
+         typename TmpType,
+         typename PrdType,
+         typename T,
+         typename A,
+         typename X,
+         typename N,
+         typename IdxType>
+constexpr void hemv_impl(N n,
+                         T alpha,
+                         const A *a,
+                         const X *x,
+                         N incx,
+                         T beta,
+                         T *y,
+                         N incy,
+                         IdxType x_starti,
+                         IdxType y_starti,
+                         IdxType incaik,
+                         IdxType incaik2)
+{
+  IdxType yi = y_starti;
+  IdxType astarti = 0;
+  for (IdxType i = 0; i < n; i++) {
+    PrdType sum = impl::zero_v<PrdType>;
+    IdxType aik = astarti;
+    IdxType xi = x_starti;
+    IdxType k = 0;
+
+    for (; k < i; k++) {
+      A a_elem = impl::Conj_h<do_conj1>::func(a[aik]);
+      PrdType prod = impl::mul<PrdType>(a_elem, x[xi]);
+      sum += prod;
+      aik += incaik;
+      xi += incx;
+    }
+
+    auto a_elem_r = impl::Real::func(a[aik]);
+    PrdType prod = impl::mul<PrdType>(a_elem_r, x[xi]);
+    sum += prod;
+    k++;
+    aik += incaik2;
+    xi += incx;
+
+    for (; k < n; k++) {
+      A a_elem = impl::Conj_h<do_conj2>::func(a[aik]);
+      PrdType prod = impl::mul<PrdType>(a_elem, x[xi]);
+      sum += prod;
+      aik += incaik2;
+      xi += incx;
+    }
+
+    if constexpr (need_alpha == 1) {
+      if constexpr (need_beta == 0) {
+        y[yi] = impl::to<T>(sum);
+      } else {
+        TmpType tmp1 = sum;
+        TmpType tmp2 = impl::mul<TmpType>(y[yi], beta);
+        tmp1 += tmp2;
+        y[yi] = impl::to<T>(tmp1);
+      }
+    } else {
+      TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
+      TmpType tmp2 = impl::mul<TmpType>(y[yi], beta);
+      tmp1 += tmp2;
+      y[yi] = impl::to<T>(tmp1);
+    }
+
+    yi += incy;
+    astarti += incaik2;
+  }
+} /* end XBLAS::impl::hemv_impl */
+
+//-----------------
+} // namespace impl
+//-----------------
 
 template<typename T,
          typename A,
@@ -85,33 +169,6 @@ constexpr void hemv(blas_order_type order,
 
   FPU_FIX_DECL;
 
-  /* Integer Index Variables */
-  IdxType i, k;
-
-  IdxType xi, yi;
-  IdxType aik, astarti, x_starti, y_starti;
-
-  //IdxType incai;
-  IdxType incaik, incaik2;
-
-  IdxType n_i;
-
-  /* Input Matrices */
-
-  /* Output Vector */
-
-  /* Input Scalars */
-
-  /* Temporary Floating-Point Variables */
-
-  /* Test for no-op */
-  if (n <= 0) {
-    return;
-  }
-  if (alpha == T(0) && beta == T(1)) {
-    return;
-  }
-
   /* Check for error conditions. */
   if (order != blas_colmajor && order != blas_rowmajor) {
     BLAS_error(routine_name, -1, order, nullptr);
@@ -119,8 +176,11 @@ constexpr void hemv(blas_order_type order,
   if (uplo != blas_upper && uplo != blas_lower) {
     BLAS_error(routine_name, -2, uplo, nullptr);
   }
-  if (lda < n) {
+  if (n < 0) {
     BLAS_error(routine_name, -3, n, nullptr);
+  }
+  if (lda < n) {
+    BLAS_error(routine_name, -6, lda, nullptr);
   }
   if (incx == 0) {
     BLAS_error(routine_name, -8, incx, nullptr);
@@ -129,27 +189,36 @@ constexpr void hemv(blas_order_type order,
     BLAS_error(routine_name, -11, incy, nullptr);
   }
 
-  /* Set Index Parameters */
-  n_i = n;
+  /* Test for no-op */
+  if (n == 0) {
+    return;
+  }
+  if (alpha == T(0) && beta == T(1)) {
+    return;
+  }
 
+  /* Set Index Parameters */
+
+  IdxType incaik, incaik2;
   if ((order == blas_colmajor && uplo == blas_upper) ||
       (order == blas_rowmajor && uplo == blas_lower)) {
-    //incai = lda;
     incaik = 1;
     incaik2 = lda;
   } else {
-    //incai = 1;
     incaik = lda;
     incaik2 = 1;
   }
 
+  IdxType x_starti;
   if (incx < 0) {
-    x_starti = (-n_i + 1) * incx;
+    x_starti = (-n + 1) * incx;
   } else {
     x_starti = 0;
   }
+
+  IdxType y_starti;
   if (incy < 0) {
-    y_starti = (-n_i + 1) * incy;
+    y_starti = (-n + 1) * incy;
   } else {
     y_starti = 0;
   }
@@ -160,10 +229,11 @@ constexpr void hemv(blas_order_type order,
 
   /* alpha = 0.  In this case, just return beta * y */
   if (alpha == T(0)) {
-    for (i = 0, yi = y_starti; i < n_i; i++, yi += incy) {
-      T y_elem = y[yi];
-      TmpType tmp1 = impl::mul<TmpType>(y_elem, beta);
+    IdxType yi = y_starti;
+    for (IdxType i = 0; i < n; i++) {
+      TmpType tmp1 = impl::mul<TmpType>(y[yi], beta);
       y[yi] = impl::to<T>(tmp1);
+      yi += incy;
     }
   } else {
     /*  determine whether we conjugate in first loop or second loop */
@@ -174,95 +244,18 @@ constexpr void hemv(blas_order_type order,
       if (alpha == T(1)) {
         if (beta == T(0)) {
           /* Case alpha = 1, beta = 0.  We compute  y <--- A * x */
-          for (i = 0, yi = y_starti, astarti = 0;
-               i < n_i; i++, yi += incy, astarti += incaik2) {
-            PrdType sum = impl::zero_v<PrdType>;
-            for (k = 0, aik = astarti, xi = x_starti;
-                 k < i; k++, aik += incaik, xi += incx) {
-              A a_elem = a[aik];
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            auto a_elem_r = std::real(a[aik]);
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem_r, x_elem);
-            sum = sum + prod;
-            k++;
-            aik += incaik2;
-            xi += incx;
-            for (; k < n_i; k++, aik += incaik2, xi += incx) {
-              A a_elem = impl::Conj::func(a[aik]);
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            y[yi] = impl::to<T>(sum);
-          }
+          impl::hemv_impl<0, 1,  1,  0, TmpType, PrdType>(n, alpha, a, x, incx, beta, y, incy,
+                                                          x_starti, y_starti, incaik, incaik2);
         } else {
           /* Case alpha = 1, but beta != 0.
              We compute  y  <--- A * x + beta * y */
-          for (i = 0, yi = y_starti, astarti = 0;
-               i < n_i; i++, yi += incy, astarti += incaik2) {
-            PrdType sum = impl::zero_v<PrdType>;
-            for (k = 0, aik = astarti, xi = x_starti;
-                 k < i; k++, aik += incaik, xi += incx) {
-              A a_elem = a[aik];
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            auto a_elem_r = std::real(a[aik]);
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem_r, x_elem);
-            sum = sum + prod;
-            k++;
-            aik += incaik2;
-            xi += incx;
-            for (; k < n_i; k++, aik += incaik2, xi += incx) {
-              A a_elem = impl::Conj::func(a[aik]);
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            T y_elem = y[yi];
-            TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
-            TmpType tmp1 = sum;
-            tmp1 = tmp2 + tmp1;
-            y[yi] = impl::to<T>(tmp1);
-          }
+          impl::hemv_impl<0, 1,  1, -1, TmpType, PrdType>(n, alpha, a, x, incx, beta, y, incy,
+                                                          x_starti, y_starti, incaik, incaik2);
         }
       } else {
         /* The most general form,   y <--- alpha * A * x + beta * y */
-        for (i = 0, yi = y_starti, astarti = 0;
-             i < n_i; i++, yi += incy, astarti += incaik2) {
-          PrdType sum = impl::zero_v<PrdType>;
-          for (k = 0, aik = astarti, xi = x_starti;
-               k < i; k++, aik += incaik, xi += incx) {
-            A a_elem = a[aik];
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-            sum = sum + prod;
-          }
-          auto a_elem_r = std::real(a[aik]);
-          X x_elem = x[xi];
-          PrdType prod = impl::mul<PrdType>(a_elem_r, x_elem);
-          sum = sum + prod;
-          k++;
-          aik += incaik2;
-          xi += incx;
-          for (; k < n_i; k++, aik += incaik2, xi += incx) {
-            A a_elem = impl::Conj::func(a[aik]);
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-            sum = sum + prod;
-          }
-          T y_elem = y[yi];
-          TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
-          TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
-          tmp1 = tmp1 + tmp2;
-          y[yi] = impl::to<T>(tmp1);
-        }
+        impl::hemv_impl<0, 1, -1, -1, TmpType, PrdType>(n, alpha, a, x, incx, beta, y, incy,
+                                                        x_starti, y_starti, incaik, incaik2);
       }
     } else {
       /*  conjugate first loop */
@@ -271,95 +264,18 @@ constexpr void hemv(blas_order_type order,
       if (alpha == T(1)) {
         if (beta == T(0)) {
           /* Case alpha = 1, beta = 0.  We compute  y <--- A * x */
-          for (i = 0, yi = y_starti, astarti = 0;
-               i < n_i; i++, yi += incy, astarti += incaik2) {
-            PrdType sum = impl::zero_v<PrdType>;
-            for (k = 0, aik = astarti, xi = x_starti;
-                 k < i; k++, aik += incaik, xi += incx) {
-              A a_elem = impl::Conj::func(a[aik]);
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            auto a_elem_r = std::real(a[aik]);
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem_r, x_elem);
-            sum = sum + prod;
-            k++;
-            aik += incaik2;
-            xi += incx;
-            for (; k < n_i; k++, aik += incaik2, xi += incx) {
-              A a_elem = a[aik];
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            y[yi] = impl::to<T>(sum);
-          }
+          impl::hemv_impl<1, 0,  1,  0, TmpType, PrdType>(n, alpha, a, x, incx, beta, y, incy,
+                                                          x_starti, y_starti, incaik, incaik2);
         } else {
           /* Case alpha = 1, but beta != 0.
-             We compute  y  <--- A * x + beta * y */
-          for (i = 0, yi = y_starti, astarti = 0;
-               i < n_i; i++, yi += incy, astarti += incaik2) {
-            PrdType sum = impl::zero_v<PrdType>;
-            for (k = 0, aik = astarti, xi = x_starti;
-                 k < i; k++, aik += incaik, xi += incx) {
-              A a_elem = impl::Conj::func(a[aik]);
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            auto a_elem_r = std::real(a[aik]);
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem_r, x_elem);
-            sum = sum + prod;
-            k++;
-            aik += incaik2;
-            xi += incx;
-            for (; k < n_i; k++, aik += incaik2, xi += incx) {
-              A a_elem = a[aik];
-              X x_elem = x[xi];
-              PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-              sum = sum + prod;
-            }
-            T y_elem = y[yi];
-            TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
-            TmpType tmp1 = sum;
-            tmp1 = tmp2 + tmp1;
-            y[yi] = impl::to<T>(tmp1);
-          }
+               We compute  y  <--- A * x + beta * y */
+          impl::hemv_impl<1, 0,  1, -1, TmpType, PrdType>(n, alpha, a, x, incx, beta, y, incy,
+                                                          x_starti, y_starti, incaik, incaik2);
         }
       } else {
         /* The most general form,   y <--- alpha * A * x + beta * y */
-        for (i = 0, yi = y_starti, astarti = 0;
-             i < n_i; i++, yi += incy, astarti += incaik2) {
-          PrdType sum = impl::zero_v<PrdType>;
-          for (k = 0, aik = astarti, xi = x_starti;
-               k < i; k++, aik += incaik, xi += incx) {
-            A a_elem = impl::Conj::func(a[aik]);
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-            sum = sum + prod;
-          }
-          auto a_elem_r = std::real(a[aik]);
-          X x_elem = x[xi];
-          PrdType prod = impl::mul<PrdType>(a_elem_r, x_elem);
-          sum = sum + prod;
-          k++;
-          aik += incaik2;
-          xi += incx;
-          for (; k < n_i; k++, aik += incaik2, xi += incx) {
-            A a_elem = a[aik];
-            X x_elem = x[xi];
-            PrdType prod = impl::mul<PrdType>(a_elem, x_elem);
-            sum = sum + prod;
-          }
-          T y_elem = y[yi];
-          TmpType tmp2 = impl::mul<TmpType>(y_elem, beta);
-          TmpType tmp1 = impl::mul<TmpType>(sum, alpha);
-          tmp1 = tmp1 + tmp2;
-          y[yi] = impl::to<T>(tmp1);
-        }
+        impl::hemv_impl<1, 0, -1, -1, TmpType, PrdType>(n, alpha, a, x, incx, beta, y, incy,
+                                                        x_starti, y_starti, incaik, incaik2);
       }
     }
   }
