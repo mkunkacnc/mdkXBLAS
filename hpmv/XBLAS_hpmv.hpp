@@ -82,57 +82,59 @@ constexpr void hpmv(blas_order_type order,
 
   FPU_FIX_DECL;
 
-  enum blas_order_type order_i;
-
-  IdxType ap_index, ap_start, x_index, x_start;
-  IdxType y_start, y_index, incap;
-
-
-  if (n < 1)
-    return;
-  if (alpha == T(0) && beta == T(1))
-    return;
-
   /* Check for error conditions. */
   if (order != blas_colmajor && order != blas_rowmajor)
     BLAS_error(routine_name, -1, order, nullptr);
   if (uplo != blas_upper && uplo != blas_lower)
     BLAS_error(routine_name, -2, uplo, nullptr);
+  if (n < 0)
+    BLAS_error(routine_name, -3, n, nullptr);
   if (incx == 0)
     BLAS_error(routine_name, -7, incx, nullptr);
   if (incy == 0) {
     BLAS_error(routine_name, -10, incy, nullptr);
   }
 
+  if (n == 0)
+    return;
+  if (alpha == T(0) && beta == T(1))
+    return;
+
   if constexpr (impl::uses_double_double_v<TmpType>) {
     FPU_FIX_START;
   }
 
-  incap = 1;
-
+  IdxType x_start;
   if (incx < 0)
     x_start = (-n + 1) * incx;
   else
     x_start = 0;
+
+  IdxType y_start;
   if (incy < 0)
     y_start = (-n + 1) * incy;
   else
     y_start = 0;
 
+  blas_order_type order_i;
   if (uplo == blas_lower)
     order_i = (order == blas_rowmajor) ? blas_colmajor : blas_rowmajor;
   else
     order_i = order;
 
   if (alpha == T(0)) {
-    y_index = y_start;
+    IdxType y_index = y_start;
     for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
-      T resval = y[y_index];
-      TmpType tmp2 = impl::mul<TmpType>(beta, resval);
+      TmpType tmp2 = impl::mul<TmpType>(beta, y[y_index]);
       y[y_index] = impl::to<T>(tmp2);
       y_index += incy;
     }
   } else {
+    IdxType ap_index, ap_start, x_index;
+    IdxType y_index;
+
+    const IdxType incap = 1;
+
     if (order_i == blas_rowmajor) {
       if (alpha == T(1)) {
         if (beta == T(0)) {
