@@ -61,7 +61,7 @@ constexpr void hbmv_impl(N n,
       xi += incx;
     }
 
-    auto a_elem_r = impl::Real::func(a[aij]);
+    auto a_elem_r = impl::Real_h<do_conj1 || do_conj2>::func(a[aij]);
     PrdType prod = impl::mul<PrdType>(a_elem_r, x[xi]);
     sum += prod;
     aij += incaij2;
@@ -245,14 +245,6 @@ constexpr void hbmv(blas_order_type order,
 
   FPU_FIX_DECL;
 
-  /* Test for no-op */
-  if (n <= 0) {
-    return;
-  }
-  if (alpha == T(0) && beta == T(1)) {
-    return;
-  }
-
   /* Check for error conditions. */
   if (order != blas_colmajor && order != blas_rowmajor) {
     BLAS_error(routine_name, -1, order, nullptr);
@@ -274,6 +266,14 @@ constexpr void hbmv(blas_order_type order,
   }
   if (incy == 0) {
     BLAS_error(routine_name, -12, incy, nullptr);
+  }
+
+  /* Test for no-op */
+  if (n == 0) {
+    return;
+  }
+  if (alpha == T(0) && beta == T(1)) {
+    return;
   }
 
   IdxType astarti, incaij, incaij2;

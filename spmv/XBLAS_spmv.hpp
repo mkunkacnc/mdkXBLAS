@@ -1,21 +1,11 @@
 #ifndef XBLAS_SPMV_HPP
 #define XBLAS_SPMV_HPP
 
-#include "blas_enum.h"
-#include "common/XBLAS_impl.hpp"
+#include "hpmv/XBLAS_hpmv.hpp"
 
 //---------------
 namespace XBLAS {
 //---------------
-
-//--------------
-namespace impl {
-//--------------
-
-
-//-----------------
-} // namespace impl
-//-----------------
 
 template<typename T,
          typename A,
@@ -82,34 +72,15 @@ constexpr void spmv(blas_order_type order,
 
   FPU_FIX_DECL;
 
-  IdxType ap_index, ap_start, x_index, x_start;
-  IdxType y_start, y_index, incap;
-
-
-  incap = 1;
-
-  if (incx < 0)
-    x_start = (-n + 1) * incx;
-  else
-    x_start = 0;
-  if (incy < 0)
-    y_start = (-n + 1) * incy;
-  else
-    y_start = 0;
-
-  if (n < 1) {
-    return;
-  }
-  if (alpha == T(0) && beta == T(1)) {
-    return;
-  }
-
   /* Check for error conditions. */
   if (order != blas_colmajor && order != blas_rowmajor) {
     BLAS_error(routine_name, -1, order, nullptr);
   }
   if (uplo != blas_upper && uplo != blas_lower) {
     BLAS_error(routine_name, -2, uplo, nullptr);
+  }
+  if (n < 0) {
+    BLAS_error(routine_name, -3, n, nullptr);
   }
   if (incx == 0) {
     BLAS_error(routine_name, -7, incx, nullptr);
@@ -118,284 +89,66 @@ constexpr void spmv(blas_order_type order,
     BLAS_error(routine_name, -10, incy, nullptr);
   }
 
+  if (n == 0) {
+    return;
+  }
+  if (alpha == T(0) && beta == T(1)) {
+    return;
+  }
+
+  IdxType x_start;
+  if (incx < 0)
+    x_start = (-n + 1) * incx;
+  else
+    x_start = 0;
+
+  IdxType y_start;
+  if (incy < 0)
+    y_start = (-n + 1) * incy;
+  else
+    y_start = 0;
+
   if constexpr (impl::uses_double_double_v<TmpType>) {
     FPU_FIX_START;
   }
 
   if (alpha == T(0)) {
-    y_index = y_start;
+    IdxType y_index = y_start;
     for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
-      T resval = y[y_index];
-      TmpType tmp2 = impl::mul<TmpType>(beta, resval);
+      TmpType tmp2 = impl::mul<TmpType>(beta, y[y_index]);
       y[y_index] = impl::to<T>(tmp2);
       y_index += incy;
     }
   } else {
     if (uplo == blas_lower)
       order = (order == blas_rowmajor) ? blas_colmajor : blas_rowmajor;
+
     if (order == blas_rowmajor) {
       if (alpha == T(1)) {
         if (beta == T(0)) {
-          {
-            y_index = y_start;
-            ap_start = 0;
-            for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
-              x_index = x_start;
-              ap_index = ap_start;
-              PrdType rowsum = impl::zero_v<PrdType>;
-              for (IdxType step = 0; step < matrix_row; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += (n - step - 1) * incap;
-                x_index += incx;
-              }
-              for (IdxType step = matrix_row; step < n; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += incap;
-                x_index += incx;
-              }
-              TmpType tmp1 = rowsum;
-              y[y_index] = impl::to<T>(tmp1);
-              y_index += incy;
-              ap_start += incap;
-            }
-          }
+          impl::hpmv_impl<0, 0, 1,  0, 0, TmpType, PrdType>(n, alpha, ap, x, incx, beta, y, incy, x_start, y_start);
         } else {
-          {
-            y_index = y_start;
-            ap_start = 0;
-            for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
-              x_index = x_start;
-              ap_index = ap_start;
-              PrdType rowsum = impl::zero_v<PrdType>;
-              for (IdxType step = 0; step < matrix_row; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += (n - step - 1) * incap;
-                x_index += incx;
-              }
-              for (IdxType step = matrix_row; step < n; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += incap;
-                x_index += incx;
-              }
-              T resval = y[y_index];
-              TmpType tmp1 = rowsum;
-              TmpType tmp2 = impl::mul<TmpType>(beta, resval);
-              tmp2 = tmp1 + tmp2;
-              y[y_index] = impl::to<T>(tmp2);
-
-              y_index += incy;
-              ap_start += incap;
-            }
-          }
+          impl::hpmv_impl<0, 0, 1, -1, 0, TmpType, PrdType>(n, alpha, ap, x, incx, beta, y, incy, x_start, y_start);
         }
       } else {
         if (beta == T(0)) {
-          {
-            y_index = y_start;
-            ap_start = 0;
-            for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
-              x_index = x_start;
-              ap_index = ap_start;
-              PrdType rowsum = impl::zero_v<PrdType>;
-              for (IdxType step = 0; step < matrix_row; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += (n - step - 1) * incap;
-                x_index += incx;
-              }
-              for (IdxType step = matrix_row; step < n; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += incap;
-                x_index += incx;
-              }
-              TmpType tmp1 = impl::mul<TmpType>(rowsum, alpha);
-              y[y_index] = impl::to<T>(tmp1);
-              y_index += incy;
-              ap_start += incap;
-            }
-          }
+          impl::hpmv_impl<0, 0, -1,  0, 0, TmpType, PrdType>(n, alpha, ap, x, incx, beta, y, incy, x_start, y_start);
         } else {
-          {
-            y_index = y_start;
-            ap_start = 0;
-            for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
-              x_index = x_start;
-              ap_index = ap_start;
-              PrdType rowsum = impl::zero_v<PrdType>;
-              for (IdxType step = 0; step < matrix_row; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += (n - step - 1) * incap;
-                x_index += incx;
-              }
-              for (IdxType step = matrix_row; step < n; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += incap;
-                x_index += incx;
-              }
-              T resval = y[y_index];
-              TmpType tmp1 = impl::mul<TmpType>(rowsum, alpha);
-              TmpType tmp2 = impl::mul<TmpType>(beta, resval);
-              tmp2 = tmp1 + tmp2;
-              y[y_index] = impl::to<T>(tmp2);
-              y_index += incy;
-              ap_start += incap;
-            }
-          }
+          impl::hpmv_impl<0, 0, -1, -1, 0, TmpType, PrdType>(n, alpha, ap, x, incx, beta, y, incy, x_start, y_start);
         }
       }
     } else {
       if (alpha == T(1)) {
         if (beta == T(0)) {
-          {
-            y_index = y_start;
-            ap_start = 0;
-            for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
-              x_index = x_start;
-              ap_index = ap_start;
-              PrdType rowsum = impl::zero_v<PrdType>;
-              for (IdxType step = 0; step < matrix_row; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += incap;
-                x_index += incx;
-              }
-              for (IdxType step = matrix_row; step < n; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += (step + 1) * incap;
-                x_index += incx;
-              }
-              TmpType tmp1 = rowsum;
-              y[y_index] = impl::to<T>(tmp1);
-              y_index += incy;
-              ap_start += (matrix_row + 1) * incap;
-            }
-          }
+          impl::hpmv_impl<0, 0, 1,  0, 1, TmpType, PrdType>(n, alpha, ap, x, incx, beta, y, incy, x_start, y_start);
         } else {
-          {
-            y_index = y_start;
-            ap_start = 0;
-            for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
-              x_index = x_start;
-              ap_index = ap_start;
-              PrdType rowsum = impl::zero_v<PrdType>;
-              for (IdxType step = 0; step < matrix_row; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += incap;
-                x_index += incx;
-              }
-              for (IdxType step = matrix_row; step < n; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += (step + 1) * incap;
-                x_index += incx;
-              }
-              T resval = y[y_index];
-              TmpType tmp1 = rowsum;
-              TmpType tmp2 = impl::mul<TmpType>(beta, resval);
-              tmp2 = tmp1 + tmp2;
-              y[y_index] = impl::to<T>(tmp2);
-              y_index += incy;
-              ap_start += (matrix_row + 1) * incap;
-            }
-          }
+          impl::hpmv_impl<0, 0, 1, -1, 1, TmpType, PrdType>(n, alpha, ap, x, incx, beta, y, incy, x_start, y_start);
         }
       } else {
         if (beta == T(0)) {
-          {
-            y_index = y_start;
-            ap_start = 0;
-            for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
-              x_index = x_start;
-              ap_index = ap_start;
-              PrdType rowsum = impl::zero_v<PrdType>;
-              for (IdxType step = 0; step < matrix_row; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += incap;
-                x_index += incx;
-              }
-              for (IdxType step = matrix_row; step < n; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += (step + 1) * incap;
-                x_index += incx;
-              }
-              TmpType tmp1 = impl::mul<TmpType>(rowsum, alpha);
-              y[y_index] = impl::to<T>(tmp1);
-              y_index += incy;
-              ap_start += (matrix_row + 1) * incap;
-            }
-          }
+          impl::hpmv_impl<0, 0, -1,  0, 1, TmpType, PrdType>(n, alpha, ap, x, incx, beta, y, incy, x_start, y_start);
         } else {
-          {
-            y_index = y_start;
-            ap_start = 0;
-            for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
-              x_index = x_start;
-              ap_index = ap_start;
-              PrdType rowsum = impl::zero_v<PrdType>;
-              for (IdxType step = 0; step < matrix_row; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += incap;
-                x_index += incx;
-              }
-              for (IdxType step = matrix_row; step < n; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += (step + 1) * incap;
-                x_index += incx;
-              }
-              T resval = y[y_index];
-              TmpType tmp1 = impl::mul<TmpType>(rowsum, alpha);
-              TmpType tmp2 = impl::mul<TmpType>(beta, resval);
-              tmp2 = tmp1 + tmp2;
-              y[y_index] = impl::to<T>(tmp2);
-              y_index += incy;
-              ap_start += (matrix_row + 1) * incap;
-            }
-          }
+          impl::hpmv_impl<0, 0, -1, -1, 1, TmpType, PrdType>(n, alpha, ap, x, incx, beta, y, incy, x_start, y_start);
         }
       }
     } /* if order == ... */

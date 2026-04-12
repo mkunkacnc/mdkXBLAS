@@ -55,7 +55,7 @@ constexpr void hpmv_impl(N n,
     }
 
     /* need to do diagonal element without referencing the imaginary part */
-    auto matval_r = impl::Real::func(ap[ap_index]);
+    auto matval_r = impl::Real_h<do_conj1 || do_conj2>::func(ap[ap_index]);
     PrdType rowtmp = impl::mul<PrdType>(matval_r, x[x_index]);
     rowsum += rowtmp;
     if constexpr (need_column_major) {
@@ -205,12 +205,6 @@ constexpr void hpmv(blas_order_type order,
   else
     y_start = 0;
 
-  blas_order_type order_i;
-  if (uplo == blas_lower)
-    order_i = (order == blas_rowmajor) ? blas_colmajor : blas_rowmajor;
-  else
-    order_i = order;
-
   if (alpha == T(0)) {
     IdxType y_index = y_start;
     for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
@@ -219,7 +213,10 @@ constexpr void hpmv(blas_order_type order,
       y_index += incy;
     }
   } else {
-    if (order_i == blas_rowmajor) {
+    if (uplo == blas_lower)
+      order = (order == blas_rowmajor) ? blas_colmajor : blas_rowmajor;
+
+    if (order == blas_rowmajor) {
       if (alpha == T(1)) {
         if (beta == T(0)) {
           if (uplo == blas_upper) {
