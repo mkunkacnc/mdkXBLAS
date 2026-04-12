@@ -52,7 +52,7 @@ constexpr void hemv_impl(N n,
       xi += incx;
     }
 
-    auto a_elem_r = impl::Real::func(a[aik]);
+    auto a_elem_r = impl::Real_h<do_conj1 || do_conj2>::func(a[aik]);
     PrdType prod = impl::mul<PrdType>(a_elem_r, x[xi]);
     sum += prod;
     k++;
@@ -198,7 +198,6 @@ constexpr void hemv(blas_order_type order,
   }
 
   /* Set Index Parameters */
-
   IdxType incaik, incaik2;
   if ((order == blas_colmajor && uplo == blas_upper) ||
       (order == blas_rowmajor && uplo == blas_lower)) {
