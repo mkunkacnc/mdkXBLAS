@@ -55,7 +55,7 @@ constexpr void hemv2_impl(N n,
       xi += incx;
     }
 
-    impl::inner_type_t<A> diag_elem = impl::Real::func(a[aij]);
+    auto diag_elem = impl::Real_h<do_conj1 || do_conj2>::func(a[aij]);
     PrdType prod1 = impl::mul<PrdType>(diag_elem, x_head[xi]);
     sum1 += prod1;
     PrdType prod2 = impl::mul<PrdType>(diag_elem, x_tail[xi]);
