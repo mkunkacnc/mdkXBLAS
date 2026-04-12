@@ -265,159 +265,18 @@ constexpr void hpmv(blas_order_type order,
           } /* end if uplo == blas_upper ... */
         }
       } else {
-        IdxType ap_index, ap_start, x_index;
-        IdxType y_index;
-
-        const IdxType incap = 1;
-
         if (beta == T(0)) {
-          y_index = y_start;
-          ap_start = 0;
           if (uplo == blas_upper) {
-            for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
-              x_index = x_start;
-              ap_index = ap_start;
-              PrdType rowsum = impl::zero_v<PrdType>;
-              for (IdxType step = 0; step < matrix_row; step++) {
-                A matval = impl::Conj::func(ap[ap_index]);
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += incap;
-                x_index += incx;
-              }
-              /* need to do diagonal element without referencing the imaginary part */
-              auto matval_r = std::real(ap[ap_index]);
-              X vecval = x[x_index];
-              PrdType rowtmp = impl::mul<PrdType>(matval_r, vecval);
-              rowsum = rowsum + rowtmp;
-              ap_index += (matrix_row + 1) * incap;
-              x_index += incx;
-              for (IdxType step = matrix_row + 1; step < n; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += (step + 1) * incap;
-                x_index += incx;
-              }
-              TmpType tmp1 = impl::mul<TmpType>(rowsum, alpha);
-              y[y_index] = impl::to<T>(tmp1);
-              y_index += incy;
-              ap_start += (matrix_row + 1) * incap;
-            }
-          } else {                /* if uplo == ... */
-            for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
-              x_index = x_start;
-              ap_index = ap_start;
-              PrdType rowsum = impl::zero_v<PrdType>;
-              for (IdxType step = 0; step < matrix_row; step++) {
-                A matval = ap[ap_index];
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += incap;
-                x_index += incx;
-              }
-              /* need to do diagonal element without referencing the imaginary part */
-              auto matval_r = std::real(ap[ap_index]);
-              X vecval = x[x_index];
-              PrdType rowtmp = impl::mul<PrdType>(matval_r, vecval);
-              rowsum = rowsum + rowtmp;
-              ap_index += (matrix_row + 1) * incap;
-              x_index += incx;
-              for (IdxType step = matrix_row + 1; step < n; step++) {
-                A matval = impl::Conj::func(ap[ap_index]);
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += (step + 1) * incap;
-                x_index += incx;
-              }
-              TmpType tmp1 = impl::mul<TmpType>(rowsum, alpha);
-              y[y_index] = impl::to<T>(tmp1);
-              y_index += incy;
-              ap_start += (matrix_row + 1) * incap;
-            }
+            impl::hpmv_impl<1, 0, -1, 0, 1, TmpType, PrdType>(n, alpha, ap, x, incx, beta, y, incy, x_start, y_start);
+          } else { /* if uplo == ... */
+            impl::hpmv_impl<0, 1, -1, 0, 1, TmpType, PrdType>(n, alpha, ap, x, incx, beta, y, incy, x_start, y_start);
           } /* end if uplo == blas_upper ... */
         } else {
-          {
-            y_index = y_start;
-            ap_start = 0;
-            if (uplo == blas_upper) {
-              for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
-                x_index = x_start;
-                ap_index = ap_start;
-                PrdType rowsum = impl::zero_v<PrdType>;
-                for (IdxType step = 0; step < matrix_row; step++) {
-                  A matval = impl::Conj::func(ap[ap_index]);
-                  X vecval = x[x_index];
-                  PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                  rowsum = rowsum + rowtmp;
-                  ap_index += incap;
-                  x_index += incx;
-                }
-                /* need to do diagonal element without referencing the imaginary part */
-                auto matval_r = std::real(ap[ap_index]);
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval_r, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += (matrix_row + 1) * incap;
-                x_index += incx;
-                for (IdxType step = matrix_row + 1; step < n; step++) {
-                  A matval = ap[ap_index];
-                  X vecval = x[x_index];
-                  PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                  rowsum = rowsum + rowtmp;
-                  ap_index += (step + 1) * incap;
-                  x_index += incx;
-                }
-                T resval = y[y_index];
-                TmpType tmp1 = impl::mul<TmpType>(rowsum, alpha);
-                TmpType tmp2 = impl::mul<TmpType>(beta, resval);
-                tmp2 = tmp1 + tmp2;
-                y[y_index] = impl::to<T>(tmp2);
-                y_index += incy;
-                ap_start += (matrix_row + 1) * incap;
-              }
-            } else {                /* if uplo == ... */
-              for (IdxType matrix_row = 0; matrix_row < n; matrix_row++) {
-                x_index = x_start;
-                ap_index = ap_start;
-                PrdType rowsum = impl::zero_v<PrdType>;
-                for (IdxType step = 0; step < matrix_row; step++) {
-                  A matval = ap[ap_index];
-                  X vecval = x[x_index];
-                  PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                  rowsum = rowsum + rowtmp;
-                  ap_index += incap;
-                  x_index += incx;
-                }
-                /* need to do diagonal element without referencing the imaginary part */
-                auto matval_r = std::real(ap[ap_index]);
-                X vecval = x[x_index];
-                PrdType rowtmp = impl::mul<PrdType>(matval_r, vecval);
-                rowsum = rowsum + rowtmp;
-                ap_index += (matrix_row + 1) * incap;
-                x_index += incx;
-                for (IdxType step = matrix_row + 1; step < n; step++) {
-                  A matval = impl::Conj::func(ap[ap_index]);
-                  X vecval = x[x_index];
-                  PrdType rowtmp = impl::mul<PrdType>(matval, vecval);
-                  rowsum = rowsum + rowtmp;
-                  ap_index += (step + 1) * incap;
-                  x_index += incx;
-                }
-                T resval = y[y_index];
-                TmpType tmp1 = impl::mul<TmpType>(rowsum, alpha);
-                TmpType tmp2 = impl::mul<TmpType>(beta, resval);
-                tmp2 = tmp1 + tmp2;
-                y[y_index] = impl::to<T>(tmp2);
-                y_index += incy;
-                ap_start += (matrix_row + 1) * incap;
-              }
-            } /* end if uplo == blas_upper ... */
-          }
+          if (uplo == blas_upper) {
+            impl::hpmv_impl<1, 0, -1, -1, 1, TmpType, PrdType>(n, alpha, ap, x, incx, beta, y, incy, x_start, y_start);
+          } else { /* if uplo == ... */
+            impl::hpmv_impl<0, 1, -1, -1, 1, TmpType, PrdType>(n, alpha, ap, x, incx, beta, y, incy, x_start, y_start);
+          } /* end if uplo == blas_upper ... */
         }
       }
     }
