@@ -32,26 +32,17 @@ constexpr void tbsv_impl_x(blas_diag_type diag,
                            IdxType dot_start_inc1,
                            IdxType dot_start_inc2)
 {
-  TmpType temp1;        /* temporary variable for calculations */
-  TmpType temp2;        /* temporary variable for calculations */
-  TmpType temp3;        /* temporary variable for calculations */
-  T x_elem;
-  A T_element;        /* temporary variable for an element of matrix T */
-
   IdxType x_inti = 0;
-  const IdxType inc_x_inti = 1;
-  IdxType k_compare = k;        /*used for comparisons with x_inti */
 
   /*loop 1 */
   IdxType xi = start_xi;
-  /* x_inti already initialized to 0 */
   IdxType j = 0;
   for (; j < k; j++) {
     /* each time through loop, xi lands on next x to compute. */
-    x_elem = x[xi];
+    T x_elem = x[xi];
     /* preform the multiplication -
        in this implementation we do not separate the alpha = 1 case */
-    temp1 = impl::mul<TmpType>(x_elem, alpha);
+    TmpType temp1 = impl::mul<TmpType>(x_elem, alpha);
 
     IdxType Tij = dot_start;
     dot_start += dot_start_inc1;
@@ -59,18 +50,17 @@ constexpr void tbsv_impl_x(blas_diag_type diag,
     /*start loop buffer over in loop 1 */
     x_inti = 0;
     for (IdxType i = j; i > 0; i--) {
-      T_element = impl::Conj_h<do_conj>::func(t[Tij]);
-      temp3 = x_internal[x_inti];
-      temp2 = impl::mul<TmpType>(temp3, T_element);
-      temp1 = temp1 - temp2;
-      x_inti += inc_x_inti;
+      A T_element = impl::Conj_h<do_conj>::func(t[Tij]);
+      TmpType temp2 = impl::mul<TmpType>(x_internal[x_inti], T_element);
+      temp1 -= temp2;
+      x_inti += 1;
       Tij += dot_inc;
     } /* for across row */
 
     /* if the diagonal entry is not equal to one, then divide Xj by
        the entry */
     if (diag == blas_non_unit_diag) {
-      T_element = impl::Conj_h<do_conj>::func(t[Tij]);
+      A T_element = impl::Conj_h<do_conj>::func(t[Tij]);
       temp1 = impl::div(temp1, T_element);
     }
 
@@ -89,44 +79,42 @@ constexpr void tbsv_impl_x(blas_diag_type diag,
   /*loop 2 continue without changing j to start */
   for (; j < n; j++) {
     /* each time through loop, xi lands on next x to compute. */
-    x_elem = x[xi];
-    temp1 = impl::mul<TmpType>(x_elem, alpha);
+    T x_elem = x[xi];
+    TmpType temp1 = impl::mul<TmpType>(x_elem, alpha);
 
     IdxType Tij = dot_start;
     dot_start += dot_start_inc2;
 
     IdxType i = k;
-    for (; i > 0 && (x_inti < k_compare); i--) {
-      T_element = impl::Conj_h<do_conj>::func(t[Tij]);
-      temp3 = x_internal[x_inti];
-      temp2 = impl::mul<TmpType>(temp3, T_element);
-      temp1 = temp1 - temp2;
-      x_inti += inc_x_inti;
+    for (; i > 0 && (x_inti < k); i--) {
+      A T_element = impl::Conj_h<do_conj>::func(t[Tij]);
+      TmpType temp2 = impl::mul<TmpType>(x_internal[x_inti], T_element);
+      temp1 -= temp2;
+      x_inti += 1;
       Tij += dot_inc;
     } /* for across row */
     /*reset index to internal storage loop buffer. */
     x_inti = 0;
     for (; i > 0; i--) {
-      T_element = impl::Conj_h<do_conj>::func(t[Tij]);
-      temp3 = x_internal[x_inti];
-      temp2 = impl::mul<TmpType>(temp3, T_element);
-      temp1 = temp1 - temp2;
-      x_inti += inc_x_inti;
+      A T_element = impl::Conj_h<do_conj>::func(t[Tij]);
+      TmpType temp2 = impl::mul<TmpType>(x_internal[x_inti], T_element);
+      temp1 -= temp2;
+      x_inti += 1;
       Tij += dot_inc;
     } /* for across row */
 
     /* if the diagonal entry is not equal to one, then divide by
        the entry */
     if (diag == blas_non_unit_diag) {
-      T_element = impl::Conj_h<do_conj>::func(t[Tij]);
+      A T_element = impl::Conj_h<do_conj>::func(t[Tij]);
       temp1 = impl::div(temp1, T_element);
     }
 
     /* if (diag == blas_non_unit_diag) */
     /* place internal precision result in internal buffer */
     x_internal[x_inti] = temp1;
-    x_inti += inc_x_inti;
-    if (x_inti >= k_compare)
+    x_inti += 1;
+    if (x_inti >= k)
       x_inti = 0;
 
     /* place result x in same place as got x this loop */
@@ -154,30 +142,24 @@ constexpr void tbsv_impl(blas_diag_type diag,
                          IdxType dot_start_inc1,
                          IdxType dot_start_inc2)
 {
-  TmpType temp1;        /* temporary variable for calculations */
-  TmpType temp2;        /* temporary variable for calculations */
-  T x_elem;
-  A T_element;
-
   /*loop 1 */
   IdxType xi = start_xi;
   IdxType j = 0;
   for (; j < k; j++) {
     /* each time through loop, xi lands on next x to compute. */
-    x_elem = x[xi];
+
     /* preform the multiplication -
        in this implementation we do not separate the alpha = 1 case */
-    temp1 = impl::mul<TmpType>(x_elem, alpha);
+    TmpType temp1 = impl::mul<TmpType>(x[xi], alpha);
 
     xi = start_xi;
     IdxType Tij = dot_start;
     dot_start += dot_start_inc1;
 
     for (IdxType i = j; i > 0; i--) {
-      T_element = impl::Conj_h<do_conj>::func(t[Tij]);
-      x_elem = x[xi];
-      temp2 = impl::mul<TmpType>(x_elem, T_element);
-      temp1 = temp1 - temp2;
+      A T_element = impl::Conj_h<do_conj>::func(t[Tij]);
+      TmpType temp2 = impl::mul<TmpType>(x[xi], T_element);
+      temp1 -= temp2;
       xi += incx;
       Tij += dot_inc;
     } /* for across row */
@@ -185,7 +167,7 @@ constexpr void tbsv_impl(blas_diag_type diag,
     /* if the diagonal entry is not equal to one, then divide Xj by
        the entry */
     if (diag == blas_non_unit_diag) {
-      T_element = impl::Conj_h<do_conj>::func(t[Tij]);
+      A T_element = impl::Conj_h<do_conj>::func(t[Tij]);
       temp1 = impl::div(temp1, T_element);
     } /* if (diag == blas_non_unit_diag) */
 
@@ -197,8 +179,8 @@ constexpr void tbsv_impl(blas_diag_type diag,
   /*loop 2 continue without changing j to start */
   for (; j < n; j++) {
     /* each time through loop, xi lands on next x to compute. */
-    x_elem = x[xi];
-    temp1 = impl::mul<TmpType>(x_elem, alpha);
+
+    TmpType temp1 = impl::mul<TmpType>(x[xi], alpha);
 
     xi = start_xi;
     start_xi += incx;
@@ -206,10 +188,9 @@ constexpr void tbsv_impl(blas_diag_type diag,
     dot_start += dot_start_inc2;
 
     for (IdxType i = k; i > 0; i--) {
-      T_element = impl::Conj_h<do_conj>::func(t[Tij]);
-      x_elem = x[xi];
-      temp2 = impl::mul<TmpType>(x_elem, T_element);
-      temp1 = temp1 - temp2;
+      A T_element = impl::Conj_h<do_conj>::func(t[Tij]);
+      TmpType temp2 = impl::mul<TmpType>(x[xi], T_element);
+      temp1 -= temp2;
       xi += incx;
       Tij += dot_inc;
     } /* for across row */
@@ -217,7 +198,7 @@ constexpr void tbsv_impl(blas_diag_type diag,
     /* if the diagonal entry is not equal to one, then divide by
        the entry */
     if (diag == blas_non_unit_diag) {
-      T_element = impl::Conj_h<do_conj>::func(t[Tij]);
+      A T_element = impl::Conj_h<do_conj>::func(t[Tij]);
       temp1 = impl::div(temp1, T_element);
     } /* if (diag == blas_non_unit_diag) */
 
