@@ -1,7 +1,6 @@
 #ifndef XBLAS_SUM_HPP
 #define XBLAS_SUM_HPP
 
-#include "blas_extended_private.h"
 #include "common/XBLAS_impl.hpp"
 
 //---------------
@@ -55,7 +54,7 @@ constexpr void sum(N n,
     BLAS_error(routine_name, -3, incx, nullptr);
 
   /* Immediate return. */
-  if (n <= 0) {
+  if (n == 0) {
     *sum = impl::zero_v<T>;
     return;
   }

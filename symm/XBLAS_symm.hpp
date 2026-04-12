@@ -1,8 +1,7 @@
 #ifndef XBLAS_SYMM_HPP
 #define XBLAS_SYMM_HPP
 
-#include "blas_extended_private.h"
-#include "common/XBLAS_impl.hpp"
+#include "hemm/XBLAS_hemm.hpp"
 
 //---------------
 namespace XBLAS {
@@ -87,55 +86,41 @@ constexpr void symm(blas_order_type order,
  *
  */
 {
-//static const char *routine_name = "XBLAS::symm";
+  static const char *routine_name = "XBLAS::symm";
 
   using PrdType = impl::get_inner_type_t<A, B, TmpType>;
 
   FPU_FIX_DECL;
 
-  /* Integer Index Variables */
-  IdxType i, j, k;
-
-  IdxType ai, bj, ci;
-  IdxType aik, bkj, cij;
-
-  IdxType incai, incbj, incci;
-  IdxType incaik1, incaik2, incbkj, inccij;
-
-  IdxType m_i, n_i;
-
-  /* Input Matrices */
-
-  /* Output Matrix */
-
-  /* Input Scalars */
-
-  /* Temporary Floating-Point Variables */
-
   /* Check for error conditions. */
-  if (m <= 0 || n <= 0) {
-    return;
-  }
+  if (m < 0)
+    BLAS_error(routine_name, -4, m, nullptr);
+  if (n < 0)
+    BLAS_error(routine_name, -5, n, nullptr);
 
-  if (order == blas_colmajor && (ldb < m || ldc < m)) {
-    return;
+  if ((side == blas_left_side && lda < m) ||
+      (side == blas_right_side && lda < n)) {
+    BLAS_error(routine_name, -8, lda, nullptr);
   }
-  if (order == blas_rowmajor && (ldb < n || ldc < n)) {
-    return;
+  if ((order == blas_colmajor && ldb < m) ||
+      (order == blas_rowmajor && ldb < n)){
+    BLAS_error(routine_name, -10, ldb, nullptr);
   }
-  if (side == blas_left_side && lda < m) {
-    return;
-  }
-  if (side == blas_right_side && lda < n) {
-    return;
+  if ((order == blas_colmajor && ldc < m) ||
+      (order == blas_rowmajor && ldc < n)) {
+    BLAS_error(routine_name, -13, ldc, nullptr);
   }
 
   /* Test for no-op */
+  if (m == 0 || n == 0) {
+    return;
+  }
   if (alpha == T(0) && beta == T(1)) {
     return;
   }
 
   /* Set Index Parameters */
+  IdxType m_i, n_i;
   if (side == blas_left_side) {
     m_i = m;
     n_i = n;
@@ -144,6 +129,8 @@ constexpr void symm(blas_order_type order,
     n_i = m;
   }
 
+  IdxType incbj, incci;
+  IdxType incbkj, inccij;
   if ((order == blas_colmajor && side == blas_left_side) ||
       (order == blas_rowmajor && side == blas_right_side)) {
     incbj = ldb;
@@ -157,6 +144,8 @@ constexpr void symm(blas_order_type order,
     inccij = 1;
   }
 
+  IdxType incai;
+  IdxType incaik1, incaik2;
   if ((order == blas_colmajor && uplo == blas_upper) ||
       (order == blas_rowmajor && uplo == blas_lower)) {
     incai = lda;
@@ -171,6 +160,11 @@ constexpr void symm(blas_order_type order,
   if constexpr (impl::uses_double_double_v<TmpType>) {
     FPU_FIX_START;
   }
+
+  /* Integer Index Variables */
+  IdxType i, j, k;
+  IdxType ai, bj, ci;
+  IdxType aik, bkj, cij;
 
   /* alpha = 0.  In this case, just return beta * C */
   if (alpha == T(0)) {
