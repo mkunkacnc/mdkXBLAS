@@ -70,14 +70,15 @@ constexpr void tpmv(blas_order_type order,
   /* Check for error conditions. */
   if (order != blas_colmajor && order != blas_rowmajor) {
     BLAS_error(routine_name, -1, order, nullptr);
-  }
-  if (uplo != blas_upper && uplo != blas_lower) {
+  } else if (uplo != blas_upper && uplo != blas_lower) {
     BLAS_error(routine_name, -2, uplo, nullptr);
-  }
-  if (n < 0) {
+  } else if (trans != blas_trans && trans != blas_no_trans && trans != blas_conj_trans) {
+    BLAS_error(routine_name, -3, trans, nullptr);
+  } else if (diag != blas_non_unit_diag && diag != blas_unit_diag) {
+    BLAS_error(routine_name, -4, diag, nullptr);
+  } else if (n < 0) {
     BLAS_error(routine_name, -5, n, nullptr);
-  }
-  if (incx == 0) {
+  } else if (incx == 0) {
     BLAS_error(routine_name, -9, incx, nullptr);
   }
 
