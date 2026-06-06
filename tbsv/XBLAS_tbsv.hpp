@@ -287,7 +287,7 @@ constexpr void tbsv(blas_order_type order,
   }
   if ((trans != blas_trans) && (trans != blas_no_trans) &&
       (trans != static_cast<blas_trans_type>(blas_conj)) && (trans != blas_conj_trans)) {
-    BLAS_error(routine_name, -2, uplo, nullptr);
+    BLAS_error(routine_name, -3, trans, nullptr);
   }
   if (diag != blas_non_unit_diag && diag != blas_unit_diag) {
     BLAS_error(routine_name, -4, diag, nullptr);
