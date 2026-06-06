@@ -254,7 +254,7 @@ constexpr void trsv(blas_order_type order,
   /* if alpha is zero, then return x as a zero vector */
   if (alpha == T(0)) {
     IdxType ix = start_x;
-    for (IdxType i = 0; i < n; i++) {
+    for (IdxType i = 0; i < n; ++i) {
       x[ix] = T(0);
       ix += incx;
     }
@@ -277,9 +277,8 @@ constexpr void trsv(blas_order_type order,
       /* copy x to intx */
       IdxType ix = start_x;
       IdxType jx = 0;
-      for (IdxType i = 0; i < n; i++) {
-        TmpType temp1 = impl::to<TmpType>(x[ix]);
-        intx[jx] = temp1;
+      for (IdxType i = 0; i < n; ++i) {
+        intx[jx] = impl::to<TmpType>(x[ix]);
         ix += incx;
         ++jx;
       }
@@ -317,9 +316,8 @@ constexpr void trsv(blas_order_type order,
       /* copy the final results from intx to x */
       ix = start_x;
       jx = 0;
-      for (IdxType i = 0; i < n; i++) {
-        TmpType temp1 = intx[jx];
-        x[ix] = impl::to<T>(temp1);
+      for (IdxType i = 0; i < n; ++i) {
+        x[ix] = impl::to<T>(intx[jx]);
         ix += incx;
         ++jx;
       }
@@ -368,9 +366,8 @@ constexpr void trsv(blas_order_type order,
       /* copy x to intx */
       IdxType ix = start_x;
       IdxType jx = 0;
-      for (IdxType i = 0; i < n; i++) {
-        TmpType temp1 = impl::to<TmpType>(x[ix]);
-        intx[jx] = temp1;
+      for (IdxType i = 0; i < n; ++i) {
+        intx[jx] = impl::to<TmpType>(x[ix]);
         ix += incx;
         ++jx;
       }
@@ -400,8 +397,7 @@ constexpr void trsv(blas_order_type order,
       ix = start_x;
       jx = 0;
       for (IdxType i = 0; i < n; i++) {
-        TmpType temp1 = intx[jx];
-        x[ix] = impl::to<T>(temp1);
+        x[ix] = impl::to<T>(intx[jx]);
         ix += incx;
         ++jx;
       }
