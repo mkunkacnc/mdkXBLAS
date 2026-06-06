@@ -81,24 +81,39 @@ constexpr void trsv(blas_order_type order,
 
   FPU_FIX_DECL;
 
-  IdxType ix, jx;
-  IdxType start_x;
-  A T_element;
-  IdxType incT = 1;
-
-  if ((order != blas_rowmajor && order != blas_colmajor) ||
-      (uplo != blas_upper && uplo != blas_lower) ||
-      (trans != blas_trans && trans !=
-       blas_no_trans && trans != blas_conj_trans) ||
-      (diag != blas_non_unit_diag && diag != blas_unit_diag) ||
-      (ldt < n) || (incx == 0)) {
-    BLAS_error(routine_name, 0, 0, nullptr);
+  if (order != blas_rowmajor && order != blas_colmajor) {
+    BLAS_error(routine_name, -1, order, nullptr);
   }
 
-  if (n <= 0)
+  if (uplo != blas_upper && uplo != blas_lower) {
+    BLAS_error(routine_name, -2, uplo, nullptr);
+  }
+
+  if (trans != blas_trans && trans != blas_no_trans && trans != blas_conj_trans) {
+    BLAS_error(routine_name, -3, trans, nullptr);
+  }
+
+  if (diag != blas_non_unit_diag && diag != blas_unit_diag) {
+    BLAS_error(routine_name, -4, diag, nullptr);
+  }
+
+  if (n < 0) {
+    BLAS_error(routine_name, -5, n, nullptr);
+  }
+
+  if (ldt < n) {
+    BLAS_error(routine_name, -8, ldt, nullptr);
+  }
+
+  if (incx == 0) {
+    BLAS_error(routine_name, -10, incx, nullptr);
+  }
+
+  if (n == 0)
     return;
 
   /* configuring the vector starting idx */
+  IdxType start_x;
   if (incx <= 0) {
     start_x = -(n - 1) * incx;
   } else {
@@ -107,7 +122,7 @@ constexpr void trsv(blas_order_type order,
 
   /* if alpha is zero, then return x as a zero vector */
   if (alpha == T(0)) {
-    ix = start_x;
+    IdxType ix = start_x;
     for (IdxType i = 0; i < n; i++) {
       x[ix] = T(0);
       ix += incx;
@@ -118,6 +133,10 @@ constexpr void trsv(blas_order_type order,
   if constexpr (impl::uses_double_double_v<TmpType>) {
     FPU_FIX_START;
   }
+
+  IdxType ix, jx;
+  A T_element;
+  const IdxType incT = 1;
 
   if constexpr (impl::is_complex_v<A>) {
     if constexpr (sizeof(TmpType) > sizeof(T)) {
