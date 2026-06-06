@@ -7,15 +7,6 @@
 namespace XBLAS {
 //---------------
 
-//--------------
-namespace impl {
-//--------------
-
-
-//-----------------
-} // namespace impl
-//-----------------
-
 template<typename T,
          typename X,
          typename Y,
@@ -80,6 +71,8 @@ constexpr void waxpby(N n,
   FPU_FIX_DECL;
 
   /* Test the input parameters. */
+  if (n < 0)
+    BLAS_error(routine_name, -1, n, nullptr);
   if (incx == 0)
     BLAS_error(routine_name, -4, incx, nullptr);
   else if (incy == 0)
@@ -88,7 +81,7 @@ constexpr void waxpby(N n,
     BLAS_error(routine_name, -9, incw, nullptr);
 
   /* Immediate return */
-  if (n <= 0) {
+  if (n == 0) {
     return;
   }
 
@@ -96,11 +89,15 @@ constexpr void waxpby(N n,
     FPU_FIX_START;
   }
 
-  IdxType ix = 0, iy = 0, iw = 0;
+  IdxType ix = 0;
   if (incx < 0)
     ix = (-n + 1) * incx;
+
+  IdxType iy = 0;
   if (incy < 0)
     iy = (-n + 1) * incy;
+
+  IdxType iw = 0;
   if (incw < 0)
     iw = (-n + 1) * incw;
 
@@ -111,7 +108,7 @@ constexpr void waxpby(N n,
     ix += incx;
     iy += incy;
     iw += incw;
-  } /* endfor */
+  }
 
   if constexpr (impl::uses_double_double_v<TmpType>) {
     FPU_FIX_STOP;
