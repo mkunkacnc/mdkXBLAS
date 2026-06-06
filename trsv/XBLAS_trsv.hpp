@@ -29,6 +29,20 @@ constexpr IdxType start_jx(N n,
 template<int do_incr,
          typename IdxType,
          typename N>
+constexpr void incr_jx(IdxType& jx,
+                       N incx)
+{
+  if constexpr (do_incr)
+    jx += incx;
+  else
+    jx -= incx;
+}
+
+//-----------------
+
+template<int do_incr,
+         typename IdxType,
+         typename N>
 constexpr IdxType start_j(N n)
 {
   if constexpr (do_incr)
@@ -40,7 +54,8 @@ constexpr IdxType start_j(N n)
 template<int do_incr,
          typename IdxType,
          typename N>
-constexpr bool test_j(IdxType j, N n)
+constexpr bool test_j(IdxType j,
+                      N n)
 {
   if constexpr (do_incr)
     return j < n;
@@ -70,6 +85,19 @@ constexpr bool test_i(IdxType i, IdxType j)
     return i >= j + 1;
 }
 
+template<int do_j_i,
+         typename IdxType,
+         typename N>
+constexpr IdxType ij_index(IdxType i,
+                           IdxType j,
+                           N ldt)
+{
+  if constexpr (do_j_i)
+    return j + i * ldt;
+  else
+    return i + j * ldt;
+}
+
 //-----------------
 
 template<int do_conj,
@@ -94,26 +122,16 @@ constexpr void trsv_impl(blas_diag_type diag,
   for (IdxType j = start_j<do_incr, IdxType>(n); test_j<do_incr>(j, n); incr_j<do_incr>(j)) {
     /* compute Xj = Xj - SUM Aij(or Aji) * Xi
        i=j+1 to n-1           */
-    TmpType temp3 = impl::to<TmpType>(x[jx]);
-    TmpType temp1 = impl::mul<TmpType>(temp3, alpha);
+    TmpType temp1 = impl::mul<TmpType>(impl::to<TmpType>(x[jx]), alpha);
 
     IdxType ix = start_jx<do_incr, IdxType>(n, start_x, incx);
     for (IdxType i = start_j<do_incr, IdxType>(n); test_i<do_incr>(i, j); incr_j<do_incr>(i)) {
-      A T_element;
-      if constexpr (do_j_i) {
-          T_element = impl::Conj_h<do_conj>::func(t[j + i * ldt]);
-      } else {
-          T_element = impl::Conj_h<do_conj>::func(t[i + j * ldt]);
-      }
+      A T_element = impl::Conj_h<do_conj>::func(t[ij_index<do_j_i>(i, j, ldt)]);
       TmpType temp3 = impl::to<TmpType>(x[ix]);
       TmpType temp2 = impl::mul<TmpType>(temp3, T_element);
-      temp1 = temp1 - temp2;
-      if constexpr (do_incr) {
-        ix += incx;
-      } else {
-        ix -= incx;
-      }
-    } /* for i<j */
+      temp1 -= temp2;
+      incr_jx<do_incr>(ix, incx);
+    } /* for i>j */
 
     /* if the diagonal entry is not equal to one, then divide Xj by
        the entry */
@@ -121,13 +139,9 @@ constexpr void trsv_impl(blas_diag_type diag,
       A T_element = impl::Conj_h<do_conj>::func(t[j + j * ldt]);
       temp1 = impl::div(temp1, T_element);
     }
-    /* if (diag == blas_non_unit_diag) */
+
     x[jx] = impl::to<X>(temp1);
-    if constexpr (do_incr) {
-      jx += incx;
-    } else {
-      jx -= incx;
-    }
+    incr_jx<do_incr>(jx, incx);
   }
 }
 
