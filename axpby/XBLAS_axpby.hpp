@@ -61,13 +61,15 @@ constexpr void axpby(N n,
   FPU_FIX_DECL;
 
   /* Test the input parameters. */
-  if (incx == 0)
+  if (n < 0)
+    BLAS_error(routine_name, -1, n, nullptr);
+  else if (incx == 0)
     BLAS_error(routine_name, -4, incx, nullptr);
   else if (incy == 0)
     BLAS_error(routine_name, -7, incy, nullptr);
 
   /* Immediate return */
-  if (n <= 0 || (alpha == T(0) && beta == T(1)))
+  if (n == 0 || (alpha == T(0) && beta == T(1)))
     return;
 
   if constexpr (impl::uses_double_double_v<TmpType>) {
