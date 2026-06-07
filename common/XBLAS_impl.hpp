@@ -183,7 +183,7 @@ constexpr inline C add(A a, B b)
 
   } else
 #endif
-  if constexpr (is_complex_v<C> &&
+         if constexpr (is_complex_v<C> &&
                        is_complex_v<A> &&
                        is_complex_v<B>) {
     return C(to<inner_type_t<C>>(std::real(a) + std::real(b)), to<inner_type_t<C>>(std::imag(a) + std::imag(b)));
@@ -618,9 +618,9 @@ constexpr A div(A a, B b)
   } else if constexpr (std::is_same_v<inner_type_t<A>, double_double>) {
     return a / b;
 #endif
-  } else if constexpr (impl::is_complex_v<A>) {
-    static_assert(!impl::is_complex_v<B>);
-    return a / static_cast<impl::inner_type_t<A>>(b);
+  } else if constexpr (is_complex_v<A>) {
+    static_assert(!is_complex_v<B>);
+    return a / static_cast<inner_type_t<A>>(b);
 
   } else {
     return a / static_cast<A>(b);
