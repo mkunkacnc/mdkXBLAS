@@ -1,7 +1,7 @@
 #ifndef XBLAS_SYMV_HPP
 #define XBLAS_SYMV_HPP
 
-#include "hemv/XBLAS_hemv.hpp"
+#include "hemv.hpp"
 
 //---------------
 namespace XBLAS {

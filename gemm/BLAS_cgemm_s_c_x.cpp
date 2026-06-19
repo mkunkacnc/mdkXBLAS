@@ -1,6 +1,6 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "gemm/XBLAS_gemm.hpp"
+#include "gemm.hpp"
 
 void BLAS_cgemm_s_c_x(enum blas_order_type order,
                       enum blas_trans_type transa,

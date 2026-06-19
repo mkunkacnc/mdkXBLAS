@@ -1,7 +1,7 @@
 #ifndef XBLAS_SBMV_HPP
 #define XBLAS_SBMV_HPP
 
-#include "hbmv/XBLAS_hbmv.hpp"
+#include "hbmv.hpp"
 
 //---------------
 namespace XBLAS {

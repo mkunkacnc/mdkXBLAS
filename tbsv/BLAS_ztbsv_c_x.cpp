@@ -1,7 +1,7 @@
 #include <math.h>
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "tbsv/XBLAS_tbsv.hpp"
+#include "tbsv.hpp"
 
 void BLAS_ztbsv_c_x(enum blas_order_type order,
                     enum blas_uplo_type uplo,

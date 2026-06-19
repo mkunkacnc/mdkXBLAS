@@ -1,6 +1,6 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "gemv/XBLAS_gemv.hpp"
+#include "gemv.hpp"
 
 void BLAS_sgemv_x(enum blas_order_type order,
                   enum blas_trans_type trans,

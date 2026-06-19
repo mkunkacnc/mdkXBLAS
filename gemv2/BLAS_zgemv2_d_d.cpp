@@ -1,6 +1,6 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "gemv2/XBLAS_gemv2.hpp"
+#include "gemv2.hpp"
 
 void BLAS_zgemv2_d_d(enum blas_order_type order,
                      enum blas_trans_type trans,

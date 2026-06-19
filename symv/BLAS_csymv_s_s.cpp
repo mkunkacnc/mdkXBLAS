@@ -1,6 +1,6 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "symv/XBLAS_symv.hpp"
+#include "symv.hpp"
 
 void BLAS_csymv_s_s(enum blas_order_type order,
                     enum blas_uplo_type uplo,

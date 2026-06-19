@@ -1,6 +1,6 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "symm/XBLAS_symm.hpp"
+#include "symm.hpp"
 
 void BLAS_zsymm_d_z(enum blas_order_type order,
                     enum blas_side_type side,

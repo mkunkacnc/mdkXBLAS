@@ -1,7 +1,7 @@
 #ifndef XBLAS_WAXPBY_HPP
 #define XBLAS_WAXPBY_HPP
 
-#include "common/XBLAS_impl.hpp"
+#include "impl.hpp"
 
 //---------------
 namespace XBLAS {

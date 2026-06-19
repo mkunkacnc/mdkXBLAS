@@ -14,7 +14,7 @@ static_assert(__STDCPP_FLOAT128_T__, "Need std::float128_t");
 using XBLAS_X_t = std::float128_t;
 
 #else
-#include "common/XBLAS_double_double.hpp"
+#include "double_double.hpp"
 
 using XBLAS_X_t = XBLAS::double_double;
 #endif

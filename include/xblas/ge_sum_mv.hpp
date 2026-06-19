@@ -1,7 +1,7 @@
 #ifndef XBLAS_GE_SUM_MV_HPP
 #define XBLAS_GE_SUM_MV_HPP
 
-#include "common/XBLAS_impl.hpp"
+#include "impl.hpp"
 
 //---------------
 namespace XBLAS {

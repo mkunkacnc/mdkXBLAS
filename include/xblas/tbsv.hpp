@@ -2,7 +2,7 @@
 #define XBLAS_TBSV_HPP
 
 #include "blas_enum.h"
-#include "common/XBLAS_impl.hpp"
+#include "impl.hpp"
 
 //---------------
 namespace XBLAS {

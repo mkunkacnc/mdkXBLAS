@@ -1,6 +1,6 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "ge_sum_mv/XBLAS_ge_sum_mv.hpp"
+#include "ge_sum_mv.hpp"
 
 void BLAS_zge_sum_mv_z_c(enum blas_order_type order,
                          int m,

@@ -1,6 +1,6 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "axpby/XBLAS_axpby.hpp"
+#include "axpby.hpp"
 
 void BLAS_saxpby_x(int n,
                    float alpha,

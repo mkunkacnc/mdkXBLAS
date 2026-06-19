@@ -1,6 +1,6 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "hpmv/XBLAS_hpmv.hpp"
+#include "hpmv.hpp"
 
 void BLAS_zhpmv_z_d(enum blas_order_type order,
                     enum blas_uplo_type uplo,

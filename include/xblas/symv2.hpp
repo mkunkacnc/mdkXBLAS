@@ -1,7 +1,7 @@
 #ifndef XBLAS_SYMV2_HPP
 #define XBLAS_SYMV2_HPP
 
-#include "hemv2/XBLAS_hemv2.hpp"
+#include "hemv2.hpp"
 
 //---------------
 namespace XBLAS {

@@ -1,6 +1,6 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "gbmv/XBLAS_gbmv.hpp"
+#include "gbmv.hpp"
 
 void BLAS_dgbmv_d_s_x(enum blas_order_type order,
                       enum blas_trans_type trans,

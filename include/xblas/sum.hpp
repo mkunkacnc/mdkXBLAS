@@ -1,7 +1,7 @@
 #ifndef XBLAS_SUM_HPP
 #define XBLAS_SUM_HPP
 
-#include "common/XBLAS_impl.hpp"
+#include "impl.hpp"
 
 //---------------
 namespace XBLAS {

@@ -1,7 +1,7 @@
 #ifndef XBLAS_AXPBY_HPP
 #define XBLAS_AXPBY_HPP
 
-#include "common/XBLAS_impl.hpp"
+#include "impl.hpp"
 
 //---------------
 namespace XBLAS {

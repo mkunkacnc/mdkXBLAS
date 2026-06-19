@@ -2,7 +2,7 @@
 #define XBLAS_TRSV_HPP
 
 #include "blas_enum.h"
-#include "common/XBLAS_impl.hpp"
+#include "impl.hpp"
 #include <new>
 
 //---------------

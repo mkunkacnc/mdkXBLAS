@@ -1,6 +1,6 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "dot/XBLAS_dot.hpp"
+#include "dot.hpp"
 
 void BLAS_cdot_c_s_x(enum blas_conj_type conj,
                      int n,
