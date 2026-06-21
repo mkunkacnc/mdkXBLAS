@@ -3,7 +3,7 @@
 
 #include "blas_enum.h"
 #include "impl.hpp"
-#include <new>
+#include <cstdlib>
 
 //---------------
 namespace XBLAS {
@@ -268,7 +268,7 @@ constexpr void trsv(blas_order_type order,
   if constexpr (impl::is_complex_v<A>) {
     if constexpr (sizeof(TmpType) > sizeof(T)) {
       /* allocate space for intx */
-      TmpType *intx = new(std::nothrow) TmpType[n];
+      TmpType *intx = static_cast<TmpType*>(std::malloc(n*sizeof(TmpType)));
 
       if (n > 0 && intx == nullptr) {
         BLAS_error(routine_name, -5, n, "allocation failed.\n");
@@ -322,7 +322,7 @@ constexpr void trsv(blas_order_type order,
         ++jx;
       }
 
-      delete[] intx;
+      std::free(intx);
 
     } else {
       if ((order == blas_rowmajor && trans == blas_no_trans && uplo == blas_upper) ||
@@ -358,7 +358,7 @@ constexpr void trsv(blas_order_type order,
   } else {
     if constexpr (sizeof(TmpType) > sizeof(T)) {
       /* allocate space for intx */
-      TmpType *intx = new(std::nothrow) TmpType[n];
+      TmpType *intx = static_cast<TmpType*>(std::malloc(n*sizeof(TmpType)));
       if (n > 0 && intx == nullptr) {
         BLAS_error(routine_name, 0, 0, "allocation failed.\n");
       }
@@ -402,7 +402,7 @@ constexpr void trsv(blas_order_type order,
         ++jx;
       }
 
-      delete[] intx;
+      std::free(intx);
 
     } else {
       if ((order == blas_rowmajor && trans == blas_no_trans && uplo == blas_upper) ||

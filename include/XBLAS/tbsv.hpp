@@ -3,6 +3,7 @@
 
 #include "blas_enum.h"
 #include "impl.hpp"
+#include <cstdlib>
 
 //---------------
 namespace XBLAS {
@@ -380,7 +381,7 @@ constexpr void tbsv(blas_order_type order,
   if constexpr (impl::is_complex_v<A>) {
     if constexpr (sizeof(TmpType) > sizeof(T)) {
 
-      TmpType *x_internal = new(std::nothrow) TmpType[k];
+      TmpType *x_internal = static_cast<TmpType*>(std::malloc(k*sizeof(TmpType)));
       if (k > 0 && x_internal == nullptr) {
         BLAS_error(routine_name, -6, k, "allocation failed.\n");
       }
@@ -395,7 +396,7 @@ constexpr void tbsv(blas_order_type order,
                              x_internal, start_xi, dot_start, dot_inc, dot_start_inc1, dot_start_inc2);
       }
 
-      delete[] x_internal;
+      std::free(x_internal);
 
     } else {
       if ((trans == static_cast<blas_trans_type>(blas_conj)) || (trans == blas_conj_trans)) {
@@ -411,7 +412,7 @@ constexpr void tbsv(blas_order_type order,
   } else {
     if constexpr (sizeof(TmpType) > sizeof(T)) {
 
-      TmpType *x_internal = new(std::nothrow) TmpType[k];
+      TmpType *x_internal = static_cast<TmpType*>(std::malloc(k*sizeof(TmpType)));
       if (k > 0 && x_internal == nullptr) {
         BLAS_error(routine_name, -6, k, "allocation failed.\n");
       }
@@ -419,7 +420,7 @@ constexpr void tbsv(blas_order_type order,
       impl::tbsv_impl_x<0>(diag, n, k, alpha, t, x, incx,
                            x_internal, start_xi, dot_start, dot_inc, dot_start_inc1, dot_start_inc2);
 
-      delete[] x_internal;
+      std::free(x_internal);
 
     } else {
       impl::tbsv_impl<0, TmpType>(diag, n, k, alpha, t, x, incx,
