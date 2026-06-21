@@ -1,4 +1,4 @@
-#if !defined(XBLAS_F2C_BRIDGE_H_)
+#ifndef XBLAS_F2C_BRIDGE_H_
 #define XBLAS_F2C_BRIDGE_H_
 
 /*

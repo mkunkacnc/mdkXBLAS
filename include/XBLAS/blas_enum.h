@@ -1,6 +1,11 @@
 #ifndef BLAS_ENUM_H
 #define BLAS_ENUM_H
 
+/* Set up for C function definitions, even when using C++ */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Enumerated types */
 
 enum blas_order_type {
@@ -101,5 +106,10 @@ enum blas_sparsity_optimization_type {
             blas_block         = 273,
             blas_unassembled   = 274 };
 
+
+/* Ends C function definitions when using C++ */
+#ifdef __cplusplus
+}
 #endif
-   /* BLAS_ENUM_H */
+
+#endif /* BLAS_ENUM_H */

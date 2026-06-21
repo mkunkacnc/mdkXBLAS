@@ -1374,5 +1374,4 @@ double c_dfpinfo( enum blas_cmach_type cmach );
 }
 #endif
 
-#endif
-   /* BLAS_DENSE_PROTO_H */
+#endif /* BLAS_DENSE_PROTO_H */
