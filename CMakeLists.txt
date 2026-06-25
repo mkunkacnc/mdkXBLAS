@@ -1,25 +1,11 @@
 cmake_minimum_required(VERSION 4.3.3)
 project(mdkXBLAS)
 
-# cd ./xblas
-# cmake -B build
+# Suppose repository is in mdkXBLAS directory
+# cd path/to/mdkXBLAS
+# cmake --preset mdkXBLAS-preset
 # cmake --build build
 # cmake --build build --clean-first
-
-# ------------------------------------------------------------
-# Output directories
-# ------------------------------------------------------------
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
-
-# ------------------------------------------------------------
-# Compiler flags
-# ------------------------------------------------------------
-set(CMAKE_C_FLAGS "-O2 -Wall -Wextra -pedantic")
-set(CMAKE_CXX_FLAGS "-O2 -Wall -Wextra -pedantic")
-set(CMAKE_C_FLAGS_RELEASE "-O2 -Wall -Wextra -pedantic")
-set(CMAKE_CXX_FLAGS_RELEASE "-O2 -Wall -Wextra -pedantic")
 
 # ------------------------------------------------------------
 # Fortran symbol mangling autodetection
@@ -59,12 +45,6 @@ elseif(MANGLED STREQUAL "MANGLE_TEST")
 else()
     message(WARNING "Unknown Fortran mangling: ${MANGLED}")
 endif()
-
-# ------------------------------------------------------------
-
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
 
 # ------------------------------------------------------------
 
@@ -1095,6 +1075,11 @@ target_sources(xblas
     include/XBLAS/waxpby.hpp
 )
 
+target_compile_features(xblas PRIVATE cxx_std_23)
+
+# This library has a C/fortran API, exceptions/rtti do not apply.
+# We don't want c/fortran client code to have linking issues if
+# the stdc++ library is not linked.
 target_compile_options(xblas PRIVATE
     $<$<COMPILE_LANGUAGE:CXX>:-fno-exceptions -fno-rtti>
 )
