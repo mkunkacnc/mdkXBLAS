@@ -2,8 +2,7 @@
   "version": 4,
   "configurePresets": [
     {
-      "name": "mdkXBLAS-preset",
-	  "binaryDir": "${sourceDir}/build",
+      "name": "mdkXBLAS-gcc",
       "cacheVariables": {
 		"CMAKE_CXX_STANDARD": "23",
 		"CMAKE_CXX_STANDARD_REQUIRED": "ON",
@@ -11,10 +10,7 @@
         "CMAKE_C_FLAGS": "-O2 -Wall -Wextra -pedantic",
         "CMAKE_CXX_FLAGS": "-O2 -Wall -Wextra -pedantic",
         "CMAKE_C_FLAGS_RELEASE": "-O2 -Wall -Wextra -pedantic",
-        "CMAKE_CXX_FLAGS_RELEASE": "-O2 -Wall -Wextra -pedantic",
-		"CMAKE_ARCHIVE_OUTPUT_DIRECTORY": "${sourceDir}/build/lib",
-		"CMAKE_LIBRARY_OUTPUT_DIRECTORY": "${sourceDir}/build/lib",
-		"CMAKE_RUNTIME_OUTPUT_DIRECTORY": "${sourceDir}/build/bin"
+        "CMAKE_CXX_FLAGS_RELEASE": "-O2 -Wall -Wextra -pedantic"
       }
     }
   ]

@@ -3,9 +3,16 @@ project(mdkXBLAS)
 
 # Suppose repository is in mdkXBLAS directory
 # cd path/to/mdkXBLAS
-# cmake --preset mdkXBLAS-preset
+# cmake -B build --preset mdkXBLAS-gcc
 # cmake --build build
 # cmake --build build --clean-first
+
+# ------------------------------------------------------------
+# Output directories
+# ------------------------------------------------------------
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib" CACHE STRING "")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib" CACHE STRING "")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin" CACHE STRING "")
 
 # ------------------------------------------------------------
 # Fortran symbol mangling autodetection
