@@ -1,11 +1,11 @@
-#include <stdio.h>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdio>
+#include <cstdarg>
+#include <cstdlib>
+#include <cstring>
 #include "blas_extended.h"
 #include "f2c-bridge.h"
 
-#if defined(CONFIG_USE_XERBLA)
+#ifdef MDKXLBAS_USE_XERBLA
 #define xerbla_array FC_FUNC_(xerbla_array, XERBLA_ARRAY)
 extern void xerbla_array(const char *, const int *, const int *);
 #endif
@@ -27,7 +27,7 @@ void BLAS_error(const char *rname,
  * ival      (input) the value of parameter number -IFLAG.
  */
 {
-#if !defined(CONFIG_USE_XERBLA)
+#ifndef MDKXLBAS_USE_XERBLA
   {
     va_list argptr;
     va_start(argptr, form);

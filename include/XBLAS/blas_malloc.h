@@ -1,7 +1,7 @@
 #ifndef BLAS_MALLOC_H
 #define BLAS_MALLOC_H 1
 
-#ifdef NO_BLASMALLOC
+#ifdef MDKXBLAS_NO_BLASMALLOC
 
 #include <malloc.h>
 #define blas_malloc(s) malloc(s)

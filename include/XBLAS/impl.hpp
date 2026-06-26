@@ -4,9 +4,8 @@
 // Need at least C++23
 static_assert(__cplusplus >= 202302L, "Need at least C++23");
 
-//#define XBLAS_USE_FLOAT128
-
-#ifdef XBLAS_USE_FLOAT128
+#ifdef MDKXBLAS_USE_FLOAT128
+#error "float128"
 static_assert(__STDCPP_FLOAT128_T__, "Need std::float128_t");
 
 #include <stdfloat>
@@ -14,6 +13,7 @@ static_assert(__STDCPP_FLOAT128_T__, "Need std::float128_t");
 using XBLAS_X_t = std::float128_t;
 
 #else
+#error "double_double"
 #include "double_double.hpp"
 
 using XBLAS_X_t = XBLAS::double_double;
@@ -87,7 +87,7 @@ constexpr inline To to(From from)
   return static_cast<To>(from);
 }
 
-#ifndef XBLAS_USE_FLOAT128
+#ifndef MDKXBLAS_USE_FLOAT128
 
 template<typename To>
 requires std::floating_point<inner_type_t<To>>
@@ -108,7 +108,7 @@ constexpr inline To to(std::complex<double_double> from)
 //---------------------------
 // USES_DOUBLE_DOUBLE
 
-#ifdef XBLAS_USE_FLOAT128
+#ifdef MDKXBLAS_USE_FLOAT128
 
 template<typename T>
 inline constexpr bool uses_double_double_v = false;
@@ -169,7 +169,7 @@ template<typename C,
          typename B>
 constexpr inline C add(A a, B b)
 {
-#ifndef XBLAS_USE_FLOAT128
+#ifndef MDKXBLAS_USE_FLOAT128
   if constexpr (std::floating_point<C> &&
                 std::is_same_v<A, double_double> &&
                 std::is_same_v<B, double_double>) {
@@ -205,7 +205,7 @@ constexpr inline C mul(A a, B b)
   if constexpr (std::is_same_v<C, A> &&
                 std::is_same_v<C, B>) {
     return a * b;
-#ifndef XBLAS_USE_FLOAT128
+#ifndef MDKXBLAS_USE_FLOAT128
   // double_double mul(A, B), A, B floating-point
   } else if constexpr (std::is_same_v<C, double_double> &&
                        std::floating_point<A> &&
@@ -221,7 +221,7 @@ constexpr inline C mul(A a, B b)
   } else if constexpr (is_complex_v<C> &&
                        std::floating_point<A> &&
                        std::floating_point<B>) {
-#ifndef XBLAS_USE_FLOAT128
+#ifndef MDKXBLAS_USE_FLOAT128
     static_assert(!std::is_same_v<C, std::complex<double_double>>);
 #endif
     return static_cast<inner_type_t<C>>(a) * b;
@@ -230,7 +230,7 @@ constexpr inline C mul(A a, B b)
   } else if constexpr (is_complex_v<C> &&
                        is_complex_v<A> &&
                        std::floating_point<B>) {
-#ifndef XBLAS_USE_FLOAT128
+#ifndef MDKXBLAS_USE_FLOAT128
     static_assert(!std::is_same_v<C, std::complex<double_double>>);
 #endif
     return static_cast<C>(a) * static_cast<inner_type_t<C>>(b);
@@ -239,7 +239,7 @@ constexpr inline C mul(A a, B b)
   } else if constexpr (is_complex_v<C> &&
                        std::floating_point<A> &&
                        is_complex_v<B>) {
-#ifndef XBLAS_USE_FLOAT128
+#ifndef MDKXBLAS_USE_FLOAT128
     static_assert(!std::is_same_v<C, std::complex<double_double>>);
 #endif
     return static_cast<inner_type_t<C>>(a) * static_cast<C>(b);
@@ -248,7 +248,7 @@ constexpr inline C mul(A a, B b)
   } else if constexpr (is_complex_v<C> &&
                        is_complex_v<A> &&
                        is_complex_v<B>) {
-#ifndef XBLAS_USE_FLOAT128
+#ifndef MDKXBLAS_USE_FLOAT128
     static_assert(!std::is_same_v<C, std::complex<double_double>>);
 #endif
     return static_cast<C>(a) * static_cast<C>(b);
@@ -256,14 +256,14 @@ constexpr inline C mul(A a, B b)
   // At this point C, A, B should all be real (possibly double_double), not complex.
   // C mul(C, B) or C mul(A, C)
   } else if constexpr (std::is_same_v<C, A> || std::is_same_v<C, B>) {
-#ifndef XBLAS_USE_FLOAT128
+#ifndef MDKXBLAS_USE_FLOAT128
     static_assert(!std::is_same_v<C, std::complex<double_double>>);
 #endif
     return a * b;
 
   // C mul(A, B)
   } else {
-#ifndef XBLAS_USE_FLOAT128
+#ifndef MDKXBLAS_USE_FLOAT128
     static_assert(!std::is_same_v<C, std::complex<double_double>>);
     static_assert(!std::is_same_v<C, double_double>);
 #endif
@@ -440,7 +440,7 @@ constexpr A div(A a, B b)
     }
     /* Scale back */
     return A(q[0] * S, q[1] * S);
-#ifdef XBLAS_USE_FLOAT128
+#ifdef MDKXBLAS_USE_FLOAT128
   } else if constexpr (std::is_same_v<A, std::complex<std::float128_t>> &&
 #else
   } else if constexpr (std::is_same_v<A, std::complex<double_double>> &&
@@ -450,7 +450,7 @@ constexpr A div(A a, B b)
     double abs_a, abs_b, abs_c, abs_d, ab, cd;
     double s;
     double r;
-#ifdef XBLAS_USE_FLOAT128
+#ifdef MDKXBLAS_USE_FLOAT128
     std::float128_t t, q[2];
 #else
     double_double t, q[2];
@@ -473,7 +473,7 @@ constexpr A div(A a, B b)
 
     /* Scaling */
     if (ab > ov1 / 16) {        /* scale down a, b */
-#ifdef XBLAS_USE_FLOAT128
+#ifdef MDKXBLAS_USE_FLOAT128
       a = a / static_cast<inner_type_t<A>>(16);
 #else
       a = a / 16.0;
@@ -486,7 +486,7 @@ constexpr A div(A a, B b)
     }
     if (ab < un1 / eps1 * 2) {        /* scale up a, b */
       s = 2.0 / (eps1 * eps1);
-#ifdef XBLAS_USE_FLOAT128
+#ifdef MDKXBLAS_USE_FLOAT128
       a = a * static_cast<inner_type_t<A>>(s);
 #else
       a = a * s;
@@ -502,7 +502,7 @@ constexpr A div(A a, B b)
     /* Now un1/eps1*2 <= (a,b) >= ov1/16, un/eps*2 <= (c,d) >= ov/16 */
     if (abs_c > abs_d) {
       r = std::imag(b) / std::real(b);
-#ifdef XBLAS_USE_FLOAT128
+#ifdef MDKXBLAS_USE_FLOAT128
       t = std::real(b) + impl::mul<std::float128_t>(std::imag(b), r);
 #else
       t = std::real(b) + double_double::mul(std::imag(b), r);
@@ -511,7 +511,7 @@ constexpr A div(A a, B b)
       q[1] = (std::imag(a) - std::real(a) * r) / t;
     } else {
       r = std::real(b) / std::imag(b);
-#ifdef XBLAS_USE_FLOAT128
+#ifdef MDKXBLAS_USE_FLOAT128
       t = std::imag(b) + impl::mul<std::float128_t>(std::real(b), r);
 #else
       t = std::imag(b) + double_double::mul(std::real(b), r);
@@ -526,7 +526,7 @@ constexpr A div(A a, B b)
     } else {
       return A(q[0] * S, q[1] * S);
     }
-#ifdef XBLAS_USE_FLOAT128
+#ifdef MDKXBLAS_USE_FLOAT128
   } else if constexpr (std::is_same_v<A, std::complex<std::float128_t>> &&
 #else
   } else if constexpr (std::is_same_v<A, std::complex<double_double>> &&
@@ -536,7 +536,7 @@ constexpr A div(A a, B b)
     double abs_a, abs_b, abs_c, abs_d, ab, cd;
     double s;
     double r;
-#ifdef XBLAS_USE_FLOAT128
+#ifdef MDKXBLAS_USE_FLOAT128
     std::float128_t t, q[2];
 #else
     double_double t, q[2];
@@ -558,7 +558,7 @@ constexpr A div(A a, B b)
 
     /* Scaling */
     if (ab > ov1 / 16) {        /* scale down a, b */
-#ifdef XBLAS_USE_FLOAT128
+#ifdef MDKXBLAS_USE_FLOAT128
       a = a / static_cast<inner_type_t<A>>(16);
 #else
       a = a / 16.0;
@@ -571,7 +571,7 @@ constexpr A div(A a, B b)
     }
     if (ab < un1 / eps1 * 2) {        /* scale up a, b */
       s = 2.0 / (eps1 * eps1);
-#ifdef XBLAS_USE_FLOAT128
+#ifdef MDKXBLAS_USE_FLOAT128
       a = a * static_cast<inner_type_t<A>>(s);
 #else
       a = a * s;
@@ -587,7 +587,7 @@ constexpr A div(A a, B b)
     /* Now un1/eps1*2 <= (a,b) >= ov1/16, un/eps*2 <= (c,d) >= ov/16 */
     if (abs_c > abs_d) {
       r = std::imag(b) / std::real(b);
-#ifdef XBLAS_USE_FLOAT128
+#ifdef MDKXBLAS_USE_FLOAT128
       t = std::real(b) + impl::mul<std::float128_t>(std::imag(b), r);
 #else
       t = std::real(b) + double_double::mul(std::imag(b), r);
@@ -596,7 +596,7 @@ constexpr A div(A a, B b)
       q[1] = (std::imag(a) - std::real(a) * r) / t;
     } else {
       r = std::real(b) / std::imag(b);
-#ifdef XBLAS_USE_FLOAT128
+#ifdef MDKXBLAS_USE_FLOAT128
       t = std::imag(b) + impl::mul<std::float128_t>(std::real(b), r);
 #else
       t = std::imag(b) + double_double::mul(std::real(b), r);
@@ -611,7 +611,7 @@ constexpr A div(A a, B b)
     } else {
       return A(q[0] * S, q[1] * S);
     }
-#ifdef XBLAS_USE_FLOAT128
+#ifdef MDKXBLAS_USE_FLOAT128
   } else if constexpr (std::is_same_v<inner_type_t<A>, std::float128_t>) {
     return a / static_cast<inner_type_t<A>>(b);
 #else

@@ -1082,6 +1082,9 @@ target_sources(xblas
     include/XBLAS/waxpby.hpp
 )
 
+option(MDKXBLAS_USE_FLOAT128 "use std::float128_t" OFF)
+option(MDKXBLAS_USE_XERBLA "use xerbla_array" OFF)
+
 target_compile_features(xblas PRIVATE cxx_std_23)
 
 # This library has a C/fortran API, exceptions/rtti do not apply.
