@@ -12,7 +12,10 @@
         "CMAKE_C_FLAGS_RELEASE": "-O2 -Wall -Wextra -pedantic",
         "CMAKE_CXX_FLAGS_RELEASE": "-O2 -Wall -Wextra -pedantic",
 
-        "MDKXBLAS_USE_FLOAT128": "ON"
+        "MDKXBLAS_USE_FLOAT128": "OFF",
+        "MDKXBLAS_USE_XERBLA": "OFF",
+        "MDKXBLAS_NO_BLAS_MALLOC": "OFF",
+        "MDKXBLAS_DEBUG_BLAS_MALLOC": "OFF"
       }
     }
   ]

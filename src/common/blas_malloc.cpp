@@ -1,14 +1,14 @@
-#include <stdlib.h>
+#include <cstdlib>
 #include "blas_extended.h"
 
 void *blas_malloc(size_t size)
 {
-#ifdef BLAS_DEBUG
+#ifdef XBLAS_DEBUG_BLAS_MALLOC
   void *ptr = malloc(size);
   if (size % sizeof(float) == 0) {
     int n = size / sizeof(float);
     int i;
-    for (i = 0; i < n; i++) { 
+    for (i = 0; i < n; i++) {
       ((float *) ptr)[i] = 0.0 / 0.0;
     }
   }

@@ -1084,6 +1084,8 @@ target_sources(xblas
 
 option(MDKXBLAS_USE_FLOAT128 "use std::float128_t" OFF)
 option(MDKXBLAS_USE_XERBLA "use xerbla_array" OFF)
+option(MDKXBLAS_NO_BLAS_MALLOC "don't use blas_malloc" OFF)
+option(MDKXBLAS_DEBUG_BLAS_MALLOC "enable debug blas_malloc" OFF)
 
 target_compile_features(xblas PRIVATE cxx_std_23)
 
@@ -1097,5 +1099,25 @@ target_compile_options(xblas PRIVATE
 target_compile_definitions(xblas PRIVATE
     $<$<COMPILE_LANGUAGE:CXX>:_HAS_EXCEPTIONS=0>
 )
+
+if (MDKXBLAS_USE_FLOAT128)
+    message(STATUS "using std::float128_t for extended presicion")
+    target_compile_definitions(xblas PRIVATE XBLAS_USE_FLOAT128)
+else()
+    message(STATUS "using XBLAS::double_double for extended presicion")
+endif()
+
+if (MDKXBLAS_USE_XERBLA)
+    message(STATUS "blas_error forwards to xerbla")
+    target_compile_definitions(xblas PRIVATE XBLAS_USE_XERBLA)
+endif()
+
+if (MDKXBLAS_NO_BLAS_MALLOC)
+    message(STATUS "no blas_malloc wrapper around std::malloc")
+    target_compile_definitions(xblas PRIVATE XBLAS_NO_BLAS_MALLOC)
+elseif (MDKXBLAS_DEBUG_BLAS_MALLOC)
+    message(STATUS "blas_malloc debug enabled")
+    target_compile_definitions(xblas PRIVATE XBLAS_DEBUG_BLAS_MALLOC)
+endif()
 
 # ------------------------------------------------------------
