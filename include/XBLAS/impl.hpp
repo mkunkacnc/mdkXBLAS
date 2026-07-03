@@ -17,6 +17,7 @@ using XBLAS_X_t = std::float128_t;
 using XBLAS_X_t = XBLAS::double_double;
 #endif
 
+#include <cmath>
 #include <complex>
 #include <type_traits>
 

@@ -5,6 +5,7 @@ project(mdkXBLAS)
 # cd path/to/mdkXBLAS
 # cmake -B build --preset mdkXBLAS-gcc
 # cmake --build build
+#  or
 # cmake --build build --clean-first
 
 # ------------------------------------------------------------

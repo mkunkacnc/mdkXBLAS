@@ -1,10 +1,10 @@
+#include "blas_malloc.h"
 #include <cstdlib>
-#include "blas_extended.h"
 
-void *blas_malloc(size_t size)
+void *blas_malloc(std::size_t size)
 {
 #ifdef XBLAS_DEBUG_BLAS_MALLOC
-  void *ptr = malloc(size);
+  void *ptr = std::malloc(size);
   if (size % sizeof(float) == 0) {
     int n = size / sizeof(float);
     int i;
@@ -14,17 +14,16 @@ void *blas_malloc(size_t size)
   }
   return ptr;
 #else
-  return (malloc(size));
+  return std::malloc(size);
 #endif
 }
 
 void blas_free(void *ptr)
 {
-  if (ptr != NULL)
-    free(ptr);
+  std::free(ptr);
 }
 
-void *blas_realloc(void *ptr, size_t size)
+void *blas_realloc(void *ptr, std::size_t size)
 {
-  return (realloc(ptr, size));
+  return std::realloc(ptr, size);
 }
