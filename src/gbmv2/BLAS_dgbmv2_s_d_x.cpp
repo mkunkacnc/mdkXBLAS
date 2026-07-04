@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_extended_private.h"
 #include "gbmv2.hpp"
 
 void BLAS_dgbmv2_s_d_x(enum blas_order_type order,

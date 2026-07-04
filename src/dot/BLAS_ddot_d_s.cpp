@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_extended_private.h"
 #include "dot.hpp"
 
 void BLAS_ddot_d_s(enum blas_conj_type conj,

@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_extended_private.h"
 #include "gemv.hpp"
 
 void BLAS_cgemv_s_c_x(enum blas_order_type order,

@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_extended_private.h"
 #include "waxpby.hpp"
 
 void BLAS_dwaxpby_s_s(int n,

@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_extended_private.h"
 #include "symm.hpp"
 
 void BLAS_zsymm_c_z(enum blas_order_type order,

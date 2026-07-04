@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_extended_private.h"
 #include "axpby.hpp"
 
 void BLAS_daxpby_s(int n,

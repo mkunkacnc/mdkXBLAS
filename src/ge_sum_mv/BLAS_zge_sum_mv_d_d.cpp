@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_extended_private.h"
 #include "ge_sum_mv.hpp"
 
 void BLAS_zge_sum_mv_d_d(enum blas_order_type order,

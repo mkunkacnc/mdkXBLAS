@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_extended_private.h"
 #include "symv.hpp"
 
 void BLAS_zsymv_d_z(enum blas_order_type order,

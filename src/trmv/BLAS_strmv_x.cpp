@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_extended_private.h"
 #include "trmv.hpp"
 
 void BLAS_strmv_x(enum blas_order_type order,

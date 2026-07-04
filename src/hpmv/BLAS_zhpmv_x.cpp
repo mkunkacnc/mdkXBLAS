@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_extended_private.h"
 #include "hpmv.hpp"
 
 void BLAS_zhpmv_x(enum blas_order_type order,

@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_extended_private.h"
 #include "spmv.hpp"
 
 void BLAS_sspmv_x(enum blas_order_type order,

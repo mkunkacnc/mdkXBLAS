@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_extended_private.h"
 #include "hemv.hpp"
 
 void BLAS_chemv_c_s(enum blas_order_type order,

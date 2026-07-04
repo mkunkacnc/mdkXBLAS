@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_extended_private.h"
 #include "trsv.hpp"
 
 void BLAS_ctrsv_s_x(enum blas_order_type order,

@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_extended_private.h"
 #include "sum.hpp"
 
 void BLAS_csum_x(int n,
