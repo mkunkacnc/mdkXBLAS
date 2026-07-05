@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_fpu.h"
 #include "symv2.hpp"
 
 void BLAS_csymv2_s_s(enum blas_order_type order,

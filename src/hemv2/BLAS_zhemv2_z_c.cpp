@@ -1,5 +1,4 @@
 #include "blas_extended.h"
-#include "blas_fpu.h"
 #include "hemv2.hpp"
 
 void BLAS_zhemv2_z_c(enum blas_order_type order,
