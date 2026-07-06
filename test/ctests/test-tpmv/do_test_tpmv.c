@@ -6337,7 +6337,11 @@ double do_test_ztpmv_d_x(int n,
 
 #define NSIZES 12
 
+#ifdef XBLAS_COMBINE_TESTS
 int main_tpmv(int argc, char **argv)
+#else
+int main(int argc, char **argv)
+#endif
 {
   int nsizes, ntests, debug;
   double thresh, test_prob;

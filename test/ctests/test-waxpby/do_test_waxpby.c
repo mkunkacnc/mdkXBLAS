@@ -14579,7 +14579,11 @@ double do_test_zwaxpby_d_d_x(int n,
   return ratio_max;
 }                                /* end of do_test_zwaxpby_d_d_x */
 
+#ifdef XBLAS_COMBINE_TESTS
 int main_waxpby(int argc, char **argv)
+#else
+int main(int argc, char **argv)
+#endif
 {
   int nsizes, ntests, debug;
   double thresh, test_prob;

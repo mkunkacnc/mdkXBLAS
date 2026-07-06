@@ -4697,7 +4697,11 @@ void do_test_zhemv_z_d_x
 
 }
 
+#ifdef XBLAS_COMBINE_TESTS
 int main_hemv(int argc, char **argv)
+#else
+int main(int argc, char **argv)
+#endif
 {
   int nsizes, ntests, debug;
   double thresh, test_prob;

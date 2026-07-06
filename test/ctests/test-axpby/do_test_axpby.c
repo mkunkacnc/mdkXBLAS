@@ -5254,7 +5254,11 @@ double do_test_zaxpby_d_x(int n, int ntests, int *seed, double thresh,
 }                                /* end of do_test_zaxpby_d_x */
 
 
+#ifdef XBLAS_COMBINE_TESTS
 int main_axpby(int argc, char **argv)
+#else
+int main(int argc, char **argv)
+#endif
 {
   int nsizes, ntests, debug;
   double thresh, test_prob;

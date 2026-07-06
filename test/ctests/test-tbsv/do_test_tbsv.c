@@ -7449,7 +7449,11 @@ end:
 
 #define NSIZES 12
 
+#ifdef XBLAS_COMBINE_TESTS
 int main_tbsv(int argc, char **argv)
+#else
+int main(int argc, char **argv)
+#endif
 {
   int nsizes, ntests, debug;
   double thresh, test_prob;

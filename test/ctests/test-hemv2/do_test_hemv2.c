@@ -4915,7 +4915,11 @@ end:
 
 }
 
+#ifdef XBLAS_COMBINE_TESTS
 int main_hemv2(int argc, char **argv)
+#else
+int main(int argc, char **argv)
+#endif
 {
   int nsizes, ntests, debug;
   double thresh, test_prob;

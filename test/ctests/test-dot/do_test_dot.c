@@ -10782,7 +10782,11 @@ double do_test_zdot_d_d_x(int n, int ntests, int *seed, double thresh,
   return ratio_max;
 }
 
+#ifdef XBLAS_COMBINE_TESTS
 int main_dot(int argc, char **argv)
+#else
+int main(int argc, char **argv)
+#endif
 {
   int nsizes, ntests, debug;
   double thresh, test_prob;

@@ -1,13 +1,19 @@
 cmake_minimum_required(VERSION 4.3.3)
 project(mdkXBLAS)
-
+#
 # Suppose repository is in mdkXBLAS directory
 # cd path/to/mdkXBLAS
+#
 # cmake -B build --preset mdkXBLAS-gcc
+#  or
+# cmake -B build --preset mdkXBLAS-gcc --fresh
+#
 # cmake --build build
 #  or
 # cmake --build build --clean-first
-
+#
+# ctest --test-dir build
+#
 # ------------------------------------------------------------
 # Output directories
 # ------------------------------------------------------------
@@ -1040,7 +1046,7 @@ target_sources(xblas
     src/waxpby/BLAS_zwaxpby_z_d.cpp
     src/waxpby/BLAS_zwaxpby_z_d_x-f2c.c
     src/waxpby/BLAS_zwaxpby_z_d_x.cpp
-  
+
   PUBLIC
     FILE_SET xblas_headers
   TYPE HEADERS
@@ -1125,101 +1131,276 @@ endif()
 # tests
 # ------------------------------------------------------------
 
-add_executable(ctests)
+enable_testing()
 
-target_sources(ctests
-  PRIVATE
-    test/ctests/common/dummy_main.c
-    test/ctests/main.c
-    test/ctests/test-axpby/do_test_axpby.c
-    test/ctests/test-dot/BLAS_dot_testgen.c
-    test/ctests/test-dot/copy_vector.c
-    test/ctests/test-dot/do_test_dot.c
-    test/ctests/test-dot/print_vector.c
-    test/ctests/test-dot/test_dot.c
-    test/ctests/test-dot/testgen_BLAS_cdot.c
-    test/ctests/test-dot/testgen_BLAS_ddot.c
-    test/ctests/test-dot/testgen_BLAS_sdot.c
-    test/ctests/test-dot/testgen_BLAS_zdot.c
-    test/ctests/test-dot/testgen_aux.c
-    test/ctests/test-dot2/BLAS_dot2_testgen.c
-    test/ctests/test-dot2/do_test_dot2.c
-    test/ctests/test-dot2/dot2.c
-    test/ctests/test-dot2/r_truth2.c
-    test/ctests/test-dot2/test_dot2.c
-    test/ctests/test-dot2/testgen_BLAS_cdot2.c
-    test/ctests/test-dot2/testgen_BLAS_ddot2.c
-    test/ctests/test-dot2/testgen_BLAS_sdot2.c
-    test/ctests/test-dot2/testgen_BLAS_zdot2.c
-    test/ctests/test-gbmv/BLAS_gbmv_testgen.c
-    test/ctests/test-gbmv/do_test_gbmv.c
-    test/ctests/test-gbmv/gbmv-support.c
-    test/ctests/test-gbmv2/BLAS_gbmv2_testgen.c
-    test/ctests/test-gbmv2/do_test_gbmv2.c
-    test/ctests/test-ge_sum_mv/BLAS_ge_sum_mv_testgen.c
-    test/ctests/test-ge_sum_mv/do_test_ge_sum_mv.c
-    test/ctests/test-gemm/BLAS_gemm_testgen.c
-    test/ctests/test-gemm/do_test_gemm.c
-    test/ctests/test-gemv/BLAS_gemv_testgen.c
-    test/ctests/test-gemv/do_test_gemv.c
-    test/ctests/test-gemv/gemv-support.c
-    test/ctests/test-gemv2/BLAS_gemv2_testgen.c
-    test/ctests/test-gemv2/do_test_gemv2.c
-    test/ctests/test-hbmv/BLAS_hbmv_testgen.c
-    test/ctests/test-hbmv/do_test_hbmv.c
-    test/ctests/test-hbmv/hbmv-support.c
-    test/ctests/test-hemm/BLAS_hemm_testgen.c
-    test/ctests/test-hemm/do_test_hemm.c
-    test/ctests/test-hemv/BLAS_hemv_testgen.c
-    test/ctests/test-hemv/do_test_hemv.c
-    test/ctests/test-hemv/hemv-support.c
-    test/ctests/test-hemv2/BLAS_hemv2_testgen.c
-    test/ctests/test-hemv2/do_test_hemv2.c
-    test/ctests/test-hpmv/BLAS_hpmv_testgen.c
-    test/ctests/test-hpmv/do_test_hpmv.c
-    test/ctests/test-hpmv/hpmv-support.c
-    test/ctests/test-sbmv/BLAS_sbmv_testgen.c
-    test/ctests/test-sbmv/do_test_sbmv.c
-    test/ctests/test-sbmv/sbmv-support.c
-    test/ctests/test-spmv/BLAS_spmv_testgen.c
-    test/ctests/test-spmv/do_test_spmv.c
-    test/ctests/test-spmv/spmv-support.c
-    test/ctests/test-sum/BLAS_sum_testgen.c
-    test/ctests/test-sum/do_test_sum.c
-    test/ctests/test-sum/sum-support.c
-    test/ctests/test-symm/BLAS_symm_testgen.c
-    test/ctests/test-symm/do_test_symm.c
-    test/ctests/test-symv/BLAS_symv_testgen.c
-    test/ctests/test-symv/do_test_symv.c
-    test/ctests/test-symv/symv-support.c
-    test/ctests/test-symv2/BLAS_symv2_testgen.c
-    test/ctests/test-symv2/do_test_symv2.c
-    test/ctests/test-tbsv/BLAS_tbsv_testgen.c
-    test/ctests/test-tbsv/do_test_tbsv.c
-    test/ctests/test-tbsv/tbsv-support.c
-    test/ctests/test-tpmv/BLAS_tpmv_testgen.c
-    test/ctests/test-tpmv/do_test_tpmv.c
-    test/ctests/test-tpmv/tpmv-support.c
-    test/ctests/test-trmv/BLAS_trmv_testgen.c
-    test/ctests/test-trmv/do_test_trmv.c
-    test/ctests/test-trmv/trmv-support.c
-    test/ctests/test-trsv/BLAS_dot_testgen_trsv.c
-    test/ctests/test-trsv/BLAS_trsv_testgen.c
-    test/ctests/test-trsv/do_test_trsv.c
-    test/ctests/test-trsv/testgen_BLAS_sdot_x.c
-    test/ctests/test-trsv/trsv-support.c
-    test/ctests/test-waxpby/do_test_waxpby.c
+option(MDKXBLAS_COMBINE_TESTS "combine all tests into one executable" OFF)
 
-	test/ctests/blas_extended_test.h
-)
+if (MDKXBLAS_COMBINE_TESTS)
+  add_test(
+    NAME ctests
+    COMMAND ctests
+  )
 
-target_include_directories(ctests PRIVATE
+  add_executable(ctests)
+  target_sources(ctests
+    PRIVATE
+      test/ctests/common/dummy_main.c
+      test/ctests/main.c
+      test/ctests/test-axpby/do_test_axpby.c
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/do_test_dot.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot2/BLAS_dot2_testgen.c
+      test/ctests/test-dot2/do_test_dot2.c
+      test/ctests/test-dot2/dot2.c
+      test/ctests/test-dot2/r_truth2.c
+      test/ctests/test-dot2/test_dot2.c
+      test/ctests/test-dot2/testgen_BLAS_cdot2.c
+      test/ctests/test-dot2/testgen_BLAS_ddot2.c
+      test/ctests/test-dot2/testgen_BLAS_sdot2.c
+      test/ctests/test-dot2/testgen_BLAS_zdot2.c
+      test/ctests/test-gbmv/BLAS_gbmv_testgen.c
+      test/ctests/test-gbmv/do_test_gbmv.c
+      test/ctests/test-gbmv/gbmv-support.c
+      test/ctests/test-gbmv2/BLAS_gbmv2_testgen.c
+      test/ctests/test-gbmv2/do_test_gbmv2.c
+      test/ctests/test-ge_sum_mv/BLAS_ge_sum_mv_testgen.c
+      test/ctests/test-ge_sum_mv/do_test_ge_sum_mv.c
+      test/ctests/test-gemm/BLAS_gemm_testgen.c
+      test/ctests/test-gemm/do_test_gemm.c
+      test/ctests/test-gemv/BLAS_gemv_testgen.c
+      test/ctests/test-gemv/do_test_gemv.c
+      test/ctests/test-gemv/gemv-support.c
+      test/ctests/test-gemv2/BLAS_gemv2_testgen.c
+      test/ctests/test-gemv2/do_test_gemv2.c
+      test/ctests/test-hbmv/BLAS_hbmv_testgen.c
+      test/ctests/test-hbmv/do_test_hbmv.c
+      test/ctests/test-hbmv/hbmv-support.c
+      test/ctests/test-hemm/BLAS_hemm_testgen.c
+      test/ctests/test-hemm/do_test_hemm.c
+      test/ctests/test-hemv/BLAS_hemv_testgen.c
+      test/ctests/test-hemv/do_test_hemv.c
+      test/ctests/test-hemv/hemv-support.c
+      test/ctests/test-hemv2/BLAS_hemv2_testgen.c
+      test/ctests/test-hemv2/do_test_hemv2.c
+      test/ctests/test-hpmv/BLAS_hpmv_testgen.c
+      test/ctests/test-hpmv/do_test_hpmv.c
+      test/ctests/test-hpmv/hpmv-support.c
+      test/ctests/test-sbmv/BLAS_sbmv_testgen.c
+      test/ctests/test-sbmv/do_test_sbmv.c
+      test/ctests/test-sbmv/sbmv-support.c
+      test/ctests/test-spmv/BLAS_spmv_testgen.c
+      test/ctests/test-spmv/do_test_spmv.c
+      test/ctests/test-spmv/spmv-support.c
+      test/ctests/test-sum/BLAS_sum_testgen.c
+      test/ctests/test-sum/do_test_sum.c
+      test/ctests/test-sum/sum-support.c
+      test/ctests/test-symm/BLAS_symm_testgen.c
+      test/ctests/test-symm/do_test_symm.c
+      test/ctests/test-symv/BLAS_symv_testgen.c
+      test/ctests/test-symv/do_test_symv.c
+      test/ctests/test-symv/symv-support.c
+      test/ctests/test-symv2/BLAS_symv2_testgen.c
+      test/ctests/test-symv2/do_test_symv2.c
+      test/ctests/test-tbsv/BLAS_tbsv_testgen.c
+      test/ctests/test-tbsv/do_test_tbsv.c
+      test/ctests/test-tbsv/tbsv-support.c
+      test/ctests/test-tpmv/BLAS_tpmv_testgen.c
+      test/ctests/test-tpmv/do_test_tpmv.c
+      test/ctests/test-tpmv/tpmv-support.c
+      test/ctests/test-trmv/BLAS_trmv_testgen.c
+      test/ctests/test-trmv/do_test_trmv.c
+      test/ctests/test-trmv/trmv-support.c
+      test/ctests/test-trsv/BLAS_dot_testgen_trsv.c
+      test/ctests/test-trsv/BLAS_trsv_testgen.c
+      test/ctests/test-trsv/do_test_trsv.c
+      test/ctests/test-trsv/testgen_BLAS_sdot_x.c
+      test/ctests/test-trsv/trsv-support.c
+      test/ctests/test-waxpby/do_test_waxpby.c
+
+      test/ctests/blas_extended_test.h
+  )
+
+  target_include_directories(ctests PRIVATE
     ${CMAKE_SOURCE_DIR}/include/XBLAS
-	${CMAKE_SOURCE_DIR}/test/ctests
-)
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
 
-target_link_libraries(ctests PRIVATE xblas)
+  target_link_libraries(ctests PRIVATE xblas)
 
-set_target_properties(ctests PROPERTIES
+  set_target_properties(ctests PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
-)
+  )
+
+  message(STATUS "combined ctests executable")
+  target_compile_definitions(ctests PRIVATE XBLAS_COMBINE_TESTS)
+else()
+  add_test(
+    NAME ctests_axpby
+    COMMAND ctests_axpby 10 1 1.0 1 1
+  )
+  add_executable(ctests_axpby)
+  target_sources(ctests_axpby
+    PRIVATE
+      test/ctests/test-axpby/do_test_axpby.c
+
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_axpby PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_axpby PRIVATE xblas)
+  set_target_properties(ctests_axpby PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_dot
+    COMMAND ctests_dot 20 1 1.0 0 1
+  )
+  add_executable(ctests_dot)
+  target_sources(ctests_dot
+    PRIVATE
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/do_test_dot.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_dot PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_dot PRIVATE xblas)
+  set_target_properties(ctests_dot PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_dot2
+    COMMAND ctests_dot2 20 1 1.0 0 1
+  )
+  add_executable(ctests_dot2)
+  target_sources(ctests_dot2
+    PRIVATE
+      test/ctests/test-dot2/BLAS_dot2_testgen.c
+      test/ctests/test-dot2/do_test_dot2.c
+      test/ctests/test-dot2/dot2.c
+      test/ctests/test-dot2/r_truth2.c
+      test/ctests/test-dot2/test_dot2.c
+      test/ctests/test-dot2/testgen_BLAS_cdot2.c
+      test/ctests/test-dot2/testgen_BLAS_ddot2.c
+      test/ctests/test-dot2/testgen_BLAS_sdot2.c
+      test/ctests/test-dot2/testgen_BLAS_zdot2.c
+
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_dot2 PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_dot2 PRIVATE xblas)
+  set_target_properties(ctests_dot2 PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_gbmv
+    COMMAND ctests_gbmv 12 1 1.0 0 0.1
+  )
+  add_executable(ctests_gbmv)
+  target_sources(ctests_gbmv
+    PRIVATE
+      test/ctests/test-gbmv/BLAS_gbmv_testgen.c
+      test/ctests/test-gbmv/do_test_gbmv.c
+      test/ctests/test-gbmv/gbmv-support.c
+
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_gbmv PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_gbmv PRIVATE xblas)
+  set_target_properties(ctests_gbmv PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_gbmv2
+    COMMAND ctests_gbmv2 12 1 1.0 0 0.1
+  )
+  add_executable(ctests_gbmv2)
+  target_sources(ctests_gbmv2
+    PRIVATE
+      test/ctests/test-gbmv2/BLAS_gbmv2_testgen.c
+      test/ctests/test-gbmv2/do_test_gbmv2.c
+
+      test/ctests/test-dot2/BLAS_dot2_testgen.c
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+      test/ctests/test-dot2/dot2.c
+      test/ctests/test-dot2/r_truth2.c
+      test/ctests/test-dot2/test_dot2.c
+      test/ctests/test-dot2/testgen_BLAS_cdot2.c
+      test/ctests/test-dot2/testgen_BLAS_ddot2.c
+      test/ctests/test-dot2/testgen_BLAS_sdot2.c
+      test/ctests/test-dot2/testgen_BLAS_zdot2.c
+      test/ctests/test-gbmv/gbmv-support.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_gbmv2 PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_gbmv2 PRIVATE xblas)
+  set_target_properties(ctests_gbmv2 PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  message(STATUS "separate ctests executables")
+endif()
