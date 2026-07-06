@@ -5972,5 +5972,5 @@ int main_hemm(int argc, char **argv)
   printf("%-10s: FAIL/TOTAL = %d/%d\n",
          base_routine, nr_failed_routines, nr_routines);
 
-  return 0;
+  return nr_failed_routines;
 }
