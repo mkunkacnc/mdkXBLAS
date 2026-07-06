@@ -34,36 +34,35 @@ file(WRITE ${CMAKE_BINARY_DIR}/fc_mangle_test.f90
 )
 
 execute_process(
-    COMMAND ${CMAKE_Fortran_COMPILER} -c fc_mangle_test.f90
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    OUTPUT_QUIET ERROR_QUIET
+  COMMAND ${CMAKE_Fortran_COMPILER} -c fc_mangle_test.f90
+  WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+  OUTPUT_QUIET ERROR_QUIET
 )
 
 execute_process(
-    COMMAND ${CMAKE_NM} fc_mangle_test.o
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    OUTPUT_VARIABLE NM_OUT
+  COMMAND ${CMAKE_NM} fc_mangle_test.o
+  WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+  OUTPUT_VARIABLE NM_OUT
 )
 
 string(REGEX MATCH "mangle_test[^[:space:]]*" MANGLED ${NM_OUT})
 message(STATUS "Detected Fortran symbol: ${MANGLED}")
 
 if(MANGLED STREQUAL "mangle_test_")
-    add_compile_definitions(CONFIG_FC_UNDERSCORE)
+  add_compile_definitions(CONFIG_FC_UNDERSCORE)
 elseif(MANGLED STREQUAL "mangle_test__")
-    add_compile_definitions(CONFIG_FC_DOUBLE_UNDERSCORE)
+  add_compile_definitions(CONFIG_FC_DOUBLE_UNDERSCORE)
 elseif(MANGLED STREQUAL "mangle_test")
-    add_compile_definitions(CONFIG_FC_NO_UNDERSCORE)
+  add_compile_definitions(CONFIG_FC_NO_UNDERSCORE)
 elseif(MANGLED STREQUAL "MANGLE_TEST")
-    add_compile_definitions(CONFIG_FC_UPPERCASE)
+  add_compile_definitions(CONFIG_FC_UPPERCASE)
 else()
-    message(WARNING "Unknown Fortran mangling: ${MANGLED}")
+  message(WARNING "Unknown Fortran mangling: ${MANGLED}")
 endif()
 
 # ------------------------------------------------------------
 
 add_library(xblas)
-
 target_sources(xblas
   PRIVATE
     src/axpby/BLAS_caxpby_s-f2c.c
@@ -1100,31 +1099,31 @@ target_compile_features(xblas PRIVATE cxx_std_23)
 # We don't want c/fortran client code to have linking issues if
 # the stdc++ library is not linked.
 target_compile_options(xblas PRIVATE
-    $<$<COMPILE_LANGUAGE:CXX>:-fno-exceptions -fno-rtti>
+  $<$<COMPILE_LANGUAGE:CXX>:-fno-exceptions -fno-rtti>
 )
 
 target_compile_definitions(xblas PRIVATE
-    $<$<COMPILE_LANGUAGE:CXX>:_HAS_EXCEPTIONS=0>
+  $<$<COMPILE_LANGUAGE:CXX>:_HAS_EXCEPTIONS=0>
 )
 
 if (MDKXBLAS_USE_FLOAT128)
-    message(STATUS "using std::float128_t for extended presicion")
-    target_compile_definitions(xblas PRIVATE XBLAS_USE_FLOAT128)
+  message(STATUS "using std::float128_t for extended presicion")
+  target_compile_definitions(xblas PRIVATE XBLAS_USE_FLOAT128)
 else()
-    message(STATUS "using XBLAS::double_double for extended presicion")
+  message(STATUS "using XBLAS::double_double for extended presicion")
 endif()
 
 if (MDKXBLAS_USE_XERBLA)
-    message(STATUS "blas_error forwards to xerbla")
-    target_compile_definitions(xblas PRIVATE XBLAS_USE_XERBLA)
+  message(STATUS "blas_error forwards to xerbla")
+  target_compile_definitions(xblas PRIVATE XBLAS_USE_XERBLA)
 endif()
 
 if (MDKXBLAS_NO_BLAS_MALLOC)
-    message(STATUS "no blas_malloc wrapper around std::malloc")
-    target_compile_definitions(xblas PRIVATE XBLAS_NO_BLAS_MALLOC)
+  message(STATUS "no blas_malloc wrapper around std::malloc")
+  target_compile_definitions(xblas PRIVATE XBLAS_NO_BLAS_MALLOC)
 elseif (MDKXBLAS_DEBUG_BLAS_MALLOC)
-    message(STATUS "blas_malloc debug enabled")
-    target_compile_definitions(xblas PRIVATE XBLAS_DEBUG_BLAS_MALLOC)
+  message(STATUS "blas_malloc debug enabled")
+  target_compile_definitions(xblas PRIVATE XBLAS_DEBUG_BLAS_MALLOC)
 endif()
 
 # ------------------------------------------------------------
