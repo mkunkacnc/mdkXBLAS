@@ -1107,10 +1107,10 @@ target_compile_definitions(xblas PRIVATE
 )
 
 if (MDKXBLAS_USE_FLOAT128)
-  message(STATUS "using std::float128_t for extended presicion")
+  message(STATUS "using std::float128_t for extended precision")
   target_compile_definitions(xblas PRIVATE XBLAS_USE_FLOAT128)
 else()
-  message(STATUS "using XBLAS::double_double for extended presicion")
+  message(STATUS "using XBLAS::double_double for extended precision")
 endif()
 
 if (MDKXBLAS_USE_XERBLA)
