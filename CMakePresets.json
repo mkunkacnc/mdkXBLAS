@@ -14,7 +14,7 @@
         "MDKXBLAS_USE_XERBLA": "OFF",
         "MDKXBLAS_NO_BLAS_MALLOC": "OFF",
         "MDKXBLAS_DEBUG_BLAS_MALLOC": "OFF",
-		"MDKXBLAS_COMBINE_TESTS": "OFF"
+        "MDKXBLAS_COMBINE_TESTS": "OFF"
       }
     }
   ]
