@@ -1401,5 +1401,99 @@ else()
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
 
+  add_test(
+    NAME ctests_ge_sum_mv
+    COMMAND ctests_ge_sum_mv 7 1 1.0 3 0.1
+  )
+  add_executable(ctests_ge_sum_mv)
+  target_sources(ctests_ge_sum_mv
+    PRIVATE
+      test/ctests/test-ge_sum_mv/BLAS_ge_sum_mv_testgen.c
+      test/ctests/test-ge_sum_mv/do_test_ge_sum_mv.c
+      
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c      
+      test/ctests/test-gemv/gemv-support.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_ge_sum_mv PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_ge_sum_mv PRIVATE xblas)
+  set_target_properties(ctests_ge_sum_mv PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+  
+  add_test(
+    NAME ctests_gemm
+    COMMAND ctests_gemm 9 1 1.0 0 0.01
+  )
+  add_executable(ctests_gemm)
+  target_sources(ctests_gemm
+    PRIVATE
+      test/ctests/test-gemm/BLAS_gemm_testgen.c
+      test/ctests/test-gemm/do_test_gemm.c
+      
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c      
+      test/ctests/test-gemv/gemv-support.c
+      
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_gemm PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_gemm PRIVATE xblas)
+  set_target_properties(ctests_gemm PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+  
+  add_test(
+    NAME ctests_gemv
+    COMMAND ctests_gemv 12 1 1.0 0 0.1
+  )
+  add_executable(ctests_gemv)
+  target_sources(ctests_gemv
+    PRIVATE
+      test/ctests/test-gemv/BLAS_gemv_testgen.c
+      test/ctests/test-gemv/do_test_gemv.c
+      test/ctests/test-gemv/gemv-support.c
+      
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c         
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_gemv PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_gemv PRIVATE xblas)
+  set_target_properties(ctests_gemv PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )  
+
   message(STATUS "separate ctests executables")
 endif()
