@@ -1132,6 +1132,9 @@ endif()
 
 enable_testing()
 
+set(CMAKE_C_FLAGS "-O3" CACHE STRING "")
+set(CMAKE_C_FLAGS_RELEASE "-O3" CACHE STRING "")
+
 option(MDKXBLAS_COMBINE_TESTS "combine all tests into one executable" OFF)
 
 if (MDKXBLAS_COMBINE_TESTS)
@@ -1410,7 +1413,7 @@ else()
     PRIVATE
       test/ctests/test-ge_sum_mv/BLAS_ge_sum_mv_testgen.c
       test/ctests/test-ge_sum_mv/do_test_ge_sum_mv.c
-      
+
       test/ctests/test-dot/BLAS_dot_testgen.c
       test/ctests/test-dot/copy_vector.c
       test/ctests/test-dot/print_vector.c
@@ -1419,7 +1422,7 @@ else()
       test/ctests/test-dot/testgen_BLAS_cdot.c
       test/ctests/test-dot/testgen_BLAS_ddot.c
       test/ctests/test-dot/testgen_BLAS_sdot.c
-      test/ctests/test-dot/testgen_BLAS_zdot.c      
+      test/ctests/test-dot/testgen_BLAS_zdot.c
       test/ctests/test-gemv/gemv-support.c
 
       test/ctests/blas_extended_test.h
@@ -1432,7 +1435,7 @@ else()
   set_target_properties(ctests_ge_sum_mv PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
-  
+
   add_test(
     NAME ctests_gemm
     COMMAND ctests_gemm 9 1 1.0 0 0.01
@@ -1442,16 +1445,16 @@ else()
     PRIVATE
       test/ctests/test-gemm/BLAS_gemm_testgen.c
       test/ctests/test-gemm/do_test_gemm.c
-      
+
       test/ctests/test-dot/BLAS_dot_testgen.c
       test/ctests/test-dot/test_dot.c
       test/ctests/test-dot/testgen_aux.c
       test/ctests/test-dot/testgen_BLAS_cdot.c
       test/ctests/test-dot/testgen_BLAS_ddot.c
       test/ctests/test-dot/testgen_BLAS_sdot.c
-      test/ctests/test-dot/testgen_BLAS_zdot.c      
+      test/ctests/test-dot/testgen_BLAS_zdot.c
       test/ctests/test-gemv/gemv-support.c
-      
+
       test/ctests/blas_extended_test.h
   )
   target_include_directories(ctests_gemm PRIVATE
@@ -1462,7 +1465,7 @@ else()
   set_target_properties(ctests_gemm PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
-  
+
   add_test(
     NAME ctests_gemv
     COMMAND ctests_gemv 12 1 1.0 0 0.1
@@ -1473,7 +1476,7 @@ else()
       test/ctests/test-gemv/BLAS_gemv_testgen.c
       test/ctests/test-gemv/do_test_gemv.c
       test/ctests/test-gemv/gemv-support.c
-      
+
       test/ctests/test-dot/BLAS_dot_testgen.c
       test/ctests/test-dot/copy_vector.c
       test/ctests/test-dot/print_vector.c
@@ -1482,7 +1485,7 @@ else()
       test/ctests/test-dot/testgen_BLAS_cdot.c
       test/ctests/test-dot/testgen_BLAS_ddot.c
       test/ctests/test-dot/testgen_BLAS_sdot.c
-      test/ctests/test-dot/testgen_BLAS_zdot.c         
+      test/ctests/test-dot/testgen_BLAS_zdot.c
 
       test/ctests/blas_extended_test.h
   )
@@ -1493,7 +1496,218 @@ else()
   target_link_libraries(ctests_gemv PRIVATE xblas)
   set_target_properties(ctests_gemv PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
-  )  
+  )
+
+  add_test(
+    NAME ctests_gemv2
+    COMMAND ctests_gemv2 12 1 1.0 0 0.1
+  )
+  add_executable(ctests_gemv2)
+  target_sources(ctests_gemv2
+    PRIVATE
+      test/ctests/test-gemv2/BLAS_gemv2_testgen.c
+      test/ctests/test-gemv2/do_test_gemv2.c
+
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+      test/ctests/test-dot2/BLAS_dot2_testgen.c
+      test/ctests/test-dot2/dot2.c
+      test/ctests/test-dot2/r_truth2.c
+      test/ctests/test-dot2/test_dot2.c
+      test/ctests/test-dot2/testgen_BLAS_cdot2.c
+      test/ctests/test-dot2/testgen_BLAS_ddot2.c
+      test/ctests/test-dot2/testgen_BLAS_sdot2.c
+      test/ctests/test-dot2/testgen_BLAS_zdot2.c
+      test/ctests/test-gemv/gemv-support.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_gemv2 PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_gemv2 PRIVATE xblas)
+  set_target_properties(ctests_gemv2 PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_hbmv
+    COMMAND ctests_hbmv 7 1 1.0 3 0.1
+  )
+  add_executable(ctests_hbmv)
+  target_sources(ctests_hbmv
+    PRIVATE
+      test/ctests/test-hbmv/BLAS_hbmv_testgen.c
+      test/ctests/test-hbmv/do_test_hbmv.c
+      test/ctests/test-hbmv/hbmv-support.c
+
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+      test/ctests/test-sbmv/BLAS_sbmv_testgen.c
+      test/ctests/test-sbmv/sbmv-support.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_hbmv PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_hbmv PRIVATE xblas)
+  set_target_properties(ctests_hbmv PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_hemm
+    COMMAND ctests_hemm 7 1 1.0 0 0.1
+  )
+  add_executable(ctests_hemm)
+  target_sources(ctests_hemm
+    PRIVATE
+      test/ctests/test-hemm/BLAS_hemm_testgen.c
+      test/ctests/test-hemm/do_test_hemm.c
+
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+      test/ctests/test-symm/BLAS_symm_testgen.c
+      test/ctests/test-gemv/gemv-support.c
+      test/ctests/test-hemv/hemv-support.c
+      test/ctests/test-symv/symv-support.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_hemm PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_hemm PRIVATE xblas)
+  set_target_properties(ctests_hemm PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_hemv
+    COMMAND ctests_hemv 7 1 1.0 3 0.1
+  )
+  add_executable(ctests_hemv)
+  target_sources(ctests_hemv
+    PRIVATE
+      test/ctests/test-hemv/BLAS_hemv_testgen.c
+      test/ctests/test-hemv/do_test_hemv.c
+      test/ctests/test-hemv/hemv-support.c
+
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+      test/ctests/test-symv/BLAS_symv_testgen.c
+      test/ctests/test-symv/symv-support.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_hemv PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_hemv PRIVATE xblas)
+  set_target_properties(ctests_hemv PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_hemv2
+    COMMAND ctests_hemv2 7 1 1.0 3 1
+  )
+  add_executable(ctests_hemv2)
+  target_sources(ctests_hemv2
+    PRIVATE
+      test/ctests/test-hemv2/BLAS_hemv2_testgen.c
+      test/ctests/test-hemv2/do_test_hemv2.c
+
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+      test/ctests/test-dot2/BLAS_dot2_testgen.c
+      test/ctests/test-dot2/dot2.c
+      test/ctests/test-dot2/r_truth2.c
+      test/ctests/test-dot2/test_dot2.c
+      test/ctests/test-dot2/testgen_BLAS_cdot2.c
+      test/ctests/test-dot2/testgen_BLAS_ddot2.c
+      test/ctests/test-dot2/testgen_BLAS_sdot2.c
+      test/ctests/test-dot2/testgen_BLAS_zdot2.c
+      test/ctests/test-hemv/hemv-support.c
+      test/ctests/test-symv/symv-support.c
+      test/ctests/test-symv2/BLAS_symv2_testgen.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_hemv2 PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_hemv2 PRIVATE xblas)
+  set_target_properties(ctests_hemv2 PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_hpmv
+    COMMAND ctests_hpmv 7 1 1.0 3 0.1
+  )
+  add_executable(ctests_hpmv)
+  target_sources(ctests_hpmv
+    PRIVATE
+      test/ctests/test-hpmv/BLAS_hpmv_testgen.c
+      test/ctests/test-hpmv/do_test_hpmv.c
+      test/ctests/test-hpmv/hpmv-support.c
+
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+      test/ctests/test-hemv/BLAS_hemv_testgen.c
+      test/ctests/test-symv/BLAS_symv_testgen.c
+      test/ctests/test-hemv/hemv-support.c
+      test/ctests/test-symv/symv-support.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_hpmv PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_hpmv PRIVATE xblas)
+  set_target_properties(ctests_hpmv PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
 
   message(STATUS "separate ctests executables")
 endif()
