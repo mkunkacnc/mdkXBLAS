@@ -1903,5 +1903,164 @@ else()
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
 
+  add_test(
+    NAME ctests_tbsv
+    COMMAND ctests_tbsv 9 1 1.0 3 0.1
+  )
+  add_executable(ctests_tbsv)
+  target_sources(ctests_tbsv
+    PRIVATE
+      test/ctests/test-tbsv/BLAS_tbsv_testgen.c
+      test/ctests/test-tbsv/do_test_tbsv.c
+      test/ctests/test-tbsv/tbsv-support.c
+
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+      test/ctests/test-gbmv/gbmv-support.c
+      test/ctests/test-trsv/BLAS_dot_testgen_trsv.c
+      test/ctests/test-trsv/testgen_BLAS_sdot_x.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_tbsv PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_tbsv PRIVATE xblas)
+  set_target_properties(ctests_tbsv PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_tpmv
+    COMMAND ctests_tpmv 12 1 1.0 0 0.1
+  )
+  add_executable(ctests_tpmv)
+  target_sources(ctests_tpmv
+    PRIVATE
+      test/ctests/test-tpmv/BLAS_tpmv_testgen.c
+      test/ctests/test-tpmv/do_test_tpmv.c
+      test/ctests/test-tpmv/tpmv-support.c
+
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_tpmv PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_tpmv PRIVATE xblas)
+  set_target_properties(ctests_tpmv PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_trmv
+    COMMAND ctests_trmv 12 1 1.0 0 0.1
+  )
+  add_executable(ctests_trmv)
+  target_sources(ctests_trmv
+    PRIVATE
+      test/ctests/test-trmv/BLAS_trmv_testgen.c
+      test/ctests/test-trmv/do_test_trmv.c
+      test/ctests/test-trmv/trmv-support.c
+
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_trmv PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_trmv PRIVATE xblas)
+  set_target_properties(ctests_trmv PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_trsv
+    COMMAND ctests_trsv 10 1 1.0 3 0.1
+  )
+  add_executable(ctests_trsv)
+  target_sources(ctests_trsv
+    PRIVATE
+      test/ctests/test-trsv/BLAS_dot_testgen_trsv.c
+      test/ctests/test-trsv/BLAS_trsv_testgen.c
+      test/ctests/test-trsv/do_test_trsv.c
+      test/ctests/test-trsv/testgen_BLAS_sdot_x.c
+      test/ctests/test-trsv/trsv-support.c
+
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+      test/ctests/test-trmv/trmv-support.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_trsv PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_trsv PRIVATE xblas)
+  set_target_properties(ctests_trsv PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_waxpby
+    COMMAND ctests_waxpby 20 1 1.0 0 1
+  )
+  add_executable(ctests_waxpby)
+  target_sources(ctests_waxpby
+    PRIVATE
+      test/ctests/test-waxpby/do_test_waxpby.c
+
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_waxpby PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_waxpby PRIVATE xblas)
+  set_target_properties(ctests_waxpby PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
   message(STATUS "separate ctests executables")
 endif()
