@@ -1709,5 +1709,199 @@ else()
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
 
+  add_test(
+    NAME ctests_sbmv
+    COMMAND ctests_sbmv 7 1 1.0 3 0.01
+  )
+  add_executable(ctests_sbmv)
+  target_sources(ctests_sbmv
+    PRIVATE
+      test/ctests/test-sbmv/BLAS_sbmv_testgen.c
+      test/ctests/test-sbmv/do_test_sbmv.c
+      test/ctests/test-sbmv/sbmv-support.c
+
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_sbmv PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_sbmv PRIVATE xblas)
+  set_target_properties(ctests_sbmv PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_spmv
+    COMMAND ctests_spmv 7 1 1.0 3 0.1
+  )
+  add_executable(ctests_spmv)
+  target_sources(ctests_spmv
+    PRIVATE
+      test/ctests/test-spmv/BLAS_spmv_testgen.c
+      test/ctests/test-spmv/do_test_spmv.c
+      test/ctests/test-spmv/spmv-support.c
+
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+      test/ctests/test-symv/BLAS_symv_testgen.c
+      test/ctests/test-symv/symv-support.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_spmv PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_spmv PRIVATE xblas)
+  set_target_properties(ctests_spmv PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_sum
+    COMMAND ctests_sum 20 1 1.0 0 1.0
+  )
+  add_executable(ctests_sum)
+  target_sources(ctests_sum
+    PRIVATE
+      test/ctests/test-sum/BLAS_sum_testgen.c
+      test/ctests/test-sum/do_test_sum.c
+      test/ctests/test-sum/sum-support.c
+
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_sum PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_sum PRIVATE xblas)
+  set_target_properties(ctests_sum PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_symm
+    COMMAND ctests_symm 7 1 1.0 3 0.01
+  )
+  add_executable(ctests_symm)
+  target_sources(ctests_symm
+    PRIVATE
+      test/ctests/test-symm/BLAS_symm_testgen.c
+      test/ctests/test-symm/do_test_symm.c
+
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+      test/ctests/test-gemv/gemv-support.c
+      test/ctests/test-symv/symv-support.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_symm PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_symm PRIVATE xblas)
+  set_target_properties(ctests_symm PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_symv
+    COMMAND ctests_symv 7 1 1.0 3 0.1
+  )
+  add_executable(ctests_symv)
+  target_sources(ctests_symv
+    PRIVATE
+      test/ctests/test-symv/BLAS_symv_testgen.c
+      test/ctests/test-symv/do_test_symv.c
+      test/ctests/test-symv/symv-support.c
+
+      test/ctests/test-dot/BLAS_dot_testgen.c
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/test_dot.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_ddot.c
+      test/ctests/test-dot/testgen_BLAS_sdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_symv PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_symv PRIVATE xblas)
+  set_target_properties(ctests_symv PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
+  add_test(
+    NAME ctests_symv2
+    COMMAND ctests_symv2 7 1 1.0 0 1
+  )
+  add_executable(ctests_symv2)
+  target_sources(ctests_symv2
+    PRIVATE
+      test/ctests/test-symv2/BLAS_symv2_testgen.c
+      test/ctests/test-symv2/do_test_symv2.c
+
+      test/ctests/test-dot/copy_vector.c
+      test/ctests/test-dot/print_vector.c
+      test/ctests/test-dot/testgen_aux.c
+      test/ctests/test-dot/testgen_BLAS_cdot.c
+      test/ctests/test-dot/testgen_BLAS_zdot.c
+      test/ctests/test-dot2/BLAS_dot2_testgen.c
+      test/ctests/test-dot2/dot2.c
+      test/ctests/test-dot2/r_truth2.c
+      test/ctests/test-dot2/test_dot2.c
+      test/ctests/test-dot2/testgen_BLAS_cdot2.c
+      test/ctests/test-dot2/testgen_BLAS_ddot2.c
+      test/ctests/test-dot2/testgen_BLAS_sdot2.c
+      test/ctests/test-dot2/testgen_BLAS_zdot2.c
+      test/ctests/test-symv/symv-support.c
+
+      test/ctests/blas_extended_test.h
+  )
+  target_include_directories(ctests_symv2 PRIVATE
+    ${CMAKE_SOURCE_DIR}/include/XBLAS
+    ${CMAKE_SOURCE_DIR}/test/ctests
+  )
+  target_link_libraries(ctests_symv2 PRIVATE xblas)
+  set_target_properties(ctests_symv2 PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
+  )
+
   message(STATUS "separate ctests executables")
 endif()
