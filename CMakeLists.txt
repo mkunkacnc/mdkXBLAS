@@ -14,7 +14,7 @@ project(mdkXBLAS)
 #
 # ctest --test-dir build
 #
-# cmake --install build
+# cmake --install build (--strip if desired)
 #  or
 # cmake --install build --prefix "C:/Program Files/mdkXBLAS" or some other path
 #

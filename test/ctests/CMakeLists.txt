@@ -2,9 +2,6 @@
 # ctests
 # ------------------------------------------------------------
 
-set(CMAKE_C_FLAGS "-O3" CACHE STRING "")
-set(CMAKE_C_FLAGS_RELEASE "-O3" CACHE STRING "")
-
 option(MDKXBLAS_COMBINE_TESTS "combine all tests into one executable" OFF)
 
 if (MDKXBLAS_COMBINE_TESTS)
