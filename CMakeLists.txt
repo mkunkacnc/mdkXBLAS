@@ -1059,7 +1059,8 @@ target_sources(xblas
   PUBLIC
     FILE_SET xblas_headers
       TYPE HEADERS
-      BASE_DIRS include/XBLAS
+      BASE_DIRS
+        include/XBLAS
       FILES
         include/XBLAS/axpby.hpp
         include/XBLAS/blas_dense_proto.h
@@ -1143,11 +1144,14 @@ if (BUILD_SHARED_LIBS)
     )
 endif()
 
+include(GNUInstallDirs)
+
 message(STATUS "install prefix: ${CMAKE_INSTALL_PREFIX}")
 
 install(
   TARGETS xblas
   FILE_SET xblas_headers
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/XBLAS
 )
 
 # ------------------------------------------------------------
