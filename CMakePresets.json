@@ -9,6 +9,7 @@
         "CMAKE_CXX_EXTENSIONS": "OFF",
         "CMAKE_CXX_FLAGS": "-O3 -Wall -Wextra -pedantic",
         "CMAKE_CXX_FLAGS_RELEASE": "-O3 -Wall -Wextra -pedantic",
+        "BUILD_SHARED_LIBS": "OFF",
 
         "MDKXBLAS_USE_FLOAT128": "OFF",
         "MDKXBLAS_USE_XERBLA": "OFF",
