@@ -14,6 +14,10 @@ project(mdkXBLAS)
 #
 # ctest --test-dir build
 #
+# cmake --install build
+#  or
+# cmake --install build --prefix "C:/Program Files/mdkXBLAS" or some other path
+#
 # ------------------------------------------------------------
 # Output directories
 # ------------------------------------------------------------
@@ -1054,44 +1058,43 @@ target_sources(xblas
 
   PUBLIC
     FILE_SET xblas_headers
-  TYPE HEADERS
-  BASE_DIRS
-    include/XBLAS
-  FILES
-    include/XBLAS/axpby.hpp
-    include/XBLAS/blas_dense_proto.h
-    include/XBLAS/blas_enum.h
-    include/XBLAS/blas_extended.h
-    include/XBLAS/blas_extended_private.h
-    include/XBLAS/blas_extended_proto.h
-    include/XBLAS/blas_fpu.h
-    include/XBLAS/blas_malloc.h
-    include/XBLAS/dot.hpp
-    include/XBLAS/double_double.hpp
-    include/XBLAS/f2c-bridge.h
-    include/XBLAS/gbmv.hpp
-    include/XBLAS/gbmv2.hpp
-    include/XBLAS/ge_sum_mv.hpp
-    include/XBLAS/gemm.hpp
-    include/XBLAS/gemv.hpp
-    include/XBLAS/gemv2.hpp
-    include/XBLAS/hbmv.hpp
-    include/XBLAS/hemm.hpp
-    include/XBLAS/hemv.hpp
-    include/XBLAS/hemv2.hpp
-    include/XBLAS/hpmv.hpp
-    include/XBLAS/impl.hpp
-    include/XBLAS/sbmv.hpp
-    include/XBLAS/spmv.hpp
-    include/XBLAS/sum.hpp
-    include/XBLAS/symm.hpp
-    include/XBLAS/symv.hpp
-    include/XBLAS/symv2.hpp
-    include/XBLAS/tbsv.hpp
-    include/XBLAS/tpmv.hpp
-    include/XBLAS/trmv.hpp
-    include/XBLAS/trsv.hpp
-    include/XBLAS/waxpby.hpp
+      TYPE HEADERS
+      BASE_DIRS include/XBLAS
+      FILES
+        include/XBLAS/axpby.hpp
+        include/XBLAS/blas_dense_proto.h
+        include/XBLAS/blas_enum.h
+        include/XBLAS/blas_extended.h
+        include/XBLAS/blas_extended_private.h
+        include/XBLAS/blas_extended_proto.h
+        include/XBLAS/blas_fpu.h
+        include/XBLAS/blas_malloc.h
+        include/XBLAS/dot.hpp
+        include/XBLAS/double_double.hpp
+        include/XBLAS/f2c-bridge.h
+        include/XBLAS/gbmv.hpp
+        include/XBLAS/gbmv2.hpp
+        include/XBLAS/ge_sum_mv.hpp
+        include/XBLAS/gemm.hpp
+        include/XBLAS/gemv.hpp
+        include/XBLAS/gemv2.hpp
+        include/XBLAS/hbmv.hpp
+        include/XBLAS/hemm.hpp
+        include/XBLAS/hemv.hpp
+        include/XBLAS/hemv2.hpp
+        include/XBLAS/hpmv.hpp
+        include/XBLAS/impl.hpp
+        include/XBLAS/sbmv.hpp
+        include/XBLAS/spmv.hpp
+        include/XBLAS/sum.hpp
+        include/XBLAS/symm.hpp
+        include/XBLAS/symv.hpp
+        include/XBLAS/symv2.hpp
+        include/XBLAS/tbsv.hpp
+        include/XBLAS/tpmv.hpp
+        include/XBLAS/trmv.hpp
+        include/XBLAS/trsv.hpp
+        include/XBLAS/waxpby.hpp
 )
 
 option(MDKXBLAS_USE_FLOAT128 "use std::float128_t" OFF)
@@ -1139,6 +1142,13 @@ if (BUILD_SHARED_LIBS)
       "${CMAKE_BINARY_DIR}/test"
     )
 endif()
+
+message(STATUS "install prefix: ${CMAKE_INSTALL_PREFIX}")
+
+install(
+  TARGETS xblas
+  FILE_SET xblas_headers
+)
 
 # ------------------------------------------------------------
 # tests
