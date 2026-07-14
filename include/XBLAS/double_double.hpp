@@ -1,10 +1,12 @@
 #ifndef XBLAS_DOUBLE_DOUBLE_HPP
 #define XBLAS_DOUBLE_DOUBLE_HPP
 
-#include "blas_extended_private.h"
+#include "blas_fpu.h"
 
+#include <cmath>
 #include <complex>
 #include <type_traits>
+#include <limits>
 
 //---------------
 namespace XBLAS {
@@ -42,7 +44,8 @@ class double_double
   friend constexpr double_double operator /(const double_double& a, float b);
 
 public:
-  static constexpr double split = SPLIT;
+  /* Split a double into 2 parts with at most 26 bits each. (2^27 + 1) */
+  static constexpr double split = std::pow(2.0, (std::numeric_limits<double>::digits/2 + 1)) + 1; // 134217729.0
 
   constexpr double_double() {}
   constexpr explicit double_double(double x);
