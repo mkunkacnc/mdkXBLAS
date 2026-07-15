@@ -1099,6 +1099,7 @@ target_sources(xblas
 )
 
 option(MDKXBLAS_USE_FLOAT128 "use std::float128_t" OFF)
+option(MDKXBLAS_USE_INT64_INTERNAL_INDEX_TYPE "use std::int64_t internal index type" OFF)
 option(MDKXBLAS_USE_XERBLA "use xerbla_array" OFF)
 option(MDKXBLAS_NO_BLAS_MALLOC "don't use blas_malloc" OFF)
 option(MDKXBLAS_DEBUG_BLAS_MALLOC "enable debug blas_malloc" OFF)
@@ -1121,6 +1122,13 @@ if (MDKXBLAS_USE_FLOAT128)
   target_compile_definitions(xblas PRIVATE XBLAS_USE_FLOAT128)
 else()
   message(STATUS "Using XBLAS::double_double for extended precision")
+endif()
+
+if (MDKXBLAS_USE_INT64_INTERNAL_INDEX_TYPE)
+  message(STATUS "Using std::int64_t for internal array indices")
+  target_compile_definitions(xblas PRIVATE XBLAS_USE_INT64_INTERNAL_INDEX_TYPE)
+else()
+  message(STATUS "Using int for internal array indices")
 endif()
 
 if (MDKXBLAS_USE_XERBLA)

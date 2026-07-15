@@ -36,6 +36,10 @@ struct double_double
 using XBLAS_X_t = XBLAS::double_double;
 #endif
 
+#ifdef XBLAS_USE_INT64_INTERNAL_INDEX_TYPE
+#include <cstdint>
+#endif
+
 #include <cmath>
 #include <complex>
 #include <limits>
@@ -172,7 +176,11 @@ using internal_precision_t = typename internal_precision<T, prec>::type;
 
 template<typename N>
 struct internal_index_type {
+#ifdef XBLAS_USE_INT64_INTERNAL_INDEX_TYPE
+   using type = std::int64_t;
+#else
    using type = N;
+#endif
 };
 
 template<typename N>
