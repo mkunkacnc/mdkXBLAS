@@ -16,17 +16,18 @@ template<int do_conj,
          typename X,
          typename Y,
          typename N,
-         typename PrdType>
+         typename PrdType,
+         typename IdxType>
 constexpr void dot_impl(N n,
                         const X *x,
                         N incx,
                         const Y *y,
                         N incy,
-                        N ix,
-                        N iy,
+                        IdxType ix,
+                        IdxType iy,
                         PrdType& sum)
 {
-  for (N i = 0; i < n; ++i) {
+  for (IdxType i = 0; i < n; ++i) {
     sum += impl::mul<PrdType>(impl::Conj_h<do_conj>::func(x[ix]), y[iy]);
     ix += incx;
     iy += incy;
@@ -41,11 +42,14 @@ template<typename T,
          typename X,
          typename Y,
          typename N,
-         typename TmpType = T>
+         typename TmpType = T,
+         typename IdxType = impl::internal_index_type_t<N>>
 requires (impl::size_le_v<X, T> &&
           impl::size_le_v<Y, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<N>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void dot(blas_conj_type conj,
                    N n,
                    T alpha,
@@ -118,10 +122,10 @@ constexpr void dot(blas_conj_type conj,
   T r_v = *r;
   PrdType sum = impl::zero_v<PrdType>;
 
-  N ix = 0;
+  IdxType ix = 0;
   if (incx < 0)
     ix = (-n + 1) * incx;
-  N iy = 0;
+  IdxType iy = 0;
   if (incy < 0)
     iy = (-n + 1) * incy;
 
@@ -151,11 +155,14 @@ template<typename T,
          typename X,
          typename Y,
          typename N,
-         typename TmpType = T>
+         typename TmpType = T,
+         typename IdxType = impl::internal_index_type_t<N>>
 requires (impl::size_le_v<X, T> &&
           impl::size_le_v<Y, T> &&
           impl::size_le_v<T, TmpType> &&
-          std::signed_integral<N>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void dot_x(blas_conj_type conj,
                      N n,
                      T alpha,
@@ -215,16 +222,16 @@ constexpr void dot_x(blas_conj_type conj,
   static const char *routine_name = "XBLAS::dot_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::dot<T, X, Y, N, impl::internal_precision_t<T, blas_prec_single>>(conj, n, alpha, x, incx, beta, y, incy, r);
+    XBLAS::dot<T, X, Y, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(conj, n, alpha, x, incx, beta, y, incy, r);
     break;
   case blas_prec_double:
-    XBLAS::dot<T, X, Y, N, impl::internal_precision_t<T, blas_prec_double>>(conj, n, alpha, x, incx, beta, y, incy, r);
+    XBLAS::dot<T, X, Y, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(conj, n, alpha, x, incx, beta, y, incy, r);
     break;
   case blas_prec_indigenous:
-    XBLAS::dot<T, X, Y, N, impl::internal_precision_t<T, blas_prec_indigenous>>(conj, n, alpha, x, incx, beta, y, incy, r);
+    XBLAS::dot<T, X, Y, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(conj, n, alpha, x, incx, beta, y, incy, r);
     break;
   case blas_prec_extra:
-    XBLAS::dot<T, X, Y, N, impl::internal_precision_t<T, blas_prec_extra>>(conj, n, alpha, x, incx, beta, y, incy, r);
+    XBLAS::dot<T, X, Y, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(conj, n, alpha, x, incx, beta, y, incy, r);
     break;
   default:
     BLAS_error(routine_name, -10, prec, nullptr);

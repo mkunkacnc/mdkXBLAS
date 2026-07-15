@@ -9,9 +9,12 @@ namespace XBLAS {
 
 template<typename T,
          typename N,
-         typename TmpType = T>
+         typename TmpType = T,
+         typename IdxType = impl::internal_index_type_t<N>>
 requires (impl::size_le_v<T, TmpType> &&
-          std::signed_integral<N>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void sum(N n,
                    const T *x,
                    N incx,
@@ -62,13 +65,13 @@ constexpr void sum(N n,
 
   TmpType tmp = impl::zero_v<TmpType>;
 
-  N xi;
+  IdxType xi;
   if (incx < 0)
     xi = -(n - 1) * incx;
   else
     xi = 0;
 
-  for (N i = 0; i < n; i++, xi += incx) {
+  for (IdxType i = 0; i < n; i++, xi += incx) {
     tmp += x[xi];
   }
   *sum = impl::to<T>(tmp);
@@ -82,9 +85,12 @@ constexpr void sum(N n,
 
 template<typename T,
          typename N,
-         typename TmpType = T>
+         typename TmpType = T,
+         typename IdxType = impl::internal_index_type_t<N>>
 requires (impl::size_le_v<T, TmpType> &&
-          std::signed_integral<N>)
+          std::signed_integral<N> &&
+          std::signed_integral<IdxType> &&
+          sizeof(N) <= sizeof(IdxType))
 constexpr void sum_x(N n,
                      const T *x,
                      N incx,
@@ -125,16 +131,16 @@ constexpr void sum_x(N n,
   static const char *routine_name = "XBLAS::sum_x";
   switch (prec) {
   case blas_prec_single:
-    XBLAS::sum<T, N, impl::internal_precision_t<T, blas_prec_single>>(n, x, incx, sum);
+    XBLAS::sum<T, N, impl::internal_precision_t<T, blas_prec_single>, IdxType>(n, x, incx, sum);
     break;
   case blas_prec_double:
-    XBLAS::sum<T, N, impl::internal_precision_t<T, blas_prec_double>>(n, x, incx, sum);
+    XBLAS::sum<T, N, impl::internal_precision_t<T, blas_prec_double>, IdxType>(n, x, incx, sum);
     break;
   case blas_prec_indigenous:
-    XBLAS::sum<T, N, impl::internal_precision_t<T, blas_prec_indigenous>>(n, x, incx, sum);
+    XBLAS::sum<T, N, impl::internal_precision_t<T, blas_prec_indigenous>, IdxType>(n, x, incx, sum);
     break;
   case blas_prec_extra:
-    XBLAS::sum<T, N, impl::internal_precision_t<T, blas_prec_extra>>(n, x, incx, sum);
+    XBLAS::sum<T, N, impl::internal_precision_t<T, blas_prec_extra>, IdxType>(n, x, incx, sum);
     break;
   default:
     BLAS_error(routine_name, -5, prec, nullptr);
