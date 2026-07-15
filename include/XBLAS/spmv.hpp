@@ -12,7 +12,7 @@ template<typename T,
          typename X,
          typename N,
          typename TmpType = T,
-         typename IdxType = N>
+         typename IdxType = impl::internal_index_type_t<N>>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&
@@ -166,7 +166,7 @@ template<typename T,
          typename X,
          typename N,
          typename TmpType = T,
-         typename IdxType = N>
+         typename IdxType = impl::internal_index_type_t<N>>
 requires (impl::size_le_v<A, T> &&
           impl::size_le_v<X, T> &&
           impl::size_le_v<T, TmpType> &&

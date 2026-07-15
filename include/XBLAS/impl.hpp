@@ -168,6 +168,17 @@ template<typename T, int prec>
 using internal_precision_t = typename internal_precision<T, prec>::type;
 
 //-------------------------------------
+// INTERNAL_INDEX_TYPE
+
+template<typename N>
+struct internal_index_type {
+   using type = N;
+};
+
+template<typename N>
+using internal_index_type_t = typename internal_index_type<N>::type;
+
+//-------------------------------------
 // ADD
 
 template<typename C,
