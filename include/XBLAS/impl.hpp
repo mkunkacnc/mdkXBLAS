@@ -210,6 +210,8 @@ constexpr inline C add(A a, B b)
                        is_complex_v<B>) {
     return C(to<inner_type_t<C>>(std::real(a) + std::real(b)), to<inner_type_t<C>>(std::imag(a) + std::imag(b)));
 
+  //} else if TODO case of sizeof C > A or B ? Is that ever the case or is sizeof C <= A and B?
+
   } else {
     return to<C>(a + b);
   }
@@ -286,6 +288,84 @@ constexpr inline C mul(A a, B b)
 
 template<typename A,
          typename B>
+constexpr A do_complex_div(A a, B b)
+{
+  /*
+    Textbook complex division:
+    a + ib   (a + ib)(c - id)   ac + bd     bc - ad
+    ------ = ---------------- = ------- + i -------
+    c + id   (c + id)(c - id)   cc + dd     cc + dd
+
+    If any of the numbers are large, there is a great risk of
+    overflow during the intermediate calculations even if the
+    final quotient is representable as a floating point number.
+
+    Suppose |c| > |d|:
+    ac + bd     bc - ad   a + b x (d/c)     b - a x (d/c)
+    ------- + i ------- = ------------- + i ------------- should be better behaved.
+    cc + dd     cc + dd   c + d x (d/c)     c + d x (d/c)
+
+    else:
+    ac + bd     bc - ad   a x (c/d) + b     b x (c/d) - a
+    ------- + i ------- = ------------- + i ------------- should be better behaved.
+    cc + dd     cc + dd   c x (c/d) + d     c x (c/d) + d
+
+    Things can still overflow or underflow if the numbers are
+    close enough to max or min floating-point values.
+
+    1. Suppose max(|a|,|b|) is large:
+    a + b x (d/c)     b - a x (d/c)        (a/16) + (b/16) x (d/c)          (b/16) - (a/16) x (d/c)
+    ------------- + i ------------- = 16 x ----------------------- + 16 x i -----------------------
+    c + d x (d/c)     c + d x (d/c)             c + d x (d/c)                    c + d x (d/c)
+    is less likely to overflow if a and/or b are large.
+
+    2. Suppose max(|c|,|d|) is large:
+    a + b x (d/c)     b - a x (d/c)    1        a + b x (d/c)         1          b - a x (d/c)
+    ------------- + i ------------- = -- x ----------------------- + -- x i -----------------------
+    c + d x (d/c)     c + d x (d/c)   16   (c/16) + (d/16) x (d/c)   16     (c/16) + (d/16) x (d/c)
+    is less likely to overflow if c and/or d are large.
+
+    3. Suppose max(|a|,|b|) is small:
+    a + b x (d/c)     b - a x (d/c)   1   (a x f) + (b x f) x (d/c)   1     (b x f) - (a x f) x (d/c)
+    ------------- + i ------------- = - x ------------------------- + - x i -------------------------
+    c + d x (d/c)     c + d x (d/c)   f         c + d x (d/c)         f           c + d x (d/c)
+    for some large factor f, is less likely to underflow if a and/or b are small.
+
+    4. Suppose max(|c|,|d|) is small:
+    a + b x (d/c)     b - a x (d/c)             a + b x (d/c)                     b - a x (d/c)
+    ------------- + i ------------- = f x ------------------------- + f x i -------------------------
+    c + d x (d/c)     c + d x (d/c)       (c x f) + (d x f) x (d/c)         (c x f) + (d x f) x (d/c)
+    is less likely to overflow if c and/or d are large.
+
+  */
+  using A_t = impl::inner_type_t<A>;
+  using B_t = impl::inner_type_t<B>;
+  static_assert(sizeof(A_t) >= sizeof(B_t)); // We aren't losing precision.
+
+  //constexpr A_t ov_a = std::numeric_limits<double>::max();
+
+  const B_t abs_c = std::fabs(std::real(b));
+  const B_t abs_d = std::fabs(std::imag(b));
+
+  A_t q[2];
+
+  if (abs_c > abs_d) {
+    const B_t r = std::imag(b) / std::real(b);
+    const B_t t = std::real(b) + std::imag(b) * r;
+    q[0] = (std::real(a) + std::imag(a) * r) / t;
+    q[1] = (std::imag(a) - std::real(a) * r) / t;
+  } else {
+    const B_t r = std::real(b) / std::imag(b);
+    const B_t t = std::imag(b) + std::real(b) * r;
+    q[0] = (std::imag(a) + std::real(a) * r) / t;
+    q[1] = (std::imag(a) * r - std::real(a)) / t;
+  }
+
+  return A(q[0], q[1]);
+}
+
+template<typename A,
+         typename B>
 constexpr A div(A a, B b)
 {
   if constexpr (std::is_same_v<A, std::complex<double>> &&
@@ -293,6 +373,10 @@ constexpr A div(A a, B b)
     constexpr double eps = std::pow(2.0, -std::numeric_limits<float>::digits);
     constexpr double un = std::pow(2.0, std::numeric_limits<float>::min_exponent - 1);
     constexpr double ov = std::pow(2.0, std::numeric_limits<float>::max_exponent) * (1 - eps);
+
+    //static_assert(std::numeric_limits<double>::max() == 0); // 1.7976931348623157e+308
+    //static_assert(std::numeric_limits<double>::max()/2 == 0); // 8.9884656743115785e+307
+    //static_assert(std::pow(2.0, std::numeric_limits<double>::max_exponent - 1) == 0); // 8.9884656743115795e+307
 
     const double abs_a = std::fabs(std::real(a));
     const double abs_b = std::fabs(std::imag(a));
@@ -323,6 +407,7 @@ constexpr A div(A a, B b)
       S = S * t;
     }
 
+#if 0
     /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
     double q[2];
 
@@ -339,6 +424,9 @@ constexpr A div(A a, B b)
     }
     /* Scale back */
     return A(q[0] * S, q[1] * S);
+#else
+    return impl::do_complex_div(a, b) * S;
+#endif
 
   } else if constexpr (std::is_same_v<A, std::complex<double>> &&
                        std::is_same_v<B, std::complex<float>>) {
@@ -378,6 +466,7 @@ constexpr A div(A a, B b)
       S = S * t;
     }
 
+#if 0
     /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
     double q[2];
 
@@ -394,6 +483,9 @@ constexpr A div(A a, B b)
     }
     /* Scale back */
     return A(q[0] * S, q[1] * S);
+#else
+    return impl::do_complex_div(a, b) * S;
+#endif
 
   } else if constexpr (std::is_same_v<A, std::complex<float>> &&
                        std::is_same_v<B, std::complex<float>>) {
@@ -430,6 +522,7 @@ constexpr A div(A a, B b)
       S = S * t;
     }
 
+#if 0
     /* Now un/eps*2 <= (a, b, c, d) >= ov/16 */
     double q[2];
 
@@ -446,6 +539,9 @@ constexpr A div(A a, B b)
     }
     /* Scale back */
     return A(q[0] * S, q[1] * S);
+#else
+    return impl::do_complex_div(a, b) * static_cast<float>(S);
+#endif
 
   } else if constexpr (std::is_same_v<A, std::complex<XBLAS_X_t>> &&
                        std::is_same_v<B, std::complex<double>>) {
@@ -493,6 +589,7 @@ constexpr A div(A a, B b)
       S = S * s;
     }
 
+#if 0
     /* Now un1/eps1*2 <= (a,b) >= ov1/16, un/eps*2 <= (c,d) >= ov/16 */
     XBLAS_X_t q[2];
 
@@ -522,12 +619,16 @@ constexpr A div(A a, B b)
     } else {
       return A(q[0] * S, q[1] * S);
     }
+#else
+    return impl::do_complex_div(a, b) * S;
+#endif
+
   } else if constexpr (std::is_same_v<A, std::complex<XBLAS_X_t>> &&
                        std::is_same_v<B, std::complex<float>>) {
     constexpr double eps = std::pow(2.0, -std::numeric_limits<float>::digits);        /* single precision */
     constexpr double un = std::pow(2.0, std::numeric_limits<float>::min_exponent - 1);
     constexpr double ov = std::pow(2.0, std::numeric_limits<float>::max_exponent) * (1 - eps);
-    constexpr double eps1 = std::pow(2.0, -2*(std::numeric_limits<double>::digits - 1));        /* extra precision */
+    constexpr double eps1 = std::pow(2.0, -2*(std::numeric_limits<double>::digits - 1)); // -104       /* extra precision */
     constexpr double un1 = std::pow(2.0, std::numeric_limits<double>::min_exponent - 1);
     constexpr double eps2 = std::pow(2.0, -std::numeric_limits<double>::digits);        /* to not overflow on ov1 */
     constexpr double ov1 = (pow(2.0, std::numeric_limits<double>::max_exponent - 1) * (1 - eps2)) * 2.0; //1.79769313486231571e+308;
@@ -569,6 +670,7 @@ constexpr A div(A a, B b)
       S = S * s;
     }
 
+#if 0
     /* Now un1/eps1*2 <= (a,b) >= ov1/16, un/eps*2 <= (c,d) >= ov/16 */
     XBLAS_X_t q[2];
 
@@ -598,6 +700,9 @@ constexpr A div(A a, B b)
     } else {
       return A(q[0] * S, q[1] * S);
     }
+#else
+    return impl::do_complex_div(a, b) * S;
+#endif
   } else if constexpr (std::is_same_v<inner_type_t<A>, XBLAS_X_t>) {
 #ifdef XBLAS_USE_FLOAT128
     return a / static_cast<inner_type_t<A>>(b);
