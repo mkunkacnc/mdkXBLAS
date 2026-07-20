@@ -429,14 +429,26 @@ constexpr A do_complex_div(A a, B b)
 
   if (abs_c > abs_d) {
     const B_t r = std::imag(b) / std::real(b);
-    const B_t t = std::real(b) + std::imag(b) * r;
-    q[0] = (std::real(a) + std::imag(a) * r) / t;
-    q[1] = (std::imag(a) - std::real(a) * r) / t;
+    if (r == 0) {
+      const B_t t = std::real(b);
+      q[0] = (std::real(a) + (std::imag(a)/std::real(b)) * std::imag(b)) / t;
+      q[1] = (std::imag(a) - (std::real(a)/std::real(b)) * std::imag(b)) / t;
+    } else {
+      const B_t t = std::real(b) + std::imag(b) * r;
+      q[0] = (std::real(a) + std::imag(a) * r) / t;
+      q[1] = (std::imag(a) - std::real(a) * r) / t;
+    }
   } else {
     const B_t r = std::real(b) / std::imag(b);
-    const B_t t = std::imag(b) + std::real(b) * r;
-    q[0] = (std::imag(a) + std::real(a) * r) / t;
-    q[1] = (std::imag(a) * r - std::real(a)) / t;
+    if (r == 0) {
+      const B_t t = std::imag(b);
+      q[0] = (std::imag(a) + (std::real(a)/std::imag(b)) * std::real(b)) / t;
+      q[1] = ((std::imag(a)/std::imag(b)) * std::real(b) - std::real(a)) / t;
+    } else {
+      const B_t t = std::imag(b) + std::real(b) * r;
+      q[0] = (std::imag(a) + std::real(a) * r) / t;
+      q[1] = (std::imag(a) * r - std::real(a)) / t;
+    }
   }
 
   return A(q[0] * S, q[1] * S);
