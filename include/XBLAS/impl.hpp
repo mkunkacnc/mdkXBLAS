@@ -125,7 +125,7 @@ constexpr inline To to(std::complex<double_double> from)
 }
 
 //-------------------------------------
-// TO_TYPE
+// TO_TYPE (used in complex division)
 
 template<typename From>
 struct to_type { using type = From; };
@@ -136,6 +136,16 @@ struct to_type<From> { using type = double; };
 
 template<typename From>
 using to_type_t = to_type<From>::type;
+
+//-------------------------------------
+// TO_DIGITS (used in complex division)
+
+template<typename From>
+struct to_digits { static constexpr auto value = std::numeric_limits<From>::digits; };
+
+template<typename From>
+requires std::is_same_v<From, double_double>
+struct to_digits<From> { static constexpr auto value = 2*(std::numeric_limits<double>::digits - 1); }; // 104
 
 //---------------------------
 // USES_DOUBLE_DOUBLE
@@ -371,7 +381,11 @@ constexpr A do_complex_div(A a, B b)
 
   using A_T = to_type_t<A_t>;
   constexpr A_T ov_a = std::numeric_limits<A_T>::max();
+  constexpr A_T un_a = std::numeric_limits<A_T>::min();
+  constexpr A_T eps_a = std::pow(2.0, -impl::to_digits<A_t>::value); // A_t, not A_T
   constexpr B_t ov_b = std::numeric_limits<B_t>::max();
+  constexpr B_t un_b = std::numeric_limits<B_t>::min();
+  constexpr B_t eps_b = std::pow(2.0, -impl::to_digits<B_t>::value);
 
   const A_T abs_a = std::fabs(to<A_T>(std::real(a)));
   const A_T abs_b = std::fabs(to<A_T>(std::imag(a)));
@@ -396,6 +410,21 @@ constexpr A do_complex_div(A a, B b)
     S = S / 16;
   }
 
+  if (ab < un_a / eps_a * 2) {
+    /* scale up a, b */
+    constexpr A_T t = 2 / (eps_a * eps_a);
+    a *= t;
+    S = S / t;
+  }
+
+  if (cd < un_b / eps_b * 2) {
+    /* scale up c, d */
+    constexpr B_t t = 2 / (eps_b * eps_b);
+    b *= t;
+    S = S * t;
+  }
+
+  /* Quotient */
   A_t q[2];
 
   if (abs_c > abs_d) {
@@ -419,161 +448,28 @@ constexpr A div(A a, B b)
 {
   if constexpr (std::is_same_v<A, std::complex<double>> &&
                 std::is_same_v<B, std::complex<double>>) {
-    constexpr double eps = std::pow(2.0, -std::numeric_limits<float>::digits);
-    constexpr double un = std::pow(2.0, std::numeric_limits<float>::min_exponent - 1);
 
-    //static_assert(std::numeric_limits<double>::max() == 0); // 1.7976931348623157e+308
-    //static_assert(std::numeric_limits<double>::max()/2 == 0); // 8.9884656743115785e+307
-    //static_assert(std::pow(2.0, std::numeric_limits<double>::max_exponent - 1) == 0); // 8.9884656743115795e+307
-
-    const double abs_a = std::fabs(std::real(a));
-    const double abs_b = std::fabs(std::imag(a));
-    const double abs_c = std::fabs(std::real(b));
-    const double abs_d = std::fabs(std::imag(b));
-    const double ab = std::max(abs_a, abs_b);
-    const double cd = std::max(abs_c, abs_d);
-
-    /* Scaling */
-    double S = 1.0;
-
-    if (ab < un / eps * 2) {        /* scale up a, b */
-      const double t = 2.0 / (eps * eps);
-      a *= t;
-      S = S / t;
-    }
-    if (cd < un / eps * 2) {        /* scale up c, d */
-      const double t = 2.0 / (eps * eps);
-      b *= t;
-      S = S * t;
-    }
-
-    return impl::do_complex_div(a, b) * S;
+    return impl::do_complex_div(a, b);
 
   } else if constexpr (std::is_same_v<A, std::complex<double>> &&
                        std::is_same_v<B, std::complex<float>>) {
-    constexpr double eps = std::pow(2.0, -std::numeric_limits<float>::digits);
-    constexpr double un = std::pow(2.0, std::numeric_limits<float>::min_exponent - 1);
-    constexpr double eps1 = std::pow(2.0, -std::numeric_limits<double>::digits);
-    constexpr double un1 = std::pow(2.0, std::numeric_limits<double>::min_exponent - 1);
 
-    const double abs_a = std::fabs(std::real(a));
-    const double abs_b = std::fabs(std::imag(a));
-    const double abs_c = std::fabs(static_cast<double>(std::real(b)));
-    const double abs_d = std::fabs(static_cast<double>(std::imag(b)));
-    const double ab = std::max(abs_a, abs_b);
-    const double cd = std::max(abs_c, abs_d);
-
-    /* Scaling */
-    double S = 1.0;
-
-    if (ab < un1 / eps1 * 2) {        /* scale up a, b */
-      const double t = 2.0 / (eps1 * eps1);
-      a *= t;
-      S = S / t;
-    }
-    if (cd < un / eps * 2) {        /* scale up c, d */
-      const double t = 2.0 / (eps * eps);
-      b *= t;
-      S = S * t;
-    }
-
-    return impl::do_complex_div(a, b) * S;
+    return impl::do_complex_div(a, b);
 
   } else if constexpr (std::is_same_v<A, std::complex<float>> &&
                        std::is_same_v<B, std::complex<float>>) {
-    constexpr double eps = std::pow(2.0, -std::numeric_limits<float>::digits);
-    constexpr double un = std::pow(2.0, std::numeric_limits<float>::min_exponent - 1);
 
-    const double abs_a = std::fabs(static_cast<double>(std::real(a)));
-    const double abs_b = std::fabs(static_cast<double>(std::imag(a)));
-    const double abs_c = std::fabs(static_cast<double>(std::real(b)));
-    const double abs_d = std::fabs(static_cast<double>(std::imag(b)));
-    const double ab = std::max(abs_a, abs_b);
-    const double cd = std::max(abs_c, abs_d);
-
-    /* Scaling */
-    double S = 1.0;
-
-    if (ab < un / eps * 2) {        /* scale up a, b */
-      const double t = 2.0 / (eps * eps);
-      a *= t;
-      S = S / t;
-    }
-    if (cd < un / eps * 2) {        /* scale up c, d */
-      const double t = 2.0 / (eps * eps);
-      b *= t;
-      S = S * t;
-    }
-
-    return impl::do_complex_div(a, b) * static_cast<float>(S);
+    return impl::do_complex_div(a, b);
 
   } else if constexpr (std::is_same_v<A, std::complex<XBLAS_X_t>> &&
                        std::is_same_v<B, std::complex<double>>) {
-    constexpr double eps = std::pow(2.0, -std::numeric_limits<double>::digits);        /* double precision */
-    constexpr double un = std::pow(2.0, std::numeric_limits<double>::min_exponent - 1);
-    constexpr double eps1 = std::pow(2.0, -2*(std::numeric_limits<double>::digits - 1));        /* extra precision */
-    constexpr double un1 = std::pow(2.0, std::numeric_limits<double>::min_exponent - 1);
 
-    const double abs_a = std::fabs(to<double>(std::real(a)));
-    const double abs_b = std::fabs(to<double>(std::imag(a)));
-    const double abs_c = std::fabs(std::real(b));
-    const double abs_d = std::fabs(std::imag(b));
-    const double ab = std::max(abs_a, abs_b);
-    const double cd = std::max(abs_c, abs_d);
-
-    /* Scaling */
-    double S = 1.0;
-
-    if (ab < un1 / eps1 * 2) {        /* scale up a, b */
-      const double s = 2.0 / (eps1 * eps1);
-#ifdef XBLAS_USE_FLOAT128
-      a = a * static_cast<inner_type_t<A>>(s);
-#else
-      a = a * s;
-#endif
-      S = S / s;
-    }
-    if (cd < un / eps * 2) {        /* scale up c, d */
-      const double s = 2.0 / (eps * eps);
-      b *= s;
-      S = S * s;
-    }
-
-    return impl::do_complex_div(a, b) * S;
+    return impl::do_complex_div(a, b);
 
   } else if constexpr (std::is_same_v<A, std::complex<XBLAS_X_t>> &&
                        std::is_same_v<B, std::complex<float>>) {
-    constexpr double eps = std::pow(2.0, -std::numeric_limits<float>::digits);        /* single precision */
-    constexpr double un = std::pow(2.0, std::numeric_limits<float>::min_exponent - 1);
-    constexpr double eps1 = std::pow(2.0, -2*(std::numeric_limits<double>::digits - 1)); // -104       /* extra precision */
-    constexpr double un1 = std::pow(2.0, std::numeric_limits<double>::min_exponent - 1);
 
-    const double abs_a = std::fabs(to<double>(std::real(a)));
-    const double abs_b = std::fabs(to<double>(std::imag(a)));
-    const double abs_c = std::fabs(static_cast<double>(std::real(b)));
-    const double abs_d = std::fabs(static_cast<double>(std::imag(b)));
-    const double ab = std::max(abs_a, abs_b);
-    const double cd = std::max(abs_c, abs_d);
-
-    /* Scaling */
-    double S = 1.0;
-
-    if (ab < un1 / eps1 * 2) {        /* scale up a, b */
-      const double s = 2.0 / (eps1 * eps1);
-#ifdef XBLAS_USE_FLOAT128
-      a = a * static_cast<inner_type_t<A>>(s);
-#else
-      a = a * s;
-#endif
-      S = S / s;
-    }
-    if (cd < un / eps * 2) {        /* scale up c, d */
-      const double s = 2.0 / (eps * eps);
-      b *= s;
-      S = S * s;
-    }
-
-    return impl::do_complex_div(a, b) * S;
+    return impl::do_complex_div(a, b);
 
   } else if constexpr (std::is_same_v<inner_type_t<A>, XBLAS_X_t>) {
 #ifdef XBLAS_USE_FLOAT128
