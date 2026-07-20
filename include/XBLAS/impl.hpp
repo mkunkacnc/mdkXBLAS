@@ -311,7 +311,7 @@ constexpr inline C mul(A a, B b)
 
 template<typename A,
          typename B>
-constexpr A do_complex_div(A a, B b)
+constexpr A complex_div(A a, B b)
 {
   /*
     Textbook complex division:
@@ -336,7 +336,7 @@ constexpr A do_complex_div(A a, B b)
 
     There is still the case of d/c, c/d underflowing to zero.
 
-    Baudin's enhancement to smith method:
+    Baudin's enhancement to Smith's method:
     Suppose d/c == 0:
     a + b x (d/c)     b - a x (d/c)   a + d x (b/c)     b - d x (a/c)
     ------------- + i ------------- = ------------- + i -------------
@@ -366,36 +366,36 @@ constexpr A do_complex_div(A a, B b)
     a + b x (d/c)     b - a x (d/c)   1   (a x f) + (b x f) x (d/c)   1     (b x f) - (a x f) x (d/c)
     ------------- + i ------------- = - x ------------------------- + - x i -------------------------
     c + d x (d/c)     c + d x (d/c)   f         c + d x (d/c)         f           c + d x (d/c)
-    for some large factor f, is less likely to underflow if a and/or b are small.
+    for some large factor f, is less likely to underflow if a and b are small.
 
     4. Suppose max(|c|,|d|) is small:
     a + b x (d/c)     b - a x (d/c)             a + b x (d/c)                     b - a x (d/c)
     ------------- + i ------------- = f x ------------------------- + f x i -------------------------
     c + d x (d/c)     c + d x (d/c)       (c x f) + (d x f) x (d/c)         (c x f) + (d x f) x (d/c)
-    is less likely to overflow if c and/or d are large.
+    for some large factor f, is less likely to underflow if c and d are small.
   */
 
-  using A_t = impl::inner_type_t<A>;
-  using B_t = impl::inner_type_t<B>;
+  using A_t = inner_type_t<A>;
+  using B_t = inner_type_t<B>;
   static_assert(sizeof(A_t) >= sizeof(B_t)); // We aren't losing precision.
 
   using A_T = to_type_t<A_t>;
   constexpr A_T ov_a = std::numeric_limits<A_T>::max();
   constexpr A_T un_a = std::numeric_limits<A_T>::min();
-  constexpr A_T eps_a = std::pow(2.0, -impl::to_digits<A_t>::value); // A_t, not A_T
+  constexpr A_T eps_a = std::pow(2.0, -to_digits<A_t>::value); // A_t, not A_T
   constexpr B_t ov_b = std::numeric_limits<B_t>::max();
   constexpr B_t un_b = std::numeric_limits<B_t>::min();
-  constexpr B_t eps_b = std::pow(2.0, -impl::to_digits<B_t>::value);
+  constexpr B_t eps_b = std::pow(B_t(2), -to_digits<B_t>::value);
 
-  const A_T abs_a = std::fabs(to<A_T>(std::real(a)));
-  const A_T abs_b = std::fabs(to<A_T>(std::imag(a)));
-  const B_t abs_c = std::fabs(std::real(b));
-  const B_t abs_d = std::fabs(std::imag(b));
+  const A_T abs_a = std::abs(to<A_T>(std::real(a)));
+  const A_T abs_b = std::abs(to<A_T>(std::imag(a)));
+  const B_t abs_c = std::abs(std::real(b));
+  const B_t abs_d = std::abs(std::imag(b));
   const A_T ab = std::max(abs_a, abs_b);
   const B_t cd = std::max(abs_c, abs_d);
 
   /* Scaling */
-  A_T S = 1.0;
+  A_T S = 1;
 
   constexpr A_T AO = A_T(16);
   if (ab > ov_a / AO) {
@@ -412,42 +412,44 @@ constexpr A do_complex_div(A a, B b)
 
   if (ab < un_a / eps_a * 2) {
     /* scale up a, b */
-    constexpr A_T t = 2 / (eps_a * eps_a);
-    a *= t;
-    S = S / t;
+    constexpr A_T f = 2 / (eps_a * eps_a);
+    a *= f;
+    S = S / f;
   }
 
   if (cd < un_b / eps_b * 2) {
     /* scale up c, d */
-    constexpr B_t t = 2 / (eps_b * eps_b);
-    b *= t;
-    S = S * t;
+    constexpr B_t f = 2 / (eps_b * eps_b);
+    b *= f;
+    S = S * f;
   }
 
   /* Quotient */
   A_t q[2];
+  const inner_type_t<A_t> a_ = std::real(a);
+  const inner_type_t<A_t> b_ = std::imag(a);
+  const inner_type_t<B_t> c_ = std::real(b);
+  const inner_type_t<B_t> d_ = std::imag(b);
 
   if (abs_c > abs_d) {
-    const B_t r = std::imag(b) / std::real(b);
+    const B_t r = d_/c_;
     if (r == 0) {
-      const B_t t = std::real(b);
-      q[0] = (std::real(a) + (std::imag(a)/std::real(b)) * std::imag(b)) / t;
-      q[1] = (std::imag(a) - (std::real(a)/std::real(b)) * std::imag(b)) / t;
+      q[0] = (a_ + (b_/c_)*d_) / c_;
+      q[1] = (b_ - (a_/c_)*d_) / c_;
     } else {
-      const B_t t = std::real(b) + std::imag(b) * r;
-      q[0] = (std::real(a) + std::imag(a) * r) / t;
-      q[1] = (std::imag(a) - std::real(a) * r) / t;
+      const B_t t = c_ + d_ * r;
+      q[0] = (a_ + b_*r) / t;
+      q[1] = (b_ - a_*r) / t;
     }
   } else {
-    const B_t r = std::real(b) / std::imag(b);
+    const B_t r = c_/d_;
     if (r == 0) {
-      const B_t t = std::imag(b);
-      q[0] = (std::imag(a) + (std::real(a)/std::imag(b)) * std::real(b)) / t;
-      q[1] = ((std::imag(a)/std::imag(b)) * std::real(b) - std::real(a)) / t;
+      q[0] = (b_ + (a_/d_)*c_) / d_;
+      q[1] = ((b_/d_)*c_ - a_) / d_;
     } else {
-      const B_t t = std::imag(b) + std::real(b) * r;
-      q[0] = (std::imag(a) + std::real(a) * r) / t;
-      q[1] = (std::imag(a) * r - std::real(a)) / t;
+      const B_t t = d_ + c_ * r;
+      q[0] = (b_ + a_*r) / t;
+      q[1] = (b_*r - a_) / t;
     }
   }
 
@@ -458,42 +460,19 @@ template<typename A,
          typename B>
 constexpr A div(A a, B b)
 {
-  if constexpr (std::is_same_v<A, std::complex<double>> &&
-                std::is_same_v<B, std::complex<double>>) {
+  if constexpr (is_complex_v<A> && is_complex_v<B>) {
+    return complex_div(a, b);
 
-    return impl::do_complex_div(a, b);
-
-  } else if constexpr (std::is_same_v<A, std::complex<double>> &&
-                       std::is_same_v<B, std::complex<float>>) {
-
-    return impl::do_complex_div(a, b);
-
-  } else if constexpr (std::is_same_v<A, std::complex<float>> &&
-                       std::is_same_v<B, std::complex<float>>) {
-
-    return impl::do_complex_div(a, b);
-
-  } else if constexpr (std::is_same_v<A, std::complex<XBLAS_X_t>> &&
-                       std::is_same_v<B, std::complex<double>>) {
-
-    return impl::do_complex_div(a, b);
-
-  } else if constexpr (std::is_same_v<A, std::complex<XBLAS_X_t>> &&
-                       std::is_same_v<B, std::complex<float>>) {
-
-    return impl::do_complex_div(a, b);
-
-  } else if constexpr (std::is_same_v<inner_type_t<A>, XBLAS_X_t>) {
-#ifdef XBLAS_USE_FLOAT128
-    return a / static_cast<inner_type_t<A>>(b);
-#else
+  } else if constexpr (std::is_same_v<inner_type_t<A>, double_double>) {
+    static_assert(!is_complex_v<B>);
     return a / b;
-#endif
+
   } else if constexpr (is_complex_v<A>) {
     static_assert(!is_complex_v<B>);
     return a / static_cast<inner_type_t<A>>(b);
 
   } else {
+    static_assert(!std::is_same_v<A, double_double>);
     return a / static_cast<A>(b);
   }
 }
