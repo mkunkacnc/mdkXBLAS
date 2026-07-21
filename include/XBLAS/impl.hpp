@@ -233,9 +233,8 @@ constexpr inline C add(A a, B b)
                        is_complex_v<B>) {
     return C(to<inner_type_t<C>>(std::real(a) + std::real(b)), to<inner_type_t<C>>(std::imag(a) + std::imag(b)));
 
-  //} else if TODO case of sizeof C > A or B ? Is that ever the case or is sizeof C <= A and B?
-
   } else {
+    static_assert(sizeof(C) <= sizeof(A) && (sizeof(C) <= sizeof(B) || sizeof(B) <= sizeof(A)));
     return to<C>(a + b);
   }
 }
@@ -394,37 +393,37 @@ constexpr A complex_div(A a, B b)
   const A_T ab = std::max(abs_a, abs_b);
   const B_t cd = std::max(abs_c, abs_d);
 
-  /* Scaling */
+  // Scaling
   A_T S = 1;
 
   constexpr A_T AO = A_T(16);
   if (ab > ov_a / AO) {
     // scale down a, b
     a /= AO;
-    S = S * AO;
+    S *= AO;
   }
 
   if (cd > ov_b / 16) {
     // scale down c, d
     b /= 16;
-    S = S / 16;
+    S /= 16;
   }
 
   if (ab < un_a / eps_a * 2) {
-    /* scale up a, b */
+    // scale up a, b
     constexpr A_T f = 2 / (eps_a * eps_a);
     a *= f;
-    S = S / f;
+    S /= f;
   }
 
   if (cd < un_b / eps_b * 2) {
-    /* scale up c, d */
+    // scale up c, d
     constexpr B_t f = 2 / (eps_b * eps_b);
     b *= f;
-    S = S * f;
+    S *= f;
   }
 
-  /* Quotient */
+  // Quotient
   A_t q[2];
   const inner_type_t<A_t> a_ = std::real(a);
   const inner_type_t<A_t> b_ = std::imag(a);
@@ -444,11 +443,11 @@ constexpr A complex_div(A a, B b)
   } else {
     const B_t r = c_/d_;
     if (r == 0) {
-      q[0] = (b_ + (a_/d_)*c_) / d_;
+      q[0] = ((a_/d_)*c_ + b_) / d_;
       q[1] = ((b_/d_)*c_ - a_) / d_;
     } else {
       const B_t t = d_ + c_ * r;
-      q[0] = (b_ + a_*r) / t;
+      q[0] = (a_*r + b_) / t;
       q[1] = (b_*r - a_) / t;
     }
   }
