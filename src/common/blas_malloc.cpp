@@ -1,3 +1,4 @@
+#define XBLAS_NO_INLINE
 #include "blas_malloc.h"
 #include <cstdlib>
 
@@ -9,7 +10,7 @@ void *blas_malloc(std::size_t size)
     int n = size / sizeof(float);
     int i;
     for (i = 0; i < n; i++) {
-      ((float *) ptr)[i] = 0.0 / 0.0;
+      static_cast<float *>(ptr)[i] = 0.0 / 0.0;
     }
   }
   return ptr;

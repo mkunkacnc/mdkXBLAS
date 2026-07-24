@@ -4,6 +4,8 @@
 // Need at least C++23
 static_assert(__cplusplus >= 202302L, "Need at least C++23");
 
+#include "blas_error.hpp"
+
 #ifdef XBLAS_USE_FLOAT128
 static_assert(__STDCPP_FLOAT128_T__, "Need std::float128_t");
 
@@ -12,8 +14,19 @@ static_assert(__STDCPP_FLOAT128_T__, "Need std::float128_t");
 using XBLAS_X_t = std::float128_t;
 
 // Dummy implementation
+#ifdef FPU_FIX_DECL
+#undef FPU_FIX_DECL
+#endif
 #define FPU_FIX_DECL  static_cast<void>(0)
+
+#ifdef FPU_FIX_START
+#undef FPU_FIX_START
+#endif
 #define FPU_FIX_START static_cast<void>(0)
+
+#ifdef FPU_FIX_STOP
+#undef FPU_FIX_STOP
+#endif
 #define FPU_FIX_STOP  static_cast<void>(0)
 
 // Dummy implementation

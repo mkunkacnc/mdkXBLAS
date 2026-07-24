@@ -31,22 +31,23 @@ void BLAS_error(const char *rname,
   {
     va_list argptr;
     va_start(argptr, form);
-    fprintf(stderr, "Error #%d from routine %s:\n", iflag, rname);
-    if (form)
-      vfprintf(stderr, form, argptr);
-    else if (iflag < 0)
-      fprintf(stderr,
-              "  Parameter number %d to routine %s had the illegal value %d\n",
-              -iflag, rname, ival);
-    else
-      fprintf(stderr, "  Unknown error code %d from routine %s\n",
-              iflag, rname);
-    exit(iflag);
+    std::fprintf(stderr, "Error #%d from routine %s:\n", iflag, rname);
+    if (form) {
+      std::vfprintf(stderr, form, argptr);
+    } else if (iflag < 0) {
+      std::fprintf(stderr,
+                   "  Parameter number %d to routine %s had the illegal value %d\n",
+                   -iflag, rname, ival);
+    } else {
+      std::fprintf(stderr, "  Unknown error code %d from routine %s\n",
+                   iflag, rname);
+    }
+    std::exit(iflag);
   }
 #else
   {
     int ln, argno;
-    ln = strlen(rname);
+    ln = std::strlen(rname);
     argno = -iflag;
     xerbla_array(rname, &ln, &argno);
   }

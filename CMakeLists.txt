@@ -1065,6 +1065,7 @@ target_sources(xblas
         include/XBLAS/axpby.hpp
         include/XBLAS/blas_dense_proto.h
         include/XBLAS/blas_enum.h
+        include/XBLAS/blas_error.hpp
         include/XBLAS/blas_extended.h
         include/XBLAS/blas_extended_private.h
         include/XBLAS/blas_extended_proto.h

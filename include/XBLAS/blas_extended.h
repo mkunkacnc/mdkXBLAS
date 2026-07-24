@@ -1,6 +1,8 @@
 #ifndef BLAS_EXTENDED_H
 #define BLAS_EXTENDED_H
 
+#define XBLAS_NO_INLINE
+
 #include "blas_enum.h"
 #include "blas_malloc.h"
 
