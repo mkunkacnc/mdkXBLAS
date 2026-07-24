@@ -102,7 +102,7 @@ target_sources(xblas
     src/common/BLAS_error.cpp
     src/common/BLAS_fpinfo_x-f2c.c
     src/common/BLAS_fpinfo_x.cpp
-    src/common/blas_malloc.cpp
+    src/common/BLAS_malloc.cpp
     src/dot/BLAS_cdot_c_s-f2c.c
     src/dot/BLAS_cdot_c_s.cpp
     src/dot/BLAS_cdot_c_s_x-f2c.c
