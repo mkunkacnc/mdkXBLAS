@@ -151,9 +151,9 @@ and exits.
  to build everything, I was using an IDE build environment and it was just easier to
  have a single project for the tests building a single executable to run every test.
 
-## Using the Library
+# Using the Library
 
-### C++ program using the C++ API
+## C++ program using the C++ API
 
 As stated previously, you do not need to build the library to use it.
 Just include the relevant .hpp files in include/XBLAS and build your
@@ -171,7 +171,7 @@ and the template will deduce the types.  Furthermore, since it is a template,
 you <i>can</i> use 64 bit integers as the type for m, n, lda, incx, and incy
 if you need them that big.
 
-### C++ or C program using the C API
+## C++ or C program using the C API
 
 In your code:
 
@@ -184,7 +184,7 @@ directory that was installed via the cmake --install build step.
 
 You will need to link to the xblas library.
 
-### Fortran program using the Fortran API
+## Fortran program using the Fortran API
 
 Just call the functions you need and link to the xblas library. Recall that
 the Fortran API does not have an order parameter. (Everything is column-major
