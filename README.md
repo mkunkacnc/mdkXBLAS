@@ -156,7 +156,18 @@ and exits.
 As stated previously, you do not need to build the library to use it.
 Just include the relevant .hpp files in include/XBLAS and build your
 program. You will need at least C++23 to compile the headers. The functions
-are in the XBLAS namespace.
+are in the XBLAS namespace. If your code would have previously called a C API
+function, such as:
+
+BLAS_dgemv_d_s(order, trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
+
+you would now call:
+
+XBLAS::gemv(order, trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
+
+and the template will deduce the types.  Furthermore, since it is a template,
+you <i>can</i> use 64 bit integers as the type for m, n, lda, incx, and incy
+if you need them that big.
 
 ### C++ or C program using the C API
 
