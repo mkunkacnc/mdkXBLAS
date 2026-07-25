@@ -97,7 +97,7 @@ different.
 The level-2 and level-3 blas functions in Fortran operate on 2D arrays and so have two
 indexes. These 2D Fortran arrays are mapped to 1D C arrays in the C and C++ implementations.
 This creates a problem for large arrays. It is entirely possible for a 2D array indexed
-by 2 32 bit signed integer indexes to overflow the single 32 bit signed integer index of
+by two 32 bit signed integer indexes to overflow the single 32 bit signed integer index of
 a C array.  For example, a 50,000 x 50,000 array has 2,500,000,000 elements, which
 cannot be indexed by a 32 bit signed integer.  If you are working with arrays of this
 size, you'll need to turn on this option.
@@ -108,7 +108,9 @@ size, you'll need to turn on this option.
  the type is available.
 
 NOTE: This only applies to the internal index type. The interface types for n,
-lda, incx, etc. are still int.
+lda, incx, etc. in the C and Fortran APIs are still int. In the C++ API, the type
+for n, lda, etc. is a template parameter and can be whatever signed integral type you
+give it.
 
 ### MDKXBLAS_USE_XERBLA
 
@@ -145,7 +147,7 @@ and exits.
 <b>OFF</b>: The unit tests in test/ctests are in 25 separate executables and need to
  be built and run separately. Cmake/ctests does this easily.
 
-<b>ON</b>: The tests are combined into a single executable. Before I had cmake setup
+<b>ON</b>: The tests are combined into a single executable. Before I had cmake set up
  to build everything, I was using an IDE build environment and it was just easier to
  have a single project for the tests building a single executable to run every test.
 
@@ -184,4 +186,12 @@ You will need to link to the xblas library.
 
 ### Fortran program using the Fortran API
 
-Just call the functions you need and link to the xblas library.
+Just call the functions you need and link to the xblas library. Recall that
+the Fortran API does not have an order parameter. (Everything is column-major
+order in Fortran.) If the C API function is:
+
+BLAS_dgemv_d_s(order, trans, m, n, alpha, a, lda, x, incx, beta, y, incy);
+
+The Fortran API function is:
+
+BLAS_dgemv_d_s(trans, m, n, alpha, a, lda, x, incx, beta, y, incy)
