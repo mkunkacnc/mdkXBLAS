@@ -49,7 +49,7 @@ option to have one main program instead of 25. These tests call the C API,
 which in turn call the C++ code.
 
 I have not yet written C++ tests that will specifically test compilation in
-constexpr contexts, or testing long double or quadruple precision types.
+constexpr contexts, or tests for long double or quadruple precision types.
 
 # Building the Library
 
