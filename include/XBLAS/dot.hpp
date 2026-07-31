@@ -155,11 +155,9 @@ template<typename T,
          typename X,
          typename Y,
          typename N,
-         typename TmpType = T,
          typename IdxType = impl::internal_index_type_t<N>>
 requires (impl::size_le_v<X, T> &&
           impl::size_le_v<Y, T> &&
-          impl::size_le_v<T, TmpType> &&
           std::signed_integral<N> &&
           std::signed_integral<IdxType> &&
           sizeof(N) <= sizeof(IdxType))

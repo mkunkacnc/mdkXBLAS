@@ -211,10 +211,8 @@ constexpr void tpmv(blas_order_type order,
 template<typename T,
          typename A,
          typename N,
-         typename TmpType = T,
          typename IdxType = impl::internal_index_type_t<N>>
 requires (impl::size_le_v<A, T> &&
-          impl::size_le_v<T, TmpType> &&
           std::signed_integral<N> &&
           std::signed_integral<IdxType> &&
           sizeof(N) <= sizeof(IdxType))
