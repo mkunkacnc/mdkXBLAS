@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "blas_extended.h"
-#include "blas_extended_test.h"
+#include "blas_extended_test.hpp"
 
 void BLAS_sgemm_testgen(int norm, enum blas_order_type order,
                         enum blas_trans_type transa,

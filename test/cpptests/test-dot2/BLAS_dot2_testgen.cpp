@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include "blas_extended.h"
-#include "blas_extended_test.h"
+#include "blas_extended_test.hpp"
 
 
 void BLAS_sdot2_testgen(int n, int n_fix2, int n_mix, int norm,

@@ -1,6 +1,6 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "blas_extended_test.h"
+#include "blas_extended_test.hpp"
 
 void BLAS_stbsv_testgen(int norm, enum blas_order_type order,
                         enum blas_uplo_type uplo, enum blas_trans_type trans,

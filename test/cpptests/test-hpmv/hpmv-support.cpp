@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "blas_extended.h"
-#include "blas_extended_test.h"
+#include "blas_extended_test.hpp"
 
 void chpmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
                     int n, void *a, void *a_vec, int row)

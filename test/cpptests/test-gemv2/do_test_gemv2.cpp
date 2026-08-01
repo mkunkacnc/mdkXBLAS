@@ -3,7 +3,7 @@
 #include <math.h>
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "blas_extended_test.h"
+#include "blas_extended_test.hpp"
 
 double do_test_dgemv2_d_s(int m, int n, int ntests, int *seed, double thresh,
                           int debug, float test_prob, double *min_ratio,

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "blas_extended_test.h"
+#include "blas_extended_test.hpp"
 
 void ssbmv_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
                       int n, float *a, int k, int lda, float *a_vec, int row)

@@ -2,7 +2,7 @@
 #include <math.h>
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "blas_extended_test.h"
+#include "blas_extended_test.hpp"
 
 
 static double rand_half_1(int, int *);

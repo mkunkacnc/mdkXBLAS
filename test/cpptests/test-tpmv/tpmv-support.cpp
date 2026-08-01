@@ -1,5 +1,5 @@
 #include "blas_extended.h"
-#include "blas_extended_test.h"
+#include "blas_extended_test.hpp"
 
 void stpmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
                     enum blas_trans_type trans, int n, const float *a,

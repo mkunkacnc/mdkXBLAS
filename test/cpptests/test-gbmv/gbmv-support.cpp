@@ -1,7 +1,7 @@
 
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "blas_extended_test.h"
+#include "blas_extended_test.hpp"
 
 
 void sgbmv_prepare(enum blas_order_type order, enum blas_trans_type trans,

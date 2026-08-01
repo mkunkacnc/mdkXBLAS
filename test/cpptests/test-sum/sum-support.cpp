@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "blas_extended.h"
-#include "blas_extended_test.h"
+#include "blas_extended_test.hpp"
 
 void test_BLAS_ssum(int n, float sum_comp, double sum_true_l,
                     double sum_true_t, float *x, int incx,

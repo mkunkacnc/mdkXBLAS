@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "blas_extended.h"
-#include "blas_extended_test.h"
+#include "blas_extended_test.hpp"
 
 
 void sspmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,

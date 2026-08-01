@@ -3,7 +3,7 @@
 #include <math.h>
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "blas_extended_test.h"
+#include "blas_extended_test.hpp"
 
 #define UPLO_START 0
 #define UPLO_END   1

@@ -2,7 +2,7 @@
 #include <math.h>
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "blas_extended_test.h"
+#include "blas_extended_test.hpp"
 
 
 void test_BLAS_sdot2(int n, enum blas_conj_type conj, float alpha, float beta,

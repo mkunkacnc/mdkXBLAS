@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "blas_extended.h"
 #include "blas_extended_private.h"
-#include "blas_extended_test.h"
+#include "blas_extended_test.hpp"
 
 #ifndef ALPHA_USE_IS_ALPHA
 #define ALPHA_USE_IS_ALPHA 1
