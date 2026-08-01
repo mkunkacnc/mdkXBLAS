@@ -107,11 +107,11 @@ void BLAS_ssymm_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   float *b_vec;
 
-  float *c_i = c;
-  float *alpha_i = alpha;
-  float *beta_i = beta;
-  float *a_i = a;
-  float *b_i = b;
+  float *c_i = (float *)c;
+  float *alpha_i = (float *)alpha;
+  float *beta_i = (float *)beta;
+  float *a_i = (float *)a;
+  float *b_i = (float *)b;
 
   if (side == blas_left_side) {
     m_i = m;
@@ -383,11 +383,11 @@ void BLAS_dsymm_testgen(int norm, enum blas_order_type order,
   double *a_vec;
   double *b_vec;
 
-  double *c_i = c;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  double *a_i = a;
-  double *b_i = b;
+  double *c_i = (double *)c;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  double *a_i = (double *)a;
+  double *b_i = (double *)b;
 
   if (side == blas_left_side) {
     m_i = m;
@@ -1258,8 +1258,8 @@ void BLAS_csymm_s_s_testgen(int norm, enum blas_order_type order,
   float *c_i = (float *) c;
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
-  float *a_i = a;
-  float *b_i = b;
+  float *a_i = (float *)a;
+  float *b_i = (float *)b;
 
   if (side == blas_left_side) {
     m_i = m;
@@ -1571,7 +1571,7 @@ void BLAS_csymm_s_c_testgen(int norm, enum blas_order_type order,
   float *c_i = (float *) c;
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
-  float *a_i = a;
+  float *a_i = (float *)a;
   float *b_i = (float *) b;
 
   if (side == blas_left_side) {
@@ -1879,7 +1879,7 @@ void BLAS_csymm_c_s_testgen(int norm, enum blas_order_type order,
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
   float *a_i = (float *) a;
-  float *b_i = b;
+  float *b_i = (float *)b;
 
   if (side == blas_left_side) {
     m_i = m;
@@ -2185,8 +2185,8 @@ void BLAS_zsymm_d_d_testgen(int norm, enum blas_order_type order,
   double *c_i = (double *) c;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
-  double *a_i = a;
-  double *b_i = b;
+  double *a_i = (double *)a;
+  double *b_i = (double *)b;
 
   if (side == blas_left_side) {
     m_i = m;
@@ -2498,7 +2498,7 @@ void BLAS_zsymm_d_z_testgen(int norm, enum blas_order_type order,
   double *c_i = (double *) c;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
-  double *a_i = a;
+  double *a_i = (double *)a;
   double *b_i = (double *) b;
 
   if (side == blas_left_side) {
@@ -2806,7 +2806,7 @@ void BLAS_zsymm_z_d_testgen(int norm, enum blas_order_type order,
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
   double *a_i = (double *) a;
-  double *b_i = b;
+  double *b_i = (double *)b;
 
   if (side == blas_left_side) {
     m_i = m;
@@ -3109,11 +3109,11 @@ void BLAS_dsymm_s_s_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   float *b_vec;
 
-  double *c_i = c;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  float *a_i = a;
-  float *b_i = b;
+  double *c_i = (double *)c;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  float *a_i = (float *)a;
+  float *b_i = (float *)b;
 
   if (side == blas_left_side) {
     m_i = m;
@@ -3385,11 +3385,11 @@ void BLAS_dsymm_s_d_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   double *b_vec;
 
-  double *c_i = c;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  float *a_i = a;
-  double *b_i = b;
+  double *c_i = (double *)c;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  float *a_i = (float *)a;
+  double *b_i = (double *)b;
 
   if (side == blas_left_side) {
     m_i = m;
@@ -3661,11 +3661,11 @@ void BLAS_dsymm_d_s_testgen(int norm, enum blas_order_type order,
   double *a_vec;
   float *b_vec;
 
-  double *c_i = c;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  double *a_i = a;
-  float *b_i = b;
+  double *c_i = (double *)c;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  double *a_i = (double *)a;
+  float *b_i = (float *)b;
 
   if (side == blas_left_side) {
     m_i = m;

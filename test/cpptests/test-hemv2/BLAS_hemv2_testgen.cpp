@@ -77,11 +77,11 @@ void BLAS_sskmv2_testgen(int norm, enum blas_order_type order,
   float *x_head_vec;
   float *x_tail_vec;
 
-  float *y_i = y;
-  float *alpha_i = alpha;
-  float *beta_i = beta;
-  float *x_head_i = x_head;
-  float *x_tail_i = x_tail;
+  float *y_i = (float *)y;
+  float *alpha_i = (float *)alpha;
+  float *beta_i = (float *)beta;
+  float *x_head_i = (float *)x_head;
+  float *x_tail_i = (float *)x_tail;
 
   /*a_vec must have stride of 1 */
   inca_vec = 1;
@@ -210,11 +210,11 @@ void BLAS_dskmv2_testgen(int norm, enum blas_order_type order,
   double *x_head_vec;
   double *x_tail_vec;
 
-  double *y_i = y;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  double *x_head_i = x_head;
-  double *x_tail_i = x_tail;
+  double *y_i = (double *)y;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  double *x_head_i = (double *)x_head;
+  double *x_tail_i = (double *)x_tail;
 
   /*a_vec must have stride of 1 */
   inca_vec = 1;
@@ -343,11 +343,11 @@ void BLAS_dskmv2_testgen_d_s(int norm, enum blas_order_type order,
   float *x_head_vec;
   float *x_tail_vec;
 
-  double *y_i = y;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  float *x_head_i = x_head;
-  float *x_tail_i = x_tail;
+  double *y_i = (double *)y;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  float *x_head_i = (float *)x_head;
+  float *x_tail_i = (float *)x_tail;
 
   /*a_vec must have stride of 1 */
   inca_vec = 1;
@@ -476,11 +476,11 @@ void BLAS_dskmv2_testgen_s_d(int norm, enum blas_order_type order,
   double *x_head_vec;
   double *x_tail_vec;
 
-  double *y_i = y;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  double *x_head_i = x_head;
-  double *x_tail_i = x_tail;
+  double *y_i = (double *)y;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  double *x_head_i = (double *)x_head;
+  double *x_tail_i = (double *)x_tail;
 
   /*a_vec must have stride of 1 */
   inca_vec = 1;
@@ -609,11 +609,11 @@ void BLAS_dskmv2_testgen_s_s(int norm, enum blas_order_type order,
   float *x_head_vec;
   float *x_tail_vec;
 
-  double *y_i = y;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  float *x_head_i = x_head;
-  float *x_tail_i = x_tail;
+  double *y_i = (double *)y;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  float *x_head_i = (float *)x_head;
+  float *x_tail_i = (float *)x_tail;
 
   /*a_vec must have stride of 1 */
   inca_vec = 1;
@@ -3024,8 +3024,8 @@ void BLAS_zhemv2_z_d_testgen(int norm, enum blas_order_type order,
     double *beta_i = (double *) beta;
 
     double *a_i = (double *) a;
-    double *x_head_i = x_head;
-    double *x_tail_i = x_tail;
+    double *x_head_i = (double *)x_head;
+    double *x_tail_i = (double *)x_tail;
 
     ld = n;
     if (order == blas_colmajor) {
@@ -3410,8 +3410,8 @@ void BLAS_chemv2_c_s_testgen(int norm, enum blas_order_type order,
     float *beta_i = (float *) beta;
 
     float *a_i = (float *) a;
-    float *x_head_i = x_head;
-    float *x_tail_i = x_tail;
+    float *x_head_i = (float *)x_head;
+    float *x_tail_i = (float *)x_tail;
 
     ld = n;
     if (order == blas_colmajor) {

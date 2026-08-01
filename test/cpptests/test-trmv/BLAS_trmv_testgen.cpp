@@ -57,9 +57,9 @@ void BLAS_strmv_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  float *x_i = x;
-  float *T_i = T;
-  float *alpha_i = alpha;
+  float *x_i = (float *)x;
+  float *T_i = (float *)T;
+  float *alpha_i = (float *)alpha;
   float *x_vec;
   float *t_vec;
   float beta;
@@ -267,9 +267,9 @@ void BLAS_dtrmv_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  double *x_i = x;
-  double *T_i = T;
-  double *alpha_i = alpha;
+  double *x_i = (double *)x;
+  double *T_i = (double *)T;
+  double *alpha_i = (double *)alpha;
   double *x_vec;
   double *t_vec;
   double beta;
@@ -478,9 +478,9 @@ void BLAS_dtrmv_s_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  double *x_i = x;
-  float *T_i = T;
-  double *alpha_i = alpha;
+  double *x_i = (double *)x;
+  float *T_i = (float *)T;
+  double *alpha_i = (double *)alpha;
   double *x_vec;
   float *t_vec;
   double beta;
@@ -1378,7 +1378,7 @@ void BLAS_ctrmv_s_testgen(int norm, enum blas_order_type order,
  */
 {
   float *x_i = (float *) x;
-  float *T_i = T;
+  float *T_i = (float *)T;
   float *alpha_i = (float *) alpha;
   float *x_vec;
   float *t_vec;
@@ -1596,7 +1596,7 @@ void BLAS_ztrmv_d_testgen(int norm, enum blas_order_type order,
  */
 {
   double *x_i = (double *) x;
-  double *T_i = T;
+  double *T_i = (double *)T;
   double *alpha_i = (double *) alpha;
   double *x_vec;
   double *t_vec;

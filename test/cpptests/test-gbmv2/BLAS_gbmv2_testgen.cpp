@@ -78,9 +78,9 @@ void BLAS_sgbmv2_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  float *x_head_i = x_head;
-  float *x_tail_i = x_tail;
-  float *y_i = y;
+  float *x_head_i = (float *)x_head;
+  float *x_tail_i = (float *)x_tail;
+  float *y_i = (float *)y;
   int n_fix2;
   int n_mix;
   int ysize;
@@ -219,9 +219,9 @@ void BLAS_dgbmv2_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  double *x_head_i = x_head;
-  double *x_tail_i = x_tail;
-  double *y_i = y;
+  double *x_head_i = (double *)x_head;
+  double *x_tail_i = (double *)x_tail;
+  double *y_i = (double *)y;
   int n_fix2;
   int n_mix;
   int ysize;
@@ -656,8 +656,8 @@ void BLAS_cgbmv2_s_s_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  float *x_head_i = x_head;
-  float *x_tail_i = x_tail;
+  float *x_head_i = (float *)x_head;
+  float *x_tail_i = (float *)x_tail;
   float *y_i = (float *) y;
   int n_fix2;
   int n_mix;
@@ -942,8 +942,8 @@ void BLAS_cgbmv2_c_s_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  float *x_head_i = x_head;
-  float *x_tail_i = x_tail;
+  float *x_head_i = (float *)x_head;
+  float *x_tail_i = (float *)x_tail;
   float *y_i = (float *) y;
   int n_fix2;
   int n_mix;
@@ -1088,8 +1088,8 @@ void BLAS_zgbmv2_d_d_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  double *x_head_i = x_head;
-  double *x_tail_i = x_tail;
+  double *x_head_i = (double *)x_head;
+  double *x_tail_i = (double *)x_tail;
   double *y_i = (double *) y;
   int n_fix2;
   int n_mix;
@@ -1374,8 +1374,8 @@ void BLAS_zgbmv2_z_d_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  double *x_head_i = x_head;
-  double *x_tail_i = x_tail;
+  double *x_head_i = (double *)x_head;
+  double *x_tail_i = (double *)x_tail;
   double *y_i = (double *) y;
   int n_fix2;
   int n_mix;
@@ -1520,9 +1520,9 @@ void BLAS_dgbmv2_s_s_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  float *x_head_i = x_head;
-  float *x_tail_i = x_tail;
-  double *y_i = y;
+  float *x_head_i = (float *)x_head;
+  float *x_tail_i = (float *)x_tail;
+  double *y_i = (double *)y;
   int n_fix2;
   int n_mix;
   int ysize;
@@ -1661,9 +1661,9 @@ void BLAS_dgbmv2_s_d_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  double *x_head_i = x_head;
-  double *x_tail_i = x_tail;
-  double *y_i = y;
+  double *x_head_i = (double *)x_head;
+  double *x_tail_i = (double *)x_tail;
+  double *y_i = (double *)y;
   int n_fix2;
   int n_mix;
   int ysize;
@@ -1803,9 +1803,9 @@ void BLAS_dgbmv2_d_s_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  float *x_head_i = x_head;
-  float *x_tail_i = x_tail;
-  double *y_i = y;
+  float *x_head_i = (float *)x_head;
+  float *x_tail_i = (float *)x_tail;
+  double *y_i = (double *)y;
   int n_fix2;
   int n_mix;
   int ysize;

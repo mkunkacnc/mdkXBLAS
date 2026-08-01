@@ -77,8 +77,8 @@ void BLAS_sgbmv_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  float *x_i = x;
-  float *y_i = y;
+  float *x_i = (float *)x;
+  float *y_i = (float *)y;
   int n_fix2;
   int n_mix;
   int ysize;
@@ -215,8 +215,8 @@ void BLAS_dgbmv_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  double *x_i = x;
-  double *y_i = y;
+  double *x_i = (double *)x;
+  double *y_i = (double *)y;
   int n_fix2;
   int n_mix;
   int ysize;
@@ -639,7 +639,7 @@ void BLAS_cgbmv_s_s_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  float *x_i = x;
+  float *x_i = (float *)x;
   float *y_i = (float *) y;
   int n_fix2;
   int n_mix;
@@ -918,7 +918,7 @@ void BLAS_cgbmv_c_s_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  float *x_i = x;
+  float *x_i = (float *)x;
   float *y_i = (float *) y;
   int n_fix2;
   int n_mix;
@@ -1061,7 +1061,7 @@ void BLAS_zgbmv_d_d_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  double *x_i = x;
+  double *x_i = (double *)x;
   double *y_i = (double *) y;
   int n_fix2;
   int n_mix;
@@ -1340,7 +1340,7 @@ void BLAS_zgbmv_z_d_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  double *x_i = x;
+  double *x_i = (double *)x;
   double *y_i = (double *) y;
   int n_fix2;
   int n_mix;
@@ -1483,8 +1483,8 @@ void BLAS_dgbmv_s_s_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  float *x_i = x;
-  double *y_i = y;
+  float *x_i = (float *)x;
+  double *y_i = (double *)y;
   int n_fix2;
   int n_mix;
   int ysize;
@@ -1621,8 +1621,8 @@ void BLAS_dgbmv_s_d_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  double *x_i = x;
-  double *y_i = y;
+  double *x_i = (double *)x;
+  double *y_i = (double *)y;
   int n_fix2;
   int n_mix;
   int ysize;
@@ -1759,8 +1759,8 @@ void BLAS_dgbmv_d_s_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  float *x_i = x;
-  double *y_i = y;
+  float *x_i = (float *)x;
+  double *y_i = (double *)y;
   int n_fix2;
   int n_mix;
   int ysize;

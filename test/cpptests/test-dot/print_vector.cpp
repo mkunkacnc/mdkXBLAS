@@ -4,7 +4,7 @@
 
 void sprint_vector(const float *x, int n, int inc, const char *name)
 {
-  const float *x_i = x;
+  const float *x_i = (float *)x;
   int i, xi;
 
 
@@ -24,7 +24,7 @@ void sprint_vector(const float *x, int n, int inc, const char *name)
 }
 void dprint_vector(const double *x, int n, int inc, const char *name)
 {
-  const double *x_i = x;
+  const double *x_i = (double *)x;
   int i, xi;
 
 

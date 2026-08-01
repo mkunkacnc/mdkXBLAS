@@ -3,3 +3,4 @@
 # ------------------------------------------------------------
 
 add_subdirectory(ctests)
+add_subdirectory(cpptests)

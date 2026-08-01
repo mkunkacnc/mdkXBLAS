@@ -1604,7 +1604,7 @@ void BLAS_ctbsv_s_testgen(int norm, enum blas_order_type order,
 {
   float *x_i = (float *) x;
   float *alpha_i = (float *) alpha;
-  float *T_i = T;
+  float *T_i = (float *)T;
   float alpha_r;
   float *x_r;
   double *head_r_true_r, *tail_r_true_r;
@@ -1716,7 +1716,7 @@ void BLAS_ztbsv_d_testgen(int norm, enum blas_order_type order,
 {
   double *x_i = (double *) x;
   double *alpha_i = (double *) alpha;
-  double *T_i = T;
+  double *T_i = (double *)T;
   double alpha_r;
   double *x_r;
   double *head_r_true_r, *tail_r_true_r;

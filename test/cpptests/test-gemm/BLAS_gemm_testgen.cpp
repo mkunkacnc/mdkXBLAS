@@ -27,11 +27,11 @@ void BLAS_sgemm_testgen(int norm, enum blas_order_type order,
 
   double head_r_true_elem, tail_r_true_elem;
 
-  float *c_i = c;
-  float *b_i = b;
-  float *a_i = a;
-  float *alpha_i = alpha;
-  float *beta_i = beta;
+  float *c_i = (float *)c;
+  float *b_i = (float *)b;
+  float *a_i = (float *)a;
+  float *alpha_i = (float *)alpha;
+  float *beta_i = (float *)beta;
 
   /* Temporary storage space for vectors of length k */
   float *a_vec;
@@ -216,11 +216,11 @@ void BLAS_dgemm_testgen(int norm, enum blas_order_type order,
 
   double head_r_true_elem, tail_r_true_elem;
 
-  double *c_i = c;
-  double *b_i = b;
-  double *a_i = a;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
+  double *c_i = (double *)c;
+  double *b_i = (double *)b;
+  double *a_i = (double *)a;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
 
   /* Temporary storage space for vectors of length k */
   double *a_vec;
@@ -834,8 +834,8 @@ void BLAS_cgemm_s_s_testgen(int norm, enum blas_order_type order,
   double head_r_true_elem[2], tail_r_true_elem[2];
 
   float *c_i = (float *) c;
-  float *b_i = b;
-  float *a_i = a;
+  float *b_i = (float *)b;
+  float *a_i = (float *)a;
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
 
@@ -1063,7 +1063,7 @@ void BLAS_cgemm_s_c_testgen(int norm, enum blas_order_type order,
 
   float *c_i = (float *) c;
   float *b_i = (float *) b;
-  float *a_i = a;
+  float *a_i = (float *)a;
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
 
@@ -1284,7 +1284,7 @@ void BLAS_cgemm_c_s_testgen(int norm, enum blas_order_type order,
   double head_r_true_elem[2], tail_r_true_elem[2];
 
   float *c_i = (float *) c;
-  float *b_i = b;
+  float *b_i = (float *)b;
   float *a_i = (float *) a;
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
@@ -1506,8 +1506,8 @@ void BLAS_zgemm_d_d_testgen(int norm, enum blas_order_type order,
   double head_r_true_elem[2], tail_r_true_elem[2];
 
   double *c_i = (double *) c;
-  double *b_i = b;
-  double *a_i = a;
+  double *b_i = (double *)b;
+  double *a_i = (double *)a;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
 
@@ -1735,7 +1735,7 @@ void BLAS_zgemm_d_z_testgen(int norm, enum blas_order_type order,
 
   double *c_i = (double *) c;
   double *b_i = (double *) b;
-  double *a_i = a;
+  double *a_i = (double *)a;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
 
@@ -1956,7 +1956,7 @@ void BLAS_zgemm_z_d_testgen(int norm, enum blas_order_type order,
   double head_r_true_elem[2], tail_r_true_elem[2];
 
   double *c_i = (double *) c;
-  double *b_i = b;
+  double *b_i = (double *)b;
   double *a_i = (double *) a;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
@@ -2177,11 +2177,11 @@ void BLAS_dgemm_s_s_testgen(int norm, enum blas_order_type order,
 
   double head_r_true_elem, tail_r_true_elem;
 
-  double *c_i = c;
-  float *b_i = b;
-  float *a_i = a;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
+  double *c_i = (double *)c;
+  float *b_i = (float *)b;
+  float *a_i = (float *)a;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
 
   /* Temporary storage space for vectors of length k */
   float *a_vec;
@@ -2366,11 +2366,11 @@ void BLAS_dgemm_s_d_testgen(int norm, enum blas_order_type order,
 
   double head_r_true_elem, tail_r_true_elem;
 
-  double *c_i = c;
-  double *b_i = b;
-  float *a_i = a;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
+  double *c_i = (double *)c;
+  double *b_i = (double *)b;
+  float *a_i = (float *)a;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
 
   /* Temporary storage space for vectors of length k */
   float *a_vec;
@@ -2555,11 +2555,11 @@ void BLAS_dgemm_d_s_testgen(int norm, enum blas_order_type order,
 
   double head_r_true_elem, tail_r_true_elem;
 
-  double *c_i = c;
-  float *b_i = b;
-  double *a_i = a;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
+  double *c_i = (double *)c;
+  float *b_i = (float *)b;
+  double *a_i = (double *)a;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
 
   /* Temporary storage space for vectors of length k */
   double *a_vec;

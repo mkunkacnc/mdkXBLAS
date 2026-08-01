@@ -103,11 +103,11 @@ void BLAS_ssymv_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   float *x_vec;
 
-  float *y_i = y;
-  float *alpha_i = alpha;
-  float *beta_i = beta;
-  float *a_i = a;
-  float *x_i = x;
+  float *y_i = (float *)y;
+  float *alpha_i = (float *)alpha;
+  float *beta_i = (float *)beta;
+  float *a_i = (float *)a;
+  float *x_i = (float *)x;
 
   n_i = n;
 
@@ -371,11 +371,11 @@ void BLAS_dsymv_testgen(int norm, enum blas_order_type order,
   double *a_vec;
   double *x_vec;
 
-  double *y_i = y;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  double *a_i = a;
-  double *x_i = x;
+  double *y_i = (double *)y;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  double *a_i = (double *)a;
+  double *x_i = (double *)x;
 
   n_i = n;
 
@@ -1216,8 +1216,8 @@ void BLAS_csymv_s_s_testgen(int norm, enum blas_order_type order,
   float *y_i = (float *) y;
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
-  float *a_i = a;
-  float *x_i = x;
+  float *a_i = (float *)a;
+  float *x_i = (float *)x;
 
   n_i = n;
 
@@ -1519,7 +1519,7 @@ void BLAS_csymv_s_c_testgen(int norm, enum blas_order_type order,
   float *y_i = (float *) y;
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
-  float *a_i = a;
+  float *a_i = (float *)a;
   float *x_i = (float *) x;
 
   n_i = n;
@@ -1816,7 +1816,7 @@ void BLAS_csymv_c_s_testgen(int norm, enum blas_order_type order,
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
   float *a_i = (float *) a;
-  float *x_i = x;
+  float *x_i = (float *)x;
 
   n_i = n;
 
@@ -2111,8 +2111,8 @@ void BLAS_zsymv_d_d_testgen(int norm, enum blas_order_type order,
   double *y_i = (double *) y;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
-  double *a_i = a;
-  double *x_i = x;
+  double *a_i = (double *)a;
+  double *x_i = (double *)x;
 
   n_i = n;
 
@@ -2414,7 +2414,7 @@ void BLAS_zsymv_d_z_testgen(int norm, enum blas_order_type order,
   double *y_i = (double *) y;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
-  double *a_i = a;
+  double *a_i = (double *)a;
   double *x_i = (double *) x;
 
   n_i = n;
@@ -2711,7 +2711,7 @@ void BLAS_zsymv_z_d_testgen(int norm, enum blas_order_type order,
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
   double *a_i = (double *) a;
-  double *x_i = x;
+  double *x_i = (double *)x;
 
   n_i = n;
 
@@ -3003,11 +3003,11 @@ void BLAS_dsymv_s_s_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   float *x_vec;
 
-  double *y_i = y;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  float *a_i = a;
-  float *x_i = x;
+  double *y_i = (double *)y;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  float *a_i = (float *)a;
+  float *x_i = (float *)x;
 
   n_i = n;
 
@@ -3271,11 +3271,11 @@ void BLAS_dsymv_s_d_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   double *x_vec;
 
-  double *y_i = y;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  float *a_i = a;
-  double *x_i = x;
+  double *y_i = (double *)y;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  float *a_i = (float *)a;
+  double *x_i = (double *)x;
 
   n_i = n;
 
@@ -3539,11 +3539,11 @@ void BLAS_dsymv_d_s_testgen(int norm, enum blas_order_type order,
   double *a_vec;
   float *x_vec;
 
-  double *y_i = y;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  double *a_i = a;
-  float *x_i = x;
+  double *y_i = (double *)y;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  double *a_i = (double *)a;
+  float *x_i = (float *)x;
 
   n_i = n;
 

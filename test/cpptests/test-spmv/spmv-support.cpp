@@ -32,8 +32,8 @@ void sspmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  */
 {
   int i, ind, inc = 1;
-  const float *a_i = a;
-  float *a_vec_i = a_vec;
+  const float *a_i = (float *)a;
+  float *a_vec_i = (float *)a_vec;
   float tmp;
 
 
@@ -104,8 +104,8 @@ void dspmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  */
 {
   int i, ind, inc = 1;
-  const double *a_i = a;
-  double *a_vec_i = a_vec;
+  const double *a_i = (double *)a;
+  double *a_vec_i = (double *)a_vec;
   double tmp;
 
 
@@ -337,8 +337,8 @@ void sspmv_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
  */
 {
   int i, ind, inc = 1;
-  float *a_i = a;
-  const float *a_vec_i = a_vec;
+  float *a_i = (float *)a;
+  const float *a_vec_i = (float *)a_vec;
   float tmp;
 
 
@@ -395,8 +395,8 @@ void dspmv_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
  */
 {
   int i, ind, inc = 1;
-  double *a_i = a;
-  const double *a_vec_i = a_vec;
+  double *a_i = (double *)a;
+  const double *a_vec_i = (double *)a_vec;
   double tmp;
 
 

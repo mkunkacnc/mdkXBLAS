@@ -159,14 +159,14 @@ void BLAS_sge_sum_mv_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   float *x_vec;
 
-  float *alpha_use_ptr_i = alpha_use_ptr;
-  float *alpha_i = alpha;
-  float *beta_i = beta;
-  float *a_i = a;
-  float *b_i = b;
-  float *a_use_i = a_use;
-  float *b_use_i = b_use;
-  float *x_i = x;
+  float *alpha_use_ptr_i = (float *)alpha_use_ptr;
+  float *alpha_i = (float *)alpha;
+  float *beta_i = (float *)beta;
+  float *a_i = (float *)a;
+  float *b_i = (float *)b;
+  float *a_use_i = (float *)a_use;
+  float *b_use_i = (float *)b_use;
+  float *x_i = (float *)x;
 
   n_i = n;
   m_i = m;
@@ -287,8 +287,8 @@ void BLAS_sge_sum_mv_testgen(int norm, enum blas_order_type order,
       x_i[xi * incxi] = x_elem;
     }
     /*copy new x into x_vec (twice) */
-    scopy_vector(x, n_i, incx, x_vec, 1);
-    scopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    scopy_vector((float *)x, n_i, incx, x_vec, 1);
+    scopy_vector((float *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
 
     if (case_type == 2) {
       /* degenerate case - similar to gemv */
@@ -529,8 +529,8 @@ void BLAS_sge_sum_mv_testgen(int norm, enum blas_order_type order,
 
     /* get x */
     /*copy new x into x_vec (twice) */
-    scopy_vector(x, n_i, incx, x_vec, 1);
-    scopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    scopy_vector((float *)x, n_i, incx, x_vec, 1);
+    scopy_vector((float *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
 
 
     if (case_type == 2) {
@@ -959,14 +959,14 @@ void BLAS_dge_sum_mv_testgen(int norm, enum blas_order_type order,
   double *a_vec;
   double *x_vec;
 
-  double *alpha_use_ptr_i = alpha_use_ptr;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  double *a_i = a;
-  double *b_i = b;
-  double *a_use_i = a_use;
-  double *b_use_i = b_use;
-  double *x_i = x;
+  double *alpha_use_ptr_i = (double *)alpha_use_ptr;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  double *a_i = (double *)a;
+  double *b_i = (double *)b;
+  double *a_use_i = (double *)a_use;
+  double *b_use_i = (double *)b_use;
+  double *x_i = (double *)x;
 
   n_i = n;
   m_i = m;
@@ -1087,8 +1087,8 @@ void BLAS_dge_sum_mv_testgen(int norm, enum blas_order_type order,
       x_i[xi * incxi] = x_elem;
     }
     /*copy new x into x_vec (twice) */
-    dcopy_vector(x, n_i, incx, x_vec, 1);
-    dcopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    dcopy_vector((double *)x, n_i, incx, x_vec, 1);
+    dcopy_vector((double *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
 
     if (case_type == 2) {
       /* degenerate case - similar to gemv */
@@ -1329,8 +1329,8 @@ void BLAS_dge_sum_mv_testgen(int norm, enum blas_order_type order,
 
     /* get x */
     /*copy new x into x_vec (twice) */
-    dcopy_vector(x, n_i, incx, x_vec, 1);
-    dcopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    dcopy_vector((double *)x, n_i, incx, x_vec, 1);
+    dcopy_vector((double *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
 
 
     if (case_type == 2) {
@@ -2116,7 +2116,7 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
         x_i[xi + 1] = x_elem[1];
       }
       /*copy new x into x_vec_2 (twice) */
-      scopy_vector(x, n_i, 2 * incx, x_vec_2, 1);
+      scopy_vector((float *)x, n_i, 2 * incx, x_vec_2, 1);
       scopy_vector(x_vec_2, n_i, 1, (x_vec_2 + n_i), 1);
 
       /* Now Fill in matrix A, B real */
@@ -3466,7 +3466,7 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
         x_i[xi + 1] = x_elem[1];
       }
       /*copy new x into x_vec_2 (twice) */
-      dcopy_vector(x, n_i, 2 * incx, x_vec_2, 1);
+      dcopy_vector((double *)x, n_i, 2 * incx, x_vec_2, 1);
       dcopy_vector(x_vec_2, n_i, 1, (x_vec_2 + n_i), 1);
 
       /* Now Fill in matrix A, B real */
@@ -4565,11 +4565,11 @@ void BLAS_cge_sum_mv_s_s_testgen(int norm, enum blas_order_type order,
   float *alpha_use_ptr_i = (float *) alpha_use_ptr;
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
-  float *a_i = a;
-  float *b_i = b;
-  float *a_use_i = a_use;
-  float *b_use_i = b_use;
-  float *x_i = x;
+  float *a_i = (float *)a;
+  float *b_i = (float *)b;
+  float *a_use_i = (float *)a_use;
+  float *b_use_i = (float *)b_use;
+  float *x_i = (float *)x;
 
   n_i = n;
   m_i = m;
@@ -4697,8 +4697,8 @@ void BLAS_cge_sum_mv_s_s_testgen(int norm, enum blas_order_type order,
       x_i[xi * incxi] = x_elem;
     }
     /*copy new x into x_vec (twice) */
-    scopy_vector(x, n_i, incx, x_vec, 1);
-    scopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    scopy_vector((float *)x, n_i, incx, x_vec, 1);
+    scopy_vector((float *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
 
     if (case_type == 2) {
       /* degenerate case - similar to gemv */
@@ -4965,8 +4965,8 @@ void BLAS_cge_sum_mv_s_s_testgen(int norm, enum blas_order_type order,
 
     /* get x */
     /*copy new x into x_vec (twice) */
-    scopy_vector(x, n_i, incx, x_vec, 1);
-    scopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    scopy_vector((float *)x, n_i, incx, x_vec, 1);
+    scopy_vector((float *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
     {
       /* promote to complex */
       int r;
@@ -5477,10 +5477,10 @@ void BLAS_cge_sum_mv_s_c_testgen(int norm, enum blas_order_type order,
   float *alpha_use_ptr_i = (float *) alpha_use_ptr;
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
-  float *a_i = a;
-  float *b_i = b;
-  float *a_use_i = a_use;
-  float *b_use_i = b_use;
+  float *a_i = (float *)a;
+  float *b_i = (float *)b;
+  float *a_use_i = (float *)a_use;
+  float *b_use_i = (float *)b_use;
   float *x_i = (float *) x;
 
   n_i = n;
@@ -6392,7 +6392,7 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
   float *b_i = (float *) b;
   float *a_use_i = (float *) a_use;
   float *b_use_i = (float *) b_use;
-  float *x_i = x;
+  float *x_i = (float *)x;
 
   n_i = n;
   m_i = m;
@@ -6520,8 +6520,8 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
       x_i[xi * incxi] = x_elem;
     }
     /*copy new x into x_vec (twice) */
-    scopy_vector(x, n_i, incx, x_vec, 1);
-    scopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    scopy_vector((float *)x, n_i, incx, x_vec, 1);
+    scopy_vector((float *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
 
     if (case_type == 2) {
       /* degenerate case - similar to gemv */
@@ -6729,7 +6729,7 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
         x_i[xi] = x_elem;
       }
       /*copy new x into x_vec_2 (twice) */
-      scopy_vector(x, n_i, 2 * incx, x_vec_2, 1);
+      scopy_vector((float *)x, n_i, 2 * incx, x_vec_2, 1);
       scopy_vector(x_vec_2, n_i, 1, (x_vec_2 + n_i), 1);
 
       /* Now Fill in matrix A, B real */
@@ -6853,8 +6853,8 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
 
     /* get x */
     /*copy new x into x_vec (twice) */
-    scopy_vector(x, n_i, incx, x_vec, 1);
-    scopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    scopy_vector((float *)x, n_i, incx, x_vec, 1);
+    scopy_vector((float *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
     {
       /* promote to complex */
       int r;
@@ -7734,11 +7734,11 @@ void BLAS_zge_sum_mv_d_d_testgen(int norm, enum blas_order_type order,
   double *alpha_use_ptr_i = (double *) alpha_use_ptr;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
-  double *a_i = a;
-  double *b_i = b;
-  double *a_use_i = a_use;
-  double *b_use_i = b_use;
-  double *x_i = x;
+  double *a_i = (double *)a;
+  double *b_i = (double *)b;
+  double *a_use_i = (double *)a_use;
+  double *b_use_i = (double *)b_use;
+  double *x_i = (double *)x;
 
   n_i = n;
   m_i = m;
@@ -7866,8 +7866,8 @@ void BLAS_zge_sum_mv_d_d_testgen(int norm, enum blas_order_type order,
       x_i[xi * incxi] = x_elem;
     }
     /*copy new x into x_vec (twice) */
-    dcopy_vector(x, n_i, incx, x_vec, 1);
-    dcopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    dcopy_vector((double *)x, n_i, incx, x_vec, 1);
+    dcopy_vector((double *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
 
     if (case_type == 2) {
       /* degenerate case - similar to gemv */
@@ -8134,8 +8134,8 @@ void BLAS_zge_sum_mv_d_d_testgen(int norm, enum blas_order_type order,
 
     /* get x */
     /*copy new x into x_vec (twice) */
-    dcopy_vector(x, n_i, incx, x_vec, 1);
-    dcopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    dcopy_vector((double *)x, n_i, incx, x_vec, 1);
+    dcopy_vector((double *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
     {
       /* promote to complex */
       int r;
@@ -8646,10 +8646,10 @@ void BLAS_zge_sum_mv_d_z_testgen(int norm, enum blas_order_type order,
   double *alpha_use_ptr_i = (double *) alpha_use_ptr;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
-  double *a_i = a;
-  double *b_i = b;
-  double *a_use_i = a_use;
-  double *b_use_i = b_use;
+  double *a_i = (double *)a;
+  double *b_i = (double *)b;
+  double *a_use_i = (double *)a_use;
+  double *b_use_i = (double *)b_use;
   double *x_i = (double *) x;
 
   n_i = n;
@@ -9561,7 +9561,7 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
   double *b_i = (double *) b;
   double *a_use_i = (double *) a_use;
   double *b_use_i = (double *) b_use;
-  double *x_i = x;
+  double *x_i = (double *)x;
 
   n_i = n;
   m_i = m;
@@ -9689,8 +9689,8 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
       x_i[xi * incxi] = x_elem;
     }
     /*copy new x into x_vec (twice) */
-    dcopy_vector(x, n_i, incx, x_vec, 1);
-    dcopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    dcopy_vector((double *)x, n_i, incx, x_vec, 1);
+    dcopy_vector((double *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
 
     if (case_type == 2) {
       /* degenerate case - similar to gemv */
@@ -9898,7 +9898,7 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
         x_i[xi] = x_elem;
       }
       /*copy new x into x_vec_2 (twice) */
-      dcopy_vector(x, n_i, 2 * incx, x_vec_2, 1);
+      dcopy_vector((double *)x, n_i, 2 * incx, x_vec_2, 1);
       dcopy_vector(x_vec_2, n_i, 1, (x_vec_2 + n_i), 1);
 
       /* Now Fill in matrix A, B real */
@@ -10064,8 +10064,8 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
 
     /* get x */
     /*copy new x into x_vec (twice) */
-    dcopy_vector(x, n_i, incx, x_vec, 1);
-    dcopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    dcopy_vector((double *)x, n_i, incx, x_vec, 1);
+    dcopy_vector((double *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
     {
       /* promote to complex */
       int r;
@@ -10993,14 +10993,14 @@ void BLAS_dge_sum_mv_s_s_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   float *x_vec;
 
-  double *alpha_use_ptr_i = alpha_use_ptr;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  float *a_i = a;
-  float *b_i = b;
-  float *a_use_i = a_use;
-  float *b_use_i = b_use;
-  float *x_i = x;
+  double *alpha_use_ptr_i = (double *)alpha_use_ptr;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  float *a_i = (float *)a;
+  float *b_i = (float *)b;
+  float *a_use_i = (float *)a_use;
+  float *b_use_i = (float *)b_use;
+  float *x_i = (float *)x;
 
   n_i = n;
   m_i = m;
@@ -11121,8 +11121,8 @@ void BLAS_dge_sum_mv_s_s_testgen(int norm, enum blas_order_type order,
       x_i[xi * incxi] = x_elem;
     }
     /*copy new x into x_vec (twice) */
-    scopy_vector(x, n_i, incx, x_vec, 1);
-    scopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    scopy_vector((float *)x, n_i, incx, x_vec, 1);
+    scopy_vector((float *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
 
     if (case_type == 2) {
       /* degenerate case - similar to gemv */
@@ -11365,8 +11365,8 @@ void BLAS_dge_sum_mv_s_s_testgen(int norm, enum blas_order_type order,
 
     /* get x */
     /*copy new x into x_vec (twice) */
-    scopy_vector(x, n_i, incx, x_vec, 1);
-    scopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    scopy_vector((float *)x, n_i, incx, x_vec, 1);
+    scopy_vector((float *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
 
 
     if (case_type == 2) {
@@ -11797,14 +11797,14 @@ void BLAS_dge_sum_mv_s_d_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   double *x_vec;
 
-  double *alpha_use_ptr_i = alpha_use_ptr;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  float *a_i = a;
-  float *b_i = b;
-  float *a_use_i = a_use;
-  float *b_use_i = b_use;
-  double *x_i = x;
+  double *alpha_use_ptr_i = (double *)alpha_use_ptr;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  float *a_i = (float *)a;
+  float *b_i = (float *)b;
+  float *a_use_i = (float *)a_use;
+  float *b_use_i = (float *)b_use;
+  double *x_i = (double *)x;
 
   n_i = n;
   m_i = m;
@@ -11925,8 +11925,8 @@ void BLAS_dge_sum_mv_s_d_testgen(int norm, enum blas_order_type order,
       x_i[xi * incxi] = x_elem;
     }
     /*copy new x into x_vec (twice) */
-    dcopy_vector(x, n_i, incx, x_vec, 1);
-    dcopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    dcopy_vector((double *)x, n_i, incx, x_vec, 1);
+    dcopy_vector((double *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
 
     if (case_type == 2) {
       /* degenerate case - similar to gemv */
@@ -12169,8 +12169,8 @@ void BLAS_dge_sum_mv_s_d_testgen(int norm, enum blas_order_type order,
 
     /* get x */
     /*copy new x into x_vec (twice) */
-    dcopy_vector(x, n_i, incx, x_vec, 1);
-    dcopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    dcopy_vector((double *)x, n_i, incx, x_vec, 1);
+    dcopy_vector((double *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
 
 
     if (case_type == 2) {
@@ -12601,14 +12601,14 @@ void BLAS_dge_sum_mv_d_s_testgen(int norm, enum blas_order_type order,
   double *a_vec;
   float *x_vec;
 
-  double *alpha_use_ptr_i = alpha_use_ptr;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  double *a_i = a;
-  double *b_i = b;
-  double *a_use_i = a_use;
-  double *b_use_i = b_use;
-  float *x_i = x;
+  double *alpha_use_ptr_i = (double *)alpha_use_ptr;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  double *a_i = (double *)a;
+  double *b_i = (double *)b;
+  double *a_use_i = (double *)a_use;
+  double *b_use_i = (double *)b_use;
+  float *x_i = (float *)x;
 
   n_i = n;
   m_i = m;
@@ -12729,8 +12729,8 @@ void BLAS_dge_sum_mv_d_s_testgen(int norm, enum blas_order_type order,
       x_i[xi * incxi] = x_elem;
     }
     /*copy new x into x_vec (twice) */
-    scopy_vector(x, n_i, incx, x_vec, 1);
-    scopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    scopy_vector((float *)x, n_i, incx, x_vec, 1);
+    scopy_vector((float *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
 
     if (case_type == 2) {
       /* degenerate case - similar to gemv */
@@ -12973,8 +12973,8 @@ void BLAS_dge_sum_mv_d_s_testgen(int norm, enum blas_order_type order,
 
     /* get x */
     /*copy new x into x_vec (twice) */
-    scopy_vector(x, n_i, incx, x_vec, 1);
-    scopy_vector(x, n_i, incx, (x_vec + incx_veci * n_i), 1);
+    scopy_vector((float *)x, n_i, incx, x_vec, 1);
+    scopy_vector((float *)x, n_i, incx, (x_vec + incx_veci * n_i), 1);
 
 
     if (case_type == 2) {
@@ -13763,7 +13763,7 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
         x_i[xi + 1] = x_elem[1];
       }
       /*copy new x into x_vec_2 (twice) */
-      scopy_vector(x, n_i, 2 * incx, x_vec_2, 1);
+      scopy_vector((float *)x, n_i, 2 * incx, x_vec_2, 1);
       scopy_vector(x_vec_2, n_i, 1, (x_vec_2 + n_i), 1);
 
       /* Now Fill in matrix A, B real */
@@ -15156,7 +15156,7 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
         x_i[xi + 1] = x_elem[1];
       }
       /*copy new x into x_vec_2 (twice) */
-      dcopy_vector(x, n_i, 2 * incx, x_vec_2, 1);
+      dcopy_vector((double *)x, n_i, 2 * incx, x_vec_2, 1);
       dcopy_vector(x_vec_2, n_i, 1, (x_vec_2 + n_i), 1);
 
       /* Now Fill in matrix A, B real */
@@ -16549,7 +16549,7 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
         x_i[xi + 1] = x_elem[1];
       }
       /*copy new x into x_vec_2 (twice) */
-      scopy_vector(x, n_i, 2 * incx, x_vec_2, 1);
+      scopy_vector((float *)x, n_i, 2 * incx, x_vec_2, 1);
       scopy_vector(x_vec_2, n_i, 1, (x_vec_2 + n_i), 1);
 
       /* Now Fill in matrix A, B real */

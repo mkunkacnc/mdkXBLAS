@@ -67,7 +67,7 @@ void BLAS_ssymv2_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  float *y_i = y;
+  float *y_i = (float *)y;
   int n_fix2;
   int n_mix;
   int i;
@@ -172,7 +172,7 @@ void BLAS_dsymv2_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  double *y_i = y;
+  double *y_i = (double *)y;
   int n_fix2;
   int n_mix;
   int i;
@@ -1121,7 +1121,7 @@ void BLAS_dsymv2_s_s_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  double *y_i = y;
+  double *y_i = (double *)y;
   int n_fix2;
   int n_mix;
   int i;
@@ -1226,7 +1226,7 @@ void BLAS_dsymv2_s_d_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  double *y_i = y;
+  double *y_i = (double *)y;
   int n_fix2;
   int n_mix;
   int i;
@@ -1331,7 +1331,7 @@ void BLAS_dsymv2_d_s_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  double *y_i = y;
+  double *y_i = (double *)y;
   int n_fix2;
   int n_mix;
   int i;

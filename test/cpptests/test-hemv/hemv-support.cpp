@@ -233,8 +233,8 @@ void sskew_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int vi, incvi = 1;
 
   float a_elem;
-  float *a_i = a;
-  const float *a_vec_i = a_vec;
+  float *a_i = (float *)a;
+  const float *a_vec_i = (float *)a_vec;
 
   if ((side == blas_left_side && uplo == blas_upper) ||
       (side == blas_right_side && uplo == blas_lower))
@@ -288,8 +288,8 @@ void dskew_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int vi, incvi = 1;
 
   double a_elem;
-  double *a_i = a;
-  const double *a_vec_i = a_vec;
+  double *a_i = (double *)a;
+  const double *a_vec_i = (double *)a_vec;
 
   if ((side == blas_left_side && uplo == blas_upper) ||
       (side == blas_right_side && uplo == blas_lower))
@@ -344,8 +344,8 @@ void sskew_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int vi, incvi = 1;
 
   float a_elem;
-  const float *a_i = a;
-  float *a_vec_i = a_vec;
+  const float *a_i = (float *)a;
+  float *a_vec_i = (float *)a_vec;
 
   if ((side == blas_left_side && uplo == blas_upper) ||
       (side == blas_right_side && uplo == blas_lower))
@@ -399,8 +399,8 @@ void dskew_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int vi, incvi = 1;
 
   double a_elem;
-  const double *a_i = a;
-  double *a_vec_i = a_vec;
+  const double *a_i = (double *)a;
+  double *a_vec_i = (double *)a_vec;
 
   if ((side == blas_left_side && uplo == blas_upper) ||
       (side == blas_right_side && uplo == blas_lower))

@@ -40,8 +40,8 @@ void str_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   int i, inc = 1;
   float tmp;
-  const float *T_i = T;
-  float *y_i = y;
+  const float *T_i = (float *)T;
+  float *y_i = (float *)y;
 
 
   for (i = 0; i < n * inc; i += inc) {
@@ -122,8 +122,8 @@ void dtr_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   int i, inc = 1;
   double tmp;
-  const double *T_i = T;
-  double *y_i = y;
+  const double *T_i = (double *)T;
+  double *y_i = (double *)y;
 
 
   for (i = 0; i < n * inc; i += inc) {

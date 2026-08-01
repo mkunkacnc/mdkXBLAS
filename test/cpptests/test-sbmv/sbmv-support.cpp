@@ -21,8 +21,8 @@ void ssbmv_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int loopmax;
 
   float a_elem;
-  float *a_i = a;
-  const float *a_vec_i = a_vec;
+  float *a_i = (float *)a;
+  const float *a_vec_i = (float *)a_vec;
 
   if (order == blas_colmajor) {
     if (uplo == blas_upper) {
@@ -90,8 +90,8 @@ void dsbmv_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int loopmax;
 
   double a_elem;
-  double *a_i = a;
-  const double *a_vec_i = a_vec;
+  double *a_i = (double *)a;
+  const double *a_vec_i = (double *)a_vec;
 
   if (order == blas_colmajor) {
     if (uplo == blas_upper) {
@@ -303,8 +303,8 @@ void ssbmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int loopmax;
 
   float a_elem;
-  const float *a_i = a;
-  float *a_vec_i = a_vec;
+  const float *a_i = (float *)a;
+  float *a_vec_i = (float *)a_vec;
 
 
   if (order == blas_colmajor) {
@@ -377,8 +377,8 @@ void dsbmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int loopmax;
 
   double a_elem;
-  const double *a_i = a;
-  double *a_vec_i = a_vec;
+  const double *a_i = (double *)a;
+  double *a_vec_i = (double *)a_vec;
 
 
   if (order == blas_colmajor) {

@@ -532,9 +532,9 @@ void test_BLAS_cdot2_s_s(int n, enum blas_conj_type conj, const void *alpha,
   int i, ix, iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
   double un_d, un_accurate, un_out;
-  float *x_i = x;
-  float *head_y_i = head_y;
-  float *tail_y_i = tail_y;
+  float *x_i = (float *)x;
+  float *head_y_i = (float *)head_y;
+  float *tail_y_i = (float *)tail_y;
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
   float *rin_i = (float *) rin;
@@ -664,7 +664,7 @@ void test_BLAS_cdot2_s_c(int n, enum blas_conj_type conj, const void *alpha,
   int i, ix, iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
   double un_d, un_accurate, un_out;
-  float *x_i = x;
+  float *x_i = (float *)x;
   float *head_y_i = (float *) head_y;
   float *tail_y_i = (float *) tail_y;
   float *alpha_i = (float *) alpha;
@@ -803,8 +803,8 @@ void test_BLAS_cdot2_c_s(int n, enum blas_conj_type conj, const void *alpha,
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
   double un_d, un_accurate, un_out;
   float *x_i = (float *) x;
-  float *head_y_i = head_y;
-  float *tail_y_i = tail_y;
+  float *head_y_i = (float *)head_y;
+  float *tail_y_i = (float *)tail_y;
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
   float *rin_i = (float *) rin;
@@ -941,9 +941,9 @@ void test_BLAS_zdot2_d_d(int n, enum blas_conj_type conj, const void *alpha,
   int i, ix, iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
   double un_d, un_accurate, un_out;
-  double *x_i = x;
-  double *head_y_i = head_y;
-  double *tail_y_i = tail_y;
+  double *x_i = (double *)x;
+  double *head_y_i = (double *)head_y;
+  double *tail_y_i = (double *)tail_y;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
   double *rin_i = (double *) rin;
@@ -1072,7 +1072,7 @@ void test_BLAS_zdot2_d_z(int n, enum blas_conj_type conj, const void *alpha,
   int i, ix, iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
   double un_d, un_accurate, un_out;
-  double *x_i = x;
+  double *x_i = (double *)x;
   double *head_y_i = (double *) head_y;
   double *tail_y_i = (double *) tail_y;
   double *alpha_i = (double *) alpha;
@@ -1210,8 +1210,8 @@ void test_BLAS_zdot2_z_d(int n, enum blas_conj_type conj, const void *alpha,
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
   double un_d, un_accurate, un_out;
   double *x_i = (double *) x;
-  double *head_y_i = head_y;
-  double *tail_y_i = tail_y;
+  double *head_y_i = (double *)head_y;
+  double *tail_y_i = (double *)tail_y;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
   double *rin_i = (double *) rin;

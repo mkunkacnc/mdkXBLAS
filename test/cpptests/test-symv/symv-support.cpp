@@ -15,8 +15,8 @@ void ssy_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int incvi = 1;
 
   float a_elem;
-  float *a_i = a;
-  const float *a_vec_i = a_vec;
+  float *a_i = (float *)a;
+  const float *a_vec_i = (float *)a_vec;
 
   if ((order == blas_colmajor && uplo == blas_upper) ||
       (order == blas_rowmajor && uplo == blas_lower)) {
@@ -59,8 +59,8 @@ void dsy_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int incvi = 1;
 
   double a_elem;
-  double *a_i = a;
-  const double *a_vec_i = a_vec;
+  double *a_i = (double *)a;
+  const double *a_vec_i = (double *)a_vec;
 
   if ((order == blas_colmajor && uplo == blas_upper) ||
       (order == blas_rowmajor && uplo == blas_lower)) {
@@ -200,8 +200,8 @@ void ssy_copy_row(enum blas_order_type order, enum blas_uplo_type uplo, int n,
   int incvi = 1;
 
   float a_elem;
-  const float *a_i = a;
-  float *a_vec_i = a_vec;
+  const float *a_i = (float *)a;
+  float *a_vec_i = (float *)a_vec;
 
   if ((order == blas_colmajor && uplo == blas_upper) ||
       (order == blas_rowmajor && uplo == blas_lower)) {
@@ -244,8 +244,8 @@ void dsy_copy_row(enum blas_order_type order, enum blas_uplo_type uplo, int n,
   int incvi = 1;
 
   double a_elem;
-  const double *a_i = a;
-  double *a_vec_i = a_vec;
+  const double *a_i = (double *)a;
+  double *a_vec_i = (double *)a_vec;
 
   if ((order == blas_colmajor && uplo == blas_upper) ||
       (order == blas_rowmajor && uplo == blas_lower)) {
@@ -378,7 +378,7 @@ void ssy_print_matrix(float *a, int n, int lda,
   int i, j;
 
   float a_elem;
-  const float *a_i = a;
+  const float *a_i = (float *)a;
 
   if ((order == blas_colmajor && uplo == blas_upper) ||
       (order == blas_rowmajor && uplo == blas_lower)) {
@@ -417,7 +417,7 @@ void dsy_print_matrix(double *a, int n, int lda,
   int i, j;
 
   double a_elem;
-  const double *a_i = a;
+  const double *a_i = (double *)a;
 
   if ((order == blas_colmajor && uplo == blas_upper) ||
       (order == blas_rowmajor && uplo == blas_lower)) {

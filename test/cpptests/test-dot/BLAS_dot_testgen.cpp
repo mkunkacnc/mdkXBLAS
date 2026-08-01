@@ -71,11 +71,11 @@ void BLAS_sdot_testgen(int n, int n_fix2, int n_mix, int norm,
  */
 {
   int i, inc = 1;
-  float *alpha_i = alpha;
-  float *beta_i = beta;
-  float *r_i = r;
-  float *x_i = x;
-  float *y_i = y;
+  float *alpha_i = (float *)alpha;
+  float *beta_i = (float *)beta;
+  float *r_i = (float *)r;
+  float *x_i = (float *)x;
+  float *y_i = (float *)y;
   float alpha_tmp;
   float beta_tmp;
   float r_tmp;
@@ -182,11 +182,11 @@ void BLAS_ddot_testgen(int n, int n_fix2, int n_mix, int norm,
  */
 {
   int i, inc = 1;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  double *r_i = r;
-  double *x_i = x;
-  double *y_i = y;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  double *r_i = (double *)r;
+  double *x_i = (double *)x;
+  double *y_i = (double *)y;
   double alpha_tmp;
   double beta_tmp;
   double r_tmp;
@@ -536,8 +536,8 @@ void BLAS_cdot_s_s_testgen(int n, int n_fix2, int n_mix, int norm,
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
   float *r_i = (float *) r;
-  float *x_i = x;
-  float *y_i = y;
+  float *x_i = (float *)x;
+  float *y_i = (float *)y;
   float alpha_i_r;
   float alpha_i_i;
   float beta_i_r;
@@ -720,7 +720,7 @@ void BLAS_cdot_s_c_testgen(int n, int n_fix2, int n_mix, int norm,
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
   float *r_i = (float *) r;
-  float *x_i = x;
+  float *x_i = (float *)x;
   float *y_i = (float *) y;
   float alpha_i_r;
   float alpha_i_i;
@@ -914,7 +914,7 @@ void BLAS_cdot_c_s_testgen(int n, int n_fix2, int n_mix, int norm,
   float *beta_i = (float *) beta;
   float *r_i = (float *) r;
   float *x_i = (float *) x;
-  float *y_i = y;
+  float *y_i = (float *)y;
   float alpha_i_r;
   float alpha_i_i;
   float beta_i_r;
@@ -1109,8 +1109,8 @@ void BLAS_zdot_d_d_testgen(int n, int n_fix2, int n_mix, int norm,
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
   double *r_i = (double *) r;
-  double *x_i = x;
-  double *y_i = y;
+  double *x_i = (double *)x;
+  double *y_i = (double *)y;
   double alpha_i_r;
   double alpha_i_i;
   double beta_i_r;
@@ -1293,7 +1293,7 @@ void BLAS_zdot_d_z_testgen(int n, int n_fix2, int n_mix, int norm,
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
   double *r_i = (double *) r;
-  double *x_i = x;
+  double *x_i = (double *)x;
   double *y_i = (double *) y;
   double alpha_i_r;
   double alpha_i_i;
@@ -1487,7 +1487,7 @@ void BLAS_zdot_z_d_testgen(int n, int n_fix2, int n_mix, int norm,
   double *beta_i = (double *) beta;
   double *r_i = (double *) r;
   double *x_i = (double *) x;
-  double *y_i = y;
+  double *y_i = (double *)y;
   double alpha_i_r;
   double alpha_i_i;
   double beta_i_r;
@@ -1679,11 +1679,11 @@ void BLAS_ddot_s_s_testgen(int n, int n_fix2, int n_mix, int norm,
  */
 {
   int i, inc = 1;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  double *r_i = r;
-  float *x_i = x;
-  float *y_i = y;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  double *r_i = (double *)r;
+  float *x_i = (float *)x;
+  float *y_i = (float *)y;
   float alpha_tmp;
   float beta_tmp;
   float r_tmp;
@@ -1790,11 +1790,11 @@ void BLAS_ddot_s_d_testgen(int n, int n_fix2, int n_mix, int norm,
  */
 {
   int i, inc = 1;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  double *r_i = r;
-  float *x_i = x;
-  double *y_i = y;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  double *r_i = (double *)r;
+  float *x_i = (float *)x;
+  double *y_i = (double *)y;
   float alpha_tmp;
   float beta_tmp;
   float r_tmp;
@@ -1901,11 +1901,11 @@ void BLAS_ddot_d_s_testgen(int n, int n_fix2, int n_mix, int norm,
  */
 {
   int i, inc = 1;
-  double *alpha_i = alpha;
-  double *beta_i = beta;
-  double *r_i = r;
-  double *x_i = x;
-  float *y_i = y;
+  double *alpha_i = (double *)alpha;
+  double *beta_i = (double *)beta;
+  double *r_i = (double *)r;
+  double *x_i = (double *)x;
+  float *y_i = (float *)y;
   float alpha_tmp;
   float beta_tmp;
   float r_tmp;

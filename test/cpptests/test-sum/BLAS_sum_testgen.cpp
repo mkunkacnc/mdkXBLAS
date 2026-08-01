@@ -44,7 +44,7 @@ void BLAS_ssum_testgen(int n, int norm, float *x, int *seed,
     float x_elem;
     float *tmp;
 
-    float *x_i = x;
+    float *x_i = (float *)x;
 
     alpha = 1.0;
     beta = 0.0;
@@ -111,7 +111,7 @@ void BLAS_dsum_testgen(int n, int norm, double *x, int *seed,
     double x_elem;
     double *tmp;
 
-    double *x_i = x;
+    double *x_i = (double *)x;
 
     alpha = 1.0;
     beta = 0.0;

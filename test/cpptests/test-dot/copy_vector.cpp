@@ -4,8 +4,8 @@
 
 void scopy_vector(const float *x, int n, int incx, float *y, int incy)
 {
-  const float *x_i = x;
-  float *y_i = y;
+  const float *x_i = (float *)x;
+  float *y_i = (float *)y;
   int i, xi, yi;
 
 
@@ -20,8 +20,8 @@ void scopy_vector(const float *x, int n, int incx, float *y, int incy)
 }
 void dcopy_vector(const double *x, int n, int incx, double *y, int incy)
 {
-  const double *x_i = x;
-  double *y_i = y;
+  const double *x_i = (double *)x;
+  double *y_i = (double *)y;
   int i, xi, yi;
 
 

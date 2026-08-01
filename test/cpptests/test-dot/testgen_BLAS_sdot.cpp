@@ -513,9 +513,9 @@ static void r_truth(enum blas_conj_type conj, int n, float alpha, const float *x
                     double *r_true_l, double *r_true_t)
 {
   int i, ix = 0, iy = 0;
-  float *r_i = r;
-  const float *x_i = x;
-  const float *y_i = y;
+  float *r_i = (float *)r;
+  const float *x_i = (float *)x;
+  const float *y_i = (float *)y;
   float alpha_i = alpha;
   float beta_i = beta;
   float x_ii;

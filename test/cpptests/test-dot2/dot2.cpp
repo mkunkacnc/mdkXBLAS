@@ -60,10 +60,10 @@ void BLAS_sdot2_x(enum blas_conj_type conj, int n, float alpha,
   case blas_prec_single:
     {
       int i, ix = 0, iy = 0;
-      float *r_i = r;
-      const float *x_i = x;
-      const float *head_y_i = head_y;
-      const float *tail_y_i = tail_y;
+      float *r_i = (float *)r;
+      const float *x_i = (float *)x;
+      const float *head_y_i = (float *)head_y;
+      const float *tail_y_i = (float *)tail_y;
       float alpha_i = alpha;
       float beta_i = beta;
       float x_ii;
@@ -124,10 +124,10 @@ void BLAS_sdot2_x(enum blas_conj_type conj, int n, float alpha,
   case blas_prec_indigenous:
     {
       int i, ix = 0, iy = 0;
-      float *r_i = r;
-      const float *x_i = x;
-      const float *head_y_i = head_y;
-      const float *tail_y_i = tail_y;
+      float *r_i = (float *)r;
+      const float *x_i = (float *)x;
+      const float *head_y_i = (float *)head_y;
+      const float *tail_y_i = (float *)tail_y;
       float alpha_i = alpha;
       float beta_i = beta;
       float x_ii;
@@ -187,10 +187,10 @@ void BLAS_sdot2_x(enum blas_conj_type conj, int n, float alpha,
   case blas_prec_extra:
     {
       int i, ix = 0, iy = 0;
-      float *r_i = r;
-      const float *x_i = x;
-      const float *head_y_i = head_y;
-      const float *tail_y_i = tail_y;
+      float *r_i = (float *)r;
+      const float *x_i = (float *)x;
+      const float *head_y_i = (float *)head_y;
+      const float *tail_y_i = (float *)tail_y;
       float alpha_i = alpha;
       float beta_i = beta;
       float x_ii;
@@ -414,10 +414,10 @@ void BLAS_ddot2_x(enum blas_conj_type conj, int n, double alpha,
   case blas_prec_single:
     {
       int i, ix = 0, iy = 0;
-      double *r_i = r;
-      const double *x_i = x;
-      const double *head_y_i = head_y;
-      const double *tail_y_i = tail_y;
+      double *r_i = (double *)r;
+      const double *x_i = (double *)x;
+      const double *head_y_i = (double *)head_y;
+      const double *tail_y_i = (double *)tail_y;
       double alpha_i = alpha;
       double beta_i = beta;
       double x_ii;
@@ -478,10 +478,10 @@ void BLAS_ddot2_x(enum blas_conj_type conj, int n, double alpha,
   case blas_prec_indigenous:
     {
       int i, ix = 0, iy = 0;
-      double *r_i = r;
-      const double *x_i = x;
-      const double *head_y_i = head_y;
-      const double *tail_y_i = tail_y;
+      double *r_i = (double *)r;
+      const double *x_i = (double *)x;
+      const double *head_y_i = (double *)head_y;
+      const double *tail_y_i = (double *)tail_y;
       double alpha_i = alpha;
       double beta_i = beta;
       double x_ii;
@@ -541,10 +541,10 @@ void BLAS_ddot2_x(enum blas_conj_type conj, int n, double alpha,
   case blas_prec_extra:
     {
       int i, ix = 0, iy = 0;
-      double *r_i = r;
-      const double *x_i = x;
-      const double *head_y_i = head_y;
-      const double *tail_y_i = tail_y;
+      double *r_i = (double *)r;
+      const double *x_i = (double *)x;
+      const double *head_y_i = (double *)head_y;
+      const double *tail_y_i = (double *)tail_y;
       double alpha_i = alpha;
       double beta_i = beta;
       double x_ii;

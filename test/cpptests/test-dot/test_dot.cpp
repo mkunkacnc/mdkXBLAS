@@ -500,8 +500,8 @@ void test_BLAS_cdot_s_s(int n, enum blas_conj_type conj, const void *alpha,
   int i, ix, iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
   double un_d, un_accurate, un_out;
-  float *x_i = x;
-  float *y_i = y;
+  float *x_i = (float *)x;
+  float *y_i = (float *)y;
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
   float *rin_i = (float *) rin;
@@ -621,7 +621,7 @@ void test_BLAS_cdot_s_c(int n, enum blas_conj_type conj, const void *alpha,
   int i, ix, iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
   double un_d, un_accurate, un_out;
-  float *x_i = x;
+  float *x_i = (float *)x;
   float *y_i = (float *) y;
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
@@ -745,7 +745,7 @@ void test_BLAS_cdot_c_s(int n, enum blas_conj_type conj, const void *alpha,
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
   double un_d, un_accurate, un_out;
   float *x_i = (float *) x;
-  float *y_i = y;
+  float *y_i = (float *)y;
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
   float *rin_i = (float *) rin;
@@ -870,8 +870,8 @@ void test_BLAS_zdot_d_d(int n, enum blas_conj_type conj, const void *alpha,
   int i, ix, iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
   double un_d, un_accurate, un_out;
-  double *x_i = x;
-  double *y_i = y;
+  double *x_i = (double *)x;
+  double *y_i = (double *)y;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
   double *rin_i = (double *) rin;
@@ -990,7 +990,7 @@ void test_BLAS_zdot_d_z(int n, enum blas_conj_type conj, const void *alpha,
   int i, ix, iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
   double un_d, un_accurate, un_out;
-  double *x_i = x;
+  double *x_i = (double *)x;
   double *y_i = (double *) y;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
@@ -1113,7 +1113,7 @@ void test_BLAS_zdot_z_d(int n, enum blas_conj_type conj, const void *alpha,
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
   double un_d, un_accurate, un_out;
   double *x_i = (double *) x;
-  double *y_i = y;
+  double *y_i = (double *)y;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
   double *rin_i = (double *) rin;
