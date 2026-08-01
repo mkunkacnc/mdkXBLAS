@@ -589,7 +589,7 @@ gen_y_to_cancel(int k, int n, enum blas_conj_type conj,
   double zero[2] = { 0.0, 0.0 };
   double r[2] = { 0.0, 0.0 };
   double tmp[2], tmp_l[2], tmp_t[2];
-  double *x_i = x, *y_i = y;
+  double *x_i = (double *)x, *y_i = (double *)y;
   double r_true_l[2], r_true_t[2];
 
   for (i = k; i < n; ++i) {
