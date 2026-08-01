@@ -127,15 +127,15 @@ double do_test_dtrsv_s(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
   int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
@@ -693,15 +693,15 @@ double do_test_ztrsv_c(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
   int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
@@ -1293,15 +1293,15 @@ double do_test_ctrsv_s(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
   int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
@@ -1891,15 +1891,15 @@ double do_test_ztrsv_d(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
   int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
@@ -2489,15 +2489,15 @@ double do_test_strsv_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
   int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
@@ -3075,15 +3075,15 @@ double do_test_dtrsv_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
   int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
@@ -3662,15 +3662,15 @@ double do_test_dtrsv_s_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
   int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
@@ -4249,15 +4249,15 @@ double do_test_ctrsv_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
   int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
@@ -4870,15 +4870,15 @@ double do_test_ztrsv_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
   int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
@@ -5494,15 +5494,15 @@ double do_test_ztrsv_c_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
   int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
@@ -6118,15 +6118,15 @@ double do_test_ctrsv_s_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
   int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
@@ -6739,15 +6739,15 @@ double do_test_ztrsv_d_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
   int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */

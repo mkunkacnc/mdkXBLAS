@@ -132,11 +132,11 @@ double do_test_dgbmv2_d_s(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_dgbmv2_d_s_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -731,11 +731,11 @@ double do_test_dgbmv2_s_d(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_dgbmv2_s_d_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -1330,11 +1330,11 @@ double do_test_dgbmv2_s_s(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_dgbmv2_s_s_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -1930,11 +1930,11 @@ double do_test_zgbmv2_z_c(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_zgbmv2_z_c_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -2542,11 +2542,11 @@ double do_test_zgbmv2_c_z(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_zgbmv2_c_z_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -3154,11 +3154,11 @@ double do_test_zgbmv2_c_c(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_zgbmv2_c_c_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -3766,11 +3766,11 @@ double do_test_cgbmv2_c_s(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_cgbmv2_c_s_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -4375,11 +4375,11 @@ double do_test_cgbmv2_s_c(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_cgbmv2_s_c_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -4985,11 +4985,11 @@ double do_test_cgbmv2_s_s(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_cgbmv2_s_s_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -5593,11 +5593,11 @@ double do_test_zgbmv2_z_d(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_zgbmv2_z_d_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -6203,11 +6203,11 @@ double do_test_zgbmv2_d_z(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_zgbmv2_d_z_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -6814,11 +6814,11 @@ double do_test_zgbmv2_d_d(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_zgbmv2_d_d_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -7422,11 +7422,11 @@ double do_test_sgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_sgbmv2_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -8039,11 +8039,11 @@ double do_test_dgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_dgbmv2_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -8657,11 +8657,11 @@ double do_test_cgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_cgbmv2_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -9288,11 +9288,11 @@ double do_test_zgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_zgbmv2_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -9920,11 +9920,11 @@ double do_test_dgbmv2_d_s_x(int m, int n, int ntests, int *seed,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_dgbmv2_d_s_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -10542,11 +10542,11 @@ double do_test_dgbmv2_s_d_x(int m, int n, int ntests, int *seed,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_dgbmv2_s_d_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -11164,11 +11164,11 @@ double do_test_dgbmv2_s_s_x(int m, int n, int ntests, int *seed,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_dgbmv2_s_s_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -11787,11 +11787,11 @@ double do_test_zgbmv2_z_c_x(int m, int n, int ntests, int *seed,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_zgbmv2_z_c_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -12423,11 +12423,11 @@ double do_test_zgbmv2_c_z_x(int m, int n, int ntests, int *seed,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_zgbmv2_c_z_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -13059,11 +13059,11 @@ double do_test_zgbmv2_c_c_x(int m, int n, int ntests, int *seed,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_zgbmv2_c_c_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -13695,11 +13695,11 @@ double do_test_cgbmv2_c_s_x(int m, int n, int ntests, int *seed,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_cgbmv2_c_s_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -14328,11 +14328,11 @@ double do_test_cgbmv2_s_c_x(int m, int n, int ntests, int *seed,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_cgbmv2_s_c_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -14962,11 +14962,11 @@ double do_test_cgbmv2_s_s_x(int m, int n, int ntests, int *seed,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_cgbmv2_s_s_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -15594,11 +15594,11 @@ double do_test_zgbmv2_z_d_x(int m, int n, int ntests, int *seed,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_zgbmv2_z_d_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -16228,11 +16228,11 @@ double do_test_zgbmv2_d_z_x(int m, int n, int ntests, int *seed,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_zgbmv2_d_z_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */
@@ -16863,11 +16863,11 @@ double do_test_zgbmv2_d_d_x(int m, int n, int ntests, int *seed,
   int beta_val;
   int beta_flag = 0;                /* input flag for BLAS_zgbmv2_d_d_testgen */
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int m_i = 0;
   int n_i = 0;
   int max_mn;                        /* the max of m and n */

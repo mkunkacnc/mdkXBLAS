@@ -117,15 +117,15 @@ double do_test_dtpmv_s(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
 
   double beta_zero_fake;
   double rin_zero_fake;
@@ -628,15 +628,15 @@ double do_test_ztpmv_c(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
 
   double beta_zero_fake[2];
   double rin_zero_fake[2];
@@ -1144,15 +1144,15 @@ double do_test_ctpmv_s(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
 
   float beta_zero_fake[2];
   float rin_zero_fake[2];
@@ -1660,15 +1660,15 @@ double do_test_ztpmv_d(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
 
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
 
   double beta_zero_fake[2];
   double rin_zero_fake[2];
@@ -2175,15 +2175,15 @@ double do_test_stpmv_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
 
   float beta_zero_fake;
   float rin_zero_fake;
@@ -2704,15 +2704,15 @@ double do_test_dtpmv_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
 
   double beta_zero_fake;
   double rin_zero_fake;
@@ -3234,15 +3234,15 @@ double do_test_ctpmv_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
 
   float beta_zero_fake[2];
   float rin_zero_fake[2];
@@ -3769,15 +3769,15 @@ double do_test_ztpmv_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
 
   double beta_zero_fake[2];
   double rin_zero_fake[2];
@@ -4304,15 +4304,15 @@ double do_test_dtpmv_s_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
 
   double beta_zero_fake;
   double rin_zero_fake;
@@ -4836,15 +4836,15 @@ double do_test_ztpmv_c_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
 
   double beta_zero_fake[2];
   double rin_zero_fake[2];
@@ -5373,15 +5373,15 @@ double do_test_ctpmv_s_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
 
   float beta_zero_fake[2];
   float rin_zero_fake[2];
@@ -5910,15 +5910,15 @@ double do_test_ztpmv_d_x(int n,
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
-  enum blas_order_type order_type = 0;
+  enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
-  enum blas_prec_type prec = 0;
+  enum blas_prec_type prec = blas_prec_type(0);
   int uplo_val;
-  enum blas_uplo_type uplo_type = 0;
+  enum blas_uplo_type uplo_type = blas_uplo_type(0);
   int trans_val;
-  enum blas_trans_type trans_type = 0;
+  enum blas_trans_type trans_type = blas_trans_type(0);
   int diag_val;
-  enum blas_diag_type diag_type = 0;
+  enum blas_diag_type diag_type = blas_diag_type(0);
 
   double beta_zero_fake[2];
   double rin_zero_fake[2];
