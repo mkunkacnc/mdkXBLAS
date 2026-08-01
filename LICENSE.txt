@@ -1,7 +1,12 @@
-Copyright (C) 2025-2026 Mark D Kunka
+Copyright (c) 2025-2026 Mark D Kunka.
+  All rights reserved.
 
 Original netlib code Copyright (c) 2008-2009 The University of California Berkeley.
   All rights reserved.
+
+$COPYRIGHT$
+
+Additional copyrights may follow.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
