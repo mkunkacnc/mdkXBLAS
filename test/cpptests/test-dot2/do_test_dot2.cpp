@@ -1643,7 +1643,7 @@ int main(int argc, char **argv)
   int total_tests, nr_failed_routines = 0, nr_routines = 0;
   double min_ratio, max_ratio;
   const char *base_routine = "dot2";
-  char *fname;
+  const char *fname;
   int n;
 
 
