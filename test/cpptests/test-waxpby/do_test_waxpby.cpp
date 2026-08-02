@@ -88,8 +88,8 @@ double do_test_dwaxpby_d_s(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -582,8 +582,8 @@ double do_test_dwaxpby_s_d(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -1076,8 +1076,8 @@ double do_test_dwaxpby_s_s(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -1581,8 +1581,8 @@ double do_test_zwaxpby_z_c(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -2092,8 +2092,8 @@ double do_test_zwaxpby_c_z(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -2603,8 +2603,8 @@ double do_test_zwaxpby_c_c(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -3132,8 +3132,8 @@ double do_test_cwaxpby_c_s(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -3653,8 +3653,8 @@ double do_test_cwaxpby_s_c(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -4175,8 +4175,8 @@ double do_test_cwaxpby_s_s(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -4703,8 +4703,8 @@ double do_test_zwaxpby_z_d(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -5209,8 +5209,8 @@ double do_test_zwaxpby_d_z(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -5715,8 +5715,8 @@ double do_test_zwaxpby_d_d(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -6230,8 +6230,8 @@ double do_test_swaxpby_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -6739,8 +6739,8 @@ double do_test_dwaxpby_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -7248,8 +7248,8 @@ double do_test_cwaxpby_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -7765,8 +7765,8 @@ double do_test_zwaxpby_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -8282,8 +8282,8 @@ double do_test_dwaxpby_d_s_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -8796,8 +8796,8 @@ double do_test_dwaxpby_s_d_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -9310,8 +9310,8 @@ double do_test_dwaxpby_s_s_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -9834,8 +9834,8 @@ double do_test_zwaxpby_z_c_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -10365,8 +10365,8 @@ double do_test_zwaxpby_c_z_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -10896,8 +10896,8 @@ double do_test_zwaxpby_c_c_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -11444,8 +11444,8 @@ double do_test_cwaxpby_c_s_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -11985,8 +11985,8 @@ double do_test_cwaxpby_s_c_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -12527,8 +12527,8 @@ double do_test_cwaxpby_s_s_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -13074,8 +13074,8 @@ double do_test_zwaxpby_z_d_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -13600,8 +13600,8 @@ double do_test_zwaxpby_d_z_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -14126,8 +14126,8 @@ double do_test_zwaxpby_d_d_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
   int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val,        /* for testing different inc values */
-    incx, incy, incw, gen_val, test_val;
+  int incx_val, incy_val, incw_val; /* for testing different inc values */
+  int incx, incy, incw, gen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */

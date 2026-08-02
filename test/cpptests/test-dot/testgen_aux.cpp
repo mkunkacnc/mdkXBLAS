@@ -182,8 +182,8 @@ void dddiv(double dda_l, double dda_t,
  * Taken from D. H. Bailey's ddfun90.f.
  *
  */
-  double a1, a2, b1, b2, cona, conb, c11, c2, c21, e,
-    s1, s2, t1, t2, t11, t12, t21, t22;
+  double a1, a2, b1, b2, cona, conb, c11, c2, c21, e;
+  double s1, s2, t1, t2, t11, t12, t21, t22;
 
   /* Compute a DP approximation to the quotient. */
   s1 = dda_l / ddb_l;

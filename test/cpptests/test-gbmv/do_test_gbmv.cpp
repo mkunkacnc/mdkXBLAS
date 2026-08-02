@@ -96,8 +96,8 @@ double do_test_dgbmv_d_s(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -675,8 +675,8 @@ double do_test_dgbmv_s_d(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -1254,8 +1254,8 @@ double do_test_dgbmv_s_s(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -1833,8 +1833,8 @@ double do_test_zgbmv_z_c(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -2424,8 +2424,8 @@ double do_test_zgbmv_c_z(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -3015,8 +3015,8 @@ double do_test_zgbmv_c_c(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -3606,8 +3606,8 @@ double do_test_cgbmv_c_s(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -4195,8 +4195,8 @@ double do_test_cgbmv_s_c(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -4784,8 +4784,8 @@ double do_test_cgbmv_s_s(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -5372,8 +5372,8 @@ double do_test_zgbmv_z_d(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -5962,8 +5962,8 @@ double do_test_zgbmv_d_z(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -6552,8 +6552,8 @@ double do_test_zgbmv_d_d(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -7141,8 +7141,8 @@ double do_test_sgbmv_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -7740,8 +7740,8 @@ double do_test_dgbmv_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -8339,8 +8339,8 @@ double do_test_cgbmv_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -8950,8 +8950,8 @@ double do_test_zgbmv_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -9562,8 +9562,8 @@ double do_test_dgbmv_d_s_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -10162,8 +10162,8 @@ double do_test_dgbmv_s_d_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -10762,8 +10762,8 @@ double do_test_dgbmv_s_s_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -11362,8 +11362,8 @@ double do_test_zgbmv_z_c_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -11975,8 +11975,8 @@ double do_test_zgbmv_c_z_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -12588,8 +12588,8 @@ double do_test_zgbmv_c_c_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -13201,8 +13201,8 @@ double do_test_cgbmv_c_s_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -13812,8 +13812,8 @@ double do_test_cgbmv_s_c_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -14423,8 +14423,8 @@ double do_test_cgbmv_s_s_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -15033,8 +15033,8 @@ double do_test_zgbmv_z_d_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -15645,8 +15645,8 @@ double do_test_zgbmv_d_z_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -16257,8 +16257,8 @@ double do_test_zgbmv_d_d_x(int m, int n, int ntests, int *seed, double thresh,
   int j;
   int k;                        /* multipurpose counters or variables */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */

@@ -82,8 +82,8 @@ double do_test_daxpby_s(int n, int ntests, int *seed, double thresh,
      variables */
   int i;                        /* iterate through the repeating tests */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -503,8 +503,8 @@ double do_test_caxpby_s(int n, int ntests, int *seed, double thresh,
      variables */
   int i;                        /* iterate through the repeating tests */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -927,8 +927,8 @@ double do_test_zaxpby_c(int n, int ntests, int *seed, double thresh,
      variables */
   int i;                        /* iterate through the repeating tests */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -1352,8 +1352,8 @@ double do_test_zaxpby_d(int n, int ntests, int *seed, double thresh,
      variables */
   int i;                        /* iterate through the repeating tests */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -1776,8 +1776,8 @@ double do_test_saxpby_x(int n, int ntests, int *seed, double thresh,
      variables */
   int i;                        /* iterate through the repeating tests */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -2216,8 +2216,8 @@ double do_test_daxpby_x(int n, int ntests, int *seed, double thresh,
      variables */
   int i;                        /* iterate through the repeating tests */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -2656,8 +2656,8 @@ double do_test_caxpby_x(int n, int ntests, int *seed, double thresh,
      variables */
   int i;                        /* iterate through the repeating tests */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -3100,8 +3100,8 @@ double do_test_zaxpby_x(int n, int ntests, int *seed, double thresh,
      variables */
   int i;                        /* iterate through the repeating tests */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -3544,8 +3544,8 @@ double do_test_daxpby_s_x(int n, int ntests, int *seed, double thresh,
      variables */
   int i;                        /* iterate through the repeating tests */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -3988,8 +3988,8 @@ double do_test_zaxpby_c_x(int n, int ntests, int *seed, double thresh,
      variables */
   int i;                        /* iterate through the repeating tests */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -4435,8 +4435,8 @@ double do_test_caxpby_s_x(int n, int ntests, int *seed, double thresh,
      variables */
   int i;                        /* iterate through the repeating tests */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -4882,8 +4882,8 @@ double do_test_zaxpby_d_x(int n, int ntests, int *seed, double thresh,
      variables */
   int i;                        /* iterate through the repeating tests */
   int ix, iy;                        /* use to index x and y respectively */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy, incx_gen, incy_gen, ygen_val, xgen_val, test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */

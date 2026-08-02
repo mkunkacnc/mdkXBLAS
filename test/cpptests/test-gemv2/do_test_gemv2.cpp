@@ -92,8 +92,8 @@ double do_test_dgemv2_d_s(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -635,8 +635,8 @@ double do_test_dgemv2_s_d(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -1177,8 +1177,8 @@ double do_test_dgemv2_s_s(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -1719,8 +1719,8 @@ double do_test_zgemv2_z_c(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -2268,8 +2268,8 @@ double do_test_zgemv2_c_z(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -2817,8 +2817,8 @@ double do_test_zgemv2_c_c(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -3366,8 +3366,8 @@ double do_test_cgemv2_c_s(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -3915,8 +3915,8 @@ double do_test_cgemv2_s_c(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -4462,8 +4462,8 @@ double do_test_cgemv2_s_s(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -5009,8 +5009,8 @@ double do_test_zgemv2_z_d(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -5558,8 +5558,8 @@ double do_test_zgemv2_d_z(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -6106,8 +6106,8 @@ double do_test_zgemv2_d_d(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -6654,8 +6654,8 @@ double do_test_sgemv2_x(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -7216,8 +7216,8 @@ double do_test_dgemv2_x(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -7779,8 +7779,8 @@ double do_test_cgemv2_x(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -8348,8 +8348,8 @@ double do_test_zgemv2_x(int m, int n, int ntests, int *seed, double thresh,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -8918,8 +8918,8 @@ double do_test_dgemv2_d_s_x(int m, int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -9483,8 +9483,8 @@ double do_test_dgemv2_s_d_x(int m, int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -10047,8 +10047,8 @@ double do_test_dgemv2_s_s_x(int m, int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -10611,8 +10611,8 @@ double do_test_zgemv2_z_c_x(int m, int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -11182,8 +11182,8 @@ double do_test_zgemv2_c_z_x(int m, int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -11753,8 +11753,8 @@ double do_test_zgemv2_c_c_x(int m, int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -12324,8 +12324,8 @@ double do_test_cgemv2_c_s_x(int m, int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -12895,8 +12895,8 @@ double do_test_cgemv2_s_c_x(int m, int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -13464,8 +13464,8 @@ double do_test_cgemv2_s_s_x(int m, int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -14033,8 +14033,8 @@ double do_test_zgemv2_z_d_x(int m, int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -14604,8 +14604,8 @@ double do_test_zgemv2_d_z_x(int m, int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -15174,8 +15174,8 @@ double do_test_zgemv2_d_d_x(int m, int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j, k;                        /* multipurpose counters or variables */
   int iy;                        /* use to index y */
-  int incx_val, incy_val,        /* for testing different inc values */
-    incx, incy;
+  int incx_val, incy_val; /* for testing different inc values */
+  int incx, incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
