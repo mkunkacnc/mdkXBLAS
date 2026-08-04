@@ -6673,7 +6673,7 @@ double do_test_ztrmv_d_x(int n, int ntests, int *seed,
 #define NSIZES  12
 
 #ifdef XBLAS_COMBINE_TESTS
-int main_trmv(int argc, char **argv)
+int main_trmv(int argc, const char **argv)
 #else
 int main(int argc, char **argv)
 #endif

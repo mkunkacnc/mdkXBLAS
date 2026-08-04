@@ -5656,7 +5656,7 @@ end:
 }
 
 #ifdef XBLAS_COMBINE_TESTS
-int main_hemm(int argc, char **argv)
+int main_hemm(int argc, const char **argv)
 #else
 int main(int argc, char **argv)
 #endif

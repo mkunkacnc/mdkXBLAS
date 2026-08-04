@@ -7510,7 +7510,7 @@ end:
 #define NSIZES 12
 
 #ifdef XBLAS_COMBINE_TESTS
-int main_tbsv(int argc, char **argv)
+int main_tbsv(int argc, const char **argv)
 #else
 int main(int argc, char **argv)
 #endif

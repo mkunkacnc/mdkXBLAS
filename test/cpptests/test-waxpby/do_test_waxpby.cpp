@@ -14972,7 +14972,7 @@ double do_test_zwaxpby_d_d_x(int n,
 }                                /* end of do_test_zwaxpby_d_d_x */
 
 #ifdef XBLAS_COMBINE_TESTS
-int main_waxpby(int argc, char **argv)
+int main_waxpby(int argc, const char **argv)
 #else
 int main(int argc, char **argv)
 #endif

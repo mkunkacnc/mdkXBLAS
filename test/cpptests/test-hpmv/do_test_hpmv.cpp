@@ -4648,7 +4648,7 @@ void do_test_zhpmv_z_d_x
 }
 
 #ifdef XBLAS_COMBINE_TESTS
-int main_hpmv(int argc, char **argv)
+int main_hpmv(int argc, const char **argv)
 #else
 int main(int argc, char **argv)
 #endif

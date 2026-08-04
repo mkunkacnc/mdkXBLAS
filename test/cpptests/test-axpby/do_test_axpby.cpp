@@ -5387,7 +5387,7 @@ double do_test_zaxpby_d_x(int n, int ntests, int *seed, double thresh,
 
 
 #ifdef XBLAS_COMBINE_TESTS
-int main_axpby(int argc, char **argv)
+int main_axpby(int argc, const char **argv)
 #else
 int main(int argc, char **argv)
 #endif

@@ -13819,7 +13819,7 @@ end:
 }
 
 #ifdef XBLAS_COMBINE_TESTS
-int main_gemm(int argc, char **argv)
+int main_gemm(int argc, const char **argv)
 #else
 int main(int argc, char **argv)
 #endif

@@ -1640,7 +1640,7 @@ double do_test_zdot2_x(int n, int ntests, int *seed, double thresh, int debug,
 
 
 #ifdef XBLAS_COMBINE_TESTS
-int main_dot2(int argc, char **argv)
+int main_dot2(int argc, const char **argv)
 #else
 int main(int argc, char **argv)
 #endif

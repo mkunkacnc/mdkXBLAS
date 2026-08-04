@@ -11150,7 +11150,7 @@ end:
 }
 
 #ifdef XBLAS_COMBINE_TESTS
-int main_spmv(int argc, char **argv)
+int main_spmv(int argc, const char **argv)
 #else
 int main(int argc, char **argv)
 #endif

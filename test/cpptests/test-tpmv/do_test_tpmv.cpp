@@ -6362,7 +6362,7 @@ double do_test_ztpmv_d_x(int n,
 #define NSIZES 12
 
 #ifdef XBLAS_COMBINE_TESTS
-int main_tpmv(int argc, char **argv)
+int main_tpmv(int argc, const char **argv)
 #else
 int main(int argc, char **argv)
 #endif

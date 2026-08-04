@@ -17484,7 +17484,7 @@ end:
 #define NUMPAIRS 12
 
 #ifdef XBLAS_COMBINE_TESTS
-int main_gbmv2(int argc, char **argv)
+int main_gbmv2(int argc, const char **argv)
 #else
 int main(int argc, char **argv)
 #endif
