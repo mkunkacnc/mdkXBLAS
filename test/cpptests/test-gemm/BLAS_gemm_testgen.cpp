@@ -12,20 +12,29 @@ void BLAS_sgemm_testgen(int norm, enum blas_order_type order,
                         int ldb, float *c, int ldc, int *seed,
                         double *head_r_true, double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   float c_elem;
   float a_elem;
   float b_elem;
 
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   float *c_i = (float *)c;
   float *b_i = (float *)b;
@@ -201,20 +210,29 @@ void BLAS_dgemm_testgen(int norm, enum blas_order_type order,
                         double *b, int ldb, double *c, int ldc, int *seed,
                         double *head_r_true, double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   double c_elem;
   double a_elem;
   double b_elem;
 
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   double *c_i = (double *)c;
   double *b_i = (double *)b;
@@ -390,14 +408,22 @@ void BLAS_cgemm_testgen(int norm, enum blas_order_type order,
                         void *c, int ldc, int *seed, double *head_r_true,
                         double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   float c_elem[2];
   float a_elem[2];
@@ -604,14 +630,22 @@ void BLAS_zgemm_testgen(int norm, enum blas_order_type order,
                         void *c, int ldc, int *seed, double *head_r_true,
                         double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   double c_elem[2];
   double a_elem[2];
@@ -818,14 +852,22 @@ void BLAS_cgemm_s_s_testgen(int norm, enum blas_order_type order,
                             float *b, int ldb, void *c, int ldc, int *seed,
                             double *head_r_true, double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   float c_elem[2];
   float a_elem;
@@ -1046,14 +1088,22 @@ void BLAS_cgemm_s_c_testgen(int norm, enum blas_order_type order,
                             void *b, int ldb, void *c, int ldc, int *seed,
                             double *head_r_true, double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   float c_elem[2];
   float a_elem;
@@ -1268,14 +1318,22 @@ void BLAS_cgemm_c_s_testgen(int norm, enum blas_order_type order,
                             float *b, int ldb, void *c, int ldc, int *seed,
                             double *head_r_true, double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   float c_elem[2];
   float a_elem[2];
@@ -1490,14 +1548,22 @@ void BLAS_zgemm_d_d_testgen(int norm, enum blas_order_type order,
                             double *b, int ldb, void *c, int ldc, int *seed,
                             double *head_r_true, double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   double c_elem[2];
   double a_elem;
@@ -1718,14 +1784,22 @@ void BLAS_zgemm_d_z_testgen(int norm, enum blas_order_type order,
                             void *b, int ldb, void *c, int ldc, int *seed,
                             double *head_r_true, double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   double c_elem[2];
   double a_elem;
@@ -1940,14 +2014,22 @@ void BLAS_zgemm_z_d_testgen(int norm, enum blas_order_type order,
                             double *b, int ldb, void *c, int ldc, int *seed,
                             double *head_r_true, double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   double c_elem[2];
   double a_elem[2];
@@ -2162,20 +2244,29 @@ void BLAS_dgemm_s_s_testgen(int norm, enum blas_order_type order,
                             float *b, int ldb, double *c, int ldc, int *seed,
                             double *head_r_true, double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   double c_elem;
   float a_elem;
   float b_elem;
 
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   double *c_i = (double *)c;
   float *b_i = (float *)b;
@@ -2351,20 +2442,29 @@ void BLAS_dgemm_s_d_testgen(int norm, enum blas_order_type order,
                             double *b, int ldb, double *c, int ldc, int *seed,
                             double *head_r_true, double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   double c_elem;
   float a_elem;
   double b_elem;
 
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   double *c_i = (double *)c;
   double *b_i = (double *)b;
@@ -2540,20 +2640,29 @@ void BLAS_dgemm_d_s_testgen(int norm, enum blas_order_type order,
                             float *b, int ldb, double *c, int ldc, int *seed,
                             double *head_r_true, double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   double c_elem;
   double a_elem;
   float b_elem;
 
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   double *c_i = (double *)c;
   float *b_i = (float *)b;
@@ -2729,14 +2838,22 @@ void BLAS_zgemm_c_c_testgen(int norm, enum blas_order_type order,
                             void *b, int ldb, void *c, int ldc, int *seed,
                             double *head_r_true, double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   double c_elem[2];
   float a_elem[2];
@@ -2943,14 +3060,22 @@ void BLAS_zgemm_c_z_testgen(int norm, enum blas_order_type order,
                             void *b, int ldb, void *c, int ldc, int *seed,
                             double *head_r_true, double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   double c_elem[2];
   float a_elem[2];
@@ -3157,14 +3282,22 @@ void BLAS_zgemm_z_c_testgen(int norm, enum blas_order_type order,
                             void *b, int ldb, void *c, int ldc, int *seed,
                             double *head_r_true, double *tail_r_true)
 {
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int bij, bi;
-  int incbij, incbi;
-  int aij, ai;
-  int incaij, incai;
-  int inca, incb;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int bij;
+  int bi;
+  int incbij;
+  int incbi;
+  int aij;
+  int ai;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
 
   double c_elem[2];
   double a_elem[2];

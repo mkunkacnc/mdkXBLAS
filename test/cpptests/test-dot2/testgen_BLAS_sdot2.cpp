@@ -81,9 +81,16 @@ testgen_BLAS_sdot2(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int B, frees, y_free, i, k, s;
-  float a, rtmps;
-  double rtmpd, eps_out;
+  int B;
+  int frees;
+  int y_free;
+  int i;
+  int k;
+  int s;
+  float a;
+  float rtmps;
+  double rtmpd;
+  double eps_out;
   double f;
 
   if (alpha_flag == 0)
@@ -327,7 +334,8 @@ static void gen_y_to_cancel(int k, int n, enum blas_conj_type conj,
  */
 {
   int i;
-  float rtmp, f;
+  float rtmp;
+  float f;
 
   for (i = k; i < n; ++i) {
       rtmp = 0.0;

@@ -8,7 +8,8 @@
 /* Complex-Complex Multiplication */
 void z_mul(double a[], double b[], double c[])
 {
-  double cr, ci;
+  double cr;
+  double ci;
   cr = a[0] * b[0] - a[1] * b[1];
   ci = a[1] * b[0] + a[0] * b[1];
   c[0] = cr;
@@ -18,8 +19,12 @@ void z_mul(double a[], double b[], double c[])
 /* Complex Division c = a/b */
 void z_div(double a[], double b[], double c[])
 {
-  double ratio, den;
-  double abr, abi, cr, ci;
+  double ratio;
+  double den;
+  double abr;
+  double abi;
+  double cr;
+  double ci;
 
   if ((abr = b[0]) < 0.)
     abr = -abr;
@@ -80,7 +85,8 @@ gen_y_to_cancel(int k, int n, enum blas_conj_type conj,
  *
  */
 {
-  int i, ii;
+  int i;
+  int ii;
   double zero[2] = { 0.0, 0.0 };
   double r[2] = { 0.0, 0.0 };
   double tmp[2], tmp_l[2], tmp_t[2];
@@ -216,9 +222,17 @@ testgen_BLAS_zdot2(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int B, frees, y_free, i, ii, k, s;
+  int B;
+  int frees;
+  int y_free;
+  int i;
+  int ii;
+  int k;
+  int s;
   double zero[2] = { 0.0, 0.0 };
-  double a, b, eps_out;
+  double a;
+  double b;
+  double eps_out;
   double f[2], rtmp[2], rtmp_t[2];
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;

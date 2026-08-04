@@ -49,19 +49,27 @@ void do_test_zhemm_z_c(int m, int n,
   /* Function name */
   const char fname[] = "BLAS_zhemm_z_c";
 
-  int i, j;
-  int ci, cij;
-  int incci, inccij;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int incci;
+  int inccij;
   int test_count;
   int bad_ratio_count;
 
-  int ri, rij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int ri;
+  int rij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -75,20 +83,29 @@ void do_test_zhemm_z_c(int m, int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val, side_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int side_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int ldc;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
   int max_mn;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
 
   double alpha[2];
   double beta[2];
@@ -485,19 +502,27 @@ void do_test_zhemm_c_z(int m, int n,
   /* Function name */
   const char fname[] = "BLAS_zhemm_c_z";
 
-  int i, j;
-  int ci, cij;
-  int incci, inccij;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int incci;
+  int inccij;
   int test_count;
   int bad_ratio_count;
 
-  int ri, rij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int ri;
+  int rij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -511,20 +536,29 @@ void do_test_zhemm_c_z(int m, int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val, side_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int side_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int ldc;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
   int max_mn;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
 
   double alpha[2];
   double beta[2];
@@ -921,19 +955,27 @@ void do_test_zhemm_c_c(int m, int n,
   /* Function name */
   const char fname[] = "BLAS_zhemm_c_c";
 
-  int i, j;
-  int ci, cij;
-  int incci, inccij;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int incci;
+  int inccij;
   int test_count;
   int bad_ratio_count;
 
-  int ri, rij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int ri;
+  int rij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -947,20 +989,29 @@ void do_test_zhemm_c_c(int m, int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val, side_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int side_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int ldc;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
   int max_mn;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
 
   double alpha[2];
   double beta[2];
@@ -1357,19 +1408,27 @@ void do_test_chemm_c_s(int m, int n,
   /* Function name */
   const char fname[] = "BLAS_chemm_c_s";
 
-  int i, j;
-  int ci, cij;
-  int incci, inccij;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int incci;
+  int inccij;
   int test_count;
   int bad_ratio_count;
 
-  int ri, rij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int ri;
+  int rij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -1383,20 +1442,29 @@ void do_test_chemm_c_s(int m, int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val, side_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int side_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int ldc;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
   int max_mn;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
 
   float alpha[2];
   float beta[2];
@@ -1793,19 +1861,27 @@ void do_test_zhemm_z_d(int m, int n,
   /* Function name */
   const char fname[] = "BLAS_zhemm_z_d";
 
-  int i, j;
-  int ci, cij;
-  int incci, inccij;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int incci;
+  int inccij;
   int test_count;
   int bad_ratio_count;
 
-  int ri, rij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int ri;
+  int rij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -1819,20 +1895,29 @@ void do_test_zhemm_z_d(int m, int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val, side_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int side_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int ldc;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
   int max_mn;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
 
   double alpha[2];
   double beta[2];
@@ -2229,19 +2314,27 @@ void do_test_chemm_x(int m, int n,
   /* Function name */
   const char fname[] = "BLAS_chemm_x";
 
-  int i, j;
-  int ci, cij;
-  int incci, inccij;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int incci;
+  int inccij;
   int test_count;
   int bad_ratio_count;
 
-  int ri, rij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int ri;
+  int rij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -2255,20 +2348,29 @@ void do_test_chemm_x(int m, int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val, side_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int side_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int ldc;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
   int max_mn;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
 
   float alpha[2];
   float beta[2];
@@ -2689,19 +2791,27 @@ void do_test_zhemm_x(int m, int n,
   /* Function name */
   const char fname[] = "BLAS_zhemm_x";
 
-  int i, j;
-  int ci, cij;
-  int incci, inccij;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int incci;
+  int inccij;
   int test_count;
   int bad_ratio_count;
 
-  int ri, rij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int ri;
+  int rij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -2715,20 +2825,29 @@ void do_test_zhemm_x(int m, int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val, side_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int side_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int ldc;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
   int max_mn;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
 
   double alpha[2];
   double beta[2];
@@ -3151,19 +3270,27 @@ void do_test_zhemm_z_c_x(int m, int n,
   /* Function name */
   const char fname[] = "BLAS_zhemm_z_c_x";
 
-  int i, j;
-  int ci, cij;
-  int incci, inccij;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int incci;
+  int inccij;
   int test_count;
   int bad_ratio_count;
 
-  int ri, rij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int ri;
+  int rij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -3177,20 +3304,29 @@ void do_test_zhemm_z_c_x(int m, int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val, side_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int side_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int ldc;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
   int max_mn;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
 
   double alpha[2];
   double beta[2];
@@ -3613,19 +3749,27 @@ void do_test_zhemm_c_z_x(int m, int n,
   /* Function name */
   const char fname[] = "BLAS_zhemm_c_z_x";
 
-  int i, j;
-  int ci, cij;
-  int incci, inccij;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int incci;
+  int inccij;
   int test_count;
   int bad_ratio_count;
 
-  int ri, rij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int ri;
+  int rij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -3639,20 +3783,29 @@ void do_test_zhemm_c_z_x(int m, int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val, side_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int side_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int ldc;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
   int max_mn;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
 
   double alpha[2];
   double beta[2];
@@ -4075,19 +4228,27 @@ void do_test_zhemm_c_c_x(int m, int n,
   /* Function name */
   const char fname[] = "BLAS_zhemm_c_c_x";
 
-  int i, j;
-  int ci, cij;
-  int incci, inccij;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int incci;
+  int inccij;
   int test_count;
   int bad_ratio_count;
 
-  int ri, rij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int ri;
+  int rij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -4101,20 +4262,29 @@ void do_test_zhemm_c_c_x(int m, int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val, side_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int side_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int ldc;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
   int max_mn;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
 
   double alpha[2];
   double beta[2];
@@ -4537,19 +4707,27 @@ void do_test_chemm_c_s_x(int m, int n,
   /* Function name */
   const char fname[] = "BLAS_chemm_c_s_x";
 
-  int i, j;
-  int ci, cij;
-  int incci, inccij;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int incci;
+  int inccij;
   int test_count;
   int bad_ratio_count;
 
-  int ri, rij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int ri;
+  int rij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -4563,20 +4741,29 @@ void do_test_chemm_c_s_x(int m, int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val, side_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int side_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int ldc;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
   int max_mn;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
 
   float alpha[2];
   float beta[2];
@@ -4998,19 +5185,27 @@ void do_test_zhemm_z_d_x(int m, int n,
   /* Function name */
   const char fname[] = "BLAS_zhemm_z_d_x";
 
-  int i, j;
-  int ci, cij;
-  int incci, inccij;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int incci;
+  int inccij;
   int test_count;
   int bad_ratio_count;
 
-  int ri, rij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int ri;
+  int rij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -5024,20 +5219,29 @@ void do_test_zhemm_z_d_x(int m, int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val, side_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int side_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int ldc;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
   int max_mn;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
 
   double alpha[2];
   double beta[2];
@@ -5457,18 +5661,26 @@ int main_hemm(int argc, char **argv)
 int main(int argc, char **argv)
 #endif
 {
-  int nsizes, ntests, debug;
-  double thresh, test_prob;
-  double total_min_ratio, total_max_ratio;
+  int nsizes;
+  int ntests;
+  int debug;
+  double thresh;
+  double test_prob;
+  double total_min_ratio;
+  double total_max_ratio;
   int total_bad_ratios;
-  int seed, num_bad_ratio, num_tests;
+  int seed;
+  int num_bad_ratio;
+  int num_tests;
   int total_tests, nr_failed_routines = 0, nr_routines = 0;
-  double min_ratio, max_ratio;
+  double min_ratio;
+  double max_ratio;
   const char *base_routine = "hemm";
   const char *fname;
   int n;
 
-  int m, i;
+  int m;
+  int i;
   int mn_data[NUM_DATA][2] = { {4, 4}, {2, 3}, {4, 2}, {8, 8},
   {10, 1}, {1, 1}, {1, 7}
   };

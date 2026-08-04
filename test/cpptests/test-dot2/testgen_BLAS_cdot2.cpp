@@ -8,7 +8,8 @@
 /* Complex-Complex Multiplication */
 void c_mul(float a[], float b[], float c[])
 {
-  float cr, ci;
+  float cr;
+  float ci;
   cr = a[0] * b[0] - a[1] * b[1];
   ci = a[1] * b[0] + a[0] * b[1];
   c[0] = cr;
@@ -18,8 +19,12 @@ void c_mul(float a[], float b[], float c[])
 /* Complex Division c = a/b */
 void c_div(float a[], float b[], float c[])
 {
-  float ratio, den;
-  float abr, abi, cr, ci;
+  float ratio;
+  float den;
+  float abr;
+  float abi;
+  float cr;
+  float ci;
 
   if ((abr = b[0]) < 0.)
     abr = -abr;
@@ -80,7 +85,8 @@ gen_y_to_cancel(int k, int n, enum blas_conj_type conj,
  *
  */
 {
-  int i, ii;
+  int i;
+  int ii;
   float zero[2] = { 0.0, 0.0 };
   float r[2] = { 0.0, 0.0 };
   float tmp_l[2], tmp_t[2];
@@ -220,9 +226,16 @@ testgen_BLAS_cdot2(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int B, frees, y_free, i, ii, k, s;
+  int B;
+  int frees;
+  int y_free;
+  int i;
+  int ii;
+  int k;
+  int s;
   float zero[2] = { 0.0, 0.0 };
-  float a, b;
+  float a;
+  float b;
   double eps_out;
   float f[2], rtmp[2], rtmp_t[2];
   float *alpha_i = (float *) alpha;

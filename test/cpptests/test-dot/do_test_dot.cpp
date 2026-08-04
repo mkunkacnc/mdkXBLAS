@@ -64,8 +64,10 @@ double do_test_ddot_d_s(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -88,7 +90,8 @@ double do_test_ddot_d_s(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true, tail_r_true;
+  double head_r_true;
+  double tail_r_true;
 
   double r;                        /* the generated r */
   double r_comp;                /* the r computed  by BLAS_ddot_d_s */
@@ -434,8 +437,10 @@ double do_test_ddot_s_d(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -458,7 +463,8 @@ double do_test_ddot_s_d(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true, tail_r_true;
+  double head_r_true;
+  double tail_r_true;
 
   double r;                        /* the generated r */
   double r_comp;                /* the r computed  by BLAS_ddot_s_d */
@@ -804,8 +810,10 @@ double do_test_ddot_s_s(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -828,7 +836,8 @@ double do_test_ddot_s_s(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true, tail_r_true;
+  double head_r_true;
+  double tail_r_true;
 
   double r;                        /* the generated r */
   double r_comp;                /* the r computed  by BLAS_ddot_s_s */
@@ -1174,8 +1183,10 @@ double do_test_zdot_z_c(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -1549,8 +1560,10 @@ double do_test_zdot_c_z(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -1924,8 +1937,10 @@ double do_test_zdot_c_c(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -2299,8 +2314,10 @@ double do_test_cdot_c_s(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -2674,8 +2691,10 @@ double do_test_cdot_s_c(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -3049,8 +3068,10 @@ double do_test_cdot_s_s(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -3424,8 +3445,10 @@ double do_test_zdot_z_d(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -3799,8 +3822,10 @@ double do_test_zdot_d_z(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -4174,8 +4199,10 @@ double do_test_zdot_d_d(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -4549,8 +4576,10 @@ double do_test_sdot_x(int n, int ntests, int *seed, double thresh, int debug,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -4573,7 +4602,8 @@ double do_test_sdot_x(int n, int ntests, int *seed, double thresh, int debug,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true, tail_r_true;
+  double head_r_true;
+  double tail_r_true;
 
   float r;                        /* the generated r */
   float r_comp;                        /* the r computed  by BLAS_sdot_x */
@@ -4938,8 +4968,10 @@ double do_test_ddot_x(int n, int ntests, int *seed, double thresh, int debug,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -4962,7 +4994,8 @@ double do_test_ddot_x(int n, int ntests, int *seed, double thresh, int debug,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true, tail_r_true;
+  double head_r_true;
+  double tail_r_true;
 
   double r;                        /* the generated r */
   double r_comp;                /* the r computed  by BLAS_ddot_x */
@@ -5327,8 +5360,10 @@ double do_test_cdot_x(int n, int ntests, int *seed, double thresh, int debug,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -5721,8 +5756,10 @@ double do_test_zdot_x(int n, int ntests, int *seed, double thresh, int debug,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -6115,8 +6152,10 @@ double do_test_ddot_d_s_x(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -6139,7 +6178,8 @@ double do_test_ddot_d_s_x(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true, tail_r_true;
+  double head_r_true;
+  double tail_r_true;
 
   double r;                        /* the generated r */
   double r_comp;                /* the r computed  by BLAS_ddot_d_s_x */
@@ -6505,8 +6545,10 @@ double do_test_ddot_s_d_x(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -6529,7 +6571,8 @@ double do_test_ddot_s_d_x(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true, tail_r_true;
+  double head_r_true;
+  double tail_r_true;
 
   double r;                        /* the generated r */
   double r_comp;                /* the r computed  by BLAS_ddot_s_d_x */
@@ -6895,8 +6938,10 @@ double do_test_ddot_s_s_x(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -6919,7 +6964,8 @@ double do_test_ddot_s_s_x(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true, tail_r_true;
+  double head_r_true;
+  double tail_r_true;
 
   double r;                        /* the generated r */
   double r_comp;                /* the r computed  by BLAS_ddot_s_s_x */
@@ -7285,8 +7331,10 @@ double do_test_zdot_z_c_x(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -7680,8 +7728,10 @@ double do_test_zdot_c_z_x(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -8075,8 +8125,10 @@ double do_test_zdot_c_c_x(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -8470,8 +8522,10 @@ double do_test_cdot_c_s_x(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -8865,8 +8919,10 @@ double do_test_cdot_s_c_x(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -9260,8 +9316,10 @@ double do_test_cdot_s_s_x(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -9655,8 +9713,10 @@ double do_test_zdot_z_d_x(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -10050,8 +10110,10 @@ double do_test_zdot_d_z_x(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -10445,8 +10507,10 @@ double do_test_zdot_d_d_x(int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int incx_val, incy_val;        /* for testing different inc values */
-  int incx_gen, incy_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incx_val;        /* for testing different inc values */
+  int incy_val;
+  int incx_gen;        /* for complex case inc=2, for real case inc=1 */
+  int incy_gen;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -10788,13 +10852,20 @@ int main_dot(int argc, char **argv)
 int main(int argc, char **argv)
 #endif
 {
-  int nsizes, ntests, debug;
-  double thresh, test_prob;
-  double total_min_ratio, total_max_ratio;
+  int nsizes;
+  int ntests;
+  int debug;
+  double thresh;
+  double test_prob;
+  double total_min_ratio;
+  double total_max_ratio;
   int total_bad_ratios;
-  int seed, num_bad_ratio, num_tests;
+  int seed;
+  int num_bad_ratio;
+  int num_tests;
   int total_tests, nr_failed_routines = 0, nr_routines = 0;
-  double min_ratio, max_ratio;
+  double min_ratio;
+  double max_ratio;
   const char *base_routine = "dot";
   const char *fname;
   int n;

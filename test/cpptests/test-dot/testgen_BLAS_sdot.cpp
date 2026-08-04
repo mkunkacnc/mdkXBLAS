@@ -80,9 +80,18 @@ testgen_BLAS_sdot(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int B, frees, y_free, i, k, m, s;
-  float a, rtmps;
-  double rtmpd, eps, eps_out;
+  int B;
+  int frees;
+  int y_free;
+  int i;
+  int k;
+  int m;
+  int s;
+  float a;
+  float rtmps;
+  double rtmpd;
+  double eps;
+  double eps_out;
   double f;
 
   if (alpha_flag == 0)
@@ -521,10 +530,14 @@ static void r_truth(enum blas_conj_type conj, int n, float alpha, const float *x
   float x_ii;
   float y_ii;
   float r_v;
-  double prod_l, prod_t;
-  double sum_l, sum_t;
-  double tmp1_l, tmp1_t;
-  double tmp2_l, tmp2_t;
+  double prod_l;
+  double prod_t;
+  double sum_l;
+  double sum_t;
+  double tmp1_l;
+  double tmp1_t;
+  double tmp2_l;
+  double tmp2_t;
 
   /* Immediate return */
   if (n < 0) {
@@ -546,7 +559,9 @@ static void r_truth(enum blas_conj_type conj, int n, float alpha, const float *x
     prod_t = 0.0;               /* prod = x[i]*y[i] */
     {
       /* Compute double-double = double-double + double-double. */
-      double e, t1, t2;
+      double e;
+      double t1;
+      double t2;
 
       /* Knuth trick. */
       t1 = sum_l + prod_l;
@@ -564,7 +579,17 @@ static void r_truth(enum blas_conj_type conj, int n, float alpha, const float *x
     double dt = (double) alpha_i;
     {
       /* Compute double-double = double-double * double. */
-      double a11, a21, b1, b2, c11, c21, c2, con, e, t1, t2;
+      double a11;
+      double a21;
+      double b1;
+      double b2;
+      double c11;
+      double c21;
+      double c2;
+      double con;
+      double e;
+      double t1;
+      double t2;
 
       con = sum_l * SPLIT;
       a11 = con - sum_l;
@@ -591,7 +616,9 @@ static void r_truth(enum blas_conj_type conj, int n, float alpha, const float *x
   tmp2_t = 0.0;                 /* tmp2 = r*beta */
   {
     /* Compute double-double = double-double + double-double. */
-    double e, t1, t2;
+    double e;
+    double t1;
+    double t2;
 
     /* Knuth trick. */
     t1 = tmp1_l + tmp2_l;

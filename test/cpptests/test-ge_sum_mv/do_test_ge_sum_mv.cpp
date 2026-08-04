@@ -62,43 +62,55 @@ void do_test_dge_sum_mv_d_s
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   double rin;
   double rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha;
@@ -492,43 +504,55 @@ void do_test_dge_sum_mv_s_d
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   double rin;
   double rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha;
@@ -922,43 +946,55 @@ void do_test_dge_sum_mv_s_s
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   double rin;
   double rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha;
@@ -1352,17 +1388,22 @@ void do_test_zge_sum_mv_z_c
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -1375,20 +1416,26 @@ void do_test_zge_sum_mv_z_c
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha[2];
@@ -1791,17 +1838,22 @@ void do_test_zge_sum_mv_c_z
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -1814,20 +1866,26 @@ void do_test_zge_sum_mv_c_z
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha[2];
@@ -2230,17 +2288,22 @@ void do_test_zge_sum_mv_c_c
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -2253,20 +2316,26 @@ void do_test_zge_sum_mv_c_c
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha[2];
@@ -2669,17 +2738,22 @@ void do_test_cge_sum_mv_c_s
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -2692,20 +2766,26 @@ void do_test_cge_sum_mv_c_s
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   float alpha[2];
@@ -3108,17 +3188,22 @@ void do_test_cge_sum_mv_s_c
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -3131,20 +3216,26 @@ void do_test_cge_sum_mv_s_c
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   float alpha[2];
@@ -3545,17 +3636,22 @@ void do_test_cge_sum_mv_s_s
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -3568,20 +3664,26 @@ void do_test_cge_sum_mv_s_s
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   float alpha[2];
@@ -3982,17 +4084,22 @@ void do_test_zge_sum_mv_z_d
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -4005,20 +4112,26 @@ void do_test_zge_sum_mv_z_d
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha[2];
@@ -4421,17 +4534,22 @@ void do_test_zge_sum_mv_d_z
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -4444,20 +4562,26 @@ void do_test_zge_sum_mv_d_z
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha[2];
@@ -4858,17 +4982,22 @@ void do_test_zge_sum_mv_d_d
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -4881,20 +5010,26 @@ void do_test_zge_sum_mv_d_d
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha[2];
@@ -5295,43 +5430,55 @@ void do_test_sge_sum_mv_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   float rin;
   float rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   float alpha;
@@ -5747,43 +5894,55 @@ void do_test_dge_sum_mv_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   double rin;
   double rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha;
@@ -6199,17 +6358,22 @@ void do_test_cge_sum_mv_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -6222,20 +6386,26 @@ void do_test_cge_sum_mv_x
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   float alpha[2];
@@ -6660,17 +6830,22 @@ void do_test_zge_sum_mv_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -6683,20 +6858,26 @@ void do_test_zge_sum_mv_x
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha[2];
@@ -7121,43 +7302,55 @@ void do_test_dge_sum_mv_d_s_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   double rin;
   double rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha;
@@ -7575,43 +7768,55 @@ void do_test_dge_sum_mv_s_d_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   double rin;
   double rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha;
@@ -8029,43 +8234,55 @@ void do_test_dge_sum_mv_s_s_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   double rin;
   double rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha;
@@ -8483,17 +8700,22 @@ void do_test_zge_sum_mv_z_c_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -8506,20 +8728,26 @@ void do_test_zge_sum_mv_z_c_x
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha[2];
@@ -8946,17 +9174,22 @@ void do_test_zge_sum_mv_c_z_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -8969,20 +9202,26 @@ void do_test_zge_sum_mv_c_z_x
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha[2];
@@ -9409,17 +9648,22 @@ void do_test_zge_sum_mv_c_c_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -9432,20 +9676,26 @@ void do_test_zge_sum_mv_c_c_x
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha[2];
@@ -9872,17 +10122,22 @@ void do_test_cge_sum_mv_c_s_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -9895,20 +10150,26 @@ void do_test_cge_sum_mv_c_s_x
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   float alpha[2];
@@ -10335,17 +10596,22 @@ void do_test_cge_sum_mv_s_c_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -10358,20 +10624,26 @@ void do_test_cge_sum_mv_s_c_x
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   float alpha[2];
@@ -10796,17 +11068,22 @@ void do_test_cge_sum_mv_s_s_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -10819,20 +11096,26 @@ void do_test_cge_sum_mv_s_s_x
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   float alpha[2];
@@ -11257,17 +11540,22 @@ void do_test_zge_sum_mv_z_d_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -11280,20 +11568,26 @@ void do_test_zge_sum_mv_z_d_x
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha[2];
@@ -11720,17 +12014,22 @@ void do_test_zge_sum_mv_d_z_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -11743,20 +12042,26 @@ void do_test_zge_sum_mv_d_z_x
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha[2];
@@ -12181,17 +12486,22 @@ void do_test_zge_sum_mv_d_d_x
 
   int i;
   int yi;
-  int incyi, y_starti, incx_veci;
+  int incyi;
+  int y_starti;
+  int incx_veci;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -12204,20 +12514,26 @@ void do_test_zge_sum_mv_d_d_x
   enum blas_prec_type prec;
 
   int order_val;
-  int lda_val, incx_val, incy_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
   int ldb_val;
-  int alpha_val, beta_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb;
-  int alpha_flag, beta_flag;
+  int lda;
+  int ldb;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
 
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int inca_veci;
 
   double alpha[2];
@@ -12639,18 +12955,26 @@ int main_ge_sum_mv(int argc, char **argv)
 int main(int argc, char **argv)
 #endif
 {
-  int nsizes, ntests, debug;
-  double thresh, test_prob;
-  double total_min_ratio, total_max_ratio;
+  int nsizes;
+  int ntests;
+  int debug;
+  double thresh;
+  double test_prob;
+  double total_min_ratio;
+  double total_max_ratio;
   int total_bad_ratios;
-  int seed, num_bad_ratio, num_tests;
+  int seed;
+  int num_bad_ratio;
+  int num_tests;
   int total_tests, nr_failed_routines = 0, nr_routines = 0;
-  double min_ratio, max_ratio;
+  double min_ratio;
+  double max_ratio;
   const char *base_routine = "ge_sum_mv";
   const char *fname;
   int n;
 
-  int m, i;
+  int m;
+  int i;
   int n_data[NUM_DATA][2] =
     { {1, 1}, {1, 2}, {3, 2}, {8, 6}, {9, 10}, {4, 4}, {7, 7} };
 

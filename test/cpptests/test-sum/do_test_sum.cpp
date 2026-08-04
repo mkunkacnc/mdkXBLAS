@@ -62,10 +62,14 @@ void do_test_ssum_x(int n, int ntests, int *seed, double thresh,
   /* function name */
   const char fname[] = "BLAS_ssum_x";
 
-  int i, j;
+  int i;
+  int j;
   int norm;
-  int xi, incx_val, incx;
-  double ratio_max, ratio_min;
+  int xi;
+  int incx_val;
+  int incx;
+  double ratio_max;
+  double ratio_min;
   double ratio;
   int saved_seed;
   double eps_int;
@@ -78,13 +82,15 @@ void do_test_ssum_x(int n, int ntests, int *seed, double thresh,
   float *x_gen;
   float x_elem;
 
-  double head_sum_true, tail_sum_true;
+  double head_sum_true;
+  double tail_sum_true;
 
   float sum;
 
   int prec_val;
   enum blas_prec_type prec;
-  int x_gen_i, incx_gen;
+  int x_gen_i;
+  int incx_gen;
 
   FPU_FIX_DECL;
 
@@ -307,10 +313,14 @@ void do_test_dsum_x(int n, int ntests, int *seed, double thresh,
   /* function name */
   const char fname[] = "BLAS_dsum_x";
 
-  int i, j;
+  int i;
+  int j;
   int norm;
-  int xi, incx_val, incx;
-  double ratio_max, ratio_min;
+  int xi;
+  int incx_val;
+  int incx;
+  double ratio_max;
+  double ratio_min;
   double ratio;
   int saved_seed;
   double eps_int;
@@ -323,13 +333,15 @@ void do_test_dsum_x(int n, int ntests, int *seed, double thresh,
   double *x_gen;
   double x_elem;
 
-  double head_sum_true, tail_sum_true;
+  double head_sum_true;
+  double tail_sum_true;
 
   double sum;
 
   int prec_val;
   enum blas_prec_type prec;
-  int x_gen_i, incx_gen;
+  int x_gen_i;
+  int incx_gen;
 
   FPU_FIX_DECL;
 
@@ -552,10 +564,14 @@ void do_test_csum_x(int n, int ntests, int *seed, double thresh,
   /* function name */
   const char fname[] = "BLAS_csum_x";
 
-  int i, j;
+  int i;
+  int j;
   int norm;
-  int xi, incx_val, incx;
-  double ratio_max, ratio_min;
+  int xi;
+  int incx_val;
+  int incx;
+  double ratio_max;
+  double ratio_min;
   double ratio;
   int saved_seed;
   double eps_int;
@@ -574,7 +590,8 @@ void do_test_csum_x(int n, int ntests, int *seed, double thresh,
 
   int prec_val;
   enum blas_prec_type prec;
-  int x_gen_i, incx_gen;
+  int x_gen_i;
+  int incx_gen;
 
   FPU_FIX_DECL;
 
@@ -801,10 +818,14 @@ void do_test_zsum_x(int n, int ntests, int *seed, double thresh,
   /* function name */
   const char fname[] = "BLAS_zsum_x";
 
-  int i, j;
+  int i;
+  int j;
   int norm;
-  int xi, incx_val, incx;
-  double ratio_max, ratio_min;
+  int xi;
+  int incx_val;
+  int incx;
+  double ratio_max;
+  double ratio_min;
   double ratio;
   int saved_seed;
   double eps_int;
@@ -823,7 +844,8 @@ void do_test_zsum_x(int n, int ntests, int *seed, double thresh,
 
   int prec_val;
   enum blas_prec_type prec;
-  int x_gen_i, incx_gen;
+  int x_gen_i;
+  int incx_gen;
 
   FPU_FIX_DECL;
 
@@ -1008,13 +1030,20 @@ int main_sum(int argc, char **argv)
 int main(int argc, char **argv)
 #endif
 {
-  int nsizes, ntests, debug;
-  double thresh, test_prob;
-  double total_min_ratio, total_max_ratio;
+  int nsizes;
+  int ntests;
+  int debug;
+  double thresh;
+  double test_prob;
+  double total_min_ratio;
+  double total_max_ratio;
   int total_bad_ratios;
-  int seed, num_bad_ratio, num_tests;
+  int seed;
+  int num_bad_ratio;
+  int num_tests;
   int total_tests, nr_failed_routines = 0, nr_routines = 0;
-  double min_ratio, max_ratio;
+  double min_ratio;
+  double max_ratio;
   const char *base_routine = "sum";
   const char *fname;
   int n;

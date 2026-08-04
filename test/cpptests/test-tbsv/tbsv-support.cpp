@@ -46,7 +46,8 @@ void stbsv_copy(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   enum blas_trans_type new_trans;
   int conj = 0;
-  int kl, ku;
+  int kl;
+  int ku;
 
 
   if (uplo == blas_upper) {
@@ -120,7 +121,8 @@ void stbsv_commit(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   enum blas_trans_type new_trans;
   int conj = 0;
-  int kl, ku;
+  int kl;
+  int ku;
 
 
   if (uplo == blas_upper) {
@@ -198,7 +200,8 @@ void dtbsv_copy(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   enum blas_trans_type new_trans;
   int conj = 0;
-  int kl, ku;
+  int kl;
+  int ku;
 
 
   if (uplo == blas_upper) {
@@ -272,7 +275,8 @@ void dtbsv_commit(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   enum blas_trans_type new_trans;
   int conj = 0;
-  int kl, ku;
+  int kl;
+  int ku;
 
 
   if (uplo == blas_upper) {
@@ -350,7 +354,8 @@ void ctbsv_copy(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   enum blas_trans_type new_trans;
   int conj = 0;
-  int kl, ku;
+  int kl;
+  int ku;
   float *y_i = (float *) y;
 
   if (uplo == blas_upper) {
@@ -378,7 +383,9 @@ void ctbsv_copy(enum blas_order_type order, enum blas_uplo_type uplo,
 
   if (conj) {
     float y_elem[2];
-    int i, incyi, ni;
+    int i;
+    int incyi;
+    int ni;
 
     incyi = 1;
     ni = n;
@@ -439,7 +446,8 @@ void ctbsv_commit(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   enum blas_trans_type new_trans;
   int conj = 0;
-  int kl, ku;
+  int kl;
+  int ku;
   float *y_i = (float *) y;
 
   if (uplo == blas_upper) {
@@ -466,7 +474,9 @@ void ctbsv_commit(enum blas_order_type order, enum blas_uplo_type uplo,
 
   if (conj) {
     float y_elem[2];
-    int i, incyi, ni;
+    int i;
+    int incyi;
+    int ni;
 
     incyi = 1;
     ni = n;
@@ -487,7 +497,9 @@ void ctbsv_commit(enum blas_order_type order, enum blas_uplo_type uplo,
   if (conj) {
     /* now conjugate back - leave original */
     float y_elem[2];
-    int i, incyi, ni;
+    int i;
+    int incyi;
+    int ni;
 
     incyi = 1;
     ni = n;
@@ -548,7 +560,8 @@ void ztbsv_copy(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   enum blas_trans_type new_trans;
   int conj = 0;
-  int kl, ku;
+  int kl;
+  int ku;
   double *y_i = (double *) y;
 
   if (uplo == blas_upper) {
@@ -576,7 +589,9 @@ void ztbsv_copy(enum blas_order_type order, enum blas_uplo_type uplo,
 
   if (conj) {
     double y_elem[2];
-    int i, incyi, ni;
+    int i;
+    int incyi;
+    int ni;
 
     incyi = 1;
     ni = n;
@@ -637,7 +652,8 @@ void ztbsv_commit(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   enum blas_trans_type new_trans;
   int conj = 0;
-  int kl, ku;
+  int kl;
+  int ku;
   double *y_i = (double *) y;
 
   if (uplo == blas_upper) {
@@ -664,7 +680,9 @@ void ztbsv_commit(enum blas_order_type order, enum blas_uplo_type uplo,
 
   if (conj) {
     double y_elem[2];
-    int i, incyi, ni;
+    int i;
+    int incyi;
+    int ni;
 
     incyi = 1;
     ni = n;
@@ -685,7 +703,9 @@ void ztbsv_commit(enum blas_order_type order, enum blas_uplo_type uplo,
   if (conj) {
     /* now conjugate back - leave original */
     double y_elem[2];
-    int i, incyi, ni;
+    int i;
+    int incyi;
+    int ni;
 
     incyi = 1;
     ni = n;

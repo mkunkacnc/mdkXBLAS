@@ -70,8 +70,10 @@ void BLAS_stbsv_testgen(int norm, enum blas_order_type order,
 {
   int start;
   int length;
-  int i, j;
-  int tempi, inc_tempi;
+  int i;
+  int j;
+  int tempi;
+  int inc_tempi;
   float alpha_i;
   float minus_one;
   float Tii;
@@ -152,8 +154,10 @@ void BLAS_stbsv_testgen(int norm, enum blas_order_type order,
         }
       case blas_prec_extra:
         {
-          double head_multemp, tail_multemp;
-          double head_divtemp, tail_divtemp;
+          double head_multemp;
+          double tail_multemp;
+          double head_divtemp;
+          double tail_divtemp;
 
           head_multemp = (double) x[i] * *alpha;
           tail_multemp = 0.0;
@@ -162,7 +166,16 @@ void BLAS_stbsv_testgen(int norm, enum blas_order_type order,
             {
               /* Compute double-double = double-double / double,
                  using a Newton iteration scheme. */
-              double b1, b2, con, e, t1, t2, t11, t21, t12, t22;
+              double b1;
+              double b2;
+              double con;
+              double e;
+              double t1;
+              double t2;
+              double t11;
+              double t21;
+              double t12;
+              double t22;
 
               /* Compute a DP approximation to the quotient. */
               t1 = head_multemp / dt;
@@ -278,7 +291,8 @@ void BLAS_stbsv_testgen(int norm, enum blas_order_type order,
       }
     case blas_prec_extra:
       {
-        double head_multemp, tail_multemp;
+        double head_multemp;
+        double tail_multemp;
 
         head_multemp = (double) x[row] * *alpha;
         tail_multemp = 0.0;
@@ -361,8 +375,10 @@ void BLAS_dtbsv_testgen(int norm, enum blas_order_type order,
 {
   int start;
   int length;
-  int i, j;
-  int tempi, inc_tempi;
+  int i;
+  int j;
+  int tempi;
+  int inc_tempi;
   float alpha_i;
   double minus_one;
   double Tii;
@@ -444,12 +460,18 @@ void BLAS_dtbsv_testgen(int norm, enum blas_order_type order,
         }
       case blas_prec_extra:
         {
-          double head_multemp, tail_multemp;
-          double head_divtemp, tail_divtemp;
+          double head_multemp;
+          double tail_multemp;
+          double head_divtemp;
+          double tail_divtemp;
 
           {
             /* Compute double_double = double * double. */
-            double a1, a2, b1, b2, con;
+            double a1;
+            double a2;
+            double b1;
+            double b2;
+            double con;
 
             con = x[i] * SPLIT;
             a1 = con - x[i];
@@ -467,7 +489,16 @@ void BLAS_dtbsv_testgen(int norm, enum blas_order_type order,
           {
             /* Compute double-double = double-double / double,
                using a Newton iteration scheme. */
-            double b1, b2, con, e, t1, t2, t11, t21, t12, t22;
+            double b1;
+            double b2;
+            double con;
+            double e;
+            double t1;
+            double t2;
+            double t11;
+            double t21;
+            double t12;
+            double t22;
 
             /* Compute a DP approximation to the quotient. */
             t1 = head_multemp / Tii;
@@ -581,11 +612,16 @@ void BLAS_dtbsv_testgen(int norm, enum blas_order_type order,
       }
     case blas_prec_extra:
       {
-        double head_multemp, tail_multemp;
+        double head_multemp;
+        double tail_multemp;
 
         {
           /* Compute double_double = double * double. */
-          double a1, a2, b1, b2, con;
+          double a1;
+          double a2;
+          double b1;
+          double b2;
+          double con;
 
           con = x[row] * SPLIT;
           a1 = con - x[row];
@@ -680,8 +716,10 @@ void BLAS_dtbsv_s_testgen(int norm, enum blas_order_type order,
 {
   int start;
   int length;
-  int i, j;
-  int tempi, inc_tempi;
+  int i;
+  int j;
+  int tempi;
+  int inc_tempi;
   float alpha_i;
   double minus_one;
   float Tii;
@@ -763,12 +801,18 @@ void BLAS_dtbsv_s_testgen(int norm, enum blas_order_type order,
         }
       case blas_prec_extra:
         {
-          double head_multemp, tail_multemp;
-          double head_divtemp, tail_divtemp;
+          double head_multemp;
+          double tail_multemp;
+          double head_divtemp;
+          double tail_divtemp;
 
           {
             /* Compute double_double = double * double. */
-            double a1, a2, b1, b2, con;
+            double a1;
+            double a2;
+            double b1;
+            double b2;
+            double con;
 
             con = x[i] * SPLIT;
             a1 = con - x[i];
@@ -788,7 +832,16 @@ void BLAS_dtbsv_s_testgen(int norm, enum blas_order_type order,
             {
               /* Compute double-double = double-double / double,
                  using a Newton iteration scheme. */
-              double b1, b2, con, e, t1, t2, t11, t21, t12, t22;
+              double b1;
+              double b2;
+              double con;
+              double e;
+              double t1;
+              double t2;
+              double t11;
+              double t21;
+              double t12;
+              double t22;
 
               /* Compute a DP approximation to the quotient. */
               t1 = head_multemp / dt;
@@ -904,11 +957,16 @@ void BLAS_dtbsv_s_testgen(int norm, enum blas_order_type order,
       }
     case blas_prec_extra:
       {
-        double head_multemp, tail_multemp;
+        double head_multemp;
+        double tail_multemp;
 
         {
           /* Compute double_double = double * double. */
-          double a1, a2, b1, b2, con;
+          double a1;
+          double a2;
+          double b1;
+          double b2;
+          double con;
 
           con = x[row] * SPLIT;
           a1 = con - x[row];

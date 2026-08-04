@@ -8,7 +8,8 @@
 /* Complex-Complex Multiplication */
 void z_mul(double a[], double b[], double c[])
 {
-  double cr, ci;
+  double cr;
+  double ci;
   cr = a[0] * b[0] - a[1] * b[1];
   ci = a[1] * b[0] + a[0] * b[1];
   c[0] = cr;
@@ -18,8 +19,12 @@ void z_mul(double a[], double b[], double c[])
 /* Complex Division c = a/b */
 void z_div(double a[], double b[], double c[])
 {
-  double ratio, den;
-  double abr, abi, cr, ci;
+  double ratio;
+  double den;
+  double abr;
+  double abi;
+  double cr;
+  double ci;
 
   if ((abr = b[0]) < 0.)
     abr = -abr;
@@ -118,12 +123,18 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
       /*
        * Compute complex-extra = complex-double * complex-double.
        */
-      double t1_l, t1_t;
-      double t2_l, t2_t;
+      double t1_l;
+      double t1_t;
+      double t2_l;
+      double t2_t;
       /* Real part */
       {
         /* Compute double_double = double * double. */
-        double a1, a2, b1, b2, con;
+        double a1;
+        double a2;
+        double b1;
+        double b2;
+        double con;
 
         con = x_ii[0] * SPLIT;
         a1 = con - x_ii[0];
@@ -139,7 +150,11 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
       }
       {
         /* Compute double_double = double * double. */
-        double a1, a2, b1, b2, con;
+        double a1;
+        double a2;
+        double b1;
+        double b2;
+        double con;
 
         con = x_ii[1] * SPLIT;
         a1 = con - x_ii[1];
@@ -159,7 +174,9 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
         /*
          * Compute double-double = double-double + double-double.
          */
-        double e, t1, t2;
+        double e;
+        double t1;
+        double t2;
 
         /* Knuth trick. */
         t1 = t1_l + t2_l;
@@ -175,7 +192,11 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
       /* Imaginary part */
       {
         /* Compute double_double = double * double. */
-        double a1, a2, b1, b2, con;
+        double a1;
+        double a2;
+        double b1;
+        double b2;
+        double con;
 
         con = x_ii[1] * SPLIT;
         a1 = con - x_ii[1];
@@ -191,7 +212,11 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
       }
       {
         /* Compute double_double = double * double. */
-        double a1, a2, b1, b2, con;
+        double a1;
+        double a2;
+        double b1;
+        double b2;
+        double con;
 
         con = x_ii[0] * SPLIT;
         a1 = con - x_ii[0];
@@ -209,7 +234,9 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
         /*
          * Compute double-double = double-double + double-double.
          */
-        double e, t1, t2;
+        double e;
+        double t1;
+        double t2;
 
         /* Knuth trick. */
         t1 = t1_l + t2_l;
@@ -224,9 +251,12 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
       prod_t[1] = t1_t;
     }                           /* prod = x[i]*y[i] */
     {
-      double t_l, t_t;
-      double a_l, a_t;
-      double b_l, b_t;
+      double t_l;
+      double t_t;
+      double a_l;
+      double a_t;
+      double b_l;
+      double b_t;
       /* Real part */
       a_l = sum_l[0];
       a_t = sum_t[0];
@@ -236,7 +266,9 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
         /*
          * Compute double-double = double-double + double-double.
          */
-        double e, t1, t2;
+        double e;
+        double t1;
+        double t2;
 
         /* Knuth trick. */
         t1 = a_l + b_l;
@@ -258,7 +290,9 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
         /*
          * Compute double-double = double-double + double-double.
          */
-        double e, t1, t2;
+        double e;
+        double t1;
+        double t2;
 
         /* Knuth trick. */
         t1 = a_l + b_l;
@@ -277,10 +311,14 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
   }                             /* endfor */
   {
     /* Compute complex-extra = complex-extra * complex-double. */
-    double a0_l, a0_t;
-    double a1_l, a1_t;
-    double t1_l, t1_t;
-    double t2_l, t2_t;
+    double a0_l;
+    double a0_t;
+    double a1_l;
+    double a1_t;
+    double t1_l;
+    double t1_t;
+    double t2_l;
+    double t2_t;
     a0_l = sum_l[0];
     a0_t = sum_t[0];
     a1_l = sum_l[1];
@@ -288,7 +326,17 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
     /* real part */
     {
       /* Compute double-double = double-double * double. */
-      double a11, a21, b1, b2, c11, c21, c2, con, e, t1, t2;
+      double a11;
+      double a21;
+      double b1;
+      double b2;
+      double c11;
+      double c21;
+      double c2;
+      double con;
+      double e;
+      double t1;
+      double t2;
 
       con = a0_l * SPLIT;
       a11 = con - a0_l;
@@ -312,7 +360,17 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
     }
     {
       /* Compute double-double = double-double * double. */
-      double a11, a21, b1, b2, c11, c21, c2, con, e, t1, t2;
+      double a11;
+      double a21;
+      double b1;
+      double b2;
+      double c11;
+      double c21;
+      double c2;
+      double con;
+      double e;
+      double t1;
+      double t2;
 
       con = a1_l * SPLIT;
       a11 = con - a1_l;
@@ -338,7 +396,9 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
     t2_t = -t2_t;
     {
       /* Compute double-double = double-double + double-double. */
-      double e, t1, t2;
+      double e;
+      double t1;
+      double t2;
 
       /* Knuth trick. */
       t1 = t1_l + t2_l;
@@ -354,7 +414,17 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
     /* imaginary part */
     {
       /* Compute double-double = double-double * double. */
-      double a11, a21, b1, b2, c11, c21, c2, con, e, t1, t2;
+      double a11;
+      double a21;
+      double b1;
+      double b2;
+      double c11;
+      double c21;
+      double c2;
+      double con;
+      double e;
+      double t1;
+      double t2;
 
       con = a1_l * SPLIT;
       a11 = con - a1_l;
@@ -378,7 +448,17 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
     }
     {
       /* Compute double-double = double-double * double. */
-      double a11, a21, b1, b2, c11, c21, c2, con, e, t1, t2;
+      double a11;
+      double a21;
+      double b1;
+      double b2;
+      double c11;
+      double c21;
+      double c2;
+      double con;
+      double e;
+      double t1;
+      double t2;
 
       con = a0_l * SPLIT;
       a11 = con - a0_l;
@@ -402,7 +482,9 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
     }
     {
       /* Compute double-double = double-double + double-double. */
-      double e, t1, t2;
+      double e;
+      double t1;
+      double t2;
 
       /* Knuth trick. */
       t1 = t1_l + t2_l;
@@ -419,12 +501,18 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
   /* tmp1 = sum*alpha */
   {
     /* Compute complex-extra = complex-double * complex-double. */
-    double t1_l, t1_t;
-    double t2_l, t2_t;
+    double t1_l;
+    double t1_t;
+    double t2_l;
+    double t2_t;
     /* Real part */
     {
       /* Compute double_double = double * double. */
-      double a1, a2, b1, b2, con;
+      double a1;
+      double a2;
+      double b1;
+      double b2;
+      double con;
 
       con = r_v[0] * SPLIT;
       a1 = con - r_v[0];
@@ -440,7 +528,11 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
     }
     {
       /* Compute double_double = double * double. */
-      double a1, a2, b1, b2, con;
+      double a1;
+      double a2;
+      double b1;
+      double b2;
+      double con;
 
       con = r_v[1] * SPLIT;
       a1 = con - r_v[1];
@@ -458,7 +550,9 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
     t2_t = -t2_t;
     {
       /* Compute double-double = double-double + double-double. */
-      double e, t1, t2;
+      double e;
+      double t1;
+      double t2;
 
       /* Knuth trick. */
       t1 = t1_l + t2_l;
@@ -474,7 +568,11 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
     /* Imaginary part */
     {
       /* Compute double_double = double * double. */
-      double a1, a2, b1, b2, con;
+      double a1;
+      double a2;
+      double b1;
+      double b2;
+      double con;
 
       con = r_v[1] * SPLIT;
       a1 = con - r_v[1];
@@ -490,7 +588,11 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
     }
     {
       /* Compute double_double = double * double. */
-      double a1, a2, b1, b2, con;
+      double a1;
+      double a2;
+      double b1;
+      double b2;
+      double con;
 
       con = r_v[0] * SPLIT;
       a1 = con - r_v[0];
@@ -506,7 +608,9 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
     }
     {
       /* Compute double-double = double-double + double-double. */
-      double e, t1, t2;
+      double e;
+      double t1;
+      double t2;
 
       /* Knuth trick. */
       t1 = t1_l + t2_l;
@@ -521,9 +625,12 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
     tmp2_t[1] = t1_t;
   }                             /* tmp2 = r*beta */
   {
-    double t_l, t_t;
-    double a_l, a_t;
-    double b_l, b_t;
+    double t_l;
+    double t_t;
+    double a_l;
+    double a_t;
+    double b_l;
+    double b_t;
     /* Real part */
     a_l = tmp1_l[0];
     a_t = tmp1_t[0];
@@ -531,7 +638,9 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
     b_t = tmp2_t[0];
     {
       /* Compute double-double = double-double + double-double. */
-      double e, t1, t2;
+      double e;
+      double t1;
+      double t2;
 
       /* Knuth trick. */
       t1 = a_l + b_l;
@@ -551,7 +660,9 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
     b_t = tmp2_t[1];
     {
       /* Compute double-double = double-double + double-double. */
-      double e, t1, t2;
+      double e;
+      double t1;
+      double t2;
 
       /* Knuth trick. */
       t1 = a_l + b_l;
@@ -585,7 +696,8 @@ gen_y_to_cancel(int k, int n, enum blas_conj_type conj,
  *
  */
 {
-  int i, ii;
+  int i;
+  int ii;
   double zero[2] = { 0.0, 0.0 };
   double r[2] = { 0.0, 0.0 };
   double tmp[2], tmp_l[2], tmp_t[2];
@@ -710,9 +822,18 @@ testgen_BLAS_zdot(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int B, frees, y_free, i, ii, k, s;
+  int B;
+  int frees;
+  int y_free;
+  int i;
+  int ii;
+  int k;
+  int s;
   double zero[2] = { 0.0, 0.0 };
-  double a, b, eps, eps_out;
+  double a;
+  double b;
+  double eps;
+  double eps_out;
   double f[2], rtmp[2];
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;

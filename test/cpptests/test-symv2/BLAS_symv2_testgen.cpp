@@ -72,7 +72,8 @@ void BLAS_ssymv2_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   float y_elem;
 
   incy = incA = 1;
@@ -177,7 +178,8 @@ void BLAS_dsymv2_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   double *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem;
 
   incy = incA = 1;
@@ -281,7 +283,8 @@ void BLAS_csymv2_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   float y_elem[2];
 
   incy = incA = 1;
@@ -386,7 +389,8 @@ void BLAS_zsymv2_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   double *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem[2];
 
   incy = incA = 1;
@@ -492,7 +496,8 @@ void BLAS_csymv2_s_s_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   float y_elem[2];
 
   incy = incA = 1;
@@ -597,7 +602,8 @@ void BLAS_csymv2_s_c_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   float y_elem[2];
 
   incy = incA = 1;
@@ -703,7 +709,8 @@ void BLAS_csymv2_c_s_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   float y_elem[2];
 
   incy = incA = 1;
@@ -809,7 +816,8 @@ void BLAS_zsymv2_d_d_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   double *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem[2];
 
   incy = incA = 1;
@@ -914,7 +922,8 @@ void BLAS_zsymv2_d_z_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   double *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem[2];
 
   incy = incA = 1;
@@ -1020,7 +1029,8 @@ void BLAS_zsymv2_z_d_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   double *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem[2];
 
   incy = incA = 1;
@@ -1126,7 +1136,8 @@ void BLAS_dsymv2_s_s_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem;
 
   incy = incA = 1;
@@ -1231,7 +1242,8 @@ void BLAS_dsymv2_s_d_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem;
 
   incy = incA = 1;
@@ -1336,7 +1348,8 @@ void BLAS_dsymv2_d_s_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   double *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem;
 
   incy = incA = 1;
@@ -1440,7 +1453,8 @@ void BLAS_zsymv2_c_c_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem[2];
 
   incy = incA = 1;
@@ -1545,7 +1559,8 @@ void BLAS_zsymv2_c_z_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem[2];
 
   incy = incA = 1;
@@ -1650,7 +1665,8 @@ void BLAS_zsymv2_z_c_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   double *temp;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem[2];
 
   incy = incA = 1;

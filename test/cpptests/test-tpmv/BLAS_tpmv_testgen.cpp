@@ -71,8 +71,10 @@ void BLAS_stpmv_testgen(int norm, enum blas_order_type order,
   float tp_swapTemp2;
   float x_swapTemp1;
   float x_swapTemp2;
-  double head_r_true_swapTemp1, tail_r_true_swapTemp1;
-  double head_r_true_swapTemp2, tail_r_true_swapTemp2;
+  double head_r_true_swapTemp1;
+  double tail_r_true_swapTemp1;
+  double head_r_true_swapTemp2;
+  double tail_r_true_swapTemp2;
 
   float *x_i = (float *)x;
   float *alpha_i = (float *)alpha;
@@ -275,8 +277,10 @@ void BLAS_dtpmv_testgen(int norm, enum blas_order_type order,
   double tp_swapTemp2;
   double x_swapTemp1;
   double x_swapTemp2;
-  double head_r_true_swapTemp1, tail_r_true_swapTemp1;
-  double head_r_true_swapTemp2, tail_r_true_swapTemp2;
+  double head_r_true_swapTemp1;
+  double tail_r_true_swapTemp1;
+  double head_r_true_swapTemp2;
+  double tail_r_true_swapTemp2;
 
   double *x_i = (double *)x;
   double *alpha_i = (double *)alpha;
@@ -930,8 +934,10 @@ void BLAS_dtpmv_s_testgen(int norm, enum blas_order_type order,
   float tp_swapTemp2;
   double x_swapTemp1;
   double x_swapTemp2;
-  double head_r_true_swapTemp1, tail_r_true_swapTemp1;
-  double head_r_true_swapTemp2, tail_r_true_swapTemp2;
+  double head_r_true_swapTemp1;
+  double tail_r_true_swapTemp1;
+  double head_r_true_swapTemp2;
+  double tail_r_true_swapTemp2;
 
   double *x_i = (double *)x;
   double *alpha_i = (double *)alpha;

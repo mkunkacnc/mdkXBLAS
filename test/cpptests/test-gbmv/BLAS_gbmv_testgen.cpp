@@ -85,9 +85,12 @@ void BLAS_sgbmv_testgen(int norm, enum blas_order_type order,
   int i;
 
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   float y_elem;
 
   max_mn = MAX(m, n);
@@ -223,9 +226,12 @@ void BLAS_dgbmv_testgen(int norm, enum blas_order_type order,
   int i;
 
   double *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   double y_elem;
 
   max_mn = MAX(m, n);
@@ -360,9 +366,12 @@ void BLAS_cgbmv_testgen(int norm, enum blas_order_type order,
   int i;
   int j;
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   float y_elem[2];
 
   max_mn = MAX(m, n);
@@ -503,9 +512,12 @@ void BLAS_zgbmv_testgen(int norm, enum blas_order_type order,
   int i;
   int j;
   double *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   double y_elem[2];
 
   max_mn = MAX(m, n);
@@ -647,9 +659,12 @@ void BLAS_cgbmv_s_s_testgen(int norm, enum blas_order_type order,
   int i;
 
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   float y_elem[2];
 
   max_mn = MAX(m, n);
@@ -786,9 +801,12 @@ void BLAS_cgbmv_s_c_testgen(int norm, enum blas_order_type order,
   int i;
 
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   float y_elem[2];
 
   max_mn = MAX(m, n);
@@ -926,9 +944,12 @@ void BLAS_cgbmv_c_s_testgen(int norm, enum blas_order_type order,
   int i;
   int j;
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   float y_elem[2];
 
   max_mn = MAX(m, n);
@@ -1069,9 +1090,12 @@ void BLAS_zgbmv_d_d_testgen(int norm, enum blas_order_type order,
   int i;
 
   double *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   double y_elem[2];
 
   max_mn = MAX(m, n);
@@ -1208,9 +1232,12 @@ void BLAS_zgbmv_d_z_testgen(int norm, enum blas_order_type order,
   int i;
 
   double *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   double y_elem[2];
 
   max_mn = MAX(m, n);
@@ -1348,9 +1375,12 @@ void BLAS_zgbmv_z_d_testgen(int norm, enum blas_order_type order,
   int i;
   int j;
   double *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   double y_elem[2];
 
   max_mn = MAX(m, n);
@@ -1491,9 +1521,12 @@ void BLAS_dgbmv_s_s_testgen(int norm, enum blas_order_type order,
   int i;
 
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   double y_elem;
 
   max_mn = MAX(m, n);
@@ -1629,9 +1662,12 @@ void BLAS_dgbmv_s_d_testgen(int norm, enum blas_order_type order,
   int i;
 
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   double y_elem;
 
   max_mn = MAX(m, n);
@@ -1767,9 +1803,12 @@ void BLAS_dgbmv_d_s_testgen(int norm, enum blas_order_type order,
   int i;
 
   double *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   double y_elem;
 
   max_mn = MAX(m, n);
@@ -1905,9 +1944,12 @@ void BLAS_zgbmv_c_c_testgen(int norm, enum blas_order_type order,
   int i;
   int j;
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   double y_elem[2];
 
   max_mn = MAX(m, n);
@@ -2049,9 +2091,12 @@ void BLAS_zgbmv_c_z_testgen(int norm, enum blas_order_type order,
   int i;
   int j;
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   double y_elem[2];
 
   max_mn = MAX(m, n);
@@ -2193,9 +2238,12 @@ void BLAS_zgbmv_z_c_testgen(int norm, enum blas_order_type order,
   int i;
   int j;
   double *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incAB, incx;
+  int incy;
+  int incAB;
+  int incx;
   double y_elem[2];
 
   max_mn = MAX(m, n);

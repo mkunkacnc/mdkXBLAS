@@ -85,20 +85,29 @@ void BLAS_ssymv_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 
   float y_elem;
   float a_elem;
   float x_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   float *a_vec;
   float *x_vec;
@@ -353,20 +362,29 @@ void BLAS_dsymv_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 
   double y_elem;
   double a_elem;
   double x_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   double *a_vec;
   double *x_vec;
@@ -621,13 +639,21 @@ void BLAS_csymv_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 
@@ -908,13 +934,21 @@ void BLAS_zsymv_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 
@@ -1195,13 +1229,21 @@ void BLAS_csymv_s_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 
@@ -1498,13 +1540,21 @@ void BLAS_csymv_s_c_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 
@@ -1794,13 +1844,21 @@ void BLAS_csymv_c_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 
@@ -2090,13 +2148,21 @@ void BLAS_zsymv_d_d_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 
@@ -2393,13 +2459,21 @@ void BLAS_zsymv_d_z_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 
@@ -2689,13 +2763,21 @@ void BLAS_zsymv_z_d_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 
@@ -2985,20 +3067,29 @@ void BLAS_dsymv_s_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 
   double y_elem;
   float a_elem;
   float x_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   float *a_vec;
   float *x_vec;
@@ -3253,20 +3344,29 @@ void BLAS_dsymv_s_d_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 
   double y_elem;
   float a_elem;
   double x_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   float *a_vec;
   double *x_vec;
@@ -3521,20 +3621,29 @@ void BLAS_dsymv_d_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 
   double y_elem;
   double a_elem;
   float x_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   double *a_vec;
   float *x_vec;
@@ -3789,13 +3898,21 @@ void BLAS_zsymv_c_c_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 
@@ -4076,13 +4193,21 @@ void BLAS_zsymv_c_z_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 
@@ -4363,13 +4488,21 @@ void BLAS_zsymv_z_c_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
-  int aij, ai, ri;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int incaij, incai;
+  int aij;
+  int ai;
+  int ri;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int incaij;
+  int incai;
   int inca;
   int n_i;
 

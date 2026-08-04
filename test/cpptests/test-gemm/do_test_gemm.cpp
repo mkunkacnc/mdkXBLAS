@@ -67,18 +67,26 @@ void do_test_dgemm_d_s(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_dgemm_d_s";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -88,20 +96,32 @@ void do_test_dgemm_d_s(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -515,18 +535,26 @@ void do_test_dgemm_s_d(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_dgemm_s_d";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -536,20 +564,32 @@ void do_test_dgemm_s_d(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -963,18 +1003,26 @@ void do_test_dgemm_s_s(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_dgemm_s_s";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -984,20 +1032,32 @@ void do_test_dgemm_s_s(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -1411,18 +1471,26 @@ void do_test_zgemm_z_c(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_zgemm_z_c";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -1432,20 +1500,32 @@ void do_test_zgemm_z_c(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -1862,18 +1942,26 @@ void do_test_zgemm_c_z(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_zgemm_c_z";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -1883,20 +1971,32 @@ void do_test_zgemm_c_z(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -2313,18 +2413,26 @@ void do_test_zgemm_c_c(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_zgemm_c_c";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -2334,20 +2442,32 @@ void do_test_zgemm_c_c(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -2764,18 +2884,26 @@ void do_test_cgemm_c_s(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_cgemm_c_s";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -2785,20 +2913,32 @@ void do_test_cgemm_c_s(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -3215,18 +3355,26 @@ void do_test_cgemm_s_c(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_cgemm_s_c";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -3236,20 +3384,32 @@ void do_test_cgemm_s_c(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -3666,18 +3826,26 @@ void do_test_cgemm_s_s(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_cgemm_s_s";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -3687,20 +3855,32 @@ void do_test_cgemm_s_s(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -4117,18 +4297,26 @@ void do_test_zgemm_z_d(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_zgemm_z_d";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -4138,20 +4326,32 @@ void do_test_zgemm_z_d(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -4568,18 +4768,26 @@ void do_test_zgemm_d_z(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_zgemm_d_z";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -4589,20 +4797,32 @@ void do_test_zgemm_d_z(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -5019,18 +5239,26 @@ void do_test_zgemm_d_d(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_zgemm_d_d";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -5040,20 +5268,32 @@ void do_test_zgemm_d_d(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -5470,18 +5710,26 @@ void do_test_sgemm_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_sgemm_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -5491,20 +5739,32 @@ void do_test_sgemm_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -5954,18 +6214,26 @@ void do_test_dgemm_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_dgemm_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -5975,20 +6243,32 @@ void do_test_dgemm_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -6438,18 +6718,26 @@ void do_test_cgemm_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_cgemm_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -6459,20 +6747,32 @@ void do_test_cgemm_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -6925,18 +7225,26 @@ void do_test_zgemm_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_zgemm_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -6946,20 +7254,32 @@ void do_test_zgemm_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -7413,18 +7733,26 @@ void do_test_dgemm_d_s_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_dgemm_d_s_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -7434,20 +7762,32 @@ void do_test_dgemm_d_s_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -7898,18 +8238,26 @@ void do_test_dgemm_s_d_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_dgemm_s_d_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -7919,20 +8267,32 @@ void do_test_dgemm_s_d_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -8383,18 +8743,26 @@ void do_test_dgemm_s_s_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_dgemm_s_s_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -8404,20 +8772,32 @@ void do_test_dgemm_s_s_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -8868,18 +9248,26 @@ void do_test_zgemm_z_c_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_zgemm_z_c_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -8889,20 +9277,32 @@ void do_test_zgemm_z_c_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -9357,18 +9757,26 @@ void do_test_zgemm_c_z_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_zgemm_c_z_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -9378,20 +9786,32 @@ void do_test_zgemm_c_z_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -9846,18 +10266,26 @@ void do_test_zgemm_c_c_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_zgemm_c_c_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -9867,20 +10295,32 @@ void do_test_zgemm_c_c_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -10335,18 +10775,26 @@ void do_test_cgemm_c_s_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_cgemm_c_s_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -10356,20 +10804,32 @@ void do_test_cgemm_c_s_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -10823,18 +11283,26 @@ void do_test_cgemm_s_c_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_cgemm_s_c_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -10844,20 +11312,32 @@ void do_test_cgemm_s_c_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -11311,18 +11791,26 @@ void do_test_cgemm_s_s_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_cgemm_s_s_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -11332,20 +11820,32 @@ void do_test_cgemm_s_s_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -11799,18 +12299,26 @@ void do_test_zgemm_z_d_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_zgemm_z_d_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -11820,20 +12328,32 @@ void do_test_zgemm_z_d_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -12288,18 +12808,26 @@ void do_test_zgemm_d_z_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_zgemm_d_z_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -12309,20 +12837,32 @@ void do_test_zgemm_d_z_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -12777,18 +13317,26 @@ void do_test_zgemm_d_d_x(int m, int n, int k, int ntests, int *seed,
   /* Function name */
   const char fname[] = "BLAS_zgemm_d_d_x";
 
-  int i, j;
-  int ci, cij;
-  int ri, rij;
-  int incci, inccij;
-  int incri, incrij;
-  int inca, incb, incc;
+  int i;
+  int j;
+  int ci;
+  int cij;
+  int ri;
+  int rij;
+  int incci;
+  int inccij;
+  int incri;
+  int incrij;
+  int inca;
+  int incb;
+  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
 
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -12798,20 +13346,32 @@ void do_test_zgemm_d_d_x(int m, int n, int k, int ntests, int *seed,
   enum blas_trans_type transb;
   enum blas_prec_type prec;
 
-  int order_val, transa_val, transb_val;
-  int lda_val, ldb_val, ldc_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int transa_val;
+  int transb_val;
+  int lda_val;
+  int ldb_val;
+  int ldc_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int lda, ldb, ldc;
+  int lda;
+  int ldb;
+  int ldc;
 
-  int lda_0, ldb_0;
-  int tda_0, tdb_0;
-  int lda_1, ldb_1, ldc_1;
+  int lda_0;
+  int ldb_0;
+  int tda_0;
+  int tdb_0;
+  int lda_1;
+  int ldb_1;
+  int ldc_1;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
 
   int saved_seed;
 
@@ -13264,18 +13824,27 @@ int main_gemm(int argc, char **argv)
 int main(int argc, char **argv)
 #endif
 {
-  int nsizes, ntests, debug;
-  double thresh, test_prob;
-  double total_min_ratio, total_max_ratio;
+  int nsizes;
+  int ntests;
+  int debug;
+  double thresh;
+  double test_prob;
+  double total_min_ratio;
+  double total_max_ratio;
   int total_bad_ratios;
-  int seed, num_bad_ratio, num_tests;
+  int seed;
+  int num_bad_ratio;
+  int num_tests;
   int total_tests, nr_failed_routines = 0, nr_routines = 0;
-  double min_ratio, max_ratio;
+  double min_ratio;
+  double max_ratio;
   const char *base_routine = "gemm";
   const char *fname;
   int n;
 
-  int m, k, i;
+  int m;
+  int k;
+  int i;
   int mnk_data[NUM_DATA][3] = { {2, 3, 4}, {3, 6, 4}, {5, 1, 7},
   {6, 15, 4}, {5, 2, 3}, {8, 4, 1},
   {1, 3, 1}, {8, 8, 8}, {1, 1, 1}

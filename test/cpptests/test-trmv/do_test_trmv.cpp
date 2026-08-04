@@ -83,8 +83,10 @@ double do_test_dtrmv_s(int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x and y respectively */
-  int lda_val, lda;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int lda_val;                /* for testing different values for lda */
+  int lda;
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -112,7 +114,8 @@ double do_test_dtrmv_s(int n, int ntests, int *seed,
   double *head_r_true, *tail_r_true;
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_dtrmv_s_testgen */
+  int alpha_flag;        /* input flag for BLAS_dtrmv_s_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -128,7 +131,8 @@ double do_test_dtrmv_s(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -617,8 +621,10 @@ double do_test_ztrmv_c(int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x and y respectively */
-  int lda_val, lda;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int lda_val;                /* for testing different values for lda */
+  int lda;
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -647,7 +653,8 @@ double do_test_ztrmv_c(int n, int ntests, int *seed,
 
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ztrmv_c_testgen */
+  int alpha_flag;        /* input flag for BLAS_ztrmv_c_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -663,7 +670,8 @@ double do_test_ztrmv_c(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -1156,8 +1164,10 @@ double do_test_ctrmv_s(int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x and y respectively */
-  int lda_val, lda;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int lda_val;                /* for testing different values for lda */
+  int lda;
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -1186,7 +1196,8 @@ double do_test_ctrmv_s(int n, int ntests, int *seed,
 
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ctrmv_s_testgen */
+  int alpha_flag;        /* input flag for BLAS_ctrmv_s_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -1202,7 +1213,8 @@ double do_test_ctrmv_s(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -1695,8 +1707,10 @@ double do_test_ztrmv_d(int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x and y respectively */
-  int lda_val, lda;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int lda_val;                /* for testing different values for lda */
+  int lda;
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -1725,7 +1739,8 @@ double do_test_ztrmv_d(int n, int ntests, int *seed,
 
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ztrmv_d_testgen */
+  int alpha_flag;        /* input flag for BLAS_ztrmv_d_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -1741,7 +1756,8 @@ double do_test_ztrmv_d(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -2234,8 +2250,10 @@ double do_test_strmv_x(int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x and y respectively */
-  int lda_val, lda;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int lda_val;                /* for testing different values for lda */
+  int lda;
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -2263,7 +2281,8 @@ double do_test_strmv_x(int n, int ntests, int *seed,
   double *head_r_true, *tail_r_true;
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_strmv_testgen */
+  int alpha_flag;        /* input flag for BLAS_strmv_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -2279,7 +2298,8 @@ double do_test_strmv_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -2788,8 +2808,10 @@ double do_test_dtrmv_x(int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x and y respectively */
-  int lda_val, lda;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int lda_val;                /* for testing different values for lda */
+  int lda;
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -2817,7 +2839,8 @@ double do_test_dtrmv_x(int n, int ntests, int *seed,
   double *head_r_true, *tail_r_true;
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_dtrmv_testgen */
+  int alpha_flag;        /* input flag for BLAS_dtrmv_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -2833,7 +2856,8 @@ double do_test_dtrmv_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -3342,8 +3366,10 @@ double do_test_ctrmv_x(int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x and y respectively */
-  int lda_val, lda;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int lda_val;                /* for testing different values for lda */
+  int lda;
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -3372,7 +3398,8 @@ double do_test_ctrmv_x(int n, int ntests, int *seed,
 
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ctrmv_testgen */
+  int alpha_flag;        /* input flag for BLAS_ctrmv_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -3388,7 +3415,8 @@ double do_test_ctrmv_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -3902,8 +3930,10 @@ double do_test_ztrmv_x(int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x and y respectively */
-  int lda_val, lda;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int lda_val;                /* for testing different values for lda */
+  int lda;
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -3932,7 +3962,8 @@ double do_test_ztrmv_x(int n, int ntests, int *seed,
 
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ztrmv_testgen */
+  int alpha_flag;        /* input flag for BLAS_ztrmv_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -3948,7 +3979,8 @@ double do_test_ztrmv_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -4463,8 +4495,10 @@ double do_test_dtrmv_s_x(int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x and y respectively */
-  int lda_val, lda;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int lda_val;                /* for testing different values for lda */
+  int lda;
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -4492,7 +4526,8 @@ double do_test_dtrmv_s_x(int n, int ntests, int *seed,
   double *head_r_true, *tail_r_true;
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_dtrmv_s_testgen */
+  int alpha_flag;        /* input flag for BLAS_dtrmv_s_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -4508,7 +4543,8 @@ double do_test_dtrmv_s_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -5018,8 +5054,10 @@ double do_test_ztrmv_c_x(int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x and y respectively */
-  int lda_val, lda;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int lda_val;                /* for testing different values for lda */
+  int lda;
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -5048,7 +5086,8 @@ double do_test_ztrmv_c_x(int n, int ntests, int *seed,
 
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ztrmv_c_testgen */
+  int alpha_flag;        /* input flag for BLAS_ztrmv_c_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -5064,7 +5103,8 @@ double do_test_ztrmv_c_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -5579,8 +5619,10 @@ double do_test_ctrmv_s_x(int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x and y respectively */
-  int lda_val, lda;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int lda_val;                /* for testing different values for lda */
+  int lda;
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -5609,7 +5651,8 @@ double do_test_ctrmv_s_x(int n, int ntests, int *seed,
 
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ctrmv_s_testgen */
+  int alpha_flag;        /* input flag for BLAS_ctrmv_s_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -5625,7 +5668,8 @@ double do_test_ctrmv_s_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -6140,8 +6184,10 @@ double do_test_ztrmv_d_x(int n, int ntests, int *seed,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x and y respectively */
-  int lda_val, lda;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int lda_val;                /* for testing different values for lda */
+  int lda;
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -6170,7 +6216,8 @@ double do_test_ztrmv_d_x(int n, int ntests, int *seed,
 
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ztrmv_d_testgen */
+  int alpha_flag;        /* input flag for BLAS_ztrmv_d_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -6186,7 +6233,8 @@ double do_test_ztrmv_d_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -6630,13 +6678,20 @@ int main_trmv(int argc, char **argv)
 int main(int argc, char **argv)
 #endif
 {
-  int nsizes, ntests, debug;
-  double thresh, test_prob;
-  double total_min_ratio, total_max_ratio;
+  int nsizes;
+  int ntests;
+  int debug;
+  double thresh;
+  double test_prob;
+  double total_min_ratio;
+  double total_max_ratio;
   int total_bad_ratios;
-  int seed, num_bad_ratio, num_tests;
+  int seed;
+  int num_bad_ratio;
+  int num_tests;
   int total_tests, nr_failed_routines = 0, nr_routines = 0;
-  double min_ratio, max_ratio;
+  double min_ratio;
+  double max_ratio;
   const char *base_routine = "trmv";
   const char *fname;
   int n;

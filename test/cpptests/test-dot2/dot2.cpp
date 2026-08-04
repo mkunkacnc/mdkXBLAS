@@ -196,10 +196,14 @@ void BLAS_sdot2_x(enum blas_conj_type conj, int n, float alpha,
       float x_ii;
       float y_ii;
       float r_v;
-      double head_prod, tail_prod;
-      double head_sum, tail_sum;
-      double head_tmp1, tail_tmp1;
-      double head_tmp2, tail_tmp2;
+      double head_prod;
+      double tail_prod;
+      double head_sum;
+      double tail_sum;
+      double head_tmp1;
+      double tail_tmp1;
+      double head_tmp2;
+      double tail_tmp2;
       FPU_FIX_DECL;
 
       /* Test the input parameters. */
@@ -234,7 +238,10 @@ void BLAS_sdot2_x(enum blas_conj_type conj, int n, float alpha,
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
-          double s1, s2, t1, t2;
+          double s1;
+          double s2;
+          double t1;
+          double t2;
 
           /* Add two hi words. */
           s1 = head_sum + head_prod;
@@ -264,7 +271,10 @@ void BLAS_sdot2_x(enum blas_conj_type conj, int n, float alpha,
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
-          double s1, s2, t1, t2;
+          double s1;
+          double s2;
+          double t1;
+          double t2;
 
           /* Add two hi words. */
           s1 = head_sum + head_prod;
@@ -297,7 +307,16 @@ void BLAS_sdot2_x(enum blas_conj_type conj, int n, float alpha,
         double dt = (double) alpha_i;
         {
           /* Compute double-double = double-double * double. */
-          double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+          double a11;
+          double a21;
+          double b1;
+          double b2;
+          double c11;
+          double c21;
+          double c2;
+          double con;
+          double t1;
+          double t2;
 
           con = head_sum * SPLIT;
           a11 = con - head_sum;
@@ -324,7 +343,10 @@ void BLAS_sdot2_x(enum blas_conj_type conj, int n, float alpha,
       {
         /* Compute double-double = double-double + double-double. */
         double bv;
-        double s1, s2, t1, t2;
+        double s1;
+        double s2;
+        double t1;
+        double t2;
 
         /* Add two hi words. */
         s1 = head_tmp1 + head_tmp2;
@@ -550,10 +572,14 @@ void BLAS_ddot2_x(enum blas_conj_type conj, int n, double alpha,
       double x_ii;
       double y_ii;
       double r_v;
-      double head_prod, tail_prod;
-      double head_sum, tail_sum;
-      double head_tmp1, tail_tmp1;
-      double head_tmp2, tail_tmp2;
+      double head_prod;
+      double tail_prod;
+      double head_sum;
+      double tail_sum;
+      double head_tmp1;
+      double tail_tmp1;
+      double head_tmp2;
+      double tail_tmp2;
       FPU_FIX_DECL;
 
       /* Test the input parameters. */
@@ -585,7 +611,11 @@ void BLAS_ddot2_x(enum blas_conj_type conj, int n, double alpha,
 
         {
           /* Compute double_double = double * double. */
-          double a1, a2, b1, b2, con;
+          double a1;
+          double a2;
+          double b1;
+          double b2;
+          double con;
 
           con = x_ii * SPLIT;
           a1 = con - x_ii;
@@ -602,7 +632,10 @@ void BLAS_ddot2_x(enum blas_conj_type conj, int n, double alpha,
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
-          double s1, s2, t1, t2;
+          double s1;
+          double s2;
+          double t1;
+          double t2;
 
           /* Add two hi words. */
           s1 = head_sum + head_prod;
@@ -629,7 +662,11 @@ void BLAS_ddot2_x(enum blas_conj_type conj, int n, double alpha,
         y_ii = tail_y_i[iy];
         {
           /* Compute double_double = double * double. */
-          double a1, a2, b1, b2, con;
+          double a1;
+          double a2;
+          double b1;
+          double b2;
+          double con;
 
           con = x_ii * SPLIT;
           a1 = con - x_ii;
@@ -646,7 +683,10 @@ void BLAS_ddot2_x(enum blas_conj_type conj, int n, double alpha,
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
-          double s1, s2, t1, t2;
+          double s1;
+          double s2;
+          double t1;
+          double t2;
 
           /* Add two hi words. */
           s1 = head_sum + head_prod;
@@ -677,7 +717,16 @@ void BLAS_ddot2_x(enum blas_conj_type conj, int n, double alpha,
 
       {
         /* Compute double-double = double-double * double. */
-        double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+        double a11;
+        double a21;
+        double b1;
+        double b2;
+        double c11;
+        double c21;
+        double c2;
+        double con;
+        double t1;
+        double t2;
 
         con = head_sum * SPLIT;
         a11 = con - head_sum;
@@ -700,7 +749,11 @@ void BLAS_ddot2_x(enum blas_conj_type conj, int n, double alpha,
       }                                /* tmp1 = sum*alpha */
       {
         /* Compute double_double = double * double. */
-        double a1, a2, b1, b2, con;
+        double a1;
+        double a2;
+        double b1;
+        double b2;
+        double con;
 
         con = r_v * SPLIT;
         a1 = con - r_v;
@@ -717,7 +770,10 @@ void BLAS_ddot2_x(enum blas_conj_type conj, int n, double alpha,
       {
         /* Compute double-double = double-double + double-double. */
         double bv;
-        double s1, s2, t1, t2;
+        double s1;
+        double s2;
+        double t1;
+        double t2;
 
         /* Add two hi words. */
         s1 = head_tmp1 + head_tmp2;
@@ -1084,7 +1140,8 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
           y_ii[1] = head_y_i[iy + 1];
           x_ii[1] = -x_ii[1];
           {
-            double head_e1, tail_e1;
+            double head_e1;
+            double tail_e1;
             double d1;
             double d2;
             /* Real part */
@@ -1092,7 +1149,9 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             d2 = (double) -x_ii[1] * y_ii[1];
             {
               /* Compute double-double = double + double. */
-              double e, t1, t2;
+              double e;
+              double t1;
+              double t2;
 
               /* Knuth trick. */
               t1 = d1 + d2;
@@ -1110,7 +1169,9 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             d2 = (double) x_ii[1] * y_ii[0];
             {
               /* Compute double-double = double + double. */
-              double e, t1, t2;
+              double e;
+              double t1;
+              double t2;
 
               /* Knuth trick. */
               t1 = d1 + d2;
@@ -1125,9 +1186,12 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             tail_prod[1] = tail_e1;
           }                        /* prod = x[i] * head_y[i] */
           {
-            double head_t, tail_t;
-            double head_a, tail_a;
-            double head_b, tail_b;
+            double head_t;
+            double tail_t;
+            double head_a;
+            double tail_a;
+            double head_b;
+            double tail_b;
             /* Real part */
             head_a = head_sum[0];
             tail_a = tail_sum[0];
@@ -1136,7 +1200,10 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -1170,7 +1237,10 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -1200,7 +1270,8 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
           y_ii[0] = tail_y_i[iy];
           y_ii[1] = tail_y_i[iy + 1];
           {
-            double head_e1, tail_e1;
+            double head_e1;
+            double tail_e1;
             double d1;
             double d2;
             /* Real part */
@@ -1208,7 +1279,9 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             d2 = (double) -x_ii[1] * y_ii[1];
             {
               /* Compute double-double = double + double. */
-              double e, t1, t2;
+              double e;
+              double t1;
+              double t2;
 
               /* Knuth trick. */
               t1 = d1 + d2;
@@ -1226,7 +1299,9 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             d2 = (double) x_ii[1] * y_ii[0];
             {
               /* Compute double-double = double + double. */
-              double e, t1, t2;
+              double e;
+              double t1;
+              double t2;
 
               /* Knuth trick. */
               t1 = d1 + d2;
@@ -1241,9 +1316,12 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             tail_prod[1] = tail_e1;
           }                        /* prod = x[i] * tail_y[i] */
           {
-            double head_t, tail_t;
-            double head_a, tail_a;
-            double head_b, tail_b;
+            double head_t;
+            double tail_t;
+            double head_a;
+            double tail_a;
+            double head_b;
+            double tail_b;
             /* Real part */
             head_a = head_sum[0];
             tail_a = tail_sum[0];
@@ -1252,7 +1330,10 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -1286,7 +1367,10 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -1326,7 +1410,8 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
           y_ii[1] = head_y_i[iy + 1];
 
           {
-            double head_e1, tail_e1;
+            double head_e1;
+            double tail_e1;
             double d1;
             double d2;
             /* Real part */
@@ -1334,7 +1419,9 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             d2 = (double) -x_ii[1] * y_ii[1];
             {
               /* Compute double-double = double + double. */
-              double e, t1, t2;
+              double e;
+              double t1;
+              double t2;
 
               /* Knuth trick. */
               t1 = d1 + d2;
@@ -1352,7 +1439,9 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             d2 = (double) x_ii[1] * y_ii[0];
             {
               /* Compute double-double = double + double. */
-              double e, t1, t2;
+              double e;
+              double t1;
+              double t2;
 
               /* Knuth trick. */
               t1 = d1 + d2;
@@ -1367,9 +1456,12 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             tail_prod[1] = tail_e1;
           }                        /* prod = x[i] * head_y[i] */
           {
-            double head_t, tail_t;
-            double head_a, tail_a;
-            double head_b, tail_b;
+            double head_t;
+            double tail_t;
+            double head_a;
+            double tail_a;
+            double head_b;
+            double tail_b;
             /* Real part */
             head_a = head_sum[0];
             tail_a = tail_sum[0];
@@ -1378,7 +1470,10 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -1412,7 +1507,10 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -1442,7 +1540,8 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
           y_ii[0] = tail_y_i[iy];
           y_ii[1] = tail_y_i[iy + 1];
           {
-            double head_e1, tail_e1;
+            double head_e1;
+            double tail_e1;
             double d1;
             double d2;
             /* Real part */
@@ -1450,7 +1549,9 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             d2 = (double) -x_ii[1] * y_ii[1];
             {
               /* Compute double-double = double + double. */
-              double e, t1, t2;
+              double e;
+              double t1;
+              double t2;
 
               /* Knuth trick. */
               t1 = d1 + d2;
@@ -1468,7 +1569,9 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             d2 = (double) x_ii[1] * y_ii[0];
             {
               /* Compute double-double = double + double. */
-              double e, t1, t2;
+              double e;
+              double t1;
+              double t2;
 
               /* Knuth trick. */
               t1 = d1 + d2;
@@ -1483,9 +1586,12 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             tail_prod[1] = tail_e1;
           }                        /* prod = x[i] * tail_y[i] */
           {
-            double head_t, tail_t;
-            double head_a, tail_a;
-            double head_b, tail_b;
+            double head_t;
+            double tail_t;
+            double head_a;
+            double tail_a;
+            double head_b;
+            double tail_b;
             /* Real part */
             head_a = head_sum[0];
             tail_a = tail_sum[0];
@@ -1494,7 +1600,10 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -1528,7 +1637,10 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -1566,10 +1678,14 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         cd[1] = (double) alpha_i[1];
         {
           /* Compute complex-extra = complex-extra * complex-double. */
-          double head_a0, tail_a0;
-          double head_a1, tail_a1;
-          double head_t1, tail_t1;
-          double head_t2, tail_t2;
+          double head_a0;
+          double tail_a0;
+          double head_a1;
+          double tail_a1;
+          double head_t1;
+          double tail_t1;
+          double head_t2;
+          double tail_t2;
           head_a0 = head_sum[0];
           tail_a0 = tail_sum[0];
           head_a1 = head_sum[1];
@@ -1577,7 +1693,16 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
           /* real part */
           {
             /* Compute double-double = double-double * double. */
-            double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+            double a11;
+            double a21;
+            double b1;
+            double b2;
+            double c11;
+            double c21;
+            double c2;
+            double con;
+            double t1;
+            double t2;
 
             con = head_a0 * SPLIT;
             a11 = con - head_a0;
@@ -1600,7 +1725,16 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
           }
           {
             /* Compute double-double = double-double * double. */
-            double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+            double a11;
+            double a21;
+            double b1;
+            double b2;
+            double c11;
+            double c21;
+            double c2;
+            double con;
+            double t1;
+            double t2;
 
             con = head_a1 * SPLIT;
             a11 = con - head_a1;
@@ -1626,7 +1760,10 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
-            double s1, s2, t1, t2;
+            double s1;
+            double s2;
+            double t1;
+            double t2;
 
             /* Add two hi words. */
             s1 = head_t1 + head_t2;
@@ -1655,7 +1792,16 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
           /* imaginary part */
           {
             /* Compute double-double = double-double * double. */
-            double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+            double a11;
+            double a21;
+            double b1;
+            double b2;
+            double c11;
+            double c21;
+            double c2;
+            double con;
+            double t1;
+            double t2;
 
             con = head_a1 * SPLIT;
             a11 = con - head_a1;
@@ -1678,7 +1824,16 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
           }
           {
             /* Compute double-double = double-double * double. */
-            double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+            double a11;
+            double a21;
+            double b1;
+            double b2;
+            double c11;
+            double c21;
+            double c2;
+            double con;
+            double t1;
+            double t2;
 
             con = head_a0 * SPLIT;
             a11 = con - head_a0;
@@ -1702,7 +1857,10 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
-            double s1, s2, t1, t2;
+            double s1;
+            double s2;
+            double t1;
+            double t2;
 
             /* Add two hi words. */
             s1 = head_t1 + head_t2;
@@ -1732,7 +1890,8 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
 
       }                                /* tmp1 = sum*alpha */
       {
-        double head_e1, tail_e1;
+        double head_e1;
+        double tail_e1;
         double d1;
         double d2;
         /* Real part */
@@ -1740,7 +1899,9 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         d2 = (double) -r_v[1] * beta_i[1];
         {
           /* Compute double-double = double + double. */
-          double e, t1, t2;
+          double e;
+          double t1;
+          double t2;
 
           /* Knuth trick. */
           t1 = d1 + d2;
@@ -1758,7 +1919,9 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         d2 = (double) r_v[1] * beta_i[0];
         {
           /* Compute double-double = double + double. */
-          double e, t1, t2;
+          double e;
+          double t1;
+          double t2;
 
           /* Knuth trick. */
           t1 = d1 + d2;
@@ -1773,9 +1936,12 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         tail_tmp2[1] = tail_e1;
       }                                /* tmp2 = r*beta */
       {
-        double head_t, tail_t;
-        double head_a, tail_a;
-        double head_b, tail_b;
+        double head_t;
+        double tail_t;
+        double head_a;
+        double tail_a;
+        double head_b;
+        double tail_b;
         /* Real part */
         head_a = head_tmp1[0];
         tail_a = tail_tmp1[0];
@@ -1784,7 +1950,10 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
-          double s1, s2, t1, t2;
+          double s1;
+          double s2;
+          double t1;
+          double t2;
 
           /* Add two hi words. */
           s1 = head_a + head_b;
@@ -1818,7 +1987,10 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
-          double s1, s2, t1, t2;
+          double s1;
+          double s2;
+          double t1;
+          double t2;
 
           /* Add two hi words. */
           s1 = head_a + head_b;
@@ -2184,12 +2356,18 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
           x_ii[1] = -x_ii[1];
           {
             /* Compute complex-extra = complex-double * complex-double. */
-            double head_t1, tail_t1;
-            double head_t2, tail_t2;
+            double head_t1;
+            double tail_t1;
+            double head_t2;
+            double tail_t2;
             /* Real part */
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[0] * SPLIT;
               a1 = con - x_ii[0];
@@ -2205,7 +2383,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             }
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[1] * SPLIT;
               a1 = con - x_ii[1];
@@ -2224,7 +2406,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_t1 + head_t2;
@@ -2253,7 +2438,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             /* Imaginary part */
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[1] * SPLIT;
               a1 = con - x_ii[1];
@@ -2269,7 +2458,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             }
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[0] * SPLIT;
               a1 = con - x_ii[0];
@@ -2286,7 +2479,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_t1 + head_t2;
@@ -2314,9 +2510,12 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             tail_prod[1] = tail_t1;
           }                        /* prod = x[i] * head_y[i] */
           {
-            double head_t, tail_t;
-            double head_a, tail_a;
-            double head_b, tail_b;
+            double head_t;
+            double tail_t;
+            double head_a;
+            double tail_a;
+            double head_b;
+            double tail_b;
             /* Real part */
             head_a = head_sum[0];
             tail_a = tail_sum[0];
@@ -2325,7 +2524,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -2359,7 +2561,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -2390,12 +2595,18 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
           y_ii[1] = tail_y_i[iy + 1];
           {
             /* Compute complex-extra = complex-double * complex-double. */
-            double head_t1, tail_t1;
-            double head_t2, tail_t2;
+            double head_t1;
+            double tail_t1;
+            double head_t2;
+            double tail_t2;
             /* Real part */
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[0] * SPLIT;
               a1 = con - x_ii[0];
@@ -2411,7 +2622,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             }
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[1] * SPLIT;
               a1 = con - x_ii[1];
@@ -2430,7 +2645,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_t1 + head_t2;
@@ -2459,7 +2677,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             /* Imaginary part */
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[1] * SPLIT;
               a1 = con - x_ii[1];
@@ -2475,7 +2697,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             }
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[0] * SPLIT;
               a1 = con - x_ii[0];
@@ -2492,7 +2718,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_t1 + head_t2;
@@ -2520,9 +2749,12 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             tail_prod[1] = tail_t1;
           }                        /* prod = x[i] * tail_y[i] */
           {
-            double head_t, tail_t;
-            double head_a, tail_a;
-            double head_b, tail_b;
+            double head_t;
+            double tail_t;
+            double head_a;
+            double tail_a;
+            double head_b;
+            double tail_b;
             /* Real part */
             head_a = head_sum[0];
             tail_a = tail_sum[0];
@@ -2531,7 +2763,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -2565,7 +2800,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -2606,12 +2844,18 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
 
           {
             /* Compute complex-extra = complex-double * complex-double. */
-            double head_t1, tail_t1;
-            double head_t2, tail_t2;
+            double head_t1;
+            double tail_t1;
+            double head_t2;
+            double tail_t2;
             /* Real part */
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[0] * SPLIT;
               a1 = con - x_ii[0];
@@ -2627,7 +2871,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             }
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[1] * SPLIT;
               a1 = con - x_ii[1];
@@ -2646,7 +2894,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_t1 + head_t2;
@@ -2675,7 +2926,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             /* Imaginary part */
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[1] * SPLIT;
               a1 = con - x_ii[1];
@@ -2691,7 +2946,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             }
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[0] * SPLIT;
               a1 = con - x_ii[0];
@@ -2708,7 +2967,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_t1 + head_t2;
@@ -2736,9 +2998,12 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             tail_prod[1] = tail_t1;
           }                        /* prod = x[i] * head_y[i] */
           {
-            double head_t, tail_t;
-            double head_a, tail_a;
-            double head_b, tail_b;
+            double head_t;
+            double tail_t;
+            double head_a;
+            double tail_a;
+            double head_b;
+            double tail_b;
             /* Real part */
             head_a = head_sum[0];
             tail_a = tail_sum[0];
@@ -2747,7 +3012,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -2781,7 +3049,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -2812,12 +3083,18 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
           y_ii[1] = tail_y_i[iy + 1];
           {
             /* Compute complex-extra = complex-double * complex-double. */
-            double head_t1, tail_t1;
-            double head_t2, tail_t2;
+            double head_t1;
+            double tail_t1;
+            double head_t2;
+            double tail_t2;
             /* Real part */
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[0] * SPLIT;
               a1 = con - x_ii[0];
@@ -2833,7 +3110,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             }
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[1] * SPLIT;
               a1 = con - x_ii[1];
@@ -2852,7 +3133,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_t1 + head_t2;
@@ -2881,7 +3165,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             /* Imaginary part */
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[1] * SPLIT;
               a1 = con - x_ii[1];
@@ -2897,7 +3185,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             }
             {
               /* Compute double_double = double * double. */
-              double a1, a2, b1, b2, con;
+              double a1;
+              double a2;
+              double b1;
+              double b2;
+              double con;
 
               con = x_ii[0] * SPLIT;
               a1 = con - x_ii[0];
@@ -2914,7 +3206,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_t1 + head_t2;
@@ -2942,9 +3237,12 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             tail_prod[1] = tail_t1;
           }                        /* prod = x[i] * tail_y[i] */
           {
-            double head_t, tail_t;
-            double head_a, tail_a;
-            double head_b, tail_b;
+            double head_t;
+            double tail_t;
+            double head_a;
+            double tail_a;
+            double head_b;
+            double tail_b;
             /* Real part */
             head_a = head_sum[0];
             tail_a = tail_sum[0];
@@ -2953,7 +3251,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -2987,7 +3288,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_a + head_b;
@@ -3021,10 +3325,14 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
 
       {
         /* Compute complex-extra = complex-extra * complex-double. */
-        double head_a0, tail_a0;
-        double head_a1, tail_a1;
-        double head_t1, tail_t1;
-        double head_t2, tail_t2;
+        double head_a0;
+        double tail_a0;
+        double head_a1;
+        double tail_a1;
+        double head_t1;
+        double tail_t1;
+        double head_t2;
+        double tail_t2;
         head_a0 = head_sum[0];
         tail_a0 = tail_sum[0];
         head_a1 = head_sum[1];
@@ -3032,7 +3340,16 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         /* real part */
         {
           /* Compute double-double = double-double * double. */
-          double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+          double a11;
+          double a21;
+          double b1;
+          double b2;
+          double c11;
+          double c21;
+          double c2;
+          double con;
+          double t1;
+          double t2;
 
           con = head_a0 * SPLIT;
           a11 = con - head_a0;
@@ -3055,7 +3372,16 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         }
         {
           /* Compute double-double = double-double * double. */
-          double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+          double a11;
+          double a21;
+          double b1;
+          double b2;
+          double c11;
+          double c21;
+          double c2;
+          double con;
+          double t1;
+          double t2;
 
           con = head_a1 * SPLIT;
           a11 = con - head_a1;
@@ -3081,7 +3407,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
-          double s1, s2, t1, t2;
+          double s1;
+          double s2;
+          double t1;
+          double t2;
 
           /* Add two hi words. */
           s1 = head_t1 + head_t2;
@@ -3110,7 +3439,16 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         /* imaginary part */
         {
           /* Compute double-double = double-double * double. */
-          double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+          double a11;
+          double a21;
+          double b1;
+          double b2;
+          double c11;
+          double c21;
+          double c2;
+          double con;
+          double t1;
+          double t2;
 
           con = head_a1 * SPLIT;
           a11 = con - head_a1;
@@ -3133,7 +3471,16 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         }
         {
           /* Compute double-double = double-double * double. */
-          double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+          double a11;
+          double a21;
+          double b1;
+          double b2;
+          double c11;
+          double c21;
+          double c2;
+          double con;
+          double t1;
+          double t2;
 
           con = head_a0 * SPLIT;
           a11 = con - head_a0;
@@ -3157,7 +3504,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
-          double s1, s2, t1, t2;
+          double s1;
+          double s2;
+          double t1;
+          double t2;
 
           /* Add two hi words. */
           s1 = head_t1 + head_t2;
@@ -3187,12 +3537,18 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
       /* tmp1 = sum*alpha */
       {
         /* Compute complex-extra = complex-double * complex-double. */
-        double head_t1, tail_t1;
-        double head_t2, tail_t2;
+        double head_t1;
+        double tail_t1;
+        double head_t2;
+        double tail_t2;
         /* Real part */
         {
           /* Compute double_double = double * double. */
-          double a1, a2, b1, b2, con;
+          double a1;
+          double a2;
+          double b1;
+          double b2;
+          double con;
 
           con = r_v[0] * SPLIT;
           a1 = con - r_v[0];
@@ -3208,7 +3564,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         }
         {
           /* Compute double_double = double * double. */
-          double a1, a2, b1, b2, con;
+          double a1;
+          double a2;
+          double b1;
+          double b2;
+          double con;
 
           con = r_v[1] * SPLIT;
           a1 = con - r_v[1];
@@ -3227,7 +3587,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
-          double s1, s2, t1, t2;
+          double s1;
+          double s2;
+          double t1;
+          double t2;
 
           /* Add two hi words. */
           s1 = head_t1 + head_t2;
@@ -3256,7 +3619,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         /* Imaginary part */
         {
           /* Compute double_double = double * double. */
-          double a1, a2, b1, b2, con;
+          double a1;
+          double a2;
+          double b1;
+          double b2;
+          double con;
 
           con = r_v[1] * SPLIT;
           a1 = con - r_v[1];
@@ -3272,7 +3639,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         }
         {
           /* Compute double_double = double * double. */
-          double a1, a2, b1, b2, con;
+          double a1;
+          double a2;
+          double b1;
+          double b2;
+          double con;
 
           con = r_v[0] * SPLIT;
           a1 = con - r_v[0];
@@ -3289,7 +3660,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
-          double s1, s2, t1, t2;
+          double s1;
+          double s2;
+          double t1;
+          double t2;
 
           /* Add two hi words. */
           s1 = head_t1 + head_t2;
@@ -3317,9 +3691,12 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         tail_tmp2[1] = tail_t1;
       }                                /* tmp2 = r*beta */
       {
-        double head_t, tail_t;
-        double head_a, tail_a;
-        double head_b, tail_b;
+        double head_t;
+        double tail_t;
+        double head_a;
+        double tail_a;
+        double head_b;
+        double tail_b;
         /* Real part */
         head_a = head_tmp1[0];
         tail_a = tail_tmp1[0];
@@ -3328,7 +3705,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
-          double s1, s2, t1, t2;
+          double s1;
+          double s2;
+          double t1;
+          double t2;
 
           /* Add two hi words. */
           s1 = head_a + head_b;
@@ -3362,7 +3742,10 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
         {
           /* Compute double-double = double-double + double-double. */
           double bv;
-          double s1, s2, t1, t2;
+          double s1;
+          double s2;
+          double t1;
+          double t2;
 
           /* Add two hi words. */
           s1 = head_a + head_b;

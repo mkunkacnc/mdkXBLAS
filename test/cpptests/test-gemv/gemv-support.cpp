@@ -721,12 +721,17 @@ void sge_copy_matrix(enum blas_order_type order, int m, int n, float *a,
                      int lda, float *b, int ldb)
 {
 
-  int ai, aij;
-  int bi, bij;
-  int incai, incaij;
-  int incbi, incbij;
+  int ai;
+  int aij;
+  int bi;
+  int bij;
+  int incai;
+  int incaij;
+  int incbi;
+  int incbij;
 
-  int i, j;
+  int i;
+  int j;
 
   float elem;
   float *a_i = (float *)a;
@@ -761,12 +766,17 @@ void dge_copy_matrix(enum blas_order_type order, int m, int n, double *a,
                      int lda, double *b, int ldb)
 {
 
-  int ai, aij;
-  int bi, bij;
-  int incai, incaij;
-  int incbi, incbij;
+  int ai;
+  int aij;
+  int bi;
+  int bij;
+  int incai;
+  int incaij;
+  int incbi;
+  int incbij;
 
-  int i, j;
+  int i;
+  int j;
 
   double elem;
   double *a_i = (double *)a;
@@ -801,12 +811,17 @@ void cge_copy_matrix(enum blas_order_type order, int m, int n, void *a,
                      int lda, void *b, int ldb)
 {
 
-  int ai, aij;
-  int bi, bij;
-  int incai, incaij;
-  int incbi, incbij;
+  int ai;
+  int aij;
+  int bi;
+  int bij;
+  int incai;
+  int incaij;
+  int incbi;
+  int incbij;
 
-  int i, j;
+  int i;
+  int j;
 
   float elem[2];
   float *a_i = (float *) a;
@@ -843,12 +858,17 @@ void zge_copy_matrix(enum blas_order_type order, int m, int n, void *a,
                      int lda, void *b, int ldb)
 {
 
-  int ai, aij;
-  int bi, bij;
-  int incai, incaij;
-  int incbi, incbij;
+  int ai;
+  int aij;
+  int bi;
+  int bij;
+  int incai;
+  int incaij;
+  int incbi;
+  int incbij;
 
-  int i, j;
+  int i;
+  int j;
 
   double elem[2];
   double *a_i = (double *) a;
@@ -885,9 +905,12 @@ void zge_copy_matrix(enum blas_order_type order, int m, int n, void *a,
 void sge_print_matrix(float *a, int m, int n, int lda,
                       enum blas_order_type order, const char *name)
 {
-  int ai, aij;
-  int incai, incaij;
-  int i, j;
+  int ai;
+  int aij;
+  int incai;
+  int incaij;
+  int i;
+  int j;
 
   const float *a_i = (float *)a;
 
@@ -919,9 +942,12 @@ void sge_print_matrix(float *a, int m, int n, int lda,
 void dge_print_matrix(double *a, int m, int n, int lda,
                       enum blas_order_type order, const char *name)
 {
-  int ai, aij;
-  int incai, incaij;
-  int i, j;
+  int ai;
+  int aij;
+  int incai;
+  int incaij;
+  int i;
+  int j;
 
   const double *a_i = (double *)a;
 
@@ -953,9 +979,12 @@ void dge_print_matrix(double *a, int m, int n, int lda,
 void cge_print_matrix(void *a, int m, int n, int lda,
                       enum blas_order_type order, const char *name)
 {
-  int ai, aij;
-  int incai, incaij;
-  int i, j;
+  int ai;
+  int aij;
+  int incai;
+  int incaij;
+  int i;
+  int j;
 
   const float *a_i = (float *) a;
 
@@ -987,9 +1016,12 @@ void cge_print_matrix(void *a, int m, int n, int lda,
 void zge_print_matrix(void *a, int m, int n, int lda,
                       enum blas_order_type order, const char *name)
 {
-  int ai, aij;
-  int incai, incaij;
-  int i, j;
+  int ai;
+  int aij;
+  int incai;
+  int incaij;
+  int i;
+  int j;
 
   const double *a_i = (double *) a;
 

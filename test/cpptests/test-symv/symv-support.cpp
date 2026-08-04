@@ -373,9 +373,13 @@ void zsy_copy_row(enum blas_order_type order, enum blas_uplo_type uplo, int n,
 void ssy_print_matrix(float *a, int n, int lda,
                       enum blas_order_type order, enum blas_uplo_type uplo)
 {
-  int ai, aij;
-  int incai, incaij1, incaij2;
-  int i, j;
+  int ai;
+  int aij;
+  int incai;
+  int incaij1;
+  int incaij2;
+  int i;
+  int j;
 
   float a_elem;
   const float *a_i = (float *)a;
@@ -412,9 +416,13 @@ void ssy_print_matrix(float *a, int n, int lda,
 void dsy_print_matrix(double *a, int n, int lda,
                       enum blas_order_type order, enum blas_uplo_type uplo)
 {
-  int ai, aij;
-  int incai, incaij1, incaij2;
-  int i, j;
+  int ai;
+  int aij;
+  int incai;
+  int incaij1;
+  int incaij2;
+  int i;
+  int j;
 
   double a_elem;
   const double *a_i = (double *)a;
@@ -451,9 +459,13 @@ void dsy_print_matrix(double *a, int n, int lda,
 void csy_print_matrix(void *a, int n, int lda,
                       enum blas_order_type order, enum blas_uplo_type uplo)
 {
-  int ai, aij;
-  int incai, incaij1, incaij2;
-  int i, j;
+  int ai;
+  int aij;
+  int incai;
+  int incaij1;
+  int incaij2;
+  int i;
+  int j;
 
   float a_elem[2];
   const float *a_i = (float *) a;
@@ -492,9 +504,13 @@ void csy_print_matrix(void *a, int n, int lda,
 void zsy_print_matrix(void *a, int n, int lda,
                       enum blas_order_type order, enum blas_uplo_type uplo)
 {
-  int ai, aij;
-  int incai, incaij1, incaij2;
-  int i, j;
+  int ai;
+  int aij;
+  int incai;
+  int incaij1;
+  int incaij2;
+  int i;
+  int j;
 
   double a_elem[2];
   const double *a_i = (double *) a;

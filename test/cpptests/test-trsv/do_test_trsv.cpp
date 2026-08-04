@@ -97,7 +97,8 @@ double do_test_dtrsv_s(int n,
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
   int lda_val, lda = 0;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -662,7 +663,8 @@ double do_test_ztrsv_c(int n,
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
   int lda_val, lda = 0;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -1262,7 +1264,8 @@ double do_test_ctrsv_s(int n,
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
   int lda_val, lda = 0;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -1860,7 +1863,8 @@ double do_test_ztrsv_d(int n,
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
   int lda_val, lda = 0;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -2459,7 +2463,8 @@ double do_test_strsv_x(int n,
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
   int lda_val, lda = 0;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -3045,7 +3050,8 @@ double do_test_dtrsv_x(int n,
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
   int lda_val, lda = 0;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -3632,7 +3638,8 @@ double do_test_dtrsv_s_x(int n,
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
   int lda_val, lda = 0;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -4218,7 +4225,8 @@ double do_test_ctrsv_x(int n,
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
   int lda_val, lda = 0;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -4839,7 +4847,8 @@ double do_test_ztrsv_x(int n,
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
   int lda_val, lda = 0;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -5463,7 +5472,8 @@ double do_test_ztrsv_c_x(int n,
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
   int lda_val, lda = 0;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -6087,7 +6097,8 @@ double do_test_ctrsv_s_x(int n,
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
   int lda_val, lda = 0;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -6708,7 +6719,8 @@ double do_test_ztrsv_d_x(int n,
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
   int lda_val, lda = 0;                /* for testing different values for lda */
-  int incx_val, incx;                /* for testing different inc values */
+  int incx_val;                /* for testing different inc values */
+  int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -7249,13 +7261,20 @@ int main_trsv(int argc, char **argv)
 int main(int argc, char **argv)
 #endif
 {
-  int nsizes, ntests, debug;
-  double thresh, test_prob;
-  double total_min_ratio, total_max_ratio;
+  int nsizes;
+  int ntests;
+  int debug;
+  double thresh;
+  double test_prob;
+  double total_min_ratio;
+  double total_max_ratio;
   int total_bad_ratios;
-  int seed, num_bad_ratio, num_tests;
+  int seed;
+  int num_bad_ratio;
+  int num_tests;
   int total_tests, nr_failed_routines = 0, nr_routines = 0;
-  double min_ratio, max_ratio;
+  double min_ratio;
+  double max_ratio;
   const char *base_routine = "trsv";
   const char *fname;
   int n;

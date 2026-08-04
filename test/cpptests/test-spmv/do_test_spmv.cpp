@@ -63,37 +63,46 @@ void do_test_dspmv_d_s(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   double rin;
   double rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -433,37 +442,46 @@ void do_test_dspmv_s_d(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   double rin;
   double rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -803,37 +821,46 @@ void do_test_dspmv_s_s(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   double rin;
   double rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -1173,17 +1200,21 @@ void do_test_zspmv_z_c(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -1196,14 +1227,18 @@ void do_test_zspmv_z_c(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -1550,17 +1585,21 @@ void do_test_zspmv_c_z(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -1573,14 +1612,18 @@ void do_test_zspmv_c_z(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -1927,17 +1970,21 @@ void do_test_zspmv_c_c(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -1950,14 +1997,18 @@ void do_test_zspmv_c_c(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -2304,17 +2355,21 @@ void do_test_cspmv_c_s(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -2327,14 +2382,18 @@ void do_test_cspmv_c_s(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -2681,17 +2740,21 @@ void do_test_cspmv_s_c(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -2704,14 +2767,18 @@ void do_test_cspmv_s_c(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -3058,17 +3125,21 @@ void do_test_cspmv_s_s(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -3081,14 +3152,18 @@ void do_test_cspmv_s_s(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -3435,17 +3510,21 @@ void do_test_zspmv_z_d(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -3458,14 +3537,18 @@ void do_test_zspmv_z_d(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -3812,17 +3895,21 @@ void do_test_zspmv_d_z(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -3835,14 +3922,18 @@ void do_test_zspmv_d_z(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -4189,17 +4280,21 @@ void do_test_zspmv_d_d(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -4212,14 +4307,18 @@ void do_test_zspmv_d_d(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -4566,37 +4665,46 @@ void do_test_sspmv_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   float rin;
   float rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -4958,37 +5066,46 @@ void do_test_dspmv_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   double rin;
   double rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -5350,17 +5467,21 @@ void do_test_cspmv_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -5373,14 +5494,18 @@ void do_test_cspmv_x(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -5749,17 +5874,21 @@ void do_test_zspmv_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -5772,14 +5901,18 @@ void do_test_zspmv_x(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -6149,37 +6282,46 @@ void do_test_dspmv_d_s_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   double rin;
   double rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -6542,37 +6684,46 @@ void do_test_dspmv_s_d_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   double rin;
   double rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -6935,37 +7086,46 @@ void do_test_dspmv_s_s_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
   double rin;
   double rout;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -7328,17 +7488,21 @@ void do_test_zspmv_z_c_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -7351,14 +7515,18 @@ void do_test_zspmv_z_c_x(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -7728,17 +7896,21 @@ void do_test_zspmv_c_z_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -7751,14 +7923,18 @@ void do_test_zspmv_c_z_x(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -8128,17 +8304,21 @@ void do_test_zspmv_c_c_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -8151,14 +8331,18 @@ void do_test_zspmv_c_c_x(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -8528,17 +8712,21 @@ void do_test_cspmv_c_s_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -8551,14 +8739,18 @@ void do_test_cspmv_c_s_x(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -8928,17 +9120,21 @@ void do_test_cspmv_s_c_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -8951,14 +9147,18 @@ void do_test_cspmv_s_c_x(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -9328,17 +9528,21 @@ void do_test_cspmv_s_s_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -9351,14 +9555,18 @@ void do_test_cspmv_s_s_x(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -9728,17 +9936,21 @@ void do_test_zspmv_z_d_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -9751,14 +9963,18 @@ void do_test_zspmv_z_d_x(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -10128,17 +10344,21 @@ void do_test_zspmv_d_z_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -10151,14 +10371,18 @@ void do_test_zspmv_d_z_x(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -10528,17 +10752,21 @@ void do_test_zspmv_d_d_x(int n,
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -10551,14 +10779,18 @@ void do_test_zspmv_d_d_x(int n,
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -10923,13 +11155,20 @@ int main_spmv(int argc, char **argv)
 int main(int argc, char **argv)
 #endif
 {
-  int nsizes, ntests, debug;
-  double thresh, test_prob;
-  double total_min_ratio, total_max_ratio;
+  int nsizes;
+  int ntests;
+  int debug;
+  double thresh;
+  double test_prob;
+  double total_min_ratio;
+  double total_max_ratio;
   int total_bad_ratios;
-  int seed, num_bad_ratio, num_tests;
+  int seed;
+  int num_bad_ratio;
+  int num_tests;
   int total_tests, nr_failed_routines = 0, nr_routines = 0;
-  double min_ratio, max_ratio;
+  double min_ratio;
+  double max_ratio;
   const char *base_routine = "spmv";
   const char *fname;
   int n;

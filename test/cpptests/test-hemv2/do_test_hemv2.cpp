@@ -65,14 +65,17 @@ void do_test_zhemv2_z_c
   const char fname[] = "do_test_zhemv2_z_c";
   int i;
   int yi;
-  int incyi, yi0;
+  int incyi;
+  int yi0;
   int test_count;
   int bad_ratio_count;
   int ri;
   int incri = 1;
-  int incx, incy;
+  int incx;
+  int incy;
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
@@ -84,14 +87,19 @@ void do_test_zhemv2_z_c
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
 
 
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -457,14 +465,17 @@ void do_test_zhemv2_c_z
   const char fname[] = "do_test_zhemv2_c_z";
   int i;
   int yi;
-  int incyi, yi0;
+  int incyi;
+  int yi0;
   int test_count;
   int bad_ratio_count;
   int ri;
   int incri = 1;
-  int incx, incy;
+  int incx;
+  int incy;
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
@@ -476,14 +487,19 @@ void do_test_zhemv2_c_z
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
 
 
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -849,14 +865,17 @@ void do_test_zhemv2_c_c
   const char fname[] = "do_test_zhemv2_c_c";
   int i;
   int yi;
-  int incyi, yi0;
+  int incyi;
+  int yi0;
   int test_count;
   int bad_ratio_count;
   int ri;
   int incri = 1;
-  int incx, incy;
+  int incx;
+  int incy;
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
@@ -868,14 +887,19 @@ void do_test_zhemv2_c_c
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
 
 
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -1241,14 +1265,17 @@ void do_test_chemv2_c_s
   const char fname[] = "do_test_chemv2_c_s";
   int i;
   int yi;
-  int incyi, yi0;
+  int incyi;
+  int yi0;
   int test_count;
   int bad_ratio_count;
   int ri;
   int incri = 1;
-  int incx, incy;
+  int incx;
+  int incy;
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
@@ -1260,14 +1287,19 @@ void do_test_chemv2_c_s
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
 
 
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -1633,14 +1665,17 @@ void do_test_zhemv2_z_d
   const char fname[] = "do_test_zhemv2_z_d";
   int i;
   int yi;
-  int incyi, yi0;
+  int incyi;
+  int yi0;
   int test_count;
   int bad_ratio_count;
   int ri;
   int incri = 1;
-  int incx, incy;
+  int incx;
+  int incy;
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
@@ -1652,14 +1687,19 @@ void do_test_zhemv2_z_d
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
 
 
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -2025,14 +2065,17 @@ void do_test_chemv2_x
   const char fname[] = "do_test_chemv2_x";
   int i;
   int yi;
-  int incyi, yi0;
+  int incyi;
+  int yi0;
   int test_count;
   int bad_ratio_count;
   int ri;
   int incri = 1;
-  int incx, incy;
+  int incx;
+  int incy;
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
@@ -2044,14 +2087,19 @@ void do_test_chemv2_x
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
 
   int prec_val;
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -2439,14 +2487,17 @@ void do_test_zhemv2_x
   const char fname[] = "do_test_zhemv2_x";
   int i;
   int yi;
-  int incyi, yi0;
+  int incyi;
+  int yi0;
   int test_count;
   int bad_ratio_count;
   int ri;
   int incri = 1;
-  int incx, incy;
+  int incx;
+  int incy;
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
@@ -2458,14 +2509,19 @@ void do_test_zhemv2_x
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
 
   int prec_val;
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -2853,14 +2909,17 @@ void do_test_zhemv2_z_c_x
   const char fname[] = "do_test_zhemv2_z_c_x";
   int i;
   int yi;
-  int incyi, yi0;
+  int incyi;
+  int yi0;
   int test_count;
   int bad_ratio_count;
   int ri;
   int incri = 1;
-  int incx, incy;
+  int incx;
+  int incy;
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
@@ -2872,14 +2931,19 @@ void do_test_zhemv2_z_c_x
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
 
   int prec_val;
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -3267,14 +3331,17 @@ void do_test_zhemv2_c_z_x
   const char fname[] = "do_test_zhemv2_c_z_x";
   int i;
   int yi;
-  int incyi, yi0;
+  int incyi;
+  int yi0;
   int test_count;
   int bad_ratio_count;
   int ri;
   int incri = 1;
-  int incx, incy;
+  int incx;
+  int incy;
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
@@ -3286,14 +3353,19 @@ void do_test_zhemv2_c_z_x
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
 
   int prec_val;
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -3681,14 +3753,17 @@ void do_test_zhemv2_c_c_x
   const char fname[] = "do_test_zhemv2_c_c_x";
   int i;
   int yi;
-  int incyi, yi0;
+  int incyi;
+  int yi0;
   int test_count;
   int bad_ratio_count;
   int ri;
   int incri = 1;
-  int incx, incy;
+  int incx;
+  int incy;
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
@@ -3700,14 +3775,19 @@ void do_test_zhemv2_c_c_x
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
 
   int prec_val;
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -4095,14 +4175,17 @@ void do_test_chemv2_c_s_x
   const char fname[] = "do_test_chemv2_c_s_x";
   int i;
   int yi;
-  int incyi, yi0;
+  int incyi;
+  int yi0;
   int test_count;
   int bad_ratio_count;
   int ri;
   int incri = 1;
-  int incx, incy;
+  int incx;
+  int incy;
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
@@ -4114,14 +4197,19 @@ void do_test_chemv2_c_s_x
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
 
   int prec_val;
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -4509,14 +4597,17 @@ void do_test_zhemv2_z_d_x
   const char fname[] = "do_test_zhemv2_z_d_x";
   int i;
   int yi;
-  int incyi, yi0;
+  int incyi;
+  int yi0;
   int test_count;
   int bad_ratio_count;
   int ri;
   int incri = 1;
-  int incx, incy;
+  int incx;
+  int incy;
   double ratio;
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
 
@@ -4528,14 +4619,19 @@ void do_test_zhemv2_z_d_x
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
 
   int prec_val;
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -4921,13 +5017,20 @@ int main_hemv2(int argc, char **argv)
 int main(int argc, char **argv)
 #endif
 {
-  int nsizes, ntests, debug;
-  double thresh, test_prob;
-  double total_min_ratio, total_max_ratio;
+  int nsizes;
+  int ntests;
+  int debug;
+  double thresh;
+  double test_prob;
+  double total_min_ratio;
+  double total_max_ratio;
   int total_bad_ratios;
-  int seed, num_bad_ratio, num_tests;
+  int seed;
+  int num_bad_ratio;
+  int num_tests;
   int total_tests, nr_failed_routines = 0, nr_routines = 0;
-  double min_ratio, max_ratio;
+  double min_ratio;
+  double max_ratio;
   const char *base_routine = "hemv2";
   const char *fname;
   int n;

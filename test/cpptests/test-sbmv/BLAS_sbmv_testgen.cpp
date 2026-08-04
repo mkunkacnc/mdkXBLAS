@@ -87,21 +87,31 @@ void BLAS_ssbmv_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   float y_elem;
   float a_elem;
   float x_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   float *a_vec;
   float *x_vec;
@@ -344,21 +354,31 @@ void BLAS_dsbmv_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   double y_elem;
   double a_elem;
   double x_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   double *a_vec;
   double *x_vec;
@@ -601,16 +621,25 @@ void BLAS_csbmv_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   float y_elem[2];
   float a_elem[2];
@@ -874,16 +903,25 @@ void BLAS_zsbmv_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   double y_elem[2];
   double a_elem[2];
@@ -1147,16 +1185,25 @@ void BLAS_csbmv_s_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   float y_elem[2];
   float a_elem;
@@ -1436,16 +1483,25 @@ void BLAS_csbmv_s_c_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   float y_elem[2];
   float a_elem;
@@ -1718,16 +1774,25 @@ void BLAS_csbmv_c_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   float y_elem[2];
   float a_elem[2];
@@ -2000,16 +2065,25 @@ void BLAS_zsbmv_d_d_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   double y_elem[2];
   double a_elem;
@@ -2289,16 +2363,25 @@ void BLAS_zsbmv_d_z_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   double y_elem[2];
   double a_elem;
@@ -2571,16 +2654,25 @@ void BLAS_zsbmv_z_d_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   double y_elem[2];
   double a_elem[2];
@@ -2853,21 +2945,31 @@ void BLAS_dsbmv_s_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   double y_elem;
   float a_elem;
   float x_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   float *a_vec;
   float *x_vec;
@@ -3111,21 +3213,31 @@ void BLAS_dsbmv_s_d_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   double y_elem;
   float a_elem;
   double x_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   float *a_vec;
   double *x_vec;
@@ -3369,21 +3481,31 @@ void BLAS_dsbmv_d_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   double y_elem;
   double a_elem;
   float x_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   double *a_vec;
   float *x_vec;
@@ -3626,16 +3748,25 @@ void BLAS_zsbmv_c_c_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   double y_elem[2];
   float a_elem[2];
@@ -3899,16 +4030,25 @@ void BLAS_zsbmv_c_z_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   double y_elem[2];
   float a_elem[2];
@@ -4172,16 +4312,25 @@ void BLAS_zsbmv_z_c_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
+  int i;
+  int j;
   int yi;
   int xi;
   int ri;
-  int alpha_fixed, beta_fixed;
-  int incyi, incri;
-  int incxi, incx_veci, x_starti, y_starti;
-  int inca, inca_vec, a_veci;
+  int alpha_fixed;
+  int beta_fixed;
+  int incyi;
+  int incri;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int y_starti;
+  int inca;
+  int inca_vec;
+  int a_veci;
   int n_i;
-  int n_elements, x_fixed;
+  int n_elements;
+  int x_fixed;
 
   double y_elem[2];
   double a_elem[2];

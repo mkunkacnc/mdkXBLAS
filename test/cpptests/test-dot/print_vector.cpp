@@ -5,7 +5,8 @@
 void sprint_vector(const float *x, int n, int inc, const char *name)
 {
   const float *x_i = (float *)x;
-  int i, xi;
+  int i;
+  int xi;
 
 
   xi = (inc >= 0) ? 0 : (1 - n) * inc;
@@ -25,7 +26,8 @@ void sprint_vector(const float *x, int n, int inc, const char *name)
 void dprint_vector(const double *x, int n, int inc, const char *name)
 {
   const double *x_i = (double *)x;
-  int i, xi;
+  int i;
+  int xi;
 
 
   xi = (inc >= 0) ? 0 : (1 - n) * inc;
@@ -45,7 +47,8 @@ void dprint_vector(const double *x, int n, int inc, const char *name)
 void cprint_vector(const void *x, int n, int inc, const char *name)
 {
   const float *x_i = (float *) x;
-  int i, xi;
+  int i;
+  int xi;
 
   inc *= 2;
   xi = (inc >= 0) ? 0 : (1 - n) * inc;
@@ -65,7 +68,8 @@ void cprint_vector(const void *x, int n, int inc, const char *name)
 void zprint_vector(const void *x, int n, int inc, const char *name)
 {
   const double *x_i = (double *) x;
-  int i, xi;
+  int i;
+  int xi;
 
   inc *= 2;
   xi = (inc >= 0) ? 0 : (1 - n) * inc;

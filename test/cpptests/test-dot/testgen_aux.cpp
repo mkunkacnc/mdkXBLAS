@@ -5,7 +5,8 @@
 
 double power(int i1, int i2)
 {
-  int i, j;
+  int i;
+  int j;
   double r = 1.0;
 
   if (i2 < 0)
@@ -27,7 +28,9 @@ double xrand(int *is)
  * linear congruential generator is 2^26, according to Knuth vol. 2.
  */
 {
-  double s1, s2, ret_val;
+  double s1;
+  double s2;
+  double ret_val;
 #define f7    78125.0           /* 5.d0 ** 7 */
 #define r26   1.4901161193847656e-8     /* 2^(-26) */
 #define r28   3.7252902984619141e-9     /* 2^(-28) */
@@ -53,8 +56,10 @@ int FixedBits(double r_true_l, double r_true_t)
 {
 
   int b;                        /* Number of fixed bits in r_true */
-  int i, k;
-  double tmp_l, tmp_t;
+  int i;
+  int k;
+  double tmp_l;
+  double tmp_t;
   double res[5], t, temp;
 
   b = k = 0;
@@ -66,7 +71,9 @@ int FixedBits(double r_true_l, double r_true_t)
       t = -res[i];
       {
         /* Compute double-double = double-double + double. */
-        double e, t1, t2;
+        double e;
+        double t1;
+        double t2;
 
         /* Knuth trick. */
         t1 = tmp_l + t;
@@ -117,7 +124,9 @@ void ddadd(double dda_l, double dda_t, double ddb_l, double ddb_t,
  * Taken from D. H. Bailey's ddfun90.f.
  *
  */
-  double e, t1, t2;
+  double e;
+  double t1;
+  double t2;
 
   /* Compute dda + ddb using Knuth's trick. */
   t1 = dda_l + ddb_l;
@@ -142,7 +151,18 @@ void ddmuld(double dda_l, double dda_t, double db,
  * Taken from D. H. Bailey's ddfun90.f.
  *
  */
-  double a1, a2, b1, b2, cona, conb, c11, c21, c2, e, t1, t2;
+  double a1;
+  double a2;
+  double b1;
+  double b2;
+  double cona;
+  double conb;
+  double c11;
+  double c21;
+  double c2;
+  double e;
+  double t1;
+  double t2;
 
   /* This splits dda(1) and db into high-order and low-order words. */
   cona = dda_l * SPLIT;
@@ -182,8 +202,24 @@ void dddiv(double dda_l, double dda_t,
  * Taken from D. H. Bailey's ddfun90.f.
  *
  */
-  double a1, a2, b1, b2, cona, conb, c11, c2, c21, e;
-  double s1, s2, t1, t2, t11, t12, t21, t22;
+  double a1;
+  double a2;
+  double b1;
+  double b2;
+  double cona;
+  double conb;
+  double c11;
+  double c2;
+  double c21;
+  double e;
+  double s1;
+  double s2;
+  double t1;
+  double t2;
+  double t11;
+  double t12;
+  double t21;
+  double t22;
 
   /* Compute a DP approximation to the quotient. */
   s1 = dda_l / ddb_l;
@@ -237,7 +273,12 @@ void z_ddmuld(double *dda_l, double *dda_t, double *db,
  * yield the complex DD product DDC.
  *
  */
-  double t_l, t_t, t1_l, t1_t, t2_l, t2_t;
+  double t_l;
+  double t_t;
+  double t1_l;
+  double t1_t;
+  double t2_l;
+  double t2_t;
   /* real part */
   ddmuld(dda_l[0], dda_t[0], db[0], &t1_l, &t1_t);
   ddmuld(dda_l[1], dda_t[1], -db[1], &t2_l, &t2_t);
@@ -264,7 +305,8 @@ void z_dddivd(double *dda_l, double *dda_t, double *db,
  */
   double db_conj[2];
   double t_l[2], t_t[2];
-  double d_l, d_t;
+  double d_l;
+  double d_t;
 
   /* b_r^2 + b_i^2 in double-double */
   d_l = db[0];

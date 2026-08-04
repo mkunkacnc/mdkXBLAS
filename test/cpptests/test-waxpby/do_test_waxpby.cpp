@@ -87,9 +87,17 @@ double do_test_dwaxpby_d_s(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -128,9 +136,14 @@ double do_test_dwaxpby_d_s(int n,
   /* added by DY */
   double x_genj;
   float y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -144,7 +157,8 @@ double do_test_dwaxpby_d_s(int n,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -581,9 +595,17 @@ double do_test_dwaxpby_s_d(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -622,9 +644,14 @@ double do_test_dwaxpby_s_d(int n,
   /* added by DY */
   float x_genj;
   double y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -638,7 +665,8 @@ double do_test_dwaxpby_s_d(int n,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -1075,9 +1103,17 @@ double do_test_dwaxpby_s_s(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -1116,9 +1152,14 @@ double do_test_dwaxpby_s_s(int n,
   /* added by DY */
   float x_genj;
   float y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -1132,7 +1173,8 @@ double do_test_dwaxpby_s_s(int n,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -1580,9 +1622,17 @@ double do_test_zwaxpby_z_c(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -1621,9 +1671,14 @@ double do_test_zwaxpby_z_c(int n,
   /* added by DY */
   double x_genj[2];
   float y_genj[2];
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -1638,7 +1693,8 @@ double do_test_zwaxpby_z_c(int n,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -2091,9 +2147,17 @@ double do_test_zwaxpby_c_z(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -2132,9 +2196,14 @@ double do_test_zwaxpby_c_z(int n,
   /* added by DY */
   float x_genj[2];
   double y_genj[2];
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -2149,7 +2218,8 @@ double do_test_zwaxpby_c_z(int n,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -2602,9 +2672,17 @@ double do_test_zwaxpby_c_c(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -2643,9 +2721,14 @@ double do_test_zwaxpby_c_c(int n,
   /* added by DY */
   float x_genj[2];
   float y_genj[2];
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -2660,7 +2743,8 @@ double do_test_zwaxpby_c_c(int n,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -3131,9 +3215,17 @@ double do_test_cwaxpby_c_s(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -3172,9 +3264,14 @@ double do_test_cwaxpby_c_s(int n,
   /* added by DY */
   float x_genj[2];
   float y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -3189,7 +3286,8 @@ double do_test_cwaxpby_c_s(int n,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -3652,9 +3750,17 @@ double do_test_cwaxpby_s_c(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -3693,9 +3799,14 @@ double do_test_cwaxpby_s_c(int n,
   /* added by DY */
   float x_genj;
   float y_genj[2];
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -3710,7 +3821,8 @@ double do_test_cwaxpby_s_c(int n,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -4174,9 +4286,17 @@ double do_test_cwaxpby_s_s(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -4215,9 +4335,14 @@ double do_test_cwaxpby_s_s(int n,
   /* added by DY */
   float x_genj;
   float y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -4232,7 +4357,8 @@ double do_test_cwaxpby_s_s(int n,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -4702,9 +4828,17 @@ double do_test_zwaxpby_z_d(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -4743,9 +4877,14 @@ double do_test_zwaxpby_z_d(int n,
   /* added by DY */
   double x_genj[2];
   double y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -4760,7 +4899,8 @@ double do_test_zwaxpby_z_d(int n,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -5208,9 +5348,17 @@ double do_test_zwaxpby_d_z(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -5249,9 +5397,14 @@ double do_test_zwaxpby_d_z(int n,
   /* added by DY */
   double x_genj;
   double y_genj[2];
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -5266,7 +5419,8 @@ double do_test_zwaxpby_d_z(int n,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -5714,9 +5868,17 @@ double do_test_zwaxpby_d_d(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -5755,9 +5917,14 @@ double do_test_zwaxpby_d_d(int n,
   /* added by DY */
   double x_genj;
   double y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -5772,7 +5939,8 @@ double do_test_zwaxpby_d_d(int n,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -6229,9 +6397,17 @@ double do_test_swaxpby_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -6270,9 +6446,14 @@ double do_test_swaxpby_x(int n,
   /* added by DY */
   float x_genj;
   float y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -6286,7 +6467,8 @@ double do_test_swaxpby_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -6738,9 +6920,17 @@ double do_test_dwaxpby_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -6779,9 +6969,14 @@ double do_test_dwaxpby_x(int n,
   /* added by DY */
   double x_genj;
   double y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -6795,7 +6990,8 @@ double do_test_dwaxpby_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -7247,9 +7443,17 @@ double do_test_cwaxpby_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -7288,9 +7492,14 @@ double do_test_cwaxpby_x(int n,
   /* added by DY */
   float x_genj[2];
   float y_genj[2];
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -7305,7 +7514,8 @@ double do_test_cwaxpby_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -7764,9 +7974,17 @@ double do_test_zwaxpby_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -7805,9 +8023,14 @@ double do_test_zwaxpby_x(int n,
   /* added by DY */
   double x_genj[2];
   double y_genj[2];
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -7822,7 +8045,8 @@ double do_test_zwaxpby_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -8281,9 +8505,17 @@ double do_test_dwaxpby_d_s_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -8322,9 +8554,14 @@ double do_test_dwaxpby_d_s_x(int n,
   /* added by DY */
   double x_genj;
   float y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -8338,7 +8575,8 @@ double do_test_dwaxpby_d_s_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -8795,9 +9033,17 @@ double do_test_dwaxpby_s_d_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -8836,9 +9082,14 @@ double do_test_dwaxpby_s_d_x(int n,
   /* added by DY */
   float x_genj;
   double y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -8852,7 +9103,8 @@ double do_test_dwaxpby_s_d_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -9309,9 +9561,17 @@ double do_test_dwaxpby_s_s_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -9350,9 +9610,14 @@ double do_test_dwaxpby_s_s_x(int n,
   /* added by DY */
   float x_genj;
   float y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -9366,7 +9631,8 @@ double do_test_dwaxpby_s_s_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -9833,9 +10099,17 @@ double do_test_zwaxpby_z_c_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -9874,9 +10148,14 @@ double do_test_zwaxpby_z_c_x(int n,
   /* added by DY */
   double x_genj[2];
   float y_genj[2];
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -9891,7 +10170,8 @@ double do_test_zwaxpby_z_c_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -10364,9 +10644,17 @@ double do_test_zwaxpby_c_z_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -10405,9 +10693,14 @@ double do_test_zwaxpby_c_z_x(int n,
   /* added by DY */
   float x_genj[2];
   double y_genj[2];
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -10422,7 +10715,8 @@ double do_test_zwaxpby_c_z_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -10895,9 +11189,17 @@ double do_test_zwaxpby_c_c_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -10936,9 +11238,14 @@ double do_test_zwaxpby_c_c_x(int n,
   /* added by DY */
   float x_genj[2];
   float y_genj[2];
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -10953,7 +11260,8 @@ double do_test_zwaxpby_c_c_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -11443,9 +11751,17 @@ double do_test_cwaxpby_c_s_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -11484,9 +11800,14 @@ double do_test_cwaxpby_c_s_x(int n,
   /* added by DY */
   float x_genj[2];
   float y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -11501,7 +11822,8 @@ double do_test_cwaxpby_c_s_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -11984,9 +12306,17 @@ double do_test_cwaxpby_s_c_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -12025,9 +12355,14 @@ double do_test_cwaxpby_s_c_x(int n,
   /* added by DY */
   float x_genj;
   float y_genj[2];
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -12042,7 +12377,8 @@ double do_test_cwaxpby_s_c_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -12526,9 +12862,17 @@ double do_test_cwaxpby_s_s_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -12567,9 +12911,14 @@ double do_test_cwaxpby_s_s_x(int n,
   /* added by DY */
   float x_genj;
   float y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -12584,7 +12933,8 @@ double do_test_cwaxpby_s_s_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -13073,9 +13423,17 @@ double do_test_zwaxpby_z_d_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -13114,9 +13472,14 @@ double do_test_zwaxpby_z_d_x(int n,
   /* added by DY */
   double x_genj[2];
   double y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -13131,7 +13494,8 @@ double do_test_zwaxpby_z_d_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -13599,9 +13963,17 @@ double do_test_zwaxpby_d_z_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -13640,9 +14012,14 @@ double do_test_zwaxpby_d_z_x(int n,
   /* added by DY */
   double x_genj;
   double y_genj[2];
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -13657,7 +14034,8 @@ double do_test_zwaxpby_d_z_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -14125,9 +14503,17 @@ double do_test_zwaxpby_d_d_x(int n,
      variables */
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counter */
-  int ix, iy, iw;                /* use to index x, y, w respectively */
-  int incx_val, incy_val, incw_val; /* for testing different inc values */
-  int incx, incy, incw, gen_val, test_val;
+  int ix;                /* use to index x, y, w respectively */
+  int iy;
+  int iw;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incw_val;
+  int incx;
+  int incy;
+  int incw;
+  int gen_val;
+  int test_val;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -14166,9 +14552,14 @@ double do_test_zwaxpby_d_d_x(int n,
   /* added by DY */
   double x_genj;
   double y_genj;
-  int incy_gen, incx_gen, incw_gen;
-  int xgen_val, ygen_val, wgen_val;
-  int iymax, ixmax;
+  int incy_gen;
+  int incx_gen;
+  int incw_gen;
+  int xgen_val;
+  int ygen_val;
+  int wgen_val;
+  int iymax;
+  int ixmax;
   float xtemp;
   float ytemp;
   float atemp;
@@ -14183,7 +14574,8 @@ double do_test_zwaxpby_d_d_x(int n,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -14585,13 +14977,20 @@ int main_waxpby(int argc, char **argv)
 int main(int argc, char **argv)
 #endif
 {
-  int nsizes, ntests, debug;
-  double thresh, test_prob;
-  double total_min_ratio, total_max_ratio;
+  int nsizes;
+  int ntests;
+  int debug;
+  double thresh;
+  double test_prob;
+  double total_min_ratio;
+  double total_max_ratio;
   int total_bad_ratios;
-  int seed, num_bad_ratio, num_tests;
+  int seed;
+  int num_bad_ratio;
+  int num_tests;
   int total_tests, nr_failed_routines = 0, nr_routines = 0;
-  double min_ratio, max_ratio;
+  double min_ratio;
+  double max_ratio;
   const char *base_routine = "waxpby";
   const char *fname;
   int n;

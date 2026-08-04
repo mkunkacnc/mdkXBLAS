@@ -90,10 +90,13 @@ double do_test_dgemv2_d_s(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -139,7 +142,8 @@ double do_test_dgemv2_d_s(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -633,10 +637,13 @@ double do_test_dgemv2_s_d(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -682,7 +689,8 @@ double do_test_dgemv2_s_d(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -1175,10 +1183,13 @@ double do_test_dgemv2_s_s(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -1224,7 +1235,8 @@ double do_test_dgemv2_s_s(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -1717,10 +1729,13 @@ double do_test_zgemv2_z_c(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -1767,7 +1782,8 @@ double do_test_zgemv2_z_c(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -2266,10 +2282,13 @@ double do_test_zgemv2_c_z(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -2316,7 +2335,8 @@ double do_test_zgemv2_c_z(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -2815,10 +2835,13 @@ double do_test_zgemv2_c_c(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -2865,7 +2888,8 @@ double do_test_zgemv2_c_c(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -3364,10 +3388,13 @@ double do_test_cgemv2_c_s(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -3414,7 +3441,8 @@ double do_test_cgemv2_c_s(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -3913,10 +3941,13 @@ double do_test_cgemv2_s_c(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -3963,7 +3994,8 @@ double do_test_cgemv2_s_c(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -4460,10 +4492,13 @@ double do_test_cgemv2_s_s(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -4510,7 +4545,8 @@ double do_test_cgemv2_s_s(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -5007,10 +5043,13 @@ double do_test_zgemv2_z_d(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -5057,7 +5096,8 @@ double do_test_zgemv2_z_d(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -5556,10 +5596,13 @@ double do_test_zgemv2_d_z(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -5606,7 +5649,8 @@ double do_test_zgemv2_d_z(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -6104,10 +6148,13 @@ double do_test_zgemv2_d_d(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -6154,7 +6201,8 @@ double do_test_zgemv2_d_d(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -6652,10 +6700,13 @@ double do_test_sgemv2_x(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -6701,7 +6752,8 @@ double do_test_sgemv2_x(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -7214,10 +7266,13 @@ double do_test_dgemv2_x(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -7263,7 +7318,8 @@ double do_test_dgemv2_x(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -7777,10 +7833,13 @@ double do_test_cgemv2_x(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -7827,7 +7886,8 @@ double do_test_cgemv2_x(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -8346,10 +8406,13 @@ double do_test_zgemv2_x(int m, int n, int ntests, int *seed, double thresh,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -8396,7 +8459,8 @@ double do_test_zgemv2_x(int m, int n, int ntests, int *seed, double thresh,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -8916,10 +8980,13 @@ double do_test_dgemv2_d_s_x(int m, int n, int ntests, int *seed,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -8965,7 +9032,8 @@ double do_test_dgemv2_d_s_x(int m, int n, int ntests, int *seed,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -9481,10 +9549,13 @@ double do_test_dgemv2_s_d_x(int m, int n, int ntests, int *seed,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -9530,7 +9601,8 @@ double do_test_dgemv2_s_d_x(int m, int n, int ntests, int *seed,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -10045,10 +10117,13 @@ double do_test_dgemv2_s_s_x(int m, int n, int ntests, int *seed,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -10094,7 +10169,8 @@ double do_test_dgemv2_s_s_x(int m, int n, int ntests, int *seed,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -10609,10 +10685,13 @@ double do_test_zgemv2_z_c_x(int m, int n, int ntests, int *seed,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -10659,7 +10738,8 @@ double do_test_zgemv2_z_c_x(int m, int n, int ntests, int *seed,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -11180,10 +11260,13 @@ double do_test_zgemv2_c_z_x(int m, int n, int ntests, int *seed,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -11230,7 +11313,8 @@ double do_test_zgemv2_c_z_x(int m, int n, int ntests, int *seed,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -11751,10 +11835,13 @@ double do_test_zgemv2_c_c_x(int m, int n, int ntests, int *seed,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -11801,7 +11888,8 @@ double do_test_zgemv2_c_c_x(int m, int n, int ntests, int *seed,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -12322,10 +12410,13 @@ double do_test_cgemv2_c_s_x(int m, int n, int ntests, int *seed,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -12372,7 +12463,8 @@ double do_test_cgemv2_c_s_x(int m, int n, int ntests, int *seed,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -12893,10 +12985,13 @@ double do_test_cgemv2_s_c_x(int m, int n, int ntests, int *seed,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -12943,7 +13038,8 @@ double do_test_cgemv2_s_c_x(int m, int n, int ntests, int *seed,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -13462,10 +13558,13 @@ double do_test_cgemv2_s_s_x(int m, int n, int ntests, int *seed,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -13512,7 +13611,8 @@ double do_test_cgemv2_s_s_x(int m, int n, int ntests, int *seed,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -14031,10 +14131,13 @@ double do_test_zgemv2_z_d_x(int m, int n, int ntests, int *seed,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -14081,7 +14184,8 @@ double do_test_zgemv2_z_d_x(int m, int n, int ntests, int *seed,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -14602,10 +14706,13 @@ double do_test_zgemv2_d_z_x(int m, int n, int ntests, int *seed,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -14652,7 +14759,8 @@ double do_test_zgemv2_d_z_x(int m, int n, int ntests, int *seed,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -15172,10 +15280,13 @@ double do_test_zgemv2_d_d_x(int m, int n, int ntests, int *seed,
   /* Variables in the "x_val" form are loop vars for corresponding
      variables */
   int i;                        /* iterate through the repeating tests */
-  int j, k;                        /* multipurpose counters or variables */
+  int j;                        /* multipurpose counters or variables */
+  int k;
   int iy;                        /* use to index y */
-  int incx_val, incy_val; /* for testing different inc values */
-  int incx, incy;
+  int incx_val; /* for testing different inc values */
+  int incy_val;
+  int incx;
+  int incy;
   int incy_gen;                        /* for complex case inc=2, for real case inc=1 */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -15222,7 +15333,8 @@ double do_test_zgemv2_d_d_x(int m, int n, int ntests, int *seed,
   int lda_val;
   int lda;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count;                /* use for counting the number of testgen calls * 2 */
+  int count;                /* use for counting the number of testgen calls * 2 */
+  int old_count;
 
   FPU_FIX_DECL;
 
@@ -15665,18 +15777,26 @@ int main_gemv2(int argc, char **argv)
 int main(int argc, char **argv)
 #endif
 {
-  int nsizes, ntests, debug;
-  double thresh, test_prob;
-  double total_min_ratio, total_max_ratio;
+  int nsizes;
+  int ntests;
+  int debug;
+  double thresh;
+  double test_prob;
+  double total_min_ratio;
+  double total_max_ratio;
   int total_bad_ratios;
-  int seed, num_bad_ratio, num_tests;
+  int seed;
+  int num_bad_ratio;
+  int num_tests;
   int total_tests, nr_failed_routines = 0, nr_routines = 0;
-  double min_ratio, max_ratio;
+  double min_ratio;
+  double max_ratio;
   const char *base_routine = "gemv2";
   const char *fname;
   int n;
 
-  int m, i;
+  int m;
+  int i;
   int mn_pairs[NUMPAIRS][2] =
     { {0, 0}, {1, 0}, {0, 1}, {1, 1}, {1, 2}, {2, 1},
   {3, 1}, {2, 3}, {3, 3}, {2, 4}, {6, 6}, {10, 8}

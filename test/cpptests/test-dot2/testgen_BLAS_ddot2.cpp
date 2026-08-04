@@ -83,9 +83,16 @@ testgen_BLAS_ddot2(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int B, frees, y_free, i, k, s;
-  double a, rtmps;
-  double rtmpd, eps_out;
+  int B;
+  int frees;
+  int y_free;
+  int i;
+  int k;
+  int s;
+  double a;
+  double rtmps;
+  double rtmpd;
+  double eps_out;
   double f;
 
   if (alpha_flag == 0) *alpha = xrand(seed);
@@ -329,7 +336,8 @@ gen_y_to_cancel(int k, int n, enum blas_conj_type conj,
  */
 {
   int i;
-  double rtmp, f;
+  double rtmp;
+  double f;
 
   for (i = k; i < n; ++i) {
     rtmp = 0.0;

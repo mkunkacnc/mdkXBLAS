@@ -9,7 +9,9 @@ void che_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   int conj_flag;
   int i;
-  int ai, incai1, incai2;
+  int ai;
+  int incai1;
+  int incai2;
   int vi, incvi = 1;
 
   float a_elem[2];
@@ -65,7 +67,9 @@ void zhe_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   int conj_flag;
   int i;
-  int ai, incai1, incai2;
+  int ai;
+  int incai1;
+  int incai2;
   int vi, incvi = 1;
 
   double a_elem[2];
@@ -117,9 +121,13 @@ void zhe_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
 void che_print_matrix(void *a, int n, int lda,
                       enum blas_order_type order, enum blas_uplo_type uplo)
 {
-  int ai, aij;
-  int incai, incaij1, incaij2;
-  int i, j;
+  int ai;
+  int aij;
+  int incai;
+  int incaij1;
+  int incaij2;
+  int i;
+  int j;
 
   float a_elem[2];
   const float *a_i = (float *) a;
@@ -169,9 +177,13 @@ void che_print_matrix(void *a, int n, int lda,
 void zhe_print_matrix(void *a, int n, int lda,
                       enum blas_order_type order, enum blas_uplo_type uplo)
 {
-  int ai, aij;
-  int incai, incaij1, incaij2;
-  int i, j;
+  int ai;
+  int aij;
+  int incai;
+  int incaij1;
+  int incaij2;
+  int i;
+  int j;
 
   double a_elem[2];
   const double *a_i = (double *) a;
@@ -229,7 +241,9 @@ void sskew_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   int conj_flag;
   int i;
-  int ai, incai1, incai2;
+  int ai;
+  int incai1;
+  int incai2;
   int vi, incvi = 1;
 
   float a_elem;
@@ -284,7 +298,9 @@ void dskew_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   int conj_flag;
   int i;
-  int ai, incai1, incai2;
+  int ai;
+  int incai1;
+  int incai2;
   int vi, incvi = 1;
 
   double a_elem;
@@ -340,7 +356,9 @@ void sskew_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   int conj_flag;
   int i;
-  int ai, incai1, incai2;
+  int ai;
+  int incai1;
+  int incai2;
   int vi, incvi = 1;
 
   float a_elem;
@@ -395,7 +413,9 @@ void dskew_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
 {
   int conj_flag;
   int i;
-  int ai, incai1, incai2;
+  int ai;
+  int incai1;
+  int incai2;
   int vi, incvi = 1;
 
   double a_elem;

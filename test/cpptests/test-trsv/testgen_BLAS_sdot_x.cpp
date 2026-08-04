@@ -15,13 +15,18 @@ void r_truth(enum blas_conj_type conj, int n, float alpha, const double *x_l, co
   float alpha_i = alpha;
   float beta_i = beta;
   double dt = (double) alpha_i;
-  double x_ii_l, x_ii_t;
+  double x_ii_l;
+  double x_ii_t;
   float y_ii;
   float r_v;
-  double prod_l, prod_t;
-  double sum_l, sum_t;
-  double tmp1_l, tmp1_t;
-  double tmp2_l, tmp2_t;
+  double prod_l;
+  double prod_t;
+  double sum_l;
+  double sum_t;
+  double tmp1_l;
+  double tmp1_t;
+  double tmp2_l;
+  double tmp2_t;
 
   /*printf("r_truth0> r=%e\n", *r); */
 
@@ -74,9 +79,12 @@ gen_y_to_cancel(int k, int n, enum blas_conj_type conj,
 {
   int i;
   float rtmp = 0.0;
-  double x_i_l, x_i_t;
-  double r_true_l, r_true_t;
-  double tmp_l, tmp_t;
+  double x_i_l;
+  double x_i_t;
+  double r_true_l;
+  double r_true_t;
+  double tmp_l;
+  double tmp_t;
 
   for (i = k; i < n; ++i) {
     r_truth(conj, i, alpha, x_l, x_t, 0.0, y, &rtmp, &r_true_l, &r_true_t);
@@ -106,7 +114,8 @@ gen_r_to_cancel(int n, enum blas_conj_type conj,
  */
 {
   float rtmp;
-  double r_true_l, r_true_t;
+  double r_true_l;
+  double r_true_t;
 
   if (beta == 0.0) {
     *r = xrand(seed);
@@ -187,10 +196,17 @@ testgen_BLAS_sdot_x(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int B, frees, y_free, i, k, s;
+  int B;
+  int frees;
+  int y_free;
+  int i;
+  int k;
+  int s;
   float rtmps;
-  double rtmpd, f;
-  double tmp_l, tmp_t;
+  double rtmpd;
+  double f;
+  double tmp_l;
+  double tmp_t;
 
   if (n_fix2 + n_mix < n)
     BLAS_error("testgen_BLAS_sdot_x", 0, 0, NULL);

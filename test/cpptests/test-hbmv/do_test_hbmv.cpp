@@ -67,19 +67,23 @@ void do_test_zhbmv_z_c
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   int k;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -92,15 +96,20 @@ void do_test_zhbmv_z_c
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -483,19 +492,23 @@ void do_test_zhbmv_c_z
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   int k;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -508,15 +521,20 @@ void do_test_zhbmv_c_z
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -899,19 +917,23 @@ void do_test_zhbmv_c_c
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   int k;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -924,15 +946,20 @@ void do_test_zhbmv_c_c
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -1315,19 +1342,23 @@ void do_test_chbmv_c_s
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   int k;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -1340,15 +1371,20 @@ void do_test_chbmv_c_s
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -1731,19 +1767,23 @@ void do_test_zhbmv_z_d
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   int k;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -1756,15 +1796,20 @@ void do_test_zhbmv_z_d
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
 
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -2147,19 +2192,23 @@ void do_test_chbmv_x
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   int k;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -2172,15 +2221,20 @@ void do_test_chbmv_x
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -2584,19 +2638,23 @@ void do_test_zhbmv_x
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   int k;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -2609,15 +2667,20 @@ void do_test_zhbmv_x
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -3022,19 +3085,23 @@ void do_test_zhbmv_z_c_x
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   int k;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -3047,15 +3114,20 @@ void do_test_zhbmv_z_c_x
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -3461,19 +3533,23 @@ void do_test_zhbmv_c_z_x
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   int k;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -3486,15 +3562,20 @@ void do_test_zhbmv_c_z_x
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -3900,19 +3981,23 @@ void do_test_zhbmv_c_c_x
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   int k;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -3925,15 +4010,20 @@ void do_test_zhbmv_c_c_x
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -4339,19 +4429,23 @@ void do_test_chbmv_c_s_x
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   int k;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -4364,15 +4458,20 @@ void do_test_chbmv_c_s_x
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -4777,19 +4876,23 @@ void do_test_zhbmv_z_d_x
 
   int i;
   int yi;
-  int incyi, y_starti;
+  int incyi;
+  int y_starti;
   int test_count;
   int bad_ratio_count;
 
   int ri;
   int incri;
-  int inca, incx, incy;
+  int inca;
+  int incx;
+  int incy;
 
   int k;
 
   double ratio;
 
-  double ratio_min, ratio_max;
+  double ratio_min;
+  double ratio_max;
 
   double eps_int;                /* internal machine epsilon     */
   double un_int;                /* internal underflow threshold */
@@ -4802,15 +4905,20 @@ void do_test_zhbmv_z_d_x
   enum blas_uplo_type uplo_type;
   enum blas_prec_type prec;
 
-  int order_val, uplo_val;
-  int lda_val, incx_val, incy_val;
-  int alpha_val, beta_val;
+  int order_val;
+  int uplo_val;
+  int lda_val;
+  int incx_val;
+  int incy_val;
+  int alpha_val;
+  int beta_val;
   int randomize_val;
 
   int prec_val;
 
   int lda;
-  int alpha_flag, beta_flag;
+  int alpha_flag;
+  int beta_flag;
   int saved_seed;
   int norm;
   int test_no;
@@ -5213,13 +5321,20 @@ int main_hbmv(int argc, char **argv)
 int main(int argc, char **argv)
 #endif
 {
-  int nsizes, ntests, debug;
-  double thresh, test_prob;
-  double total_min_ratio, total_max_ratio;
+  int nsizes;
+  int ntests;
+  int debug;
+  double thresh;
+  double test_prob;
+  double total_min_ratio;
+  double total_max_ratio;
   int total_bad_ratios;
-  int seed, num_bad_ratio, num_tests;
+  int seed;
+  int num_bad_ratio;
+  int num_tests;
   int total_tests, nr_failed_routines = 0, nr_routines = 0;
-  double min_ratio, max_ratio;
+  double min_ratio;
+  double max_ratio;
   const char *base_routine = "hbmv";
   const char *fname;
   int n;

@@ -89,20 +89,30 @@ void BLAS_ssymm_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   float c_elem;
   float a_elem;
   float b_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   float *a_vec;
   float *b_vec;
@@ -365,20 +375,30 @@ void BLAS_dsymm_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   double c_elem;
   double a_elem;
   double b_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   double *a_vec;
   double *b_vec;
@@ -640,15 +660,24 @@ void BLAS_csymm_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   float c_elem[2];
   float a_elem[2];
@@ -938,15 +967,24 @@ void BLAS_zsymm_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   double c_elem[2];
   double a_elem[2];
@@ -1237,15 +1275,24 @@ void BLAS_csymm_s_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   float c_elem[2];
   float a_elem;
@@ -1550,15 +1597,24 @@ void BLAS_csymm_s_c_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   float c_elem[2];
   float a_elem;
@@ -1857,15 +1913,24 @@ void BLAS_csymm_c_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   float c_elem[2];
   float a_elem[2];
@@ -2164,15 +2229,24 @@ void BLAS_zsymm_d_d_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   double c_elem[2];
   double a_elem;
@@ -2477,15 +2551,24 @@ void BLAS_zsymm_d_z_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   double c_elem[2];
   double a_elem;
@@ -2784,15 +2867,24 @@ void BLAS_zsymm_z_d_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   double c_elem[2];
   double a_elem[2];
@@ -3091,20 +3183,30 @@ void BLAS_dsymm_s_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   double c_elem;
   float a_elem;
   float b_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   float *a_vec;
   float *b_vec;
@@ -3367,20 +3469,30 @@ void BLAS_dsymm_s_d_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   double c_elem;
   float a_elem;
   double b_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   float *a_vec;
   double *b_vec;
@@ -3643,20 +3755,30 @@ void BLAS_dsymm_d_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   double c_elem;
   double a_elem;
   float b_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   double *a_vec;
   float *b_vec;
@@ -3919,15 +4041,24 @@ void BLAS_zsymm_c_c_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   double c_elem[2];
   float a_elem[2];
@@ -4218,15 +4349,24 @@ void BLAS_zsymm_c_z_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   double c_elem[2];
   float a_elem[2];
@@ -4517,15 +4657,24 @@ void BLAS_zsymm_z_c_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j;
-  int cij, ci;
-  int bij, bi;
-  int aij, ai;
-  int inccij, incci;
-  int incbij, incbi;
-  int incaij, incai;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int bij;
+  int bi;
+  int aij;
+  int ai;
+  int inccij;
+  int incci;
+  int incbij;
+  int incbi;
+  int incaij;
+  int incai;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   double c_elem[2];
   double a_elem[2];

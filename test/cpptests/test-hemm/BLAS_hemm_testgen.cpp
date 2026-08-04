@@ -96,19 +96,32 @@ void BLAS_chemm_testgen(int norm, enum blas_order_type order,
      symmetric, and A2 is a skew matrix (trans(A2) = -A2).
    */
 
-  int i, j;
-  int cij, ci;
-  int aij, ai;
-  int a1ij, a1i;
-  int bij, bi;
-  int mij, mi;
-  int inccij, incci;
-  int incaij, incai;
-  int inca1ij, inca1i;
-  int incbij, incbi;
-  int inci, incij;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int aij;
+  int ai;
+  int a1ij;
+  int a1i;
+  int bij;
+  int bi;
+  int mij;
+  int mi;
+  int inccij;
+  int incci;
+  int incaij;
+  int incai;
+  int inca1ij;
+  int inca1i;
+  int incbij;
+  int incbi;
+  int inci;
+  int incij;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
   int ld;
   int ab;
 
@@ -121,9 +134,12 @@ void BLAS_chemm_testgen(int norm, enum blas_order_type order,
   double *head_r1_true, *tail_r1_true;
   double *head_r2_true, *tail_r2_true;
 
-  double head_r_elem1, tail_r_elem1;
-  double head_r_elem2, tail_r_elem2;
-  double head_r_elem, tail_r_elem;
+  double head_r_elem1;
+  double tail_r_elem1;
+  double head_r_elem2;
+  double tail_r_elem2;
+  double head_r_elem;
+  double tail_r_elem;
 
   float *a_vec;
   float *b_vec;
@@ -340,7 +356,10 @@ void BLAS_chemm_testgen(int norm, enum blas_order_type order,
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
-            double s1, s2, t1, t2;
+            double s1;
+            double s2;
+            double t1;
+            double t2;
 
             /* Add two hi words. */
             s1 = head_r_elem1 + head_r_elem2;
@@ -371,13 +390,17 @@ void BLAS_chemm_testgen(int norm, enum blas_order_type order,
 
           /* Set the real part to R1 - R2. */
           {
-            double head_bt, tail_bt;
+            double head_bt;
+            double tail_bt;
             head_bt = -head_r_elem2;
             tail_bt = -tail_r_elem2;
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_r_elem1 + head_bt;
@@ -409,7 +432,16 @@ void BLAS_chemm_testgen(int norm, enum blas_order_type order,
           /* Real part */
           {
             /* Compute double-double = double-double * double. */
-            double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+            double a11;
+            double a21;
+            double b1;
+            double b2;
+            double c11;
+            double c21;
+            double c2;
+            double con;
+            double t1;
+            double t2;
 
             con = head_r_elem2 * SPLIT;
             a11 = con - head_r_elem2;
@@ -436,7 +468,16 @@ void BLAS_chemm_testgen(int norm, enum blas_order_type order,
           /* Imaginary Part */
           {
             /* Compute double-double = double-double * double. */
-            double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+            double a11;
+            double a21;
+            double b1;
+            double b2;
+            double c11;
+            double c21;
+            double c2;
+            double con;
+            double t1;
+            double t2;
 
             con = head_r_elem1 * SPLIT;
             a11 = con - head_r_elem1;
@@ -640,19 +681,32 @@ void BLAS_zhemm_testgen(int norm, enum blas_order_type order,
      symmetric, and A2 is a skew matrix (trans(A2) = -A2).
    */
 
-  int i, j;
-  int cij, ci;
-  int aij, ai;
-  int a1ij, a1i;
-  int bij, bi;
-  int mij, mi;
-  int inccij, incci;
-  int incaij, incai;
-  int inca1ij, inca1i;
-  int incbij, incbi;
-  int inci, incij;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int aij;
+  int ai;
+  int a1ij;
+  int a1i;
+  int bij;
+  int bi;
+  int mij;
+  int mi;
+  int inccij;
+  int incci;
+  int incaij;
+  int incai;
+  int inca1ij;
+  int inca1i;
+  int incbij;
+  int incbi;
+  int inci;
+  int incij;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
   int ld;
   int ab;
 
@@ -665,9 +719,12 @@ void BLAS_zhemm_testgen(int norm, enum blas_order_type order,
   double *head_r1_true, *tail_r1_true;
   double *head_r2_true, *tail_r2_true;
 
-  double head_r_elem1, tail_r_elem1;
-  double head_r_elem2, tail_r_elem2;
-  double head_r_elem, tail_r_elem;
+  double head_r_elem1;
+  double tail_r_elem1;
+  double head_r_elem2;
+  double tail_r_elem2;
+  double head_r_elem;
+  double tail_r_elem;
 
   double *a_vec;
   double *b_vec;
@@ -884,7 +941,10 @@ void BLAS_zhemm_testgen(int norm, enum blas_order_type order,
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
-            double s1, s2, t1, t2;
+            double s1;
+            double s2;
+            double t1;
+            double t2;
 
             /* Add two hi words. */
             s1 = head_r_elem1 + head_r_elem2;
@@ -915,13 +975,17 @@ void BLAS_zhemm_testgen(int norm, enum blas_order_type order,
 
           /* Set the real part to R1 - R2. */
           {
-            double head_bt, tail_bt;
+            double head_bt;
+            double tail_bt;
             head_bt = -head_r_elem2;
             tail_bt = -tail_r_elem2;
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_r_elem1 + head_bt;
@@ -953,7 +1017,16 @@ void BLAS_zhemm_testgen(int norm, enum blas_order_type order,
           /* Real part */
           {
             /* Compute double-double = double-double * double. */
-            double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+            double a11;
+            double a21;
+            double b1;
+            double b2;
+            double c11;
+            double c21;
+            double c2;
+            double con;
+            double t1;
+            double t2;
 
             con = head_r_elem2 * SPLIT;
             a11 = con - head_r_elem2;
@@ -980,7 +1053,16 @@ void BLAS_zhemm_testgen(int norm, enum blas_order_type order,
           /* Imaginary Part */
           {
             /* Compute double-double = double-double * double. */
-            double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+            double a11;
+            double a21;
+            double b1;
+            double b2;
+            double c11;
+            double c21;
+            double c2;
+            double con;
+            double t1;
+            double t2;
 
             con = head_r_elem1 * SPLIT;
             a11 = con - head_r_elem1;
@@ -1185,19 +1267,32 @@ void BLAS_zhemm_c_z_testgen(int norm, enum blas_order_type order,
      symmetric, and A2 is a skew matrix (trans(A2) = -A2).
    */
 
-  int i, j;
-  int cij, ci;
-  int aij, ai;
-  int a1ij, a1i;
-  int bij, bi;
-  int mij, mi;
-  int inccij, incci;
-  int incaij, incai;
-  int inca1ij, inca1i;
-  int incbij, incbi;
-  int inci, incij;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int aij;
+  int ai;
+  int a1ij;
+  int a1i;
+  int bij;
+  int bi;
+  int mij;
+  int mi;
+  int inccij;
+  int incci;
+  int incaij;
+  int incai;
+  int inca1ij;
+  int inca1i;
+  int incbij;
+  int incbi;
+  int inci;
+  int incij;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
   int ld;
   int ab;
 
@@ -1210,9 +1305,12 @@ void BLAS_zhemm_c_z_testgen(int norm, enum blas_order_type order,
   double *head_r1_true, *tail_r1_true;
   double *head_r2_true, *tail_r2_true;
 
-  double head_r_elem1, tail_r_elem1;
-  double head_r_elem2, tail_r_elem2;
-  double head_r_elem, tail_r_elem;
+  double head_r_elem1;
+  double tail_r_elem1;
+  double head_r_elem2;
+  double tail_r_elem2;
+  double head_r_elem;
+  double tail_r_elem;
 
   float *a_vec;
   double *b_vec;
@@ -1429,7 +1527,10 @@ void BLAS_zhemm_c_z_testgen(int norm, enum blas_order_type order,
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
-            double s1, s2, t1, t2;
+            double s1;
+            double s2;
+            double t1;
+            double t2;
 
             /* Add two hi words. */
             s1 = head_r_elem1 + head_r_elem2;
@@ -1460,13 +1561,17 @@ void BLAS_zhemm_c_z_testgen(int norm, enum blas_order_type order,
 
           /* Set the real part to R1 - R2. */
           {
-            double head_bt, tail_bt;
+            double head_bt;
+            double tail_bt;
             head_bt = -head_r_elem2;
             tail_bt = -tail_r_elem2;
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_r_elem1 + head_bt;
@@ -1498,7 +1603,16 @@ void BLAS_zhemm_c_z_testgen(int norm, enum blas_order_type order,
           /* Real part */
           {
             /* Compute double-double = double-double * double. */
-            double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+            double a11;
+            double a21;
+            double b1;
+            double b2;
+            double c11;
+            double c21;
+            double c2;
+            double con;
+            double t1;
+            double t2;
 
             con = head_r_elem2 * SPLIT;
             a11 = con - head_r_elem2;
@@ -1525,7 +1639,16 @@ void BLAS_zhemm_c_z_testgen(int norm, enum blas_order_type order,
           /* Imaginary Part */
           {
             /* Compute double-double = double-double * double. */
-            double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+            double a11;
+            double a21;
+            double b1;
+            double b2;
+            double c11;
+            double c21;
+            double c2;
+            double con;
+            double t1;
+            double t2;
 
             con = head_r_elem1 * SPLIT;
             a11 = con - head_r_elem1;
@@ -1730,19 +1853,32 @@ void BLAS_zhemm_z_c_testgen(int norm, enum blas_order_type order,
      symmetric, and A2 is a skew matrix (trans(A2) = -A2).
    */
 
-  int i, j;
-  int cij, ci;
-  int aij, ai;
-  int a1ij, a1i;
-  int bij, bi;
-  int mij, mi;
-  int inccij, incci;
-  int incaij, incai;
-  int inca1ij, inca1i;
-  int incbij, incbi;
-  int inci, incij;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int aij;
+  int ai;
+  int a1ij;
+  int a1i;
+  int bij;
+  int bi;
+  int mij;
+  int mi;
+  int inccij;
+  int incci;
+  int incaij;
+  int incai;
+  int inca1ij;
+  int inca1i;
+  int incbij;
+  int incbi;
+  int inci;
+  int incij;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
   int ld;
   int ab;
 
@@ -1755,9 +1891,12 @@ void BLAS_zhemm_z_c_testgen(int norm, enum blas_order_type order,
   double *head_r1_true, *tail_r1_true;
   double *head_r2_true, *tail_r2_true;
 
-  double head_r_elem1, tail_r_elem1;
-  double head_r_elem2, tail_r_elem2;
-  double head_r_elem, tail_r_elem;
+  double head_r_elem1;
+  double tail_r_elem1;
+  double head_r_elem2;
+  double tail_r_elem2;
+  double head_r_elem;
+  double tail_r_elem;
 
   double *a_vec;
   float *b_vec;
@@ -1974,7 +2113,10 @@ void BLAS_zhemm_z_c_testgen(int norm, enum blas_order_type order,
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
-            double s1, s2, t1, t2;
+            double s1;
+            double s2;
+            double t1;
+            double t2;
 
             /* Add two hi words. */
             s1 = head_r_elem1 + head_r_elem2;
@@ -2005,13 +2147,17 @@ void BLAS_zhemm_z_c_testgen(int norm, enum blas_order_type order,
 
           /* Set the real part to R1 - R2. */
           {
-            double head_bt, tail_bt;
+            double head_bt;
+            double tail_bt;
             head_bt = -head_r_elem2;
             tail_bt = -tail_r_elem2;
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_r_elem1 + head_bt;
@@ -2043,7 +2189,16 @@ void BLAS_zhemm_z_c_testgen(int norm, enum blas_order_type order,
           /* Real part */
           {
             /* Compute double-double = double-double * double. */
-            double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+            double a11;
+            double a21;
+            double b1;
+            double b2;
+            double c11;
+            double c21;
+            double c2;
+            double con;
+            double t1;
+            double t2;
 
             con = head_r_elem2 * SPLIT;
             a11 = con - head_r_elem2;
@@ -2070,7 +2225,16 @@ void BLAS_zhemm_z_c_testgen(int norm, enum blas_order_type order,
           /* Imaginary Part */
           {
             /* Compute double-double = double-double * double. */
-            double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+            double a11;
+            double a21;
+            double b1;
+            double b2;
+            double c11;
+            double c21;
+            double c2;
+            double con;
+            double t1;
+            double t2;
 
             con = head_r_elem1 * SPLIT;
             a11 = con - head_r_elem1;
@@ -2275,19 +2439,32 @@ void BLAS_zhemm_c_c_testgen(int norm, enum blas_order_type order,
      symmetric, and A2 is a skew matrix (trans(A2) = -A2).
    */
 
-  int i, j;
-  int cij, ci;
-  int aij, ai;
-  int a1ij, a1i;
-  int bij, bi;
-  int mij, mi;
-  int inccij, incci;
-  int incaij, incai;
-  int inca1ij, inca1i;
-  int incbij, incbi;
-  int inci, incij;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int aij;
+  int ai;
+  int a1ij;
+  int a1i;
+  int bij;
+  int bi;
+  int mij;
+  int mi;
+  int inccij;
+  int incci;
+  int incaij;
+  int incai;
+  int inca1ij;
+  int inca1i;
+  int incbij;
+  int incbi;
+  int inci;
+  int incij;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
   int ld;
   int ab;
 
@@ -2300,9 +2477,12 @@ void BLAS_zhemm_c_c_testgen(int norm, enum blas_order_type order,
   double *head_r1_true, *tail_r1_true;
   double *head_r2_true, *tail_r2_true;
 
-  double head_r_elem1, tail_r_elem1;
-  double head_r_elem2, tail_r_elem2;
-  double head_r_elem, tail_r_elem;
+  double head_r_elem1;
+  double tail_r_elem1;
+  double head_r_elem2;
+  double tail_r_elem2;
+  double head_r_elem;
+  double tail_r_elem;
 
   float *a_vec;
   float *b_vec;
@@ -2519,7 +2699,10 @@ void BLAS_zhemm_c_c_testgen(int norm, enum blas_order_type order,
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
-            double s1, s2, t1, t2;
+            double s1;
+            double s2;
+            double t1;
+            double t2;
 
             /* Add two hi words. */
             s1 = head_r_elem1 + head_r_elem2;
@@ -2550,13 +2733,17 @@ void BLAS_zhemm_c_c_testgen(int norm, enum blas_order_type order,
 
           /* Set the real part to R1 - R2. */
           {
-            double head_bt, tail_bt;
+            double head_bt;
+            double tail_bt;
             head_bt = -head_r_elem2;
             tail_bt = -tail_r_elem2;
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_r_elem1 + head_bt;
@@ -2588,7 +2775,16 @@ void BLAS_zhemm_c_c_testgen(int norm, enum blas_order_type order,
           /* Real part */
           {
             /* Compute double-double = double-double * double. */
-            double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+            double a11;
+            double a21;
+            double b1;
+            double b2;
+            double c11;
+            double c21;
+            double c2;
+            double con;
+            double t1;
+            double t2;
 
             con = head_r_elem2 * SPLIT;
             a11 = con - head_r_elem2;
@@ -2615,7 +2811,16 @@ void BLAS_zhemm_c_c_testgen(int norm, enum blas_order_type order,
           /* Imaginary Part */
           {
             /* Compute double-double = double-double * double. */
-            double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+            double a11;
+            double a21;
+            double b1;
+            double b2;
+            double c11;
+            double c21;
+            double c2;
+            double con;
+            double t1;
+            double t2;
 
             con = head_r_elem1 * SPLIT;
             a11 = con - head_r_elem1;
@@ -2821,19 +3026,32 @@ void BLAS_zhemm_z_d_testgen(int norm, enum blas_order_type order,
      symmetric, and A2 is a skew matrix (trans(A2) = -A2).
    */
 
-  int i, j;
-  int cij, ci;
-  int aij, ai;
-  int a1ij, a1i;
-  int bij, bi;
-  int mij, mi;
-  int inccij, incci;
-  int incaij, incai;
-  int inca1ij, inca1i;
-  int incbij, incbi;
-  int inci, incij;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int aij;
+  int ai;
+  int a1ij;
+  int a1i;
+  int bij;
+  int bi;
+  int mij;
+  int mi;
+  int inccij;
+  int incci;
+  int incaij;
+  int incai;
+  int inca1ij;
+  int inca1i;
+  int incbij;
+  int incbi;
+  int inci;
+  int incij;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
   int ld;
   int ab;
 
@@ -2846,9 +3064,12 @@ void BLAS_zhemm_z_d_testgen(int norm, enum blas_order_type order,
   double *head_r1_true, *tail_r1_true;
   double *head_r2_true, *tail_r2_true;
 
-  double head_r_elem1, tail_r_elem1;
-  double head_r_elem2, tail_r_elem2;
-  double head_r_elem, tail_r_elem;
+  double head_r_elem1;
+  double tail_r_elem1;
+  double head_r_elem2;
+  double tail_r_elem2;
+  double head_r_elem;
+  double tail_r_elem;
 
   double *a_vec;
   double *b_vec;
@@ -3059,7 +3280,10 @@ void BLAS_zhemm_z_d_testgen(int norm, enum blas_order_type order,
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
-            double s1, s2, t1, t2;
+            double s1;
+            double s2;
+            double t1;
+            double t2;
 
             /* Add two hi words. */
             s1 = head_r_elem1 + head_r_elem2;
@@ -3090,13 +3314,17 @@ void BLAS_zhemm_z_d_testgen(int norm, enum blas_order_type order,
 
           /* Set the real part to R1 - R2. */
           {
-            double head_bt, tail_bt;
+            double head_bt;
+            double tail_bt;
             head_bt = -head_r_elem2;
             tail_bt = -tail_r_elem2;
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_r_elem1 + head_bt;
@@ -3315,19 +3543,32 @@ void BLAS_chemm_c_s_testgen(int norm, enum blas_order_type order,
      symmetric, and A2 is a skew matrix (trans(A2) = -A2).
    */
 
-  int i, j;
-  int cij, ci;
-  int aij, ai;
-  int a1ij, a1i;
-  int bij, bi;
-  int mij, mi;
-  int inccij, incci;
-  int incaij, incai;
-  int inca1ij, inca1i;
-  int incbij, incbi;
-  int inci, incij;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int aij;
+  int ai;
+  int a1ij;
+  int a1i;
+  int bij;
+  int bi;
+  int mij;
+  int mi;
+  int inccij;
+  int incci;
+  int incaij;
+  int incai;
+  int inca1ij;
+  int inca1i;
+  int incbij;
+  int incbi;
+  int inci;
+  int incij;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
   int ld;
   int ab;
 
@@ -3340,9 +3581,12 @@ void BLAS_chemm_c_s_testgen(int norm, enum blas_order_type order,
   double *head_r1_true, *tail_r1_true;
   double *head_r2_true, *tail_r2_true;
 
-  double head_r_elem1, tail_r_elem1;
-  double head_r_elem2, tail_r_elem2;
-  double head_r_elem, tail_r_elem;
+  double head_r_elem1;
+  double tail_r_elem1;
+  double head_r_elem2;
+  double tail_r_elem2;
+  double head_r_elem;
+  double tail_r_elem;
 
   float *a_vec;
   float *b_vec;
@@ -3553,7 +3797,10 @@ void BLAS_chemm_c_s_testgen(int norm, enum blas_order_type order,
           {
             /* Compute double-double = double-double + double-double. */
             double bv;
-            double s1, s2, t1, t2;
+            double s1;
+            double s2;
+            double t1;
+            double t2;
 
             /* Add two hi words. */
             s1 = head_r_elem1 + head_r_elem2;
@@ -3584,13 +3831,17 @@ void BLAS_chemm_c_s_testgen(int norm, enum blas_order_type order,
 
           /* Set the real part to R1 - R2. */
           {
-            double head_bt, tail_bt;
+            double head_bt;
+            double tail_bt;
             head_bt = -head_r_elem2;
             tail_bt = -tail_r_elem2;
             {
               /* Compute double-double = double-double + double-double. */
               double bv;
-              double s1, s2, t1, t2;
+              double s1;
+              double s2;
+              double t1;
+              double t2;
 
               /* Add two hi words. */
               s1 = head_r_elem1 + head_bt;
@@ -3725,14 +3976,20 @@ void BLAS_sskew_testgen(int norm, enum blas_order_type order,
                         double *head_r_true, double *tail_r_true)
 {
 
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   float c_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   float *a_vec;
   float *b_vec;
@@ -3819,14 +4076,20 @@ void BLAS_dskew_testgen(int norm, enum blas_order_type order,
                         double *head_r_true, double *tail_r_true)
 {
 
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   double c_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   double *a_vec;
   double *b_vec;
@@ -3914,14 +4177,20 @@ void BLAS_dskew_d_s_testgen(int norm, enum blas_order_type order,
                             double *head_r_true, double *tail_r_true)
 {
 
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   double c_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   double *a_vec;
   float *b_vec;
@@ -4009,14 +4278,20 @@ void BLAS_dskew_s_d_testgen(int norm, enum blas_order_type order,
                             double *head_r_true, double *tail_r_true)
 {
 
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   double c_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   float *a_vec;
   double *b_vec;
@@ -4104,14 +4379,20 @@ void BLAS_dskew_s_s_testgen(int norm, enum blas_order_type order,
                             double *head_r_true, double *tail_r_true)
 {
 
-  int i, j;
-  int cij, ci;
-  int inccij, incci;
-  int inca, incb;
-  int m_i, n_i;
+  int i;
+  int j;
+  int cij;
+  int ci;
+  int inccij;
+  int incci;
+  int inca;
+  int incb;
+  int m_i;
+  int n_i;
 
   double c_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
 
   float *a_vec;
   float *b_vec;

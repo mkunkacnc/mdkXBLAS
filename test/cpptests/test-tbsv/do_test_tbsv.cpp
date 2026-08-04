@@ -97,9 +97,13 @@ double do_test_dtbsv_s(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x respectively */
-  int ldt_val, ldt;                /* for testing different values for ldt */
-  int k_val, k;
-  int incx_val, incx, incx_unadj;        /* for testing different inc values */
+  int ldt_val;                /* for testing different values for ldt */
+  int ldt;
+  int k_val;
+  int k;
+  int incx_val;        /* for testing different inc values */
+  int incx;
+  int incx_unadj;
   int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -127,7 +131,8 @@ double do_test_dtbsv_s(int n,
   /* the true r calculated by testgen(), in double-double */
   double *head_r_true, *tail_r_true;
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_dtbsv_s_testgen */
+  int alpha_flag;        /* input flag for BLAS_dtbsv_s_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -679,9 +684,13 @@ double do_test_ztbsv_c(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x respectively */
-  int ldt_val, ldt;                /* for testing different values for ldt */
-  int k_val, k;
-  int incx_val, incx, incx_unadj;        /* for testing different inc values */
+  int ldt_val;                /* for testing different values for ldt */
+  int ldt;
+  int k_val;
+  int k;
+  int incx_val;        /* for testing different inc values */
+  int incx;
+  int incx_unadj;
   int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -710,7 +719,8 @@ double do_test_ztbsv_c(int n,
   double *head_r_true, *tail_r_true;
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ztbsv_c_testgen */
+  int alpha_flag;        /* input flag for BLAS_ztbsv_c_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -1298,9 +1308,13 @@ double do_test_ctbsv_s(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x respectively */
-  int ldt_val, ldt;                /* for testing different values for ldt */
-  int k_val, k;
-  int incx_val, incx, incx_unadj;        /* for testing different inc values */
+  int ldt_val;                /* for testing different values for ldt */
+  int ldt;
+  int k_val;
+  int k;
+  int incx_val;        /* for testing different inc values */
+  int incx;
+  int incx_unadj;
   int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -1329,7 +1343,8 @@ double do_test_ctbsv_s(int n,
   double *head_r_true, *tail_r_true;
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ctbsv_s_testgen */
+  int alpha_flag;        /* input flag for BLAS_ctbsv_s_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -1913,9 +1928,13 @@ double do_test_ztbsv_d(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x respectively */
-  int ldt_val, ldt;                /* for testing different values for ldt */
-  int k_val, k;
-  int incx_val, incx, incx_unadj;        /* for testing different inc values */
+  int ldt_val;                /* for testing different values for ldt */
+  int ldt;
+  int k_val;
+  int k;
+  int incx_val;        /* for testing different inc values */
+  int incx;
+  int incx_unadj;
   int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -1944,7 +1963,8 @@ double do_test_ztbsv_d(int n,
   double *head_r_true, *tail_r_true;
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ztbsv_d_testgen */
+  int alpha_flag;        /* input flag for BLAS_ztbsv_d_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -2530,9 +2550,13 @@ double do_test_stbsv_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x respectively */
-  int ldt_val, ldt;                /* for testing different values for ldt */
-  int k_val, k;
-  int incx_val, incx, incx_unadj;        /* for testing different inc values */
+  int ldt_val;                /* for testing different values for ldt */
+  int ldt;
+  int k_val;
+  int k;
+  int incx_val;        /* for testing different inc values */
+  int incx;
+  int incx_unadj;
   int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -2560,7 +2584,8 @@ double do_test_stbsv_x(int n,
   /* the true r calculated by testgen(), in double-double */
   double *head_r_true, *tail_r_true;
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_stbsv_testgen */
+  int alpha_flag;        /* input flag for BLAS_stbsv_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -3131,9 +3156,13 @@ double do_test_dtbsv_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x respectively */
-  int ldt_val, ldt;                /* for testing different values for ldt */
-  int k_val, k;
-  int incx_val, incx, incx_unadj;        /* for testing different inc values */
+  int ldt_val;                /* for testing different values for ldt */
+  int ldt;
+  int k_val;
+  int k;
+  int incx_val;        /* for testing different inc values */
+  int incx;
+  int incx_unadj;
   int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -3161,7 +3190,8 @@ double do_test_dtbsv_x(int n,
   /* the true r calculated by testgen(), in double-double */
   double *head_r_true, *tail_r_true;
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_dtbsv_testgen */
+  int alpha_flag;        /* input flag for BLAS_dtbsv_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -3733,9 +3763,13 @@ double do_test_dtbsv_s_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x respectively */
-  int ldt_val, ldt;                /* for testing different values for ldt */
-  int k_val, k;
-  int incx_val, incx, incx_unadj;        /* for testing different inc values */
+  int ldt_val;                /* for testing different values for ldt */
+  int ldt;
+  int k_val;
+  int k;
+  int incx_val;        /* for testing different inc values */
+  int incx;
+  int incx_unadj;
   int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -3763,7 +3797,8 @@ double do_test_dtbsv_s_x(int n,
   /* the true r calculated by testgen(), in double-double */
   double *head_r_true, *tail_r_true;
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_dtbsv_s_testgen */
+  int alpha_flag;        /* input flag for BLAS_dtbsv_s_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -4335,9 +4370,13 @@ double do_test_ctbsv_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x respectively */
-  int ldt_val, ldt;                /* for testing different values for ldt */
-  int k_val, k;
-  int incx_val, incx, incx_unadj;        /* for testing different inc values */
+  int ldt_val;                /* for testing different values for ldt */
+  int ldt;
+  int k_val;
+  int k;
+  int incx_val;        /* for testing different inc values */
+  int incx;
+  int incx_unadj;
   int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -4366,7 +4405,8 @@ double do_test_ctbsv_x(int n,
   double *head_r_true, *tail_r_true;
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ctbsv_testgen */
+  int alpha_flag;        /* input flag for BLAS_ctbsv_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -4974,9 +5014,13 @@ double do_test_ztbsv_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x respectively */
-  int ldt_val, ldt;                /* for testing different values for ldt */
-  int k_val, k;
-  int incx_val, incx, incx_unadj;        /* for testing different inc values */
+  int ldt_val;                /* for testing different values for ldt */
+  int ldt;
+  int k_val;
+  int k;
+  int incx_val;        /* for testing different inc values */
+  int incx;
+  int incx_unadj;
   int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -5005,7 +5049,8 @@ double do_test_ztbsv_x(int n,
   double *head_r_true, *tail_r_true;
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ztbsv_testgen */
+  int alpha_flag;        /* input flag for BLAS_ztbsv_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -5614,9 +5659,13 @@ double do_test_ztbsv_c_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x respectively */
-  int ldt_val, ldt;                /* for testing different values for ldt */
-  int k_val, k;
-  int incx_val, incx, incx_unadj;        /* for testing different inc values */
+  int ldt_val;                /* for testing different values for ldt */
+  int ldt;
+  int k_val;
+  int k;
+  int incx_val;        /* for testing different inc values */
+  int incx;
+  int incx_unadj;
   int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -5645,7 +5694,8 @@ double do_test_ztbsv_c_x(int n,
   double *head_r_true, *tail_r_true;
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ztbsv_c_testgen */
+  int alpha_flag;        /* input flag for BLAS_ztbsv_c_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -6256,9 +6306,13 @@ double do_test_ctbsv_s_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x respectively */
-  int ldt_val, ldt;                /* for testing different values for ldt */
-  int k_val, k;
-  int incx_val, incx, incx_unadj;        /* for testing different inc values */
+  int ldt_val;                /* for testing different values for ldt */
+  int ldt;
+  int k_val;
+  int k;
+  int incx_val;        /* for testing different inc values */
+  int incx;
+  int incx_unadj;
   int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -6287,7 +6341,8 @@ double do_test_ctbsv_s_x(int n,
   double *head_r_true, *tail_r_true;
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ctbsv_s_testgen */
+  int alpha_flag;        /* input flag for BLAS_ctbsv_s_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -6896,9 +6951,13 @@ double do_test_ztbsv_d_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x respectively */
-  int ldt_val, ldt;                /* for testing different values for ldt */
-  int k_val, k;
-  int incx_val, incx, incx_unadj;        /* for testing different inc values */
+  int ldt_val;                /* for testing different values for ldt */
+  int ldt;
+  int k_val;
+  int k;
+  int incx_val;        /* for testing different inc values */
+  int incx;
+  int incx_unadj;
   int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
@@ -6927,7 +6986,8 @@ double do_test_ztbsv_d_x(int n,
   double *head_r_true, *tail_r_true;
 
   int alpha_val;
-  int alpha_flag, beta_flag;        /* input flag for BLAS_ztbsv_d_testgen */
+  int alpha_flag;        /* input flag for BLAS_ztbsv_d_testgen */
+  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -7455,13 +7515,20 @@ int main_tbsv(int argc, char **argv)
 int main(int argc, char **argv)
 #endif
 {
-  int nsizes, ntests, debug;
-  double thresh, test_prob;
-  double total_min_ratio, total_max_ratio;
+  int nsizes;
+  int ntests;
+  int debug;
+  double thresh;
+  double test_prob;
+  double total_min_ratio;
+  double total_max_ratio;
   int total_bad_ratios;
-  int seed, num_bad_ratio, num_tests;
+  int seed;
+  int num_bad_ratio;
+  int num_tests;
   int total_tests, nr_failed_routines = 0, nr_routines = 0;
-  double min_ratio, max_ratio;
+  double min_ratio;
+  double max_ratio;
   const char *base_routine = "tbsv";
   const char *fname;
   int n;

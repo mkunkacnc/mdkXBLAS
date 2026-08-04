@@ -136,14 +136,22 @@ void BLAS_sge_sum_mv_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -151,7 +159,8 @@ void BLAS_sge_sum_mv_testgen(int norm, enum blas_order_type order,
   float beta_zero_fake;
   float a_elem;
   float x_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
   float multiplier;
   float divider;
   float alpha_use;
@@ -936,14 +945,22 @@ void BLAS_dge_sum_mv_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -951,7 +968,8 @@ void BLAS_dge_sum_mv_testgen(int norm, enum blas_order_type order,
   double beta_zero_fake;
   double a_elem;
   double x_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
   double multiplier;
   double divider;
   double alpha_use;
@@ -1745,14 +1763,22 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -2500,10 +2526,14 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
               cd[1] = (double) one_minus_i[1];
               {
                 /* Compute complex-extra = complex-extra * complex-double. */
-                double head_a0, tail_a0;
-                double head_a1, tail_a1;
-                double head_t1, tail_t1;
-                double head_t2, tail_t2;
+                double head_a0;
+                double tail_a0;
+                double head_a1;
+                double tail_a1;
+                double head_t1;
+                double tail_t1;
+                double head_t2;
+                double tail_t2;
                 head_a0 = head_a_elem_2[0];
                 tail_a0 = tail_a_elem_2[0];
                 head_a1 = head_a_elem_2[1];
@@ -2511,7 +2541,16 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                 /* real part */
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a0 * SPLIT;
                   a11 = con - head_a0;
@@ -2534,7 +2573,16 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                 }
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a1 * SPLIT;
                   a11 = con - head_a1;
@@ -2560,7 +2608,10 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
-                  double s1, s2, t1, t2;
+                  double s1;
+                  double s2;
+                  double t1;
+                  double t2;
 
                   /* Add two hi words. */
                   s1 = head_t1 + head_t2;
@@ -2589,7 +2640,16 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                 /* imaginary part */
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a1 * SPLIT;
                   a11 = con - head_a1;
@@ -2612,7 +2672,16 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                 }
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a0 * SPLIT;
                   a11 = con - head_a0;
@@ -2636,7 +2705,10 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
-                  double s1, s2, t1, t2;
+                  double s1;
+                  double s2;
+                  double t1;
+                  double t2;
 
                   /* Add two hi words. */
                   s1 = head_t1 + head_t2;
@@ -2745,10 +2817,14 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                 cd[1] = (double) one_minus_i[1];
                 {
                   /* Compute complex-extra = complex-extra * complex-double. */
-                  double head_a0, tail_a0;
-                  double head_a1, tail_a1;
-                  double head_t1, tail_t1;
-                  double head_t2, tail_t2;
+                  double head_a0;
+                  double tail_a0;
+                  double head_a1;
+                  double tail_a1;
+                  double head_t1;
+                  double tail_t1;
+                  double head_t2;
+                  double tail_t2;
                   head_a0 = head_a_elem_2[0];
                   tail_a0 = tail_a_elem_2[0];
                   head_a1 = head_a_elem_2[1];
@@ -2756,7 +2832,16 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                   /* real part */
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a0 * SPLIT;
                     a11 = con - head_a0;
@@ -2780,7 +2865,16 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                   }
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a1 * SPLIT;
                     a11 = con - head_a1;
@@ -2807,7 +2901,10 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
-                    double s1, s2, t1, t2;
+                    double s1;
+                    double s2;
+                    double t1;
+                    double t2;
 
                     /* Add two hi words. */
                     s1 = head_t1 + head_t2;
@@ -2836,7 +2933,16 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                   /* imaginary part */
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a1 * SPLIT;
                     a11 = con - head_a1;
@@ -2860,7 +2966,16 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                   }
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a0 * SPLIT;
                     a11 = con - head_a0;
@@ -2885,7 +3000,10 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
-                    double s1, s2, t1, t2;
+                    double s1;
+                    double s2;
+                    double t1;
+                    double t2;
 
                     /* Add two hi words. */
                     s1 = head_t1 + head_t2;
@@ -3095,14 +3213,22 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -3882,10 +4008,15 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
           case 3:
             {
               /* Compute complex-extra = complex-double * real. */
-              double head_t, tail_t;
+              double head_t;
+              double tail_t;
               {
                 /* Compute double_double = double * double. */
-                double a1, a2, b1, b2, con;
+                double a1;
+                double a2;
+                double b1;
+                double b2;
+                double con;
 
                 con = divider * SPLIT;
                 a1 = con - divider;
@@ -3903,7 +4034,11 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
               tail_a_elem_2[0] = tail_t;
               {
                 /* Compute double_double = double * double. */
-                double a1, a2, b1, b2, con;
+                double a1;
+                double a2;
+                double b1;
+                double b2;
+                double con;
 
                 con = divider * SPLIT;
                 a1 = con - divider;
@@ -3922,10 +4057,14 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
             }
             {
               /* Compute complex-extra = complex-extra * complex-double. */
-              double head_a0, tail_a0;
-              double head_a1, tail_a1;
-              double head_t1, tail_t1;
-              double head_t2, tail_t2;
+              double head_a0;
+              double tail_a0;
+              double head_a1;
+              double tail_a1;
+              double head_t1;
+              double tail_t1;
+              double head_t2;
+              double tail_t2;
               head_a0 = head_a_elem_2[0];
               tail_a0 = tail_a_elem_2[0];
               head_a1 = head_a_elem_2[1];
@@ -3933,7 +4072,16 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
               /* real part */
               {
                 /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                double a11;
+                double a21;
+                double b1;
+                double b2;
+                double c11;
+                double c21;
+                double c2;
+                double con;
+                double t1;
+                double t2;
 
                 con = head_a0 * SPLIT;
                 a11 = con - head_a0;
@@ -3956,7 +4104,16 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
               }
               {
                 /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                double a11;
+                double a21;
+                double b1;
+                double b2;
+                double c11;
+                double c21;
+                double c2;
+                double con;
+                double t1;
+                double t2;
 
                 con = head_a1 * SPLIT;
                 a11 = con - head_a1;
@@ -3982,7 +4139,10 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
               {
                 /* Compute double-double = double-double + double-double. */
                 double bv;
-                double s1, s2, t1, t2;
+                double s1;
+                double s2;
+                double t1;
+                double t2;
 
                 /* Add two hi words. */
                 s1 = head_t1 + head_t2;
@@ -4011,7 +4171,16 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
               /* imaginary part */
               {
                 /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                double a11;
+                double a21;
+                double b1;
+                double b2;
+                double c11;
+                double c21;
+                double c2;
+                double con;
+                double t1;
+                double t2;
 
                 con = head_a1 * SPLIT;
                 a11 = con - head_a1;
@@ -4034,7 +4203,16 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
               }
               {
                 /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                double a11;
+                double a21;
+                double b1;
+                double b2;
+                double c11;
+                double c21;
+                double c2;
+                double con;
+                double t1;
+                double t2;
 
                 con = head_a0 * SPLIT;
                 a11 = con - head_a0;
@@ -4058,7 +4236,10 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
               {
                 /* Compute double-double = double-double + double-double. */
                 double bv;
-                double s1, s2, t1, t2;
+                double s1;
+                double s2;
+                double t1;
+                double t2;
 
                 /* Add two hi words. */
                 s1 = head_t1 + head_t2;
@@ -4156,10 +4337,15 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
             case 3:
               {
                 /* Compute complex-extra = complex-double * real. */
-                double head_t, tail_t;
+                double head_t;
+                double tail_t;
                 {
                   /* Compute double_double = double * double. */
-                  double a1, a2, b1, b2, con;
+                  double a1;
+                  double a2;
+                  double b1;
+                  double b2;
+                  double con;
 
                   con = divider * SPLIT;
                   a1 = con - divider;
@@ -4178,7 +4364,11 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
                 tail_a_elem_2[0] = tail_t;
                 {
                   /* Compute double_double = double * double. */
-                  double a1, a2, b1, b2, con;
+                  double a1;
+                  double a2;
+                  double b1;
+                  double b2;
+                  double con;
 
                   con = divider * SPLIT;
                   a1 = con - divider;
@@ -4198,10 +4388,14 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
               }
               {
                 /* Compute complex-extra = complex-extra * complex-double. */
-                double head_a0, tail_a0;
-                double head_a1, tail_a1;
-                double head_t1, tail_t1;
-                double head_t2, tail_t2;
+                double head_a0;
+                double tail_a0;
+                double head_a1;
+                double tail_a1;
+                double head_t1;
+                double tail_t1;
+                double head_t2;
+                double tail_t2;
                 head_a0 = head_a_elem_2[0];
                 tail_a0 = tail_a_elem_2[0];
                 head_a1 = head_a_elem_2[1];
@@ -4209,7 +4403,16 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
                 /* real part */
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a0 * SPLIT;
                   a11 = con - head_a0;
@@ -4232,7 +4435,16 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
                 }
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a1 * SPLIT;
                   a11 = con - head_a1;
@@ -4258,7 +4470,10 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
-                  double s1, s2, t1, t2;
+                  double s1;
+                  double s2;
+                  double t1;
+                  double t2;
 
                   /* Add two hi words. */
                   s1 = head_t1 + head_t2;
@@ -4287,7 +4502,16 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
                 /* imaginary part */
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a1 * SPLIT;
                   a11 = con - head_a1;
@@ -4310,7 +4534,16 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
                 }
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a0 * SPLIT;
                   a11 = con - head_a0;
@@ -4334,7 +4567,10 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
-                  double s1, s2, t1, t2;
+                  double s1;
+                  double s2;
+                  double t1;
+                  double t2;
 
                   /* Add two hi words. */
                   s1 = head_t1 + head_t2;
@@ -4539,14 +4775,22 @@ void BLAS_cge_sum_mv_s_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -5451,14 +5695,22 @@ void BLAS_cge_sum_mv_s_c_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -6362,14 +6614,22 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -7117,10 +7377,14 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
               cd[1] = (double) one_minus_i[1];
               {
                 /* Compute complex-extra = complex-extra * complex-double. */
-                double head_a0, tail_a0;
-                double head_a1, tail_a1;
-                double head_t1, tail_t1;
-                double head_t2, tail_t2;
+                double head_a0;
+                double tail_a0;
+                double head_a1;
+                double tail_a1;
+                double head_t1;
+                double tail_t1;
+                double head_t2;
+                double tail_t2;
                 head_a0 = head_a_elem_2[0];
                 tail_a0 = tail_a_elem_2[0];
                 head_a1 = head_a_elem_2[1];
@@ -7128,7 +7392,16 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                 /* real part */
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a0 * SPLIT;
                   a11 = con - head_a0;
@@ -7151,7 +7424,16 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                 }
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a1 * SPLIT;
                   a11 = con - head_a1;
@@ -7177,7 +7459,10 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
-                  double s1, s2, t1, t2;
+                  double s1;
+                  double s2;
+                  double t1;
+                  double t2;
 
                   /* Add two hi words. */
                   s1 = head_t1 + head_t2;
@@ -7206,7 +7491,16 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                 /* imaginary part */
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a1 * SPLIT;
                   a11 = con - head_a1;
@@ -7229,7 +7523,16 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                 }
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a0 * SPLIT;
                   a11 = con - head_a0;
@@ -7253,7 +7556,10 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
-                  double s1, s2, t1, t2;
+                  double s1;
+                  double s2;
+                  double t1;
+                  double t2;
 
                   /* Add two hi words. */
                   s1 = head_t1 + head_t2;
@@ -7362,10 +7668,14 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                 cd[1] = (double) one_minus_i[1];
                 {
                   /* Compute complex-extra = complex-extra * complex-double. */
-                  double head_a0, tail_a0;
-                  double head_a1, tail_a1;
-                  double head_t1, tail_t1;
-                  double head_t2, tail_t2;
+                  double head_a0;
+                  double tail_a0;
+                  double head_a1;
+                  double tail_a1;
+                  double head_t1;
+                  double tail_t1;
+                  double head_t2;
+                  double tail_t2;
                   head_a0 = head_a_elem_2[0];
                   tail_a0 = tail_a_elem_2[0];
                   head_a1 = head_a_elem_2[1];
@@ -7373,7 +7683,16 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                   /* real part */
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a0 * SPLIT;
                     a11 = con - head_a0;
@@ -7397,7 +7716,16 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                   }
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a1 * SPLIT;
                     a11 = con - head_a1;
@@ -7424,7 +7752,10 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
-                    double s1, s2, t1, t2;
+                    double s1;
+                    double s2;
+                    double t1;
+                    double t2;
 
                     /* Add two hi words. */
                     s1 = head_t1 + head_t2;
@@ -7453,7 +7784,16 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                   /* imaginary part */
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a1 * SPLIT;
                     a11 = con - head_a1;
@@ -7477,7 +7817,16 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                   }
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a0 * SPLIT;
                     a11 = con - head_a0;
@@ -7502,7 +7851,10 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
-                    double s1, s2, t1, t2;
+                    double s1;
+                    double s2;
+                    double t1;
+                    double t2;
 
                     /* Add two hi words. */
                     s1 = head_t1 + head_t2;
@@ -7708,14 +8060,22 @@ void BLAS_zge_sum_mv_d_d_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -8620,14 +8980,22 @@ void BLAS_zge_sum_mv_d_z_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -9531,14 +9899,22 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -10318,10 +10694,15 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
           case 3:
             {
               /* Compute complex-extra = complex-double * real. */
-              double head_t, tail_t;
+              double head_t;
+              double tail_t;
               {
                 /* Compute double_double = double * double. */
-                double a1, a2, b1, b2, con;
+                double a1;
+                double a2;
+                double b1;
+                double b2;
+                double con;
 
                 con = divider * SPLIT;
                 a1 = con - divider;
@@ -10339,7 +10720,11 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
               tail_a_elem_2[0] = tail_t;
               {
                 /* Compute double_double = double * double. */
-                double a1, a2, b1, b2, con;
+                double a1;
+                double a2;
+                double b1;
+                double b2;
+                double con;
 
                 con = divider * SPLIT;
                 a1 = con - divider;
@@ -10358,10 +10743,14 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
             }
             {
               /* Compute complex-extra = complex-extra * complex-double. */
-              double head_a0, tail_a0;
-              double head_a1, tail_a1;
-              double head_t1, tail_t1;
-              double head_t2, tail_t2;
+              double head_a0;
+              double tail_a0;
+              double head_a1;
+              double tail_a1;
+              double head_t1;
+              double tail_t1;
+              double head_t2;
+              double tail_t2;
               head_a0 = head_a_elem_2[0];
               tail_a0 = tail_a_elem_2[0];
               head_a1 = head_a_elem_2[1];
@@ -10369,7 +10758,16 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
               /* real part */
               {
                 /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                double a11;
+                double a21;
+                double b1;
+                double b2;
+                double c11;
+                double c21;
+                double c2;
+                double con;
+                double t1;
+                double t2;
 
                 con = head_a0 * SPLIT;
                 a11 = con - head_a0;
@@ -10392,7 +10790,16 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
               }
               {
                 /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                double a11;
+                double a21;
+                double b1;
+                double b2;
+                double c11;
+                double c21;
+                double c2;
+                double con;
+                double t1;
+                double t2;
 
                 con = head_a1 * SPLIT;
                 a11 = con - head_a1;
@@ -10418,7 +10825,10 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
               {
                 /* Compute double-double = double-double + double-double. */
                 double bv;
-                double s1, s2, t1, t2;
+                double s1;
+                double s2;
+                double t1;
+                double t2;
 
                 /* Add two hi words. */
                 s1 = head_t1 + head_t2;
@@ -10447,7 +10857,16 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
               /* imaginary part */
               {
                 /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                double a11;
+                double a21;
+                double b1;
+                double b2;
+                double c11;
+                double c21;
+                double c2;
+                double con;
+                double t1;
+                double t2;
 
                 con = head_a1 * SPLIT;
                 a11 = con - head_a1;
@@ -10470,7 +10889,16 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
               }
               {
                 /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                double a11;
+                double a21;
+                double b1;
+                double b2;
+                double c11;
+                double c21;
+                double c2;
+                double con;
+                double t1;
+                double t2;
 
                 con = head_a0 * SPLIT;
                 a11 = con - head_a0;
@@ -10494,7 +10922,10 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
               {
                 /* Compute double-double = double-double + double-double. */
                 double bv;
-                double s1, s2, t1, t2;
+                double s1;
+                double s2;
+                double t1;
+                double t2;
 
                 /* Add two hi words. */
                 s1 = head_t1 + head_t2;
@@ -10592,10 +11023,15 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
             case 3:
               {
                 /* Compute complex-extra = complex-double * real. */
-                double head_t, tail_t;
+                double head_t;
+                double tail_t;
                 {
                   /* Compute double_double = double * double. */
-                  double a1, a2, b1, b2, con;
+                  double a1;
+                  double a2;
+                  double b1;
+                  double b2;
+                  double con;
 
                   con = divider * SPLIT;
                   a1 = con - divider;
@@ -10614,7 +11050,11 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
                 tail_a_elem_2[0] = tail_t;
                 {
                   /* Compute double_double = double * double. */
-                  double a1, a2, b1, b2, con;
+                  double a1;
+                  double a2;
+                  double b1;
+                  double b2;
+                  double con;
 
                   con = divider * SPLIT;
                   a1 = con - divider;
@@ -10634,10 +11074,14 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
               }
               {
                 /* Compute complex-extra = complex-extra * complex-double. */
-                double head_a0, tail_a0;
-                double head_a1, tail_a1;
-                double head_t1, tail_t1;
-                double head_t2, tail_t2;
+                double head_a0;
+                double tail_a0;
+                double head_a1;
+                double tail_a1;
+                double head_t1;
+                double tail_t1;
+                double head_t2;
+                double tail_t2;
                 head_a0 = head_a_elem_2[0];
                 tail_a0 = tail_a_elem_2[0];
                 head_a1 = head_a_elem_2[1];
@@ -10645,7 +11089,16 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
                 /* real part */
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a0 * SPLIT;
                   a11 = con - head_a0;
@@ -10668,7 +11121,16 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
                 }
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a1 * SPLIT;
                   a11 = con - head_a1;
@@ -10694,7 +11156,10 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
-                  double s1, s2, t1, t2;
+                  double s1;
+                  double s2;
+                  double t1;
+                  double t2;
 
                   /* Add two hi words. */
                   s1 = head_t1 + head_t2;
@@ -10723,7 +11188,16 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
                 /* imaginary part */
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a1 * SPLIT;
                   a11 = con - head_a1;
@@ -10746,7 +11220,16 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
                 }
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a0 * SPLIT;
                   a11 = con - head_a0;
@@ -10770,7 +11253,10 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
-                  double s1, s2, t1, t2;
+                  double s1;
+                  double s2;
+                  double t1;
+                  double t2;
 
                   /* Add two hi words. */
                   s1 = head_t1 + head_t2;
@@ -10970,14 +11456,22 @@ void BLAS_dge_sum_mv_s_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -10985,7 +11479,8 @@ void BLAS_dge_sum_mv_s_s_testgen(int norm, enum blas_order_type order,
   double beta_zero_fake;
   float a_elem;
   float x_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
   double multiplier;
   double divider;
   double alpha_use;
@@ -11774,14 +12269,22 @@ void BLAS_dge_sum_mv_s_d_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -11789,7 +12292,8 @@ void BLAS_dge_sum_mv_s_d_testgen(int norm, enum blas_order_type order,
   double beta_zero_fake;
   float a_elem;
   double x_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
   double multiplier;
   double divider;
   double alpha_use;
@@ -12578,14 +13082,22 @@ void BLAS_dge_sum_mv_d_s_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -12593,7 +13105,8 @@ void BLAS_dge_sum_mv_d_s_testgen(int norm, enum blas_order_type order,
   double beta_zero_fake;
   double a_elem;
   float x_elem;
-  double head_r_true_elem, tail_r_true_elem;
+  double head_r_true_elem;
+  double tail_r_true_elem;
   double multiplier;
   double divider;
   double alpha_use;
@@ -13392,14 +13905,22 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -14189,10 +14710,14 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
               cd[1] = (double) one_minus_i[1];
               {
                 /* Compute complex-extra = complex-extra * complex-double. */
-                double head_a0, tail_a0;
-                double head_a1, tail_a1;
-                double head_t1, tail_t1;
-                double head_t2, tail_t2;
+                double head_a0;
+                double tail_a0;
+                double head_a1;
+                double tail_a1;
+                double head_t1;
+                double tail_t1;
+                double head_t2;
+                double tail_t2;
                 head_a0 = head_a_elem_2[0];
                 tail_a0 = tail_a_elem_2[0];
                 head_a1 = head_a_elem_2[1];
@@ -14200,7 +14725,16 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                 /* real part */
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a0 * SPLIT;
                   a11 = con - head_a0;
@@ -14223,7 +14757,16 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                 }
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a1 * SPLIT;
                   a11 = con - head_a1;
@@ -14249,7 +14792,10 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
-                  double s1, s2, t1, t2;
+                  double s1;
+                  double s2;
+                  double t1;
+                  double t2;
 
                   /* Add two hi words. */
                   s1 = head_t1 + head_t2;
@@ -14278,7 +14824,16 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                 /* imaginary part */
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a1 * SPLIT;
                   a11 = con - head_a1;
@@ -14301,7 +14856,16 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                 }
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a0 * SPLIT;
                   a11 = con - head_a0;
@@ -14325,7 +14889,10 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
-                  double s1, s2, t1, t2;
+                  double s1;
+                  double s2;
+                  double t1;
+                  double t2;
 
                   /* Add two hi words. */
                   s1 = head_t1 + head_t2;
@@ -14434,10 +15001,14 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                 cd[1] = (double) one_minus_i[1];
                 {
                   /* Compute complex-extra = complex-extra * complex-double. */
-                  double head_a0, tail_a0;
-                  double head_a1, tail_a1;
-                  double head_t1, tail_t1;
-                  double head_t2, tail_t2;
+                  double head_a0;
+                  double tail_a0;
+                  double head_a1;
+                  double tail_a1;
+                  double head_t1;
+                  double tail_t1;
+                  double head_t2;
+                  double tail_t2;
                   head_a0 = head_a_elem_2[0];
                   tail_a0 = tail_a_elem_2[0];
                   head_a1 = head_a_elem_2[1];
@@ -14445,7 +15016,16 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                   /* real part */
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a0 * SPLIT;
                     a11 = con - head_a0;
@@ -14469,7 +15049,16 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                   }
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a1 * SPLIT;
                     a11 = con - head_a1;
@@ -14496,7 +15085,10 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
-                    double s1, s2, t1, t2;
+                    double s1;
+                    double s2;
+                    double t1;
+                    double t2;
 
                     /* Add two hi words. */
                     s1 = head_t1 + head_t2;
@@ -14525,7 +15117,16 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                   /* imaginary part */
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a1 * SPLIT;
                     a11 = con - head_a1;
@@ -14549,7 +15150,16 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                   }
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a0 * SPLIT;
                     a11 = con - head_a0;
@@ -14574,7 +15184,10 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
-                    double s1, s2, t1, t2;
+                    double s1;
+                    double s2;
+                    double t1;
+                    double t2;
 
                     /* Add two hi words. */
                     s1 = head_t1 + head_t2;
@@ -14785,14 +15398,22 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -15582,10 +16203,14 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
               cd[1] = (double) one_minus_i[1];
               {
                 /* Compute complex-extra = complex-extra * complex-double. */
-                double head_a0, tail_a0;
-                double head_a1, tail_a1;
-                double head_t1, tail_t1;
-                double head_t2, tail_t2;
+                double head_a0;
+                double tail_a0;
+                double head_a1;
+                double tail_a1;
+                double head_t1;
+                double tail_t1;
+                double head_t2;
+                double tail_t2;
                 head_a0 = head_a_elem_2[0];
                 tail_a0 = tail_a_elem_2[0];
                 head_a1 = head_a_elem_2[1];
@@ -15593,7 +16218,16 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                 /* real part */
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a0 * SPLIT;
                   a11 = con - head_a0;
@@ -15616,7 +16250,16 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                 }
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a1 * SPLIT;
                   a11 = con - head_a1;
@@ -15642,7 +16285,10 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
-                  double s1, s2, t1, t2;
+                  double s1;
+                  double s2;
+                  double t1;
+                  double t2;
 
                   /* Add two hi words. */
                   s1 = head_t1 + head_t2;
@@ -15671,7 +16317,16 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                 /* imaginary part */
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a1 * SPLIT;
                   a11 = con - head_a1;
@@ -15694,7 +16349,16 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                 }
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a0 * SPLIT;
                   a11 = con - head_a0;
@@ -15718,7 +16382,10 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
-                  double s1, s2, t1, t2;
+                  double s1;
+                  double s2;
+                  double t1;
+                  double t2;
 
                   /* Add two hi words. */
                   s1 = head_t1 + head_t2;
@@ -15827,10 +16494,14 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                 cd[1] = (double) one_minus_i[1];
                 {
                   /* Compute complex-extra = complex-extra * complex-double. */
-                  double head_a0, tail_a0;
-                  double head_a1, tail_a1;
-                  double head_t1, tail_t1;
-                  double head_t2, tail_t2;
+                  double head_a0;
+                  double tail_a0;
+                  double head_a1;
+                  double tail_a1;
+                  double head_t1;
+                  double tail_t1;
+                  double head_t2;
+                  double tail_t2;
                   head_a0 = head_a_elem_2[0];
                   tail_a0 = tail_a_elem_2[0];
                   head_a1 = head_a_elem_2[1];
@@ -15838,7 +16509,16 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                   /* real part */
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a0 * SPLIT;
                     a11 = con - head_a0;
@@ -15862,7 +16542,16 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                   }
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a1 * SPLIT;
                     a11 = con - head_a1;
@@ -15889,7 +16578,10 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
-                    double s1, s2, t1, t2;
+                    double s1;
+                    double s2;
+                    double t1;
+                    double t2;
 
                     /* Add two hi words. */
                     s1 = head_t1 + head_t2;
@@ -15918,7 +16610,16 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                   /* imaginary part */
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a1 * SPLIT;
                     a11 = con - head_a1;
@@ -15942,7 +16643,16 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                   }
                   {
                     /* Compute double-double = double-double * double. */
-                    double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                    double a11;
+                    double a21;
+                    double b1;
+                    double b2;
+                    double c11;
+                    double c21;
+                    double c2;
+                    double con;
+                    double t1;
+                    double t2;
 
                     con = head_a0 * SPLIT;
                     a11 = con - head_a0;
@@ -15967,7 +16677,10 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                   {
                     /* Compute double-double = double-double + double-double. */
                     double bv;
-                    double s1, s2, t1, t2;
+                    double s1;
+                    double s2;
+                    double t1;
+                    double t2;
 
                     /* Add two hi words. */
                     s1 = head_t1 + head_t2;
@@ -16178,14 +16891,22 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
  */
 {
 
-  int i, j, k;
+  int i;
+  int j;
+  int k;
   int xi;
-  int aij, ai, ri;
+  int aij;
+  int ai;
+  int ri;
   int incri;
-  int incxi, incx_veci, x_starti;
-  int incaij, incai;
+  int incxi;
+  int incx_veci;
+  int x_starti;
+  int incaij;
+  int incai;
   int inca_veci;
-  int n_i, m_i;
+  int n_i;
+  int m_i;
   int case_type;
   int which_free;
 
@@ -16965,10 +17686,15 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
           case 3:
             {
               /* Compute complex-extra = complex-double * real. */
-              double head_t, tail_t;
+              double head_t;
+              double tail_t;
               {
                 /* Compute double_double = double * double. */
-                double a1, a2, b1, b2, con;
+                double a1;
+                double a2;
+                double b1;
+                double b2;
+                double con;
 
                 con = divider * SPLIT;
                 a1 = con - divider;
@@ -16986,7 +17712,11 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
               tail_a_elem_2[0] = tail_t;
               {
                 /* Compute double_double = double * double. */
-                double a1, a2, b1, b2, con;
+                double a1;
+                double a2;
+                double b1;
+                double b2;
+                double con;
 
                 con = divider * SPLIT;
                 a1 = con - divider;
@@ -17005,10 +17735,14 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
             }
             {
               /* Compute complex-extra = complex-extra * complex-double. */
-              double head_a0, tail_a0;
-              double head_a1, tail_a1;
-              double head_t1, tail_t1;
-              double head_t2, tail_t2;
+              double head_a0;
+              double tail_a0;
+              double head_a1;
+              double tail_a1;
+              double head_t1;
+              double tail_t1;
+              double head_t2;
+              double tail_t2;
               head_a0 = head_a_elem_2[0];
               tail_a0 = tail_a_elem_2[0];
               head_a1 = head_a_elem_2[1];
@@ -17016,7 +17750,16 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
               /* real part */
               {
                 /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                double a11;
+                double a21;
+                double b1;
+                double b2;
+                double c11;
+                double c21;
+                double c2;
+                double con;
+                double t1;
+                double t2;
 
                 con = head_a0 * SPLIT;
                 a11 = con - head_a0;
@@ -17039,7 +17782,16 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
               }
               {
                 /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                double a11;
+                double a21;
+                double b1;
+                double b2;
+                double c11;
+                double c21;
+                double c2;
+                double con;
+                double t1;
+                double t2;
 
                 con = head_a1 * SPLIT;
                 a11 = con - head_a1;
@@ -17065,7 +17817,10 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
               {
                 /* Compute double-double = double-double + double-double. */
                 double bv;
-                double s1, s2, t1, t2;
+                double s1;
+                double s2;
+                double t1;
+                double t2;
 
                 /* Add two hi words. */
                 s1 = head_t1 + head_t2;
@@ -17094,7 +17849,16 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
               /* imaginary part */
               {
                 /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                double a11;
+                double a21;
+                double b1;
+                double b2;
+                double c11;
+                double c21;
+                double c2;
+                double con;
+                double t1;
+                double t2;
 
                 con = head_a1 * SPLIT;
                 a11 = con - head_a1;
@@ -17117,7 +17881,16 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
               }
               {
                 /* Compute double-double = double-double * double. */
-                double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                double a11;
+                double a21;
+                double b1;
+                double b2;
+                double c11;
+                double c21;
+                double c2;
+                double con;
+                double t1;
+                double t2;
 
                 con = head_a0 * SPLIT;
                 a11 = con - head_a0;
@@ -17141,7 +17914,10 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
               {
                 /* Compute double-double = double-double + double-double. */
                 double bv;
-                double s1, s2, t1, t2;
+                double s1;
+                double s2;
+                double t1;
+                double t2;
 
                 /* Add two hi words. */
                 s1 = head_t1 + head_t2;
@@ -17239,10 +18015,15 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
             case 3:
               {
                 /* Compute complex-extra = complex-double * real. */
-                double head_t, tail_t;
+                double head_t;
+                double tail_t;
                 {
                   /* Compute double_double = double * double. */
-                  double a1, a2, b1, b2, con;
+                  double a1;
+                  double a2;
+                  double b1;
+                  double b2;
+                  double con;
 
                   con = divider * SPLIT;
                   a1 = con - divider;
@@ -17261,7 +18042,11 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
                 tail_a_elem_2[0] = tail_t;
                 {
                   /* Compute double_double = double * double. */
-                  double a1, a2, b1, b2, con;
+                  double a1;
+                  double a2;
+                  double b1;
+                  double b2;
+                  double con;
 
                   con = divider * SPLIT;
                   a1 = con - divider;
@@ -17281,10 +18066,14 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
               }
               {
                 /* Compute complex-extra = complex-extra * complex-double. */
-                double head_a0, tail_a0;
-                double head_a1, tail_a1;
-                double head_t1, tail_t1;
-                double head_t2, tail_t2;
+                double head_a0;
+                double tail_a0;
+                double head_a1;
+                double tail_a1;
+                double head_t1;
+                double tail_t1;
+                double head_t2;
+                double tail_t2;
                 head_a0 = head_a_elem_2[0];
                 tail_a0 = tail_a_elem_2[0];
                 head_a1 = head_a_elem_2[1];
@@ -17292,7 +18081,16 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
                 /* real part */
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a0 * SPLIT;
                   a11 = con - head_a0;
@@ -17315,7 +18113,16 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
                 }
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a1 * SPLIT;
                   a11 = con - head_a1;
@@ -17341,7 +18148,10 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
-                  double s1, s2, t1, t2;
+                  double s1;
+                  double s2;
+                  double t1;
+                  double t2;
 
                   /* Add two hi words. */
                   s1 = head_t1 + head_t2;
@@ -17370,7 +18180,16 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
                 /* imaginary part */
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a1 * SPLIT;
                   a11 = con - head_a1;
@@ -17393,7 +18212,16 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
                 }
                 {
                   /* Compute double-double = double-double * double. */
-                  double a11, a21, b1, b2, c11, c21, c2, con, t1, t2;
+                  double a11;
+                  double a21;
+                  double b1;
+                  double b2;
+                  double c11;
+                  double c21;
+                  double c2;
+                  double con;
+                  double t1;
+                  double t2;
 
                   con = head_a0 * SPLIT;
                   a11 = con - head_a0;
@@ -17417,7 +18245,10 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
                 {
                   /* Compute double-double = double-double + double-double. */
                   double bv;
-                  double s1, s2, t1, t2;
+                  double s1;
+                  double s2;
+                  double t1;
+                  double t2;
 
                   /* Add two hi words. */
                   s1 = head_t1 + head_t2;

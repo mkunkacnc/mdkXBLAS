@@ -76,9 +76,11 @@ void BLAS_sgemv2_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   float y_elem;
 
   incy = incA = 1;
@@ -201,9 +203,11 @@ void BLAS_dgemv2_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   double *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem;
 
   incy = incA = 1;
@@ -326,9 +330,11 @@ void BLAS_cgemv2_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   float y_elem[2];
 
   incy = incA = 1;
@@ -452,9 +458,11 @@ void BLAS_zgemv2_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   double *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem[2];
 
   incy = incA = 1;
@@ -578,9 +586,11 @@ void BLAS_cgemv2_s_s_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   float y_elem[2];
 
   incy = incA = 1;
@@ -704,9 +714,11 @@ void BLAS_cgemv2_s_c_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   float y_elem[2];
 
   incy = incA = 1;
@@ -830,9 +842,11 @@ void BLAS_cgemv2_c_s_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   float y_elem[2];
 
   incy = incA = 1;
@@ -956,9 +970,11 @@ void BLAS_zgemv2_d_d_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   double *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem[2];
 
   incy = incA = 1;
@@ -1082,9 +1098,11 @@ void BLAS_zgemv2_d_z_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   double *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem[2];
 
   incy = incA = 1;
@@ -1208,9 +1226,11 @@ void BLAS_zgemv2_z_d_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   double *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem[2];
 
   incy = incA = 1;
@@ -1334,9 +1354,11 @@ void BLAS_dgemv2_s_s_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem;
 
   incy = incA = 1;
@@ -1459,9 +1481,11 @@ void BLAS_dgemv2_s_d_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem;
 
   incy = incA = 1;
@@ -1584,9 +1608,11 @@ void BLAS_dgemv2_d_s_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   double *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem;
 
   incy = incA = 1;
@@ -1709,9 +1735,11 @@ void BLAS_zgemv2_c_c_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem[2];
 
   incy = incA = 1;
@@ -1835,9 +1863,11 @@ void BLAS_zgemv2_c_z_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   float *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem[2];
 
   incy = incA = 1;
@@ -1961,9 +1991,11 @@ void BLAS_zgemv2_z_c_testgen(int norm, enum blas_order_type order,
   int n_mix;
   int i;
   double *temp;
-  int m_i, n_i;
+  int m_i;
+  int n_i;
   int max_mn;
-  int incy, incA;
+  int incy;
+  int incA;
   double y_elem[2];
 
   incy = incA = 1;

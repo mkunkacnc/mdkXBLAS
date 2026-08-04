@@ -56,9 +56,19 @@ void test_BLAS_sdot2(int n, enum blas_conj_type conj, float alpha, float beta,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
-  double eps_accurate, eps_out, tmp1, S, S1, S2, U;
-  double un_d, un_accurate, un_out;
+  int i;
+  int ix;
+  int iy;
+  double eps_accurate;
+  double eps_out;
+  double tmp1;
+  double S;
+  double S1;
+  double S2;
+  double U;
+  double un_d;
+  double un_accurate;
+  double un_out;
 
   /* Set the starting position */
   ix = 0;
@@ -151,9 +161,19 @@ void test_BLAS_ddot2(int n, enum blas_conj_type conj, double alpha,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
-  double eps_accurate, eps_out, tmp1, S, S1, S2, U;
-  double un_d, un_accurate, un_out;
+  int i;
+  int ix;
+  int iy;
+  double eps_accurate;
+  double eps_out;
+  double tmp1;
+  double S;
+  double S1;
+  double S2;
+  double U;
+  double un_d;
+  double un_accurate;
+  double un_out;
 
   /* Set the starting position */
   ix = 0;
@@ -246,9 +266,13 @@ void test_BLAS_cdot2(int n, enum blas_conj_type conj, const void *alpha,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
+  int i;
+  int ix;
+  int iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
-  double un_d, un_accurate, un_out;
+  double un_d;
+  double un_accurate;
+  double un_out;
   float *x_i = (float *) x;
   float *head_y_i = (float *) head_y;
   float *tail_y_i = (float *) tail_y;
@@ -389,9 +413,13 @@ void test_BLAS_zdot2(int n, enum blas_conj_type conj, const void *alpha,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
+  int i;
+  int ix;
+  int iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
-  double un_d, un_accurate, un_out;
+  double un_d;
+  double un_accurate;
+  double un_out;
   double *x_i = (double *) x;
   double *head_y_i = (double *) head_y;
   double *tail_y_i = (double *) tail_y;
@@ -529,9 +557,13 @@ void test_BLAS_cdot2_s_s(int n, enum blas_conj_type conj, const void *alpha,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
+  int i;
+  int ix;
+  int iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
-  double un_d, un_accurate, un_out;
+  double un_d;
+  double un_accurate;
+  double un_out;
   float *x_i = (float *)x;
   float *head_y_i = (float *)head_y;
   float *tail_y_i = (float *)tail_y;
@@ -661,9 +693,13 @@ void test_BLAS_cdot2_s_c(int n, enum blas_conj_type conj, const void *alpha,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
+  int i;
+  int ix;
+  int iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
-  double un_d, un_accurate, un_out;
+  double un_d;
+  double un_accurate;
+  double un_out;
   float *x_i = (float *)x;
   float *head_y_i = (float *) head_y;
   float *tail_y_i = (float *) tail_y;
@@ -799,9 +835,13 @@ void test_BLAS_cdot2_c_s(int n, enum blas_conj_type conj, const void *alpha,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
+  int i;
+  int ix;
+  int iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
-  double un_d, un_accurate, un_out;
+  double un_d;
+  double un_accurate;
+  double un_out;
   float *x_i = (float *) x;
   float *head_y_i = (float *)head_y;
   float *tail_y_i = (float *)tail_y;
@@ -938,9 +978,13 @@ void test_BLAS_zdot2_d_d(int n, enum blas_conj_type conj, const void *alpha,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
+  int i;
+  int ix;
+  int iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
-  double un_d, un_accurate, un_out;
+  double un_d;
+  double un_accurate;
+  double un_out;
   double *x_i = (double *)x;
   double *head_y_i = (double *)head_y;
   double *tail_y_i = (double *)tail_y;
@@ -1069,9 +1113,13 @@ void test_BLAS_zdot2_d_z(int n, enum blas_conj_type conj, const void *alpha,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
+  int i;
+  int ix;
+  int iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
-  double un_d, un_accurate, un_out;
+  double un_d;
+  double un_accurate;
+  double un_out;
   double *x_i = (double *)x;
   double *head_y_i = (double *) head_y;
   double *tail_y_i = (double *) tail_y;
@@ -1206,9 +1254,13 @@ void test_BLAS_zdot2_z_d(int n, enum blas_conj_type conj, const void *alpha,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
+  int i;
+  int ix;
+  int iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
-  double un_d, un_accurate, un_out;
+  double un_d;
+  double un_accurate;
+  double un_out;
   double *x_i = (double *) x;
   double *head_y_i = (double *)head_y;
   double *tail_y_i = (double *)tail_y;
@@ -1344,9 +1396,19 @@ void test_BLAS_ddot2_s_s(int n, enum blas_conj_type conj, double alpha,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
-  double eps_accurate, eps_out, tmp1, S, S1, S2, U;
-  double un_d, un_accurate, un_out;
+  int i;
+  int ix;
+  int iy;
+  double eps_accurate;
+  double eps_out;
+  double tmp1;
+  double S;
+  double S1;
+  double S2;
+  double U;
+  double un_d;
+  double un_accurate;
+  double un_out;
 
   /* Set the starting position */
   ix = 0;
@@ -1439,9 +1501,19 @@ void test_BLAS_ddot2_s_d(int n, enum blas_conj_type conj, double alpha,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
-  double eps_accurate, eps_out, tmp1, S, S1, S2, U;
-  double un_d, un_accurate, un_out;
+  int i;
+  int ix;
+  int iy;
+  double eps_accurate;
+  double eps_out;
+  double tmp1;
+  double S;
+  double S1;
+  double S2;
+  double U;
+  double un_d;
+  double un_accurate;
+  double un_out;
 
   /* Set the starting position */
   ix = 0;
@@ -1534,9 +1606,19 @@ void test_BLAS_ddot2_d_s(int n, enum blas_conj_type conj, double alpha,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
-  double eps_accurate, eps_out, tmp1, S, S1, S2, U;
-  double un_d, un_accurate, un_out;
+  int i;
+  int ix;
+  int iy;
+  double eps_accurate;
+  double eps_out;
+  double tmp1;
+  double S;
+  double S1;
+  double S2;
+  double U;
+  double un_d;
+  double un_accurate;
+  double un_out;
 
   /* Set the starting position */
   ix = 0;
@@ -1629,9 +1711,13 @@ void test_BLAS_zdot2_c_c(int n, enum blas_conj_type conj, const void *alpha,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
+  int i;
+  int ix;
+  int iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
-  double un_d, un_accurate, un_out;
+  double un_d;
+  double un_accurate;
+  double un_out;
   float *x_i = (float *) x;
   float *head_y_i = (float *) head_y;
   float *tail_y_i = (float *) tail_y;
@@ -1769,9 +1855,13 @@ void test_BLAS_zdot2_c_z(int n, enum blas_conj_type conj, const void *alpha,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
+  int i;
+  int ix;
+  int iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
-  double un_d, un_accurate, un_out;
+  double un_d;
+  double un_accurate;
+  double un_out;
   float *x_i = (float *) x;
   double *head_y_i = (double *) head_y;
   double *tail_y_i = (double *) tail_y;
@@ -1909,9 +1999,13 @@ void test_BLAS_zdot2_z_c(int n, enum blas_conj_type conj, const void *alpha,
  *         The ratio of computed error for r over the error bound.
  */
 {
-  int i, ix, iy;
+  int i;
+  int ix;
+  int iy;
   double eps_accurate, eps_out, tmp1, S, S1, S2, U, prod[2], tmp[2];
-  double un_d, un_accurate, un_out;
+  double un_d;
+  double un_accurate;
+  double un_out;
   double *x_i = (double *) x;
   float *head_y_i = (float *) head_y;
   float *tail_y_i = (float *) tail_y;
