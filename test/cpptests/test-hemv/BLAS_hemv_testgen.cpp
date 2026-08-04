@@ -1107,7 +1107,7 @@ void BLAS_chemv_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_chemv_testgen";
+  const char *routine_name = "BLAS_chemv_testgen";
   {
 
     /* Strategy:
@@ -1689,7 +1689,7 @@ void BLAS_zhemv_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_zhemv_testgen";
+  const char *routine_name = "BLAS_zhemv_testgen";
   {
 
     /* Strategy:
@@ -2271,7 +2271,7 @@ void BLAS_zhemv_c_z_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_zhemv_c_z_testgen";
+  const char *routine_name = "BLAS_zhemv_c_z_testgen";
   {
 
     /* Strategy:
@@ -2853,7 +2853,7 @@ void BLAS_zhemv_z_c_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_zhemv_z_c_testgen";
+  const char *routine_name = "BLAS_zhemv_z_c_testgen";
   {
 
     /* Strategy:
@@ -3435,7 +3435,7 @@ void BLAS_zhemv_c_c_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_zhemv_c_c_testgen";
+  const char *routine_name = "BLAS_zhemv_c_c_testgen";
   {
 
     /* Strategy:
@@ -4017,7 +4017,7 @@ void BLAS_zhemv_z_d_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_zhemv_z_d_testgen";
+  const char *routine_name = "BLAS_zhemv_z_d_testgen";
   {
 
     /* Strategy:
@@ -4530,7 +4530,7 @@ void BLAS_chemv_c_s_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_chemv_c_s_testgen";
+  const char *routine_name = "BLAS_chemv_c_s_testgen";
   {
 
     /* Strategy:

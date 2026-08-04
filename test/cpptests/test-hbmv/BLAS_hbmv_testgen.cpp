@@ -944,7 +944,7 @@ void BLAS_chbmv_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_chbmv_testgen";
+  const char *routine_name = "BLAS_chbmv_testgen";
   {
 
     /* Strategy:  (applies to the randomize == 0 case) :
@@ -1538,7 +1538,7 @@ void BLAS_zhbmv_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_zhbmv_testgen";
+  const char *routine_name = "BLAS_zhbmv_testgen";
   {
 
     /* Strategy:  (applies to the randomize == 0 case) :
@@ -2132,7 +2132,7 @@ void BLAS_zhbmv_c_z_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_zhbmv_c_z_testgen";
+  const char *routine_name = "BLAS_zhbmv_c_z_testgen";
   {
 
     /* Strategy:  (applies to the randomize == 0 case) :
@@ -2726,7 +2726,7 @@ void BLAS_zhbmv_z_c_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_zhbmv_z_c_testgen";
+  const char *routine_name = "BLAS_zhbmv_z_c_testgen";
   {
 
     /* Strategy:  (applies to the randomize == 0 case) :
@@ -3320,7 +3320,7 @@ void BLAS_zhbmv_c_c_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_zhbmv_c_c_testgen";
+  const char *routine_name = "BLAS_zhbmv_c_c_testgen";
   {
 
     /* Strategy:  (applies to the randomize == 0 case) :
@@ -3914,7 +3914,7 @@ void BLAS_zhbmv_z_d_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_zhbmv_z_d_testgen";
+  const char *routine_name = "BLAS_zhbmv_z_d_testgen";
   {
 
     /* Strategy:  (applies to the randomize == 0 case) :
@@ -4440,7 +4440,7 @@ void BLAS_chbmv_c_s_testgen(int norm, enum blas_order_type order,
  *
  */
 {
-  char *routine_name = "BLAS_chbmv_c_s_testgen";
+  const char *routine_name = "BLAS_chbmv_c_s_testgen";
   {
 
     /* Strategy:  (applies to the randomize == 0 case) :
