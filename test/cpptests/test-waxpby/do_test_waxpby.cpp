@@ -165,8 +165,13 @@ double do_test_dwaxpby_d_s(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
@@ -673,8 +678,13 @@ double do_test_dwaxpby_s_d(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
@@ -1181,8 +1191,13 @@ double do_test_dwaxpby_s_s(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
@@ -1701,8 +1716,13 @@ double do_test_zwaxpby_z_c(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
@@ -2226,8 +2246,13 @@ double do_test_zwaxpby_c_z(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
@@ -2751,8 +2776,13 @@ double do_test_zwaxpby_c_c(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
@@ -3294,8 +3324,13 @@ double do_test_cwaxpby_c_s(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i = 0.0;
   X = 0.0;
@@ -3829,8 +3864,13 @@ double do_test_cwaxpby_s_c(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
@@ -4365,8 +4405,13 @@ double do_test_cwaxpby_s_s(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
@@ -4907,8 +4952,13 @@ double do_test_zwaxpby_z_d(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i = 0.0;
   X = 0.0;
@@ -5427,8 +5477,13 @@ double do_test_zwaxpby_d_z(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
@@ -5947,8 +6002,13 @@ double do_test_zwaxpby_d_d(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
@@ -6475,8 +6535,13 @@ double do_test_swaxpby_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
@@ -6998,8 +7063,13 @@ double do_test_dwaxpby_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
@@ -7522,8 +7592,13 @@ double do_test_cwaxpby_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
@@ -8053,8 +8128,13 @@ double do_test_zwaxpby_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
@@ -8583,8 +8663,13 @@ double do_test_dwaxpby_d_s_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
@@ -9111,8 +9196,13 @@ double do_test_dwaxpby_s_d_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
@@ -9639,8 +9729,13 @@ double do_test_dwaxpby_s_s_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
@@ -10178,8 +10273,13 @@ double do_test_zwaxpby_z_c_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
@@ -10723,8 +10823,13 @@ double do_test_zwaxpby_c_z_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
@@ -11268,8 +11373,13 @@ double do_test_zwaxpby_c_c_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
@@ -11830,8 +11940,13 @@ double do_test_cwaxpby_c_s_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i = 0.0;
   X = 0.0;
@@ -12385,8 +12500,13 @@ double do_test_cwaxpby_s_c_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
@@ -12941,8 +13061,13 @@ double do_test_cwaxpby_s_s_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
@@ -13502,8 +13627,13 @@ double do_test_zwaxpby_z_d_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i = 0.0;
   X = 0.0;
@@ -14042,8 +14172,13 @@ double do_test_zwaxpby_d_z_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
@@ -14582,8 +14717,13 @@ double do_test_zwaxpby_d_d_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = ytemp = atemp = btemp = 0.0;
-  wltemp = wttemp = x_fix1_temp = 0.0;
+  xtemp = 0.0;
+  ytemp = 0.0;
+  atemp = 0.0;
+  btemp = 0.0;
+  wltemp = 0.0;
+  wttemp = 0.0;
+  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;

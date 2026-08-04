@@ -148,7 +148,9 @@ void do_test_dspmv_d_s(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -527,7 +529,9 @@ void do_test_dspmv_s_d(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -906,7 +910,9 @@ void do_test_dspmv_s_s(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -1285,7 +1291,9 @@ void do_test_zspmv_z_c(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -1670,7 +1678,9 @@ void do_test_zspmv_c_z(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -2055,7 +2065,9 @@ void do_test_zspmv_c_c(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -2440,7 +2452,9 @@ void do_test_cspmv_c_s(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
 
   incy *= 2;
@@ -2825,7 +2839,9 @@ void do_test_cspmv_s_c(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
   incx *= 2;
   incy *= 2;
@@ -3210,7 +3226,9 @@ void do_test_cspmv_s_s(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
   incy *= 2;
@@ -3595,7 +3613,9 @@ void do_test_zspmv_z_d(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
 
   incy *= 2;
@@ -3980,7 +4000,9 @@ void do_test_zspmv_d_z(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
   incx *= 2;
   incy *= 2;
@@ -4365,7 +4387,9 @@ void do_test_zspmv_d_d(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
   incy *= 2;
@@ -4750,7 +4774,9 @@ void do_test_sspmv_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -5151,7 +5177,9 @@ void do_test_dspmv_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -5552,7 +5580,9 @@ void do_test_cspmv_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -5959,7 +5989,9 @@ void do_test_zspmv_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -6367,7 +6399,9 @@ void do_test_dspmv_d_s_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -6769,7 +6803,9 @@ void do_test_dspmv_s_d_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -7171,7 +7207,9 @@ void do_test_dspmv_s_s_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -7573,7 +7611,9 @@ void do_test_zspmv_z_c_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -7981,7 +8021,9 @@ void do_test_zspmv_c_z_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -8389,7 +8431,9 @@ void do_test_zspmv_c_c_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -8797,7 +8841,9 @@ void do_test_cspmv_c_s_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
 
   incy *= 2;
@@ -9205,7 +9251,9 @@ void do_test_cspmv_s_c_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
   incx *= 2;
   incy *= 2;
@@ -9613,7 +9661,9 @@ void do_test_cspmv_s_s_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
   incy *= 2;
@@ -10021,7 +10071,9 @@ void do_test_zspmv_z_d_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
 
   incy *= 2;
@@ -10429,7 +10481,9 @@ void do_test_zspmv_d_z_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
   incx *= 2;
   incy *= 2;
@@ -10837,7 +10891,9 @@ void do_test_zspmv_d_d_x(int n,
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
   incy *= 2;

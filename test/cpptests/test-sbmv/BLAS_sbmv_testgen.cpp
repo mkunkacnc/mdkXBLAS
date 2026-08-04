@@ -188,7 +188,8 @@ void BLAS_ssbmv_testgen(int norm, enum blas_order_type order,
                         beta, beta_fixed, x_vec, a_vec, seed,
                         &y_elem, &head_r_true_elem, &tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       ssbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);
@@ -455,7 +456,8 @@ void BLAS_dsbmv_testgen(int norm, enum blas_order_type order,
                         beta, beta_fixed, x_vec, a_vec, seed,
                         &y_elem, &head_r_true_elem, &tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       dsbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);
@@ -723,7 +725,8 @@ void BLAS_csbmv_testgen(int norm, enum blas_order_type order,
                         beta, beta_fixed, x_vec, a_vec, seed,
                         y_elem, head_r_true_elem, tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       csbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);
@@ -1005,7 +1008,8 @@ void BLAS_zsbmv_testgen(int norm, enum blas_order_type order,
                         beta, beta_fixed, x_vec, a_vec, seed,
                         y_elem, head_r_true_elem, tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       zsbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);
@@ -1285,7 +1289,8 @@ void BLAS_csbmv_s_s_testgen(int norm, enum blas_order_type order,
                             beta, beta_fixed, x_vec, a_vec, seed,
                             y_elem, head_r_true_elem, tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       ssbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);
@@ -1584,7 +1589,8 @@ void BLAS_csbmv_s_c_testgen(int norm, enum blas_order_type order,
                             beta, beta_fixed, x_vec, a_vec, seed,
                             y_elem, head_r_true_elem, tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       ssbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);
@@ -1875,7 +1881,8 @@ void BLAS_csbmv_c_s_testgen(int norm, enum blas_order_type order,
                             beta, beta_fixed, x_vec, a_vec, seed,
                             y_elem, head_r_true_elem, tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       csbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);
@@ -2165,7 +2172,8 @@ void BLAS_zsbmv_d_d_testgen(int norm, enum blas_order_type order,
                             beta, beta_fixed, x_vec, a_vec, seed,
                             y_elem, head_r_true_elem, tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       dsbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);
@@ -2464,7 +2472,8 @@ void BLAS_zsbmv_d_z_testgen(int norm, enum blas_order_type order,
                             beta, beta_fixed, x_vec, a_vec, seed,
                             y_elem, head_r_true_elem, tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       dsbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);
@@ -2755,7 +2764,8 @@ void BLAS_zsbmv_z_d_testgen(int norm, enum blas_order_type order,
                             beta, beta_fixed, x_vec, a_vec, seed,
                             y_elem, head_r_true_elem, tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       zsbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);
@@ -3046,7 +3056,8 @@ void BLAS_dsbmv_s_s_testgen(int norm, enum blas_order_type order,
                             beta, beta_fixed, x_vec, a_vec, seed,
                             &y_elem, &head_r_true_elem, &tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       ssbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);
@@ -3314,7 +3325,8 @@ void BLAS_dsbmv_s_d_testgen(int norm, enum blas_order_type order,
                             beta, beta_fixed, x_vec, a_vec, seed,
                             &y_elem, &head_r_true_elem, &tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       ssbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);
@@ -3582,7 +3594,8 @@ void BLAS_dsbmv_d_s_testgen(int norm, enum blas_order_type order,
                             beta, beta_fixed, x_vec, a_vec, seed,
                             &y_elem, &head_r_true_elem, &tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       dsbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);
@@ -3850,7 +3863,8 @@ void BLAS_zsbmv_c_c_testgen(int norm, enum blas_order_type order,
                             beta, beta_fixed, x_vec, a_vec, seed,
                             y_elem, head_r_true_elem, tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       csbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);
@@ -4132,7 +4146,8 @@ void BLAS_zsbmv_c_z_testgen(int norm, enum blas_order_type order,
                             beta, beta_fixed, x_vec, a_vec, seed,
                             y_elem, head_r_true_elem, tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       csbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);
@@ -4414,7 +4429,8 @@ void BLAS_zsbmv_z_c_testgen(int norm, enum blas_order_type order,
                             beta, beta_fixed, x_vec, a_vec, seed,
                             y_elem, head_r_true_elem, tail_r_true_elem);
 
-      beta_fixed = alpha_fixed = 1;
+      beta_fixed = 1;
+      alpha_fixed = 1;
 
       /* ignores portion that should be zero */
       zsbmv_commit_row(order, uplo, n_i, a_i, k, lda, a_vec, i);

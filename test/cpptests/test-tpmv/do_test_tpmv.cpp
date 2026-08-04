@@ -152,7 +152,9 @@ double do_test_dtpmv_s(int n,
 
 
 
-  incx = inctp = inc_index = 1;
+  incx = 1;
+  inctp = 1;
+  inc_index = 1;
 
 
 
@@ -665,7 +667,9 @@ double do_test_ztpmv_c(int n,
 
 
 
-  incx = inctp = inc_index = 1;
+  incx = 1;
+  inctp = 1;
+  inc_index = 1;
   incx *= 2;
   inctp *= 2;
   inc_index *= 2;
@@ -1183,7 +1187,9 @@ double do_test_ctpmv_s(int n,
 
 
 
-  incx = inctp = inc_index = 1;
+  incx = 1;
+  inctp = 1;
+  inc_index = 1;
   incx *= 2;
 
   inc_index *= 2;
@@ -1701,7 +1707,9 @@ double do_test_ztpmv_d(int n,
 
 
 
-  incx = inctp = inc_index = 1;
+  incx = 1;
+  inctp = 1;
+  inc_index = 1;
   incx *= 2;
 
   inc_index *= 2;
@@ -2218,7 +2226,9 @@ double do_test_stpmv_x(int n,
 
 
 
-  incx = inctp = inc_index = 1;
+  incx = 1;
+  inctp = 1;
+  inc_index = 1;
 
 
 
@@ -2749,7 +2759,9 @@ double do_test_dtpmv_x(int n,
 
 
 
-  incx = inctp = inc_index = 1;
+  incx = 1;
+  inctp = 1;
+  inc_index = 1;
 
 
 
@@ -3281,7 +3293,9 @@ double do_test_ctpmv_x(int n,
 
 
 
-  incx = inctp = inc_index = 1;
+  incx = 1;
+  inctp = 1;
+  inc_index = 1;
   incx *= 2;
   inctp *= 2;
   inc_index *= 2;
@@ -3818,7 +3832,9 @@ double do_test_ztpmv_x(int n,
 
 
 
-  incx = inctp = inc_index = 1;
+  incx = 1;
+  inctp = 1;
+  inc_index = 1;
   incx *= 2;
   inctp *= 2;
   inc_index *= 2;
@@ -4355,7 +4371,9 @@ double do_test_dtpmv_s_x(int n,
 
 
 
-  incx = inctp = inc_index = 1;
+  incx = 1;
+  inctp = 1;
+  inc_index = 1;
 
 
 
@@ -4889,7 +4907,9 @@ double do_test_ztpmv_c_x(int n,
 
 
 
-  incx = inctp = inc_index = 1;
+  incx = 1;
+  inctp = 1;
+  inc_index = 1;
   incx *= 2;
   inctp *= 2;
   inc_index *= 2;
@@ -5428,7 +5448,9 @@ double do_test_ctpmv_s_x(int n,
 
 
 
-  incx = inctp = inc_index = 1;
+  incx = 1;
+  inctp = 1;
+  inc_index = 1;
   incx *= 2;
 
   inc_index *= 2;
@@ -5967,7 +5989,9 @@ double do_test_ztpmv_d_x(int n,
 
 
 
-  incx = inctp = inc_index = 1;
+  incx = 1;
+  inctp = 1;
+  inc_index = 1;
   incx *= 2;
 
   inc_index *= 2;

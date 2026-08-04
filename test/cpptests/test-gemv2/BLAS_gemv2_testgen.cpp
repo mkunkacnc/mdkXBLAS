@@ -83,7 +83,8 @@ void BLAS_sgemv2_testgen(int norm, enum blas_order_type order,
   int incA;
   float y_elem;
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
 
 
 
@@ -105,7 +106,8 @@ void BLAS_sgemv2_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;
@@ -210,7 +212,8 @@ void BLAS_dgemv2_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem;
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
 
 
 
@@ -232,7 +235,8 @@ void BLAS_dgemv2_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;
@@ -337,7 +341,8 @@ void BLAS_cgemv2_testgen(int norm, enum blas_order_type order,
   int incA;
   float y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
   incA *= 2;
 
@@ -359,7 +364,8 @@ void BLAS_cgemv2_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;
@@ -465,7 +471,8 @@ void BLAS_zgemv2_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
   incA *= 2;
 
@@ -487,7 +494,8 @@ void BLAS_zgemv2_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;
@@ -593,7 +601,8 @@ void BLAS_cgemv2_s_s_testgen(int norm, enum blas_order_type order,
   int incA;
   float y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
 
 
@@ -615,7 +624,8 @@ void BLAS_cgemv2_s_s_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;
@@ -721,7 +731,8 @@ void BLAS_cgemv2_s_c_testgen(int norm, enum blas_order_type order,
   int incA;
   float y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
 
 
@@ -743,7 +754,8 @@ void BLAS_cgemv2_s_c_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;
@@ -849,7 +861,8 @@ void BLAS_cgemv2_c_s_testgen(int norm, enum blas_order_type order,
   int incA;
   float y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
   incA *= 2;
 
@@ -871,7 +884,8 @@ void BLAS_cgemv2_c_s_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;
@@ -977,7 +991,8 @@ void BLAS_zgemv2_d_d_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
 
 
@@ -999,7 +1014,8 @@ void BLAS_zgemv2_d_d_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;
@@ -1105,7 +1121,8 @@ void BLAS_zgemv2_d_z_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
 
 
@@ -1127,7 +1144,8 @@ void BLAS_zgemv2_d_z_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;
@@ -1233,7 +1251,8 @@ void BLAS_zgemv2_z_d_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
   incA *= 2;
 
@@ -1255,7 +1274,8 @@ void BLAS_zgemv2_z_d_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;
@@ -1361,7 +1381,8 @@ void BLAS_dgemv2_s_s_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem;
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
 
 
 
@@ -1383,7 +1404,8 @@ void BLAS_dgemv2_s_s_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;
@@ -1488,7 +1510,8 @@ void BLAS_dgemv2_s_d_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem;
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
 
 
 
@@ -1510,7 +1533,8 @@ void BLAS_dgemv2_s_d_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;
@@ -1615,7 +1639,8 @@ void BLAS_dgemv2_d_s_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem;
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
 
 
 
@@ -1637,7 +1662,8 @@ void BLAS_dgemv2_d_s_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;
@@ -1742,7 +1768,8 @@ void BLAS_zgemv2_c_c_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
   incA *= 2;
 
@@ -1764,7 +1791,8 @@ void BLAS_zgemv2_c_c_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;
@@ -1870,7 +1898,8 @@ void BLAS_zgemv2_c_z_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
   incA *= 2;
 
@@ -1892,7 +1921,8 @@ void BLAS_zgemv2_c_z_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;
@@ -1998,7 +2028,8 @@ void BLAS_zgemv2_z_c_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
   incA *= 2;
 
@@ -2020,7 +2051,8 @@ void BLAS_zgemv2_z_c_testgen(int norm, enum blas_order_type order,
   /* calling dot2_testgen n times. in each iteration, one row of A, and one
      element of y are produced. the vector x is produced at the first
      iteration only */
-  n_fix2 = n_mix = 0;
+  n_fix2 = 0;
+  n_mix = 0;
   for (i = 0; i < m_i; i++) {
     if (i == 0) {
       n_fix2 = 0;

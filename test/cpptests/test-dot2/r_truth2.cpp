@@ -79,7 +79,8 @@ void s_r_truth2(enum blas_conj_type conj, int n, float alpha,
   FPU_FIX_START;
 
   r_v = r_i[0];
-  head_sum = tail_sum = 0.0;
+  head_sum = 0.0;
+  tail_sum = 0.0;
 
 
   if (incx < 0)
@@ -312,7 +313,8 @@ void d_r_truth2(enum blas_conj_type conj, int n, double alpha,
   FPU_FIX_START;
 
   r_v = r_i[0];
-  head_sum = tail_sum = 0.0;
+  head_sum = 0.0;
+  tail_sum = 0.0;
 
 
   if (incx < 0)

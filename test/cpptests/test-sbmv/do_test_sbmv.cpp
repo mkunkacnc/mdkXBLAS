@@ -155,7 +155,9 @@ void do_test_dsbmv_d_s
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -573,7 +575,9 @@ void do_test_dsbmv_s_d
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -991,7 +995,9 @@ void do_test_dsbmv_s_s
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -1409,7 +1415,9 @@ void do_test_zsbmv_z_c
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -1834,7 +1842,9 @@ void do_test_zsbmv_c_z
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -2259,7 +2269,9 @@ void do_test_zsbmv_c_c
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -2684,7 +2696,9 @@ void do_test_csbmv_c_s
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
 
   incy *= 2;
@@ -3109,7 +3123,9 @@ void do_test_csbmv_s_c
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
   incx *= 2;
   incy *= 2;
@@ -3534,7 +3550,9 @@ void do_test_csbmv_s_s
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
   incy *= 2;
@@ -3959,7 +3977,9 @@ void do_test_zsbmv_z_d
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
 
   incy *= 2;
@@ -4384,7 +4404,9 @@ void do_test_zsbmv_d_z
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
   incx *= 2;
   incy *= 2;
@@ -4809,7 +4831,9 @@ void do_test_zsbmv_d_d
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
   incy *= 2;
@@ -5234,7 +5258,9 @@ void do_test_ssbmv_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -5673,7 +5699,9 @@ void do_test_dsbmv_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -6112,7 +6140,9 @@ void do_test_csbmv_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -6558,7 +6588,9 @@ void do_test_zsbmv_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -7005,7 +7037,9 @@ void do_test_dsbmv_d_s_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -7445,7 +7479,9 @@ void do_test_dsbmv_s_d_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -7885,7 +7921,9 @@ void do_test_dsbmv_s_s_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
 
@@ -8325,7 +8363,9 @@ void do_test_zsbmv_z_c_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -8773,7 +8813,9 @@ void do_test_zsbmv_c_z_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -9221,7 +9263,9 @@ void do_test_zsbmv_c_c_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
   incx *= 2;
   incy *= 2;
@@ -9669,7 +9713,9 @@ void do_test_csbmv_c_s_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
 
   incy *= 2;
@@ -10116,7 +10162,9 @@ void do_test_csbmv_s_c_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
   incx *= 2;
   incy *= 2;
@@ -10563,7 +10611,9 @@ void do_test_csbmv_s_s_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
   incy *= 2;
@@ -11010,7 +11060,9 @@ void do_test_zsbmv_z_d_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
   inca *= 2;
 
   incy *= 2;
@@ -11458,7 +11510,9 @@ void do_test_zsbmv_d_z_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
   incx *= 2;
   incy *= 2;
@@ -11906,7 +11960,9 @@ void do_test_zsbmv_d_d_x
 
   n_i = n;
 
-  inca = incx = incy = 1;
+  inca = 1;
+  incx = 1;
+  incy = 1;
 
 
   incy *= 2;

@@ -134,7 +134,8 @@ double do_test_ddot_d_s(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
 
 
@@ -507,7 +508,8 @@ double do_test_ddot_s_d(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
 
 
@@ -880,7 +882,8 @@ double do_test_ddot_s_s(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
 
 
@@ -1252,7 +1255,8 @@ double do_test_zdot_z_c(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
   incx_gen *= 2;
   incy_gen *= 2;
 
@@ -1629,7 +1633,8 @@ double do_test_zdot_c_z(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
   incx_gen *= 2;
   incy_gen *= 2;
 
@@ -2006,7 +2011,8 @@ double do_test_zdot_c_c(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
   incx_gen *= 2;
   incy_gen *= 2;
 
@@ -2383,7 +2389,8 @@ double do_test_cdot_c_s(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
   incx_gen *= 2;
 
 
@@ -2760,7 +2767,8 @@ double do_test_cdot_s_c(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
   incy_gen *= 2;
 
@@ -3137,7 +3145,8 @@ double do_test_cdot_s_s(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
 
 
@@ -3514,7 +3523,8 @@ double do_test_zdot_z_d(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
   incx_gen *= 2;
 
 
@@ -3891,7 +3901,8 @@ double do_test_zdot_d_z(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
   incy_gen *= 2;
 
@@ -4268,7 +4279,8 @@ double do_test_zdot_d_d(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
 
 
@@ -4646,7 +4658,8 @@ double do_test_sdot_x(int n, int ntests, int *seed, double thresh, int debug,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
 
 
@@ -5038,7 +5051,8 @@ double do_test_ddot_x(int n, int ntests, int *seed, double thresh, int debug,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
 
 
@@ -5429,7 +5443,8 @@ double do_test_cdot_x(int n, int ntests, int *seed, double thresh, int debug,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
   incx_gen *= 2;
   incy_gen *= 2;
 
@@ -5825,7 +5840,8 @@ double do_test_zdot_x(int n, int ntests, int *seed, double thresh, int debug,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
   incx_gen *= 2;
   incy_gen *= 2;
 
@@ -6222,7 +6238,8 @@ double do_test_ddot_d_s_x(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
 
 
@@ -6615,7 +6632,8 @@ double do_test_ddot_s_d_x(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
 
 
@@ -7008,7 +7026,8 @@ double do_test_ddot_s_s_x(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
 
 
@@ -7400,7 +7419,8 @@ double do_test_zdot_z_c_x(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
   incx_gen *= 2;
   incy_gen *= 2;
 
@@ -7797,7 +7817,8 @@ double do_test_zdot_c_z_x(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
   incx_gen *= 2;
   incy_gen *= 2;
 
@@ -8194,7 +8215,8 @@ double do_test_zdot_c_c_x(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
   incx_gen *= 2;
   incy_gen *= 2;
 
@@ -8591,7 +8613,8 @@ double do_test_cdot_c_s_x(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
   incx_gen *= 2;
 
 
@@ -8988,7 +9011,8 @@ double do_test_cdot_s_c_x(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
   incy_gen *= 2;
 
@@ -9385,7 +9409,8 @@ double do_test_cdot_s_s_x(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
 
 
@@ -9782,7 +9807,8 @@ double do_test_zdot_z_d_x(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
   incx_gen *= 2;
 
 
@@ -10179,7 +10205,8 @@ double do_test_zdot_d_z_x(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
   incy_gen *= 2;
 
@@ -10576,7 +10603,8 @@ double do_test_zdot_d_d_x(int n, int ntests, int *seed, double thresh,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
 
 

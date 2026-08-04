@@ -46,7 +46,8 @@ void BLAS_sgemm_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   float *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
 
 
 
@@ -244,7 +245,8 @@ void BLAS_dgemm_testgen(int norm, enum blas_order_type order,
   double *a_vec;
   double *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
 
 
 
@@ -441,7 +443,8 @@ void BLAS_cgemm_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   float *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
   inca *= 2;
   incb *= 2;
 
@@ -663,7 +666,8 @@ void BLAS_zgemm_testgen(int norm, enum blas_order_type order,
   double *a_vec;
   double *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
   inca *= 2;
   incb *= 2;
 
@@ -885,7 +889,8 @@ void BLAS_cgemm_s_s_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   float *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
 
 
 
@@ -1121,7 +1126,8 @@ void BLAS_cgemm_s_c_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   float *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
 
   incb *= 2;
 
@@ -1351,7 +1357,8 @@ void BLAS_cgemm_c_s_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   float *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
   inca *= 2;
 
 
@@ -1581,7 +1588,8 @@ void BLAS_zgemm_d_d_testgen(int norm, enum blas_order_type order,
   double *a_vec;
   double *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
 
 
 
@@ -1817,7 +1825,8 @@ void BLAS_zgemm_d_z_testgen(int norm, enum blas_order_type order,
   double *a_vec;
   double *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
 
   incb *= 2;
 
@@ -2047,7 +2056,8 @@ void BLAS_zgemm_z_d_testgen(int norm, enum blas_order_type order,
   double *a_vec;
   double *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
   inca *= 2;
 
 
@@ -2278,7 +2288,8 @@ void BLAS_dgemm_s_s_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   float *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
 
 
 
@@ -2476,7 +2487,8 @@ void BLAS_dgemm_s_d_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   double *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
 
 
 
@@ -2674,7 +2686,8 @@ void BLAS_dgemm_d_s_testgen(int norm, enum blas_order_type order,
   double *a_vec;
   float *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
 
 
 
@@ -2871,7 +2884,8 @@ void BLAS_zgemm_c_c_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   float *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
   inca *= 2;
   incb *= 2;
 
@@ -3093,7 +3107,8 @@ void BLAS_zgemm_c_z_testgen(int norm, enum blas_order_type order,
   float *a_vec;
   double *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
   inca *= 2;
   incb *= 2;
 
@@ -3315,7 +3330,8 @@ void BLAS_zgemm_z_c_testgen(int norm, enum blas_order_type order,
   double *a_vec;
   float *b_vec;
 
-  inca = incb = 1;
+  inca = 1;
+  incb = 1;
   inca *= 2;
   incb *= 2;
 

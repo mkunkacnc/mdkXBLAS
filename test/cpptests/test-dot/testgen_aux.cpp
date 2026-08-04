@@ -62,7 +62,8 @@ int FixedBits(double r_true_l, double r_true_t)
   double tmp_t;
   double res[5], t, temp;
 
-  b = k = 0;
+  b = 0;
+  k = 0;
   res[0] = r_true_l;
   while (res[k] != 0.0) {       /* Each time cancel 53 bits */
     tmp_l = r_true_l;

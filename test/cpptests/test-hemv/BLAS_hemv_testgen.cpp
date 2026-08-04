@@ -1176,7 +1176,8 @@ void BLAS_chemv_testgen(int norm, enum blas_order_type order,
 
 
     if (order == blas_colmajor) {
-      inca1i = incai = 1;
+      inca1i = 1;
+      incai = 1;
       incyi = incy;
       incaij = lda;
       incxi = incx;
@@ -1186,7 +1187,8 @@ void BLAS_chemv_testgen(int norm, enum blas_order_type order,
       incai = lda;
       incxi = incx;
       inca1i = n_i;
-      inca1ij = incaij = 1;
+      inca1ij = 1;
+      incaij = 1;
     }
     if ((0 == incx) || (0 == incy)) {
       BLAS_error(routine_name, 0, 0, NULL);
@@ -1210,7 +1212,8 @@ void BLAS_chemv_testgen(int norm, enum blas_order_type order,
     incaij *= 2;
     incxi *= 2;
 
-    inca_vec = incx_vec = 1;
+    inca_vec = 1;
+    incx_vec = 1;
     inca_vec *= 2;
     incx_vec *= 2;
     a_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);
@@ -1758,7 +1761,8 @@ void BLAS_zhemv_testgen(int norm, enum blas_order_type order,
 
 
     if (order == blas_colmajor) {
-      inca1i = incai = 1;
+      inca1i = 1;
+      incai = 1;
       incyi = incy;
       incaij = lda;
       incxi = incx;
@@ -1768,7 +1772,8 @@ void BLAS_zhemv_testgen(int norm, enum blas_order_type order,
       incai = lda;
       incxi = incx;
       inca1i = n_i;
-      inca1ij = incaij = 1;
+      inca1ij = 1;
+      incaij = 1;
     }
     if ((0 == incx) || (0 == incy)) {
       BLAS_error(routine_name, 0, 0, NULL);
@@ -1792,7 +1797,8 @@ void BLAS_zhemv_testgen(int norm, enum blas_order_type order,
     incaij *= 2;
     incxi *= 2;
 
-    inca_vec = incx_vec = 1;
+    inca_vec = 1;
+    incx_vec = 1;
     inca_vec *= 2;
     incx_vec *= 2;
     a_vec = (double *) blas_malloc(n_i * sizeof(double) * 2);
@@ -2340,7 +2346,8 @@ void BLAS_zhemv_c_z_testgen(int norm, enum blas_order_type order,
 
 
     if (order == blas_colmajor) {
-      inca1i = incai = 1;
+      inca1i = 1;
+      incai = 1;
       incyi = incy;
       incaij = lda;
       incxi = incx;
@@ -2350,7 +2357,8 @@ void BLAS_zhemv_c_z_testgen(int norm, enum blas_order_type order,
       incai = lda;
       incxi = incx;
       inca1i = n_i;
-      inca1ij = incaij = 1;
+      inca1ij = 1;
+      incaij = 1;
     }
     if ((0 == incx) || (0 == incy)) {
       BLAS_error(routine_name, 0, 0, NULL);
@@ -2374,7 +2382,8 @@ void BLAS_zhemv_c_z_testgen(int norm, enum blas_order_type order,
     incaij *= 2;
     incxi *= 2;
 
-    inca_vec = incx_vec = 1;
+    inca_vec = 1;
+    incx_vec = 1;
     inca_vec *= 2;
     incx_vec *= 2;
     a_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);
@@ -2922,7 +2931,8 @@ void BLAS_zhemv_z_c_testgen(int norm, enum blas_order_type order,
 
 
     if (order == blas_colmajor) {
-      inca1i = incai = 1;
+      inca1i = 1;
+      incai = 1;
       incyi = incy;
       incaij = lda;
       incxi = incx;
@@ -2932,7 +2942,8 @@ void BLAS_zhemv_z_c_testgen(int norm, enum blas_order_type order,
       incai = lda;
       incxi = incx;
       inca1i = n_i;
-      inca1ij = incaij = 1;
+      inca1ij = 1;
+      incaij = 1;
     }
     if ((0 == incx) || (0 == incy)) {
       BLAS_error(routine_name, 0, 0, NULL);
@@ -2956,7 +2967,8 @@ void BLAS_zhemv_z_c_testgen(int norm, enum blas_order_type order,
     incaij *= 2;
     incxi *= 2;
 
-    inca_vec = incx_vec = 1;
+    inca_vec = 1;
+    incx_vec = 1;
     inca_vec *= 2;
     incx_vec *= 2;
     a_vec = (double *) blas_malloc(n_i * sizeof(double) * 2);
@@ -3504,7 +3516,8 @@ void BLAS_zhemv_c_c_testgen(int norm, enum blas_order_type order,
 
 
     if (order == blas_colmajor) {
-      inca1i = incai = 1;
+      inca1i = 1;
+      incai = 1;
       incyi = incy;
       incaij = lda;
       incxi = incx;
@@ -3514,7 +3527,8 @@ void BLAS_zhemv_c_c_testgen(int norm, enum blas_order_type order,
       incai = lda;
       incxi = incx;
       inca1i = n_i;
-      inca1ij = incaij = 1;
+      inca1ij = 1;
+      incaij = 1;
     }
     if ((0 == incx) || (0 == incy)) {
       BLAS_error(routine_name, 0, 0, NULL);
@@ -3538,7 +3552,8 @@ void BLAS_zhemv_c_c_testgen(int norm, enum blas_order_type order,
     incaij *= 2;
     incxi *= 2;
 
-    inca_vec = incx_vec = 1;
+    inca_vec = 1;
+    incx_vec = 1;
     inca_vec *= 2;
     incx_vec *= 2;
     a_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);
@@ -4086,7 +4101,8 @@ void BLAS_zhemv_z_d_testgen(int norm, enum blas_order_type order,
 
 
     if (order == blas_colmajor) {
-      inca1i = incai = 1;
+      inca1i = 1;
+      incai = 1;
       incyi = incy;
       incaij = lda;
       incxi = incx;
@@ -4096,7 +4112,8 @@ void BLAS_zhemv_z_d_testgen(int norm, enum blas_order_type order,
       incai = lda;
       incxi = incx;
       inca1i = n_i;
-      inca1ij = incaij = 1;
+      inca1ij = 1;
+      incaij = 1;
     }
     if ((0 == incx) || (0 == incy)) {
       BLAS_error(routine_name, 0, 0, NULL);
@@ -4120,7 +4137,8 @@ void BLAS_zhemv_z_d_testgen(int norm, enum blas_order_type order,
     incaij *= 2;
 
 
-    inca_vec = incx_vec = 1;
+    inca_vec = 1;
+    incx_vec = 1;
     inca_vec *= 2;
 
     a_vec = (double *) blas_malloc(n_i * sizeof(double) * 2);
@@ -4599,7 +4617,8 @@ void BLAS_chemv_c_s_testgen(int norm, enum blas_order_type order,
 
 
     if (order == blas_colmajor) {
-      inca1i = incai = 1;
+      inca1i = 1;
+      incai = 1;
       incyi = incy;
       incaij = lda;
       incxi = incx;
@@ -4609,7 +4628,8 @@ void BLAS_chemv_c_s_testgen(int norm, enum blas_order_type order,
       incai = lda;
       incxi = incx;
       inca1i = n_i;
-      inca1ij = incaij = 1;
+      inca1ij = 1;
+      incaij = 1;
     }
     if ((0 == incx) || (0 == incy)) {
       BLAS_error(routine_name, 0, 0, NULL);
@@ -4633,7 +4653,8 @@ void BLAS_chemv_c_s_testgen(int norm, enum blas_order_type order,
     incaij *= 2;
 
 
-    inca_vec = incx_vec = 1;
+    inca_vec = 1;
+    incx_vec = 1;
     inca_vec *= 2;
 
     a_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);

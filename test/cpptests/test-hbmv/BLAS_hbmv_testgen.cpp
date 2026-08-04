@@ -1039,7 +1039,8 @@ void BLAS_chbmv_testgen(int norm, enum blas_order_type order,
     incyi *= 2;
     incxi *= 2;
 
-    inca_vec = incx_vec = 1;
+    inca_vec = 1;
+    incx_vec = 1;
     inca_vec *= 2;
     incx_vec *= 2;
     a_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);
@@ -1403,7 +1404,8 @@ void BLAS_chbmv_testgen(int norm, enum blas_order_type order,
       inca_vec = 1;
       inca_vec *= 2;
       for (i = 0; i < n_i; i++) {
-        j = a_veci = MAX(0, i - k);
+        j = MAX(0, i - k);
+        a_veci = MAX(0, i - k);
         a_veci *= 2;
         for (; j < MIN(n_i, i + k + 1); j++, a_veci += inca_vec) {
           a_elem[0] = xrand(seed);
@@ -1633,7 +1635,8 @@ void BLAS_zhbmv_testgen(int norm, enum blas_order_type order,
     incyi *= 2;
     incxi *= 2;
 
-    inca_vec = incx_vec = 1;
+    inca_vec = 1;
+    incx_vec = 1;
     inca_vec *= 2;
     incx_vec *= 2;
     a_vec = (double *) blas_malloc(n_i * sizeof(double) * 2);
@@ -1997,7 +2000,8 @@ void BLAS_zhbmv_testgen(int norm, enum blas_order_type order,
       inca_vec = 1;
       inca_vec *= 2;
       for (i = 0; i < n_i; i++) {
-        j = a_veci = MAX(0, i - k);
+        j = MAX(0, i - k);
+        a_veci = MAX(0, i - k);
         a_veci *= 2;
         for (; j < MIN(n_i, i + k + 1); j++, a_veci += inca_vec) {
           a_elem[0] = xrand(seed);
@@ -2227,7 +2231,8 @@ void BLAS_zhbmv_c_z_testgen(int norm, enum blas_order_type order,
     incyi *= 2;
     incxi *= 2;
 
-    inca_vec = incx_vec = 1;
+    inca_vec = 1;
+    incx_vec = 1;
     inca_vec *= 2;
     incx_vec *= 2;
     a_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);
@@ -2591,7 +2596,8 @@ void BLAS_zhbmv_c_z_testgen(int norm, enum blas_order_type order,
       inca_vec = 1;
       inca_vec *= 2;
       for (i = 0; i < n_i; i++) {
-        j = a_veci = MAX(0, i - k);
+        j = MAX(0, i - k);
+        a_veci = MAX(0, i - k);
         a_veci *= 2;
         for (; j < MIN(n_i, i + k + 1); j++, a_veci += inca_vec) {
           a_elem[0] = (float) xrand(seed);
@@ -2821,7 +2827,8 @@ void BLAS_zhbmv_z_c_testgen(int norm, enum blas_order_type order,
     incyi *= 2;
     incxi *= 2;
 
-    inca_vec = incx_vec = 1;
+    inca_vec = 1;
+    incx_vec = 1;
     inca_vec *= 2;
     incx_vec *= 2;
     a_vec = (double *) blas_malloc(n_i * sizeof(double) * 2);
@@ -3185,7 +3192,8 @@ void BLAS_zhbmv_z_c_testgen(int norm, enum blas_order_type order,
       inca_vec = 1;
       inca_vec *= 2;
       for (i = 0; i < n_i; i++) {
-        j = a_veci = MAX(0, i - k);
+        j = MAX(0, i - k);
+        a_veci = MAX(0, i - k);
         a_veci *= 2;
         for (; j < MIN(n_i, i + k + 1); j++, a_veci += inca_vec) {
           a_elem[0] = (float) xrand(seed);
@@ -3415,7 +3423,8 @@ void BLAS_zhbmv_c_c_testgen(int norm, enum blas_order_type order,
     incyi *= 2;
     incxi *= 2;
 
-    inca_vec = incx_vec = 1;
+    inca_vec = 1;
+    incx_vec = 1;
     inca_vec *= 2;
     incx_vec *= 2;
     a_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);
@@ -3779,7 +3788,8 @@ void BLAS_zhbmv_c_c_testgen(int norm, enum blas_order_type order,
       inca_vec = 1;
       inca_vec *= 2;
       for (i = 0; i < n_i; i++) {
-        j = a_veci = MAX(0, i - k);
+        j = MAX(0, i - k);
+        a_veci = MAX(0, i - k);
         a_veci *= 2;
         for (; j < MIN(n_i, i + k + 1); j++, a_veci += inca_vec) {
           a_elem[0] = (float) xrand(seed);
@@ -4009,7 +4019,8 @@ void BLAS_zhbmv_z_d_testgen(int norm, enum blas_order_type order,
     incyi *= 2;
 
 
-    inca_vec = incx_vec = 1;
+    inca_vec = 1;
+    incx_vec = 1;
     inca_vec *= 2;
 
     a_vec = (double *) blas_malloc(n_i * sizeof(double) * 2);
@@ -4298,7 +4309,8 @@ void BLAS_zhbmv_z_d_testgen(int norm, enum blas_order_type order,
       inca_vec = 1;
       inca_vec *= 2;
       for (i = 0; i < n_i; i++) {
-        j = a_veci = MAX(0, i - k);
+        j = MAX(0, i - k);
+        a_veci = MAX(0, i - k);
         a_veci *= 2;
         for (; j < MIN(n_i, i + k + 1); j++, a_veci += inca_vec) {
           a_elem[0] = xrand(seed);
@@ -4535,7 +4547,8 @@ void BLAS_chbmv_c_s_testgen(int norm, enum blas_order_type order,
     incyi *= 2;
 
 
-    inca_vec = incx_vec = 1;
+    inca_vec = 1;
+    incx_vec = 1;
     inca_vec *= 2;
 
     a_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);
@@ -4824,7 +4837,8 @@ void BLAS_chbmv_c_s_testgen(int norm, enum blas_order_type order,
       inca_vec = 1;
       inca_vec *= 2;
       for (i = 0; i < n_i; i++) {
-        j = a_veci = MAX(0, i - k);
+        j = MAX(0, i - k);
+        a_veci = MAX(0, i - k);
         a_veci *= 2;
         for (; j < MIN(n_i, i + k + 1); j++, a_veci += inca_vec) {
           a_elem[0] = xrand(seed);

@@ -79,7 +79,9 @@ void test_BLAS_sdot2(int n, enum blas_conj_type conj, float alpha, float beta,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     S += fabs(x[ix] * head_y[iy]) + fabs(x[ix] * tail_y[iy]);
     S1 += fabs(x[ix]);
@@ -184,7 +186,9 @@ void test_BLAS_ddot2(int n, enum blas_conj_type conj, double alpha,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     S += fabs(x[ix] * head_y[iy]) + fabs(x[ix] * tail_y[iy]);
     S1 += fabs(x[ix]);
@@ -294,7 +298,9 @@ void test_BLAS_cdot2(int n, enum blas_conj_type conj, const void *alpha,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     x_ii[0] = x_i[ix];
     x_ii[1] = x_i[ix + 1];
@@ -441,7 +447,9 @@ void test_BLAS_zdot2(int n, enum blas_conj_type conj, const void *alpha,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     x_ii[0] = x_i[ix];
     x_ii[1] = x_i[ix + 1];
@@ -585,7 +593,9 @@ void test_BLAS_cdot2_s_s(int n, enum blas_conj_type conj, const void *alpha,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     x_ii = x_i[ix];
     y_ii = head_y_i[iy];
@@ -721,7 +731,9 @@ void test_BLAS_cdot2_s_c(int n, enum blas_conj_type conj, const void *alpha,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     x_ii = x_i[ix];
     y_ii[0] = head_y_i[iy];
@@ -863,7 +875,9 @@ void test_BLAS_cdot2_c_s(int n, enum blas_conj_type conj, const void *alpha,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     x_ii[0] = x_i[ix];
     x_ii[1] = x_i[ix + 1];
@@ -1006,7 +1020,9 @@ void test_BLAS_zdot2_d_d(int n, enum blas_conj_type conj, const void *alpha,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     x_ii = x_i[ix];
     y_ii = head_y_i[iy];
@@ -1141,7 +1157,9 @@ void test_BLAS_zdot2_d_z(int n, enum blas_conj_type conj, const void *alpha,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     x_ii = x_i[ix];
     y_ii[0] = head_y_i[iy];
@@ -1282,7 +1300,9 @@ void test_BLAS_zdot2_z_d(int n, enum blas_conj_type conj, const void *alpha,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     x_ii[0] = x_i[ix];
     x_ii[1] = x_i[ix + 1];
@@ -1419,7 +1439,9 @@ void test_BLAS_ddot2_s_s(int n, enum blas_conj_type conj, double alpha,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     S += fabs(x[ix] * head_y[iy]) + fabs(x[ix] * tail_y[iy]);
     S1 += fabs(x[ix]);
@@ -1524,7 +1546,9 @@ void test_BLAS_ddot2_s_d(int n, enum blas_conj_type conj, double alpha,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     S += fabs(x[ix] * head_y[iy]) + fabs(x[ix] * tail_y[iy]);
     S1 += fabs(x[ix]);
@@ -1629,7 +1653,9 @@ void test_BLAS_ddot2_d_s(int n, enum blas_conj_type conj, double alpha,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     S += fabs(x[ix] * head_y[iy]) + fabs(x[ix] * tail_y[iy]);
     S1 += fabs(x[ix]);
@@ -1739,7 +1765,9 @@ void test_BLAS_zdot2_c_c(int n, enum blas_conj_type conj, const void *alpha,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     x_ii[0] = x_i[ix];
     x_ii[1] = x_i[ix + 1];
@@ -1883,7 +1911,9 @@ void test_BLAS_zdot2_c_z(int n, enum blas_conj_type conj, const void *alpha,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     x_ii[0] = x_i[ix];
     x_ii[1] = x_i[ix + 1];
@@ -2027,7 +2057,9 @@ void test_BLAS_zdot2_z_c(int n, enum blas_conj_type conj, const void *alpha,
     iy = -(n - 1) * incy;
 
   /* computing S */
-  S = S1 = S2 = 0.;
+  S = 0.;
+  S1 = 0.;
+  S2 = 0.;
   for (i = 0; i < n; ++i) {
     x_ii[0] = x_i[ix];
     x_ii[1] = x_i[ix + 1];

@@ -147,7 +147,9 @@ void do_test_zhemm_z_c(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -600,7 +602,9 @@ void do_test_zhemm_c_z(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -1053,7 +1057,9 @@ void do_test_zhemm_c_c(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -1506,7 +1512,9 @@ void do_test_chemm_c_s(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
 
   incc *= 2;
@@ -1959,7 +1967,9 @@ void do_test_zhemm_z_d(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
 
   incc *= 2;
@@ -2412,7 +2422,9 @@ void do_test_chemm_x(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -2889,7 +2901,9 @@ void do_test_zhemm_x(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -3368,7 +3382,9 @@ void do_test_zhemm_z_c_x(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -3847,7 +3863,9 @@ void do_test_zhemm_c_z_x(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -4326,7 +4344,9 @@ void do_test_zhemm_c_c_x(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -4805,7 +4825,9 @@ void do_test_chemm_c_s_x(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
 
   incc *= 2;
@@ -5283,7 +5305,9 @@ void do_test_zhemm_z_d_x(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
 
   incc *= 2;

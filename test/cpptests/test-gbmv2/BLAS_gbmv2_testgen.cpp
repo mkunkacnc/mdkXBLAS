@@ -96,7 +96,9 @@ void BLAS_sgbmv2_testgen(int norm, enum blas_order_type order,
   float y_elem;
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
 
 
 
@@ -240,7 +242,9 @@ void BLAS_dgbmv2_testgen(int norm, enum blas_order_type order,
   double y_elem;
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
 
 
 
@@ -384,7 +388,9 @@ void BLAS_cgbmv2_testgen(int norm, enum blas_order_type order,
   float y_elem[2];
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
   incy *= 2;
   incAB *= 2;
   incx *= 2;
@@ -535,7 +541,9 @@ void BLAS_zgbmv2_testgen(int norm, enum blas_order_type order,
   double y_elem[2];
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
   incy *= 2;
   incAB *= 2;
   incx *= 2;
@@ -686,7 +694,9 @@ void BLAS_cgbmv2_s_s_testgen(int norm, enum blas_order_type order,
   float y_elem[2];
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
   incy *= 2;
 
 
@@ -831,7 +841,9 @@ void BLAS_cgbmv2_s_c_testgen(int norm, enum blas_order_type order,
   float y_elem[2];
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
   incy *= 2;
 
   incx *= 2;
@@ -978,7 +990,9 @@ void BLAS_cgbmv2_c_s_testgen(int norm, enum blas_order_type order,
   float y_elem[2];
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
   incy *= 2;
   incAB *= 2;
 
@@ -1127,7 +1141,9 @@ void BLAS_zgbmv2_d_d_testgen(int norm, enum blas_order_type order,
   double y_elem[2];
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
   incy *= 2;
 
 
@@ -1272,7 +1288,9 @@ void BLAS_zgbmv2_d_z_testgen(int norm, enum blas_order_type order,
   double y_elem[2];
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
   incy *= 2;
 
   incx *= 2;
@@ -1419,7 +1437,9 @@ void BLAS_zgbmv2_z_d_testgen(int norm, enum blas_order_type order,
   double y_elem[2];
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
   incy *= 2;
   incAB *= 2;
 
@@ -1568,7 +1588,9 @@ void BLAS_dgbmv2_s_s_testgen(int norm, enum blas_order_type order,
   double y_elem;
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
 
 
 
@@ -1712,7 +1734,9 @@ void BLAS_dgbmv2_s_d_testgen(int norm, enum blas_order_type order,
   double y_elem;
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
 
 
 
@@ -1857,7 +1881,9 @@ void BLAS_dgbmv2_d_s_testgen(int norm, enum blas_order_type order,
   double y_elem;
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
 
 
 
@@ -2001,7 +2027,9 @@ void BLAS_zgbmv2_c_c_testgen(int norm, enum blas_order_type order,
   double y_elem[2];
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
   incy *= 2;
   incAB *= 2;
   incx *= 2;
@@ -2152,7 +2180,9 @@ void BLAS_zgbmv2_c_z_testgen(int norm, enum blas_order_type order,
   double y_elem[2];
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
   incy *= 2;
   incAB *= 2;
   incx *= 2;
@@ -2303,7 +2333,9 @@ void BLAS_zgbmv2_z_c_testgen(int norm, enum blas_order_type order,
   double y_elem[2];
 
   max_mn = MAX(m, n);
-  incx = incy = incAB = 1;
+  incx = 1;
+  incy = 1;
+  incAB = 1;
   incy *= 2;
   incAB *= 2;
   incx *= 2;

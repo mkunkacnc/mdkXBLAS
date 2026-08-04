@@ -339,7 +339,8 @@ double do_test_dtbsv_s(int n,
 
 
                           /* setting incx */
-                          incx = incx_unadj = incx_val;
+                          incx = incx_val;
+                          incx_unadj = incx_val;
 
 
                           /* set x starting index */
@@ -928,7 +929,8 @@ double do_test_ztbsv_c(int n,
 
 
                           /* setting incx */
-                          incx = incx_unadj = incx_val;
+                          incx = incx_val;
+                          incx_unadj = incx_val;
                           incx *= 2;
 
                           /* set x starting index */
@@ -1552,7 +1554,8 @@ double do_test_ctbsv_s(int n,
 
 
                           /* setting incx */
-                          incx = incx_unadj = incx_val;
+                          incx = incx_val;
+                          incx_unadj = incx_val;
                           incx *= 2;
 
                           /* set x starting index */
@@ -2172,7 +2175,8 @@ double do_test_ztbsv_d(int n,
 
 
                           /* setting incx */
-                          incx = incx_unadj = incx_val;
+                          incx = incx_val;
+                          incx_unadj = incx_val;
                           incx *= 2;
 
                           /* set x starting index */
@@ -2811,7 +2815,8 @@ double do_test_stbsv_x(int n,
 
 
                             /* setting incx */
-                            incx = incx_unadj = incx_val;
+                            incx = incx_val;
+                            incx_unadj = incx_val;
 
 
                             /* set x starting index */
@@ -3417,7 +3422,8 @@ double do_test_dtbsv_x(int n,
 
 
                             /* setting incx */
-                            incx = incx_unadj = incx_val;
+                            incx = incx_val;
+                            incx_unadj = incx_val;
 
 
                             /* set x starting index */
@@ -4024,7 +4030,8 @@ double do_test_dtbsv_s_x(int n,
 
 
                             /* setting incx */
-                            incx = incx_unadj = incx_val;
+                            incx = incx_val;
+                            incx_unadj = incx_val;
 
 
                             /* set x starting index */
@@ -4633,7 +4640,8 @@ double do_test_ctbsv_x(int n,
 
 
                             /* setting incx */
-                            incx = incx_unadj = incx_val;
+                            incx = incx_val;
+                            incx_unadj = incx_val;
                             incx *= 2;
 
                             /* set x starting index */
@@ -5277,7 +5285,8 @@ double do_test_ztbsv_x(int n,
 
 
                             /* setting incx */
-                            incx = incx_unadj = incx_val;
+                            incx = incx_val;
+                            incx_unadj = incx_val;
                             incx *= 2;
 
                             /* set x starting index */
@@ -5922,7 +5931,8 @@ double do_test_ztbsv_c_x(int n,
 
 
                             /* setting incx */
-                            incx = incx_unadj = incx_val;
+                            incx = incx_val;
+                            incx_unadj = incx_val;
                             incx *= 2;
 
                             /* set x starting index */
@@ -6569,7 +6579,8 @@ double do_test_ctbsv_s_x(int n,
 
 
                             /* setting incx */
-                            incx = incx_unadj = incx_val;
+                            incx = incx_val;
+                            incx_unadj = incx_val;
                             incx *= 2;
 
                             /* set x starting index */
@@ -7214,7 +7225,8 @@ double do_test_ztbsv_d_x(int n,
 
 
                             /* setting incx */
-                            incx = incx_unadj = incx_val;
+                            incx = incx_val;
+                            incx_unadj = incx_val;
                             incx *= 2;
 
                             /* set x starting index */

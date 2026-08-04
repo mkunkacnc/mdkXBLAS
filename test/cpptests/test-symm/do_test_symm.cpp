@@ -167,7 +167,9 @@ void do_test_dsymm_d_s
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -606,7 +608,9 @@ void do_test_dsymm_s_d
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -1045,7 +1049,9 @@ void do_test_dsymm_s_s
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -1484,7 +1490,9 @@ void do_test_zsymm_z_c
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -1929,7 +1937,9 @@ void do_test_zsymm_c_z
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -2374,7 +2384,9 @@ void do_test_zsymm_c_c
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -2819,7 +2831,9 @@ void do_test_csymm_c_s
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
 
   incc *= 2;
@@ -3264,7 +3278,9 @@ void do_test_csymm_s_c
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
   incb *= 2;
   incc *= 2;
@@ -3709,7 +3725,9 @@ void do_test_csymm_s_s
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
   incc *= 2;
@@ -4154,7 +4172,9 @@ void do_test_zsymm_z_d
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
 
   incc *= 2;
@@ -4599,7 +4619,9 @@ void do_test_zsymm_d_z
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
   incb *= 2;
   incc *= 2;
@@ -5044,7 +5066,9 @@ void do_test_zsymm_d_d
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
   incc *= 2;
@@ -5489,7 +5513,9 @@ void do_test_ssymm_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -5952,7 +5978,9 @@ void do_test_dsymm_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -6415,7 +6443,9 @@ void do_test_csymm_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -6884,7 +6914,9 @@ void do_test_zsymm_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -7354,7 +7386,9 @@ void do_test_dsymm_d_s_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -7817,7 +7851,9 @@ void do_test_dsymm_s_d_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -8280,7 +8316,9 @@ void do_test_dsymm_s_s_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -8743,7 +8781,9 @@ void do_test_zsymm_z_c_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -9213,7 +9253,9 @@ void do_test_zsymm_c_z_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -9683,7 +9725,9 @@ void do_test_zsymm_c_c_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -10153,7 +10197,9 @@ void do_test_csymm_c_s_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
 
   incc *= 2;
@@ -10622,7 +10668,9 @@ void do_test_csymm_s_c_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
   incb *= 2;
   incc *= 2;
@@ -11091,7 +11139,9 @@ void do_test_csymm_s_s_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
   incc *= 2;
@@ -11560,7 +11610,9 @@ void do_test_zsymm_z_d_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
 
   incc *= 2;
@@ -12030,7 +12082,9 @@ void do_test_zsymm_d_z_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
   incb *= 2;
   incc *= 2;
@@ -12500,7 +12554,9 @@ void do_test_zsymm_d_d_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
   incc *= 2;

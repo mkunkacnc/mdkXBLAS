@@ -76,7 +76,8 @@ void BLAS_ssymv2_testgen(int norm, enum blas_order_type order,
   int incA;
   float y_elem;
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
 
 
   temp = (float *) blas_malloc(n * incA * sizeof(float));
@@ -182,7 +183,8 @@ void BLAS_dsymv2_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem;
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
 
 
   temp = (double *) blas_malloc(n * incA * sizeof(double));
@@ -287,7 +289,8 @@ void BLAS_csymv2_testgen(int norm, enum blas_order_type order,
   int incA;
   float y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
   incA *= 2;
   temp = (float *) blas_malloc(n * incA * sizeof(float) * 2);
@@ -393,7 +396,8 @@ void BLAS_zsymv2_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
   incA *= 2;
   temp = (double *) blas_malloc(n * incA * sizeof(double) * 2);
@@ -500,7 +504,8 @@ void BLAS_csymv2_s_s_testgen(int norm, enum blas_order_type order,
   int incA;
   float y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
 
   temp = (float *) blas_malloc(n * incA * sizeof(float));
@@ -606,7 +611,8 @@ void BLAS_csymv2_s_c_testgen(int norm, enum blas_order_type order,
   int incA;
   float y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
 
   temp = (float *) blas_malloc(n * incA * sizeof(float));
@@ -713,7 +719,8 @@ void BLAS_csymv2_c_s_testgen(int norm, enum blas_order_type order,
   int incA;
   float y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
   incA *= 2;
   temp = (float *) blas_malloc(n * incA * sizeof(float) * 2);
@@ -820,7 +827,8 @@ void BLAS_zsymv2_d_d_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
 
   temp = (double *) blas_malloc(n * incA * sizeof(double));
@@ -926,7 +934,8 @@ void BLAS_zsymv2_d_z_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
 
   temp = (double *) blas_malloc(n * incA * sizeof(double));
@@ -1033,7 +1042,8 @@ void BLAS_zsymv2_z_d_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
   incA *= 2;
   temp = (double *) blas_malloc(n * incA * sizeof(double) * 2);
@@ -1140,7 +1150,8 @@ void BLAS_dsymv2_s_s_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem;
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
 
 
   temp = (float *) blas_malloc(n * incA * sizeof(float));
@@ -1246,7 +1257,8 @@ void BLAS_dsymv2_s_d_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem;
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
 
 
   temp = (float *) blas_malloc(n * incA * sizeof(float));
@@ -1352,7 +1364,8 @@ void BLAS_dsymv2_d_s_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem;
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
 
 
   temp = (double *) blas_malloc(n * incA * sizeof(double));
@@ -1457,7 +1470,8 @@ void BLAS_zsymv2_c_c_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
   incA *= 2;
   temp = (float *) blas_malloc(n * incA * sizeof(float) * 2);
@@ -1563,7 +1577,8 @@ void BLAS_zsymv2_c_z_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
   incA *= 2;
   temp = (float *) blas_malloc(n * incA * sizeof(float) * 2);
@@ -1669,7 +1684,8 @@ void BLAS_zsymv2_z_c_testgen(int norm, enum blas_order_type order,
   int incA;
   double y_elem[2];
 
-  incy = incA = 1;
+  incy = 1;
+  incA = 1;
   incy *= 2;
   incA *= 2;
   temp = (double *) blas_malloc(n * incA * sizeof(double) * 2);

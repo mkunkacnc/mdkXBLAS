@@ -166,7 +166,9 @@ void do_test_dgemm_d_s(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -634,7 +636,9 @@ void do_test_dgemm_s_d(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -1102,7 +1106,9 @@ void do_test_dgemm_s_s(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -1571,7 +1577,9 @@ void do_test_zgemm_z_c(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -2042,7 +2050,9 @@ void do_test_zgemm_c_z(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -2513,7 +2523,9 @@ void do_test_zgemm_c_c(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -2984,7 +2996,9 @@ void do_test_cgemm_c_s(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
 
   incc *= 2;
@@ -3455,7 +3469,9 @@ void do_test_cgemm_s_c(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
   incb *= 2;
   incc *= 2;
@@ -3926,7 +3942,9 @@ void do_test_cgemm_s_s(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
   incc *= 2;
@@ -4397,7 +4415,9 @@ void do_test_zgemm_z_d(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
 
   incc *= 2;
@@ -4868,7 +4888,9 @@ void do_test_zgemm_d_z(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
   incb *= 2;
   incc *= 2;
@@ -5339,7 +5361,9 @@ void do_test_zgemm_d_d(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
   incc *= 2;
@@ -5809,7 +5833,9 @@ void do_test_sgemm_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -6313,7 +6339,9 @@ void do_test_dgemm_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -6818,7 +6846,9 @@ void do_test_cgemm_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -7325,7 +7355,9 @@ void do_test_zgemm_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -7832,7 +7864,9 @@ void do_test_dgemm_d_s_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -8337,7 +8371,9 @@ void do_test_dgemm_s_d_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -8842,7 +8878,9 @@ void do_test_dgemm_s_s_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
 
@@ -9348,7 +9386,9 @@ void do_test_zgemm_z_c_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -9857,7 +9897,9 @@ void do_test_zgemm_c_z_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -10366,7 +10408,9 @@ void do_test_zgemm_c_c_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
   incb *= 2;
   incc *= 2;
@@ -10875,7 +10919,9 @@ void do_test_cgemm_c_s_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
 
   incc *= 2;
@@ -11383,7 +11429,9 @@ void do_test_cgemm_s_c_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
   incb *= 2;
   incc *= 2;
@@ -11891,7 +11939,9 @@ void do_test_cgemm_s_s_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
   incc *= 2;
@@ -12399,7 +12449,9 @@ void do_test_zgemm_z_d_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
   inca *= 2;
 
   incc *= 2;
@@ -12908,7 +12960,9 @@ void do_test_zgemm_d_z_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
   incb *= 2;
   incc *= 2;
@@ -13417,7 +13471,9 @@ void do_test_zgemm_d_d_x(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = incb = incc = 1;
+  inca = 1;
+  incb = 1;
+  incc = 1;
 
 
   incc *= 2;

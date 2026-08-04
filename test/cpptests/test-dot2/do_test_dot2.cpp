@@ -137,7 +137,8 @@ double do_test_sdot2_x(int n, int ntests, int *seed, double thresh, int debug,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
 
 
@@ -543,7 +544,8 @@ double do_test_ddot2_x(int n, int ntests, int *seed, double thresh, int debug,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
 
 
 
@@ -948,7 +950,8 @@ double do_test_cdot2_x(int n, int ntests, int *seed, double thresh, int debug,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
   incx_gen *= 2;
   incy_gen *= 2;
 
@@ -1358,7 +1361,8 @@ double do_test_zdot2_x(int n, int ntests, int *seed, double thresh, int debug,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  incx_gen = incy_gen = 1;
+  incx_gen = 1;
+  incy_gen = 1;
   incx_gen *= 2;
   incy_gen *= 2;
 
