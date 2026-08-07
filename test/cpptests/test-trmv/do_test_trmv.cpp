@@ -89,7 +89,7 @@ double do_test_dtrmv_s(int n, int ntests, int *seed,
   int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -116,7 +116,7 @@ double do_test_dtrmv_s(int n, int ntests, int *seed,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_dtrmv_s_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -133,7 +133,7 @@ double do_test_dtrmv_s(int n, int ntests, int *seed,
 
   int saved_seed;                /* for saving the original seed */
   int count;                /* use for counting the number of testgen calls * 2 */
-  int old_count;
+//  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -628,7 +628,7 @@ double do_test_ztrmv_c(int n, int ntests, int *seed,
   int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -656,7 +656,7 @@ double do_test_ztrmv_c(int n, int ntests, int *seed,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ztrmv_c_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -673,7 +673,7 @@ double do_test_ztrmv_c(int n, int ntests, int *seed,
 
   int saved_seed;                /* for saving the original seed */
   int count;                /* use for counting the number of testgen calls * 2 */
-  int old_count;
+//  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -1172,7 +1172,7 @@ double do_test_ctrmv_s(int n, int ntests, int *seed,
   int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -1200,7 +1200,7 @@ double do_test_ctrmv_s(int n, int ntests, int *seed,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ctrmv_s_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -1217,7 +1217,7 @@ double do_test_ctrmv_s(int n, int ntests, int *seed,
 
   int saved_seed;                /* for saving the original seed */
   int count;                /* use for counting the number of testgen calls * 2 */
-  int old_count;
+//  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -1716,7 +1716,7 @@ double do_test_ztrmv_d(int n, int ntests, int *seed,
   int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -1744,7 +1744,7 @@ double do_test_ztrmv_d(int n, int ntests, int *seed,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ztrmv_d_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -1761,7 +1761,7 @@ double do_test_ztrmv_d(int n, int ntests, int *seed,
 
   int saved_seed;                /* for saving the original seed */
   int count;                /* use for counting the number of testgen calls * 2 */
-  int old_count;
+//  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -2260,7 +2260,7 @@ double do_test_strmv_x(int n, int ntests, int *seed,
   int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -2287,7 +2287,7 @@ double do_test_strmv_x(int n, int ntests, int *seed,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_strmv_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -2304,7 +2304,7 @@ double do_test_strmv_x(int n, int ntests, int *seed,
 
   int saved_seed;                /* for saving the original seed */
   int count;                /* use for counting the number of testgen calls * 2 */
-  int old_count;
+//  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -2819,7 +2819,7 @@ double do_test_dtrmv_x(int n, int ntests, int *seed,
   int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -2846,7 +2846,7 @@ double do_test_dtrmv_x(int n, int ntests, int *seed,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_dtrmv_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -2863,7 +2863,7 @@ double do_test_dtrmv_x(int n, int ntests, int *seed,
 
   int saved_seed;                /* for saving the original seed */
   int count;                /* use for counting the number of testgen calls * 2 */
-  int old_count;
+//  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -3378,7 +3378,7 @@ double do_test_ctrmv_x(int n, int ntests, int *seed,
   int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -3406,7 +3406,7 @@ double do_test_ctrmv_x(int n, int ntests, int *seed,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ctrmv_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -3423,7 +3423,7 @@ double do_test_ctrmv_x(int n, int ntests, int *seed,
 
   int saved_seed;                /* for saving the original seed */
   int count;                /* use for counting the number of testgen calls * 2 */
-  int old_count;
+//  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -3943,7 +3943,7 @@ double do_test_ztrmv_x(int n, int ntests, int *seed,
   int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -3971,7 +3971,7 @@ double do_test_ztrmv_x(int n, int ntests, int *seed,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ztrmv_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -3988,7 +3988,7 @@ double do_test_ztrmv_x(int n, int ntests, int *seed,
 
   int saved_seed;                /* for saving the original seed */
   int count;                /* use for counting the number of testgen calls * 2 */
-  int old_count;
+//  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -4509,7 +4509,7 @@ double do_test_dtrmv_s_x(int n, int ntests, int *seed,
   int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -4536,7 +4536,7 @@ double do_test_dtrmv_s_x(int n, int ntests, int *seed,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_dtrmv_s_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -4553,7 +4553,7 @@ double do_test_dtrmv_s_x(int n, int ntests, int *seed,
 
   int saved_seed;                /* for saving the original seed */
   int count;                /* use for counting the number of testgen calls * 2 */
-  int old_count;
+//  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -5069,7 +5069,7 @@ double do_test_ztrmv_c_x(int n, int ntests, int *seed,
   int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -5097,7 +5097,7 @@ double do_test_ztrmv_c_x(int n, int ntests, int *seed,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ztrmv_c_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -5114,7 +5114,7 @@ double do_test_ztrmv_c_x(int n, int ntests, int *seed,
 
   int saved_seed;                /* for saving the original seed */
   int count;                /* use for counting the number of testgen calls * 2 */
-  int old_count;
+//  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -5635,7 +5635,7 @@ double do_test_ctrmv_s_x(int n, int ntests, int *seed,
   int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -5663,7 +5663,7 @@ double do_test_ctrmv_s_x(int n, int ntests, int *seed,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ctrmv_s_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -5680,7 +5680,7 @@ double do_test_ctrmv_s_x(int n, int ntests, int *seed,
 
   int saved_seed;                /* for saving the original seed */
   int count;                /* use for counting the number of testgen calls * 2 */
-  int old_count;
+//  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -6201,7 +6201,7 @@ double do_test_ztrmv_d_x(int n, int ntests, int *seed,
   int incx;
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -6229,7 +6229,7 @@ double do_test_ztrmv_d_x(int n, int ntests, int *seed,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ztrmv_d_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -6246,7 +6246,7 @@ double do_test_ztrmv_d_x(int n, int ntests, int *seed,
 
   int saved_seed;                /* for saving the original seed */
   int count;                /* use for counting the number of testgen calls * 2 */
-  int old_count;
+//  int old_count;
   FPU_FIX_DECL;
 
   /* test for bad arguments */

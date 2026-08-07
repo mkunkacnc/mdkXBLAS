@@ -85,7 +85,7 @@ void BLAS_sskew_testgen_hbmv(int norm, enum blas_order_type order,
   int ri;
   int incyi;
   int incri;
-  int incx_veci;
+//  int incx_veci;
   int y_starti;
   int inca_vec;
   int n_i;
@@ -256,7 +256,7 @@ void BLAS_dskew_testgen_hbmv(int norm, enum blas_order_type order,
   int ri;
   int incyi;
   int incri;
-  int incx_veci;
+//  int incx_veci;
   int y_starti;
   int inca_vec;
   int n_i;
@@ -427,7 +427,7 @@ void BLAS_dskew_testgen_hbmv_d_s(int norm, enum blas_order_type order,
   int ri;
   int incyi;
   int incri;
-  int incx_veci;
+//  int incx_veci;
   int y_starti;
   int inca_vec;
   int n_i;
@@ -598,7 +598,7 @@ void BLAS_dskew_testgen_hbmv_s_d(int norm, enum blas_order_type order,
   int ri;
   int incyi;
   int incri;
-  int incx_veci;
+//  int incx_veci;
   int y_starti;
   int inca_vec;
   int n_i;
@@ -769,7 +769,7 @@ void BLAS_dskew_testgen_hbmv_s_s(int norm, enum blas_order_type order,
   int ri;
   int incyi;
   int incri;
-  int incx_veci;
+//  int incx_veci;
   int y_starti;
   int inca_vec;
   int n_i;

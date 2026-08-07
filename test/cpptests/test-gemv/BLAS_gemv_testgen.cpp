@@ -79,7 +79,7 @@ void BLAS_sgemv_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   float y_elem;
 
   incy = 1;
@@ -207,7 +207,7 @@ void BLAS_dgemv_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   double y_elem;
 
   incy = 1;
@@ -335,7 +335,7 @@ void BLAS_cgemv_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   float y_elem[2];
 
   incy = 1;
@@ -464,7 +464,7 @@ void BLAS_zgemv_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   double y_elem[2];
 
   incy = 1;
@@ -593,7 +593,7 @@ void BLAS_cgemv_s_s_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   float y_elem[2];
 
   incy = 1;
@@ -722,7 +722,7 @@ void BLAS_cgemv_s_c_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   float y_elem[2];
 
   incy = 1;
@@ -851,7 +851,7 @@ void BLAS_cgemv_c_s_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   float y_elem[2];
 
   incy = 1;
@@ -980,7 +980,7 @@ void BLAS_zgemv_d_d_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   double y_elem[2];
 
   incy = 1;
@@ -1109,7 +1109,7 @@ void BLAS_zgemv_d_z_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   double y_elem[2];
 
   incy = 1;
@@ -1238,7 +1238,7 @@ void BLAS_zgemv_z_d_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   double y_elem[2];
 
   incy = 1;
@@ -1367,7 +1367,7 @@ void BLAS_dgemv_s_s_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   double y_elem;
 
   incy = 1;
@@ -1495,7 +1495,7 @@ void BLAS_dgemv_s_d_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   double y_elem;
 
   incy = 1;
@@ -1623,7 +1623,7 @@ void BLAS_dgemv_d_s_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   double y_elem;
 
   incy = 1;
@@ -1751,7 +1751,7 @@ void BLAS_zgemv_c_c_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   double y_elem[2];
 
   incy = 1;
@@ -1880,7 +1880,7 @@ void BLAS_zgemv_c_z_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   double y_elem[2];
 
   incy = 1;
@@ -2009,7 +2009,7 @@ void BLAS_zgemv_z_c_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incA;
+//  int incA;
   double y_elem[2];
 
   incy = 1;

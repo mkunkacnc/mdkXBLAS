@@ -89,7 +89,7 @@ void BLAS_sgbmv_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incAB;
+//  int incAB;
   int incx;
   float y_elem;
 
@@ -232,7 +232,7 @@ void BLAS_dgbmv_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incAB;
+//  int incAB;
   int incx;
   double y_elem;
 
@@ -671,7 +671,7 @@ void BLAS_cgbmv_s_s_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incAB;
+//  int incAB;
   int incx;
   float y_elem[2];
 
@@ -815,7 +815,7 @@ void BLAS_cgbmv_s_c_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incAB;
+//  int incAB;
   int incx;
   float y_elem[2];
 
@@ -1108,7 +1108,7 @@ void BLAS_zgbmv_d_d_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incAB;
+//  int incAB;
   int incx;
   double y_elem[2];
 
@@ -1252,7 +1252,7 @@ void BLAS_zgbmv_d_z_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incAB;
+//  int incAB;
   int incx;
   double y_elem[2];
 
@@ -1545,7 +1545,7 @@ void BLAS_dgbmv_s_s_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incAB;
+//  int incAB;
   int incx;
   double y_elem;
 
@@ -1688,7 +1688,7 @@ void BLAS_dgbmv_s_d_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incAB;
+//  int incAB;
   int incx;
   double y_elem;
 
@@ -1831,7 +1831,7 @@ void BLAS_dgbmv_d_s_testgen(int norm, enum blas_order_type order,
   int n_i;
   int max_mn;
   int incy;
-  int incAB;
+//  int incAB;
   int incx;
   double y_elem;
 

@@ -5408,7 +5408,7 @@ int main(int argc, char **argv)
   int ntests;
   int debug;
   double thresh;
-  double test_prob;
+//  double test_prob;
   double total_min_ratio;
   double total_max_ratio;
   int total_bad_ratios;

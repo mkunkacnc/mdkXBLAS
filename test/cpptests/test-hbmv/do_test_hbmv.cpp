@@ -74,7 +74,7 @@ void do_test_zhbmv_z_c
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -95,7 +95,7 @@ void do_test_zhbmv_z_c
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -111,7 +111,7 @@ void do_test_zhbmv_z_c
   int lda;
   int alpha_flag;
   int beta_flag;
-  int saved_seed;
+//  int saved_seed;
   int norm;
   int test_no;
 
@@ -503,7 +503,7 @@ void do_test_zhbmv_c_z
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -524,7 +524,7 @@ void do_test_zhbmv_c_z
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -540,7 +540,7 @@ void do_test_zhbmv_c_z
   int lda;
   int alpha_flag;
   int beta_flag;
-  int saved_seed;
+//  int saved_seed;
   int norm;
   int test_no;
 
@@ -932,7 +932,7 @@ void do_test_zhbmv_c_c
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -953,7 +953,7 @@ void do_test_zhbmv_c_c
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -969,7 +969,7 @@ void do_test_zhbmv_c_c
   int lda;
   int alpha_flag;
   int beta_flag;
-  int saved_seed;
+//  int saved_seed;
   int norm;
   int test_no;
 
@@ -1361,7 +1361,7 @@ void do_test_chbmv_c_s
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -1382,7 +1382,7 @@ void do_test_chbmv_c_s
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -1398,7 +1398,7 @@ void do_test_chbmv_c_s
   int lda;
   int alpha_flag;
   int beta_flag;
-  int saved_seed;
+//  int saved_seed;
   int norm;
   int test_no;
 
@@ -1790,7 +1790,7 @@ void do_test_zhbmv_z_d
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -1811,7 +1811,7 @@ void do_test_zhbmv_z_d
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -1827,7 +1827,7 @@ void do_test_zhbmv_z_d
   int lda;
   int alpha_flag;
   int beta_flag;
-  int saved_seed;
+//  int saved_seed;
   int norm;
   int test_no;
 
@@ -2219,7 +2219,7 @@ void do_test_chbmv_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -2256,7 +2256,7 @@ void do_test_chbmv_x
   int lda;
   int alpha_flag;
   int beta_flag;
-  int saved_seed;
+//  int saved_seed;
   int norm;
   int test_no;
 
@@ -2669,7 +2669,7 @@ void do_test_zhbmv_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -2706,7 +2706,7 @@ void do_test_zhbmv_x
   int lda;
   int alpha_flag;
   int beta_flag;
-  int saved_seed;
+//  int saved_seed;
   int norm;
   int test_no;
 
@@ -3120,7 +3120,7 @@ void do_test_zhbmv_z_c_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -3157,7 +3157,7 @@ void do_test_zhbmv_z_c_x
   int lda;
   int alpha_flag;
   int beta_flag;
-  int saved_seed;
+//  int saved_seed;
   int norm;
   int test_no;
 
@@ -3572,7 +3572,7 @@ void do_test_zhbmv_c_z_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -3609,7 +3609,7 @@ void do_test_zhbmv_c_z_x
   int lda;
   int alpha_flag;
   int beta_flag;
-  int saved_seed;
+//  int saved_seed;
   int norm;
   int test_no;
 
@@ -4024,7 +4024,7 @@ void do_test_zhbmv_c_c_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -4061,7 +4061,7 @@ void do_test_zhbmv_c_c_x
   int lda;
   int alpha_flag;
   int beta_flag;
-  int saved_seed;
+//  int saved_seed;
   int norm;
   int test_no;
 
@@ -4476,7 +4476,7 @@ void do_test_chbmv_c_s_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -4513,7 +4513,7 @@ void do_test_chbmv_c_s_x
   int lda;
   int alpha_flag;
   int beta_flag;
-  int saved_seed;
+//  int saved_seed;
   int norm;
   int test_no;
 
@@ -4927,7 +4927,7 @@ void do_test_zhbmv_z_d_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -4964,7 +4964,7 @@ void do_test_zhbmv_z_d_x
   int lda;
   int alpha_flag;
   int beta_flag;
-  int saved_seed;
+//  int saved_seed;
   int norm;
   int test_no;
 

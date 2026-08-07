@@ -114,7 +114,7 @@ double do_test_dtrsv_s(int n,
   double eps_int;                /* the internal epsilon expected--2^(-24) for float */
   double un_int;                /* the internal underflow threshold */
   double alpha;
-  double beta;
+//  double beta;
   float *T;
   double *x;
   double *x_gen;
@@ -129,7 +129,7 @@ double do_test_dtrsv_s(int n,
   double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0;
-  int beta_flag = 0;
+//  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
 
@@ -700,7 +700,7 @@ double do_test_ztrsv_c(int n,
 
   int alpha_val;
   int alpha_flag = 0;
-  int beta_flag = 0;
+//  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
 
@@ -1305,7 +1305,7 @@ double do_test_ctrsv_s(int n,
 
   int alpha_val;
   int alpha_flag = 0;
-  int beta_flag = 0;
+//  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
 
@@ -1908,7 +1908,7 @@ double do_test_ztrsv_d(int n,
 
   int alpha_val;
   int alpha_flag = 0;
-  int beta_flag = 0;
+//  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
 
@@ -2496,7 +2496,7 @@ double do_test_strsv_x(int n,
   double eps_int;                /* the internal epsilon expected--2^(-24) for float */
   double un_int;                /* the internal underflow threshold */
   float alpha;
-  float beta;
+//  float beta;
   float *T;
   float *x;
   float *x_gen;
@@ -2511,7 +2511,7 @@ double do_test_strsv_x(int n,
   double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0;
-  int beta_flag = 0;
+//  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
@@ -3087,7 +3087,7 @@ double do_test_dtrsv_x(int n,
   double eps_int;                /* the internal epsilon expected--2^(-24) for float */
   double un_int;                /* the internal underflow threshold */
   double alpha;
-  double beta;
+//  double beta;
   double *T;
   double *x;
   double *x_gen;
@@ -3102,7 +3102,7 @@ double do_test_dtrsv_x(int n,
   double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0;
-  int beta_flag = 0;
+//  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
@@ -3679,7 +3679,7 @@ double do_test_dtrsv_s_x(int n,
   double eps_int;                /* the internal epsilon expected--2^(-24) for float */
   double un_int;                /* the internal underflow threshold */
   double alpha;
-  double beta;
+//  double beta;
   float *T;
   double *x;
   double *x_gen;
@@ -3694,7 +3694,7 @@ double do_test_dtrsv_s_x(int n,
   double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0;
-  int beta_flag = 0;
+//  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
@@ -4286,7 +4286,7 @@ double do_test_ctrsv_x(int n,
 
   int alpha_val;
   int alpha_flag = 0;
-  int beta_flag = 0;
+//  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
@@ -4912,7 +4912,7 @@ double do_test_ztrsv_x(int n,
 
   int alpha_val;
   int alpha_flag = 0;
-  int beta_flag = 0;
+//  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
@@ -5541,7 +5541,7 @@ double do_test_ztrsv_c_x(int n,
 
   int alpha_val;
   int alpha_flag = 0;
-  int beta_flag = 0;
+//  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
@@ -6170,7 +6170,7 @@ double do_test_ctrsv_s_x(int n,
 
   int alpha_val;
   int alpha_flag = 0;
-  int beta_flag = 0;
+//  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
@@ -6796,7 +6796,7 @@ double do_test_ztrsv_d_x(int n,
 
   int alpha_val;
   int alpha_flag = 0;
-  int beta_flag = 0;
+//  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;

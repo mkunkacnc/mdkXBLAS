@@ -86,7 +86,7 @@ void do_test_zhemv2_z_c
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -488,7 +488,7 @@ void do_test_zhemv2_c_z
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -890,7 +890,7 @@ void do_test_zhemv2_c_c
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -1292,7 +1292,7 @@ void do_test_chemv2_c_s
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -1694,7 +1694,7 @@ void do_test_zhemv2_z_d
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;

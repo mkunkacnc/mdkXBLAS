@@ -62,9 +62,9 @@ void do_test_zhemm_z_c(int m, int n,
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -82,7 +82,7 @@ void do_test_zhemm_z_c(int m, int n,
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -519,9 +519,9 @@ void do_test_zhemm_c_z(int m, int n,
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -539,7 +539,7 @@ void do_test_zhemm_c_z(int m, int n,
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -976,9 +976,9 @@ void do_test_zhemm_c_c(int m, int n,
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -996,7 +996,7 @@ void do_test_zhemm_c_c(int m, int n,
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -1433,9 +1433,9 @@ void do_test_chemm_c_s(int m, int n,
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -1453,7 +1453,7 @@ void do_test_chemm_c_s(int m, int n,
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -1890,9 +1890,9 @@ void do_test_zhemm_z_d(int m, int n,
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -1910,7 +1910,7 @@ void do_test_zhemm_z_d(int m, int n,
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -2347,9 +2347,9 @@ void do_test_chemm_x(int m, int n,
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -2828,9 +2828,9 @@ void do_test_zhemm_x(int m, int n,
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -3311,9 +3311,9 @@ void do_test_zhemm_z_c_x(int m, int n,
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -3794,9 +3794,9 @@ void do_test_zhemm_c_z_x(int m, int n,
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -4277,9 +4277,9 @@ void do_test_zhemm_c_c_x(int m, int n,
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -4760,9 +4760,9 @@ void do_test_chemm_c_s_x(int m, int n,
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -5242,9 +5242,9 @@ void do_test_zhemm_z_d_x(int m, int n,
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 

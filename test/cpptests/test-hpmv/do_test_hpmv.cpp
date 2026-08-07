@@ -69,7 +69,7 @@ void do_test_zhpmv_z_c
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -443,7 +443,7 @@ void do_test_zhpmv_c_z
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -817,7 +817,7 @@ void do_test_zhpmv_c_c
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -1191,7 +1191,7 @@ void do_test_chpmv_c_s
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -1565,7 +1565,7 @@ void do_test_zhpmv_z_d
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -1939,7 +1939,7 @@ void do_test_chpmv_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -2335,7 +2335,7 @@ void do_test_zhpmv_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -2731,7 +2731,7 @@ void do_test_zhpmv_z_c_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -3127,7 +3127,7 @@ void do_test_zhpmv_c_z_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -3523,7 +3523,7 @@ void do_test_zhpmv_c_c_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -3919,7 +3919,7 @@ void do_test_chpmv_c_s_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -4315,7 +4315,7 @@ void do_test_zhpmv_z_d_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 

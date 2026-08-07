@@ -73,7 +73,7 @@ void do_test_zhemv_z_c
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -92,7 +92,7 @@ void do_test_zhemv_z_c
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -460,7 +460,7 @@ void do_test_zhemv_c_z
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -479,7 +479,7 @@ void do_test_zhemv_c_z
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -847,7 +847,7 @@ void do_test_zhemv_c_c
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -866,7 +866,7 @@ void do_test_zhemv_c_c
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -1234,7 +1234,7 @@ void do_test_chemv_c_s
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -1253,7 +1253,7 @@ void do_test_chemv_c_s
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -1621,7 +1621,7 @@ void do_test_zhemv_z_d
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -1640,7 +1640,7 @@ void do_test_zhemv_z_d
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -2008,7 +2008,7 @@ void do_test_chemv_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -2416,7 +2416,7 @@ void do_test_zhemv_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -2824,7 +2824,7 @@ void do_test_zhemv_z_c_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -3233,7 +3233,7 @@ void do_test_zhemv_c_z_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -3642,7 +3642,7 @@ void do_test_zhemv_c_c_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -4051,7 +4051,7 @@ void do_test_chemv_c_s_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -4460,7 +4460,7 @@ void do_test_zhemv_z_d_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 

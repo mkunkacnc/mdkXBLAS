@@ -109,7 +109,7 @@ double do_test_dtbsv_s(int n,
   int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -120,7 +120,7 @@ double do_test_dtbsv_s(int n,
   double eps_int;                /* the internal epsilon expected--2^(-24) for float */
   double un_int;                /* the internal underflow threshold */
   double alpha;
-  double beta;
+//  double beta;
   float *T;
   double *x;
   double *x_gen;
@@ -135,7 +135,7 @@ double do_test_dtbsv_s(int n,
   double *tail_r_true;
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_dtbsv_s_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -702,7 +702,7 @@ double do_test_ztbsv_c(int n,
   int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -729,7 +729,7 @@ double do_test_ztbsv_c(int n,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ztbsv_c_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -1332,7 +1332,7 @@ double do_test_ctbsv_s(int n,
   int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -1359,7 +1359,7 @@ double do_test_ctbsv_s(int n,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ctbsv_s_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -1958,7 +1958,7 @@ double do_test_ztbsv_d(int n,
   int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -1985,7 +1985,7 @@ double do_test_ztbsv_d(int n,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ztbsv_d_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
 
@@ -2586,7 +2586,7 @@ double do_test_stbsv_x(int n,
   int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -2597,7 +2597,7 @@ double do_test_stbsv_x(int n,
   double eps_int;                /* the internal epsilon expected--2^(-24) for float */
   double un_int;                /* the internal underflow threshold */
   float alpha;
-  float beta;
+//  float beta;
   float *T;
   float *x;
   float *x_gen;
@@ -2612,7 +2612,7 @@ double do_test_stbsv_x(int n,
   double *tail_r_true;
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_stbsv_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -3198,7 +3198,7 @@ double do_test_dtbsv_x(int n,
   int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -3209,7 +3209,7 @@ double do_test_dtbsv_x(int n,
   double eps_int;                /* the internal epsilon expected--2^(-24) for float */
   double un_int;                /* the internal underflow threshold */
   double alpha;
-  double beta;
+//  double beta;
   double *T;
   double *x;
   double *x_gen;
@@ -3224,7 +3224,7 @@ double do_test_dtbsv_x(int n,
   double *tail_r_true;
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_dtbsv_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -3811,7 +3811,7 @@ double do_test_dtbsv_s_x(int n,
   int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -3822,7 +3822,7 @@ double do_test_dtbsv_s_x(int n,
   double eps_int;                /* the internal epsilon expected--2^(-24) for float */
   double un_int;                /* the internal underflow threshold */
   double alpha;
-  double beta;
+//  double beta;
   float *T;
   double *x;
   double *x_gen;
@@ -3837,7 +3837,7 @@ double do_test_dtbsv_s_x(int n,
   double *tail_r_true;
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_dtbsv_s_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -4424,7 +4424,7 @@ double do_test_ctbsv_x(int n,
   int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -4451,7 +4451,7 @@ double do_test_ctbsv_x(int n,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ctbsv_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -5074,7 +5074,7 @@ double do_test_ztbsv_x(int n,
   int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -5101,7 +5101,7 @@ double do_test_ztbsv_x(int n,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ztbsv_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -5725,7 +5725,7 @@ double do_test_ztbsv_c_x(int n,
   int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -5752,7 +5752,7 @@ double do_test_ztbsv_c_x(int n,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ztbsv_c_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -6378,7 +6378,7 @@ double do_test_ctbsv_s_x(int n,
   int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -6405,7 +6405,7 @@ double do_test_ctbsv_s_x(int n,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ctbsv_s_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;
@@ -7029,7 +7029,7 @@ double do_test_ztbsv_d_x(int n,
   int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
-  int p_count;                        /* counter for the number of debug lines printed */
+//  int p_count;                        /* counter for the number of debug lines printed */
   int tot_tests;                /* total number of tests to be done */
   int norm;                        /* input values of near underflow/one/overflow */
   double ratio_max;                /* the current maximum ratio */
@@ -7056,7 +7056,7 @@ double do_test_ztbsv_d_x(int n,
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ztbsv_d_testgen */
-  int beta_flag;
+//  int beta_flag;
   int order_val;
   enum blas_order_type order_type;
   int prec_val;

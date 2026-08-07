@@ -70,7 +70,7 @@ void do_test_dge_sum_mv_d_s
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -88,7 +88,7 @@ void do_test_dge_sum_mv_d_s
   double tail_r_true_elem;
 
   enum blas_order_type order_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int lda_val;
@@ -515,7 +515,7 @@ void do_test_dge_sum_mv_s_d
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -533,7 +533,7 @@ void do_test_dge_sum_mv_s_d
   double tail_r_true_elem;
 
   enum blas_order_type order_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int lda_val;
@@ -960,7 +960,7 @@ void do_test_dge_sum_mv_s_s
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -978,7 +978,7 @@ void do_test_dge_sum_mv_s_s
   double tail_r_true_elem;
 
   enum blas_order_type order_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int lda_val;
@@ -1405,7 +1405,7 @@ void do_test_zge_sum_mv_z_c
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -1423,7 +1423,7 @@ void do_test_zge_sum_mv_z_c
   double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int lda_val;
@@ -1859,7 +1859,7 @@ void do_test_zge_sum_mv_c_z
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -1877,7 +1877,7 @@ void do_test_zge_sum_mv_c_z
   double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int lda_val;
@@ -2313,7 +2313,7 @@ void do_test_zge_sum_mv_c_c
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -2331,7 +2331,7 @@ void do_test_zge_sum_mv_c_c
   double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int lda_val;
@@ -2767,7 +2767,7 @@ void do_test_cge_sum_mv_c_s
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -2785,7 +2785,7 @@ void do_test_cge_sum_mv_c_s
   double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int lda_val;
@@ -3221,7 +3221,7 @@ void do_test_cge_sum_mv_s_c
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -3239,7 +3239,7 @@ void do_test_cge_sum_mv_s_c
   double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int lda_val;
@@ -3673,7 +3673,7 @@ void do_test_cge_sum_mv_s_s
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -3691,7 +3691,7 @@ void do_test_cge_sum_mv_s_s
   double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int lda_val;
@@ -4125,7 +4125,7 @@ void do_test_zge_sum_mv_z_d
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -4143,7 +4143,7 @@ void do_test_zge_sum_mv_z_d
   double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int lda_val;
@@ -4579,7 +4579,7 @@ void do_test_zge_sum_mv_d_z
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -4597,7 +4597,7 @@ void do_test_zge_sum_mv_d_z
   double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int lda_val;
@@ -5031,7 +5031,7 @@ void do_test_zge_sum_mv_d_d
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -5049,7 +5049,7 @@ void do_test_zge_sum_mv_d_d
   double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int lda_val;
@@ -5483,7 +5483,7 @@ void do_test_sge_sum_mv_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -5950,7 +5950,7 @@ void do_test_dge_sum_mv_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -6417,7 +6417,7 @@ void do_test_cge_sum_mv_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -6893,7 +6893,7 @@ void do_test_zge_sum_mv_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -7369,7 +7369,7 @@ void do_test_dge_sum_mv_d_s_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -7838,7 +7838,7 @@ void do_test_dge_sum_mv_s_d_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -8307,7 +8307,7 @@ void do_test_dge_sum_mv_s_s_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -8776,7 +8776,7 @@ void do_test_zge_sum_mv_z_c_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -9254,7 +9254,7 @@ void do_test_zge_sum_mv_c_z_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -9732,7 +9732,7 @@ void do_test_zge_sum_mv_c_c_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -10210,7 +10210,7 @@ void do_test_cge_sum_mv_c_s_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -10688,7 +10688,7 @@ void do_test_cge_sum_mv_s_c_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -11164,7 +11164,7 @@ void do_test_cge_sum_mv_s_s_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -11640,7 +11640,7 @@ void do_test_zge_sum_mv_z_d_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -12118,7 +12118,7 @@ void do_test_zge_sum_mv_d_z_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -12594,7 +12594,7 @@ void do_test_zge_sum_mv_d_d_x
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 

@@ -81,9 +81,9 @@ void do_test_dsymm_d_s
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -101,7 +101,7 @@ void do_test_dsymm_d_s
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -523,9 +523,9 @@ void do_test_dsymm_s_d
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -543,7 +543,7 @@ void do_test_dsymm_s_d
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -965,9 +965,9 @@ void do_test_dsymm_s_s
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -985,7 +985,7 @@ void do_test_dsymm_s_s
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -1407,9 +1407,9 @@ void do_test_zsymm_z_c
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -1427,7 +1427,7 @@ void do_test_zsymm_z_c
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -1856,9 +1856,9 @@ void do_test_zsymm_c_z
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -1876,7 +1876,7 @@ void do_test_zsymm_c_z
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -2305,9 +2305,9 @@ void do_test_zsymm_c_c
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -2325,7 +2325,7 @@ void do_test_zsymm_c_c
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -2754,9 +2754,9 @@ void do_test_csymm_c_s
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -2774,7 +2774,7 @@ void do_test_csymm_c_s
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -3203,9 +3203,9 @@ void do_test_csymm_s_c
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -3223,7 +3223,7 @@ void do_test_csymm_s_c
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -3652,9 +3652,9 @@ void do_test_csymm_s_s
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -3672,7 +3672,7 @@ void do_test_csymm_s_s
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -4101,9 +4101,9 @@ void do_test_zsymm_z_d
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -4121,7 +4121,7 @@ void do_test_zsymm_z_d
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -4550,9 +4550,9 @@ void do_test_zsymm_d_z
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -4570,7 +4570,7 @@ void do_test_zsymm_d_z
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -4999,9 +4999,9 @@ void do_test_zsymm_d_d
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -5019,7 +5019,7 @@ void do_test_zsymm_d_d
   enum blas_order_type order_type;
   enum blas_side_type side_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -5448,9 +5448,9 @@ void do_test_ssymm_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -5914,9 +5914,9 @@ void do_test_dsymm_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -6380,9 +6380,9 @@ void do_test_csymm_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -6853,9 +6853,9 @@ void do_test_zsymm_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -7327,9 +7327,9 @@ void do_test_dsymm_d_s_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -7793,9 +7793,9 @@ void do_test_dsymm_s_d_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -8259,9 +8259,9 @@ void do_test_dsymm_s_s_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -8725,9 +8725,9 @@ void do_test_zsymm_z_c_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -9199,9 +9199,9 @@ void do_test_zsymm_c_z_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -9673,9 +9673,9 @@ void do_test_zsymm_c_c_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -10147,9 +10147,9 @@ void do_test_csymm_c_s_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -10620,9 +10620,9 @@ void do_test_csymm_s_c_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -11093,9 +11093,9 @@ void do_test_csymm_s_s_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -11566,9 +11566,9 @@ void do_test_zsymm_z_d_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -12040,9 +12040,9 @@ void do_test_zsymm_d_z_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 
@@ -12514,9 +12514,9 @@ void do_test_zsymm_d_d_x
   int rij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   double ratio;
 

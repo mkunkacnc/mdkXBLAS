@@ -85,7 +85,7 @@ void BLAS_sskew_testgen_hemv(int norm, enum blas_order_type order,
   int ri;
   int incyi;
   int incri;
-  int incx_veci;
+//  int incx_veci;
   int y_starti;
   int incaij;
   int incai;
@@ -289,7 +289,7 @@ void BLAS_dskew_testgen_hemv(int norm, enum blas_order_type order,
   int ri;
   int incyi;
   int incri;
-  int incx_veci;
+//  int incx_veci;
   int y_starti;
   int incaij;
   int incai;
@@ -493,7 +493,7 @@ void BLAS_dskew_testgen_hemv_d_s(int norm, enum blas_order_type order,
   int ri;
   int incyi;
   int incri;
-  int incx_veci;
+//  int incx_veci;
   int y_starti;
   int incaij;
   int incai;
@@ -697,7 +697,7 @@ void BLAS_dskew_testgen_hemv_s_d(int norm, enum blas_order_type order,
   int ri;
   int incyi;
   int incri;
-  int incx_veci;
+//  int incx_veci;
   int y_starti;
   int incaij;
   int incai;
@@ -901,7 +901,7 @@ void BLAS_dskew_testgen_hemv_s_s(int norm, enum blas_order_type order,
   int ri;
   int incyi;
   int incri;
-  int incx_veci;
+//  int incx_veci;
   int y_starti;
   int incaij;
   int incai;
@@ -1138,7 +1138,7 @@ void BLAS_chemv_testgen(int norm, enum blas_order_type order,
     int inca_vec;
     int incx_vec;
     int n_i;
-    int ld;
+//    int ld;
     int ab;
     int ri;
     int incri;
@@ -1729,7 +1729,7 @@ void BLAS_zhemv_testgen(int norm, enum blas_order_type order,
     int inca_vec;
     int incx_vec;
     int n_i;
-    int ld;
+//    int ld;
     int ab;
     int ri;
     int incri;
@@ -2320,7 +2320,7 @@ void BLAS_zhemv_c_z_testgen(int norm, enum blas_order_type order,
     int inca_vec;
     int incx_vec;
     int n_i;
-    int ld;
+//    int ld;
     int ab;
     int ri;
     int incri;
@@ -2911,7 +2911,7 @@ void BLAS_zhemv_z_c_testgen(int norm, enum blas_order_type order,
     int inca_vec;
     int incx_vec;
     int n_i;
-    int ld;
+//    int ld;
     int ab;
     int ri;
     int incri;
@@ -3502,7 +3502,7 @@ void BLAS_zhemv_c_c_testgen(int norm, enum blas_order_type order,
     int inca_vec;
     int incx_vec;
     int n_i;
-    int ld;
+//    int ld;
     int ab;
     int ri;
     int incri;
@@ -4093,7 +4093,7 @@ void BLAS_zhemv_z_d_testgen(int norm, enum blas_order_type order,
     int inca_vec;
     int incx_vec;
     int n_i;
-    int ld;
+//    int ld;
     int ab;
     int ri;
     int incri;
@@ -4615,7 +4615,7 @@ void BLAS_chemv_c_s_testgen(int norm, enum blas_order_type order,
     int inca_vec;
     int incx_vec;
     int n_i;
-    int ld;
+//    int ld;
     int ab;
     int ri;
     int incri;

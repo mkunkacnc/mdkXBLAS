@@ -45,7 +45,7 @@ void stbsv_copy(enum blas_order_type order, enum blas_uplo_type uplo,
  */
 {
   enum blas_trans_type new_trans;
-  int conj = 0;
+//  int conj = 0;
   int kl;
   int ku;
 
@@ -120,7 +120,7 @@ void stbsv_commit(enum blas_order_type order, enum blas_uplo_type uplo,
  */
 {
   enum blas_trans_type new_trans;
-  int conj = 0;
+//  int conj = 0;
   int kl;
   int ku;
 
@@ -199,7 +199,7 @@ void dtbsv_copy(enum blas_order_type order, enum blas_uplo_type uplo,
  */
 {
   enum blas_trans_type new_trans;
-  int conj = 0;
+//  int conj = 0;
   int kl;
   int ku;
 
@@ -274,7 +274,7 @@ void dtbsv_commit(enum blas_order_type order, enum blas_uplo_type uplo,
  */
 {
   enum blas_trans_type new_trans;
-  int conj = 0;
+//  int conj = 0;
   int kl;
   int ku;
 

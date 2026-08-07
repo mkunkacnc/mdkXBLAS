@@ -70,7 +70,7 @@ void do_test_dspmv_d_s(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -89,7 +89,7 @@ void do_test_dspmv_d_s(int n,
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -452,7 +452,7 @@ void do_test_dspmv_s_d(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -471,7 +471,7 @@ void do_test_dspmv_s_d(int n,
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -834,7 +834,7 @@ void do_test_dspmv_s_s(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -853,7 +853,7 @@ void do_test_dspmv_s_s(int n,
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -1216,7 +1216,7 @@ void do_test_zspmv_z_c(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -1235,7 +1235,7 @@ void do_test_zspmv_z_c(int n,
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -1605,7 +1605,7 @@ void do_test_zspmv_c_z(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -1624,7 +1624,7 @@ void do_test_zspmv_c_z(int n,
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -1994,7 +1994,7 @@ void do_test_zspmv_c_c(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -2013,7 +2013,7 @@ void do_test_zspmv_c_c(int n,
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -2383,7 +2383,7 @@ void do_test_cspmv_c_s(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -2402,7 +2402,7 @@ void do_test_cspmv_c_s(int n,
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -2772,7 +2772,7 @@ void do_test_cspmv_s_c(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -2791,7 +2791,7 @@ void do_test_cspmv_s_c(int n,
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -3161,7 +3161,7 @@ void do_test_cspmv_s_s(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -3180,7 +3180,7 @@ void do_test_cspmv_s_s(int n,
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -3550,7 +3550,7 @@ void do_test_zspmv_z_d(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -3569,7 +3569,7 @@ void do_test_zspmv_z_d(int n,
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -3939,7 +3939,7 @@ void do_test_zspmv_d_z(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -3958,7 +3958,7 @@ void do_test_zspmv_d_z(int n,
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -4328,7 +4328,7 @@ void do_test_zspmv_d_d(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -4347,7 +4347,7 @@ void do_test_zspmv_d_d(int n,
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int uplo_val;
@@ -4717,7 +4717,7 @@ void do_test_sspmv_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -5121,7 +5121,7 @@ void do_test_dspmv_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -5525,7 +5525,7 @@ void do_test_cspmv_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -5936,7 +5936,7 @@ void do_test_zspmv_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -6348,7 +6348,7 @@ void do_test_dspmv_d_s_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -6753,7 +6753,7 @@ void do_test_dspmv_s_d_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -7158,7 +7158,7 @@ void do_test_dspmv_s_s_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -7563,7 +7563,7 @@ void do_test_zspmv_z_c_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -7975,7 +7975,7 @@ void do_test_zspmv_c_z_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -8387,7 +8387,7 @@ void do_test_zspmv_c_c_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -8799,7 +8799,7 @@ void do_test_cspmv_c_s_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -9211,7 +9211,7 @@ void do_test_cspmv_s_c_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -9623,7 +9623,7 @@ void do_test_cspmv_s_s_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -10035,7 +10035,7 @@ void do_test_zspmv_z_d_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -10447,7 +10447,7 @@ void do_test_zspmv_d_z_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 
@@ -10859,7 +10859,7 @@ void do_test_zspmv_d_d_x(int n,
 
   int ri;
   int incri;
-  int inca;
+//  int inca;
   int incx;
   int incy;
 

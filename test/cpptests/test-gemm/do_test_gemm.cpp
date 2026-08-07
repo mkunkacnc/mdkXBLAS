@@ -77,9 +77,9 @@ void do_test_dgemm_d_s(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -94,7 +94,7 @@ void do_test_dgemm_d_s(int m, int n, int k, int ntests, int *seed,
   enum blas_order_type order;
   enum blas_trans_type transa;
   enum blas_trans_type transb;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int transa_val;
@@ -123,7 +123,7 @@ void do_test_dgemm_d_s(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -548,9 +548,9 @@ void do_test_dgemm_s_d(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -565,7 +565,7 @@ void do_test_dgemm_s_d(int m, int n, int k, int ntests, int *seed,
   enum blas_order_type order;
   enum blas_trans_type transa;
   enum blas_trans_type transb;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int transa_val;
@@ -594,7 +594,7 @@ void do_test_dgemm_s_d(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -1019,9 +1019,9 @@ void do_test_dgemm_s_s(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -1036,7 +1036,7 @@ void do_test_dgemm_s_s(int m, int n, int k, int ntests, int *seed,
   enum blas_order_type order;
   enum blas_trans_type transa;
   enum blas_trans_type transb;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int transa_val;
@@ -1065,7 +1065,7 @@ void do_test_dgemm_s_s(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -1490,9 +1490,9 @@ void do_test_zgemm_z_c(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -1507,7 +1507,7 @@ void do_test_zgemm_z_c(int m, int n, int k, int ntests, int *seed,
   enum blas_order_type order;
   enum blas_trans_type transa;
   enum blas_trans_type transb;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int transa_val;
@@ -1536,7 +1536,7 @@ void do_test_zgemm_z_c(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -1964,9 +1964,9 @@ void do_test_zgemm_c_z(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -1981,7 +1981,7 @@ void do_test_zgemm_c_z(int m, int n, int k, int ntests, int *seed,
   enum blas_order_type order;
   enum blas_trans_type transa;
   enum blas_trans_type transb;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int transa_val;
@@ -2010,7 +2010,7 @@ void do_test_zgemm_c_z(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -2438,9 +2438,9 @@ void do_test_zgemm_c_c(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -2455,7 +2455,7 @@ void do_test_zgemm_c_c(int m, int n, int k, int ntests, int *seed,
   enum blas_order_type order;
   enum blas_trans_type transa;
   enum blas_trans_type transb;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int transa_val;
@@ -2484,7 +2484,7 @@ void do_test_zgemm_c_c(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -2912,9 +2912,9 @@ void do_test_cgemm_c_s(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -2929,7 +2929,7 @@ void do_test_cgemm_c_s(int m, int n, int k, int ntests, int *seed,
   enum blas_order_type order;
   enum blas_trans_type transa;
   enum blas_trans_type transb;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int transa_val;
@@ -2958,7 +2958,7 @@ void do_test_cgemm_c_s(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -3386,9 +3386,9 @@ void do_test_cgemm_s_c(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -3403,7 +3403,7 @@ void do_test_cgemm_s_c(int m, int n, int k, int ntests, int *seed,
   enum blas_order_type order;
   enum blas_trans_type transa;
   enum blas_trans_type transb;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int transa_val;
@@ -3432,7 +3432,7 @@ void do_test_cgemm_s_c(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -3860,9 +3860,9 @@ void do_test_cgemm_s_s(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -3877,7 +3877,7 @@ void do_test_cgemm_s_s(int m, int n, int k, int ntests, int *seed,
   enum blas_order_type order;
   enum blas_trans_type transa;
   enum blas_trans_type transb;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int transa_val;
@@ -3906,7 +3906,7 @@ void do_test_cgemm_s_s(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -4334,9 +4334,9 @@ void do_test_zgemm_z_d(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -4351,7 +4351,7 @@ void do_test_zgemm_z_d(int m, int n, int k, int ntests, int *seed,
   enum blas_order_type order;
   enum blas_trans_type transa;
   enum blas_trans_type transb;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int transa_val;
@@ -4380,7 +4380,7 @@ void do_test_zgemm_z_d(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -4808,9 +4808,9 @@ void do_test_zgemm_d_z(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -4825,7 +4825,7 @@ void do_test_zgemm_d_z(int m, int n, int k, int ntests, int *seed,
   enum blas_order_type order;
   enum blas_trans_type transa;
   enum blas_trans_type transb;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int transa_val;
@@ -4854,7 +4854,7 @@ void do_test_zgemm_d_z(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -5282,9 +5282,9 @@ void do_test_zgemm_d_d(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -5299,7 +5299,7 @@ void do_test_zgemm_d_d(int m, int n, int k, int ntests, int *seed,
   enum blas_order_type order;
   enum blas_trans_type transa;
   enum blas_trans_type transb;
-  enum blas_prec_type prec;
+//  enum blas_prec_type prec;
 
   int order_val;
   int transa_val;
@@ -5328,7 +5328,7 @@ void do_test_zgemm_d_d(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -5756,9 +5756,9 @@ void do_test_sgemm_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -5802,7 +5802,7 @@ void do_test_sgemm_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -6263,9 +6263,9 @@ void do_test_dgemm_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -6309,7 +6309,7 @@ void do_test_dgemm_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -6770,9 +6770,9 @@ void do_test_cgemm_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -6816,7 +6816,7 @@ void do_test_cgemm_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -7280,9 +7280,9 @@ void do_test_zgemm_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -7326,7 +7326,7 @@ void do_test_zgemm_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -7791,9 +7791,9 @@ void do_test_dgemm_d_s_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -7837,7 +7837,7 @@ void do_test_dgemm_d_s_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -8299,9 +8299,9 @@ void do_test_dgemm_s_d_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -8345,7 +8345,7 @@ void do_test_dgemm_s_d_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -8807,9 +8807,9 @@ void do_test_dgemm_s_s_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -8853,7 +8853,7 @@ void do_test_dgemm_s_s_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -9315,9 +9315,9 @@ void do_test_zgemm_z_c_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -9361,7 +9361,7 @@ void do_test_zgemm_z_c_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -9827,9 +9827,9 @@ void do_test_zgemm_c_z_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -9873,7 +9873,7 @@ void do_test_zgemm_c_z_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -10339,9 +10339,9 @@ void do_test_zgemm_c_c_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -10385,7 +10385,7 @@ void do_test_zgemm_c_c_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -10851,9 +10851,9 @@ void do_test_cgemm_c_s_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -10897,7 +10897,7 @@ void do_test_cgemm_c_s_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -11362,9 +11362,9 @@ void do_test_cgemm_s_c_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -11408,7 +11408,7 @@ void do_test_cgemm_s_c_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -11873,9 +11873,9 @@ void do_test_cgemm_s_s_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -11919,7 +11919,7 @@ void do_test_cgemm_s_s_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -12384,9 +12384,9 @@ void do_test_zgemm_z_d_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -12430,7 +12430,7 @@ void do_test_zgemm_z_d_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -12896,9 +12896,9 @@ void do_test_zgemm_d_z_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -12942,7 +12942,7 @@ void do_test_zgemm_d_z_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
@@ -13408,9 +13408,9 @@ void do_test_zgemm_d_d_x(int m, int n, int k, int ntests, int *seed,
   int inccij;
   int incri;
   int incrij;
-  int inca;
-  int incb;
-  int incc;
+//  int inca;
+//  int incb;
+//  int incc;
 
   int test_count;                /* number of tests done so far   */
   int bad_ratio_count;                /* number of failed tests so far */
@@ -13454,7 +13454,7 @@ void do_test_zgemm_d_d_x(int m, int n, int k, int ntests, int *seed,
   int alpha_flag;
   int beta_flag;
 
-  int saved_seed;
+//  int saved_seed;
 
   int norm;
 
