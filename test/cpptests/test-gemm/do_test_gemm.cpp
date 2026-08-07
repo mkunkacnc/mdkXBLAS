@@ -152,7 +152,7 @@ void do_test_dgemm_d_s(int m, int n, int k, int ntests, int *seed,
     BLAS_error(fname, 0, 0, NULL);
 
   /* initialization */
-  saved_seed = *seed;
+//  saved_seed = *seed;
   ratio = 0.0;
   ratio_min = 1e308;
   ratio_max = 0.0;
@@ -167,9 +167,9 @@ void do_test_dgemm_d_s(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
 
 
@@ -245,7 +245,7 @@ void do_test_dgemm_d_s(int m, int n, int k, int ntests, int *seed,
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -623,7 +623,7 @@ void do_test_dgemm_s_d(int m, int n, int k, int ntests, int *seed,
     BLAS_error(fname, 0, 0, NULL);
 
   /* initialization */
-  saved_seed = *seed;
+//  saved_seed = *seed;
   ratio = 0.0;
   ratio_min = 1e308;
   ratio_max = 0.0;
@@ -638,9 +638,9 @@ void do_test_dgemm_s_d(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
 
 
@@ -716,7 +716,7 @@ void do_test_dgemm_s_d(int m, int n, int k, int ntests, int *seed,
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -1094,7 +1094,7 @@ void do_test_dgemm_s_s(int m, int n, int k, int ntests, int *seed,
     BLAS_error(fname, 0, 0, NULL);
 
   /* initialization */
-  saved_seed = *seed;
+//  saved_seed = *seed;
   ratio = 0.0;
   ratio_min = 1e308;
   ratio_max = 0.0;
@@ -1109,8 +1109,8 @@ void do_test_dgemm_s_s(int m, int n, int k, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  inca = 1;
-  incb = 1;
+//  inca = 1;
+//  incb = 1;
   incc = 1;
 
 
