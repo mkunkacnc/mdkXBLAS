@@ -5720,7 +5720,9 @@ int main(int argc, char **argv)
   int seed;
   int num_bad_ratio;
   int num_tests;
-  int total_tests, nr_failed_routines = 0, nr_routines = 0;
+  int total_tests;
+  int nr_failed_routines = 0;
+  int nr_routines = 0;
   double min_ratio;
   double max_ratio;
   const char *base_routine = "hemm";

@@ -10,7 +10,9 @@ extern int FixedBits(double, double);
 void r_truth(enum blas_conj_type conj, int n, float alpha, const double *x_l, const double *x_t, float beta, const float *y, float *r,  /* input */
              double *r_true_l, double *r_true_t)
 {
-  int i, ix = 0, iy = 0;
+  int i;
+  int ix = 0;
+  int iy = 0;
   float *r_i = (float *)r;
   float alpha_i = alpha;
   float beta_i = beta;

@@ -96,7 +96,8 @@ double do_test_dtrsv_s(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
-  int lda_val, lda = 0;                /* for testing different values for lda */
+  int lda_val;
+  int lda = 0;                /* for testing different values for lda */
   int incx_val;                /* for testing different inc values */
   int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
@@ -127,7 +128,8 @@ double do_test_dtrsv_s(int n,
   double *head_r_true;
   double *tail_r_true;
   int alpha_val;
-  int alpha_flag = 0, beta_flag = 0;
+  int alpha_flag = 0;
+  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
 
@@ -140,7 +142,8 @@ double do_test_dtrsv_s(int n,
   enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -663,7 +666,8 @@ double do_test_ztrsv_c(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
-  int lda_val, lda = 0;                /* for testing different values for lda */
+  int lda_val;
+  int lda = 0;                /* for testing different values for lda */
   int incx_val;                /* for testing different inc values */
   int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
@@ -695,7 +699,8 @@ double do_test_ztrsv_c(int n,
   double *tail_r_true;
 
   int alpha_val;
-  int alpha_flag = 0, beta_flag = 0;
+  int alpha_flag = 0;
+  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
 
@@ -708,7 +713,8 @@ double do_test_ztrsv_c(int n,
   enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -1265,7 +1271,8 @@ double do_test_ctrsv_s(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
-  int lda_val, lda = 0;                /* for testing different values for lda */
+  int lda_val;
+  int lda = 0;                /* for testing different values for lda */
   int incx_val;                /* for testing different inc values */
   int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
@@ -1297,7 +1304,8 @@ double do_test_ctrsv_s(int n,
   double *tail_r_true;
 
   int alpha_val;
-  int alpha_flag = 0, beta_flag = 0;
+  int alpha_flag = 0;
+  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
 
@@ -1310,7 +1318,8 @@ double do_test_ctrsv_s(int n,
   enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -1865,7 +1874,8 @@ double do_test_ztrsv_d(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
-  int lda_val, lda = 0;                /* for testing different values for lda */
+  int lda_val;
+  int lda = 0;                /* for testing different values for lda */
   int incx_val;                /* for testing different inc values */
   int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
@@ -1897,7 +1907,8 @@ double do_test_ztrsv_d(int n,
   double *tail_r_true;
 
   int alpha_val;
-  int alpha_flag = 0, beta_flag = 0;
+  int alpha_flag = 0;
+  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
 
@@ -1910,7 +1921,8 @@ double do_test_ztrsv_d(int n,
   enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -2466,7 +2478,8 @@ double do_test_strsv_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
-  int lda_val, lda = 0;                /* for testing different values for lda */
+  int lda_val;
+  int lda = 0;                /* for testing different values for lda */
   int incx_val;                /* for testing different inc values */
   int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
@@ -2497,7 +2510,8 @@ double do_test_strsv_x(int n,
   double *head_r_true;
   double *tail_r_true;
   int alpha_val;
-  int alpha_flag = 0, beta_flag = 0;
+  int alpha_flag = 0;
+  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
@@ -2510,7 +2524,8 @@ double do_test_strsv_x(int n,
   enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -3054,7 +3069,8 @@ double do_test_dtrsv_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
-  int lda_val, lda = 0;                /* for testing different values for lda */
+  int lda_val;
+  int lda = 0;                /* for testing different values for lda */
   int incx_val;                /* for testing different inc values */
   int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
@@ -3085,7 +3101,8 @@ double do_test_dtrsv_x(int n,
   double *head_r_true;
   double *tail_r_true;
   int alpha_val;
-  int alpha_flag = 0, beta_flag = 0;
+  int alpha_flag = 0;
+  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
@@ -3098,7 +3115,8 @@ double do_test_dtrsv_x(int n,
   enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -3643,7 +3661,8 @@ double do_test_dtrsv_s_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
-  int lda_val, lda = 0;                /* for testing different values for lda */
+  int lda_val;
+  int lda = 0;                /* for testing different values for lda */
   int incx_val;                /* for testing different inc values */
   int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
@@ -3674,7 +3693,8 @@ double do_test_dtrsv_s_x(int n,
   double *head_r_true;
   double *tail_r_true;
   int alpha_val;
-  int alpha_flag = 0, beta_flag = 0;
+  int alpha_flag = 0;
+  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
@@ -3687,7 +3707,8 @@ double do_test_dtrsv_s_x(int n,
   enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -4231,7 +4252,8 @@ double do_test_ctrsv_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
-  int lda_val, lda = 0;                /* for testing different values for lda */
+  int lda_val;
+  int lda = 0;                /* for testing different values for lda */
   int incx_val;                /* for testing different inc values */
   int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
@@ -4263,7 +4285,8 @@ double do_test_ctrsv_x(int n,
   double *tail_r_true;
 
   int alpha_val;
-  int alpha_flag = 0, beta_flag = 0;
+  int alpha_flag = 0;
+  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
@@ -4276,7 +4299,8 @@ double do_test_ctrsv_x(int n,
   enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -4854,7 +4878,8 @@ double do_test_ztrsv_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
-  int lda_val, lda = 0;                /* for testing different values for lda */
+  int lda_val;
+  int lda = 0;                /* for testing different values for lda */
   int incx_val;                /* for testing different inc values */
   int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
@@ -4886,7 +4911,8 @@ double do_test_ztrsv_x(int n,
   double *tail_r_true;
 
   int alpha_val;
-  int alpha_flag = 0, beta_flag = 0;
+  int alpha_flag = 0;
+  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
@@ -4899,7 +4925,8 @@ double do_test_ztrsv_x(int n,
   enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -5480,7 +5507,8 @@ double do_test_ztrsv_c_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
-  int lda_val, lda = 0;                /* for testing different values for lda */
+  int lda_val;
+  int lda = 0;                /* for testing different values for lda */
   int incx_val;                /* for testing different inc values */
   int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
@@ -5512,7 +5540,8 @@ double do_test_ztrsv_c_x(int n,
   double *tail_r_true;
 
   int alpha_val;
-  int alpha_flag = 0, beta_flag = 0;
+  int alpha_flag = 0;
+  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
@@ -5525,7 +5554,8 @@ double do_test_ztrsv_c_x(int n,
   enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -6106,7 +6136,8 @@ double do_test_ctrsv_s_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
-  int lda_val, lda = 0;                /* for testing different values for lda */
+  int lda_val;
+  int lda = 0;                /* for testing different values for lda */
   int incx_val;                /* for testing different inc values */
   int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
@@ -6138,7 +6169,8 @@ double do_test_ctrsv_s_x(int n,
   double *tail_r_true;
 
   int alpha_val;
-  int alpha_flag = 0, beta_flag = 0;
+  int alpha_flag = 0;
+  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
@@ -6151,7 +6183,8 @@ double do_test_ctrsv_s_x(int n,
   enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -6729,7 +6762,8 @@ double do_test_ztrsv_d_x(int n,
   int i;                        /* iterate through the repeating tests */
   int j;                        /* multipurpose counters */
   int ix;                        /* use to index x */
-  int lda_val, lda = 0;                /* for testing different values for lda */
+  int lda_val;
+  int lda = 0;                /* for testing different values for lda */
   int incx_val;                /* for testing different inc values */
   int incx;
   int incx_gen = 1;                /* 1 if real, 2 if complex */
@@ -6761,7 +6795,8 @@ double do_test_ztrsv_d_x(int n,
   double *tail_r_true;
 
   int alpha_val;
-  int alpha_flag = 0, beta_flag = 0;
+  int alpha_flag = 0;
+  int beta_flag = 0;
   int order_val;
   enum blas_order_type order_type = blas_order_type(0);
   int prec_val;
@@ -6774,7 +6809,8 @@ double do_test_ztrsv_d_x(int n,
   enum blas_diag_type diag_type = blas_diag_type(0);
   int row;
   int saved_seed;                /* for saving the original seed */
-  int count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -7284,7 +7320,9 @@ int main(int argc, char **argv)
   int seed;
   int num_bad_ratio;
   int num_tests;
-  int total_tests, nr_failed_routines = 0, nr_routines = 0;
+  int total_tests;
+  int nr_failed_routines = 0;
+  int nr_routines = 0;
   double min_ratio;
   double max_ratio;
   const char *base_routine = "trsv";

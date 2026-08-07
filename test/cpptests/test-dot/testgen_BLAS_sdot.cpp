@@ -521,7 +521,9 @@ gen_r_to_cancel(int n, enum blas_conj_type conj, float alpha,
 static void r_truth(enum blas_conj_type conj, int n, float alpha, const float *x, int incx, float beta, const float *y, int incy, float *r,     /* input */
                     double *r_true_l, double *r_true_t)
 {
-  int i, ix = 0, iy = 0;
+  int i;
+  int ix = 0;
+  int iy = 0;
   float *r_i = (float *)r;
   const float *x_i = (float *)x;
   const float *y_i = (float *)y;

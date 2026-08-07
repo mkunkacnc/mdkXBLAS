@@ -38,7 +38,8 @@ void str_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *              The row to be copyied to y
  */
 {
-  int i, inc = 1;
+  int i;
+  int inc = 1;
   float tmp;
   const float *T_i = (float *)T;
   float *y_i = (float *)y;
@@ -120,7 +121,8 @@ void dtr_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *              The row to be copyied to y
  */
 {
-  int i, inc = 1;
+  int i;
+  int inc = 1;
   double tmp;
   const double *T_i = (double *)T;
   double *y_i = (double *)y;
@@ -202,7 +204,8 @@ void ctr_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *              The row to be copyied to y
  */
 {
-  int i, inc = 1;
+  int i;
+  int inc = 1;
   float tmp[2];
   const float *T_i = (float *) T;
   float *y_i = (float *) y;
@@ -293,7 +296,8 @@ void ztr_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *              The row to be copyied to y
  */
 {
-  int i, inc = 1;
+  int i;
+  int inc = 1;
   double tmp[2];
   const double *T_i = (double *) T;
   double *y_i = (double *) y;

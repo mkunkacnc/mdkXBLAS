@@ -12,7 +12,8 @@ void che_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int ai;
   int incai1;
   int incai2;
-  int vi, incvi = 1;
+  int vi;
+  int incvi = 1;
 
   float a_elem[2];
   const float *a_i = (float *) a;
@@ -70,7 +71,8 @@ void zhe_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int ai;
   int incai1;
   int incai2;
-  int vi, incvi = 1;
+  int vi;
+  int incvi = 1;
 
   double a_elem[2];
   const double *a_i = (double *) a;
@@ -244,7 +246,8 @@ void sskew_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int ai;
   int incai1;
   int incai2;
-  int vi, incvi = 1;
+  int vi;
+  int incvi = 1;
 
   float a_elem;
   float *a_i = (float *)a;
@@ -301,7 +304,8 @@ void dskew_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int ai;
   int incai1;
   int incai2;
-  int vi, incvi = 1;
+  int vi;
+  int incvi = 1;
 
   double a_elem;
   double *a_i = (double *)a;
@@ -359,7 +363,8 @@ void sskew_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int ai;
   int incai1;
   int incai2;
-  int vi, incvi = 1;
+  int vi;
+  int incvi = 1;
 
   float a_elem;
   const float *a_i = (float *)a;
@@ -416,7 +421,8 @@ void dskew_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
   int ai;
   int incai1;
   int incai2;
-  int vi, incvi = 1;
+  int vi;
+  int incvi = 1;
 
   double a_elem;
   const double *a_i = (double *)a;

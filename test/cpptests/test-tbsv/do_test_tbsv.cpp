@@ -104,7 +104,9 @@ double do_test_dtbsv_s(int n,
   int incx_val;        /* for testing different inc values */
   int incx;
   int incx_unadj;
-  int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
+  int incx_gen = 1;
+  int incx_gen_unadj = 1;
+  int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -146,7 +148,9 @@ double do_test_dtbsv_s(int n,
   enum blas_diag_type diag_type;
   int row;
   int saved_seed;                /* for saving the original seed */
-  int test_count = 0, count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int test_count = 0;
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -693,7 +697,9 @@ double do_test_ztbsv_c(int n,
   int incx_val;        /* for testing different inc values */
   int incx;
   int incx_unadj;
-  int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
+  int incx_gen = 1;
+  int incx_gen_unadj = 1;
+  int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -736,7 +742,9 @@ double do_test_ztbsv_c(int n,
   enum blas_diag_type diag_type;
   int row;
   int saved_seed;                /* for saving the original seed */
-  int test_count = 0, count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int test_count = 0;
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -1319,7 +1327,9 @@ double do_test_ctbsv_s(int n,
   int incx_val;        /* for testing different inc values */
   int incx;
   int incx_unadj;
-  int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
+  int incx_gen = 1;
+  int incx_gen_unadj = 1;
+  int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -1362,7 +1372,9 @@ double do_test_ctbsv_s(int n,
   enum blas_diag_type diag_type;
   int row;
   int saved_seed;                /* for saving the original seed */
-  int test_count = 0, count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int test_count = 0;
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -1941,7 +1953,9 @@ double do_test_ztbsv_d(int n,
   int incx_val;        /* for testing different inc values */
   int incx;
   int incx_unadj;
-  int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
+  int incx_gen = 1;
+  int incx_gen_unadj = 1;
+  int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -1984,7 +1998,9 @@ double do_test_ztbsv_d(int n,
   enum blas_diag_type diag_type;
   int row;
   int saved_seed;                /* for saving the original seed */
-  int test_count = 0, count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int test_count = 0;
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -2565,7 +2581,9 @@ double do_test_stbsv_x(int n,
   int incx_val;        /* for testing different inc values */
   int incx;
   int incx_unadj;
-  int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
+  int incx_gen = 1;
+  int incx_gen_unadj = 1;
+  int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -2607,7 +2625,9 @@ double do_test_stbsv_x(int n,
   enum blas_diag_type diag_type;
   int row;
   int saved_seed;                /* for saving the original seed */
-  int test_count = 0, count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int test_count = 0;
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -3173,7 +3193,9 @@ double do_test_dtbsv_x(int n,
   int incx_val;        /* for testing different inc values */
   int incx;
   int incx_unadj;
-  int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
+  int incx_gen = 1;
+  int incx_gen_unadj = 1;
+  int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -3215,7 +3237,9 @@ double do_test_dtbsv_x(int n,
   enum blas_diag_type diag_type;
   int row;
   int saved_seed;                /* for saving the original seed */
-  int test_count = 0, count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int test_count = 0;
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -3782,7 +3806,9 @@ double do_test_dtbsv_s_x(int n,
   int incx_val;        /* for testing different inc values */
   int incx;
   int incx_unadj;
-  int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
+  int incx_gen = 1;
+  int incx_gen_unadj = 1;
+  int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -3824,7 +3850,9 @@ double do_test_dtbsv_s_x(int n,
   enum blas_diag_type diag_type;
   int row;
   int saved_seed;                /* for saving the original seed */
-  int test_count = 0, count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int test_count = 0;
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -4391,7 +4419,9 @@ double do_test_ctbsv_x(int n,
   int incx_val;        /* for testing different inc values */
   int incx;
   int incx_unadj;
-  int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
+  int incx_gen = 1;
+  int incx_gen_unadj = 1;
+  int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -4434,7 +4464,9 @@ double do_test_ctbsv_x(int n,
   enum blas_diag_type diag_type;
   int row;
   int saved_seed;                /* for saving the original seed */
-  int test_count = 0, count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int test_count = 0;
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -5037,7 +5069,9 @@ double do_test_ztbsv_x(int n,
   int incx_val;        /* for testing different inc values */
   int incx;
   int incx_unadj;
-  int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
+  int incx_gen = 1;
+  int incx_gen_unadj = 1;
+  int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -5080,7 +5114,9 @@ double do_test_ztbsv_x(int n,
   enum blas_diag_type diag_type;
   int row;
   int saved_seed;                /* for saving the original seed */
-  int test_count = 0, count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int test_count = 0;
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -5684,7 +5720,9 @@ double do_test_ztbsv_c_x(int n,
   int incx_val;        /* for testing different inc values */
   int incx;
   int incx_unadj;
-  int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
+  int incx_gen = 1;
+  int incx_gen_unadj = 1;
+  int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -5727,7 +5765,9 @@ double do_test_ztbsv_c_x(int n,
   enum blas_diag_type diag_type;
   int row;
   int saved_seed;                /* for saving the original seed */
-  int test_count = 0, count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int test_count = 0;
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -6333,7 +6373,9 @@ double do_test_ctbsv_s_x(int n,
   int incx_val;        /* for testing different inc values */
   int incx;
   int incx_unadj;
-  int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
+  int incx_gen = 1;
+  int incx_gen_unadj = 1;
+  int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -6376,7 +6418,9 @@ double do_test_ctbsv_s_x(int n,
   enum blas_diag_type diag_type;
   int row;
   int saved_seed;                /* for saving the original seed */
-  int test_count = 0, count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int test_count = 0;
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -6980,7 +7024,9 @@ double do_test_ztbsv_d_x(int n,
   int incx_val;        /* for testing different inc values */
   int incx;
   int incx_unadj;
-  int incx_gen = 1, incx_gen_unadj = 1, incT = 1;        /* 1 if real, 2 if complex */
+  int incx_gen = 1;
+  int incx_gen_unadj = 1;
+  int incT = 1;        /* 1 if real, 2 if complex */
   int d_count;                        /* counter for debug */
   int find_max_ratio;                /* find_max_ratio = 1 only if debug = 3 */
   int p_count;                        /* counter for the number of debug lines printed */
@@ -7023,7 +7069,9 @@ double do_test_ztbsv_d_x(int n,
   enum blas_diag_type diag_type;
   int row;
   int saved_seed;                /* for saving the original seed */
-  int test_count = 0, count, old_count = -1;        /* use for counting the number of testgen calls * 2 */
+  int test_count = 0;
+  int count;
+  int old_count = -1;        /* use for counting the number of testgen calls * 2 */
   FPU_FIX_DECL;
 
   /* test for bad arguments */
@@ -7550,7 +7598,9 @@ int main(int argc, char **argv)
   int seed;
   int num_bad_ratio;
   int num_tests;
-  int total_tests, nr_failed_routines = 0, nr_routines = 0;
+  int total_tests;
+  int nr_failed_routines = 0;
+  int nr_routines = 0;
   double min_ratio;
   double max_ratio;
   const char *base_routine = "tbsv";

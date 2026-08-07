@@ -9,7 +9,9 @@ void chpmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *  Copies the given row of packed hermitianmatrix a into the supplied vector.
  */
 {
-  int i, ind, inc = 1;
+  int i;
+  int ind;
+  int inc = 1;
   const float *a_i = (float *) a;
   float *a_vec_i = (float *) a_vec;
   float tmp[2];
@@ -85,7 +87,9 @@ void zhpmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *  Copies the given row of packed hermitianmatrix a into the supplied vector.
  */
 {
-  int i, ind, inc = 1;
+  int i;
+  int ind;
+  int inc = 1;
   const double *a_i = (double *) a;
   double *a_vec_i = (double *) a_vec;
   double tmp[2];
@@ -163,7 +167,9 @@ void chpmv_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *      packed hermitian matrix a.
  */
 {
-  int i, ind, inc = 1;
+  int i;
+  int ind;
+  int inc = 1;
   float *a_i = (float *) a;
   float *a_vec_i = (float *) a_vec;
   float tmp[2];
@@ -234,7 +240,9 @@ void zhpmv_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *      packed hermitian matrix a.
  */
 {
-  int i, ind, inc = 1;
+  int i;
+  int ind;
+  int inc = 1;
   double *a_i = (double *) a;
   double *a_vec_i = (double *) a_vec;
   double tmp[2];

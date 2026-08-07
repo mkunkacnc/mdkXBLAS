@@ -104,7 +104,8 @@ double do_test_ddot_d_s(int n, int ntests, int *seed, double thresh,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -478,7 +479,8 @@ double do_test_ddot_s_d(int n, int ntests, int *seed, double thresh,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -852,7 +854,8 @@ double do_test_ddot_s_s(int n, int ntests, int *seed, double thresh,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -1226,7 +1229,8 @@ double do_test_zdot_z_c(int n, int ntests, int *seed, double thresh,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -1605,7 +1609,8 @@ double do_test_zdot_c_z(int n, int ntests, int *seed, double thresh,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -1984,7 +1989,8 @@ double do_test_zdot_c_c(int n, int ntests, int *seed, double thresh,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -2363,7 +2369,8 @@ double do_test_cdot_c_s(int n, int ntests, int *seed, double thresh,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -2742,7 +2749,8 @@ double do_test_cdot_s_c(int n, int ntests, int *seed, double thresh,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -3121,7 +3129,8 @@ double do_test_cdot_s_s(int n, int ntests, int *seed, double thresh,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -3500,7 +3509,8 @@ double do_test_zdot_z_d(int n, int ntests, int *seed, double thresh,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -3879,7 +3889,8 @@ double do_test_zdot_d_z(int n, int ntests, int *seed, double thresh,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -4258,7 +4269,8 @@ double do_test_zdot_d_d(int n, int ntests, int *seed, double thresh,
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -4637,7 +4649,8 @@ double do_test_sdot_x(int n, int ntests, int *seed, double thresh, int debug,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -5030,7 +5043,8 @@ double do_test_ddot_x(int n, int ntests, int *seed, double thresh, int debug,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -5423,7 +5437,8 @@ double do_test_cdot_x(int n, int ntests, int *seed, double thresh, int debug,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -5821,7 +5836,8 @@ double do_test_zdot_x(int n, int ntests, int *seed, double thresh, int debug,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -6219,7 +6235,8 @@ double do_test_ddot_d_s_x(int n, int ntests, int *seed, double thresh,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -6613,7 +6630,8 @@ double do_test_ddot_s_d_x(int n, int ntests, int *seed, double thresh,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -7007,7 +7025,8 @@ double do_test_ddot_s_s_x(int n, int ntests, int *seed, double thresh,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -7401,7 +7420,8 @@ double do_test_zdot_z_c_x(int n, int ntests, int *seed, double thresh,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -7800,7 +7820,8 @@ double do_test_zdot_c_z_x(int n, int ntests, int *seed, double thresh,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -8199,7 +8220,8 @@ double do_test_zdot_c_c_x(int n, int ntests, int *seed, double thresh,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -8598,7 +8620,8 @@ double do_test_cdot_c_s_x(int n, int ntests, int *seed, double thresh,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -8997,7 +9020,8 @@ double do_test_cdot_s_c_x(int n, int ntests, int *seed, double thresh,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -9396,7 +9420,8 @@ double do_test_cdot_s_s_x(int n, int ntests, int *seed, double thresh,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -9795,7 +9820,8 @@ double do_test_zdot_z_d_x(int n, int ntests, int *seed, double thresh,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -10194,7 +10220,8 @@ double do_test_zdot_d_z_x(int n, int ntests, int *seed, double thresh,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -10593,7 +10620,8 @@ double do_test_zdot_d_d_x(int n, int ntests, int *seed, double thresh,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* use for counting the number of testgen calls * 2 */
+  int count = 0;
+  int old_count = 0;        /* use for counting the number of testgen calls * 2 */
 
   FPU_FIX_DECL;
 
@@ -10911,7 +10939,9 @@ int main(int argc, char **argv)
   int seed;
   int num_bad_ratio;
   int num_tests;
-  int total_tests, nr_failed_routines = 0, nr_routines = 0;
+  int total_tests;
+  int nr_failed_routines = 0;
+  int nr_routines = 0;
   double min_ratio;
   double max_ratio;
   const char *base_routine = "dot";

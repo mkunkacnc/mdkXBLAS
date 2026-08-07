@@ -50,7 +50,9 @@ void s_r_truth2(enum blas_conj_type conj, int n, float alpha,
  */
 {
 
-  int i, ix = 0, iy = 0;
+  int i;
+  int ix = 0;
+  int iy = 0;
   float *r_i = (float *)r;
   const float *x_i = (float *)x;
   const float *head_y_i = (float *)head_y;
@@ -284,7 +286,9 @@ void d_r_truth2(enum blas_conj_type conj, int n, double alpha,
  */
 {
 
-  int i, ix = 0, iy = 0;
+  int i;
+  int ix = 0;
+  int iy = 0;
   double *r_i = (double *)r;
   const double *x_i = (double *)x;
   const double *head_y_i = (double *)head_y;
@@ -569,7 +573,9 @@ void c_r_truth2(enum blas_conj_type conj, int n, const void *alpha,
  */
 {
 
-  int i, ix = 0, iy = 0;
+  int i;
+  int ix = 0;
+  int iy = 0;
   float *r_i = (float *) r;
   const float *x_i = (float *) x;
   const float *head_y_i = (float *) head_y;
@@ -1549,7 +1555,9 @@ void z_r_truth2(enum blas_conj_type conj, int n, const void *alpha,
  */
 {
 
-  int i, ix = 0, iy = 0;
+  int i;
+  int ix = 0;
+  int iy = 0;
   double *r_i = (double *) r;
   const double *x_i = (double *) x;
   const double *head_y_i = (double *) head_y;

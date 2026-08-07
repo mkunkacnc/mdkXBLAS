@@ -1063,7 +1063,8 @@ void BLAS_chbmv_testgen(int norm, enum blas_order_type order,
     }
 
     if (randomize == 0) {
-      int mi, incmi = 1;
+      int mi;
+      int incmi = 1;
       int incx0;
       int incy1;
       int incy2;
@@ -1662,7 +1663,8 @@ void BLAS_zhbmv_testgen(int norm, enum blas_order_type order,
     }
 
     if (randomize == 0) {
-      int mi, incmi = 1;
+      int mi;
+      int incmi = 1;
       int incx0;
       int incy1;
       int incy2;
@@ -2261,7 +2263,8 @@ void BLAS_zhbmv_c_z_testgen(int norm, enum blas_order_type order,
     }
 
     if (randomize == 0) {
-      int mi, incmi = 1;
+      int mi;
+      int incmi = 1;
       int incx0;
       int incy1;
       int incy2;
@@ -2860,7 +2863,8 @@ void BLAS_zhbmv_z_c_testgen(int norm, enum blas_order_type order,
     }
 
     if (randomize == 0) {
-      int mi, incmi = 1;
+      int mi;
+      int incmi = 1;
       int incx0;
       int incy1;
       int incy2;
@@ -3459,7 +3463,8 @@ void BLAS_zhbmv_c_c_testgen(int norm, enum blas_order_type order,
     }
 
     if (randomize == 0) {
-      int mi, incmi = 1;
+      int mi;
+      int incmi = 1;
       int incx0;
       int incy1;
       int incy2;
@@ -4057,7 +4062,8 @@ void BLAS_zhbmv_z_d_testgen(int norm, enum blas_order_type order,
     }
 
     if (randomize == 0) {
-      int mi, incmi = 1;
+      int mi;
+      int incmi = 1;
       int incx0;
       int incy1;
       int incy2;
@@ -4588,7 +4594,8 @@ void BLAS_chbmv_c_s_testgen(int norm, enum blas_order_type order,
     }
 
     if (randomize == 0) {
-      int mi, incmi = 1;
+      int mi;
+      int incmi = 1;
       int incx0;
       int incy1;
       int incy2;

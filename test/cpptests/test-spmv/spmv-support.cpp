@@ -31,7 +31,9 @@ void sspmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, ind, inc = 1;
+  int i;
+  int ind;
+  int inc = 1;
   const float *a_i = (float *)a;
   float *a_vec_i = (float *)a_vec;
   float tmp;
@@ -103,7 +105,9 @@ void dspmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, ind, inc = 1;
+  int i;
+  int ind;
+  int inc = 1;
   const double *a_i = (double *)a;
   double *a_vec_i = (double *)a_vec;
   double tmp;
@@ -175,7 +179,9 @@ void cspmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, ind, inc = 1;
+  int i;
+  int ind;
+  int inc = 1;
   const float *a_i = (float *) a;
   float *a_vec_i = (float *) a_vec;
   float tmp[2];
@@ -255,7 +261,9 @@ void zspmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, ind, inc = 1;
+  int i;
+  int ind;
+  int inc = 1;
   const double *a_i = (double *) a;
   double *a_vec_i = (double *) a_vec;
   double tmp[2];
@@ -336,7 +344,9 @@ void sspmv_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, ind, inc = 1;
+  int i;
+  int ind;
+  int inc = 1;
   float *a_i = (float *)a;
   const float *a_vec_i = (float *)a_vec;
   float tmp;
@@ -394,7 +404,9 @@ void dspmv_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, ind, inc = 1;
+  int i;
+  int ind;
+  int inc = 1;
   double *a_i = (double *)a;
   const double *a_vec_i = (double *)a_vec;
   double tmp;
@@ -452,7 +464,9 @@ void cspmv_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, ind, inc = 1;
+  int i;
+  int ind;
+  int inc = 1;
   float *a_i = (float *) a;
   const float *a_vec_i = (float *) a_vec;
   float tmp[2];
@@ -514,7 +528,9 @@ void zspmv_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, ind, inc = 1;
+  int i;
+  int ind;
+  int inc = 1;
   double *a_i = (double *) a;
   const double *a_vec_i = (double *) a_vec;
   double tmp[2];

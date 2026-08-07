@@ -30,7 +30,11 @@ void stpmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, j, ind, stride, inc = 1;
+  int i;
+  int j;
+  int ind;
+  int stride;
+  int inc = 1;
   const float *a_i = (float *)a;
   float *a_vec_i = (float *)a_vec;
   float tmp;
@@ -133,7 +137,11 @@ void dtpmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, j, ind, stride, inc = 1;
+  int i;
+  int j;
+  int ind;
+  int stride;
+  int inc = 1;
   const double *a_i = (double *)a;
   double *a_vec_i = (double *)a_vec;
   double tmp;
@@ -236,7 +244,11 @@ void ctpmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, j, ind, stride, inc = 1;
+  int i;
+  int j;
+  int ind;
+  int stride;
+  int inc = 1;
   const float *a_i = (float *) a;
   float *a_vec_i = (float *) a_vec;
   float tmp[2];
@@ -348,7 +360,11 @@ void ztpmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, j, ind, stride, inc = 1;
+  int i;
+  int j;
+  int ind;
+  int stride;
+  int inc = 1;
   const double *a_i = (double *) a;
   double *a_vec_i = (double *) a_vec;
   double tmp[2];
@@ -461,7 +477,10 @@ void stpmv_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, stride, ind, inc = 1;
+  int i;
+  int stride;
+  int ind;
+  int inc = 1;
   float *a_i = (float *)a;
   const float *a_vec_i = (float *)a_vec;
   float tmp;
@@ -561,7 +580,10 @@ void dtpmv_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, stride, ind, inc = 1;
+  int i;
+  int stride;
+  int ind;
+  int inc = 1;
   double *a_i = (double *)a;
   const double *a_vec_i = (double *)a_vec;
   double tmp;
@@ -661,7 +683,10 @@ void ctpmv_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, stride, ind, inc = 1;
+  int i;
+  int stride;
+  int ind;
+  int inc = 1;
   float *a_i = (float *) a;
   const float *a_vec_i = (float *) a_vec;
   float tmp[2];
@@ -769,7 +794,10 @@ void ztpmv_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
  *
  */
 {
-  int i, stride, ind, inc = 1;
+  int i;
+  int stride;
+  int ind;
+  int inc = 1;
   double *a_i = (double *) a;
   const double *a_vec_i = (double *) a_vec;
   double tmp[2];

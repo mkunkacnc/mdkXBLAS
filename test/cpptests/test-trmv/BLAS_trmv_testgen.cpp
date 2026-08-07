@@ -69,7 +69,8 @@ void BLAS_strmv_testgen(int norm, enum blas_order_type order,
   float x_elem;
   float t_elem;
 
-  int inc_tvec = 1, inc_xvec = 1;
+  int inc_tvec = 1;
+  int inc_xvec = 1;
   int xvec_i;
   int tvec_j;
   int xi;
@@ -284,7 +285,8 @@ void BLAS_dtrmv_testgen(int norm, enum blas_order_type order,
   double x_elem;
   double t_elem;
 
-  int inc_tvec = 1, inc_xvec = 1;
+  int inc_tvec = 1;
+  int inc_xvec = 1;
   int xvec_i;
   int tvec_j;
   int xi;
@@ -500,7 +502,8 @@ void BLAS_dtrmv_s_testgen(int norm, enum blas_order_type order,
   double x_elem;
   float t_elem;
 
-  int inc_tvec = 1, inc_xvec = 1;
+  int inc_tvec = 1;
+  int inc_xvec = 1;
   int xvec_i;
   int tvec_j;
   int xi;
@@ -715,7 +718,8 @@ void BLAS_ctrmv_testgen(int norm, enum blas_order_type order,
   float x_elem[2];
   float t_elem[2];
 
-  int inc_tvec = 1, inc_xvec = 1;
+  int inc_tvec = 1;
+  int inc_xvec = 1;
   int xvec_i;
   int tvec_j;
   int xi;
@@ -950,7 +954,8 @@ void BLAS_ztrmv_c_testgen(int norm, enum blas_order_type order,
   double x_elem[2];
   float t_elem[2];
 
-  int inc_tvec = 1, inc_xvec = 1;
+  int inc_tvec = 1;
+  int inc_xvec = 1;
   int xvec_i;
   int tvec_j;
   int xi;
@@ -1184,7 +1189,8 @@ void BLAS_ztrmv_testgen(int norm, enum blas_order_type order,
   double x_elem[2];
   double t_elem[2];
 
-  int inc_tvec = 1, inc_xvec = 1;
+  int inc_tvec = 1;
+  int inc_xvec = 1;
   int xvec_i;
   int tvec_j;
   int xi;
@@ -1419,7 +1425,8 @@ void BLAS_ctrmv_s_testgen(int norm, enum blas_order_type order,
   float x_elem[2];
   float t_elem;
 
-  int inc_tvec = 1, inc_xvec = 1;
+  int inc_tvec = 1;
+  int inc_xvec = 1;
   int xvec_i;
   int tvec_j;
   int xi;
@@ -1642,7 +1649,8 @@ void BLAS_ztrmv_d_testgen(int norm, enum blas_order_type order,
   double x_elem[2];
   double t_elem;
 
-  int inc_tvec = 1, inc_xvec = 1;
+  int inc_tvec = 1;
+  int inc_xvec = 1;
   int xvec_i;
   int tvec_j;
   int xi;

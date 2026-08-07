@@ -106,7 +106,8 @@ double do_test_sdot2_x(int n, int ntests, int *seed, double thresh, int debug,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* used for counting the number of
+  int count = 0;
+  int old_count = 0;        /* used for counting the number of
                                    testgen calls * 2 */
 
   FPU_FIX_DECL;
@@ -513,7 +514,8 @@ double do_test_ddot2_x(int n, int ntests, int *seed, double thresh, int debug,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* used for counting the number of
+  int count = 0;
+  int old_count = 0;        /* used for counting the number of
                                    testgen calls * 2 */
 
   FPU_FIX_DECL;
@@ -920,7 +922,8 @@ double do_test_cdot2_x(int n, int ntests, int *seed, double thresh, int debug,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* used for counting the number of
+  int count = 0;
+  int old_count = 0;        /* used for counting the number of
                                    testgen calls * 2 */
 
   FPU_FIX_DECL;
@@ -1332,7 +1335,8 @@ double do_test_zdot2_x(int n, int ntests, int *seed, double thresh, int debug,
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
-  int count = 0, old_count = 0;        /* used for counting the number of
+  int count = 0;
+  int old_count = 0;        /* used for counting the number of
                                    testgen calls * 2 */
 
   FPU_FIX_DECL;
@@ -1662,7 +1666,9 @@ int main(int argc, char **argv)
   int seed;
   int num_bad_ratio;
   int num_tests;
-  int total_tests, nr_failed_routines = 0, nr_routines = 0;
+  int total_tests;
+  int nr_failed_routines = 0;
+  int nr_routines = 0;
   double min_ratio;
   double max_ratio;
   const char *base_routine = "dot2";

@@ -70,7 +70,8 @@ void BLAS_sdot_testgen(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int i, inc = 1;
+  int i;
+  int inc = 1;
   float *alpha_i = (float *)alpha;
   float *beta_i = (float *)beta;
   float *r_i = (float *)r;
@@ -181,7 +182,8 @@ void BLAS_ddot_testgen(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int i, inc = 1;
+  int i;
+  int inc = 1;
   double *alpha_i = (double *)alpha;
   double *beta_i = (double *)beta;
   double *r_i = (double *)r;
@@ -291,7 +293,8 @@ void BLAS_cdot_testgen(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int i, inc = 1;
+  int i;
+  int inc = 1;
   float *alpha_i = (float *) alpha;
   float *beta_i = (float *) beta;
   float *r_i = (float *) r;
@@ -411,7 +414,8 @@ void BLAS_zdot_testgen(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int i, inc = 1;
+  int i;
+  int inc = 1;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
   double *r_i = (double *) r;
@@ -1678,7 +1682,8 @@ void BLAS_ddot_s_s_testgen(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int i, inc = 1;
+  int i;
+  int inc = 1;
   double *alpha_i = (double *)alpha;
   double *beta_i = (double *)beta;
   double *r_i = (double *)r;
@@ -1789,7 +1794,8 @@ void BLAS_ddot_s_d_testgen(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int i, inc = 1;
+  int i;
+  int inc = 1;
   double *alpha_i = (double *)alpha;
   double *beta_i = (double *)beta;
   double *r_i = (double *)r;
@@ -1900,7 +1906,8 @@ void BLAS_ddot_d_s_testgen(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int i, inc = 1;
+  int i;
+  int inc = 1;
   double *alpha_i = (double *)alpha;
   double *beta_i = (double *)beta;
   double *r_i = (double *)r;
@@ -2011,7 +2018,8 @@ void BLAS_zdot_c_c_testgen(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int i, inc = 1;
+  int i;
+  int inc = 1;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
   double *r_i = (double *) r;
@@ -2132,7 +2140,8 @@ void BLAS_zdot_c_z_testgen(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int i, inc = 1;
+  int i;
+  int inc = 1;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
   double *r_i = (double *) r;
@@ -2253,7 +2262,8 @@ void BLAS_zdot_z_c_testgen(int n, int n_fix2, int n_mix, int norm,
  *
  */
 {
-  int i, inc = 1;
+  int i;
+  int inc = 1;
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
   double *r_i = (double *) r;

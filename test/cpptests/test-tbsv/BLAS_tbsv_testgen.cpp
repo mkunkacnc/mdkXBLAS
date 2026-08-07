@@ -1068,7 +1068,10 @@ void BLAS_ctbsv_testgen(int norm, enum blas_order_type order,
   float *T_temp_c;
   double *head_r_true_r;
   double *tail_r_true_r;
-  int i, inc = 2, length, j;
+  int i;
+  int inc = 2;
+  int length;
+  int j;
 
   T_r = (float *) blas_malloc(8 * n * ldt * sizeof(float));
   if (8 * n * ldt > 0 && T_r == NULL) {
@@ -1270,7 +1273,10 @@ void BLAS_ztbsv_c_testgen(int norm, enum blas_order_type order,
   float *T_temp_c;
   double *head_r_true_r;
   double *tail_r_true_r;
-  int i, inc = 2, length, j;
+  int i;
+  int inc = 2;
+  int length;
+  int j;
 
   T_r = (float *) blas_malloc(8 * n * ldt * sizeof(float));
   if (8 * n * ldt > 0 && T_r == NULL) {
@@ -1471,7 +1477,10 @@ void BLAS_ztbsv_testgen(int norm, enum blas_order_type order,
   double *T_temp_c;
   double *head_r_true_r;
   double *tail_r_true_r;
-  int i, inc = 2, length, j;
+  int i;
+  int inc = 2;
+  int length;
+  int j;
 
   T_r = (double *) blas_malloc(8 * n * ldt * sizeof(double));
   if (8 * n * ldt > 0 && T_r == NULL) {
@@ -1670,7 +1679,8 @@ void BLAS_ctbsv_s_testgen(int norm, enum blas_order_type order,
   float *x_r;
   double *head_r_true_r;
   double *tail_r_true_r;
-  int i, inc = 2;
+  int i;
+  int inc = 2;
 
   x_r = (float *) blas_malloc(n * sizeof(float));
   if (n > 0 && x_r == NULL) {
@@ -1783,7 +1793,8 @@ void BLAS_ztbsv_d_testgen(int norm, enum blas_order_type order,
   double *x_r;
   double *head_r_true_r;
   double *tail_r_true_r;
-  int i, inc = 2;
+  int i;
+  int inc = 2;
 
   x_r = (double *) blas_malloc(n * sizeof(double));
   if (n > 0 && x_r == NULL) {

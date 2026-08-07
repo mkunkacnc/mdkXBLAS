@@ -37,7 +37,8 @@ void BLAS_ssum_testgen(int n, int norm, float *x, int *seed,
 {
   {
     int i;
-    int xi, incxi = 1;
+    int xi;
+    int incxi = 1;
     float alpha;
     float beta;
     float r;
@@ -104,7 +105,8 @@ void BLAS_dsum_testgen(int n, int norm, double *x, int *seed,
 {
   {
     int i;
-    int xi, incxi = 1;
+    int xi;
+    int incxi = 1;
     double alpha;
     double beta;
     double r;
@@ -171,7 +173,8 @@ void BLAS_csum_testgen(int n, int norm, void *x, int *seed,
 {
   {
     int i;
-    int xi, incxi = 1;
+    int xi;
+    int incxi = 1;
     float alpha[2];
     float beta[2];
     float r[2];
@@ -241,7 +244,8 @@ void BLAS_zsum_testgen(int n, int norm, void *x, int *seed,
 {
   {
     int i;
-    int xi, incxi = 1;
+    int xi;
+    int incxi = 1;
     double alpha[2];
     double beta[2];
     double r[2];

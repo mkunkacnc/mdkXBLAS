@@ -67,7 +67,8 @@ void BLAS_sskmv2_testgen(int norm, enum blas_order_type order,
   int i;
   int yi;
   int ri;
-  int incx = 1, incy = 1;
+  int incx = 1;
+  int incy = 1;
   int incyi;
   int incri;
   int incx_veci;
@@ -205,7 +206,8 @@ void BLAS_dskmv2_testgen(int norm, enum blas_order_type order,
   int i;
   int yi;
   int ri;
-  int incx = 1, incy = 1;
+  int incx = 1;
+  int incy = 1;
   int incyi;
   int incri;
   int incx_veci;
@@ -343,7 +345,8 @@ void BLAS_dskmv2_testgen_d_s(int norm, enum blas_order_type order,
   int i;
   int yi;
   int ri;
-  int incx = 1, incy = 1;
+  int incx = 1;
+  int incy = 1;
   int incyi;
   int incri;
   int incx_veci;
@@ -481,7 +484,8 @@ void BLAS_dskmv2_testgen_s_d(int norm, enum blas_order_type order,
   int i;
   int yi;
   int ri;
-  int incx = 1, incy = 1;
+  int incx = 1;
+  int incy = 1;
   int incyi;
   int incri;
   int incx_veci;
@@ -619,7 +623,8 @@ void BLAS_dskmv2_testgen_s_s(int norm, enum blas_order_type order,
   int i;
   int yi;
   int ri;
-  int incx = 1, incy = 1;
+  int incx = 1;
+  int incy = 1;
   int incyi;
   int incri;
   int incx_veci;
@@ -785,7 +790,8 @@ void BLAS_chemv2_testgen(int norm, enum blas_order_type order,
     int a1i;
     int xi;
     int mi;
-    int incx = 1, incy = 1;
+    int incx = 1;
+    int incy = 1;
     int incyi;
     int xi0;
     int yi0;
@@ -876,7 +882,10 @@ void BLAS_chemv2_testgen(int norm, enum blas_order_type order,
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 
-    int incx0, incy1, incy2, incmi = 1;
+    int incx0;
+    int incy1;
+    int incy2;
+    int incmi = 1;
     a1 = (float *) blas_malloc(n * n * sizeof(float));
     if (n * n > 0 && a1 == NULL) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
@@ -1273,7 +1282,8 @@ void BLAS_zhemv2_testgen(int norm, enum blas_order_type order,
     int a1i;
     int xi;
     int mi;
-    int incx = 1, incy = 1;
+    int incx = 1;
+    int incy = 1;
     int incyi;
     int xi0;
     int yi0;
@@ -1364,7 +1374,10 @@ void BLAS_zhemv2_testgen(int norm, enum blas_order_type order,
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 
-    int incx0, incy1, incy2, incmi = 1;
+    int incx0;
+    int incy1;
+    int incy2;
+    int incmi = 1;
     a1 = (double *) blas_malloc(n * n * sizeof(double));
     if (n * n > 0 && a1 == NULL) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
@@ -1762,7 +1775,8 @@ void BLAS_zhemv2_c_z_testgen(int norm, enum blas_order_type order,
     int a1i;
     int xi;
     int mi;
-    int incx = 1, incy = 1;
+    int incx = 1;
+    int incy = 1;
     int incyi;
     int xi0;
     int yi0;
@@ -1853,7 +1867,10 @@ void BLAS_zhemv2_c_z_testgen(int norm, enum blas_order_type order,
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 
-    int incx0, incy1, incy2, incmi = 1;
+    int incx0;
+    int incy1;
+    int incy2;
+    int incmi = 1;
     a1 = (float *) blas_malloc(n * n * sizeof(float));
     if (n * n > 0 && a1 == NULL) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
@@ -2251,7 +2268,8 @@ void BLAS_zhemv2_z_c_testgen(int norm, enum blas_order_type order,
     int a1i;
     int xi;
     int mi;
-    int incx = 1, incy = 1;
+    int incx = 1;
+    int incy = 1;
     int incyi;
     int xi0;
     int yi0;
@@ -2342,7 +2360,10 @@ void BLAS_zhemv2_z_c_testgen(int norm, enum blas_order_type order,
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 
-    int incx0, incy1, incy2, incmi = 1;
+    int incx0;
+    int incy1;
+    int incy2;
+    int incmi = 1;
     a1 = (double *) blas_malloc(n * n * sizeof(double));
     if (n * n > 0 && a1 == NULL) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
@@ -2740,7 +2761,8 @@ void BLAS_zhemv2_c_c_testgen(int norm, enum blas_order_type order,
     int a1i;
     int xi;
     int mi;
-    int incx = 1, incy = 1;
+    int incx = 1;
+    int incy = 1;
     int incyi;
     int xi0;
     int yi0;
@@ -2831,7 +2853,10 @@ void BLAS_zhemv2_c_c_testgen(int norm, enum blas_order_type order,
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 
-    int incx0, incy1, incy2, incmi = 1;
+    int incx0;
+    int incy1;
+    int incy2;
+    int incmi = 1;
     a1 = (float *) blas_malloc(n * n * sizeof(float));
     if (n * n > 0 && a1 == NULL) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
@@ -3229,7 +3254,8 @@ void BLAS_zhemv2_z_d_testgen(int norm, enum blas_order_type order,
     int a1i;
     int xi;
     int mi;
-    int incx = 1, incy = 1;
+    int incx = 1;
+    int incy = 1;
     int incyi;
     int xi0;
     int yi0;
@@ -3320,7 +3346,10 @@ void BLAS_zhemv2_z_d_testgen(int norm, enum blas_order_type order,
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 
-    int incx0, incy1, incy2, incmi = 1;
+    int incx0;
+    int incy1;
+    int incy2;
+    int incmi = 1;
     a1 = (double *) blas_malloc(n * n * sizeof(double));
     if (n * n > 0 && a1 == NULL) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
@@ -3639,7 +3668,8 @@ void BLAS_chemv2_c_s_testgen(int norm, enum blas_order_type order,
     int a1i;
     int xi;
     int mi;
-    int incx = 1, incy = 1;
+    int incx = 1;
+    int incy = 1;
     int incyi;
     int xi0;
     int yi0;
@@ -3730,7 +3760,10 @@ void BLAS_chemv2_c_s_testgen(int norm, enum blas_order_type order,
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 
-    int incx0, incy1, incy2, incmi = 1;
+    int incx0;
+    int incy1;
+    int incy2;
+    int incmi = 1;
     a1 = (float *) blas_malloc(n * n * sizeof(float));
     if (n * n > 0 && a1 == NULL) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");

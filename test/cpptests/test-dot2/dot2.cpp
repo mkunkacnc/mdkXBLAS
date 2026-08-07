@@ -59,7 +59,9 @@ void BLAS_sdot2_x(enum blas_conj_type conj, int n, float alpha,
   switch (prec) {
   case blas_prec_single:
     {
-      int i, ix = 0, iy = 0;
+      int i;
+      int ix = 0;
+      int iy = 0;
       float *r_i = (float *)r;
       const float *x_i = (float *)x;
       const float *head_y_i = (float *)head_y;
@@ -123,7 +125,9 @@ void BLAS_sdot2_x(enum blas_conj_type conj, int n, float alpha,
   case blas_prec_double:
   case blas_prec_indigenous:
     {
-      int i, ix = 0, iy = 0;
+      int i;
+      int ix = 0;
+      int iy = 0;
       float *r_i = (float *)r;
       const float *x_i = (float *)x;
       const float *head_y_i = (float *)head_y;
@@ -186,7 +190,9 @@ void BLAS_sdot2_x(enum blas_conj_type conj, int n, float alpha,
     break;
   case blas_prec_extra:
     {
-      int i, ix = 0, iy = 0;
+      int i;
+      int ix = 0;
+      int iy = 0;
       float *r_i = (float *)r;
       const float *x_i = (float *)x;
       const float *head_y_i = (float *)head_y;
@@ -436,7 +442,9 @@ void BLAS_ddot2_x(enum blas_conj_type conj, int n, double alpha,
   switch (prec) {
   case blas_prec_single:
     {
-      int i, ix = 0, iy = 0;
+      int i;
+      int ix = 0;
+      int iy = 0;
       double *r_i = (double *)r;
       const double *x_i = (double *)x;
       const double *head_y_i = (double *)head_y;
@@ -500,7 +508,9 @@ void BLAS_ddot2_x(enum blas_conj_type conj, int n, double alpha,
   case blas_prec_double:
   case blas_prec_indigenous:
     {
-      int i, ix = 0, iy = 0;
+      int i;
+      int ix = 0;
+      int iy = 0;
       double *r_i = (double *)r;
       const double *x_i = (double *)x;
       const double *head_y_i = (double *)head_y;
@@ -563,7 +573,9 @@ void BLAS_ddot2_x(enum blas_conj_type conj, int n, double alpha,
     break;
   case blas_prec_extra:
     {
-      int i, ix = 0, iy = 0;
+      int i;
+      int ix = 0;
+      int iy = 0;
       double *r_i = (double *)r;
       const double *x_i = (double *)x;
       const double *head_y_i = (double *)head_y;
@@ -864,7 +876,9 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
   switch (prec) {
   case blas_prec_single:
     {
-      int i, ix = 0, iy = 0;
+      int i;
+      int ix = 0;
+      int iy = 0;
       float *r_i = (float *) r;
       const float *x_i = (float *) x;
       const float *head_y_i = (float *) head_y;
@@ -982,7 +996,9 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
   case blas_prec_double:
   case blas_prec_indigenous:
     {
-      int i, ix = 0, iy = 0;
+      int i;
+      int ix = 0;
+      int iy = 0;
       float *r_i = (float *) r;
       const float *x_i = (float *) x;
       const float *head_y_i = (float *) head_y;
@@ -1093,7 +1109,9 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
     break;
   case blas_prec_extra:
     {
-      int i, ix = 0, iy = 0;
+      int i;
+      int ix = 0;
+      int iy = 0;
       float *r_i = (float *) r;
       const float *x_i = (float *) x;
       const float *head_y_i = (float *) head_y;
@@ -2089,7 +2107,9 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
   switch (prec) {
   case blas_prec_single:
     {
-      int i, ix = 0, iy = 0;
+      int i;
+      int ix = 0;
+      int iy = 0;
       double *r_i = (double *) r;
       const double *x_i = (double *) x;
       const double *head_y_i = (double *) head_y;
@@ -2201,7 +2221,9 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
   case blas_prec_double:
   case blas_prec_indigenous:
     {
-      int i, ix = 0, iy = 0;
+      int i;
+      int ix = 0;
+      int iy = 0;
       double *r_i = (double *) r;
       const double *x_i = (double *) x;
       const double *head_y_i = (double *) head_y;
@@ -2312,7 +2334,9 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
     break;
   case blas_prec_extra:
     {
-      int i, ix = 0, iy = 0;
+      int i;
+      int ix = 0;
+      int iy = 0;
       double *r_i = (double *) r;
       const double *x_i = (double *) x;
       const double *head_y_i = (double *) head_y;

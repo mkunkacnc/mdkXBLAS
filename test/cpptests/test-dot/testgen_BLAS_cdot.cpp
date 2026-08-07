@@ -89,7 +89,9 @@ static float rand_half_1(int l_bits, int *seed)
 static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x, int incx, void *beta, const void *y, int incy, void *r,        /* input */
                     double *r_true_l, double *r_true_t)
 {
-  int i, ix = 0, iy = 0;
+  int i;
+  int ix = 0;
+  int iy = 0;
   float *r_i = (float *) r;
   const float *x_i = (float *) x;
   const float *y_i = (float *) y;

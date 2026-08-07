@@ -1236,7 +1236,10 @@ void BLAS_chemv_testgen(int norm, enum blas_order_type order,
     }
 
     if (randomize == 0) {
-      int incx0, incy1, incy2, incmi = 1;
+      int incx0;
+      int incy1;
+      int incy2;
+      int incmi = 1;
       a1 = (float *) blas_malloc(n_i * n_i * sizeof(float));
       if (n_i * n_i > 0 && a1 == NULL) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
@@ -1824,7 +1827,10 @@ void BLAS_zhemv_testgen(int norm, enum blas_order_type order,
     }
 
     if (randomize == 0) {
-      int incx0, incy1, incy2, incmi = 1;
+      int incx0;
+      int incy1;
+      int incy2;
+      int incmi = 1;
       a1 = (double *) blas_malloc(n_i * n_i * sizeof(double));
       if (n_i * n_i > 0 && a1 == NULL) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
@@ -2412,7 +2418,10 @@ void BLAS_zhemv_c_z_testgen(int norm, enum blas_order_type order,
     }
 
     if (randomize == 0) {
-      int incx0, incy1, incy2, incmi = 1;
+      int incx0;
+      int incy1;
+      int incy2;
+      int incmi = 1;
       a1 = (float *) blas_malloc(n_i * n_i * sizeof(float));
       if (n_i * n_i > 0 && a1 == NULL) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
@@ -3000,7 +3009,10 @@ void BLAS_zhemv_z_c_testgen(int norm, enum blas_order_type order,
     }
 
     if (randomize == 0) {
-      int incx0, incy1, incy2, incmi = 1;
+      int incx0;
+      int incy1;
+      int incy2;
+      int incmi = 1;
       a1 = (double *) blas_malloc(n_i * n_i * sizeof(double));
       if (n_i * n_i > 0 && a1 == NULL) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
@@ -3588,7 +3600,10 @@ void BLAS_zhemv_c_c_testgen(int norm, enum blas_order_type order,
     }
 
     if (randomize == 0) {
-      int incx0, incy1, incy2, incmi = 1;
+      int incx0;
+      int incy1;
+      int incy2;
+      int incmi = 1;
       a1 = (float *) blas_malloc(n_i * n_i * sizeof(float));
       if (n_i * n_i > 0 && a1 == NULL) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
@@ -4175,7 +4190,10 @@ void BLAS_zhemv_z_d_testgen(int norm, enum blas_order_type order,
     }
 
     if (randomize == 0) {
-      int incx0, incy1, incy2, incmi = 1;
+      int incx0;
+      int incy1;
+      int incy2;
+      int incmi = 1;
       a1 = (double *) blas_malloc(n_i * n_i * sizeof(double));
       if (n_i * n_i > 0 && a1 == NULL) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
@@ -4694,7 +4712,10 @@ void BLAS_chemv_c_s_testgen(int norm, enum blas_order_type order,
     }
 
     if (randomize == 0) {
-      int incx0, incy1, incy2, incmi = 1;
+      int incx0;
+      int incy1;
+      int incy2;
+      int incmi = 1;
       a1 = (float *) blas_malloc(n_i * n_i * sizeof(float));
       if (n_i * n_i > 0 && a1 == NULL) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");

@@ -152,7 +152,8 @@ double do_test_dgbmv2_d_s(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -757,7 +758,8 @@ double do_test_dgbmv2_s_d(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -1362,7 +1364,8 @@ double do_test_dgbmv2_s_s(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -1968,7 +1971,8 @@ double do_test_zgbmv2_z_c(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -2586,7 +2590,8 @@ double do_test_zgbmv2_c_z(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -3204,7 +3209,8 @@ double do_test_zgbmv2_c_c(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -3822,7 +3828,8 @@ double do_test_cgbmv2_c_s(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -4437,7 +4444,8 @@ double do_test_cgbmv2_s_c(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -5053,7 +5061,8 @@ double do_test_cgbmv2_s_s(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -5667,7 +5676,8 @@ double do_test_zgbmv2_z_d(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -6283,7 +6293,8 @@ double do_test_zgbmv2_d_z(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -6900,7 +6911,8 @@ double do_test_zgbmv2_d_d(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -7514,7 +7526,8 @@ double do_test_sgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -8137,7 +8150,8 @@ double do_test_dgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -8761,7 +8775,8 @@ double do_test_cgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -9398,7 +9413,8 @@ double do_test_zgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -10036,7 +10052,8 @@ double do_test_dgbmv2_d_s_x(int m, int n, int ntests, int *seed,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -10664,7 +10681,8 @@ double do_test_dgbmv2_s_d_x(int m, int n, int ntests, int *seed,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -11292,7 +11310,8 @@ double do_test_dgbmv2_s_s_x(int m, int n, int ntests, int *seed,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -11921,7 +11940,8 @@ double do_test_zgbmv2_z_c_x(int m, int n, int ntests, int *seed,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -12563,7 +12583,8 @@ double do_test_zgbmv2_c_z_x(int m, int n, int ntests, int *seed,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -13205,7 +13226,8 @@ double do_test_zgbmv2_c_c_x(int m, int n, int ntests, int *seed,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -13847,7 +13869,8 @@ double do_test_cgbmv2_c_s_x(int m, int n, int ntests, int *seed,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -14486,7 +14509,8 @@ double do_test_cgbmv2_s_c_x(int m, int n, int ntests, int *seed,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -15126,7 +15150,8 @@ double do_test_cgbmv2_s_s_x(int m, int n, int ntests, int *seed,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -15764,7 +15789,8 @@ double do_test_zgbmv2_z_d_x(int m, int n, int ntests, int *seed,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -16404,7 +16430,8 @@ double do_test_zgbmv2_d_z_x(int m, int n, int ntests, int *seed,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -17045,7 +17072,8 @@ double do_test_zgbmv2_d_d_x(int m, int n, int ntests, int *seed,
   int saved_seed;                /* for saving the original seed */
 
   /* use for counting the number of testgen calls * 2 */
-  int count, old_count = -1;
+  int count;
+  int old_count = -1;
 
   FPU_FIX_DECL;
 
@@ -17556,7 +17584,9 @@ int main(int argc, char **argv)
   int seed;
   int num_bad_ratio;
   int num_tests;
-  int total_tests, nr_failed_routines = 0, nr_routines = 0;
+  int total_tests;
+  int nr_failed_routines = 0;
+  int nr_routines = 0;
   double min_ratio;
   double max_ratio;
   const char *base_routine = "gbmv2";
