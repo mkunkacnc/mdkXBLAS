@@ -153,7 +153,8 @@ double do_test_dwaxpby_d_s(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
@@ -666,7 +667,8 @@ double do_test_dwaxpby_s_d(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
@@ -1179,7 +1181,8 @@ double do_test_dwaxpby_s_s(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
@@ -1703,7 +1706,8 @@ double do_test_zwaxpby_z_c(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
 
   enum blas_prec_type prec;
@@ -2233,7 +2237,8 @@ double do_test_zwaxpby_c_z(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
 
   enum blas_prec_type prec;
@@ -2763,7 +2768,8 @@ double do_test_zwaxpby_c_c(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
 
   enum blas_prec_type prec;
@@ -3311,7 +3317,8 @@ double do_test_cwaxpby_c_s(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
 
   enum blas_prec_type prec;
@@ -3851,7 +3858,8 @@ double do_test_cwaxpby_s_c(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
 
   enum blas_prec_type prec;
@@ -4392,7 +4400,8 @@ double do_test_cwaxpby_s_s(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
 
   enum blas_prec_type prec;
@@ -4939,7 +4948,8 @@ double do_test_zwaxpby_z_d(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
 
   enum blas_prec_type prec;
@@ -5464,7 +5474,8 @@ double do_test_zwaxpby_d_z(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
 
   enum blas_prec_type prec;
@@ -5989,7 +6000,8 @@ double do_test_zwaxpby_d_d(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
 
   enum blas_prec_type prec;
@@ -6523,7 +6535,8 @@ double do_test_swaxpby_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
@@ -7051,7 +7064,8 @@ double do_test_dwaxpby_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
@@ -7579,7 +7593,8 @@ double do_test_cwaxpby_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
   int prec_val;
   enum blas_prec_type prec;
@@ -8115,7 +8130,8 @@ double do_test_zwaxpby_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
   int prec_val;
   enum blas_prec_type prec;
@@ -8651,7 +8667,8 @@ double do_test_dwaxpby_d_s_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
@@ -9184,7 +9201,8 @@ double do_test_dwaxpby_s_d_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
@@ -9717,7 +9735,8 @@ double do_test_dwaxpby_s_s_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
   int prec_val;
   enum blas_prec_type prec;
   int saved_seed;                /* for saving the original seed */
@@ -10260,7 +10279,8 @@ double do_test_zwaxpby_z_c_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
   int prec_val;
   enum blas_prec_type prec;
@@ -10810,7 +10830,8 @@ double do_test_zwaxpby_c_z_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
   int prec_val;
   enum blas_prec_type prec;
@@ -11360,7 +11381,8 @@ double do_test_zwaxpby_c_c_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
   int prec_val;
   enum blas_prec_type prec;
@@ -11927,7 +11949,8 @@ double do_test_cwaxpby_c_s_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
   int prec_val;
   enum blas_prec_type prec;
@@ -12487,7 +12510,8 @@ double do_test_cwaxpby_s_c_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
   int prec_val;
   enum blas_prec_type prec;
@@ -13048,7 +13072,8 @@ double do_test_cwaxpby_s_s_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
   int prec_val;
   enum blas_prec_type prec;
@@ -13614,7 +13639,8 @@ double do_test_zwaxpby_z_d_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
   int prec_val;
   enum blas_prec_type prec;
@@ -14159,7 +14185,8 @@ double do_test_zwaxpby_d_z_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
   int prec_val;
   enum blas_prec_type prec;
@@ -14704,7 +14731,8 @@ double do_test_zwaxpby_d_d_x(int n,
   float x_fix1_temp;
 
   /* the true w calculated by testgen(), in double-double */
-  double *head_w_true, *tail_w_true;
+  double *head_w_true;
+  double *tail_w_true;
 
   int prec_val;
   enum blas_prec_type prec;

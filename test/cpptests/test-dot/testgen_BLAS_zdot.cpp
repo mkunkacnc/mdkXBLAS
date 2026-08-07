@@ -98,10 +98,14 @@ static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x,
   double x_ii[2];
   double y_ii[2];
   double r_v[2];
-  double prod_l[2], prod_t[2];
-  double sum_l[2], sum_t[2];
-  double tmp1_l[2], tmp1_t[2];
-  double tmp2_l[2], tmp2_t[2];
+  double prod_l[2];
+  double prod_t[2];
+  double sum_l[2];
+  double sum_t[2];
+  double tmp1_l[2];
+  double tmp1_t[2];
+  double tmp2_l[2];
+  double tmp2_t[2];
 
   /* Immediate return */
   if (n < 0) {
@@ -700,9 +704,12 @@ gen_y_to_cancel(int k, int n, enum blas_conj_type conj,
   int ii;
   double zero[2] = { 0.0, 0.0 };
   double r[2] = { 0.0, 0.0 };
-  double tmp[2], tmp_l[2], tmp_t[2];
+  double tmp[2];
+  double tmp_l[2];
+  double tmp_t[2];
   double *x_i = (double *)x, *y_i = (double *)y;
-  double r_true_l[2], r_true_t[2];
+  double r_true_l[2];
+  double r_true_t[2];
 
   for (i = k; i < n; ++i) {
     /* y[i] = -rtmp / (alpha * x[i]); */
@@ -741,7 +748,8 @@ gen_r_to_cancel(int n, enum blas_conj_type conj,
   double rtmp[2] = { 0.0, 0.0 };
   double *beta_i = (double *) beta;
   double *r_i = (double *) r;
-  double r_true_l[2], r_true_t[2];
+  double r_true_l[2];
+  double r_true_t[2];
 
   if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
     r_i[0] = xrand(seed);
@@ -834,7 +842,8 @@ testgen_BLAS_zdot(int n, int n_fix2, int n_mix, int norm,
   double b;
   double eps;
   double eps_out;
-  double f[2], rtmp[2];
+  double f[2];
+  double rtmp[2];
   double *alpha_i = (double *) alpha;
   double *beta_i = (double *) beta;
   double *r_i = (double *) r;

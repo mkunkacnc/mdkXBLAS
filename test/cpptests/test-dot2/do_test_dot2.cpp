@@ -906,7 +906,8 @@ double do_test_cdot2_x(int n, int ntests, int *seed, double thresh, int debug,
   float *tail_y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   float r[2];                        /* the generated r */
   float r_comp[2];                /* the r computed  by BLAS_cdot2_x */
@@ -1317,7 +1318,8 @@ double do_test_zdot2_x(int n, int ntests, int *seed, double thresh, int debug,
   double *tail_y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   double r[2];                        /* the generated r */
   double r_comp[2];                /* the r computed  by BLAS_zdot2_x */

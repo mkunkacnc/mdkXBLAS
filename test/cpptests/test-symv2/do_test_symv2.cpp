@@ -118,7 +118,8 @@ void do_test_dsymv2_d_s
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -511,7 +512,8 @@ void do_test_dsymv2_s_d
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -904,7 +906,8 @@ void do_test_dsymv2_s_s
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -1260,7 +1263,8 @@ void do_test_zsymv2_z_c
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -1296,7 +1300,8 @@ void do_test_zsymv2_z_c
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -1661,7 +1666,8 @@ void do_test_zsymv2_c_z
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -1697,7 +1703,8 @@ void do_test_zsymv2_c_z
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -2062,7 +2069,8 @@ void do_test_zsymv2_c_c
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -2098,7 +2106,8 @@ void do_test_zsymv2_c_c
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -2463,7 +2472,8 @@ void do_test_csymv2_c_s
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -2499,7 +2509,8 @@ void do_test_csymv2_c_s
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -2864,7 +2875,8 @@ void do_test_csymv2_s_c
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -2900,7 +2912,8 @@ void do_test_csymv2_s_c
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -3265,7 +3278,8 @@ void do_test_csymv2_s_s
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -3301,7 +3315,8 @@ void do_test_csymv2_s_s
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -3666,7 +3681,8 @@ void do_test_zsymv2_z_d
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -3702,7 +3718,8 @@ void do_test_zsymv2_z_d
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -4067,7 +4084,8 @@ void do_test_zsymv2_d_z
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -4103,7 +4121,8 @@ void do_test_zsymv2_d_z
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -4468,7 +4487,8 @@ void do_test_zsymv2_d_d
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -4504,7 +4524,8 @@ void do_test_zsymv2_d_d
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -4906,7 +4927,8 @@ void do_test_ssymv2_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -5321,7 +5343,8 @@ void do_test_dsymv2_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -5699,7 +5722,8 @@ void do_test_csymv2_x
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -5735,7 +5759,8 @@ void do_test_csymv2_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -6122,7 +6147,8 @@ void do_test_zsymv2_x
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -6158,7 +6184,8 @@ void do_test_zsymv2_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -6582,7 +6609,8 @@ void do_test_dsymv2_d_s_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -6997,7 +7025,8 @@ void do_test_dsymv2_s_d_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -7412,7 +7441,8 @@ void do_test_dsymv2_s_s_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -7790,7 +7820,8 @@ void do_test_zsymv2_z_c_x
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -7826,7 +7857,8 @@ void do_test_zsymv2_z_c_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -8213,7 +8245,8 @@ void do_test_zsymv2_c_z_x
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -8249,7 +8282,8 @@ void do_test_zsymv2_c_z_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -8636,7 +8670,8 @@ void do_test_zsymv2_c_c_x
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -8672,7 +8707,8 @@ void do_test_zsymv2_c_c_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -9059,7 +9095,8 @@ void do_test_csymv2_c_s_x
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -9095,7 +9132,8 @@ void do_test_csymv2_c_s_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -9482,7 +9520,8 @@ void do_test_csymv2_s_c_x
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -9518,7 +9557,8 @@ void do_test_csymv2_s_c_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -9905,7 +9945,8 @@ void do_test_csymv2_s_s_x
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -9941,7 +9982,8 @@ void do_test_csymv2_s_s_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -10328,7 +10370,8 @@ void do_test_zsymv2_z_d_x
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -10364,7 +10407,8 @@ void do_test_zsymv2_z_d_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -10751,7 +10795,8 @@ void do_test_zsymv2_d_z_x
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -10787,7 +10832,8 @@ void do_test_zsymv2_d_z_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -11174,7 +11220,8 @@ void do_test_zsymv2_d_d_x
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -11210,7 +11257,8 @@ void do_test_zsymv2_d_d_x
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;

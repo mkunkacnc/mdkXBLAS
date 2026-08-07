@@ -76,7 +76,8 @@ void do_test_zhemm_z_c(int m, int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_side_type side_type;
@@ -121,7 +122,8 @@ void do_test_zhemm_z_c(int m, int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -531,7 +533,8 @@ void do_test_zhemm_c_z(int m, int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_side_type side_type;
@@ -576,7 +579,8 @@ void do_test_zhemm_c_z(int m, int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -986,7 +990,8 @@ void do_test_zhemm_c_c(int m, int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_side_type side_type;
@@ -1031,7 +1036,8 @@ void do_test_zhemm_c_c(int m, int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -1441,7 +1447,8 @@ void do_test_chemm_c_s(int m, int n,
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_side_type side_type;
@@ -1486,7 +1493,8 @@ void do_test_chemm_c_s(int m, int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -1896,7 +1904,8 @@ void do_test_zhemm_z_d(int m, int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_side_type side_type;
@@ -1941,7 +1950,8 @@ void do_test_zhemm_z_d(int m, int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -2351,7 +2361,8 @@ void do_test_chemm_x(int m, int n,
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_side_type side_type;
@@ -2396,7 +2407,8 @@ void do_test_chemm_x(int m, int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -2830,7 +2842,8 @@ void do_test_zhemm_x(int m, int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_side_type side_type;
@@ -2875,7 +2888,8 @@ void do_test_zhemm_x(int m, int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -3311,7 +3325,8 @@ void do_test_zhemm_z_c_x(int m, int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_side_type side_type;
@@ -3356,7 +3371,8 @@ void do_test_zhemm_z_c_x(int m, int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -3792,7 +3808,8 @@ void do_test_zhemm_c_z_x(int m, int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_side_type side_type;
@@ -3837,7 +3854,8 @@ void do_test_zhemm_c_z_x(int m, int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -4273,7 +4291,8 @@ void do_test_zhemm_c_c_x(int m, int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_side_type side_type;
@@ -4318,7 +4337,8 @@ void do_test_zhemm_c_c_x(int m, int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -4754,7 +4774,8 @@ void do_test_chemm_c_s_x(int m, int n,
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_side_type side_type;
@@ -4799,7 +4820,8 @@ void do_test_chemm_c_s_x(int m, int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -5234,7 +5256,8 @@ void do_test_zhemm_z_d_x(int m, int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_side_type side_type;
@@ -5279,7 +5302,8 @@ void do_test_zhemm_z_d_x(int m, int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;

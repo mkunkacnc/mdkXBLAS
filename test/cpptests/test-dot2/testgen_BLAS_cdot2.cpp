@@ -90,9 +90,12 @@ gen_y_to_cancel(int k, int n, enum blas_conj_type conj,
   float zero[2] = { 0.0, 0.0 };
   float r[2] = { 0.0, 0.0 };
   float tmp_l[2], tmp_t[2];
-  double tmpd[2], tmpd_l[2], tmpd_t[2];
+  double tmpd[2];
+  double tmpd_l[2];
+  double tmpd_t[2];
   float *head_x_i = (float *)head_x, *tail_x_i = (float *)tail_x, *y_i = (float *)y;
-  double r_true_l[2], r_true_t[2];
+  double r_true_l[2];
+  double r_true_t[2];
 
   for (i = k; i < n; ++i) {
       /* y[i] = -rtmp / (alpha * x[i]); */
@@ -141,7 +144,8 @@ gen_r_to_cancel(int n, enum blas_conj_type conj,
   float *beta_i = (float *) beta;
   double beta_d[2];
   float *r_i = (float *) r;
-  double r_true_l[2], r_true_t[2];
+  double r_true_l[2];
+  double r_true_t[2];
 
   if (beta_i[0] == 0.0 && beta_i[1] == 0.0) {
       r_i[0] = xrand(seed);

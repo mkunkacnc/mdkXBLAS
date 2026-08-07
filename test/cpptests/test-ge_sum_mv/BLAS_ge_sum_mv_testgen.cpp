@@ -1786,7 +1786,8 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
   float beta_zero_fake[2];
   float a_elem[2];
   float x_elem[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   float multiplier;
   float divider;
   float alpha_use[2];
@@ -2487,8 +2488,10 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
     {
 
       float one_minus_i[2];
-      double head_a_elem_2[2], tail_a_elem_2[2];
-      double head_a_elem_3[2], tail_a_elem_3[2];
+      double head_a_elem_2[2];
+      double tail_a_elem_2[2];
+      double head_a_elem_3[2];
+      double tail_a_elem_3[2];
       one_minus_i[0] = 0.5;
       one_minus_i[1] = -0.5;
       if (order == blas_colmajor) {
@@ -2778,8 +2781,10 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
       {
 
         float one_minus_i[2];
-        double head_a_elem_2[2], tail_a_elem_2[2];
-        double head_a_elem_3[2], tail_a_elem_3[2];
+        double head_a_elem_2[2];
+        double tail_a_elem_2[2];
+        double head_a_elem_3[2];
+        double tail_a_elem_3[2];
         one_minus_i[0] = 0.5;
         one_minus_i[1] = -0.5;
         if (order == blas_colmajor) {
@@ -3236,7 +3241,8 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
   double beta_zero_fake[2];
   double a_elem[2];
   double x_elem[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   double multiplier;
   double divider;
   double alpha_use[2];
@@ -3979,8 +3985,10 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
     {
 
       double one_minus_i[2];
-      double head_a_elem_2[2], tail_a_elem_2[2];
-      double head_a_elem_3[2], tail_a_elem_3[2];
+      double head_a_elem_2[2];
+      double tail_a_elem_2[2];
+      double head_a_elem_3[2];
+      double tail_a_elem_3[2];
       one_minus_i[0] = 0.5;
       one_minus_i[1] = -0.5;
       if (order == blas_colmajor) {
@@ -4308,8 +4316,10 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
       {
 
         double one_minus_i[2];
-        double head_a_elem_2[2], tail_a_elem_2[2];
-        double head_a_elem_3[2], tail_a_elem_3[2];
+        double head_a_elem_2[2];
+        double tail_a_elem_2[2];
+        double head_a_elem_3[2];
+        double tail_a_elem_3[2];
         one_minus_i[0] = 0.5;
         one_minus_i[1] = -0.5;
         if (order == blas_colmajor) {
@@ -4798,7 +4808,8 @@ void BLAS_cge_sum_mv_s_s_testgen(int norm, enum blas_order_type order,
   float beta_zero_fake[2];
   float a_elem;
   float x_elem;
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   float multiplier;
   float divider;
   float alpha_use[2];
@@ -5718,7 +5729,8 @@ void BLAS_cge_sum_mv_s_c_testgen(int norm, enum blas_order_type order,
   float beta_zero_fake[2];
   float a_elem;
   float x_elem[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   float multiplier;
   float divider;
   float alpha_use[2];
@@ -6637,7 +6649,8 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
   float beta_zero_fake[2];
   float a_elem[2];
   float x_elem;
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   float multiplier;
   float divider;
   float alpha_use[2];
@@ -7338,8 +7351,10 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
     {
 
       float one_minus_i[2];
-      double head_a_elem_2[2], tail_a_elem_2[2];
-      double head_a_elem_3[2], tail_a_elem_3[2];
+      double head_a_elem_2[2];
+      double tail_a_elem_2[2];
+      double head_a_elem_3[2];
+      double tail_a_elem_3[2];
       one_minus_i[0] = 0.5;
       one_minus_i[1] = -0.5;
       if (order == blas_colmajor) {
@@ -7629,8 +7644,10 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
       {
 
         float one_minus_i[2];
-        double head_a_elem_2[2], tail_a_elem_2[2];
-        double head_a_elem_3[2], tail_a_elem_3[2];
+        double head_a_elem_2[2];
+        double tail_a_elem_2[2];
+        double head_a_elem_3[2];
+        double tail_a_elem_3[2];
         one_minus_i[0] = 0.5;
         one_minus_i[1] = -0.5;
         if (order == blas_colmajor) {
@@ -8083,7 +8100,8 @@ void BLAS_zge_sum_mv_d_d_testgen(int norm, enum blas_order_type order,
   double beta_zero_fake[2];
   double a_elem;
   double x_elem;
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   double multiplier;
   double divider;
   double alpha_use[2];
@@ -9003,7 +9021,8 @@ void BLAS_zge_sum_mv_d_z_testgen(int norm, enum blas_order_type order,
   double beta_zero_fake[2];
   double a_elem;
   double x_elem[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   double multiplier;
   double divider;
   double alpha_use[2];
@@ -9922,7 +9941,8 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
   double beta_zero_fake[2];
   double a_elem[2];
   double x_elem;
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   double multiplier;
   double divider;
   double alpha_use[2];
@@ -10665,8 +10685,10 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
     {
 
       double one_minus_i[2];
-      double head_a_elem_2[2], tail_a_elem_2[2];
-      double head_a_elem_3[2], tail_a_elem_3[2];
+      double head_a_elem_2[2];
+      double tail_a_elem_2[2];
+      double head_a_elem_3[2];
+      double tail_a_elem_3[2];
       one_minus_i[0] = 0.5;
       one_minus_i[1] = -0.5;
       if (order == blas_colmajor) {
@@ -10994,8 +11016,10 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
       {
 
         double one_minus_i[2];
-        double head_a_elem_2[2], tail_a_elem_2[2];
-        double head_a_elem_3[2], tail_a_elem_3[2];
+        double head_a_elem_2[2];
+        double tail_a_elem_2[2];
+        double head_a_elem_3[2];
+        double tail_a_elem_3[2];
         one_minus_i[0] = 0.5;
         one_minus_i[1] = -0.5;
         if (order == blas_colmajor) {
@@ -13928,7 +13952,8 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
   double beta_zero_fake[2];
   float a_elem[2];
   float x_elem[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   double multiplier;
   double divider;
   double alpha_use[2];
@@ -14671,8 +14696,10 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
     {
 
       float one_minus_i[2];
-      double head_a_elem_2[2], tail_a_elem_2[2];
-      double head_a_elem_3[2], tail_a_elem_3[2];
+      double head_a_elem_2[2];
+      double tail_a_elem_2[2];
+      double head_a_elem_3[2];
+      double tail_a_elem_3[2];
       one_minus_i[0] = 0.5;
       one_minus_i[1] = -0.5;
       if (order == blas_colmajor) {
@@ -14962,8 +14989,10 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
       {
 
         float one_minus_i[2];
-        double head_a_elem_2[2], tail_a_elem_2[2];
-        double head_a_elem_3[2], tail_a_elem_3[2];
+        double head_a_elem_2[2];
+        double tail_a_elem_2[2];
+        double head_a_elem_3[2];
+        double tail_a_elem_3[2];
         one_minus_i[0] = 0.5;
         one_minus_i[1] = -0.5;
         if (order == blas_colmajor) {
@@ -15421,7 +15450,8 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
   double beta_zero_fake[2];
   float a_elem[2];
   double x_elem[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   double multiplier;
   double divider;
   double alpha_use[2];
@@ -16164,8 +16194,10 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
     {
 
       float one_minus_i[2];
-      double head_a_elem_2[2], tail_a_elem_2[2];
-      double head_a_elem_3[2], tail_a_elem_3[2];
+      double head_a_elem_2[2];
+      double tail_a_elem_2[2];
+      double head_a_elem_3[2];
+      double tail_a_elem_3[2];
       one_minus_i[0] = 0.5;
       one_minus_i[1] = -0.5;
       if (order == blas_colmajor) {
@@ -16455,8 +16487,10 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
       {
 
         float one_minus_i[2];
-        double head_a_elem_2[2], tail_a_elem_2[2];
-        double head_a_elem_3[2], tail_a_elem_3[2];
+        double head_a_elem_2[2];
+        double tail_a_elem_2[2];
+        double head_a_elem_3[2];
+        double tail_a_elem_3[2];
         one_minus_i[0] = 0.5;
         one_minus_i[1] = -0.5;
         if (order == blas_colmajor) {
@@ -16914,7 +16948,8 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
   double beta_zero_fake[2];
   double a_elem[2];
   float x_elem[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   double multiplier;
   double divider;
   double alpha_use[2];
@@ -17657,8 +17692,10 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
     {
 
       double one_minus_i[2];
-      double head_a_elem_2[2], tail_a_elem_2[2];
-      double head_a_elem_3[2], tail_a_elem_3[2];
+      double head_a_elem_2[2];
+      double tail_a_elem_2[2];
+      double head_a_elem_3[2];
+      double tail_a_elem_3[2];
       one_minus_i[0] = 0.5;
       one_minus_i[1] = -0.5;
       if (order == blas_colmajor) {
@@ -17986,8 +18023,10 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
       {
 
         double one_minus_i[2];
-        double head_a_elem_2[2], tail_a_elem_2[2];
-        double head_a_elem_3[2], tail_a_elem_3[2];
+        double head_a_elem_2[2];
+        double tail_a_elem_2[2];
+        double head_a_elem_3[2];
+        double tail_a_elem_3[2];
         one_minus_i[0] = 0.5;
         one_minus_i[1] = -0.5;
         if (order == blas_colmajor) {

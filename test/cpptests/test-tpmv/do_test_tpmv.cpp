@@ -114,7 +114,8 @@ double do_test_dtpmv_s(int n,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
@@ -628,7 +629,8 @@ double do_test_ztpmv_c(int n,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;
@@ -1148,7 +1150,8 @@ double do_test_ctpmv_s(int n,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;
@@ -1668,7 +1671,8 @@ double do_test_ztpmv_d(int n,
   double *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;
@@ -2188,7 +2192,8 @@ double do_test_stpmv_x(int n,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
@@ -2721,7 +2726,8 @@ double do_test_dtpmv_x(int n,
   double *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
@@ -3254,7 +3260,8 @@ double do_test_ctpmv_x(int n,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;
@@ -3793,7 +3800,8 @@ double do_test_ztpmv_x(int n,
   double *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;
@@ -4333,7 +4341,8 @@ double do_test_dtpmv_s_x(int n,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
@@ -4868,7 +4877,8 @@ double do_test_ztpmv_c_x(int n,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;
@@ -5409,7 +5419,8 @@ double do_test_ctpmv_s_x(int n,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;
@@ -5950,7 +5961,8 @@ double do_test_ztpmv_d_x(int n,
   double *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;

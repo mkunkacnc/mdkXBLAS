@@ -483,8 +483,10 @@ void BLAS_ctpmv_testgen(int norm, enum blas_order_type order,
   float tp_swapTemp2[2];
   float x_swapTemp1[2];
   float x_swapTemp2[2];
-  double head_r_true_swapTemp1[2], tail_r_true_swapTemp1[2];
-  double head_r_true_swapTemp2[2], tail_r_true_swapTemp2[2];
+  double head_r_true_swapTemp1[2];
+  double tail_r_true_swapTemp1[2];
+  double head_r_true_swapTemp2[2];
+  double tail_r_true_swapTemp2[2];
 
   float *x_i = (float *) x;
   float *alpha_i = (float *) alpha;
@@ -708,8 +710,10 @@ void BLAS_ztpmv_testgen(int norm, enum blas_order_type order,
   double tp_swapTemp2[2];
   double x_swapTemp1[2];
   double x_swapTemp2[2];
-  double head_r_true_swapTemp1[2], tail_r_true_swapTemp1[2];
-  double head_r_true_swapTemp2[2], tail_r_true_swapTemp2[2];
+  double head_r_true_swapTemp1[2];
+  double tail_r_true_swapTemp1[2];
+  double head_r_true_swapTemp2[2];
+  double tail_r_true_swapTemp2[2];
 
   double *x_i = (double *) x;
   double *alpha_i = (double *) alpha;
@@ -1141,8 +1145,10 @@ void BLAS_ztpmv_c_testgen(int norm, enum blas_order_type order,
   float tp_swapTemp2[2];
   double x_swapTemp1[2];
   double x_swapTemp2[2];
-  double head_r_true_swapTemp1[2], tail_r_true_swapTemp1[2];
-  double head_r_true_swapTemp2[2], tail_r_true_swapTemp2[2];
+  double head_r_true_swapTemp1[2];
+  double tail_r_true_swapTemp1[2];
+  double head_r_true_swapTemp2[2];
+  double tail_r_true_swapTemp2[2];
 
   double *x_i = (double *) x;
   double *alpha_i = (double *) alpha;
@@ -1368,8 +1374,10 @@ void BLAS_ctpmv_s_testgen(int norm, enum blas_order_type order,
   float tp_swapTemp2;
   float x_swapTemp1[2];
   float x_swapTemp2[2];
-  double head_r_true_swapTemp1[2], tail_r_true_swapTemp1[2];
-  double head_r_true_swapTemp2[2], tail_r_true_swapTemp2[2];
+  double head_r_true_swapTemp1[2];
+  double tail_r_true_swapTemp1[2];
+  double head_r_true_swapTemp2[2];
+  double tail_r_true_swapTemp2[2];
 
   float *x_i = (float *) x;
   float *alpha_i = (float *) alpha;
@@ -1587,8 +1595,10 @@ void BLAS_ztpmv_d_testgen(int norm, enum blas_order_type order,
   double tp_swapTemp2;
   double x_swapTemp1[2];
   double x_swapTemp2[2];
-  double head_r_true_swapTemp1[2], tail_r_true_swapTemp1[2];
-  double head_r_true_swapTemp2[2], tail_r_true_swapTemp2[2];
+  double head_r_true_swapTemp1[2];
+  double tail_r_true_swapTemp1[2];
+  double head_r_true_swapTemp2[2];
+  double tail_r_true_swapTemp2[2];
 
   double *x_i = (double *) x;
   double *alpha_i = (double *) alpha;

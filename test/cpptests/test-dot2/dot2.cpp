@@ -1103,10 +1103,14 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
       float x_ii[2];
       float y_ii[2];
       float r_v[2];
-      double head_prod[2], tail_prod[2];
-      double head_sum[2], tail_sum[2];
-      double head_tmp1[2], tail_tmp1[2];
-      double head_tmp2[2], tail_tmp2[2];
+      double head_prod[2];
+      double tail_prod[2];
+      double head_sum[2];
+      double tail_sum[2];
+      double head_tmp1[2];
+      double tail_tmp1[2];
+      double head_tmp2[2];
+      double tail_tmp2[2];
       FPU_FIX_DECL;
 
       /* Test the input parameters. */
@@ -2318,10 +2322,14 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
       double x_ii[2];
       double y_ii[2];
       double r_v[2];
-      double head_prod[2], tail_prod[2];
-      double head_sum[2], tail_sum[2];
-      double head_tmp1[2], tail_tmp1[2];
-      double head_tmp2[2], tail_tmp2[2];
+      double head_prod[2];
+      double tail_prod[2];
+      double head_sum[2];
+      double tail_sum[2];
+      double head_tmp1[2];
+      double tail_tmp1[2];
+      double head_tmp2[2];
+      double tail_tmp2[2];
       FPU_FIX_DECL;
 
       /* Test the input parameters. */

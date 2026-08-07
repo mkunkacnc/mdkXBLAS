@@ -122,7 +122,8 @@ double do_test_daxpby_s(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true y calculated by testgen(), in double-double */
-  double *head_y_true, *tail_y_true;
+  double *head_y_true;
+  double *tail_y_true;
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_ddot_s_s_testgen */
   int beta_val;
@@ -554,7 +555,8 @@ double do_test_caxpby_s(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true y calculated by testgen(), in double-double */
-  double *head_y_true, *tail_y_true;
+  double *head_y_true;
+  double *tail_y_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_cdot_s_s_testgen */
@@ -989,7 +991,8 @@ double do_test_zaxpby_c(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true y calculated by testgen(), in double-double */
-  double *head_y_true, *tail_y_true;
+  double *head_y_true;
+  double *tail_y_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zdot_c_c_testgen */
@@ -1425,7 +1428,8 @@ double do_test_zaxpby_d(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true y calculated by testgen(), in double-double */
-  double *head_y_true, *tail_y_true;
+  double *head_y_true;
+  double *tail_y_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zdot_d_d_testgen */
@@ -1860,7 +1864,8 @@ double do_test_saxpby_x(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true y calculated by testgen(), in double-double */
-  double *head_y_true, *tail_y_true;
+  double *head_y_true;
+  double *tail_y_true;
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_sdot_testgen */
   int beta_val;
@@ -2311,7 +2316,8 @@ double do_test_daxpby_x(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true y calculated by testgen(), in double-double */
-  double *head_y_true, *tail_y_true;
+  double *head_y_true;
+  double *tail_y_true;
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_ddot_testgen */
   int beta_val;
@@ -2762,7 +2768,8 @@ double do_test_caxpby_x(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true y calculated by testgen(), in double-double */
-  double *head_y_true, *tail_y_true;
+  double *head_y_true;
+  double *tail_y_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_cdot_testgen */
@@ -3217,7 +3224,8 @@ double do_test_zaxpby_x(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true y calculated by testgen(), in double-double */
-  double *head_y_true, *tail_y_true;
+  double *head_y_true;
+  double *tail_y_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zdot_testgen */
@@ -3672,7 +3680,8 @@ double do_test_daxpby_s_x(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true y calculated by testgen(), in double-double */
-  double *head_y_true, *tail_y_true;
+  double *head_y_true;
+  double *tail_y_true;
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_ddot_s_s_testgen */
   int beta_val;
@@ -4127,7 +4136,8 @@ double do_test_zaxpby_c_x(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true y calculated by testgen(), in double-double */
-  double *head_y_true, *tail_y_true;
+  double *head_y_true;
+  double *tail_y_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zdot_c_c_testgen */
@@ -4585,7 +4595,8 @@ double do_test_caxpby_s_x(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true y calculated by testgen(), in double-double */
-  double *head_y_true, *tail_y_true;
+  double *head_y_true;
+  double *tail_y_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_cdot_s_s_testgen */
@@ -5043,7 +5054,8 @@ double do_test_zaxpby_d_x(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true y calculated by testgen(), in double-double */
-  double *head_y_true, *tail_y_true;
+  double *head_y_true;
+  double *tail_y_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zdot_d_d_testgen */

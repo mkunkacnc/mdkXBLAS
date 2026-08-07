@@ -584,7 +584,8 @@ void do_test_csum_x(int n, int ntests, int *seed, double thresh,
   float *x_gen;
   float x_elem[2];
 
-  double head_sum_true[2], tail_sum_true[2];
+  double head_sum_true[2];
+  double tail_sum_true[2];
 
   float sum[2];
 
@@ -838,7 +839,8 @@ void do_test_zsum_x(int n, int ntests, int *seed, double thresh,
   double *x_gen;
   double x_elem[2];
 
-  double head_sum_true[2], tail_sum_true[2];
+  double head_sum_true[2];
+  double tail_sum_true[2];
 
   double sum[2];
 

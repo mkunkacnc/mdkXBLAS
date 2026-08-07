@@ -985,8 +985,10 @@ void BLAS_chbmv_testgen(int norm, enum blas_order_type order,
     float *y2;
     float *x0;
 
-    double *head_r1_true, *tail_r1_true;
-    double *head_r2_true, *tail_r2_true;
+    double *head_r1_true;
+    double *tail_r1_true;
+    double *head_r2_true;
+    double *tail_r2_true;
 
     double head_r_elem1;
     double tail_r_elem1;
@@ -1382,7 +1384,8 @@ void BLAS_chbmv_testgen(int norm, enum blas_order_type order,
       float a_elem[2];
       float x_elem[2];
       float y_elem[2];
-      double head_r_true_elem[2], tail_r_true_elem[2];
+      double head_r_true_elem[2];
+      double tail_r_true_elem[2];
 
       /* Since mixed real/complex test generator for dot
          scales the vectors, we need to used the non-mixed
@@ -1581,8 +1584,10 @@ void BLAS_zhbmv_testgen(int norm, enum blas_order_type order,
     double *y2;
     double *x0;
 
-    double *head_r1_true, *tail_r1_true;
-    double *head_r2_true, *tail_r2_true;
+    double *head_r1_true;
+    double *tail_r1_true;
+    double *head_r2_true;
+    double *tail_r2_true;
 
     double head_r_elem1;
     double tail_r_elem1;
@@ -1978,7 +1983,8 @@ void BLAS_zhbmv_testgen(int norm, enum blas_order_type order,
       double a_elem[2];
       double x_elem[2];
       double y_elem[2];
-      double head_r_true_elem[2], tail_r_true_elem[2];
+      double head_r_true_elem[2];
+      double tail_r_true_elem[2];
 
       /* Since mixed real/complex test generator for dot
          scales the vectors, we need to used the non-mixed
@@ -2177,8 +2183,10 @@ void BLAS_zhbmv_c_z_testgen(int norm, enum blas_order_type order,
     double *y2;
     double *x0;
 
-    double *head_r1_true, *tail_r1_true;
-    double *head_r2_true, *tail_r2_true;
+    double *head_r1_true;
+    double *tail_r1_true;
+    double *head_r2_true;
+    double *tail_r2_true;
 
     double head_r_elem1;
     double tail_r_elem1;
@@ -2574,7 +2582,8 @@ void BLAS_zhbmv_c_z_testgen(int norm, enum blas_order_type order,
       float a_elem[2];
       double x_elem[2];
       double y_elem[2];
-      double head_r_true_elem[2], tail_r_true_elem[2];
+      double head_r_true_elem[2];
+      double tail_r_true_elem[2];
 
       /* Since mixed real/complex test generator for dot
          scales the vectors, we need to used the non-mixed
@@ -2773,8 +2782,10 @@ void BLAS_zhbmv_z_c_testgen(int norm, enum blas_order_type order,
     double *y2;
     float *x0;
 
-    double *head_r1_true, *tail_r1_true;
-    double *head_r2_true, *tail_r2_true;
+    double *head_r1_true;
+    double *tail_r1_true;
+    double *head_r2_true;
+    double *tail_r2_true;
 
     double head_r_elem1;
     double tail_r_elem1;
@@ -3170,7 +3181,8 @@ void BLAS_zhbmv_z_c_testgen(int norm, enum blas_order_type order,
       double a_elem[2];
       float x_elem[2];
       double y_elem[2];
-      double head_r_true_elem[2], tail_r_true_elem[2];
+      double head_r_true_elem[2];
+      double tail_r_true_elem[2];
 
       /* Since mixed real/complex test generator for dot
          scales the vectors, we need to used the non-mixed
@@ -3369,8 +3381,10 @@ void BLAS_zhbmv_c_c_testgen(int norm, enum blas_order_type order,
     double *y2;
     float *x0;
 
-    double *head_r1_true, *tail_r1_true;
-    double *head_r2_true, *tail_r2_true;
+    double *head_r1_true;
+    double *tail_r1_true;
+    double *head_r2_true;
+    double *tail_r2_true;
 
     double head_r_elem1;
     double tail_r_elem1;
@@ -3766,7 +3780,8 @@ void BLAS_zhbmv_c_c_testgen(int norm, enum blas_order_type order,
       float a_elem[2];
       float x_elem[2];
       double y_elem[2];
-      double head_r_true_elem[2], tail_r_true_elem[2];
+      double head_r_true_elem[2];
+      double tail_r_true_elem[2];
 
       /* Since mixed real/complex test generator for dot
          scales the vectors, we need to used the non-mixed
@@ -3965,8 +3980,10 @@ void BLAS_zhbmv_z_d_testgen(int norm, enum blas_order_type order,
     double *y2;
     double *x0;
 
-    double *head_r1_true, *tail_r1_true;
-    double *head_r2_true, *tail_r2_true;
+    double *head_r1_true;
+    double *tail_r1_true;
+    double *head_r2_true;
+    double *tail_r2_true;
 
     double head_r_elem1;
     double tail_r_elem1;
@@ -4283,7 +4300,8 @@ void BLAS_zhbmv_z_d_testgen(int norm, enum blas_order_type order,
       double a_elem[2];
       double x_elem;
       double y_elem[2];
-      double head_r_true_elem[2], tail_r_true_elem[2];
+      double head_r_true_elem[2];
+      double tail_r_true_elem[2];
 
       /* Since mixed real/complex test generator for dot
          scales the vectors, we need to used the non-mixed
@@ -4493,8 +4511,10 @@ void BLAS_chbmv_c_s_testgen(int norm, enum blas_order_type order,
     float *y2;
     float *x0;
 
-    double *head_r1_true, *tail_r1_true;
-    double *head_r2_true, *tail_r2_true;
+    double *head_r1_true;
+    double *tail_r1_true;
+    double *head_r2_true;
+    double *tail_r2_true;
 
     double head_r_elem1;
     double tail_r_elem1;
@@ -4811,7 +4831,8 @@ void BLAS_chbmv_c_s_testgen(int norm, enum blas_order_type order,
       float a_elem[2];
       float x_elem;
       float y_elem[2];
-      double head_r_true_elem[2], tail_r_true_elem[2];
+      double head_r_true_elem[2];
+      double tail_r_true_elem[2];
 
       /* Since mixed real/complex test generator for dot
          scales the vectors, we need to used the non-mixed

@@ -143,7 +143,8 @@ void do_test_dgemm_d_s(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -613,7 +614,8 @@ void do_test_dgemm_s_d(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -1083,7 +1085,8 @@ void do_test_dgemm_s_s(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -1553,7 +1556,8 @@ void do_test_zgemm_z_c(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -2026,7 +2030,8 @@ void do_test_zgemm_c_z(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -2499,7 +2504,8 @@ void do_test_zgemm_c_c(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -2972,7 +2978,8 @@ void do_test_cgemm_c_s(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -3445,7 +3452,8 @@ void do_test_cgemm_s_c(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -3918,7 +3926,8 @@ void do_test_cgemm_s_s(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -4391,7 +4400,8 @@ void do_test_zgemm_z_d(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -4864,7 +4874,8 @@ void do_test_zgemm_d_z(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -5337,7 +5348,8 @@ void do_test_zgemm_d_d(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -5810,7 +5822,8 @@ void do_test_sgemm_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -6316,7 +6329,8 @@ void do_test_dgemm_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -6822,7 +6836,8 @@ void do_test_cgemm_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -7331,7 +7346,8 @@ void do_test_zgemm_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -7841,7 +7857,8 @@ void do_test_dgemm_d_s_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -8348,7 +8365,8 @@ void do_test_dgemm_s_d_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -8855,7 +8873,8 @@ void do_test_dgemm_s_s_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -9362,7 +9381,8 @@ void do_test_zgemm_z_c_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -9873,7 +9893,8 @@ void do_test_zgemm_c_z_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -10384,7 +10405,8 @@ void do_test_zgemm_c_c_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -10895,7 +10917,8 @@ void do_test_cgemm_c_s_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -11405,7 +11428,8 @@ void do_test_cgemm_s_c_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -11915,7 +11939,8 @@ void do_test_cgemm_s_s_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -12425,7 +12450,8 @@ void do_test_zgemm_z_d_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -12936,7 +12962,8 @@ void do_test_zgemm_d_z_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -13447,7 +13474,8 @@ void do_test_zgemm_d_d_x(int m, int n, int k, int ntests, int *seed,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;

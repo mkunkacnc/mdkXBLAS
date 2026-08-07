@@ -710,7 +710,8 @@ void BLAS_ctrmv_testgen(int norm, enum blas_order_type order,
   float *t_vec;
   float beta[2];
   float r[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   float x_elem[2];
   float t_elem[2];
 
@@ -944,7 +945,8 @@ void BLAS_ztrmv_c_testgen(int norm, enum blas_order_type order,
   float *t_vec;
   double beta[2];
   double r[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   double x_elem[2];
   float t_elem[2];
 
@@ -1177,7 +1179,8 @@ void BLAS_ztrmv_testgen(int norm, enum blas_order_type order,
   double *t_vec;
   double beta[2];
   double r[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   double x_elem[2];
   double t_elem[2];
 
@@ -1411,7 +1414,8 @@ void BLAS_ctrmv_s_testgen(int norm, enum blas_order_type order,
   float *t_vec;
   float beta[2];
   float r[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   float x_elem[2];
   float t_elem;
 
@@ -1633,7 +1637,8 @@ void BLAS_ztrmv_d_testgen(int norm, enum blas_order_type order,
   double *t_vec;
   double beta[2];
   double r[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
   double x_elem[2];
   double t_elem;
 

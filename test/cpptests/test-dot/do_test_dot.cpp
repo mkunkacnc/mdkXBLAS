@@ -1212,7 +1212,8 @@ double do_test_zdot_z_c(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   double r[2];                        /* the generated r */
   double r_comp[2];                /* the r computed  by BLAS_zdot_z_c */
@@ -1590,7 +1591,8 @@ double do_test_zdot_c_z(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   double r[2];                        /* the generated r */
   double r_comp[2];                /* the r computed  by BLAS_zdot_c_z */
@@ -1968,7 +1970,8 @@ double do_test_zdot_c_c(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   double r[2];                        /* the generated r */
   double r_comp[2];                /* the r computed  by BLAS_zdot_c_c */
@@ -2346,7 +2349,8 @@ double do_test_cdot_c_s(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   float r[2];                        /* the generated r */
   float r_comp[2];                /* the r computed  by BLAS_cdot_c_s */
@@ -2724,7 +2728,8 @@ double do_test_cdot_s_c(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   float r[2];                        /* the generated r */
   float r_comp[2];                /* the r computed  by BLAS_cdot_s_c */
@@ -3102,7 +3107,8 @@ double do_test_cdot_s_s(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   float r[2];                        /* the generated r */
   float r_comp[2];                /* the r computed  by BLAS_cdot_s_s */
@@ -3480,7 +3486,8 @@ double do_test_zdot_z_d(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   double r[2];                        /* the generated r */
   double r_comp[2];                /* the r computed  by BLAS_zdot_z_d */
@@ -3858,7 +3865,8 @@ double do_test_zdot_d_z(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   double r[2];                        /* the generated r */
   double r_comp[2];                /* the r computed  by BLAS_zdot_d_z */
@@ -4236,7 +4244,8 @@ double do_test_zdot_d_d(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   double r[2];                        /* the generated r */
   double r_comp[2];                /* the r computed  by BLAS_zdot_d_d */
@@ -5400,7 +5409,8 @@ double do_test_cdot_x(int n, int ntests, int *seed, double thresh, int debug,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   float r[2];                        /* the generated r */
   float r_comp[2];                /* the r computed  by BLAS_cdot_x */
@@ -5797,7 +5807,8 @@ double do_test_zdot_x(int n, int ntests, int *seed, double thresh, int debug,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   double r[2];                        /* the generated r */
   double r_comp[2];                /* the r computed  by BLAS_zdot_x */
@@ -7376,7 +7387,8 @@ double do_test_zdot_z_c_x(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   double r[2];                        /* the generated r */
   double r_comp[2];                /* the r computed  by BLAS_zdot_z_c_x */
@@ -7774,7 +7786,8 @@ double do_test_zdot_c_z_x(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   double r[2];                        /* the generated r */
   double r_comp[2];                /* the r computed  by BLAS_zdot_c_z_x */
@@ -8172,7 +8185,8 @@ double do_test_zdot_c_c_x(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   double r[2];                        /* the generated r */
   double r_comp[2];                /* the r computed  by BLAS_zdot_c_c_x */
@@ -8570,7 +8584,8 @@ double do_test_cdot_c_s_x(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   float r[2];                        /* the generated r */
   float r_comp[2];                /* the r computed  by BLAS_cdot_c_s_x */
@@ -8968,7 +8983,8 @@ double do_test_cdot_s_c_x(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   float r[2];                        /* the generated r */
   float r_comp[2];                /* the r computed  by BLAS_cdot_s_c_x */
@@ -9366,7 +9382,8 @@ double do_test_cdot_s_s_x(int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   float r[2];                        /* the generated r */
   float r_comp[2];                /* the r computed  by BLAS_cdot_s_s_x */
@@ -9764,7 +9781,8 @@ double do_test_zdot_z_d_x(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   double r[2];                        /* the generated r */
   double r_comp[2];                /* the r computed  by BLAS_zdot_z_d_x */
@@ -10162,7 +10180,8 @@ double do_test_zdot_d_z_x(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   double r[2];                        /* the generated r */
   double r_comp[2];                /* the r computed  by BLAS_zdot_d_z_x */
@@ -10560,7 +10579,8 @@ double do_test_zdot_d_d_x(int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double head_r_true[2], tail_r_true[2];
+  double head_r_true[2];
+  double tail_r_true[2];
 
   double r[2];                        /* the generated r */
   double r_comp[2];                /* the r computed  by BLAS_zdot_d_d_x */

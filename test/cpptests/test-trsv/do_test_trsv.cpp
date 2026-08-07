@@ -124,7 +124,8 @@ double do_test_dtrsv_s(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
@@ -690,7 +691,8 @@ double do_test_ztrsv_c(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
@@ -1291,7 +1293,8 @@ double do_test_ctrsv_s(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
@@ -1890,7 +1893,8 @@ double do_test_ztrsv_d(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
@@ -2490,7 +2494,8 @@ double do_test_strsv_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
@@ -3077,7 +3082,8 @@ double do_test_dtrsv_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
@@ -3665,7 +3671,8 @@ double do_test_dtrsv_s_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
   int order_val;
@@ -4252,7 +4259,8 @@ double do_test_ctrsv_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
@@ -4874,7 +4882,8 @@ double do_test_ztrsv_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
@@ -5499,7 +5508,8 @@ double do_test_ztrsv_c_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
@@ -6124,7 +6134,8 @@ double do_test_ctrsv_s_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;
@@ -6746,7 +6757,8 @@ double do_test_ztrsv_d_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0, beta_flag = 0;

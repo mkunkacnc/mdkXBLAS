@@ -646,7 +646,8 @@ void BLAS_csbmv_testgen(int norm, enum blas_order_type order,
   float y_elem[2];
   float a_elem[2];
   float x_elem[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   float *a_vec;
   float *x_vec;
@@ -929,7 +930,8 @@ void BLAS_zsbmv_testgen(int norm, enum blas_order_type order,
   double y_elem[2];
   double a_elem[2];
   double x_elem[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   double *a_vec;
   double *x_vec;
@@ -1212,7 +1214,8 @@ void BLAS_csbmv_s_s_testgen(int norm, enum blas_order_type order,
   float y_elem[2];
   float a_elem;
   float x_elem;
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   float *a_vec;
   float *x_vec;
@@ -1511,7 +1514,8 @@ void BLAS_csbmv_s_c_testgen(int norm, enum blas_order_type order,
   float y_elem[2];
   float a_elem;
   float x_elem[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   float *a_vec;
   float *x_vec;
@@ -1803,7 +1807,8 @@ void BLAS_csbmv_c_s_testgen(int norm, enum blas_order_type order,
   float y_elem[2];
   float a_elem[2];
   float x_elem;
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   float *a_vec;
   float *x_vec;
@@ -2095,7 +2100,8 @@ void BLAS_zsbmv_d_d_testgen(int norm, enum blas_order_type order,
   double y_elem[2];
   double a_elem;
   double x_elem;
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   double *a_vec;
   double *x_vec;
@@ -2394,7 +2400,8 @@ void BLAS_zsbmv_d_z_testgen(int norm, enum blas_order_type order,
   double y_elem[2];
   double a_elem;
   double x_elem[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   double *a_vec;
   double *x_vec;
@@ -2686,7 +2693,8 @@ void BLAS_zsbmv_z_d_testgen(int norm, enum blas_order_type order,
   double y_elem[2];
   double a_elem[2];
   double x_elem;
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   double *a_vec;
   double *x_vec;
@@ -3784,7 +3792,8 @@ void BLAS_zsbmv_c_c_testgen(int norm, enum blas_order_type order,
   double y_elem[2];
   float a_elem[2];
   float x_elem[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   float *a_vec;
   float *x_vec;
@@ -4067,7 +4076,8 @@ void BLAS_zsbmv_c_z_testgen(int norm, enum blas_order_type order,
   double y_elem[2];
   float a_elem[2];
   double x_elem[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   float *a_vec;
   double *x_vec;
@@ -4350,7 +4360,8 @@ void BLAS_zsbmv_z_c_testgen(int norm, enum blas_order_type order,
   double y_elem[2];
   double a_elem[2];
   float x_elem[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   double *a_vec;
   float *x_vec;

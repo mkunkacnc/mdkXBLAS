@@ -129,7 +129,8 @@ double do_test_dtbsv_s(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_dtbsv_s_testgen */
   int beta_flag;
@@ -717,7 +718,8 @@ double do_test_ztbsv_c(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ztbsv_c_testgen */
@@ -1342,7 +1344,8 @@ double do_test_ctbsv_s(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ctbsv_s_testgen */
@@ -1963,7 +1966,8 @@ double do_test_ztbsv_d(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ztbsv_d_testgen */
@@ -2586,7 +2590,8 @@ double do_test_stbsv_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_stbsv_testgen */
   int beta_flag;
@@ -3193,7 +3198,8 @@ double do_test_dtbsv_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_dtbsv_testgen */
   int beta_flag;
@@ -3801,7 +3807,8 @@ double do_test_dtbsv_s_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_dtbsv_s_testgen */
   int beta_flag;
@@ -4409,7 +4416,8 @@ double do_test_ctbsv_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ctbsv_testgen */
@@ -5054,7 +5062,8 @@ double do_test_ztbsv_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ztbsv_testgen */
@@ -5700,7 +5709,8 @@ double do_test_ztbsv_c_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ztbsv_c_testgen */
@@ -6348,7 +6358,8 @@ double do_test_ctbsv_s_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ctbsv_s_testgen */
@@ -6994,7 +7005,8 @@ double do_test_ztbsv_d_x(int n,
 
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_ztbsv_d_testgen */

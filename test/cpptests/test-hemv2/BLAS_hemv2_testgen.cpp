@@ -808,8 +808,10 @@ void BLAS_chemv2_testgen(int norm, enum blas_order_type order,
     float *x_head_0;
     float *x_tail_0;
 
-    double *head_r1_true, *tail_r1_true;
-    double *head_r2_true, *tail_r2_true;
+    double *head_r1_true;
+    double *tail_r1_true;
+    double *head_r2_true;
+    double *tail_r2_true;
 
     double head_r_elem1;
     double tail_r_elem1;
@@ -1294,8 +1296,10 @@ void BLAS_zhemv2_testgen(int norm, enum blas_order_type order,
     double *x_head_0;
     double *x_tail_0;
 
-    double *head_r1_true, *tail_r1_true;
-    double *head_r2_true, *tail_r2_true;
+    double *head_r1_true;
+    double *tail_r1_true;
+    double *head_r2_true;
+    double *tail_r2_true;
 
     double head_r_elem1;
     double tail_r_elem1;
@@ -1781,8 +1785,10 @@ void BLAS_zhemv2_c_z_testgen(int norm, enum blas_order_type order,
     double *x_head_0;
     double *x_tail_0;
 
-    double *head_r1_true, *tail_r1_true;
-    double *head_r2_true, *tail_r2_true;
+    double *head_r1_true;
+    double *tail_r1_true;
+    double *head_r2_true;
+    double *tail_r2_true;
 
     double head_r_elem1;
     double tail_r_elem1;
@@ -2268,8 +2274,10 @@ void BLAS_zhemv2_z_c_testgen(int norm, enum blas_order_type order,
     float *x_head_0;
     float *x_tail_0;
 
-    double *head_r1_true, *tail_r1_true;
-    double *head_r2_true, *tail_r2_true;
+    double *head_r1_true;
+    double *tail_r1_true;
+    double *head_r2_true;
+    double *tail_r2_true;
 
     double head_r_elem1;
     double tail_r_elem1;
@@ -2755,8 +2763,10 @@ void BLAS_zhemv2_c_c_testgen(int norm, enum blas_order_type order,
     float *x_head_0;
     float *x_tail_0;
 
-    double *head_r1_true, *tail_r1_true;
-    double *head_r2_true, *tail_r2_true;
+    double *head_r1_true;
+    double *tail_r1_true;
+    double *head_r2_true;
+    double *tail_r2_true;
 
     double head_r_elem1;
     double tail_r_elem1;
@@ -3242,8 +3252,10 @@ void BLAS_zhemv2_z_d_testgen(int norm, enum blas_order_type order,
     double *x_head_0;
     double *x_tail_0;
 
-    double *head_r1_true, *tail_r1_true;
-    double *head_r2_true, *tail_r2_true;
+    double *head_r1_true;
+    double *tail_r1_true;
+    double *head_r2_true;
+    double *tail_r2_true;
 
     double head_r_elem1;
     double tail_r_elem1;
@@ -3650,8 +3662,10 @@ void BLAS_chemv2_c_s_testgen(int norm, enum blas_order_type order,
     float *x_head_0;
     float *x_tail_0;
 
-    double *head_r1_true, *tail_r1_true;
-    double *head_r2_true, *tail_r2_true;
+    double *head_r1_true;
+    double *tail_r1_true;
+    double *head_r2_true;
+    double *tail_r2_true;
 
     double head_r_elem1;
     double tail_r_elem1;

@@ -123,7 +123,8 @@ void do_test_dspmv_d_s(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -504,7 +505,8 @@ void do_test_dspmv_s_d(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -885,7 +887,8 @@ void do_test_dspmv_s_s(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -1227,7 +1230,8 @@ void do_test_zspmv_z_c(int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -1265,7 +1269,8 @@ void do_test_zspmv_z_c(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -1614,7 +1619,8 @@ void do_test_zspmv_c_z(int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -1652,7 +1658,8 @@ void do_test_zspmv_c_z(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -2001,7 +2008,8 @@ void do_test_zspmv_c_c(int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -2039,7 +2047,8 @@ void do_test_zspmv_c_c(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -2388,7 +2397,8 @@ void do_test_cspmv_c_s(int n,
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -2426,7 +2436,8 @@ void do_test_cspmv_c_s(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -2775,7 +2786,8 @@ void do_test_cspmv_s_c(int n,
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -2813,7 +2825,8 @@ void do_test_cspmv_s_c(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -3162,7 +3175,8 @@ void do_test_cspmv_s_s(int n,
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -3200,7 +3214,8 @@ void do_test_cspmv_s_s(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -3549,7 +3564,8 @@ void do_test_zspmv_z_d(int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -3587,7 +3603,8 @@ void do_test_zspmv_z_d(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -3936,7 +3953,8 @@ void do_test_zspmv_d_z(int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -3974,7 +3992,8 @@ void do_test_zspmv_d_z(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -4323,7 +4342,8 @@ void do_test_zspmv_d_d(int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -4361,7 +4381,8 @@ void do_test_zspmv_d_d(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -4749,7 +4770,8 @@ void do_test_sspmv_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -5152,7 +5174,8 @@ void do_test_dspmv_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -5516,7 +5539,8 @@ void do_test_cspmv_x(int n,
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -5554,7 +5578,8 @@ void do_test_cspmv_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -5925,7 +5950,8 @@ void do_test_zspmv_x(int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -5963,7 +5989,8 @@ void do_test_zspmv_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -6374,7 +6401,8 @@ void do_test_dspmv_d_s_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -6778,7 +6806,8 @@ void do_test_dspmv_s_d_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -7182,7 +7211,8 @@ void do_test_dspmv_s_s_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   FPU_FIX_DECL;
 
@@ -7547,7 +7577,8 @@ void do_test_zspmv_z_c_x(int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -7585,7 +7616,8 @@ void do_test_zspmv_z_c_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -7957,7 +7989,8 @@ void do_test_zspmv_c_z_x(int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -7995,7 +8028,8 @@ void do_test_zspmv_c_z_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -8367,7 +8401,8 @@ void do_test_zspmv_c_c_x(int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -8405,7 +8440,8 @@ void do_test_zspmv_c_c_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -8777,7 +8813,8 @@ void do_test_cspmv_c_s_x(int n,
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -8815,7 +8852,8 @@ void do_test_cspmv_c_s_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -9187,7 +9225,8 @@ void do_test_cspmv_s_c_x(int n,
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -9225,7 +9264,8 @@ void do_test_cspmv_s_c_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -9597,7 +9637,8 @@ void do_test_cspmv_s_s_x(int n,
 
   float rin[2];
   float rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -9635,7 +9676,8 @@ void do_test_cspmv_s_s_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -10007,7 +10049,8 @@ void do_test_zspmv_z_d_x(int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -10045,7 +10088,8 @@ void do_test_zspmv_z_d_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -10417,7 +10461,8 @@ void do_test_zspmv_d_z_x(int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -10455,7 +10500,8 @@ void do_test_zspmv_d_z_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;
@@ -10827,7 +10873,8 @@ void do_test_zspmv_d_d_x(int n,
 
   double rin[2];
   double rout[2];
-  double head_r_true_elem[2], tail_r_true_elem[2];
+  double head_r_true_elem[2];
+  double tail_r_true_elem[2];
 
   enum blas_order_type order_type;
   enum blas_uplo_type uplo_type;
@@ -10865,7 +10912,8 @@ void do_test_zspmv_d_d_x(int n,
   double *ratios;
 
   /* true result calculated by testgen, in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   FPU_FIX_DECL;

@@ -123,7 +123,8 @@ double do_test_dgemv_d_s(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_dgemv_d_s_testgen */
   int beta_val;
@@ -652,7 +653,8 @@ double do_test_dgemv_s_d(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_dgemv_s_d_testgen */
   int beta_val;
@@ -1180,7 +1182,8 @@ double do_test_dgemv_s_s(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_dgemv_s_s_testgen */
   int beta_val;
@@ -1708,7 +1711,8 @@ double do_test_zgemv_z_c(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zgemv_z_c_testgen */
@@ -2242,7 +2246,8 @@ double do_test_zgemv_c_z(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zgemv_c_z_testgen */
@@ -2776,7 +2781,8 @@ double do_test_zgemv_c_c(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zgemv_c_c_testgen */
@@ -3310,7 +3316,8 @@ double do_test_cgemv_c_s(int m, int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_cgemv_c_s_testgen */
@@ -3844,7 +3851,8 @@ double do_test_cgemv_s_c(int m, int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_cgemv_s_c_testgen */
@@ -4376,7 +4384,8 @@ double do_test_cgemv_s_s(int m, int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_cgemv_s_s_testgen */
@@ -4908,7 +4917,8 @@ double do_test_zgemv_z_d(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zgemv_z_d_testgen */
@@ -5442,7 +5452,8 @@ double do_test_zgemv_d_z(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zgemv_d_z_testgen */
@@ -5975,7 +5986,8 @@ double do_test_zgemv_d_d(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zgemv_d_d_testgen */
@@ -6508,7 +6520,8 @@ double do_test_sgemv_x(int m, int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_sgemv_testgen */
   int beta_val;
@@ -7057,7 +7070,8 @@ double do_test_dgemv_x(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_dgemv_testgen */
   int beta_val;
@@ -7607,7 +7621,8 @@ double do_test_cgemv_x(int m, int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_cgemv_testgen */
@@ -8163,7 +8178,8 @@ double do_test_zgemv_x(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zgemv_testgen */
@@ -8719,7 +8735,8 @@ double do_test_dgemv_d_s_x(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_dgemv_d_s_testgen */
   int beta_val;
@@ -9269,7 +9286,8 @@ double do_test_dgemv_s_d_x(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_dgemv_s_d_testgen */
   int beta_val;
@@ -9818,7 +9836,8 @@ double do_test_dgemv_s_s_x(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_dgemv_s_s_testgen */
   int beta_val;
@@ -10367,7 +10386,8 @@ double do_test_zgemv_z_c_x(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zgemv_z_c_testgen */
@@ -10924,7 +10944,8 @@ double do_test_zgemv_c_z_x(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zgemv_c_z_testgen */
@@ -11481,7 +11502,8 @@ double do_test_zgemv_c_c_x(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zgemv_c_c_testgen */
@@ -12038,7 +12060,8 @@ double do_test_cgemv_c_s_x(int m, int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_cgemv_c_s_testgen */
@@ -12595,7 +12618,8 @@ double do_test_cgemv_s_c_x(int m, int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_cgemv_s_c_testgen */
@@ -13150,7 +13174,8 @@ double do_test_cgemv_s_s_x(int m, int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_cgemv_s_s_testgen */
@@ -13705,7 +13730,8 @@ double do_test_zgemv_z_d_x(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zgemv_z_d_testgen */
@@ -14262,7 +14288,8 @@ double do_test_zgemv_d_z_x(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zgemv_d_z_testgen */
@@ -14818,7 +14845,8 @@ double do_test_zgemv_d_d_x(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;                /* input flag for BLAS_zgemv_d_d_testgen */

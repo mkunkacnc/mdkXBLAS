@@ -60,7 +60,9 @@ int FixedBits(double r_true_l, double r_true_t)
   int k;
   double tmp_l;
   double tmp_t;
-  double res[5], t, temp;
+  double res[5];
+  double t;
+  double temp;
 
   b = 0;
   k = 0;
@@ -305,7 +307,8 @@ void z_dddivd(double *dda_l, double *dda_t, double *db,
  *
  */
   double db_conj[2];
-  double t_l[2], t_t[2];
+  double t_l[2];
+  double t_t[2];
   double d_l;
   double d_t;
 

@@ -130,7 +130,8 @@ double do_test_dgbmv2_d_s(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_dgbmv2_d_s_testgen */
   int beta_val;
@@ -734,7 +735,8 @@ double do_test_dgbmv2_s_d(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_dgbmv2_s_d_testgen */
   int beta_val;
@@ -1338,7 +1340,8 @@ double do_test_dgbmv2_s_s(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_dgbmv2_s_s_testgen */
   int beta_val;
@@ -1942,7 +1945,8 @@ double do_test_zgbmv2_z_c(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_zgbmv2_z_c_testgen */
@@ -2559,7 +2563,8 @@ double do_test_zgbmv2_c_z(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_zgbmv2_c_z_testgen */
@@ -3176,7 +3181,8 @@ double do_test_zgbmv2_c_c(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_zgbmv2_c_c_testgen */
@@ -3793,7 +3799,8 @@ double do_test_cgbmv2_c_s(int m, int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_cgbmv2_c_s_testgen */
@@ -4407,7 +4414,8 @@ double do_test_cgbmv2_s_c(int m, int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_cgbmv2_s_c_testgen */
@@ -5022,7 +5030,8 @@ double do_test_cgbmv2_s_s(int m, int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_cgbmv2_s_s_testgen */
@@ -5635,7 +5644,8 @@ double do_test_zgbmv2_z_d(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_zgbmv2_z_d_testgen */
@@ -6250,7 +6260,8 @@ double do_test_zgbmv2_d_z(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_zgbmv2_d_z_testgen */
@@ -6866,7 +6877,8 @@ double do_test_zgbmv2_d_d(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_zgbmv2_d_d_testgen */
@@ -7480,7 +7492,8 @@ double do_test_sgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_sgbmv2_testgen */
   int beta_val;
@@ -8102,7 +8115,8 @@ double do_test_dgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_dgbmv2_testgen */
   int beta_val;
@@ -8724,7 +8738,8 @@ double do_test_cgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_cgbmv2_testgen */
@@ -9360,7 +9375,8 @@ double do_test_zgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_zgbmv2_testgen */
@@ -9998,7 +10014,8 @@ double do_test_dgbmv2_d_s_x(int m, int n, int ntests, int *seed,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_dgbmv2_d_s_testgen */
   int beta_val;
@@ -10625,7 +10642,8 @@ double do_test_dgbmv2_s_d_x(int m, int n, int ntests, int *seed,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_dgbmv2_s_d_testgen */
   int beta_val;
@@ -11252,7 +11270,8 @@ double do_test_dgbmv2_s_s_x(int m, int n, int ntests, int *seed,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_dgbmv2_s_s_testgen */
   int beta_val;
@@ -11879,7 +11898,8 @@ double do_test_zgbmv2_z_c_x(int m, int n, int ntests, int *seed,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_zgbmv2_z_c_testgen */
@@ -12520,7 +12540,8 @@ double do_test_zgbmv2_c_z_x(int m, int n, int ntests, int *seed,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_zgbmv2_c_z_testgen */
@@ -13161,7 +13182,8 @@ double do_test_zgbmv2_c_c_x(int m, int n, int ntests, int *seed,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_zgbmv2_c_c_testgen */
@@ -13802,7 +13824,8 @@ double do_test_cgbmv2_c_s_x(int m, int n, int ntests, int *seed,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_cgbmv2_c_s_testgen */
@@ -14440,7 +14463,8 @@ double do_test_cgbmv2_s_c_x(int m, int n, int ntests, int *seed,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_cgbmv2_s_c_testgen */
@@ -15079,7 +15103,8 @@ double do_test_cgbmv2_s_s_x(int m, int n, int ntests, int *seed,
   float *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_cgbmv2_s_s_testgen */
@@ -15716,7 +15741,8 @@ double do_test_zgbmv2_z_d_x(int m, int n, int ntests, int *seed,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_zgbmv2_z_d_testgen */
@@ -16355,7 +16381,8 @@ double do_test_zgbmv2_d_z_x(int m, int n, int ntests, int *seed,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_zgbmv2_d_z_testgen */
@@ -16995,7 +17022,8 @@ double do_test_zgbmv2_d_d_x(int m, int n, int ntests, int *seed,
   double *y_gen;
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag = 0;                /* input flag for BLAS_zgbmv2_d_d_testgen */

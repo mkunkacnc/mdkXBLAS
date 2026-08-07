@@ -111,7 +111,8 @@ double do_test_dtrmv_s(int n, int ntests, int *seed,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_dtrmv_s_testgen */
@@ -649,7 +650,8 @@ double do_test_ztrmv_c(int n, int ntests, int *seed,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;
@@ -1192,7 +1194,8 @@ double do_test_ctrmv_s(int n, int ntests, int *seed,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;
@@ -1735,7 +1738,8 @@ double do_test_ztrmv_d(int n, int ntests, int *seed,
   double *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;
@@ -2278,7 +2282,8 @@ double do_test_strmv_x(int n, int ntests, int *seed,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_strmv_testgen */
@@ -2836,7 +2841,8 @@ double do_test_dtrmv_x(int n, int ntests, int *seed,
   double *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_dtrmv_testgen */
@@ -3394,7 +3400,8 @@ double do_test_ctrmv_x(int n, int ntests, int *seed,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;
@@ -3958,7 +3965,8 @@ double do_test_ztrmv_x(int n, int ntests, int *seed,
   double *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;
@@ -4523,7 +4531,8 @@ double do_test_dtrmv_s_x(int n, int ntests, int *seed,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
   int alpha_val;
   int alpha_flag;        /* input flag for BLAS_dtrmv_s_testgen */
@@ -5082,7 +5091,8 @@ double do_test_ztrmv_c_x(int n, int ntests, int *seed,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;
@@ -5647,7 +5657,8 @@ double do_test_ctrmv_s_x(int n, int ntests, int *seed,
   float *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;
@@ -6212,7 +6223,8 @@ double do_test_ztrmv_d_x(int n, int ntests, int *seed,
   double *temp;                        /* use for calculating ratio */
 
   /* the true r calculated by testgen(), in double-double */
-  double *head_r_true, *tail_r_true;
+  double *head_r_true;
+  double *tail_r_true;
 
 
   int alpha_val;
