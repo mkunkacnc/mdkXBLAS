@@ -5446,7 +5446,7 @@ int main(int argc, char **argv)
     ntests = atoi(argv[2]);
     thresh = atof(argv[3]);
     debug = atoi(argv[4]);
-    test_prob = atof(argv[5]);
+//    test_prob = atof(argv[5]);
   }
 
   seed = 1999;

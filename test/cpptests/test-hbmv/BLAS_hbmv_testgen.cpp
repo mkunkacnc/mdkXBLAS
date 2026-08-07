@@ -133,7 +133,7 @@ void BLAS_sskew_testgen_hbmv(int norm, enum blas_order_type order,
   incri = 1;
 
 
-  incx_veci = 1;
+//  incx_veci = 1;
 
 
   if (randomize == 0) {
@@ -304,7 +304,7 @@ void BLAS_dskew_testgen_hbmv(int norm, enum blas_order_type order,
   incri = 1;
 
 
-  incx_veci = 1;
+//  incx_veci = 1;
 
 
   if (randomize == 0) {
@@ -475,7 +475,7 @@ void BLAS_dskew_testgen_hbmv_d_s(int norm, enum blas_order_type order,
   incri = 1;
 
 
-  incx_veci = 1;
+//  incx_veci = 1;
 
 
   if (randomize == 0) {
@@ -646,7 +646,7 @@ void BLAS_dskew_testgen_hbmv_s_d(int norm, enum blas_order_type order,
   incri = 1;
 
 
-  incx_veci = 1;
+//  incx_veci = 1;
 
 
   if (randomize == 0) {
@@ -817,7 +817,7 @@ void BLAS_dskew_testgen_hbmv_s_s(int norm, enum blas_order_type order,
   incri = 1;
 
 
-  incx_veci = 1;
+//  incx_veci = 1;
 
 
   if (randomize == 0) {

@@ -58,7 +58,7 @@ static double ulp(double a)
 {
 //  double f;
   int e;
-  f = frexp(a, &e);
+  /* f = */ frexp(a, &e);
   return power(2, e - BITS_D);
 }
 

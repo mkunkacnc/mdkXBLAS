@@ -226,7 +226,7 @@ void do_test_zhemv2_z_c
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -628,7 +628,7 @@ void do_test_zhemv2_c_z
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -1030,7 +1030,7 @@ void do_test_zhemv2_c_c
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -1432,7 +1432,7 @@ void do_test_chemv2_c_s
       eps_int = power(2, -BITS_S);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
-      prec = blas_prec_single;
+//      prec = blas_prec_single;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -1834,7 +1834,7 @@ void do_test_zhemv2_z_d
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
