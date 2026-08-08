@@ -149,12 +149,12 @@ void do_test_zhemm_z_c(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -229,7 +229,7 @@ void do_test_zhemm_z_c(int m, int n,
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -606,12 +606,12 @@ void do_test_zhemm_c_z(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -686,7 +686,7 @@ void do_test_zhemm_c_z(int m, int n,
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -1063,12 +1063,12 @@ void do_test_zhemm_c_c(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -1143,7 +1143,7 @@ void do_test_zhemm_c_c(int m, int n,
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -1520,12 +1520,12 @@ void do_test_chemm_c_s(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
 
-  incc *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (float *) blas_malloc(2 * m * n * sizeof(float) * 2);
@@ -1600,7 +1600,7 @@ void do_test_chemm_c_s(int m, int n,
       eps_int = power(2, -BITS_S);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
-      prec = blas_prec_single;
+//      prec = blas_prec_single;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -1977,12 +1977,12 @@ void do_test_zhemm_z_d(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
 
-  incc *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -2057,7 +2057,7 @@ void do_test_zhemm_z_d(int m, int n,
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -2434,12 +2434,12 @@ void do_test_chemm_x(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (float *) blas_malloc(2 * m * n * sizeof(float) * 2);
@@ -2915,12 +2915,12 @@ void do_test_zhemm_x(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -3398,12 +3398,12 @@ void do_test_zhemm_z_c_x(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -3881,12 +3881,12 @@ void do_test_zhemm_c_z_x(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -4364,12 +4364,12 @@ void do_test_zhemm_c_c_x(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -4847,12 +4847,12 @@ void do_test_chemm_c_s_x(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
 
-  incc *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (float *) blas_malloc(2 * m * n * sizeof(float) * 2);
@@ -5329,12 +5329,12 @@ void do_test_zhemm_z_d_x(int m, int n,
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
 
-  incc *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);

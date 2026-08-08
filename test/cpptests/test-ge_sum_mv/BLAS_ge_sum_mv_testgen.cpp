@@ -2639,7 +2639,7 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                   tail_t1 = t2 - (head_t1 - t1);
                 }
                 head_a_elem_3[0] = head_t1;
-                tail_a_elem_3[0] = tail_t1;
+//                tail_a_elem_3[0] = tail_t1;
                 /* imaginary part */
                 {
                   /* Compute double-double = double-double * double. */
@@ -2736,7 +2736,7 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                   tail_t1 = t2 - (head_t1 - t1);
                 }
                 head_a_elem_3[1] = head_t1;
-                tail_a_elem_3[1] = tail_t1;
+//                tail_a_elem_3[1] = tail_t1;
               }
 
             }
@@ -2934,7 +2934,7 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                     tail_t1 = t2 - (head_t1 - t1);
                   }
                   head_a_elem_3[0] = head_t1;
-                  tail_a_elem_3[0] = tail_t1;
+//                  tail_a_elem_3[0] = tail_t1;
                   /* imaginary part */
                   {
                     /* Compute double-double = double-double * double. */
@@ -3033,7 +3033,7 @@ void BLAS_cge_sum_mv_testgen(int norm, enum blas_order_type order,
                     tail_t1 = t2 - (head_t1 - t1);
                   }
                   head_a_elem_3[1] = head_t1;
-                  tail_a_elem_3[1] = tail_t1;
+//                  tail_a_elem_3[1] = tail_t1;
                 }
 
               }
@@ -4175,7 +4175,7 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
                 tail_t1 = t2 - (head_t1 - t1);
               }
               head_a_elem_3[0] = head_t1;
-              tail_a_elem_3[0] = tail_t1;
+//              tail_a_elem_3[0] = tail_t1;
               /* imaginary part */
               {
                 /* Compute double-double = double-double * double. */
@@ -4272,7 +4272,7 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
                 tail_t1 = t2 - (head_t1 - t1);
               }
               head_a_elem_3[1] = head_t1;
-              tail_a_elem_3[1] = tail_t1;
+//              tail_a_elem_3[1] = tail_t1;
             }
 
             ((double *) a_elem)[0] = head_a_elem_3[0];
@@ -4508,7 +4508,7 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
                   tail_t1 = t2 - (head_t1 - t1);
                 }
                 head_a_elem_3[0] = head_t1;
-                tail_a_elem_3[0] = tail_t1;
+//                tail_a_elem_3[0] = tail_t1;
                 /* imaginary part */
                 {
                   /* Compute double-double = double-double * double. */
@@ -4605,7 +4605,7 @@ void BLAS_zge_sum_mv_testgen(int norm, enum blas_order_type order,
                   tail_t1 = t2 - (head_t1 - t1);
                 }
                 head_a_elem_3[1] = head_t1;
-                tail_a_elem_3[1] = tail_t1;
+//                tail_a_elem_3[1] = tail_t1;
               }
 
               ((double *) a_elem)[0] = head_a_elem_3[0];
@@ -7502,7 +7502,7 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                   tail_t1 = t2 - (head_t1 - t1);
                 }
                 head_a_elem_3[0] = head_t1;
-                tail_a_elem_3[0] = tail_t1;
+//                tail_a_elem_3[0] = tail_t1;
                 /* imaginary part */
                 {
                   /* Compute double-double = double-double * double. */
@@ -7599,7 +7599,7 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                   tail_t1 = t2 - (head_t1 - t1);
                 }
                 head_a_elem_3[1] = head_t1;
-                tail_a_elem_3[1] = tail_t1;
+//                tail_a_elem_3[1] = tail_t1;
               }
 
             }
@@ -7797,7 +7797,7 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                     tail_t1 = t2 - (head_t1 - t1);
                   }
                   head_a_elem_3[0] = head_t1;
-                  tail_a_elem_3[0] = tail_t1;
+//                  tail_a_elem_3[0] = tail_t1;
                   /* imaginary part */
                   {
                     /* Compute double-double = double-double * double. */
@@ -7896,7 +7896,7 @@ void BLAS_cge_sum_mv_c_s_testgen(int norm, enum blas_order_type order,
                     tail_t1 = t2 - (head_t1 - t1);
                   }
                   head_a_elem_3[1] = head_t1;
-                  tail_a_elem_3[1] = tail_t1;
+//                  tail_a_elem_3[1] = tail_t1;
                 }
 
               }
@@ -10875,7 +10875,7 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
                 tail_t1 = t2 - (head_t1 - t1);
               }
               head_a_elem_3[0] = head_t1;
-              tail_a_elem_3[0] = tail_t1;
+//              tail_a_elem_3[0] = tail_t1;
               /* imaginary part */
               {
                 /* Compute double-double = double-double * double. */
@@ -10972,7 +10972,7 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
                 tail_t1 = t2 - (head_t1 - t1);
               }
               head_a_elem_3[1] = head_t1;
-              tail_a_elem_3[1] = tail_t1;
+//              tail_a_elem_3[1] = tail_t1;
             }
 
             ((double *) a_elem)[0] = head_a_elem_3[0];
@@ -11208,7 +11208,7 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
                   tail_t1 = t2 - (head_t1 - t1);
                 }
                 head_a_elem_3[0] = head_t1;
-                tail_a_elem_3[0] = tail_t1;
+//                tail_a_elem_3[0] = tail_t1;
                 /* imaginary part */
                 {
                   /* Compute double-double = double-double * double. */
@@ -11305,7 +11305,7 @@ void BLAS_zge_sum_mv_z_d_testgen(int norm, enum blas_order_type order,
                   tail_t1 = t2 - (head_t1 - t1);
                 }
                 head_a_elem_3[1] = head_t1;
-                tail_a_elem_3[1] = tail_t1;
+//                tail_a_elem_3[1] = tail_t1;
               }
 
               ((double *) a_elem)[0] = head_a_elem_3[0];
@@ -14847,7 +14847,7 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                   tail_t1 = t2 - (head_t1 - t1);
                 }
                 head_a_elem_3[0] = head_t1;
-                tail_a_elem_3[0] = tail_t1;
+//                tail_a_elem_3[0] = tail_t1;
                 /* imaginary part */
                 {
                   /* Compute double-double = double-double * double. */
@@ -14944,7 +14944,7 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                   tail_t1 = t2 - (head_t1 - t1);
                 }
                 head_a_elem_3[1] = head_t1;
-                tail_a_elem_3[1] = tail_t1;
+//                tail_a_elem_3[1] = tail_t1;
               }
 
             }
@@ -15142,7 +15142,7 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                     tail_t1 = t2 - (head_t1 - t1);
                   }
                   head_a_elem_3[0] = head_t1;
-                  tail_a_elem_3[0] = tail_t1;
+//                  tail_a_elem_3[0] = tail_t1;
                   /* imaginary part */
                   {
                     /* Compute double-double = double-double * double. */
@@ -15241,7 +15241,7 @@ void BLAS_zge_sum_mv_c_c_testgen(int norm, enum blas_order_type order,
                     tail_t1 = t2 - (head_t1 - t1);
                   }
                   head_a_elem_3[1] = head_t1;
-                  tail_a_elem_3[1] = tail_t1;
+//                  tail_a_elem_3[1] = tail_t1;
                 }
 
               }
@@ -16345,7 +16345,7 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                   tail_t1 = t2 - (head_t1 - t1);
                 }
                 head_a_elem_3[0] = head_t1;
-                tail_a_elem_3[0] = tail_t1;
+//                tail_a_elem_3[0] = tail_t1;
                 /* imaginary part */
                 {
                   /* Compute double-double = double-double * double. */
@@ -16442,7 +16442,7 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                   tail_t1 = t2 - (head_t1 - t1);
                 }
                 head_a_elem_3[1] = head_t1;
-                tail_a_elem_3[1] = tail_t1;
+//                tail_a_elem_3[1] = tail_t1;
               }
 
             }
@@ -16640,7 +16640,7 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                     tail_t1 = t2 - (head_t1 - t1);
                   }
                   head_a_elem_3[0] = head_t1;
-                  tail_a_elem_3[0] = tail_t1;
+//                  tail_a_elem_3[0] = tail_t1;
                   /* imaginary part */
                   {
                     /* Compute double-double = double-double * double. */
@@ -16739,7 +16739,7 @@ void BLAS_zge_sum_mv_c_z_testgen(int norm, enum blas_order_type order,
                     tail_t1 = t2 - (head_t1 - t1);
                   }
                   head_a_elem_3[1] = head_t1;
-                  tail_a_elem_3[1] = tail_t1;
+//                  tail_a_elem_3[1] = tail_t1;
                 }
 
               }
@@ -17882,7 +17882,7 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
                 tail_t1 = t2 - (head_t1 - t1);
               }
               head_a_elem_3[0] = head_t1;
-              tail_a_elem_3[0] = tail_t1;
+//              tail_a_elem_3[0] = tail_t1;
               /* imaginary part */
               {
                 /* Compute double-double = double-double * double. */
@@ -17979,7 +17979,7 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
                 tail_t1 = t2 - (head_t1 - t1);
               }
               head_a_elem_3[1] = head_t1;
-              tail_a_elem_3[1] = tail_t1;
+//              tail_a_elem_3[1] = tail_t1;
             }
 
             ((double *) a_elem)[0] = head_a_elem_3[0];
@@ -18215,7 +18215,7 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
                   tail_t1 = t2 - (head_t1 - t1);
                 }
                 head_a_elem_3[0] = head_t1;
-                tail_a_elem_3[0] = tail_t1;
+//                tail_a_elem_3[0] = tail_t1;
                 /* imaginary part */
                 {
                   /* Compute double-double = double-double * double. */
@@ -18312,7 +18312,7 @@ void BLAS_zge_sum_mv_z_c_testgen(int norm, enum blas_order_type order,
                   tail_t1 = t2 - (head_t1 - t1);
                 }
                 head_a_elem_3[1] = head_t1;
-                tail_a_elem_3[1] = tail_t1;
+//                tail_a_elem_3[1] = tail_t1;
               }
 
               ((double *) a_elem)[0] = head_a_elem_3[0];

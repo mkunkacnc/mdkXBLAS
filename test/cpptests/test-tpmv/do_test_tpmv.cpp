@@ -198,8 +198,8 @@ double do_test_dtpmv_s(int n,
   p_count = 0;
   count = 0;
   find_max_ratio = 0;
-  beta = 0.0;
-  beta_flag = 1;
+//  beta = 0.0;
+//  beta_flag = 1;
 
   beta_zero_fake = 0.0;
   rin_zero_fake = 0.0;
@@ -717,7 +717,7 @@ double do_test_ztpmv_c(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
   rin_zero_fake[0] = rin_zero_fake[1] = 0.0;
@@ -1240,7 +1240,7 @@ double do_test_ctpmv_s(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
   rin_zero_fake[0] = rin_zero_fake[1] = 0.0;
@@ -1763,7 +1763,7 @@ double do_test_ztpmv_d(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
   rin_zero_fake[0] = rin_zero_fake[1] = 0.0;
@@ -2284,8 +2284,8 @@ double do_test_stpmv_x(int n,
   p_count = 0;
   count = 0;
   find_max_ratio = 0;
-  beta = 0.0;
-  beta_flag = 1;
+//  beta = 0.0;
+//  beta_flag = 1;
 
   beta_zero_fake = 0.0;
   rin_zero_fake = 0.0;
@@ -2820,8 +2820,8 @@ double do_test_dtpmv_x(int n,
   p_count = 0;
   count = 0;
   find_max_ratio = 0;
-  beta = 0.0;
-  beta_flag = 1;
+//  beta = 0.0;
+//  beta_flag = 1;
 
   beta_zero_fake = 0.0;
   rin_zero_fake = 0.0;
@@ -3358,7 +3358,7 @@ double do_test_ctpmv_x(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
   rin_zero_fake[0] = rin_zero_fake[1] = 0.0;
@@ -3900,7 +3900,7 @@ double do_test_ztpmv_x(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
   rin_zero_fake[0] = rin_zero_fake[1] = 0.0;
@@ -4441,8 +4441,8 @@ double do_test_dtpmv_s_x(int n,
   p_count = 0;
   count = 0;
   find_max_ratio = 0;
-  beta = 0.0;
-  beta_flag = 1;
+//  beta = 0.0;
+//  beta_flag = 1;
 
   beta_zero_fake = 0.0;
   rin_zero_fake = 0.0;
@@ -4981,7 +4981,7 @@ double do_test_ztpmv_c_x(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
   rin_zero_fake[0] = rin_zero_fake[1] = 0.0;
@@ -5525,7 +5525,7 @@ double do_test_ctpmv_s_x(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
   rin_zero_fake[0] = rin_zero_fake[1] = 0.0;
@@ -6069,7 +6069,7 @@ double do_test_ztpmv_d_x(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
   rin_zero_fake[0] = rin_zero_fake[1] = 0.0;

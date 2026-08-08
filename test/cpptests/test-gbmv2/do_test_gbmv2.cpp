@@ -2005,7 +2005,7 @@ double do_test_zgbmv2_z_c(int m, int n, int ntests, int *seed, double thresh,
 
 //  incx_gen = 1;
   incy_gen = 1;
-  incx_gen *= 2;
+//  incx_gen *= 2;
   incy_gen *= 2;
 
   /* get space for calculation */
@@ -2624,7 +2624,7 @@ double do_test_zgbmv2_c_z(int m, int n, int ntests, int *seed, double thresh,
 
 //  incx_gen = 1;
   incy_gen = 1;
-  incx_gen *= 2;
+//  incx_gen *= 2;
   incy_gen *= 2;
 
   /* get space for calculation */
@@ -3243,7 +3243,7 @@ double do_test_zgbmv2_c_c(int m, int n, int ntests, int *seed, double thresh,
 
 //  incx_gen = 1;
   incy_gen = 1;
-  incx_gen *= 2;
+//  incx_gen *= 2;
   incy_gen *= 2;
 
   /* get space for calculation */
@@ -4478,7 +4478,7 @@ double do_test_cgbmv2_s_c(int m, int n, int ntests, int *seed, double thresh,
 
 //  incx_gen = 1;
   incy_gen = 1;
-  incx_gen *= 2;
+//  incx_gen *= 2;
   incy_gen *= 2;
 
   /* get space for calculation */
@@ -6327,7 +6327,7 @@ double do_test_zgbmv2_d_z(int m, int n, int ntests, int *seed, double thresh,
 
 //  incx_gen = 1;
   incy_gen = 1;
-  incx_gen *= 2;
+//  incx_gen *= 2;
   incy_gen *= 2;
 
   /* get space for calculation */
@@ -8809,7 +8809,7 @@ double do_test_cgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
 
 //  incx_gen = 1;
   incy_gen = 1;
-  incx_gen *= 2;
+//  incx_gen *= 2;
   incy_gen *= 2;
 
   /* get space for calculation */
@@ -9447,7 +9447,7 @@ double do_test_zgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
 
 //  incx_gen = 1;
   incy_gen = 1;
-  incx_gen *= 2;
+//  incx_gen *= 2;
   incy_gen *= 2;
 
   /* get space for calculation */
@@ -11974,7 +11974,7 @@ double do_test_zgbmv2_z_c_x(int m, int n, int ntests, int *seed,
 
 //  incx_gen = 1;
   incy_gen = 1;
-  incx_gen *= 2;
+//  incx_gen *= 2;
   incy_gen *= 2;
 
   /* get space for calculation */
@@ -12617,7 +12617,7 @@ double do_test_zgbmv2_c_z_x(int m, int n, int ntests, int *seed,
 
 //  incx_gen = 1;
   incy_gen = 1;
-  incx_gen *= 2;
+//  incx_gen *= 2;
   incy_gen *= 2;
 
   /* get space for calculation */
@@ -13260,7 +13260,7 @@ double do_test_zgbmv2_c_c_x(int m, int n, int ntests, int *seed,
 
 //  incx_gen = 1;
   incy_gen = 1;
-  incx_gen *= 2;
+//  incx_gen *= 2;
   incy_gen *= 2;
 
   /* get space for calculation */
@@ -14543,7 +14543,7 @@ double do_test_cgbmv2_s_c_x(int m, int n, int ntests, int *seed,
 
 //  incx_gen = 1;
   incy_gen = 1;
-  incx_gen *= 2;
+//  incx_gen *= 2;
   incy_gen *= 2;
 
   /* get space for calculation */
@@ -16462,9 +16462,9 @@ double do_test_zgbmv2_d_z_x(int m, int n, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  incx_gen = 1;
+//  incx_gen = 1;
   incy_gen = 1;
-  incx_gen *= 2;
+//  incx_gen *= 2;
   incy_gen *= 2;
 
   /* get space for calculation */
@@ -17104,7 +17104,7 @@ double do_test_zgbmv2_d_d_x(int m, int n, int ntests, int *seed,
 
   FPU_FIX_START;
 
-  incx_gen = 1;
+//  incx_gen = 1;
   incy_gen = 1;
 
   incy_gen *= 2;

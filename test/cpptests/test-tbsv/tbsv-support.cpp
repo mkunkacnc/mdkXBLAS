@@ -63,13 +63,13 @@ void stbsv_copy(enum blas_order_type order, enum blas_uplo_type uplo,
     new_trans = blas_no_trans;
   } else if (trans == blas_conj_trans) {
     new_trans = blas_trans;
-    conj = 1;
+//    conj = 1;
   } else if (trans == blas_trans) {
     new_trans = blas_trans;
   } else {
     /* conj, no trans */
     new_trans = blas_no_trans;
-    conj = 1;
+//    conj = 1;
   }
   sgbmv_copy(order, new_trans, n, n, kl, ku, T, ldt, y, row);
 
@@ -138,13 +138,13 @@ void stbsv_commit(enum blas_order_type order, enum blas_uplo_type uplo,
     new_trans = blas_no_trans;
   } else if (trans == blas_conj_trans) {
     new_trans = blas_trans;
-    conj = 1;
+//    conj = 1;
   } else if (trans == blas_trans) {
     new_trans = blas_trans;
   } else {
     /* conj, no trans */
     new_trans = blas_no_trans;
-    conj = 1;
+//    conj = 1;
   }
 
 
@@ -217,13 +217,13 @@ void dtbsv_copy(enum blas_order_type order, enum blas_uplo_type uplo,
     new_trans = blas_no_trans;
   } else if (trans == blas_conj_trans) {
     new_trans = blas_trans;
-    conj = 1;
+//    conj = 1;
   } else if (trans == blas_trans) {
     new_trans = blas_trans;
   } else {
     /* conj, no trans */
     new_trans = blas_no_trans;
-    conj = 1;
+//    conj = 1;
   }
   dgbmv_copy(order, new_trans, n, n, kl, ku, T, ldt, y, row);
 
@@ -292,13 +292,13 @@ void dtbsv_commit(enum blas_order_type order, enum blas_uplo_type uplo,
     new_trans = blas_no_trans;
   } else if (trans == blas_conj_trans) {
     new_trans = blas_trans;
-    conj = 1;
+//    conj = 1;
   } else if (trans == blas_trans) {
     new_trans = blas_trans;
   } else {
     /* conj, no trans */
     new_trans = blas_no_trans;
-    conj = 1;
+//    conj = 1;
   }
 
 

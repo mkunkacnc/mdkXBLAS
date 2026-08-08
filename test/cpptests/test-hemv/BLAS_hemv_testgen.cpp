@@ -136,7 +136,7 @@ void BLAS_sskew_testgen_hemv(int norm, enum blas_order_type order,
   incri = 1;
 
 
-  incx_veci = 1;
+//  incx_veci = 1;
 
 
   if (randomize == 0) {
@@ -340,7 +340,7 @@ void BLAS_dskew_testgen_hemv(int norm, enum blas_order_type order,
   incri = 1;
 
 
-  incx_veci = 1;
+//  incx_veci = 1;
 
 
   if (randomize == 0) {
@@ -544,7 +544,7 @@ void BLAS_dskew_testgen_hemv_d_s(int norm, enum blas_order_type order,
   incri = 1;
 
 
-  incx_veci = 1;
+//  incx_veci = 1;
 
 
   if (randomize == 0) {
@@ -748,7 +748,7 @@ void BLAS_dskew_testgen_hemv_s_d(int norm, enum blas_order_type order,
   incri = 1;
 
 
-  incx_veci = 1;
+//  incx_veci = 1;
 
 
   if (randomize == 0) {
@@ -952,7 +952,7 @@ void BLAS_dskew_testgen_hemv_s_s(int norm, enum blas_order_type order,
   incri = 1;
 
 
-  incx_veci = 1;
+//  incx_veci = 1;
 
 
   if (randomize == 0) {
@@ -1173,7 +1173,7 @@ void BLAS_chemv_testgen(int norm, enum blas_order_type order,
 
     n_i = n;
 
-    ld = n_i;
+//    ld = n_i;
 
 
 
@@ -1764,7 +1764,7 @@ void BLAS_zhemv_testgen(int norm, enum blas_order_type order,
 
     n_i = n;
 
-    ld = n_i;
+//    ld = n_i;
 
 
 
@@ -2355,7 +2355,7 @@ void BLAS_zhemv_c_z_testgen(int norm, enum blas_order_type order,
 
     n_i = n;
 
-    ld = n_i;
+//    ld = n_i;
 
 
 
@@ -2946,7 +2946,7 @@ void BLAS_zhemv_z_c_testgen(int norm, enum blas_order_type order,
 
     n_i = n;
 
-    ld = n_i;
+//    ld = n_i;
 
 
 
@@ -3537,7 +3537,7 @@ void BLAS_zhemv_c_c_testgen(int norm, enum blas_order_type order,
 
     n_i = n;
 
-    ld = n_i;
+//    ld = n_i;
 
 
 
@@ -4128,7 +4128,7 @@ void BLAS_zhemv_z_d_testgen(int norm, enum blas_order_type order,
 
     n_i = n;
 
-    ld = n_i;
+//    ld = n_i;
 
 
 
@@ -4650,7 +4650,7 @@ void BLAS_chemv_c_s_testgen(int norm, enum blas_order_type order,
 
     n_i = n;
 
-    ld = n_i;
+//    ld = n_i;
 
 
 

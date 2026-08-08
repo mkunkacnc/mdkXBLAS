@@ -197,8 +197,8 @@ double do_test_dtrsv_s(int n,
   p_count = 0;
   count = 0;
   find_max_ratio = 0;
-  beta = 0.0;
-  beta_flag = 1;
+//  beta = 0.0;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -769,7 +769,7 @@ double do_test_ztrsv_c(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -1374,7 +1374,7 @@ double do_test_ctrsv_s(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -1977,7 +1977,7 @@ double do_test_ztrsv_d(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -2579,8 +2579,8 @@ double do_test_strsv_x(int n,
   p_count = 0;
   count = 0;
   find_max_ratio = 0;
-  beta = 0.0;
-  beta_flag = 1;
+//  beta = 0.0;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -3170,8 +3170,8 @@ double do_test_dtrsv_x(int n,
   p_count = 0;
   count = 0;
   find_max_ratio = 0;
-  beta = 0.0;
-  beta_flag = 1;
+//  beta = 0.0;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -3762,8 +3762,8 @@ double do_test_dtrsv_s_x(int n,
   p_count = 0;
   count = 0;
   find_max_ratio = 0;
-  beta = 0.0;
-  beta_flag = 1;
+//  beta = 0.0;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -4355,7 +4355,7 @@ double do_test_ctrsv_x(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -4981,7 +4981,7 @@ double do_test_ztrsv_x(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -5610,7 +5610,7 @@ double do_test_ztrsv_c_x(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -6239,7 +6239,7 @@ double do_test_ctrsv_s_x(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -6865,7 +6865,7 @@ double do_test_ztrsv_d_x(int n,
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 

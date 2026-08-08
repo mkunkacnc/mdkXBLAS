@@ -168,9 +168,9 @@ void do_test_dsymm_d_s
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
 
 
@@ -246,7 +246,7 @@ void do_test_dsymm_d_s
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -610,9 +610,9 @@ void do_test_dsymm_s_d
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
 
 
@@ -688,7 +688,7 @@ void do_test_dsymm_s_d
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -1052,9 +1052,9 @@ void do_test_dsymm_s_s
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
 
 
@@ -1130,7 +1130,7 @@ void do_test_dsymm_s_s
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -1495,12 +1495,12 @@ void do_test_zsymm_z_c
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -1575,7 +1575,7 @@ void do_test_zsymm_z_c
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -1944,12 +1944,12 @@ void do_test_zsymm_c_z
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -2024,7 +2024,7 @@ void do_test_zsymm_c_z
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -2393,12 +2393,12 @@ void do_test_zsymm_c_c
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -2473,7 +2473,7 @@ void do_test_zsymm_c_c
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -2842,12 +2842,12 @@ void do_test_csymm_c_s
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
 
-  incc *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (float *) blas_malloc(2 * m * n * sizeof(float) * 2);
@@ -2922,7 +2922,7 @@ void do_test_csymm_c_s
       eps_int = power(2, -BITS_S);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
-      prec = blas_prec_single;
+//      prec = blas_prec_single;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -3291,12 +3291,12 @@ void do_test_csymm_s_c
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
-  incb *= 2;
-  incc *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (float *) blas_malloc(2 * m * n * sizeof(float) * 2);
@@ -3371,7 +3371,7 @@ void do_test_csymm_s_c
       eps_int = power(2, -BITS_S);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
-      prec = blas_prec_single;
+//      prec = blas_prec_single;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -3740,12 +3740,12 @@ void do_test_csymm_s_s
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
 
-  incc *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (float *) blas_malloc(2 * m * n * sizeof(float) * 2);
@@ -3820,7 +3820,7 @@ void do_test_csymm_s_s
       eps_int = power(2, -BITS_S);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
-      prec = blas_prec_single;
+//      prec = blas_prec_single;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -4189,12 +4189,12 @@ void do_test_zsymm_z_d
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
 
-  incc *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -4269,7 +4269,7 @@ void do_test_zsymm_z_d
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -4638,12 +4638,12 @@ void do_test_zsymm_d_z
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
-  incb *= 2;
-  incc *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -4718,7 +4718,7 @@ void do_test_zsymm_d_z
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -5087,12 +5087,12 @@ void do_test_zsymm_d_d
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
 
-  incc *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -5167,7 +5167,7 @@ void do_test_zsymm_d_d
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -5535,9 +5535,9 @@ void do_test_ssymm_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
 
 
@@ -6001,9 +6001,9 @@ void do_test_dsymm_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
 
 
@@ -6468,12 +6468,12 @@ void do_test_csymm_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (float *) blas_malloc(2 * m * n * sizeof(float) * 2);
@@ -6941,12 +6941,12 @@ void do_test_zsymm_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -7414,9 +7414,9 @@ void do_test_dsymm_d_s_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
 
 
@@ -7880,9 +7880,9 @@ void do_test_dsymm_s_d_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
 
 
@@ -8346,9 +8346,9 @@ void do_test_dsymm_s_s_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
 
 
@@ -8813,12 +8813,12 @@ void do_test_zsymm_z_c_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -9287,12 +9287,12 @@ void do_test_zsymm_c_z_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -9761,12 +9761,12 @@ void do_test_zsymm_c_c_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
-  incb *= 2;
-  incc *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -10235,12 +10235,12 @@ void do_test_csymm_c_s_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
 
-  incc *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (float *) blas_malloc(2 * m * n * sizeof(float) * 2);
@@ -10708,12 +10708,12 @@ void do_test_csymm_s_c_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
-  incb *= 2;
-  incc *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (float *) blas_malloc(2 * m * n * sizeof(float) * 2);
@@ -11181,12 +11181,12 @@ void do_test_csymm_s_s_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
 
-  incc *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (float *) blas_malloc(2 * m * n * sizeof(float) * 2);
@@ -11654,12 +11654,12 @@ void do_test_zsymm_z_d_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
-  inca *= 2;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
+//  inca *= 2;
 
-  incc *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -12128,12 +12128,12 @@ void do_test_zsymm_d_z_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
-  incb *= 2;
-  incc *= 2;
+//  incb *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);
@@ -12602,12 +12602,12 @@ void do_test_zsymm_d_d_x
 
   max_mn = (m > n) ? m : n;
 
-  inca = 1;
-  incb = 1;
-  incc = 1;
+//  inca = 1;
+//  incb = 1;
+//  incc = 1;
 
 
-  incc *= 2;
+//  incc *= 2;
 
   /* allocate memory for arrays */
   c = (double *) blas_malloc(2 * m * n * sizeof(double) * 2);

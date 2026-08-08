@@ -166,18 +166,18 @@ double do_test_dwaxpby_d_s(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -250,11 +250,11 @@ double do_test_dwaxpby_d_s(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1 = 1.0;
+//  x_fix1 = 1.0;
   x_fix2 = 1.0;
-  zero = 0.0;
-  one = 1.0;
-  dummy = 0.0;;
+//  zero = 0.0;
+//  one = 1.0;
+//  dummy = 0.0;;
 
 
   /* The debug iteration:
@@ -386,8 +386,8 @@ double do_test_dwaxpby_d_s(int n,
                 iy += incy;
                 iw += incw;
                 if (MAX(ratio, new_ratio) == new_ratio) {
-                  iymax = iy - incy;
-                  ixmax = ix - incx;
+//                  iymax = iy - incy;
+//                  ixmax = ix - incx;
                 }
                 ratio = MAX(ratio, new_ratio);
               }
@@ -680,18 +680,18 @@ double do_test_dwaxpby_s_d(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -765,10 +765,10 @@ double do_test_dwaxpby_s_d(int n,
   if (debug == 3)
     find_max_ratio = 1;
   x_fix1 = 1.0;
-  x_fix2 = 1.0;
-  zero = 0.0;
-  one = 1.0;
-  dummy = 0.0;;
+//  x_fix2 = 1.0;
+//  zero = 0.0;
+//  one = 1.0;
+//  dummy = 0.0;;
 
 
   /* The debug iteration:
@@ -900,8 +900,8 @@ double do_test_dwaxpby_s_d(int n,
                 iy += incy;
                 iw += incw;
                 if (MAX(ratio, new_ratio) == new_ratio) {
-                  iymax = iy - incy;
-                  ixmax = ix - incx;
+//                  iymax = iy - incy;
+//                  ixmax = ix - incx;
                 }
                 ratio = MAX(ratio, new_ratio);
               }
@@ -1194,18 +1194,18 @@ double do_test_dwaxpby_s_s(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -1278,8 +1278,8 @@ double do_test_dwaxpby_s_s(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1 = 1.0;
-  x_fix2 = 1.0;
+//  x_fix1 = 1.0;
+//  x_fix2 = 1.0;
   zero = 0.0;
   one = 1.0;
   dummy = 0.0;;
@@ -1421,8 +1421,8 @@ double do_test_dwaxpby_s_s(int n,
                                    tail_w_true[test_val], temp_ab, 1, temp_xy,
                                    1, eps_int, un_int, &new_ratio);
                 if (MAX(ratio, new_ratio) == new_ratio) {
-                  iymax = iy;
-                  ixmax = ix;
+//                  iymax = iy;
+//                  ixmax = ix;
                 }
                 ratio = MAX(ratio, new_ratio);
 
@@ -1720,18 +1720,18 @@ double do_test_zwaxpby_z_c(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -1804,13 +1804,13 @@ double do_test_zwaxpby_z_c(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1[0] = 1.0;
-  x_fix1[1] = 0.0;
+//  x_fix1[0] = 1.0;
+//  x_fix1[1] = 0.0;
   x_fix2[0] = 1.0;
   x_fix2[1] = 0.0;
   zero[0] = zero[1] = 0.0;
-  one[0] = 1.0;
-  one[1] = 0.0;
+//  one[0] = 1.0;
+//  one[1] = 0.0;
   dummy[0] = dummy[1] = 0.0;;
 
 
@@ -1956,8 +1956,8 @@ double do_test_zwaxpby_z_c(int n,
                 iy += incy;
                 iw += incw;
                 if (MAX(ratio, new_ratio) == new_ratio) {
-                  iymax = iy - incy;
-                  ixmax = ix - incx;
+//                  iymax = iy - incy;
+//                  ixmax = ix - incx;
                 }
                 ratio = MAX(ratio, new_ratio);
               }
@@ -2251,18 +2251,18 @@ double do_test_zwaxpby_c_z(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -2337,11 +2337,11 @@ double do_test_zwaxpby_c_z(int n,
     find_max_ratio = 1;
   x_fix1[0] = 1.0;
   x_fix1[1] = 0.0;
-  x_fix2[0] = 1.0;
-  x_fix2[1] = 0.0;
+//  x_fix2[0] = 1.0;
+//  x_fix2[1] = 0.0;
   zero[0] = zero[1] = 0.0;
-  one[0] = 1.0;
-  one[1] = 0.0;
+//  one[0] = 1.0;
+//  one[1] = 0.0;
   dummy[0] = dummy[1] = 0.0;;
 
 
@@ -2487,8 +2487,8 @@ double do_test_zwaxpby_c_z(int n,
                 iy += incy;
                 iw += incw;
                 if (MAX(ratio, new_ratio) == new_ratio) {
-                  iymax = iy - incy;
-                  ixmax = ix - incx;
+//                  iymax = iy - incy;
+//                  ixmax = ix - incx;
                 }
                 ratio = MAX(ratio, new_ratio);
               }
@@ -2782,18 +2782,18 @@ double do_test_zwaxpby_c_c(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -2866,10 +2866,10 @@ double do_test_zwaxpby_c_c(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1[0] = 1.0;
-  x_fix1[1] = 0.0;
-  x_fix2[0] = 1.0;
-  x_fix2[1] = 0.0;
+//  x_fix1[0] = 1.0;
+//  x_fix1[1] = 0.0;
+//  x_fix2[0] = 1.0;
+//  x_fix2[1] = 0.0;
   zero[0] = zero[1] = 0.0;
   one[0] = 1.0;
   one[1] = 0.0;
@@ -3032,8 +3032,8 @@ double do_test_zwaxpby_c_c(int n,
                                    &temp_xy[0], 1, eps_int, un_int,
                                    &new_ratio);
                 if (MAX(ratio, new_ratio) == new_ratio) {
-                  iymax = iy;
-                  ixmax = ix;
+//                  iymax = iy;
+//                  ixmax = ix;
                 }
                 ratio = MAX(ratio, new_ratio);
 
@@ -3339,10 +3339,10 @@ double do_test_cwaxpby_c_s(int n,
   wttemp = 0.0;
   x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
-  y_i = 0.0;
-  X = 0.0;
-  X_int = 0;
-  gen_val = 0;
+//  y_i = 0.0;
+//  X = 0.0;
+//  X_int = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -3415,12 +3415,12 @@ double do_test_cwaxpby_c_s(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1[0] = 1.0;
-  x_fix1[1] = 0.0;
+//  x_fix1[0] = 1.0;
+//  x_fix1[1] = 0.0;
   x_fix2 = 1.0;
   zero[0] = zero[1] = 0.0;
-  one[0] = 1.0;
-  one[1] = 0.0;
+//  one[0] = 1.0;
+//  one[1] = 0.0;
   dummy[0] = dummy[1] = 0.0;;
 
 
@@ -3577,8 +3577,8 @@ double do_test_cwaxpby_c_s(int n,
                 iy += incy;
                 iw += incw;
                 if (MAX(ratio, new_ratio) == new_ratio) {
-                  iymax = iy - incy;
-                  ixmax = ix - incx;
+//                  iymax = iy - incy;
+//                  ixmax = ix - incx;
                 }
                 ratio = MAX(ratio, new_ratio);
               }
@@ -3879,11 +3879,11 @@ double do_test_cwaxpby_s_c(int n,
   wltemp = 0.0;
   wttemp = 0.0;
   x_fix1_temp = 0.0;
-  x_i = 0.0;
+//  x_i = 0.0;
   y_i[0] = y_i[1] = 0.0;
-  X = 0.0;
-  X_int = 0;
-  gen_val = 0;
+//  X = 0.0;
+//  X_int = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -3957,11 +3957,11 @@ double do_test_cwaxpby_s_c(int n,
   if (debug == 3)
     find_max_ratio = 1;
   x_fix1 = 1.0;
-  x_fix2[0] = 1.0;
-  x_fix2[1] = 0.0;
+//  x_fix2[0] = 1.0;
+//  x_fix2[1] = 0.0;
   zero[0] = zero[1] = 0.0;
-  one[0] = 1.0;
-  one[1] = 0.0;
+//  one[0] = 1.0;
+//  one[1] = 0.0;
   dummy[0] = dummy[1] = 0.0;;
 
 
@@ -4119,8 +4119,8 @@ double do_test_cwaxpby_s_c(int n,
                 iy += incy;
                 iw += incw;
                 if (MAX(ratio, new_ratio) == new_ratio) {
-                  iymax = iy - incy;
-                  ixmax = ix - incx;
+//                  iymax = iy - incy;
+//                  ixmax = ix - incx;
                 }
                 ratio = MAX(ratio, new_ratio);
               }
@@ -4421,11 +4421,11 @@ double do_test_cwaxpby_s_s(int n,
   wltemp = 0.0;
   wttemp = 0.0;
   x_fix1_temp = 0.0;
-  x_i = 0.0;
-  y_i = 0.0;
-  X = 0.0;
-  X_int = 0;
-  gen_val = 0;
+//  x_i = 0.0;
+//  y_i = 0.0;
+//  X = 0.0;
+//  X_int = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -4498,8 +4498,8 @@ double do_test_cwaxpby_s_s(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1 = 1.0;
-  x_fix2 = 1.0;
+//  x_fix1 = 1.0;
+//  x_fix2 = 1.0;
   zero[0] = zero[1] = 0.0;
   one[0] = 1.0;
   one[1] = 0.0;
@@ -4663,8 +4663,8 @@ double do_test_cwaxpby_s_s(int n,
                                    &temp_xy[0], 1, eps_int, un_int,
                                    &new_ratio);
                 if (MAX(ratio, new_ratio) == new_ratio) {
-                  iymax = iy;
-                  ixmax = ix;
+//                  iymax = iy;
+//                  ixmax = ix;
                 }
                 ratio = MAX(ratio, new_ratio);
 
@@ -4962,18 +4962,18 @@ double do_test_zwaxpby_z_d(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -5046,12 +5046,12 @@ double do_test_zwaxpby_z_d(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1[0] = 1.0;
-  x_fix1[1] = 0.0;
+//  x_fix1[0] = 1.0;
+//  x_fix1[1] = 0.0;
   x_fix2 = 1.0;
   zero[0] = zero[1] = 0.0;
-  one[0] = 1.0;
-  one[1] = 0.0;
+//  one[0] = 1.0;
+//  one[1] = 0.0;
   dummy[0] = dummy[1] = 0.0;;
 
 
@@ -5193,8 +5193,8 @@ double do_test_zwaxpby_z_d(int n,
                 iy += incy;
                 iw += incw;
                 if (MAX(ratio, new_ratio) == new_ratio) {
-                  iymax = iy - incy;
-                  ixmax = ix - incx;
+//                  iymax = iy - incy;
+//                  ixmax = ix - incx;
                 }
                 ratio = MAX(ratio, new_ratio);
               }
@@ -5488,18 +5488,18 @@ double do_test_zwaxpby_d_z(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -5573,11 +5573,11 @@ double do_test_zwaxpby_d_z(int n,
   if (debug == 3)
     find_max_ratio = 1;
   x_fix1 = 1.0;
-  x_fix2[0] = 1.0;
-  x_fix2[1] = 0.0;
+//  x_fix2[0] = 1.0;
+//  x_fix2[1] = 0.0;
   zero[0] = zero[1] = 0.0;
-  one[0] = 1.0;
-  one[1] = 0.0;
+//  one[0] = 1.0;
+//  one[1] = 0.0;
   dummy[0] = dummy[1] = 0.0;;
 
 
@@ -5719,8 +5719,8 @@ double do_test_zwaxpby_d_z(int n,
                 iy += incy;
                 iw += incw;
                 if (MAX(ratio, new_ratio) == new_ratio) {
-                  iymax = iy - incy;
-                  ixmax = ix - incx;
+//                  iymax = iy - incy;
+//                  ixmax = ix - incx;
                 }
                 ratio = MAX(ratio, new_ratio);
               }
@@ -6014,18 +6014,18 @@ double do_test_zwaxpby_d_d(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -6098,8 +6098,8 @@ double do_test_zwaxpby_d_d(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1 = 1.0;
-  x_fix2 = 1.0;
+//  x_fix1 = 1.0;
+//  x_fix2 = 1.0;
   zero[0] = zero[1] = 0.0;
   one[0] = 1.0;
   one[1] = 0.0;
@@ -6250,8 +6250,8 @@ double do_test_zwaxpby_d_d(int n,
                                    &temp_xy[0], 1, eps_int, un_int,
                                    &new_ratio);
                 if (MAX(ratio, new_ratio) == new_ratio) {
-                  iymax = iy;
-                  ixmax = ix;
+//                  iymax = iy;
+//                  ixmax = ix;
                 }
                 ratio = MAX(ratio, new_ratio);
 
@@ -6548,18 +6548,18 @@ double do_test_swaxpby_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
-  x_i = 0.0;
-  y_i = 0.0;
-  X = 0.0;
-  X_int = 0;
-  gen_val = 0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
+//  x_i = 0.0;
+//  y_i = 0.0;
+//  X = 0.0;
+//  X_int = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -6633,10 +6633,10 @@ double do_test_swaxpby_x(int n,
   if (debug == 3)
     find_max_ratio = 1;
   x_fix1 = 1.0;
-  x_fix2 = 1.0;
-  zero = 0.0;
-  one = 1.0;
-  dummy = 0.0;;
+//  x_fix2 = 1.0;
+//  zero = 0.0;
+//  one = 1.0;
+//  dummy = 0.0;;
 
 
   /* The debug iteration:
@@ -6783,8 +6783,8 @@ double do_test_swaxpby_x(int n,
                   iy += incy;
                   iw += incw;
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy - incy;
-                    ixmax = ix - incx;
+//                    iymax = iy - incy;
+//                    ixmax = ix - incx;
                   }
                   ratio = MAX(ratio, new_ratio);
                 }
@@ -7077,18 +7077,18 @@ double do_test_dwaxpby_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
-  x_i = 0.0;
-  y_i = 0.0;
-  X = 0.0;
-  X_int = 0;
-  gen_val = 0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
+//  x_i = 0.0;
+//  y_i = 0.0;
+//  X = 0.0;
+//  X_int = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -7162,10 +7162,10 @@ double do_test_dwaxpby_x(int n,
   if (debug == 3)
     find_max_ratio = 1;
   x_fix1 = 1.0;
-  x_fix2 = 1.0;
-  zero = 0.0;
-  one = 1.0;
-  dummy = 0.0;;
+//  x_fix2 = 1.0;
+//  zero = 0.0;
+//  one = 1.0;
+//  dummy = 0.0;;
 
 
   /* The debug iteration:
@@ -7312,8 +7312,8 @@ double do_test_dwaxpby_x(int n,
                   iy += incy;
                   iw += incw;
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy - incy;
-                    ixmax = ix - incx;
+//                    iymax = iy - incy;
+//                    ixmax = ix - incx;
                   }
                   ratio = MAX(ratio, new_ratio);
                 }
@@ -7607,18 +7607,18 @@ double do_test_cwaxpby_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
-  X = 0.0;
-  X_int = 0;
-  gen_val = 0;
+//  X = 0.0;
+//  X_int = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -7693,11 +7693,11 @@ double do_test_cwaxpby_x(int n,
     find_max_ratio = 1;
   x_fix1[0] = 1.0;
   x_fix1[1] = 0.0;
-  x_fix2[0] = 1.0;
-  x_fix2[1] = 0.0;
+//  x_fix2[0] = 1.0;
+//  x_fix2[1] = 0.0;
   zero[0] = zero[1] = 0.0;
-  one[0] = 1.0;
-  one[1] = 0.0;
+//  one[0] = 1.0;
+//  one[1] = 0.0;
   dummy[0] = dummy[1] = 0.0;;
 
 
@@ -7849,8 +7849,8 @@ double do_test_cwaxpby_x(int n,
                   iy += incy;
                   iw += incw;
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy - incy;
-                    ixmax = ix - incx;
+//                    iymax = iy - incy;
+//                    ixmax = ix - incx;
                   }
                   ratio = MAX(ratio, new_ratio);
                 }
@@ -8144,18 +8144,18 @@ double do_test_zwaxpby_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
-  X = 0.0;
-  X_int = 0;
-  gen_val = 0;
+//  X = 0.0;
+//  X_int = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -8230,11 +8230,11 @@ double do_test_zwaxpby_x(int n,
     find_max_ratio = 1;
   x_fix1[0] = 1.0;
   x_fix1[1] = 0.0;
-  x_fix2[0] = 1.0;
-  x_fix2[1] = 0.0;
+//  x_fix2[0] = 1.0;
+//  x_fix2[1] = 0.0;
   zero[0] = zero[1] = 0.0;
-  one[0] = 1.0;
-  one[1] = 0.0;
+//  one[0] = 1.0;
+//  one[1] = 0.0;
   dummy[0] = dummy[1] = 0.0;;
 
 
@@ -8386,8 +8386,8 @@ double do_test_zwaxpby_x(int n,
                   iy += incy;
                   iw += incw;
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy - incy;
-                    ixmax = ix - incx;
+//                    iymax = iy - incy;
+//                    ixmax = ix - incx;
                   }
                   ratio = MAX(ratio, new_ratio);
                 }
@@ -8680,18 +8680,18 @@ double do_test_dwaxpby_d_s_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -8764,11 +8764,11 @@ double do_test_dwaxpby_d_s_x(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1 = 1.0;
+//  x_fix1 = 1.0;
   x_fix2 = 1.0;
-  zero = 0.0;
-  one = 1.0;
-  dummy = 0.0;;
+//  zero = 0.0;
+//  one = 1.0;
+//  dummy = 0.0;;
 
 
   /* The debug iteration:
@@ -8920,8 +8920,8 @@ double do_test_dwaxpby_d_s_x(int n,
                   iy += incy;
                   iw += incw;
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy - incy;
-                    ixmax = ix - incx;
+//                    iymax = iy - incy;
+//                    ixmax = ix - incx;
                   }
                   ratio = MAX(ratio, new_ratio);
                 }
@@ -9214,18 +9214,18 @@ double do_test_dwaxpby_s_d_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -9299,10 +9299,10 @@ double do_test_dwaxpby_s_d_x(int n,
   if (debug == 3)
     find_max_ratio = 1;
   x_fix1 = 1.0;
-  x_fix2 = 1.0;
-  zero = 0.0;
-  one = 1.0;
-  dummy = 0.0;;
+//  x_fix2 = 1.0;
+//  zero = 0.0;
+//  one = 1.0;
+//  dummy = 0.0;;
 
 
   /* The debug iteration:
@@ -9454,8 +9454,8 @@ double do_test_dwaxpby_s_d_x(int n,
                   iy += incy;
                   iw += incw;
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy - incy;
-                    ixmax = ix - incx;
+//                    iymax = iy - incy;
+//                    ixmax = ix - incx;
                   }
                   ratio = MAX(ratio, new_ratio);
                 }
@@ -9748,18 +9748,18 @@ double do_test_dwaxpby_s_s_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -9832,8 +9832,8 @@ double do_test_dwaxpby_s_s_x(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1 = 1.0;
-  x_fix2 = 1.0;
+//  x_fix1 = 1.0;
+//  x_fix2 = 1.0;
   zero = 0.0;
   one = 1.0;
   dummy = 0.0;;
@@ -9994,8 +9994,8 @@ double do_test_dwaxpby_s_s_x(int n,
                                      tail_w_true[test_val], temp_ab, 1,
                                      temp_xy, 1, eps_int, un_int, &new_ratio);
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy;
-                    ixmax = ix;
+//                    iymax = iy;
+//                    ixmax = ix;
                   }
                   ratio = MAX(ratio, new_ratio);
 
@@ -10293,18 +10293,18 @@ double do_test_zwaxpby_z_c_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -10377,13 +10377,13 @@ double do_test_zwaxpby_z_c_x(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1[0] = 1.0;
-  x_fix1[1] = 0.0;
+//  x_fix1[0] = 1.0;
+//  x_fix1[1] = 0.0;
   x_fix2[0] = 1.0;
   x_fix2[1] = 0.0;
   zero[0] = zero[1] = 0.0;
-  one[0] = 1.0;
-  one[1] = 0.0;
+//  one[0] = 1.0;
+//  one[1] = 0.0;
   dummy[0] = dummy[1] = 0.0;;
 
 
@@ -10549,8 +10549,8 @@ double do_test_zwaxpby_z_c_x(int n,
                   iy += incy;
                   iw += incw;
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy - incy;
-                    ixmax = ix - incx;
+//                    iymax = iy - incy;
+//                    ixmax = ix - incx;
                   }
                   ratio = MAX(ratio, new_ratio);
                 }
@@ -10844,18 +10844,18 @@ double do_test_zwaxpby_c_z_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -10930,11 +10930,11 @@ double do_test_zwaxpby_c_z_x(int n,
     find_max_ratio = 1;
   x_fix1[0] = 1.0;
   x_fix1[1] = 0.0;
-  x_fix2[0] = 1.0;
-  x_fix2[1] = 0.0;
+//  x_fix2[0] = 1.0;
+//  x_fix2[1] = 0.0;
   zero[0] = zero[1] = 0.0;
-  one[0] = 1.0;
-  one[1] = 0.0;
+//  one[0] = 1.0;
+//  one[1] = 0.0;
   dummy[0] = dummy[1] = 0.0;;
 
 
@@ -11100,8 +11100,8 @@ double do_test_zwaxpby_c_z_x(int n,
                   iy += incy;
                   iw += incw;
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy - incy;
-                    ixmax = ix - incx;
+//                    iymax = iy - incy;
+//                    ixmax = ix - incx;
                   }
                   ratio = MAX(ratio, new_ratio);
                 }
@@ -11395,18 +11395,18 @@ double do_test_zwaxpby_c_c_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -11479,10 +11479,10 @@ double do_test_zwaxpby_c_c_x(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1[0] = 1.0;
-  x_fix1[1] = 0.0;
-  x_fix2[0] = 1.0;
-  x_fix2[1] = 0.0;
+//  x_fix1[0] = 1.0;
+//  x_fix1[1] = 0.0;
+//  x_fix2[0] = 1.0;
+//  x_fix2[1] = 0.0;
   zero[0] = zero[1] = 0.0;
   one[0] = 1.0;
   one[1] = 0.0;
@@ -11664,8 +11664,8 @@ double do_test_zwaxpby_c_c_x(int n,
                                      &temp_xy[0], 1, eps_int, un_int,
                                      &new_ratio);
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy;
-                    ixmax = ix;
+//                    iymax = iy;
+//                    ixmax = ix;
                   }
                   ratio = MAX(ratio, new_ratio);
 
@@ -11971,10 +11971,10 @@ double do_test_cwaxpby_c_s_x(int n,
   wttemp = 0.0;
   x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
-  y_i = 0.0;
-  X = 0.0;
-  X_int = 0;
-  gen_val = 0;
+//  y_i = 0.0;
+//  X = 0.0;
+//  X_int = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -12047,12 +12047,12 @@ double do_test_cwaxpby_c_s_x(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1[0] = 1.0;
-  x_fix1[1] = 0.0;
+//  x_fix1[0] = 1.0;
+//  x_fix1[1] = 0.0;
   x_fix2 = 1.0;
   zero[0] = zero[1] = 0.0;
-  one[0] = 1.0;
-  one[1] = 0.0;
+//  one[0] = 1.0;
+//  one[1] = 0.0;
   dummy[0] = dummy[1] = 0.0;;
 
 
@@ -12229,8 +12229,8 @@ double do_test_cwaxpby_c_s_x(int n,
                   iy += incy;
                   iw += incw;
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy - incy;
-                    ixmax = ix - incx;
+//                    iymax = iy - incy;
+//                    ixmax = ix - incx;
                   }
                   ratio = MAX(ratio, new_ratio);
                 }
@@ -12531,11 +12531,11 @@ double do_test_cwaxpby_s_c_x(int n,
   wltemp = 0.0;
   wttemp = 0.0;
   x_fix1_temp = 0.0;
-  x_i = 0.0;
+//  x_i = 0.0;
   y_i[0] = y_i[1] = 0.0;
-  X = 0.0;
-  X_int = 0;
-  gen_val = 0;
+//  X = 0.0;
+//  X_int = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -12609,11 +12609,11 @@ double do_test_cwaxpby_s_c_x(int n,
   if (debug == 3)
     find_max_ratio = 1;
   x_fix1 = 1.0;
-  x_fix2[0] = 1.0;
-  x_fix2[1] = 0.0;
+//  x_fix2[0] = 1.0;
+//  x_fix2[1] = 0.0;
   zero[0] = zero[1] = 0.0;
-  one[0] = 1.0;
-  one[1] = 0.0;
+//  one[0] = 1.0;
+//  one[1] = 0.0;
   dummy[0] = dummy[1] = 0.0;;
 
 
@@ -12791,8 +12791,8 @@ double do_test_cwaxpby_s_c_x(int n,
                   iy += incy;
                   iw += incw;
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy - incy;
-                    ixmax = ix - incx;
+//                    iymax = iy - incy;
+//                    ixmax = ix - incx;
                   }
                   ratio = MAX(ratio, new_ratio);
                 }
@@ -13093,11 +13093,11 @@ double do_test_cwaxpby_s_s_x(int n,
   wltemp = 0.0;
   wttemp = 0.0;
   x_fix1_temp = 0.0;
-  x_i = 0.0;
-  y_i = 0.0;
-  X = 0.0;
-  X_int = 0;
-  gen_val = 0;
+//  x_i = 0.0;
+//  y_i = 0.0;
+//  X = 0.0;
+//  X_int = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -13170,8 +13170,8 @@ double do_test_cwaxpby_s_s_x(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1 = 1.0;
-  x_fix2 = 1.0;
+//  x_fix1 = 1.0;
+//  x_fix2 = 1.0;
   zero[0] = zero[1] = 0.0;
   one[0] = 1.0;
   one[1] = 0.0;
@@ -13354,8 +13354,8 @@ double do_test_cwaxpby_s_s_x(int n,
                                      &temp_xy[0], 1, eps_int, un_int,
                                      &new_ratio);
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy;
-                    ixmax = ix;
+//                    iymax = iy;
+//                    ixmax = ix;
                   }
                   ratio = MAX(ratio, new_ratio);
 
@@ -13653,18 +13653,18 @@ double do_test_zwaxpby_z_d_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i[0] = x_i[1] = 0.0;
   y_i = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -13737,12 +13737,12 @@ double do_test_zwaxpby_z_d_x(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1[0] = 1.0;
-  x_fix1[1] = 0.0;
+//  x_fix1[0] = 1.0;
+//  x_fix1[1] = 0.0;
   x_fix2 = 1.0;
   zero[0] = zero[1] = 0.0;
-  one[0] = 1.0;
-  one[1] = 0.0;
+//  one[0] = 1.0;
+//  one[1] = 0.0;
   dummy[0] = dummy[1] = 0.0;;
 
 
@@ -13904,8 +13904,8 @@ double do_test_zwaxpby_z_d_x(int n,
                   iy += incy;
                   iw += incw;
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy - incy;
-                    ixmax = ix - incx;
+//                    iymax = iy - incy;
+//                    ixmax = ix - incx;
                   }
                   ratio = MAX(ratio, new_ratio);
                 }
@@ -14199,18 +14199,18 @@ double do_test_zwaxpby_d_z_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i[0] = y_i[1] = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -14284,11 +14284,11 @@ double do_test_zwaxpby_d_z_x(int n,
   if (debug == 3)
     find_max_ratio = 1;
   x_fix1 = 1.0;
-  x_fix2[0] = 1.0;
-  x_fix2[1] = 0.0;
+//  x_fix2[0] = 1.0;
+//  x_fix2[1] = 0.0;
   zero[0] = zero[1] = 0.0;
-  one[0] = 1.0;
-  one[1] = 0.0;
+//  one[0] = 1.0;
+//  one[1] = 0.0;
   dummy[0] = dummy[1] = 0.0;;
 
 
@@ -14450,8 +14450,8 @@ double do_test_zwaxpby_d_z_x(int n,
                   iy += incy;
                   iw += incw;
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy - incy;
-                    ixmax = ix - incx;
+//                    iymax = iy - incy;
+//                    ixmax = ix - incx;
                   }
                   ratio = MAX(ratio, new_ratio);
                 }
@@ -14745,18 +14745,18 @@ double do_test_zwaxpby_d_d_x(int n,
   /* There are there to get rid of compiler warnings.
      Should modify M4 code to not even produce these variables when not
      needed. */
-  xtemp = 0.0;
-  ytemp = 0.0;
-  atemp = 0.0;
-  btemp = 0.0;
-  wltemp = 0.0;
-  wttemp = 0.0;
-  x_fix1_temp = 0.0;
+//  xtemp = 0.0;
+//  ytemp = 0.0;
+//  atemp = 0.0;
+//  btemp = 0.0;
+//  wltemp = 0.0;
+//  wttemp = 0.0;
+//  x_fix1_temp = 0.0;
   x_i = 0.0;
   y_i = 0.0;
   X = 0.0;
   X_int = 0;
-  gen_val = 0;
+//  gen_val = 0;
 
   /* test for bad arguments */
   if (n < 0)
@@ -14829,8 +14829,8 @@ double do_test_zwaxpby_d_d_x(int n,
   find_max_ratio = 0;
   if (debug == 3)
     find_max_ratio = 1;
-  x_fix1 = 1.0;
-  x_fix2 = 1.0;
+//  x_fix1 = 1.0;
+//  x_fix2 = 1.0;
   zero[0] = zero[1] = 0.0;
   one[0] = 1.0;
   one[1] = 0.0;
@@ -15000,8 +15000,8 @@ double do_test_zwaxpby_d_d_x(int n,
                                      &temp_xy[0], 1, eps_int, un_int,
                                      &new_ratio);
                   if (MAX(ratio, new_ratio) == new_ratio) {
-                    iymax = iy;
-                    ixmax = ix;
+//                    iymax = iy;
+//                    ixmax = ix;
                   }
                   ratio = MAX(ratio, new_ratio);
 

@@ -153,7 +153,7 @@ void do_test_dsymv_d_s
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 
@@ -227,7 +227,7 @@ void do_test_dsymv_d_s
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -569,7 +569,7 @@ void do_test_dsymv_s_d
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 
@@ -643,7 +643,7 @@ void do_test_dsymv_s_d
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -985,7 +985,7 @@ void do_test_dsymv_s_s
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 
@@ -1059,7 +1059,7 @@ void do_test_dsymv_s_s
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -1402,10 +1402,10 @@ void do_test_zsymv_z_c
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -1478,7 +1478,7 @@ void do_test_zsymv_z_c
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -1827,10 +1827,10 @@ void do_test_zsymv_c_z
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -1903,7 +1903,7 @@ void do_test_zsymv_c_z
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -2252,10 +2252,10 @@ void do_test_zsymv_c_c
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -2328,7 +2328,7 @@ void do_test_zsymv_c_c
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -2677,10 +2677,10 @@ void do_test_csymv_c_s
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
 
   incy *= 2;
 
@@ -2753,7 +2753,7 @@ void do_test_csymv_c_s
       eps_int = power(2, -BITS_S);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
-      prec = blas_prec_single;
+//      prec = blas_prec_single;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -3102,7 +3102,7 @@ void do_test_csymv_s_c
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 
@@ -3178,7 +3178,7 @@ void do_test_csymv_s_c
       eps_int = power(2, -BITS_S);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
-      prec = blas_prec_single;
+//      prec = blas_prec_single;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -3527,7 +3527,7 @@ void do_test_csymv_s_s
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 
@@ -3603,7 +3603,7 @@ void do_test_csymv_s_s
       eps_int = power(2, -BITS_S);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
-      prec = blas_prec_single;
+//      prec = blas_prec_single;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -3952,10 +3952,10 @@ void do_test_zsymv_z_d
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
 
   incy *= 2;
 
@@ -4028,7 +4028,7 @@ void do_test_zsymv_z_d
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -4377,7 +4377,7 @@ void do_test_zsymv_d_z
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 
@@ -4453,7 +4453,7 @@ void do_test_zsymv_d_z
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -4802,7 +4802,7 @@ void do_test_zsymv_d_d
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 
@@ -4878,7 +4878,7 @@ void do_test_zsymv_d_d
       eps_int = power(2, -BITS_D);
       un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
-      prec = blas_prec_double;
+//      prec = blas_prec_double;
 
       /* vary norm -- underflow, approx 1, overflow */
       for (norm = NORM_START; norm <= NORM_END; norm++) {
@@ -5226,7 +5226,7 @@ void do_test_ssymv_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 
@@ -5663,7 +5663,7 @@ void do_test_dsymv_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 
@@ -6101,10 +6101,10 @@ void do_test_csymv_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -6547,10 +6547,10 @@ void do_test_zsymv_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -6992,7 +6992,7 @@ void do_test_dsymv_d_s_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 
@@ -7430,7 +7430,7 @@ void do_test_dsymv_s_d_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 
@@ -7868,7 +7868,7 @@ void do_test_dsymv_s_s_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 
@@ -8307,10 +8307,10 @@ void do_test_zsymv_z_c_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -8754,10 +8754,10 @@ void do_test_zsymv_c_z_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -9201,10 +9201,10 @@ void do_test_zsymv_c_c_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -9648,10 +9648,10 @@ void do_test_csymv_c_s_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
 
   incy *= 2;
 
@@ -10095,7 +10095,7 @@ void do_test_csymv_s_c_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 
@@ -10542,7 +10542,7 @@ void do_test_csymv_s_s_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 
@@ -10989,10 +10989,10 @@ void do_test_zsymv_z_d_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
 
   incy *= 2;
 
@@ -11436,7 +11436,7 @@ void do_test_zsymv_d_z_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 
@@ -11883,7 +11883,7 @@ void do_test_zsymv_d_d_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
 

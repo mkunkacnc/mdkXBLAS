@@ -202,11 +202,11 @@ double do_test_dtbsv_s(int n,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
-  beta = 0.0;
-  beta_flag = 1;
+//  beta = 0.0;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -423,7 +423,7 @@ double do_test_dtbsv_s(int n,
 
                             if ((debug == 3) &&        /* print only when debug is on */
                                 (1 || count != old_count)) {
-                              p_count++;
+//                              p_count++;
                               old_count = count;
                               printf("\ntest %d\n", test_count);
 
@@ -796,11 +796,11 @@ double do_test_ztbsv_c(int n,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -1046,7 +1046,7 @@ double do_test_ztbsv_c(int n,
 
                             if ((debug == 3) &&        /* print only when debug is on */
                                 (1 || count != old_count)) {
-                              p_count++;
+//                              p_count++;
                               old_count = count;
                               printf("\ntest %d\n", test_count);
 
@@ -1426,11 +1426,11 @@ double do_test_ctbsv_s(int n,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -1674,7 +1674,7 @@ double do_test_ctbsv_s(int n,
 
                             if ((debug == 3) &&        /* print only when debug is on */
                                 (1 || count != old_count)) {
-                              p_count++;
+//                              p_count++;
                               old_count = count;
                               printf("\ntest %d\n", test_count);
 
@@ -2052,11 +2052,11 @@ double do_test_ztbsv_d(int n,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -2300,7 +2300,7 @@ double do_test_ztbsv_d(int n,
 
                             if ((debug == 3) &&        /* print only when debug is on */
                                 (1 || count != old_count)) {
-                              p_count++;
+//                              p_count++;
                               old_count = count;
                               printf("\ntest %d\n", test_count);
 
@@ -2679,11 +2679,11 @@ double do_test_stbsv_x(int n,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
-  beta = 0.0;
-  beta_flag = 1;
+//  beta = 0.0;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -2919,7 +2919,7 @@ double do_test_stbsv_x(int n,
 
                               if ((debug == 3) &&        /* print only when debug is on */
                                   (1 || count != old_count)) {
-                                p_count++;
+//                                p_count++;
                                 old_count = count;
                                 printf("\ntest %d\n", test_count);
 
@@ -3291,11 +3291,11 @@ double do_test_dtbsv_x(int n,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
-  beta = 0.0;
-  beta_flag = 1;
+//  beta = 0.0;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -3531,7 +3531,7 @@ double do_test_dtbsv_x(int n,
 
                               if ((debug == 3) &&        /* print only when debug is on */
                                   (1 || count != old_count)) {
-                                p_count++;
+//                                p_count++;
                                 old_count = count;
                                 printf("\ntest %d\n", test_count);
 
@@ -3904,11 +3904,11 @@ double do_test_dtbsv_s_x(int n,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
-  beta = 0.0;
-  beta_flag = 1;
+//  beta = 0.0;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -4145,7 +4145,7 @@ double do_test_dtbsv_s_x(int n,
 
                               if ((debug == 3) &&        /* print only when debug is on */
                                   (1 || count != old_count)) {
-                                p_count++;
+//                                p_count++;
                                 old_count = count;
                                 printf("\ntest %d\n", test_count);
 
@@ -4518,11 +4518,11 @@ double do_test_ctbsv_x(int n,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -4788,7 +4788,7 @@ double do_test_ctbsv_x(int n,
 
                               if ((debug == 3) &&        /* print only when debug is on */
                                   (1 || count != old_count)) {
-                                p_count++;
+//                                p_count++;
                                 old_count = count;
                                 printf("\ntest %d\n", test_count);
 
@@ -5168,11 +5168,11 @@ double do_test_ztbsv_x(int n,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -5438,7 +5438,7 @@ double do_test_ztbsv_x(int n,
 
                               if ((debug == 3) &&        /* print only when debug is on */
                                   (1 || count != old_count)) {
-                                p_count++;
+//                                p_count++;
                                 old_count = count;
                                 printf("\ntest %d\n", test_count);
 
@@ -5819,11 +5819,11 @@ double do_test_ztbsv_c_x(int n,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -6091,7 +6091,7 @@ double do_test_ztbsv_c_x(int n,
 
                               if ((debug == 3) &&        /* print only when debug is on */
                                   (1 || count != old_count)) {
-                                p_count++;
+//                                p_count++;
                                 old_count = count;
                                 printf("\ntest %d\n", test_count);
 
@@ -6472,11 +6472,11 @@ double do_test_ctbsv_s_x(int n,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -6742,7 +6742,7 @@ double do_test_ctbsv_s_x(int n,
 
                               if ((debug == 3) &&        /* print only when debug is on */
                                   (1 || count != old_count)) {
-                                p_count++;
+//                                p_count++;
                                 old_count = count;
                                 printf("\ntest %d\n", test_count);
 
@@ -7123,11 +7123,11 @@ double do_test_ztbsv_d_x(int n,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
   if (debug == 3)
     find_max_ratio = 1;
 
@@ -7393,7 +7393,7 @@ double do_test_ztbsv_d_x(int n,
 
                               if ((debug == 3) &&        /* print only when debug is on */
                                   (1 || count != old_count)) {
-                                p_count++;
+//                                p_count++;
                                 old_count = count;
                                 printf("\ntest %d\n", test_count);
 

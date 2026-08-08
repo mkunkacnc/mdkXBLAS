@@ -187,12 +187,12 @@ double do_test_dtrmv_s(int n, int ntests, int *seed,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta = 0.0;
   rin = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   if (debug == 3)
     find_max_ratio = 1;
@@ -375,8 +375,8 @@ double do_test_dtrmv_s(int n, int ntests, int *seed,
                         bad_ratios++;
 
                         if (debug == 3) {
-                          p_count++;
-                          old_count = count;
+//                          p_count++;
+//                          old_count = count;
 
                           printf
                             ("FAIL> %s: n = %d, ntests = %d, threshold = %4.2f,\n",
@@ -727,12 +727,12 @@ double do_test_ztrmv_c(int n, int ntests, int *seed,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   if (debug == 3)
     find_max_ratio = 1;
@@ -917,8 +917,8 @@ double do_test_ztrmv_c(int n, int ntests, int *seed,
                         bad_ratios++;
 
                         if (debug == 3) {
-                          p_count++;
-                          old_count = count;
+//                          p_count++;
+//                          old_count = count;
 
                           printf
                             ("FAIL> %s: n = %d, ntests = %d, threshold = %4.2f,\n",
@@ -1271,12 +1271,12 @@ double do_test_ctrmv_s(int n, int ntests, int *seed,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   if (debug == 3)
     find_max_ratio = 1;
@@ -1461,8 +1461,8 @@ double do_test_ctrmv_s(int n, int ntests, int *seed,
                         bad_ratios++;
 
                         if (debug == 3) {
-                          p_count++;
-                          old_count = count;
+//                          p_count++;
+//                          old_count = count;
 
                           printf
                             ("FAIL> %s: n = %d, ntests = %d, threshold = %4.2f,\n",
@@ -1815,12 +1815,12 @@ double do_test_ztrmv_d(int n, int ntests, int *seed,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   if (debug == 3)
     find_max_ratio = 1;
@@ -2005,8 +2005,8 @@ double do_test_ztrmv_d(int n, int ntests, int *seed,
                         bad_ratios++;
 
                         if (debug == 3) {
-                          p_count++;
-                          old_count = count;
+//                          p_count++;
+//                          old_count = count;
 
                           printf
                             ("FAIL> %s: n = %d, ntests = %d, threshold = %4.2f,\n",
@@ -2358,12 +2358,12 @@ double do_test_strmv_x(int n, int ntests, int *seed,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta = 0.0;
   rin = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   if (debug == 3)
     find_max_ratio = 1;
@@ -2566,8 +2566,8 @@ double do_test_strmv_x(int n, int ntests, int *seed,
                           bad_ratios++;
 
                           if (debug == 3) {
-                            p_count++;
-                            old_count = count;
+//                            p_count++;
+//                            old_count = count;
 
                             printf
                               ("FAIL> %s: n = %d, ntests = %d, threshold = %4.2f,\n",
@@ -2917,12 +2917,12 @@ double do_test_dtrmv_x(int n, int ntests, int *seed,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta = 0.0;
   rin = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   if (debug == 3)
     find_max_ratio = 1;
@@ -3125,8 +3125,8 @@ double do_test_dtrmv_x(int n, int ntests, int *seed,
                           bad_ratios++;
 
                           if (debug == 3) {
-                            p_count++;
-                            old_count = count;
+//                            p_count++;
+//                            old_count = count;
 
                             printf
                               ("FAIL> %s: n = %d, ntests = %d, threshold = %4.2f,\n",
@@ -3477,12 +3477,12 @@ double do_test_ctrmv_x(int n, int ntests, int *seed,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   if (debug == 3)
     find_max_ratio = 1;
@@ -3687,8 +3687,8 @@ double do_test_ctrmv_x(int n, int ntests, int *seed,
                           bad_ratios++;
 
                           if (debug == 3) {
-                            p_count++;
-                            old_count = count;
+//                            p_count++;
+//                            old_count = count;
 
                             printf
                               ("FAIL> %s: n = %d, ntests = %d, threshold = %4.2f,\n",
@@ -4042,12 +4042,12 @@ double do_test_ztrmv_x(int n, int ntests, int *seed,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   if (debug == 3)
     find_max_ratio = 1;
@@ -4252,8 +4252,8 @@ double do_test_ztrmv_x(int n, int ntests, int *seed,
                           bad_ratios++;
 
                           if (debug == 3) {
-                            p_count++;
-                            old_count = count;
+//                            p_count++;
+//                            old_count = count;
 
                             printf
                               ("FAIL> %s: n = %d, ntests = %d, threshold = %4.2f,\n",
@@ -4607,12 +4607,12 @@ double do_test_dtrmv_s_x(int n, int ntests, int *seed,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta = 0.0;
   rin = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   if (debug == 3)
     find_max_ratio = 1;
@@ -4815,8 +4815,8 @@ double do_test_dtrmv_s_x(int n, int ntests, int *seed,
                           bad_ratios++;
 
                           if (debug == 3) {
-                            p_count++;
-                            old_count = count;
+//                            p_count++;
+//                            old_count = count;
 
                             printf
                               ("FAIL> %s: n = %d, ntests = %d, threshold = %4.2f,\n",
@@ -5168,12 +5168,12 @@ double do_test_ztrmv_c_x(int n, int ntests, int *seed,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   if (debug == 3)
     find_max_ratio = 1;
@@ -5378,8 +5378,8 @@ double do_test_ztrmv_c_x(int n, int ntests, int *seed,
                           bad_ratios++;
 
                           if (debug == 3) {
-                            p_count++;
-                            old_count = count;
+//                            p_count++;
+//                            old_count = count;
 
                             printf
                               ("FAIL> %s: n = %d, ntests = %d, threshold = %4.2f,\n",
@@ -5734,12 +5734,12 @@ double do_test_ctrmv_s_x(int n, int ntests, int *seed,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   if (debug == 3)
     find_max_ratio = 1;
@@ -5944,8 +5944,8 @@ double do_test_ctrmv_s_x(int n, int ntests, int *seed,
                           bad_ratios++;
 
                           if (debug == 3) {
-                            p_count++;
-                            old_count = count;
+//                            p_count++;
+//                            old_count = count;
 
                             printf
                               ("FAIL> %s: n = %d, ntests = %d, threshold = %4.2f,\n",
@@ -6300,12 +6300,12 @@ double do_test_ztrmv_d_x(int n, int ntests, int *seed,
   ratio_min = 1e308;
   ratio_max = 0.0;
   tot_tests = 0;
-  p_count = 0;
+//  p_count = 0;
   count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
-  beta_flag = 1;
+//  beta_flag = 1;
 
   if (debug == 3)
     find_max_ratio = 1;
@@ -6510,8 +6510,8 @@ double do_test_ztrmv_d_x(int n, int ntests, int *seed,
                           bad_ratios++;
 
                           if (debug == 3) {
-                            p_count++;
-                            old_count = count;
+//                            p_count++;
+//                            old_count = count;
 
                             printf
                               ("FAIL> %s: n = %d, ntests = %d, threshold = %4.2f,\n",

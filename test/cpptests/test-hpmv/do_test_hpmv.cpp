@@ -149,10 +149,10 @@ void do_test_zhpmv_z_c
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -523,10 +523,10 @@ void do_test_zhpmv_c_z
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -897,10 +897,10 @@ void do_test_zhpmv_c_c
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -1271,10 +1271,10 @@ void do_test_chpmv_c_s
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
 
   incy *= 2;
 
@@ -1645,10 +1645,10 @@ void do_test_zhpmv_z_d
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
 
   incy *= 2;
 
@@ -2019,10 +2019,10 @@ void do_test_chpmv_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -2415,10 +2415,10 @@ void do_test_zhpmv_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -2811,10 +2811,10 @@ void do_test_zhpmv_z_c_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -3207,10 +3207,10 @@ void do_test_zhpmv_c_z_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -3603,10 +3603,10 @@ void do_test_zhpmv_c_c_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
   incx *= 2;
   incy *= 2;
 
@@ -3999,10 +3999,10 @@ void do_test_chpmv_c_s_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
 
   incy *= 2;
 
@@ -4395,10 +4395,10 @@ void do_test_zhpmv_z_d_x
 
   n_i = n;
 
-  inca = 1;
+//  inca = 1;
   incx = 1;
   incy = 1;
-  inca *= 2;
+//  inca *= 2;
 
   incy *= 2;
 
