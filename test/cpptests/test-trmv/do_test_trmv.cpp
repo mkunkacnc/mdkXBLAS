@@ -132,7 +132,7 @@ double do_test_dtrmv_s(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count;                /* use for counting the number of testgen calls * 2 */
+//  int count;                /* use for counting the number of testgen calls * 2 */
 //  int old_count;
   FPU_FIX_DECL;
 
@@ -188,7 +188,7 @@ double do_test_dtrmv_s(int n, int ntests, int *seed,
   ratio_max = 0.0;
   tot_tests = 0;
 //  p_count = 0;
-  count = 0;
+//  count = 0;
   find_max_ratio = 0;
   beta = 0.0;
   rin = 0.0;
@@ -307,7 +307,7 @@ double do_test_dtrmv_s(int n, int ntests, int *seed,
                                          alpha_flag, T, lda, x_gen, seed,
                                          head_r_true, tail_r_true);
 
-                    count++;
+//                    count++;
 
                     /* varying incx */
                     for (incx_val = -2; incx_val <= 2; incx_val++) {
@@ -672,7 +672,7 @@ double do_test_ztrmv_c(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count;                /* use for counting the number of testgen calls * 2 */
+//  int count;                /* use for counting the number of testgen calls * 2 */
 //  int old_count;
   FPU_FIX_DECL;
 
@@ -728,7 +728,7 @@ double do_test_ztrmv_c(int n, int ntests, int *seed,
   ratio_max = 0.0;
   tot_tests = 0;
 //  p_count = 0;
-  count = 0;
+//  count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
@@ -848,7 +848,7 @@ double do_test_ztrmv_c(int n, int ntests, int *seed,
                                          alpha_flag, T, lda, x_gen, seed,
                                          head_r_true, tail_r_true);
 
-                    count++;
+//                    count++;
 
                     /* varying incx */
                     for (incx_val = -2; incx_val <= 2; incx_val++) {
@@ -1216,7 +1216,7 @@ double do_test_ctrmv_s(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count;                /* use for counting the number of testgen calls * 2 */
+//  int count;                /* use for counting the number of testgen calls * 2 */
 //  int old_count;
   FPU_FIX_DECL;
 
@@ -1272,7 +1272,7 @@ double do_test_ctrmv_s(int n, int ntests, int *seed,
   ratio_max = 0.0;
   tot_tests = 0;
 //  p_count = 0;
-  count = 0;
+//  count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
@@ -1392,7 +1392,7 @@ double do_test_ctrmv_s(int n, int ntests, int *seed,
                                          alpha_flag, T, lda, x_gen, seed,
                                          head_r_true, tail_r_true);
 
-                    count++;
+//                    count++;
 
                     /* varying incx */
                     for (incx_val = -2; incx_val <= 2; incx_val++) {
@@ -1760,7 +1760,7 @@ double do_test_ztrmv_d(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count;                /* use for counting the number of testgen calls * 2 */
+//  int count;                /* use for counting the number of testgen calls * 2 */
 //  int old_count;
   FPU_FIX_DECL;
 
@@ -1816,7 +1816,7 @@ double do_test_ztrmv_d(int n, int ntests, int *seed,
   ratio_max = 0.0;
   tot_tests = 0;
 //  p_count = 0;
-  count = 0;
+//  count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
@@ -1936,7 +1936,7 @@ double do_test_ztrmv_d(int n, int ntests, int *seed,
                                          alpha_flag, T, lda, x_gen, seed,
                                          head_r_true, tail_r_true);
 
-                    count++;
+//                    count++;
 
                     /* varying incx */
                     for (incx_val = -2; incx_val <= 2; incx_val++) {
@@ -2303,7 +2303,7 @@ double do_test_strmv_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count;                /* use for counting the number of testgen calls * 2 */
+//  int count;                /* use for counting the number of testgen calls * 2 */
 //  int old_count;
   FPU_FIX_DECL;
 
@@ -2359,7 +2359,7 @@ double do_test_strmv_x(int n, int ntests, int *seed,
   ratio_max = 0.0;
   tot_tests = 0;
 //  p_count = 0;
-  count = 0;
+//  count = 0;
   find_max_ratio = 0;
   beta = 0.0;
   rin = 0.0;
@@ -2497,7 +2497,7 @@ double do_test_strmv_x(int n, int ntests, int *seed,
                                          alpha_flag, T, lda, x_gen, seed,
                                          head_r_true, tail_r_true);
 
-                      count++;
+//                      count++;
 
                       /* varying incx */
                       for (incx_val = -2; incx_val <= 2; incx_val++) {
@@ -2862,7 +2862,7 @@ double do_test_dtrmv_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count;                /* use for counting the number of testgen calls * 2 */
+//  int count;                /* use for counting the number of testgen calls * 2 */
 //  int old_count;
   FPU_FIX_DECL;
 
@@ -2918,7 +2918,7 @@ double do_test_dtrmv_x(int n, int ntests, int *seed,
   ratio_max = 0.0;
   tot_tests = 0;
 //  p_count = 0;
-  count = 0;
+//  count = 0;
   find_max_ratio = 0;
   beta = 0.0;
   rin = 0.0;
@@ -3056,7 +3056,7 @@ double do_test_dtrmv_x(int n, int ntests, int *seed,
                                          alpha_flag, T, lda, x_gen, seed,
                                          head_r_true, tail_r_true);
 
-                      count++;
+//                      count++;
 
                       /* varying incx */
                       for (incx_val = -2; incx_val <= 2; incx_val++) {
@@ -3422,7 +3422,7 @@ double do_test_ctrmv_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count;                /* use for counting the number of testgen calls * 2 */
+//  int count;                /* use for counting the number of testgen calls * 2 */
 //  int old_count;
   FPU_FIX_DECL;
 
@@ -3478,7 +3478,7 @@ double do_test_ctrmv_x(int n, int ntests, int *seed,
   ratio_max = 0.0;
   tot_tests = 0;
 //  p_count = 0;
-  count = 0;
+//  count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
@@ -3617,7 +3617,7 @@ double do_test_ctrmv_x(int n, int ntests, int *seed,
                                          alpha_flag, T, lda, x_gen, seed,
                                          head_r_true, tail_r_true);
 
-                      count++;
+//                      count++;
 
                       /* varying incx */
                       for (incx_val = -2; incx_val <= 2; incx_val++) {
@@ -3987,7 +3987,7 @@ double do_test_ztrmv_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count;                /* use for counting the number of testgen calls * 2 */
+//  int count;                /* use for counting the number of testgen calls * 2 */
 //  int old_count;
   FPU_FIX_DECL;
 
@@ -4043,7 +4043,7 @@ double do_test_ztrmv_x(int n, int ntests, int *seed,
   ratio_max = 0.0;
   tot_tests = 0;
 //  p_count = 0;
-  count = 0;
+//  count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
@@ -4182,7 +4182,7 @@ double do_test_ztrmv_x(int n, int ntests, int *seed,
                                          alpha_flag, T, lda, x_gen, seed,
                                          head_r_true, tail_r_true);
 
-                      count++;
+//                      count++;
 
                       /* varying incx */
                       for (incx_val = -2; incx_val <= 2; incx_val++) {
@@ -4552,7 +4552,7 @@ double do_test_dtrmv_s_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count;                /* use for counting the number of testgen calls * 2 */
+//  int count;                /* use for counting the number of testgen calls * 2 */
 //  int old_count;
   FPU_FIX_DECL;
 
@@ -4608,7 +4608,7 @@ double do_test_dtrmv_s_x(int n, int ntests, int *seed,
   ratio_max = 0.0;
   tot_tests = 0;
 //  p_count = 0;
-  count = 0;
+//  count = 0;
   find_max_ratio = 0;
   beta = 0.0;
   rin = 0.0;
@@ -4746,7 +4746,7 @@ double do_test_dtrmv_s_x(int n, int ntests, int *seed,
                                            alpha_flag, T, lda, x_gen, seed,
                                            head_r_true, tail_r_true);
 
-                      count++;
+//                      count++;
 
                       /* varying incx */
                       for (incx_val = -2; incx_val <= 2; incx_val++) {
@@ -5113,7 +5113,7 @@ double do_test_ztrmv_c_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count;                /* use for counting the number of testgen calls * 2 */
+//  int count;                /* use for counting the number of testgen calls * 2 */
 //  int old_count;
   FPU_FIX_DECL;
 
@@ -5169,7 +5169,7 @@ double do_test_ztrmv_c_x(int n, int ntests, int *seed,
   ratio_max = 0.0;
   tot_tests = 0;
 //  p_count = 0;
-  count = 0;
+//  count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
@@ -5308,7 +5308,7 @@ double do_test_ztrmv_c_x(int n, int ntests, int *seed,
                                            alpha_flag, T, lda, x_gen, seed,
                                            head_r_true, tail_r_true);
 
-                      count++;
+//                      count++;
 
                       /* varying incx */
                       for (incx_val = -2; incx_val <= 2; incx_val++) {
@@ -5679,7 +5679,7 @@ double do_test_ctrmv_s_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count;                /* use for counting the number of testgen calls * 2 */
+//  int count;                /* use for counting the number of testgen calls * 2 */
 //  int old_count;
   FPU_FIX_DECL;
 
@@ -5735,7 +5735,7 @@ double do_test_ctrmv_s_x(int n, int ntests, int *seed,
   ratio_max = 0.0;
   tot_tests = 0;
 //  p_count = 0;
-  count = 0;
+//  count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
@@ -5874,7 +5874,7 @@ double do_test_ctrmv_s_x(int n, int ntests, int *seed,
                                            alpha_flag, T, lda, x_gen, seed,
                                            head_r_true, tail_r_true);
 
-                      count++;
+//                      count++;
 
                       /* varying incx */
                       for (incx_val = -2; incx_val <= 2; incx_val++) {
@@ -6245,7 +6245,7 @@ double do_test_ztrmv_d_x(int n, int ntests, int *seed,
   int ixgen;
 
   int saved_seed;                /* for saving the original seed */
-  int count;                /* use for counting the number of testgen calls * 2 */
+//  int count;                /* use for counting the number of testgen calls * 2 */
 //  int old_count;
   FPU_FIX_DECL;
 
@@ -6301,7 +6301,7 @@ double do_test_ztrmv_d_x(int n, int ntests, int *seed,
   ratio_max = 0.0;
   tot_tests = 0;
 //  p_count = 0;
-  count = 0;
+//  count = 0;
   find_max_ratio = 0;
   beta[0] = beta[1] = 0.0;
   rin[0] = rin[1] = 0.0;
@@ -6440,7 +6440,7 @@ double do_test_ztrmv_d_x(int n, int ntests, int *seed,
                                            alpha_flag, T, lda, x_gen, seed,
                                            head_r_true, tail_r_true);
 
-                      count++;
+//                      count++;
 
                       /* varying incx */
                       for (incx_val = -2; incx_val <= 2; incx_val++) {
