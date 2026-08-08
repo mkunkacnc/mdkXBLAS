@@ -5,7 +5,7 @@
 
 
 void sgbmv_prepare(enum blas_order_type order, enum blas_trans_type trans,
-                   int m, int n, int kl, int ku, float *AB, int lda, float *y,
+                   int m, int n, int kl, int ku, float */* AB */, int /* lda */, float *y,
                    int row, int *nfix2, int *nmix, int *ysize)
 {
   int ra;
@@ -156,7 +156,7 @@ void sgbmv_copy(enum blas_order_type order, enum blas_trans_type trans, int m,
 }
 
 void cgbmv_prepare(enum blas_order_type order, enum blas_trans_type trans,
-                   int m, int n, int kl, int ku, void *AB, int lda, void *y,
+                   int m, int n, int kl, int ku, void */* AB */, int /* lda */, void *y,
                    int row, int *nfix2, int *nmix, int *ysize)
 {
   int ra;
@@ -325,7 +325,7 @@ void cgbmv_copy(enum blas_order_type order, enum blas_trans_type trans, int m,
 }
 
 void dgbmv_prepare(enum blas_order_type order, enum blas_trans_type trans,
-                   int m, int n, int kl, int ku, double *AB, int lda,
+                   int m, int n, int kl, int ku, double */* AB */, int /* lda */,
                    double *y, int row, int *nfix2, int *nmix, int *ysize)
 {
   int ra;
@@ -476,7 +476,7 @@ void dgbmv_copy(enum blas_order_type order, enum blas_trans_type trans, int m,
 }
 
 void zgbmv_prepare(enum blas_order_type order, enum blas_trans_type trans,
-                   int m, int n, int kl, int ku, void *AB, int lda, void *y,
+                   int m, int n, int kl, int ku, void */* AB */, int /* lda */, void *y,
                    int row, int *nfix2, int *nmix, int *ysize)
 {
   int ra;

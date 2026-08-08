@@ -12,7 +12,7 @@ static void gen_r_to_cancel(int, enum blas_conj_type, float, float,
                             float *, float *, float *, float *, int *);
 
 void
-testgen_BLAS_sdot2(int n, int n_fix2, int n_mix, int norm,
+testgen_BLAS_sdot2(int n, int n_fix2, int n_mix, int /* norm */,
                    enum blas_conj_type conj,
                    float *alpha, int alpha_flag, float *beta, int beta_flag,
                    float *head_x, float *tail_x, float *y, int *seed,

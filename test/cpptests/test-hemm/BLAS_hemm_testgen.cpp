@@ -4054,8 +4054,8 @@ void BLAS_chemm_c_s_testgen(int norm, enum blas_order_type order,
 
 void BLAS_sskew_testgen(int norm, enum blas_order_type order,
                         enum blas_uplo_type uplo, enum blas_side_type side,
-                        int m, int n, float *alpha, int alpha_flag,
-                        float *beta, int beta_flag, float *a, int lda,
+                        int m, int n, float *alpha, int /* alpha_flag */,
+                        float *beta, int /* beta_flag */, float *a, int lda,
                         float *b, int ldb, float *c, int ldc, int *seed,
                         double *head_r_true, double *tail_r_true)
 {
@@ -4155,8 +4155,8 @@ void BLAS_sskew_testgen(int norm, enum blas_order_type order,
 }
 void BLAS_dskew_testgen(int norm, enum blas_order_type order,
                         enum blas_uplo_type uplo, enum blas_side_type side,
-                        int m, int n, double *alpha, int alpha_flag,
-                        double *beta, int beta_flag, double *a, int lda,
+                        int m, int n, double *alpha, int /* alpha_flag */,
+                        double *beta, int /* beta_flag */, double *a, int lda,
                         double *b, int ldb, double *c, int ldc, int *seed,
                         double *head_r_true, double *tail_r_true)
 {
@@ -4257,8 +4257,8 @@ void BLAS_dskew_testgen(int norm, enum blas_order_type order,
 void BLAS_dskew_d_s_testgen(int norm, enum blas_order_type order,
                             enum blas_uplo_type uplo,
                             enum blas_side_type side, int m, int n,
-                            double *alpha, int alpha_flag, double *beta,
-                            int beta_flag, double *a, int lda, float *b,
+                            double *alpha, int /* alpha_flag */, double *beta,
+                            int /* beta_flag */, double *a, int lda, float *b,
                             int ldb, double *c, int ldc, int *seed,
                             double *head_r_true, double *tail_r_true)
 {
@@ -4359,8 +4359,8 @@ void BLAS_dskew_d_s_testgen(int norm, enum blas_order_type order,
 void BLAS_dskew_s_d_testgen(int norm, enum blas_order_type order,
                             enum blas_uplo_type uplo,
                             enum blas_side_type side, int m, int n,
-                            double *alpha, int alpha_flag, double *beta,
-                            int beta_flag, float *a, int lda, double *b,
+                            double *alpha, int /* alpha_flag */, double *beta,
+                            int /* beta_flag */, float *a, int lda, double *b,
                             int ldb, double *c, int ldc, int *seed,
                             double *head_r_true, double *tail_r_true)
 {
@@ -4461,8 +4461,8 @@ void BLAS_dskew_s_d_testgen(int norm, enum blas_order_type order,
 void BLAS_dskew_s_s_testgen(int norm, enum blas_order_type order,
                             enum blas_uplo_type uplo,
                             enum blas_side_type side, int m, int n,
-                            double *alpha, int alpha_flag, double *beta,
-                            int beta_flag, float *a, int lda, float *b,
+                            double *alpha, int /* alpha_flag */, double *beta,
+                            int /* beta_flag */, float *a, int lda, float *b,
                             int ldb, double *c, int ldc, int *seed,
                             double *head_r_true, double *tail_r_true)
 {

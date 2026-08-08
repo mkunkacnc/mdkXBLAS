@@ -5,7 +5,7 @@
 #include "blas_extended_test.hpp"
 
 
-void test_BLAS_sdot2(int n, enum blas_conj_type conj, float alpha, float beta,
+void test_BLAS_sdot2(int n, enum blas_conj_type /* conj */, float alpha, float beta,
                      float rin, float rout, double r_true_l, double r_true_t,
                      float *x, int incx, float *head_y, float *tail_y,
                      int incy, double eps_int, double un_int,
@@ -112,7 +112,7 @@ void test_BLAS_sdot2(int n, enum blas_conj_type conj, float alpha, float beta,
   *test_ratio = tmp1 / ((n + 2) * (eps_int + eps_accurate) * S
                         + eps_out * fabs(r_true_l) + U);
 }                                /* end of test_BLAS_sdot */
-void test_BLAS_ddot2(int n, enum blas_conj_type conj, double alpha,
+void test_BLAS_ddot2(int n, enum blas_conj_type /* conj */, double alpha,
                      double beta, double rin, double rout, double r_true_l,
                      double r_true_t, double *x, int incx, double *head_y,
                      double *tail_y, int incy, double eps_int, double un_int,
@@ -530,7 +530,7 @@ void test_BLAS_zdot2(int n, enum blas_conj_type conj, const void *alpha,
 }
 
   /* end of test_BLAS_zdot */
-void test_BLAS_cdot2_s_s(int n, enum blas_conj_type conj, const void *alpha,
+void test_BLAS_cdot2_s_s(int n, enum blas_conj_type /* conj */, const void *alpha,
                          const void *beta, const void *rin, const void *rout,
                          double *r_true_l, double *r_true_t, float *x,
                          int incx, float *head_y, float *tail_y, int incy,
@@ -676,7 +676,7 @@ void test_BLAS_cdot2_s_s(int n, enum blas_conj_type conj, const void *alpha,
 }
 
   /* end of test_BLAS_cdot */
-void test_BLAS_cdot2_s_c(int n, enum blas_conj_type conj, const void *alpha,
+void test_BLAS_cdot2_s_c(int n, enum blas_conj_type /* conj */, const void *alpha,
                          const void *beta, const void *rin, const void *rout,
                          double *r_true_l, double *r_true_t, float *x,
                          int incx, void *head_y, void *tail_y, int incy,
@@ -981,7 +981,7 @@ void test_BLAS_cdot2_c_s(int n, enum blas_conj_type conj, const void *alpha,
 }
 
   /* end of test_BLAS_cdot */
-void test_BLAS_zdot2_d_d(int n, enum blas_conj_type conj, const void *alpha,
+void test_BLAS_zdot2_d_d(int n, enum blas_conj_type /* conj */, const void *alpha,
                          const void *beta, const void *rin, const void *rout,
                          double *r_true_l, double *r_true_t, double *x,
                          int incx, double *head_y, double *tail_y, int incy,
@@ -1126,7 +1126,7 @@ void test_BLAS_zdot2_d_d(int n, enum blas_conj_type conj, const void *alpha,
 }
 
   /* end of test_BLAS_zdot */
-void test_BLAS_zdot2_d_z(int n, enum blas_conj_type conj, const void *alpha,
+void test_BLAS_zdot2_d_z(int n, enum blas_conj_type /* conj */, const void *alpha,
                          const void *beta, const void *rin, const void *rout,
                          double *r_true_l, double *r_true_t, double *x,
                          int incx, void *head_y, void *tail_y, int incy,
@@ -1429,7 +1429,7 @@ void test_BLAS_zdot2_z_d(int n, enum blas_conj_type conj, const void *alpha,
 }
 
   /* end of test_BLAS_zdot */
-void test_BLAS_ddot2_s_s(int n, enum blas_conj_type conj, double alpha,
+void test_BLAS_ddot2_s_s(int n, enum blas_conj_type /* conj */, double alpha,
                          double beta, double rin, double rout,
                          double r_true_l, double r_true_t, float *x, int incx,
                          float *head_y, float *tail_y, int incy,
@@ -1536,7 +1536,7 @@ void test_BLAS_ddot2_s_s(int n, enum blas_conj_type conj, double alpha,
   *test_ratio = tmp1 / ((n + 2) * (eps_int + eps_accurate) * S
                         + eps_out * fabs(r_true_l) + U);
 }                                /* end of test_BLAS_ddot */
-void test_BLAS_ddot2_s_d(int n, enum blas_conj_type conj, double alpha,
+void test_BLAS_ddot2_s_d(int n, enum blas_conj_type /* conj */, double alpha,
                          double beta, double rin, double rout,
                          double r_true_l, double r_true_t, float *x, int incx,
                          double *head_y, double *tail_y, int incy,
@@ -1643,7 +1643,7 @@ void test_BLAS_ddot2_s_d(int n, enum blas_conj_type conj, double alpha,
   *test_ratio = tmp1 / ((n + 2) * (eps_int + eps_accurate) * S
                         + eps_out * fabs(r_true_l) + U);
 }                                /* end of test_BLAS_ddot */
-void test_BLAS_ddot2_d_s(int n, enum blas_conj_type conj, double alpha,
+void test_BLAS_ddot2_d_s(int n, enum blas_conj_type /* conj */, double alpha,
                          double beta, double rin, double rout,
                          double r_true_l, double r_true_t, double *x,
                          int incx, float *head_y, float *tail_y, int incy,

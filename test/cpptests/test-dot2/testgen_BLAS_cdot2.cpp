@@ -163,7 +163,7 @@ gen_r_to_cancel(int n, enum blas_conj_type conj,
 
 
 void
-testgen_BLAS_cdot2(int n, int n_fix2, int n_mix, int norm,
+testgen_BLAS_cdot2(int n, int n_fix2, int n_mix, int /* norm */,
                    enum blas_conj_type conj,
                    void *alpha, int alpha_flag, void *beta, int beta_flag,
                    void *head_x, void *tail_x, void *y, int *seed,

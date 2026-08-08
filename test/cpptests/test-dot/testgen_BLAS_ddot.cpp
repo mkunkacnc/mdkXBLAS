@@ -17,7 +17,7 @@ gen_r_to_cancel(int, enum blas_conj_type, double, double,
                 double *, double *, double *, int *);
 
 void
-testgen_BLAS_ddot(int n, int n_fix2, int n_mix, int norm,
+testgen_BLAS_ddot(int n, int n_fix2, int n_mix, int /* norm */,
                   enum blas_conj_type conj,
                   double *alpha, int alpha_flag, double *beta, int beta_flag,
                   double *x, double *y, int *seed,
@@ -515,7 +515,7 @@ gen_r_to_cancel(int n, enum blas_conj_type conj,
 }
 
 
-static void r_truth(enum blas_conj_type conj, int n, double alpha, const double *x, int incx, double beta, const double *y, int incy, double *r,        /* input */
+static void r_truth(enum blas_conj_type /* conj */, int n, double alpha, const double *x, int incx, double beta, const double *y, int incy, double *r,        /* input */
                     double *r_true_l, double *r_true_t)
 {
   int i;

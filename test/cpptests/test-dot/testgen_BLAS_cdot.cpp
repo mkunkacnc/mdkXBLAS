@@ -86,7 +86,7 @@ static float rand_half_1(int l_bits, int *seed)
 }
 
 
-static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x, int incx, void *beta, const void *y, int incy, void *r,        /* input */
+static void r_truth(enum blas_conj_type conj, int n, void *alpha, const void *x, int /* incx */, void *beta, const void *y, int /* incy */, void *r,        /* input */
                     double *r_true_l, double *r_true_t)
 {
   int i;
@@ -624,7 +624,7 @@ gen_r_to_cancel(int n, enum blas_conj_type conj,
 
 
 void
-testgen_BLAS_cdot(int n, int n_fix2, int n_mix, int norm,
+testgen_BLAS_cdot(int n, int n_fix2, int n_mix, int /* norm */,
                   enum blas_conj_type conj,
                   void *alpha, int alpha_flag, void *beta, int beta_flag,
                   void *x, void *y, int *seed,

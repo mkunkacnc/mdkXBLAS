@@ -1,7 +1,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 
-void BLAS_sdot2_x(enum blas_conj_type conj, int n, float alpha,
+void BLAS_sdot2_x(enum blas_conj_type /* conj */, int n, float alpha,
                   const float *x, int incx, float beta,
                   const float *head_y, const float *tail_y, int incy,
                   float *r, enum blas_prec_type prec)
@@ -384,7 +384,7 @@ void BLAS_sdot2_x(enum blas_conj_type conj, int n, float alpha,
     break;
   }
 }
-void BLAS_ddot2_x(enum blas_conj_type conj, int n, double alpha,
+void BLAS_ddot2_x(enum blas_conj_type /* conj */, int n, double alpha,
                   const double *x, int incx, double beta,
                   const double *head_y, const double *tail_y, int incy,
                   double *r, enum blas_prec_type prec)

@@ -7,7 +7,7 @@
 extern double xrand(int *);
 extern int FixedBits(double, double);
 
-void r_truth(enum blas_conj_type conj, int n, float alpha, const double *x_l, const double *x_t, float beta, const float *y, float *r,  /* input */
+void r_truth(enum blas_conj_type /* conj */, int n, float alpha, const double *x_l, const double *x_t, float beta, const float *y, float *r,  /* input */
              double *r_true_l, double *r_true_t)
 {
   int i;
@@ -129,7 +129,7 @@ gen_r_to_cancel(int n, enum blas_conj_type conj,
 }                               /* end gen_r_to_cancel */
 
 void
-testgen_BLAS_sdot_x(int n, int n_fix2, int n_mix, int norm,
+testgen_BLAS_sdot_x(int n, int n_fix2, int n_mix, int /* norm */,
                     enum blas_conj_type conj,
                     float *alpha, int alpha_flag, float *beta, int beta_flag,
                     double *x_l, double *x_t, float *y, int *seed,

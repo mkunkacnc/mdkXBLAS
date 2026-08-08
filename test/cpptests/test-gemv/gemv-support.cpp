@@ -6,7 +6,7 @@
 #include "blas_extended_test.hpp"
 
 void sge_commit_row(enum blas_order_type order, enum blas_trans_type trans,
-                    int m, int n, float *a, int lda, float *a_vec, int row)
+                    int /* m */, int n, float *a, int lda, float *a_vec, int row)
 {
   int ai;
   int i;
@@ -46,7 +46,7 @@ void sge_commit_row(enum blas_order_type order, enum blas_trans_type trans,
   }
 }
 void dge_commit_row(enum blas_order_type order, enum blas_trans_type trans,
-                    int m, int n, double *a, int lda, double *a_vec, int row)
+                    int /* m */, int n, double *a, int lda, double *a_vec, int row)
 {
   int ai;
   int i;
@@ -86,7 +86,7 @@ void dge_commit_row(enum blas_order_type order, enum blas_trans_type trans,
   }
 }
 void cge_commit_row(enum blas_order_type order, enum blas_trans_type trans,
-                    int m, int n, void *a, int lda, void *a_vec, int row)
+                    int /* m */, int n, void *a, int lda, void *a_vec, int row)
 {
   int ai;
   int i;
@@ -132,7 +132,7 @@ void cge_commit_row(enum blas_order_type order, enum blas_trans_type trans,
   }
 }
 void zge_commit_row(enum blas_order_type order, enum blas_trans_type trans,
-                    int m, int n, void *a, int lda, void *a_vec, int row)
+                    int /* m */, int n, void *a, int lda, void *a_vec, int row)
 {
   int ai;
   int i;
@@ -179,7 +179,7 @@ void zge_commit_row(enum blas_order_type order, enum blas_trans_type trans,
 }
 
 void sge_commit_col(enum blas_order_type order, enum blas_trans_type trans,
-                    int m, int n, float *a, int lda, float *a_vec, int col)
+                    int m, int /* n */, float *a, int lda, float *a_vec, int col)
 {
   int ai;
   int i;
@@ -219,7 +219,7 @@ void sge_commit_col(enum blas_order_type order, enum blas_trans_type trans,
   }
 }
 void dge_commit_col(enum blas_order_type order, enum blas_trans_type trans,
-                    int m, int n, double *a, int lda, double *a_vec, int col)
+                    int m, int /* n */, double *a, int lda, double *a_vec, int col)
 {
   int ai;
   int i;
@@ -259,7 +259,7 @@ void dge_commit_col(enum blas_order_type order, enum blas_trans_type trans,
   }
 }
 void cge_commit_col(enum blas_order_type order, enum blas_trans_type trans,
-                    int m, int n, void *a, int lda, void *a_vec, int col)
+                    int m, int /* n */, void *a, int lda, void *a_vec, int col)
 {
   int ai;
   int i;
@@ -305,7 +305,7 @@ void cge_commit_col(enum blas_order_type order, enum blas_trans_type trans,
   }
 }
 void zge_commit_col(enum blas_order_type order, enum blas_trans_type trans,
-                    int m, int n, void *a, int lda, void *a_vec, int col)
+                    int m, int /* n */, void *a, int lda, void *a_vec, int col)
 {
   int ai;
   int i;
@@ -352,7 +352,7 @@ void zge_commit_col(enum blas_order_type order, enum blas_trans_type trans,
 }
 
 void sge_copy_row(enum blas_order_type order, enum blas_trans_type trans,
-                  int m, int n, float *a, int lda, float *a_vec, int row)
+                  int /* m */, int n, float *a, int lda, float *a_vec, int row)
 {
 
   int ai;
@@ -395,7 +395,7 @@ void sge_copy_row(enum blas_order_type order, enum blas_trans_type trans,
 
 }
 void dge_copy_row(enum blas_order_type order, enum blas_trans_type trans,
-                  int m, int n, double *a, int lda, double *a_vec, int row)
+                  int /* m */, int n, double *a, int lda, double *a_vec, int row)
 {
 
   int ai;
@@ -438,7 +438,7 @@ void dge_copy_row(enum blas_order_type order, enum blas_trans_type trans,
 
 }
 void cge_copy_row(enum blas_order_type order, enum blas_trans_type trans,
-                  int m, int n, void *a, int lda, void *a_vec, int row)
+                  int /* m */, int n, void *a, int lda, void *a_vec, int row)
 {
 
   int ai;
@@ -487,7 +487,7 @@ void cge_copy_row(enum blas_order_type order, enum blas_trans_type trans,
 
 }
 void zge_copy_row(enum blas_order_type order, enum blas_trans_type trans,
-                  int m, int n, void *a, int lda, void *a_vec, int row)
+                  int /* m */, int n, void *a, int lda, void *a_vec, int row)
 {
 
   int ai;
@@ -537,7 +537,7 @@ void zge_copy_row(enum blas_order_type order, enum blas_trans_type trans,
 }
 
 void sge_copy_col(enum blas_order_type order, enum blas_trans_type trans,
-                  int m, int n, float *a, int lda, float *a_vec, int col)
+                  int m, int /* n */, float *a, int lda, float *a_vec, int col)
 {
 
   int ai;
@@ -579,7 +579,7 @@ void sge_copy_col(enum blas_order_type order, enum blas_trans_type trans,
 
 }
 void dge_copy_col(enum blas_order_type order, enum blas_trans_type trans,
-                  int m, int n, double *a, int lda, double *a_vec, int col)
+                  int m, int /* n */, double *a, int lda, double *a_vec, int col)
 {
 
   int ai;
@@ -621,7 +621,7 @@ void dge_copy_col(enum blas_order_type order, enum blas_trans_type trans,
 
 }
 void cge_copy_col(enum blas_order_type order, enum blas_trans_type trans,
-                  int m, int n, void *a, int lda, void *a_vec, int col)
+                  int m, int /* n */, void *a, int lda, void *a_vec, int col)
 {
 
   int ai;
@@ -669,7 +669,7 @@ void cge_copy_col(enum blas_order_type order, enum blas_trans_type trans,
 
 }
 void zge_copy_col(enum blas_order_type order, enum blas_trans_type trans,
-                  int m, int n, void *a, int lda, void *a_vec, int col)
+                  int m, int /* n */, void *a, int lda, void *a_vec, int col)
 {
 
   int ai;

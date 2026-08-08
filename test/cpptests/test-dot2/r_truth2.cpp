@@ -1,7 +1,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 
-void s_r_truth2(enum blas_conj_type conj, int n, float alpha,
+void s_r_truth2(enum blas_conj_type /* conj */, int n, float alpha,
                 const float *x, int incx, float beta,
                 const float *head_y, const float *tail_y, int incy, float *r,
                 double *head_r_true, double *tail_r_true)
@@ -237,7 +237,7 @@ void s_r_truth2(enum blas_conj_type conj, int n, float alpha,
   FPU_FIX_STOP;
 
 }
-void d_r_truth2(enum blas_conj_type conj, int n, double alpha,
+void d_r_truth2(enum blas_conj_type /* conj */, int n, double alpha,
                 const double *x, int incx, double beta,
                 const double *head_y, const double *tail_y, int incy,
                 double *r, double *head_r_true, double *tail_r_true)
