@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/waxpby.hpp"
 
 
 
@@ -6757,7 +6758,7 @@ double do_test_swaxpby_x(int n,
 
                 /* call BLAS_swaxpby_x to get w */
                 FPU_FIX_STOP;
-                BLAS_swaxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
+                XBLAS::waxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
                                w, incw_val, prec);
                 FPU_FIX_START;
 

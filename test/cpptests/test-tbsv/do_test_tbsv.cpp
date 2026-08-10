@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/tbsv.hpp"
 
 
 
@@ -2855,7 +2856,7 @@ double do_test_stbsv_x(int n,
 
                             /* call BLAS_stbsv_x */
                             FPU_FIX_STOP;
-                            BLAS_stbsv_x(order_type, uplo_type, trans_type,
+                            XBLAS::tbsv_x(order_type, uplo_type, trans_type,
                                          diag_type, n, k, alpha, T, ldt, x,
                                          incx_unadj, prec);
                             FPU_FIX_START;

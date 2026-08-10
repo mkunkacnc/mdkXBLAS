@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/tpmv.hpp"
 
 
 
@@ -2426,7 +2427,7 @@ double do_test_stpmv_x(int n,
 
                       /* call BLAS_stpmv_x */
                       FPU_FIX_STOP;
-                      BLAS_stpmv_x(order_type, uplo_type, trans_type,
+                      XBLAS::tpmv_x(order_type, uplo_type, trans_type,
                                    diag_type, n, alpha, tp, x, incx_val,
                                    prec);
                       FPU_FIX_START;

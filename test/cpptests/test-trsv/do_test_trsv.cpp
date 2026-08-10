@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/trsv.hpp"
 
 
 
@@ -2735,7 +2736,7 @@ double do_test_strsv_x(int n,
 
                           /* call BLAS_strsv_x */
                           FPU_FIX_STOP;
-                          BLAS_strsv_x(order_type, uplo_type, trans_type,
+                          XBLAS::trsv_x(order_type, uplo_type, trans_type,
                                        diag_type, n, alpha, T, lda, x,
                                        incx_val, prec);
                           FPU_FIX_START;

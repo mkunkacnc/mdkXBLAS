@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/axpby.hpp"
 
 
 double do_test_daxpby_s(int n, int ntests, int *seed, double thresh,
@@ -2053,7 +2054,7 @@ double do_test_saxpby_x(int n, int ntests, int *seed, double thresh,
 
                   /* call BLAS_saxpby_x to get y_comp */
                   FPU_FIX_STOP;
-                  BLAS_saxpby_x(n, alpha, x, incx_val, beta,
+                  XBLAS::axpby_x(n, alpha, x, incx_val, beta,
                                 y_comp, incy_val, prec);
                   FPU_FIX_START;
 

@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/sbmv.hpp"
 
 /* 0 -- 1 */
 #define UPLO_START 0
@@ -5460,7 +5461,7 @@ void do_test_ssbmv_x
 
                           /* call sbmv routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_ssbmv_x(order_type,
+                          XBLAS::sbmv_x(order_type,
                                        uplo_type, n, k, alpha, a, lda, x,
                                        incx, beta, y, incy, prec);
                           FPU_FIX_START;

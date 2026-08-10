@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/gemv2.hpp"
 
 double do_test_dgemv2_d_s(int m, int n, int ntests, int *seed, double thresh,
                           int debug, float test_prob, double *min_ratio,
@@ -7003,7 +7004,7 @@ double do_test_sgemv2_x(int m, int n, int ntests, int *seed, double thresh,
 
                         /* call BLAS_sgemv2_x */
                         FPU_FIX_STOP;
-                        BLAS_sgemv2_x(order_type, trans_type, m, n, alpha, A,
+                        XBLAS::gemv2_x(order_type, trans_type, m, n, alpha, A,
                                       lda, head_x, tail_x, incx_val, beta, y,
                                       incy_val, prec);
                         FPU_FIX_START;

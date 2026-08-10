@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/trmv.hpp"
 
 
 double do_test_dtrmv_s(int n, int ntests, int *seed,
@@ -2523,7 +2524,7 @@ double do_test_strmv_x(int n, int ntests, int *seed,
 
                         /* call BLAS_strmv_x */
                         FPU_FIX_STOP;
-                        BLAS_strmv_x(order_type, uplo_type, trans_type,
+                        XBLAS::trmv_x(order_type, uplo_type, trans_type,
                                      diag_type, n, alpha, T, lda, x, incx_val,
                                      prec);
                         FPU_FIX_START;

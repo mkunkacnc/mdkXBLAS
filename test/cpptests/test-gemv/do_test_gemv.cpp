@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/gemv.hpp"
 
 double do_test_dgemv_d_s(int m, int n, int ntests, int *seed, double thresh,
                          int debug, float test_prob, double *min_ratio,
@@ -6766,7 +6767,7 @@ double do_test_sgemv_x(int m, int n, int ntests, int *seed, double thresh,
                         scopy_vector(y_gen, m_i, 1, y, incy_val);
 
                         FPU_FIX_STOP;
-                        BLAS_sgemv_x(order_type, trans_type, m, n, alpha, A,
+                        XBLAS::gemv_x(order_type, trans_type, m, n, alpha, A,
                                      lda, x, incx_val, beta, y, incy_val,
                                      prec);
                         FPU_FIX_START;

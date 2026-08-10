@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/symv.hpp"
 
 /* 0 -- 1 */
 #define UPLO_START 0
@@ -5406,7 +5407,7 @@ void do_test_ssymv_x
 
                         /* call symv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_ssymv_x(order_type,
+                        XBLAS::symv_x(order_type,
                                      uplo_type, n, alpha, a, lda, x, incx,
                                      beta, y, incy, prec);
                         FPU_FIX_START;

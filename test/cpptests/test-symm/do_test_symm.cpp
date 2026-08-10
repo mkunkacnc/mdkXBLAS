@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/symm.hpp"
 
 /* 0 -- 1 */
 #define UPLO_START 0
@@ -5716,7 +5717,7 @@ void do_test_ssymm_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_ssymm_x(order_type, side_type,
+                          XBLAS::symm_x(order_type, side_type,
                                        uplo_type, m, n, alpha, a, lda, b, ldb,
                                        beta, c, ldc, prec);
                           FPU_FIX_START;

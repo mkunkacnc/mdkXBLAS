@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/symv2.hpp"
 
 /* 0 -- 1 */
 #define UPLO_START 0
@@ -5133,7 +5134,7 @@ void do_test_ssymv2_x
 
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_ssymv2_x(order_type,
+                      XBLAS::symv2_x(order_type,
                                     uplo_type, n, alpha, a, lda, head_x,
                                     tail_x, incx, beta, y, incy, prec);
                       FPU_FIX_START;

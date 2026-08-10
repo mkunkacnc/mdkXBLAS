@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/dot.hpp"
 
 double do_test_ddot_d_s(int n, int ntests, int *seed, double thresh,
                         int debug, float test_prob, double *min_ratio,
@@ -4811,7 +4812,7 @@ double do_test_sdot_x(int n, int ntests, int *seed, double thresh, int debug,
                     r_comp = r;
 
                     FPU_FIX_STOP;
-                    BLAS_sdot_x(conj_type, n, alpha, x, incx_val, beta,
+                    XBLAS::dot_x(conj_type, n, alpha, x, incx_val, beta,
                                 y, incy_val, &r_comp, prec);
                     FPU_FIX_START;
 

@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/gbmv.hpp"
 
 
 double do_test_dgbmv_d_s(int m, int n, int ntests, int *seed, double thresh,
@@ -7519,7 +7520,7 @@ double do_test_sgbmv_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_sgbmv_x */
                             FPU_FIX_STOP;
-                            BLAS_sgbmv_x(order_type, trans_type, m, n, kl, ku,
+                            XBLAS::gbmv_x(order_type, trans_type, m, n, kl, ku,
                                          alpha, AB, lda, x, incx_val, beta, y,
                                          incy_val, prec);
                             FPU_FIX_START;

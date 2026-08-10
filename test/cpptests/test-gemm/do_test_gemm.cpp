@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/gemm.hpp"
 
 
 
@@ -6039,7 +6040,7 @@ void do_test_sgemm_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_sgemm_x(order, transa,
+                          XBLAS::gemm_x(order, transa,
                                        transb, m, n, k, alpha, a, lda, b, ldb,
                                        beta, c, ldc, prec);
                           FPU_FIX_START;
