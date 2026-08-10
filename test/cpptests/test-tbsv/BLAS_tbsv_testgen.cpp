@@ -233,7 +233,7 @@ void BLAS_stbsv_testgen(int norm, enum blas_order_type order,
   stbsv_commit(order, uplo, trans, n, k, T, ldt, temp, row);
 
 
-  if ((uplo == blas_lower && (trans == blas_no_trans || trans == blas_conj_trans))
+  if ((uplo == blas_lower && (trans == blas_no_trans || static_cast<int>(trans) == static_cast<int>(blas_conj)))
       || (uplo == blas_upper
           && (trans == blas_trans || trans == blas_conj_trans))) {
     length = MIN(row, k);
@@ -554,7 +554,7 @@ void BLAS_dtbsv_testgen(int norm, enum blas_order_type order,
   dtbsv_commit(order, uplo, trans, n, k, T, ldt, temp, row);
 
 
-  if ((uplo == blas_lower && (trans == blas_no_trans || trans == blas_conj_trans))
+  if ((uplo == blas_lower && (trans == blas_no_trans || static_cast<int>(trans) == static_cast<int>(blas_conj)))
       || (uplo == blas_upper
           && (trans == blas_trans || trans == blas_conj_trans))) {
     length = MIN(row, k);
@@ -899,7 +899,7 @@ void BLAS_dtbsv_s_testgen(int norm, enum blas_order_type order,
   stbsv_commit(order, uplo, trans, n, k, T, ldt, temp, row);
 
 
-  if ((uplo == blas_lower && (trans == blas_no_trans || trans == blas_conj_trans))
+  if ((uplo == blas_lower && (trans == blas_no_trans || static_cast<int>(trans) == static_cast<int>(blas_conj)))
       || (uplo == blas_upper
           && (trans == blas_trans || trans == blas_conj_trans))) {
     length = MIN(row, k);
