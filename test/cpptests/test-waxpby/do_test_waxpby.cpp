@@ -3552,7 +3552,7 @@ double do_test_cwaxpby_c_s(int n,
 
               /* call BLAS_cwaxpby_c_s to get w */
               FPU_FIX_STOP;
-              BLAS_cwaxpby_c_s(n, alpha, x, incx_val, beta, y, incy_val,
+              XBLAS::waxpby(n, alpha, x, incx_val, beta, y, incy_val,
                                w, incw_val);
               FPU_FIX_START;
 
@@ -4094,7 +4094,7 @@ double do_test_cwaxpby_s_c(int n,
 
               /* call BLAS_cwaxpby_s_c to get w */
               FPU_FIX_STOP;
-              BLAS_cwaxpby_s_c(n, alpha, x, incx_val, beta, y, incy_val,
+              XBLAS::waxpby(n, alpha, x, incx_val, beta, y, incy_val,
                                w, incw_val);
               FPU_FIX_START;
 
@@ -4628,7 +4628,7 @@ double do_test_cwaxpby_s_s(int n,
 
               /* call BLAS_cwaxpby_s_s to get w */
               FPU_FIX_STOP;
-              BLAS_cwaxpby_s_s(n, alpha, x, incx_val, beta, y, incy_val,
+              XBLAS::waxpby(n, alpha, x, incx_val, beta, y, incy_val,
                                w, incw_val);
               FPU_FIX_START;
 
@@ -7824,7 +7824,7 @@ double do_test_cwaxpby_x(int n,
 
                 /* call BLAS_cwaxpby_x to get w */
                 FPU_FIX_STOP;
-                BLAS_cwaxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
+                XBLAS::waxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
                                w, incw_val, prec);
                 FPU_FIX_START;
 
@@ -12203,7 +12203,7 @@ double do_test_cwaxpby_c_s_x(int n,
 
                 /* call BLAS_cwaxpby_c_s_x to get w */
                 FPU_FIX_STOP;
-                BLAS_cwaxpby_c_s_x(n, alpha, x, incx_val, beta, y, incy_val,
+                XBLAS::waxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
                                    w, incw_val, prec);
                 FPU_FIX_START;
 
@@ -12765,7 +12765,7 @@ double do_test_cwaxpby_s_c_x(int n,
 
                 /* call BLAS_cwaxpby_s_c_x to get w */
                 FPU_FIX_STOP;
-                BLAS_cwaxpby_s_c_x(n, alpha, x, incx_val, beta, y, incy_val,
+                XBLAS::waxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
                                    w, incw_val, prec);
                 FPU_FIX_START;
 
@@ -13319,7 +13319,7 @@ double do_test_cwaxpby_s_s_x(int n,
 
                 /* call BLAS_cwaxpby_s_s_x to get w */
                 FPU_FIX_STOP;
-                BLAS_cwaxpby_s_s_x(n, alpha, x, incx_val, beta, y, incy_val,
+                XBLAS::waxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
                                    w, incw_val, prec);
                 FPU_FIX_START;
 

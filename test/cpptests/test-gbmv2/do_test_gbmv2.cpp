@@ -4063,7 +4063,7 @@ double do_test_cgbmv2_c_s(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_cgbmv2_c_s */
                           FPU_FIX_STOP;
-                          BLAS_cgbmv2_c_s(order_type, trans_type, m, n, kl,
+                          XBLAS::gbmv2(order_type, trans_type, m, n, kl,
                                           ku, alpha, AB, lda, x_head, x_tail,
                                           incx_val, beta, y, incy_val);
                           FPU_FIX_START;
@@ -4678,7 +4678,7 @@ double do_test_cgbmv2_s_c(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_cgbmv2_s_c */
                           FPU_FIX_STOP;
-                          BLAS_cgbmv2_s_c(order_type, trans_type, m, n, kl,
+                          XBLAS::gbmv2(order_type, trans_type, m, n, kl,
                                           ku, alpha, AB, lda, x_head, x_tail,
                                           incx_val, beta, y, incy_val);
                           FPU_FIX_START;
@@ -5295,7 +5295,7 @@ double do_test_cgbmv2_s_s(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_cgbmv2_s_s */
                           FPU_FIX_STOP;
-                          BLAS_cgbmv2_s_s(order_type, trans_type, m, n, kl,
+                          XBLAS::gbmv2(order_type, trans_type, m, n, kl,
                                           ku, alpha, AB, lda, x_head, x_tail,
                                           incx_val, beta, y, incy_val);
                           FPU_FIX_START;
@@ -9028,7 +9028,7 @@ double do_test_cgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_cgbmv2_x */
                             FPU_FIX_STOP;
-                            BLAS_cgbmv2_x(order_type, trans_type, m, n, kl,
+                            XBLAS::gbmv2_x(order_type, trans_type, m, n, kl,
                                           ku, alpha, AB, lda, x_head, x_tail,
                                           incx_val, beta, y, incy_val, prec);
                             FPU_FIX_START;
@@ -14124,7 +14124,7 @@ double do_test_cgbmv2_c_s_x(int m, int n, int ntests, int *seed,
 
                             /* call BLAS_cgbmv2_c_s_x */
                             FPU_FIX_STOP;
-                            BLAS_cgbmv2_c_s_x(order_type, trans_type, m, n,
+                            XBLAS::gbmv2_x(order_type, trans_type, m, n,
                                               kl, ku, alpha, AB, lda, x_head,
                                               x_tail, incx_val, beta, y,
                                               incy_val, prec);
@@ -14763,7 +14763,7 @@ double do_test_cgbmv2_s_c_x(int m, int n, int ntests, int *seed,
 
                             /* call BLAS_cgbmv2_s_c_x */
                             FPU_FIX_STOP;
-                            BLAS_cgbmv2_s_c_x(order_type, trans_type, m, n,
+                            XBLAS::gbmv2_x(order_type, trans_type, m, n,
                                               kl, ku, alpha, AB, lda, x_head,
                                               x_tail, incx_val, beta, y,
                                               incy_val, prec);
@@ -15404,7 +15404,7 @@ double do_test_cgbmv2_s_s_x(int m, int n, int ntests, int *seed,
 
                             /* call BLAS_cgbmv2_s_s_x */
                             FPU_FIX_STOP;
-                            BLAS_cgbmv2_s_s_x(order_type, trans_type, m, n,
+                            XBLAS::gbmv2_x(order_type, trans_type, m, n,
                                               kl, ku, alpha, AB, lda, x_head,
                                               x_tail, incx_val, beta, y,
                                               incy_val, prec);

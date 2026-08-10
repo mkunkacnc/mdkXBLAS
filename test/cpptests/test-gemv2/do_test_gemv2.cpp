@@ -3672,7 +3672,7 @@ double do_test_cgemv2_c_s(int m, int n, int ntests, int *seed, double thresh,
 
                       /* call BLAS_cgemv2_c_s */
                       FPU_FIX_STOP;
-                      BLAS_cgemv2_c_s(order_type, trans_type, m, n, alpha, A,
+                      XBLAS::gemv2(order_type, trans_type, m, n, alpha, A,
                                       lda, head_x, tail_x, incx_val, beta, y,
                                       incy_val);
                       FPU_FIX_START;
@@ -4224,7 +4224,7 @@ double do_test_cgemv2_s_c(int m, int n, int ntests, int *seed, double thresh,
 
                       /* call BLAS_cgemv2_s_c */
                       FPU_FIX_STOP;
-                      BLAS_cgemv2_s_c(order_type, trans_type, m, n, alpha, A,
+                      XBLAS::gemv2(order_type, trans_type, m, n, alpha, A,
                                       lda, head_x, tail_x, incx_val, beta, y,
                                       incy_val);
                       FPU_FIX_START;
@@ -4776,7 +4776,7 @@ double do_test_cgemv2_s_s(int m, int n, int ntests, int *seed, double thresh,
 
                       /* call BLAS_cgemv2_s_s */
                       FPU_FIX_STOP;
-                      BLAS_cgemv2_s_s(order_type, trans_type, m, n, alpha, A,
+                      XBLAS::gemv2(order_type, trans_type, m, n, alpha, A,
                                       lda, head_x, tail_x, incx_val, beta, y,
                                       incy_val);
                       FPU_FIX_START;
@@ -8144,7 +8144,7 @@ double do_test_cgemv2_x(int m, int n, int ntests, int *seed, double thresh,
 
                         /* call BLAS_cgemv2_x */
                         FPU_FIX_STOP;
-                        BLAS_cgemv2_x(order_type, trans_type, m, n, alpha, A,
+                        XBLAS::gemv2_x(order_type, trans_type, m, n, alpha, A,
                                       lda, head_x, tail_x, incx_val, beta, y,
                                       incy_val, prec);
                         FPU_FIX_START;
@@ -12729,7 +12729,7 @@ double do_test_cgemv2_c_s_x(int m, int n, int ntests, int *seed,
 
                         /* call BLAS_cgemv2_c_s_x */
                         FPU_FIX_STOP;
-                        BLAS_cgemv2_c_s_x(order_type, trans_type, m, n, alpha,
+                        XBLAS::gemv2_x(order_type, trans_type, m, n, alpha,
                                           A, lda, head_x, tail_x, incx_val,
                                           beta, y, incy_val, prec);
                         FPU_FIX_START;
@@ -13303,7 +13303,7 @@ double do_test_cgemv2_s_c_x(int m, int n, int ntests, int *seed,
 
                         /* call BLAS_cgemv2_s_c_x */
                         FPU_FIX_STOP;
-                        BLAS_cgemv2_s_c_x(order_type, trans_type, m, n, alpha,
+                        XBLAS::gemv2_x(order_type, trans_type, m, n, alpha,
                                           A, lda, head_x, tail_x, incx_val,
                                           beta, y, incy_val, prec);
                         FPU_FIX_START;
@@ -13877,7 +13877,7 @@ double do_test_cgemv2_s_s_x(int m, int n, int ntests, int *seed,
 
                         /* call BLAS_cgemv2_s_s_x */
                         FPU_FIX_STOP;
-                        BLAS_cgemv2_s_s_x(order_type, trans_type, m, n, alpha,
+                        XBLAS::gemv2_x(order_type, trans_type, m, n, alpha,
                                           A, lda, head_x, tail_x, incx_val,
                                           beta, y, incy_val, prec);
                         FPU_FIX_START;

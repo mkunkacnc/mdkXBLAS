@@ -3005,7 +3005,7 @@ void do_test_csymm_c_s
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_csymm_c_s(order_type, side_type,
+                        XBLAS::symm(order_type, side_type,
                                        uplo_type, m, n, alpha, a, lda, b, ldb,
                                        beta, c, ldc);
                         FPU_FIX_START;
@@ -3454,7 +3454,7 @@ void do_test_csymm_s_c
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_csymm_s_c(order_type, side_type,
+                        XBLAS::symm(order_type, side_type,
                                        uplo_type, m, n, alpha, a, lda, b, ldb,
                                        beta, c, ldc);
                         FPU_FIX_START;
@@ -3903,7 +3903,7 @@ void do_test_csymm_s_s
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_csymm_s_s(order_type, side_type,
+                        XBLAS::symm(order_type, side_type,
                                        uplo_type, m, n, alpha, a, lda, b, ldb,
                                        beta, c, ldc);
                         FPU_FIX_START;
@@ -6652,7 +6652,7 @@ void do_test_csymm_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_csymm_x(order_type, side_type,
+                          XBLAS::symm_x(order_type, side_type,
                                        uplo_type, m, n, alpha, a, lda, b, ldb,
                                        beta, c, ldc, prec);
                           FPU_FIX_START;
@@ -10419,7 +10419,7 @@ void do_test_csymm_c_s_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_csymm_c_s_x(order_type, side_type,
+                          XBLAS::symm_x(order_type, side_type,
                                            uplo_type, m, n, alpha, a, lda, b,
                                            ldb, beta, c, ldc, prec);
                           FPU_FIX_START;
@@ -10892,7 +10892,7 @@ void do_test_csymm_s_c_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_csymm_s_c_x(order_type, side_type,
+                          XBLAS::symm_x(order_type, side_type,
                                            uplo_type, m, n, alpha, a, lda, b,
                                            ldb, beta, c, ldc, prec);
                           FPU_FIX_START;
@@ -11365,7 +11365,7 @@ void do_test_csymm_s_s_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_csymm_s_s_x(order_type, side_type,
+                          XBLAS::symm_x(order_type, side_type,
                                            uplo_type, m, n, alpha, a, lda, b,
                                            ldb, beta, c, ldc, prec);
                           FPU_FIX_START;

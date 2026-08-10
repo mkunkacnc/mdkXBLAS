@@ -1365,7 +1365,7 @@ double do_test_ctpmv_s(int n,
 
                     /* call BLAS_ctpmv_s */
                     FPU_FIX_STOP;
-                    BLAS_ctpmv_s(order_type, uplo_type, trans_type, diag_type,
+                    XBLAS::tpmv(order_type, uplo_type, trans_type, diag_type,
                                  n, alpha, tp, x, incx_val);
                     FPU_FIX_START;
 
@@ -3502,7 +3502,7 @@ double do_test_ctpmv_x(int n,
 
                       /* call BLAS_ctpmv_x */
                       FPU_FIX_STOP;
-                      BLAS_ctpmv_x(order_type, uplo_type, trans_type,
+                      XBLAS::tpmv_x(order_type, uplo_type, trans_type,
                                    diag_type, n, alpha, tp, x, incx_val,
                                    prec);
                       FPU_FIX_START;
@@ -5669,7 +5669,7 @@ double do_test_ctpmv_s_x(int n,
 
                       /* call BLAS_ctpmv_s_x */
                       FPU_FIX_STOP;
-                      BLAS_ctpmv_s_x(order_type, uplo_type, trans_type,
+                      XBLAS::tpmv_x(order_type, uplo_type, trans_type,
                                      diag_type, n, alpha, tp, x, incx_val,
                                      prec);
                       FPU_FIX_START;

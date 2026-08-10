@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/hemv2.hpp"
 
 /* 0 -- 1 */
 #define UPLO_START 0
@@ -1515,7 +1516,7 @@ void do_test_chemv2_c_s
 
                     /* call hemv2 routines to be tested */
                     FPU_FIX_STOP;
-                    BLAS_chemv2_c_s(order_type,
+                    XBLAS::hemv2(order_type,
                                     uplo_type, n, alpha, a, lda, head_x,
                                     tail_x, incx, beta, y, incy);
                     FPU_FIX_START;
@@ -2339,7 +2340,7 @@ void do_test_chemv2_x
 
                       /* call hemv2 routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_chemv2_x(order_type,
+                      XBLAS::hemv2_x(order_type,
                                     uplo_type, n, alpha, a, lda, head_x,
                                     tail_x, incx, beta, y, incy, prec);
                       FPU_FIX_START;
@@ -4459,7 +4460,7 @@ void do_test_chemv2_c_s_x
 
                       /* call hemv2 routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_chemv2_c_s_x(order_type,
+                      XBLAS::hemv2_x(order_type,
                                         uplo_type, n, alpha, a, lda, head_x,
                                         tail_x, incx, beta, y, incy, prec);
                       FPU_FIX_START;

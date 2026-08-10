@@ -2870,7 +2870,7 @@ void do_test_csbmv_c_s
 
                         /* call sbmv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_csbmv_c_s(order_type,
+                        XBLAS::sbmv(order_type,
                                        uplo_type, n, k, alpha, a, lda, x,
                                        incx, beta, y, incy);
                         FPU_FIX_START;
@@ -3299,7 +3299,7 @@ void do_test_csbmv_s_c
 
                         /* call sbmv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_csbmv_s_c(order_type,
+                        XBLAS::sbmv(order_type,
                                        uplo_type, n, k, alpha, a, lda, x,
                                        incx, beta, y, incy);
                         FPU_FIX_START;
@@ -3728,7 +3728,7 @@ void do_test_csbmv_s_s
 
                         /* call sbmv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_csbmv_s_s(order_type,
+                        XBLAS::sbmv(order_type,
                                        uplo_type, n, k, alpha, a, lda, x,
                                        incx, beta, y, incy);
                         FPU_FIX_START;
@@ -6348,7 +6348,7 @@ void do_test_csbmv_x
 
                           /* call sbmv routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_csbmv_x(order_type,
+                          XBLAS::sbmv_x(order_type,
                                        uplo_type, n, k, alpha, a, lda, x,
                                        incx, beta, y, incy, prec);
                           FPU_FIX_START;
@@ -9934,7 +9934,7 @@ void do_test_csbmv_c_s_x
 
                           /* call sbmv routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_csbmv_c_s_x(order_type,
+                          XBLAS::sbmv_x(order_type,
                                            uplo_type, n, k, alpha, a, lda, x,
                                            incx, beta, y, incy, prec);
                           FPU_FIX_START;
@@ -10385,7 +10385,7 @@ void do_test_csbmv_s_c_x
 
                           /* call sbmv routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_csbmv_s_c_x(order_type,
+                          XBLAS::sbmv_x(order_type,
                                            uplo_type, n, k, alpha, a, lda, x,
                                            incx, beta, y, incy, prec);
                           FPU_FIX_START;
@@ -10836,7 +10836,7 @@ void do_test_csbmv_s_s_x
 
                           /* call sbmv routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_csbmv_s_s_x(order_type,
+                          XBLAS::sbmv_x(order_type,
                                            uplo_type, n, k, alpha, a, lda, x,
                                            incx, beta, y, incy, prec);
                           FPU_FIX_START;

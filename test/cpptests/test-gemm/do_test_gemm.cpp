@@ -3180,7 +3180,7 @@ void do_test_cgemm_c_s(int m, int n, int k, int ntests, int *seed,
 
                         /* call GEMM routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_cgemm_c_s(order, transa,
+                        XBLAS::gemm(order, transa,
                                        transb, m, n, k, alpha, a, lda, b, ldb,
                                        beta, c, ldc);
                         FPU_FIX_START;
@@ -3654,7 +3654,7 @@ void do_test_cgemm_s_c(int m, int n, int k, int ntests, int *seed,
 
                         /* call GEMM routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_cgemm_s_c(order, transa,
+                        XBLAS::gemm(order, transa,
                                        transb, m, n, k, alpha, a, lda, b, ldb,
                                        beta, c, ldc);
                         FPU_FIX_START;
@@ -4128,7 +4128,7 @@ void do_test_cgemm_s_s(int m, int n, int k, int ntests, int *seed,
 
                         /* call GEMM routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_cgemm_s_s(order, transa,
+                        XBLAS::gemm(order, transa,
                                        transb, m, n, k, alpha, a, lda, b, ldb,
                                        beta, c, ldc);
                         FPU_FIX_START;
@@ -7057,7 +7057,7 @@ void do_test_cgemm_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_cgemm_x(order, transa,
+                          XBLAS::gemm_x(order, transa,
                                        transb, m, n, k, alpha, a, lda, b, ldb,
                                        beta, c, ldc, prec);
                           FPU_FIX_START;
@@ -11139,7 +11139,7 @@ void do_test_cgemm_c_s_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_cgemm_c_s_x(order, transa,
+                          XBLAS::gemm_x(order, transa,
                                            transb, m, n, k, alpha, a, lda, b,
                                            ldb, beta, c, ldc, prec);
                           FPU_FIX_START;
@@ -11650,7 +11650,7 @@ void do_test_cgemm_s_c_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_cgemm_s_c_x(order, transa,
+                          XBLAS::gemm_x(order, transa,
                                            transb, m, n, k, alpha, a, lda, b,
                                            ldb, beta, c, ldc, prec);
                           FPU_FIX_START;
@@ -12161,7 +12161,7 @@ void do_test_cgemm_s_s_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_cgemm_s_s_x(order, transa,
+                          XBLAS::gemm_x(order, transa,
                                            transb, m, n, k, alpha, a, lda, b,
                                            ldb, beta, c, ldc, prec);
                           FPU_FIX_START;

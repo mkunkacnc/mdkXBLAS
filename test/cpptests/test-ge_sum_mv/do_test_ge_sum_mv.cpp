@@ -3030,7 +3030,7 @@ void do_test_cge_sum_mv_c_s
 
                       /* call ge_sum_mv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_cge_sum_mv_c_s(order_type,
+                      XBLAS::ge_sum_mv(order_type,
                                           m, n, alpha, a, lda, x, incx, beta,
                                           B, ldb, y, incy);
                       FPU_FIX_START;
@@ -3482,7 +3482,7 @@ void do_test_cge_sum_mv_s_c
 
                       /* call ge_sum_mv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_cge_sum_mv_s_c(order_type,
+                      XBLAS::ge_sum_mv(order_type,
                                           m, n, alpha, a, lda, x, incx, beta,
                                           B, ldb, y, incy);
                       FPU_FIX_START;
@@ -3934,7 +3934,7 @@ void do_test_cge_sum_mv_s_s
 
                       /* call ge_sum_mv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_cge_sum_mv_s_s(order_type,
+                      XBLAS::ge_sum_mv(order_type,
                                           m, n, alpha, a, lda, x, incx, beta,
                                           B, ldb, y, incy);
                       FPU_FIX_START;
@@ -6699,7 +6699,7 @@ void do_test_cge_sum_mv_x
 
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_cge_sum_mv_x(order_type,
+                        XBLAS::ge_sum_mv_x(order_type,
                                           m, n, alpha, a, lda, x, incx, beta,
                                           B, ldb, y, incy, prec);
                         FPU_FIX_START;
@@ -10493,7 +10493,7 @@ void do_test_cge_sum_mv_c_s_x
 
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_cge_sum_mv_c_s_x(order_type,
+                        XBLAS::ge_sum_mv_x(order_type,
                                               m, n, alpha, a, lda, x, incx,
                                               beta, B, ldb, y, incy, prec);
                         FPU_FIX_START;
@@ -10969,7 +10969,7 @@ void do_test_cge_sum_mv_s_c_x
 
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_cge_sum_mv_s_c_x(order_type,
+                        XBLAS::ge_sum_mv_x(order_type,
                                               m, n, alpha, a, lda, x, incx,
                                               beta, B, ldb, y, incy, prec);
                         FPU_FIX_START;
@@ -11445,7 +11445,7 @@ void do_test_cge_sum_mv_s_s_x
 
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_cge_sum_mv_s_s_x(order_type,
+                        XBLAS::ge_sum_mv_x(order_type,
                                               m, n, alpha, a, lda, x, incx,
                                               beta, B, ldb, y, incy, prec);
                         FPU_FIX_START;

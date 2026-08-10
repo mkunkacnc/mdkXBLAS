@@ -4,6 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "XBLAS/hemm.hpp"
 
 #define UPLO_START 0
 #define UPLO_END   1
@@ -1683,7 +1684,7 @@ void do_test_chemm_c_s(int m, int n,
 
                         /* call hemm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_chemm_c_s(order_type, side_type,
+                        XBLAS::hemm(order_type, side_type,
                                        uplo_type, m, n, alpha, a, lda, b, ldb,
                                        beta, c, ldc);
                         FPU_FIX_START;
@@ -2618,7 +2619,7 @@ void do_test_chemm_x(int m, int n,
 
                           /* call hemm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_chemm_x(order_type, side_type,
+                          XBLAS::hemm_x(order_type, side_type,
                                        uplo_type, m, n, alpha, a, lda, b, ldb,
                                        beta, c, ldc, prec);
                           FPU_FIX_START;
@@ -5031,7 +5032,7 @@ void do_test_chemm_c_s_x(int m, int n,
 
                           /* call hemm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_chemm_c_s_x(order_type, side_type,
+                          XBLAS::hemm_x(order_type, side_type,
                                            uplo_type, m, n, alpha, a, lda, b,
                                            ldb, beta, c, ldc, prec);
                           FPU_FIX_START;
