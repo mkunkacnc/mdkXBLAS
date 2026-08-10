@@ -315,8 +315,16 @@ void do_test_dsymv_d_s
                       /* call symv routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::symv(order_type,
-                                     uplo_type, n, alpha, a, lda, x, incx,
-                                     beta, y, incy);
+                                  uplo_type,
+                                  n,
+                                  alpha,
+                                  a,
+                                  lda,
+                                  x,
+                                  incx,
+                                  beta,
+                                  y,
+                                  incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -731,8 +739,16 @@ void do_test_dsymv_s_d
                       /* call symv routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::symv(order_type,
-                                     uplo_type, n, alpha, a, lda, x, incx,
-                                     beta, y, incy);
+                                  uplo_type,
+                                  n,
+                                  alpha,
+                                  a,
+                                  lda,
+                                  x,
+                                  incx,
+                                  beta,
+                                  y,
+                                  incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -1147,8 +1163,16 @@ void do_test_dsymv_s_s
                       /* call symv routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::symv(order_type,
-                                     uplo_type, n, alpha, a, lda, x, incx,
-                                     beta, y, incy);
+                                  uplo_type,
+                                  n,
+                                  alpha,
+                                  a,
+                                  lda,
+                                  x,
+                                  incx,
+                                  beta,
+                                  y,
+                                  incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -2843,8 +2867,16 @@ void do_test_csymv_c_s
                       /* call symv routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::symv(order_type,
-                                     uplo_type, n, alpha, a, lda, x, incx,
-                                     beta, y, incy);
+                                  uplo_type,
+                                  n,
+                                  alpha,
+                                  a,
+                                  lda,
+                                  x,
+                                  incx,
+                                  beta,
+                                  y,
+                                  incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -3268,8 +3300,16 @@ void do_test_csymv_s_c
                       /* call symv routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::symv(order_type,
-                                     uplo_type, n, alpha, a, lda, x, incx,
-                                     beta, y, incy);
+                                  uplo_type,
+                                  n,
+                                  alpha,
+                                  a,
+                                  lda,
+                                  x,
+                                  incx,
+                                  beta,
+                                  y,
+                                  incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -3693,8 +3733,16 @@ void do_test_csymv_s_s
                       /* call symv routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::symv(order_type,
-                                     uplo_type, n, alpha, a, lda, x, incx,
-                                     beta, y, incy);
+                                  uplo_type,
+                                  n,
+                                  alpha,
+                                  a,
+                                  lda,
+                                  x,
+                                  incx,
+                                  beta,
+                                  y,
+                                  incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -5408,8 +5456,17 @@ void do_test_ssymv_x
                         /* call symv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::symv_x(order_type,
-                                     uplo_type, n, alpha, a, lda, x, incx,
-                                     beta, y, incy, prec);
+                                      uplo_type,
+                                      n,
+                                      alpha,
+                                      a,
+                                      lda,
+                                      x,
+                                      incx,
+                                      beta,
+                                      y,
+                                      incy,
+                                      prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -5845,8 +5902,17 @@ void do_test_dsymv_x
                         /* call symv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::symv_x(order_type,
-                                     uplo_type, n, alpha, a, lda, x, incx,
-                                     beta, y, incy, prec);
+                                      uplo_type,
+                                      n,
+                                      alpha,
+                                      a,
+                                      lda,
+                                      x,
+                                      incx,
+                                      beta,
+                                      y,
+                                      incy,
+                                      prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -6287,8 +6353,17 @@ void do_test_csymv_x
                         /* call symv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::symv_x(order_type,
-                                     uplo_type, n, alpha, a, lda, x, incx,
-                                     beta, y, incy, prec);
+                                      uplo_type,
+                                      n,
+                                      alpha,
+                                      a,
+                                      lda,
+                                      x,
+                                      incx,
+                                      beta,
+                                      y,
+                                      incy,
+                                      prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -7174,8 +7249,17 @@ void do_test_dsymv_d_s_x
                         /* call symv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::symv_x(order_type,
-                                         uplo_type, n, alpha, a, lda, x, incx,
-                                         beta, y, incy, prec);
+                                      uplo_type,
+                                      n,
+                                      alpha,
+                                      a,
+                                      lda,
+                                      x,
+                                      incx,
+                                      beta,
+                                      y,
+                                      incy,
+                                      prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -7612,8 +7696,17 @@ void do_test_dsymv_s_d_x
                         /* call symv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::symv_x(order_type,
-                                         uplo_type, n, alpha, a, lda, x, incx,
-                                         beta, y, incy, prec);
+                                      uplo_type,
+                                      n,
+                                      alpha,
+                                      a,
+                                      lda,
+                                      x,
+                                      incx,
+                                      beta,
+                                      y,
+                                      incy,
+                                      prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -8050,8 +8143,17 @@ void do_test_dsymv_s_s_x
                         /* call symv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::symv_x(order_type,
-                                         uplo_type, n, alpha, a, lda, x, incx,
-                                         beta, y, incy, prec);
+                                      uplo_type,
+                                      n,
+                                      alpha,
+                                      a,
+                                      lda,
+                                      x,
+                                      incx,
+                                      beta,
+                                      y,
+                                      incy,
+                                      prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -9834,8 +9936,17 @@ void do_test_csymv_c_s_x
                         /* call symv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::symv_x(order_type,
-                                         uplo_type, n, alpha, a, lda, x, incx,
-                                         beta, y, incy, prec);
+                                      uplo_type,
+                                      n,
+                                      alpha,
+                                      a,
+                                      lda,
+                                      x,
+                                      incx,
+                                      beta,
+                                      y,
+                                      incy,
+                                      prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -10281,8 +10392,17 @@ void do_test_csymv_s_c_x
                         /* call symv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::symv_x(order_type,
-                                         uplo_type, n, alpha, a, lda, x, incx,
-                                         beta, y, incy, prec);
+                                      uplo_type,
+                                      n,
+                                      alpha,
+                                      a,
+                                      lda,
+                                      x,
+                                      incx,
+                                      beta,
+                                      y,
+                                      incy,
+                                      prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -10728,8 +10848,17 @@ void do_test_csymv_s_s_x
                         /* call symv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::symv_x(order_type,
-                                         uplo_type, n, alpha, a, lda, x, incx,
-                                         beta, y, incy, prec);
+                                      uplo_type,
+                                      n,
+                                      alpha,
+                                      a,
+                                      lda,
+                                      x,
+                                      incx,
+                                      beta,
+                                      y,
+                                      incy,
+                                      prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */

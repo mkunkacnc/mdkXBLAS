@@ -318,8 +318,17 @@ void do_test_dsbmv_d_s
                         /* call sbmv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::sbmv(order_type,
-                                       uplo_type, n, k, alpha, a, lda, x,
-                                       incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    k,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -739,8 +748,17 @@ void do_test_dsbmv_s_d
                         /* call sbmv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::sbmv(order_type,
-                                       uplo_type, n, k, alpha, a, lda, x,
-                                       incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    k,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -1160,8 +1178,17 @@ void do_test_dsbmv_s_s
                         /* call sbmv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::sbmv(order_type,
-                                       uplo_type, n, k, alpha, a, lda, x,
-                                       incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    k,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -2871,8 +2898,17 @@ void do_test_csbmv_c_s
                         /* call sbmv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::sbmv(order_type,
-                                       uplo_type, n, k, alpha, a, lda, x,
-                                       incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    k,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -3300,8 +3336,17 @@ void do_test_csbmv_s_c
                         /* call sbmv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::sbmv(order_type,
-                                       uplo_type, n, k, alpha, a, lda, x,
-                                       incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    k,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -3729,8 +3774,17 @@ void do_test_csbmv_s_s
                         /* call sbmv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::sbmv(order_type,
-                                       uplo_type, n, k, alpha, a, lda, x,
-                                       incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    k,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -5462,8 +5516,18 @@ void do_test_ssbmv_x
                           /* call sbmv routines to be tested */
                           FPU_FIX_STOP;
                           XBLAS::sbmv_x(order_type,
-                                       uplo_type, n, k, alpha, a, lda, x,
-                                       incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -5904,8 +5968,18 @@ void do_test_dsbmv_x
                           /* call sbmv routines to be tested */
                           FPU_FIX_STOP;
                           XBLAS::sbmv_x(order_type,
-                                       uplo_type, n, k, alpha, a, lda, x,
-                                       incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -6349,8 +6423,18 @@ void do_test_csbmv_x
                           /* call sbmv routines to be tested */
                           FPU_FIX_STOP;
                           XBLAS::sbmv_x(order_type,
-                                       uplo_type, n, k, alpha, a, lda, x,
-                                       incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -7247,8 +7331,18 @@ void do_test_dsbmv_d_s_x
                           /* call sbmv routines to be tested */
                           FPU_FIX_STOP;
                           XBLAS::sbmv_x(order_type,
-                                           uplo_type, n, k, alpha, a, lda, x,
-                                           incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -7690,8 +7784,18 @@ void do_test_dsbmv_s_d_x
                           /* call sbmv routines to be tested */
                           FPU_FIX_STOP;
                           XBLAS::sbmv_x(order_type,
-                                           uplo_type, n, k, alpha, a, lda, x,
-                                           incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -8133,8 +8237,18 @@ void do_test_dsbmv_s_s_x
                           /* call sbmv routines to be tested */
                           FPU_FIX_STOP;
                           XBLAS::sbmv_x(order_type,
-                                           uplo_type, n, k, alpha, a, lda, x,
-                                           incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -9935,8 +10049,18 @@ void do_test_csbmv_c_s_x
                           /* call sbmv routines to be tested */
                           FPU_FIX_STOP;
                           XBLAS::sbmv_x(order_type,
-                                           uplo_type, n, k, alpha, a, lda, x,
-                                           incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -10386,8 +10510,18 @@ void do_test_csbmv_s_c_x
                           /* call sbmv routines to be tested */
                           FPU_FIX_STOP;
                           XBLAS::sbmv_x(order_type,
-                                           uplo_type, n, k, alpha, a, lda, x,
-                                           incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -10837,8 +10971,18 @@ void do_test_csbmv_s_s_x
                           /* call sbmv routines to be tested */
                           FPU_FIX_STOP;
                           XBLAS::sbmv_x(order_type,
-                                           uplo_type, n, k, alpha, a, lda, x,
-                                           incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */

@@ -329,9 +329,19 @@ void do_test_dsymm_d_s
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        XBLAS::symm(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        XBLAS::symm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    b,
+                                    ldb,
+                                    beta,
+                                    c,
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -771,9 +781,19 @@ void do_test_dsymm_s_d
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        XBLAS::symm(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        XBLAS::symm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    b,
+                                    ldb,
+                                    beta,
+                                    c,
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -1213,9 +1233,19 @@ void do_test_dsymm_s_s
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        XBLAS::symm(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        XBLAS::symm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    b,
+                                    ldb,
+                                    beta,
+                                    c,
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -3005,9 +3035,19 @@ void do_test_csymm_c_s
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        XBLAS::symm(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        XBLAS::symm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    b,
+                                    ldb,
+                                    beta,
+                                    c,
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -3454,9 +3494,19 @@ void do_test_csymm_s_c
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        XBLAS::symm(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        XBLAS::symm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    b,
+                                    ldb,
+                                    beta,
+                                    c,
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -3903,9 +3953,19 @@ void do_test_csymm_s_s
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        XBLAS::symm(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        XBLAS::symm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    b,
+                                    ldb,
+                                    beta,
+                                    c,
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -5717,9 +5777,20 @@ void do_test_ssymm_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::symm_x(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc, prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -6183,9 +6254,20 @@ void do_test_dsymm_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::symm_x(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc, prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -6652,9 +6734,20 @@ void do_test_csymm_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::symm_x(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc, prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -7596,9 +7689,20 @@ void do_test_dsymm_d_s_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::symm_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -8062,9 +8166,20 @@ void do_test_dsymm_s_d_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::symm_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -8528,9 +8643,20 @@ void do_test_dsymm_s_s_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::symm_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -10419,9 +10545,20 @@ void do_test_csymm_c_s_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::symm_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -10892,9 +11029,20 @@ void do_test_csymm_s_c_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::symm_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -11365,9 +11513,20 @@ void do_test_csymm_s_s_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::symm_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */

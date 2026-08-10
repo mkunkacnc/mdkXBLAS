@@ -361,8 +361,15 @@ double do_test_dwaxpby_d_s(int n,
 
               /* call BLAS_dwaxpby_d_s to get w */
               FPU_FIX_STOP;
-              XBLAS::waxpby(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val);
+              XBLAS::waxpby(n,
+                            alpha,
+                            x,
+                            incx_val,
+                            beta,
+                            y,
+                            incy_val,
+                            w,
+                            incw_val);
               FPU_FIX_START;
 
               /* computing the ratio */
@@ -875,8 +882,15 @@ double do_test_dwaxpby_s_d(int n,
 
               /* call BLAS_dwaxpby_s_d to get w */
               FPU_FIX_STOP;
-              XBLAS::waxpby(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val);
+              XBLAS::waxpby(n,
+                            alpha,
+                            x,
+                            incx_val,
+                            beta,
+                            y,
+                            incy_val,
+                            w,
+                            incw_val);
               FPU_FIX_START;
 
               /* computing the ratio */
@@ -1389,8 +1403,15 @@ double do_test_dwaxpby_s_s(int n,
 
               /* call BLAS_dwaxpby_s_s to get w */
               FPU_FIX_STOP;
-              XBLAS::waxpby(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val);
+              XBLAS::waxpby(n,
+                            alpha,
+                            x,
+                            incx_val,
+                            beta,
+                            y,
+                            incy_val,
+                            w,
+                            incw_val);
               FPU_FIX_START;
 
               /* computing the ratio */
@@ -3552,8 +3573,15 @@ double do_test_cwaxpby_c_s(int n,
 
               /* call BLAS_cwaxpby_c_s to get w */
               FPU_FIX_STOP;
-              XBLAS::waxpby(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val);
+              XBLAS::waxpby(n,
+                            alpha,
+                            x,
+                            incx_val,
+                            beta,
+                            y,
+                            incy_val,
+                            w,
+                            incw_val);
               FPU_FIX_START;
 
               /* computing the ratio */
@@ -4094,8 +4122,15 @@ double do_test_cwaxpby_s_c(int n,
 
               /* call BLAS_cwaxpby_s_c to get w */
               FPU_FIX_STOP;
-              XBLAS::waxpby(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val);
+              XBLAS::waxpby(n,
+                            alpha,
+                            x,
+                            incx_val,
+                            beta,
+                            y,
+                            incy_val,
+                            w,
+                            incw_val);
               FPU_FIX_START;
 
               /* computing the ratio */
@@ -4628,8 +4663,15 @@ double do_test_cwaxpby_s_s(int n,
 
               /* call BLAS_cwaxpby_s_s to get w */
               FPU_FIX_STOP;
-              XBLAS::waxpby(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val);
+              XBLAS::waxpby(n,
+                            alpha,
+                            x,
+                            incx_val,
+                            beta,
+                            y,
+                            incy_val,
+                            w,
+                            incw_val);
               FPU_FIX_START;
 
               /* computing the ratio */
@@ -6758,8 +6800,16 @@ double do_test_swaxpby_x(int n,
 
                 /* call BLAS_swaxpby_x to get w */
                 FPU_FIX_STOP;
-                XBLAS::waxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val, prec);
+                XBLAS::waxpby_x(n,
+                                alpha,
+                                x,
+                                incx_val,
+                                beta,
+                                y,
+                                incy_val,
+                                w,
+                                incw_val,
+                                prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */
@@ -7287,8 +7337,16 @@ double do_test_dwaxpby_x(int n,
 
                 /* call BLAS_dwaxpby_x to get w */
                 FPU_FIX_STOP;
-                XBLAS::waxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val, prec);
+                XBLAS::waxpby_x(n,
+                                alpha,
+                                x,
+                                incx_val,
+                                beta,
+                                y,
+                                incy_val,
+                                w,
+                                incw_val,
+                                prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */
@@ -7824,8 +7882,16 @@ double do_test_cwaxpby_x(int n,
 
                 /* call BLAS_cwaxpby_x to get w */
                 FPU_FIX_STOP;
-                XBLAS::waxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val, prec);
+                XBLAS::waxpby_x(n,
+                                alpha,
+                                x,
+                                incx_val,
+                                beta,
+                                y,
+                                incy_val,
+                                w,
+                                incw_val,
+                                prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */
@@ -8894,8 +8960,16 @@ double do_test_dwaxpby_d_s_x(int n,
 
                 /* call BLAS_dwaxpby_d_s_x to get w */
                 FPU_FIX_STOP;
-                XBLAS::waxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
-                                   w, incw_val, prec);
+                XBLAS::waxpby_x(n,
+                                alpha,
+                                x,
+                                incx_val,
+                                beta,
+                                y,
+                                incy_val,
+                                w,
+                                incw_val,
+                                prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */
@@ -9428,8 +9502,16 @@ double do_test_dwaxpby_s_d_x(int n,
 
                 /* call BLAS_dwaxpby_s_d_x to get w */
                 FPU_FIX_STOP;
-                XBLAS::waxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
-                                   w, incw_val, prec);
+                XBLAS::waxpby_x(n,
+                                alpha,
+                                x,
+                                incx_val,
+                                beta,
+                                y,
+                                incy_val,
+                                w,
+                                incw_val,
+                                prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */
@@ -9962,8 +10044,16 @@ double do_test_dwaxpby_s_s_x(int n,
 
                 /* call BLAS_dwaxpby_s_s_x to get w */
                 FPU_FIX_STOP;
-                XBLAS::waxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
-                                   w, incw_val, prec);
+                XBLAS::waxpby_x(n,
+                                alpha,
+                                x,
+                                incx_val,
+                                beta,
+                                y,
+                                incy_val,
+                                w,
+                                incw_val,
+                                prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */
@@ -12203,8 +12293,16 @@ double do_test_cwaxpby_c_s_x(int n,
 
                 /* call BLAS_cwaxpby_c_s_x to get w */
                 FPU_FIX_STOP;
-                XBLAS::waxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
-                                   w, incw_val, prec);
+                XBLAS::waxpby_x(n,
+                                alpha,
+                                x,
+                                incx_val,
+                                beta,
+                                y,
+                                incy_val,
+                                w,
+                                incw_val,
+                                prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */
@@ -12765,8 +12863,16 @@ double do_test_cwaxpby_s_c_x(int n,
 
                 /* call BLAS_cwaxpby_s_c_x to get w */
                 FPU_FIX_STOP;
-                XBLAS::waxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
-                                   w, incw_val, prec);
+                XBLAS::waxpby_x(n,
+                                alpha,
+                                x,
+                                incx_val,
+                                beta,
+                                y,
+                                incy_val,
+                                w,
+                                incw_val,
+                                prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */
@@ -13319,8 +13425,16 @@ double do_test_cwaxpby_s_s_x(int n,
 
                 /* call BLAS_cwaxpby_s_s_x to get w */
                 FPU_FIX_STOP;
-                XBLAS::waxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
-                                   w, incw_val, prec);
+                XBLAS::waxpby_x(n,
+                                alpha,
+                                x,
+                                incx_val,
+                                beta,
+                                y,
+                                incy_val,
+                                w,
+                                incw_val,
+                                prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */

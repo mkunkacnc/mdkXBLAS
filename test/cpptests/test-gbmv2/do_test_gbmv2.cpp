@@ -384,9 +384,21 @@ double do_test_dgbmv2_d_s(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_dgbmv2_d_s */
                           FPU_FIX_STOP;
-                          XBLAS::gbmv2(order_type, trans_type, m, n, kl,
-                                          ku, alpha, AB, lda, x_head, x_tail,
-                                          incx_val, beta, y, incy_val);
+                          XBLAS::gbmv2(order_type,
+                                       trans_type,
+                                       m,
+                                       n,
+                                       kl,
+                                       ku,
+                                       alpha,
+                                       AB,
+                                       lda,
+                                       x_head,
+                                       x_tail,
+                                       incx_val,
+                                       beta,
+                                       y,
+                                       incy_val);
                           FPU_FIX_START;
 
                           /* set y starting index */
@@ -990,9 +1002,21 @@ double do_test_dgbmv2_s_d(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_dgbmv2_s_d */
                           FPU_FIX_STOP;
-                          XBLAS::gbmv2(order_type, trans_type, m, n, kl,
-                                          ku, alpha, AB, lda, x_head, x_tail,
-                                          incx_val, beta, y, incy_val);
+                          XBLAS::gbmv2(order_type,
+                                       trans_type,
+                                       m,
+                                       n,
+                                       kl,
+                                       ku,
+                                       alpha,
+                                       AB,
+                                       lda,
+                                       x_head,
+                                       x_tail,
+                                       incx_val,
+                                       beta,
+                                       y,
+                                       incy_val);
                           FPU_FIX_START;
 
                           /* set y starting index */
@@ -1596,9 +1620,21 @@ double do_test_dgbmv2_s_s(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_dgbmv2_s_s */
                           FPU_FIX_STOP;
-                          XBLAS::gbmv2(order_type, trans_type, m, n, kl,
-                                          ku, alpha, AB, lda, x_head, x_tail,
-                                          incx_val, beta, y, incy_val);
+                          XBLAS::gbmv2(order_type,
+                                       trans_type,
+                                       m,
+                                       n,
+                                       kl,
+                                       ku,
+                                       alpha,
+                                       AB,
+                                       lda,
+                                       x_head,
+                                       x_tail,
+                                       incx_val,
+                                       beta,
+                                       y,
+                                       incy_val);
                           FPU_FIX_START;
 
                           /* set y starting index */
@@ -4063,9 +4099,21 @@ double do_test_cgbmv2_c_s(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_cgbmv2_c_s */
                           FPU_FIX_STOP;
-                          XBLAS::gbmv2(order_type, trans_type, m, n, kl,
-                                          ku, alpha, AB, lda, x_head, x_tail,
-                                          incx_val, beta, y, incy_val);
+                          XBLAS::gbmv2(order_type,
+                                       trans_type,
+                                       m,
+                                       n,
+                                       kl,
+                                       ku,
+                                       alpha,
+                                       AB,
+                                       lda,
+                                       x_head,
+                                       x_tail,
+                                       incx_val,
+                                       beta,
+                                       y,
+                                       incy_val);
                           FPU_FIX_START;
 
                           /* set y starting index */
@@ -4678,9 +4726,21 @@ double do_test_cgbmv2_s_c(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_cgbmv2_s_c */
                           FPU_FIX_STOP;
-                          XBLAS::gbmv2(order_type, trans_type, m, n, kl,
-                                          ku, alpha, AB, lda, x_head, x_tail,
-                                          incx_val, beta, y, incy_val);
+                          XBLAS::gbmv2(order_type,
+                                       trans_type,
+                                       m,
+                                       n,
+                                       kl,
+                                       ku,
+                                       alpha,
+                                       AB,
+                                       lda,
+                                       x_head,
+                                       x_tail,
+                                       incx_val,
+                                       beta,
+                                       y,
+                                       incy_val);
                           FPU_FIX_START;
 
                           /* set y starting index */
@@ -5295,9 +5355,21 @@ double do_test_cgbmv2_s_s(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_cgbmv2_s_s */
                           FPU_FIX_STOP;
-                          XBLAS::gbmv2(order_type, trans_type, m, n, kl,
-                                          ku, alpha, AB, lda, x_head, x_tail,
-                                          incx_val, beta, y, incy_val);
+                          XBLAS::gbmv2(order_type,
+                                       trans_type,
+                                       m,
+                                       n,
+                                       kl,
+                                       ku,
+                                       alpha,
+                                       AB,
+                                       lda,
+                                       x_head,
+                                       x_tail,
+                                       incx_val,
+                                       beta,
+                                       y,
+                                       incy_val);
                           FPU_FIX_START;
 
                           /* set y starting index */
@@ -7776,9 +7848,22 @@ double do_test_sgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_sgbmv2_x */
                             FPU_FIX_STOP;
-                            XBLAS::gbmv2_x(order_type, trans_type, m, n, kl,
-                                          ku, alpha, AB, lda, x_head, x_tail,
-                                          incx_val, beta, y, incy_val, prec);
+                            XBLAS::gbmv2_x(order_type,
+                                           trans_type,
+                                           m,
+                                           n,
+                                           kl,
+                                           ku,
+                                           alpha,
+                                           AB,
+                                           lda,
+                                           x_head,
+                                           x_tail,
+                                           incx_val,
+                                           beta,
+                                           y,
+                                           incy_val,
+                                           prec);
                             FPU_FIX_START;
 
                             /* set y starting index */
@@ -8400,9 +8485,22 @@ double do_test_dgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_dgbmv2_x */
                             FPU_FIX_STOP;
-                            XBLAS::gbmv2_x(order_type, trans_type, m, n, kl,
-                                          ku, alpha, AB, lda, x_head, x_tail,
-                                          incx_val, beta, y, incy_val, prec);
+                            XBLAS::gbmv2_x(order_type,
+                                           trans_type,
+                                           m,
+                                           n,
+                                           kl,
+                                           ku,
+                                           alpha,
+                                           AB,
+                                           lda,
+                                           x_head,
+                                           x_tail,
+                                           incx_val,
+                                           beta,
+                                           y,
+                                           incy_val,
+                                           prec);
                             FPU_FIX_START;
 
                             /* set y starting index */
@@ -9028,9 +9126,22 @@ double do_test_cgbmv2_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_cgbmv2_x */
                             FPU_FIX_STOP;
-                            XBLAS::gbmv2_x(order_type, trans_type, m, n, kl,
-                                          ku, alpha, AB, lda, x_head, x_tail,
-                                          incx_val, beta, y, incy_val, prec);
+                            XBLAS::gbmv2_x(order_type,
+                                           trans_type,
+                                           m,
+                                           n,
+                                           kl,
+                                           ku,
+                                           alpha,
+                                           AB,
+                                           lda,
+                                           x_head,
+                                           x_tail,
+                                           incx_val,
+                                           beta,
+                                           y,
+                                           incy_val,
+                                           prec);
                             FPU_FIX_START;
 
                             /* set y starting index */
@@ -10304,10 +10415,22 @@ double do_test_dgbmv2_d_s_x(int m, int n, int ntests, int *seed,
 
                             /* call BLAS_dgbmv2_d_s_x */
                             FPU_FIX_STOP;
-                            XBLAS::gbmv2_x(order_type, trans_type, m, n,
-                                              kl, ku, alpha, AB, lda, x_head,
-                                              x_tail, incx_val, beta, y,
-                                              incy_val, prec);
+                            XBLAS::gbmv2_x(order_type,
+                                           trans_type,
+                                           m,
+                                           n,
+                                           kl,
+                                           ku,
+                                           alpha,
+                                           AB,
+                                           lda,
+                                           x_head,
+                                           x_tail,
+                                           incx_val,
+                                           beta,
+                                           y,
+                                           incy_val,
+                                           prec);
                             FPU_FIX_START;
 
                             /* set y starting index */
@@ -10933,10 +11056,22 @@ double do_test_dgbmv2_s_d_x(int m, int n, int ntests, int *seed,
 
                             /* call BLAS_dgbmv2_s_d_x */
                             FPU_FIX_STOP;
-                            XBLAS::gbmv2_x(order_type, trans_type, m, n,
-                                              kl, ku, alpha, AB, lda, x_head,
-                                              x_tail, incx_val, beta, y,
-                                              incy_val, prec);
+                            XBLAS::gbmv2_x(order_type,
+                                           trans_type,
+                                           m,
+                                           n,
+                                           kl,
+                                           ku,
+                                           alpha,
+                                           AB,
+                                           lda,
+                                           x_head,
+                                           x_tail,
+                                           incx_val,
+                                           beta,
+                                           y,
+                                           incy_val,
+                                           prec);
                             FPU_FIX_START;
 
                             /* set y starting index */
@@ -11562,10 +11697,22 @@ double do_test_dgbmv2_s_s_x(int m, int n, int ntests, int *seed,
 
                             /* call BLAS_dgbmv2_s_s_x */
                             FPU_FIX_STOP;
-                            XBLAS::gbmv2_x(order_type, trans_type, m, n,
-                                              kl, ku, alpha, AB, lda, x_head,
-                                              x_tail, incx_val, beta, y,
-                                              incy_val, prec);
+                            XBLAS::gbmv2_x(order_type,
+                                           trans_type,
+                                           m,
+                                           n,
+                                           kl,
+                                           ku,
+                                           alpha,
+                                           AB,
+                                           lda,
+                                           x_head,
+                                           x_tail,
+                                           incx_val,
+                                           beta,
+                                           y,
+                                           incy_val,
+                                           prec);
                             FPU_FIX_START;
 
                             /* set y starting index */
@@ -14124,10 +14271,22 @@ double do_test_cgbmv2_c_s_x(int m, int n, int ntests, int *seed,
 
                             /* call BLAS_cgbmv2_c_s_x */
                             FPU_FIX_STOP;
-                            XBLAS::gbmv2_x(order_type, trans_type, m, n,
-                                              kl, ku, alpha, AB, lda, x_head,
-                                              x_tail, incx_val, beta, y,
-                                              incy_val, prec);
+                            XBLAS::gbmv2_x(order_type,
+                                           trans_type,
+                                           m,
+                                           n,
+                                           kl,
+                                           ku,
+                                           alpha,
+                                           AB,
+                                           lda,
+                                           x_head,
+                                           x_tail,
+                                           incx_val,
+                                           beta,
+                                           y,
+                                           incy_val,
+                                           prec);
                             FPU_FIX_START;
 
                             /* set y starting index */
@@ -14763,10 +14922,22 @@ double do_test_cgbmv2_s_c_x(int m, int n, int ntests, int *seed,
 
                             /* call BLAS_cgbmv2_s_c_x */
                             FPU_FIX_STOP;
-                            XBLAS::gbmv2_x(order_type, trans_type, m, n,
-                                              kl, ku, alpha, AB, lda, x_head,
-                                              x_tail, incx_val, beta, y,
-                                              incy_val, prec);
+                            XBLAS::gbmv2_x(order_type,
+                                           trans_type,
+                                           m,
+                                           n,
+                                           kl,
+                                           ku,
+                                           alpha,
+                                           AB,
+                                           lda,
+                                           x_head,
+                                           x_tail,
+                                           incx_val,
+                                           beta,
+                                           y,
+                                           incy_val,
+                                           prec);
                             FPU_FIX_START;
 
                             /* set y starting index */
@@ -15404,10 +15575,22 @@ double do_test_cgbmv2_s_s_x(int m, int n, int ntests, int *seed,
 
                             /* call BLAS_cgbmv2_s_s_x */
                             FPU_FIX_STOP;
-                            XBLAS::gbmv2_x(order_type, trans_type, m, n,
-                                              kl, ku, alpha, AB, lda, x_head,
-                                              x_tail, incx_val, beta, y,
-                                              incy_val, prec);
+                            XBLAS::gbmv2_x(order_type,
+                                           trans_type,
+                                           m,
+                                           n,
+                                           kl,
+                                           ku,
+                                           alpha,
+                                           AB,
+                                           lda,
+                                           x_head,
+                                           x_tail,
+                                           incx_val,
+                                           beta,
+                                           y,
+                                           incy_val,
+                                           prec);
                             FPU_FIX_START;
 
                             /* set y starting index */

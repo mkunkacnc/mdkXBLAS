@@ -1409,8 +1409,15 @@ void do_test_chpmv_c_s
                     /* call hpmv routines to be tested */
                     FPU_FIX_STOP;
                     XBLAS::hpmv(order_type,
-                                   uplo_type, n, alpha, a, x, incx, beta,
-                                   y, incy);
+                                uplo_type,
+                                n,
+                                alpha,
+                                a,
+                                x,
+                                incx,
+                                beta,
+                                y,
+                                incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -2177,8 +2184,16 @@ void do_test_chpmv_x
                       /* call hpmv routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::hpmv_x(order_type,
-                                   uplo_type, n, alpha, a, x, incx, beta,
-                                   y, incy, prec);
+                                    uplo_type,
+                                    n,
+                                    alpha,
+                                    a,
+                                    x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy,
+                                    prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -4157,8 +4172,16 @@ void do_test_chpmv_c_s_x
                       /* call hpmv routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::hpmv_x(order_type,
-                                       uplo_type, n, alpha, a, x, incx, beta,
-                                       y, incy, prec);
+                                    uplo_type,
+                                    n,
+                                    alpha,
+                                    a,
+                                    x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy,
+                                    prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */

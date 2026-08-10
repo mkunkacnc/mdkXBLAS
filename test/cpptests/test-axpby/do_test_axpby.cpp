@@ -293,7 +293,13 @@ double do_test_daxpby_s(int n, int ntests, int *seed, double thresh,
 
                 /* call BLAS_daxpby_s to get y_comp */
                 FPU_FIX_STOP;
-                XBLAS::axpby(n, alpha, x, incx_val, beta, y_comp, incy_val);
+                XBLAS::axpby(n,
+                             alpha,
+                             x,
+                             incx_val,
+                             beta,
+                             y_comp,
+                             incy_val);
                 FPU_FIX_START;
 
 
@@ -729,7 +735,13 @@ double do_test_caxpby_s(int n, int ntests, int *seed, double thresh,
 
                 /* call BLAS_caxpby_s to get y_comp */
                 FPU_FIX_STOP;
-                XBLAS::axpby(n, alpha, x, incx_val, beta, y_comp, incy_val);
+                XBLAS::axpby(n,
+                             alpha,
+                             x,
+                             incx_val,
+                             beta,
+                             y_comp,
+                             incy_val);
                 FPU_FIX_START;
 
 
@@ -2054,8 +2066,14 @@ double do_test_saxpby_x(int n, int ntests, int *seed, double thresh,
 
                   /* call BLAS_saxpby_x to get y_comp */
                   FPU_FIX_STOP;
-                  XBLAS::axpby_x(n, alpha, x, incx_val, beta,
-                                y_comp, incy_val, prec);
+                  XBLAS::axpby_x(n,
+                                 alpha,
+                                 x,
+                                 incx_val,
+                                 beta,
+                                 y_comp,
+                                 incy_val,
+                                 prec);
                   FPU_FIX_START;
 
 
@@ -2506,8 +2524,14 @@ double do_test_daxpby_x(int n, int ntests, int *seed, double thresh,
 
                   /* call BLAS_daxpby_x to get y_comp */
                   FPU_FIX_STOP;
-                  XBLAS::axpby_x(n, alpha, x, incx_val, beta,
-                                y_comp, incy_val, prec);
+                  XBLAS::axpby_x(n,
+                                 alpha,
+                                 x,
+                                 incx_val,
+                                 beta,
+                                 y_comp,
+                                 incy_val,
+                                 prec);
                   FPU_FIX_START;
 
 
@@ -2962,8 +2986,14 @@ double do_test_caxpby_x(int n, int ntests, int *seed, double thresh,
 
                   /* call BLAS_caxpby_x to get y_comp */
                   FPU_FIX_STOP;
-                  XBLAS::axpby_x(n, alpha, x, incx_val, beta,
-                                y_comp, incy_val, prec);
+                  XBLAS::axpby_x(n,
+                                 alpha,
+                                 x,
+                                 incx_val,
+                                 beta,
+                                 y_comp,
+                                 incy_val,
+                                 prec);
                   FPU_FIX_START;
 
 
@@ -3872,8 +3902,14 @@ double do_test_daxpby_s_x(int n, int ntests, int *seed, double thresh,
 
                   /* call BLAS_daxpby_s_x to get y_comp */
                   FPU_FIX_STOP;
-                  XBLAS::axpby_x(n, alpha, x, incx_val, beta,
-                                  y_comp, incy_val, prec);
+                  XBLAS::axpby_x(n,
+                                 alpha,
+                                 x,
+                                 incx_val,
+                                 beta,
+                                 y_comp,
+                                 incy_val,
+                                 prec);
                   FPU_FIX_START;
 
 
@@ -4790,8 +4826,14 @@ double do_test_caxpby_s_x(int n, int ntests, int *seed, double thresh,
 
                   /* call BLAS_caxpby_s_x to get y_comp */
                   FPU_FIX_STOP;
-                  XBLAS::axpby_x(n, alpha, x, incx_val, beta,
-                                  y_comp, incy_val, prec);
+                  XBLAS::axpby_x(n,
+                                 alpha,
+                                 x,
+                                 incx_val,
+                                 beta,
+                                 y_comp,
+                                 incy_val,
+                                 prec);
                   FPU_FIX_START;
 
 

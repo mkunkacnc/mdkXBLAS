@@ -335,9 +335,16 @@ double do_test_dtrsv_s(int n,
 
                         /* call BLAS_dtrsv_s */
                         FPU_FIX_STOP;
-                        XBLAS::trsv(order_type, uplo_type, trans_type,
-                                     diag_type, n, alpha, T, lda, x,
-                                     incx_val);
+                        XBLAS::trsv(order_type,
+                                    uplo_type,
+                                    trans_type,
+                                    diag_type,
+                                    n,
+                                    alpha,
+                                    T,
+                                    lda,
+                                    x,
+                                    incx_val);
                         FPU_FIX_START;
 
                         ix = 0;
@@ -1513,9 +1520,16 @@ double do_test_ctrsv_s(int n,
 
                         /* call BLAS_ctrsv_s */
                         FPU_FIX_STOP;
-                        XBLAS::trsv(order_type, uplo_type, trans_type,
-                                     diag_type, n, alpha, T, lda, x,
-                                     incx_val);
+                        XBLAS::trsv(order_type,
+                                    uplo_type,
+                                    trans_type,
+                                    diag_type,
+                                    n,
+                                    alpha,
+                                    T,
+                                    lda,
+                                    x,
+                                    incx_val);
                         FPU_FIX_START;
 
                         ix = 0;
@@ -2736,9 +2750,17 @@ double do_test_strsv_x(int n,
 
                           /* call BLAS_strsv_x */
                           FPU_FIX_STOP;
-                          XBLAS::trsv_x(order_type, uplo_type, trans_type,
-                                       diag_type, n, alpha, T, lda, x,
-                                       incx_val, prec);
+                          XBLAS::trsv_x(order_type,
+                                        uplo_type,
+                                        trans_type,
+                                        diag_type,
+                                        n,
+                                        alpha,
+                                        T,
+                                        lda,
+                                        x,
+                                        incx_val,
+                                        prec);
                           FPU_FIX_START;
 
                           ix = 0;
@@ -3327,9 +3349,17 @@ double do_test_dtrsv_x(int n,
 
                           /* call BLAS_dtrsv_x */
                           FPU_FIX_STOP;
-                          XBLAS::trsv_x(order_type, uplo_type, trans_type,
-                                       diag_type, n, alpha, T, lda, x,
-                                       incx_val, prec);
+                          XBLAS::trsv_x(order_type,
+                                        uplo_type,
+                                        trans_type,
+                                        diag_type,
+                                        n,
+                                        alpha,
+                                        T,
+                                        lda,
+                                        x,
+                                        incx_val,
+                                        prec);
                           FPU_FIX_START;
 
                           ix = 0;
@@ -3919,9 +3949,17 @@ double do_test_dtrsv_s_x(int n,
 
                           /* call BLAS_dtrsv_s_x */
                           FPU_FIX_STOP;
-                          XBLAS::trsv_x(order_type, uplo_type, trans_type,
-                                         diag_type, n, alpha, T, lda, x,
-                                         incx_val, prec);
+                          XBLAS::trsv_x(order_type,
+                                        uplo_type,
+                                        trans_type,
+                                        diag_type,
+                                        n,
+                                        alpha,
+                                        T,
+                                        lda,
+                                        x,
+                                        incx_val,
+                                        prec);
                           FPU_FIX_START;
 
                           ix = 0;
@@ -4513,9 +4551,17 @@ double do_test_ctrsv_x(int n,
 
                           /* call BLAS_ctrsv_x */
                           FPU_FIX_STOP;
-                          XBLAS::trsv_x(order_type, uplo_type, trans_type,
-                                       diag_type, n, alpha, T, lda, x,
-                                       incx_val, prec);
+                          XBLAS::trsv_x(order_type,
+                                        uplo_type,
+                                        trans_type,
+                                        diag_type,
+                                        n,
+                                        alpha,
+                                        T,
+                                        lda,
+                                        x,
+                                        incx_val,
+                                        prec);
                           FPU_FIX_START;
 
                           ix = 0;
@@ -6397,9 +6443,17 @@ double do_test_ctrsv_s_x(int n,
 
                           /* call BLAS_ctrsv_s_x */
                           FPU_FIX_STOP;
-                          XBLAS::trsv_x(order_type, uplo_type, trans_type,
-                                         diag_type, n, alpha, T, lda, x,
-                                         incx_val, prec);
+                          XBLAS::trsv_x(order_type,
+                                        uplo_type,
+                                        trans_type,
+                                        diag_type,
+                                        n,
+                                        alpha,
+                                        T,
+                                        lda,
+                                        x,
+                                        incx_val,
+                                        prec);
                           FPU_FIX_START;
 
                           ix = 0;

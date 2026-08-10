@@ -329,8 +329,18 @@ void do_test_dge_sum_mv_d_s
                       /* call ge_sum_mv routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::ge_sum_mv(order_type,
-                                          m, n, alpha, a, lda, x, incx, beta,
-                                          B, ldb, y, incy);
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       x,
+                                       incx,
+                                       beta,
+                                       B,
+                                       ldb,
+                                       y,
+                                       incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -774,8 +784,18 @@ void do_test_dge_sum_mv_s_d
                       /* call ge_sum_mv routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::ge_sum_mv(order_type,
-                                          m, n, alpha, a, lda, x, incx, beta,
-                                          B, ldb, y, incy);
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       x,
+                                       incx,
+                                       beta,
+                                       B,
+                                       ldb,
+                                       y,
+                                       incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -1219,8 +1239,18 @@ void do_test_dge_sum_mv_s_s
                       /* call ge_sum_mv routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::ge_sum_mv(order_type,
-                                          m, n, alpha, a, lda, x, incx, beta,
-                                          B, ldb, y, incy);
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       x,
+                                       incx,
+                                       beta,
+                                       B,
+                                       ldb,
+                                       y,
+                                       incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -3031,8 +3061,18 @@ void do_test_cge_sum_mv_c_s
                       /* call ge_sum_mv routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::ge_sum_mv(order_type,
-                                          m, n, alpha, a, lda, x, incx, beta,
-                                          B, ldb, y, incy);
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       x,
+                                       incx,
+                                       beta,
+                                       B,
+                                       ldb,
+                                       y,
+                                       incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -3483,8 +3523,18 @@ void do_test_cge_sum_mv_s_c
                       /* call ge_sum_mv routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::ge_sum_mv(order_type,
-                                          m, n, alpha, a, lda, x, incx, beta,
-                                          B, ldb, y, incy);
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       x,
+                                       incx,
+                                       beta,
+                                       B,
+                                       ldb,
+                                       y,
+                                       incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -3935,8 +3985,18 @@ void do_test_cge_sum_mv_s_s
                       /* call ge_sum_mv routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::ge_sum_mv(order_type,
-                                          m, n, alpha, a, lda, x, incx, beta,
-                                          B, ldb, y, incy);
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       x,
+                                       incx,
+                                       beta,
+                                       B,
+                                       ldb,
+                                       y,
+                                       incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -5761,8 +5821,19 @@ void do_test_sge_sum_mv_x
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::ge_sum_mv_x(order_type,
-                                          m, n, alpha, a, lda, x, incx, beta,
-                                          B, ldb, y, incy, prec);
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           x,
+                                           incx,
+                                           beta,
+                                           B,
+                                           ldb,
+                                           y,
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -6228,8 +6299,19 @@ void do_test_dge_sum_mv_x
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::ge_sum_mv_x(order_type,
-                                          m, n, alpha, a, lda, x, incx, beta,
-                                          B, ldb, y, incy, prec);
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           x,
+                                           incx,
+                                           beta,
+                                           B,
+                                           ldb,
+                                           y,
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -6700,8 +6782,19 @@ void do_test_cge_sum_mv_x
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::ge_sum_mv_x(order_type,
-                                          m, n, alpha, a, lda, x, incx, beta,
-                                          B, ldb, y, incy, prec);
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           x,
+                                           incx,
+                                           beta,
+                                           B,
+                                           ldb,
+                                           y,
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -7648,8 +7741,19 @@ void do_test_dge_sum_mv_d_s_x
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::ge_sum_mv_x(order_type,
-                                              m, n, alpha, a, lda, x, incx,
-                                              beta, B, ldb, y, incy, prec);
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           x,
+                                           incx,
+                                           beta,
+                                           B,
+                                           ldb,
+                                           y,
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -8117,8 +8221,19 @@ void do_test_dge_sum_mv_s_d_x
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::ge_sum_mv_x(order_type,
-                                              m, n, alpha, a, lda, x, incx,
-                                              beta, B, ldb, y, incy, prec);
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           x,
+                                           incx,
+                                           beta,
+                                           B,
+                                           ldb,
+                                           y,
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -8586,8 +8701,19 @@ void do_test_dge_sum_mv_s_s_x
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::ge_sum_mv_x(order_type,
-                                              m, n, alpha, a, lda, x, incx,
-                                              beta, B, ldb, y, incy, prec);
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           x,
+                                           incx,
+                                           beta,
+                                           B,
+                                           ldb,
+                                           y,
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -10494,8 +10620,19 @@ void do_test_cge_sum_mv_c_s_x
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::ge_sum_mv_x(order_type,
-                                              m, n, alpha, a, lda, x, incx,
-                                              beta, B, ldb, y, incy, prec);
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           x,
+                                           incx,
+                                           beta,
+                                           B,
+                                           ldb,
+                                           y,
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -10970,8 +11107,19 @@ void do_test_cge_sum_mv_s_c_x
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::ge_sum_mv_x(order_type,
-                                              m, n, alpha, a, lda, x, incx,
-                                              beta, B, ldb, y, incy, prec);
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           x,
+                                           incx,
+                                           beta,
+                                           B,
+                                           ldb,
+                                           y,
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -11446,8 +11594,19 @@ void do_test_cge_sum_mv_s_s_x
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::ge_sum_mv_x(order_type,
-                                              m, n, alpha, a, lda, x, incx,
-                                              beta, B, ldb, y, incy, prec);
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           x,
+                                           incx,
+                                           beta,
+                                           B,
+                                           ldb,
+                                           y,
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */

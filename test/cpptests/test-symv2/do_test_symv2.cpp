@@ -306,8 +306,17 @@ void do_test_dsymv2_d_s
                     /* call symv2 routines to be tested */
                     FPU_FIX_STOP;
                     XBLAS::symv2(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                 uplo_type,
+                                 n,
+                                 alpha,
+                                 a,
+                                 lda,
+                                 head_x,
+                                 tail_x,
+                                 incx,
+                                 beta,
+                                 y,
+                                 incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -700,8 +709,17 @@ void do_test_dsymv2_s_d
                     /* call symv2 routines to be tested */
                     FPU_FIX_STOP;
                     XBLAS::symv2(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                 uplo_type,
+                                 n,
+                                 alpha,
+                                 a,
+                                 lda,
+                                 head_x,
+                                 tail_x,
+                                 incx,
+                                 beta,
+                                 y,
+                                 incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -1094,8 +1112,17 @@ void do_test_dsymv2_s_s
                     /* call symv2 routines to be tested */
                     FPU_FIX_STOP;
                     XBLAS::symv2(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                 uplo_type,
+                                 n,
+                                 alpha,
+                                 a,
+                                 lda,
+                                 head_x,
+                                 tail_x,
+                                 incx,
+                                 beta,
+                                 y,
+                                 incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -2702,8 +2729,17 @@ void do_test_csymv2_c_s
                     /* call symv2 routines to be tested */
                     FPU_FIX_STOP;
                     XBLAS::symv2(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                 uplo_type,
+                                 n,
+                                 alpha,
+                                 a,
+                                 lda,
+                                 head_x,
+                                 tail_x,
+                                 incx,
+                                 beta,
+                                 y,
+                                 incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -3105,8 +3141,17 @@ void do_test_csymv2_s_c
                     /* call symv2 routines to be tested */
                     FPU_FIX_STOP;
                     XBLAS::symv2(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                 uplo_type,
+                                 n,
+                                 alpha,
+                                 a,
+                                 lda,
+                                 head_x,
+                                 tail_x,
+                                 incx,
+                                 beta,
+                                 y,
+                                 incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -3508,8 +3553,17 @@ void do_test_csymv2_s_s
                     /* call symv2 routines to be tested */
                     FPU_FIX_STOP;
                     XBLAS::symv2(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                 uplo_type,
+                                 n,
+                                 alpha,
+                                 a,
+                                 lda,
+                                 head_x,
+                                 tail_x,
+                                 incx,
+                                 beta,
+                                 y,
+                                 incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -5135,8 +5189,18 @@ void do_test_ssymv2_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::symv2_x(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy, prec);
+                                     uplo_type,
+                                     n,
+                                     alpha,
+                                     a,
+                                     lda,
+                                     head_x,
+                                     tail_x,
+                                     incx,
+                                     beta,
+                                     y,
+                                     incy,
+                                     prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -5551,8 +5615,18 @@ void do_test_dsymv2_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::symv2_x(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy, prec);
+                                     uplo_type,
+                                     n,
+                                     alpha,
+                                     a,
+                                     lda,
+                                     head_x,
+                                     tail_x,
+                                     incx,
+                                     beta,
+                                     y,
+                                     incy,
+                                     prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -5972,8 +6046,18 @@ void do_test_csymv2_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::symv2_x(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy, prec);
+                                     uplo_type,
+                                     n,
+                                     alpha,
+                                     a,
+                                     lda,
+                                     head_x,
+                                     tail_x,
+                                     incx,
+                                     beta,
+                                     y,
+                                     incy,
+                                     prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -6817,8 +6901,18 @@ void do_test_dsymv2_d_s_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::symv2_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                     uplo_type,
+                                     n,
+                                     alpha,
+                                     a,
+                                     lda,
+                                     head_x,
+                                     tail_x,
+                                     incx,
+                                     beta,
+                                     y,
+                                     incy,
+                                     prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -7233,8 +7327,18 @@ void do_test_dsymv2_s_d_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::symv2_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                     uplo_type,
+                                     n,
+                                     alpha,
+                                     a,
+                                     lda,
+                                     head_x,
+                                     tail_x,
+                                     incx,
+                                     beta,
+                                     y,
+                                     incy,
+                                     prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -7649,8 +7753,18 @@ void do_test_dsymv2_s_s_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::symv2_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                     uplo_type,
+                                     n,
+                                     alpha,
+                                     a,
+                                     lda,
+                                     head_x,
+                                     tail_x,
+                                     incx,
+                                     beta,
+                                     y,
+                                     incy,
+                                     prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -9345,8 +9459,18 @@ void do_test_csymv2_c_s_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::symv2_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                     uplo_type,
+                                     n,
+                                     alpha,
+                                     a,
+                                     lda,
+                                     head_x,
+                                     tail_x,
+                                     incx,
+                                     beta,
+                                     y,
+                                     incy,
+                                     prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -9770,8 +9894,18 @@ void do_test_csymv2_s_c_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::symv2_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                     uplo_type,
+                                     n,
+                                     alpha,
+                                     a,
+                                     lda,
+                                     head_x,
+                                     tail_x,
+                                     incx,
+                                     beta,
+                                     y,
+                                     incy,
+                                     prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -10195,8 +10329,18 @@ void do_test_csymv2_s_s_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       XBLAS::symv2_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                     uplo_type,
+                                     n,
+                                     alpha,
+                                     a,
+                                     lda,
+                                     head_x,
+                                     tail_x,
+                                     incx,
+                                     beta,
+                                     y,
+                                     incy,
+                                     prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */

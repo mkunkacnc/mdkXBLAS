@@ -1609,8 +1609,17 @@ void do_test_chbmv_c_s
                         /* call hbmv routines to be tested */
                         FPU_FIX_STOP;
                         XBLAS::hbmv(order_type,
-                                       uplo_type, n, k, alpha, a, lda, x,
-                                       incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    k,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -2487,8 +2496,18 @@ void do_test_chbmv_x
                           /* call hbmv routines to be tested */
                           FPU_FIX_STOP;
                           XBLAS::hbmv_x(order_type,
-                                       uplo_type, n, k, alpha, a, lda, x,
-                                       incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -4744,8 +4763,18 @@ void do_test_chbmv_c_s_x
                           /* call hbmv routines to be tested */
                           FPU_FIX_STOP;
                           XBLAS::hbmv_x(order_type,
-                                           uplo_type, n, k, alpha, a, lda, x,
-                                           incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */

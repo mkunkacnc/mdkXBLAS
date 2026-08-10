@@ -1684,9 +1684,19 @@ void do_test_chemm_c_s(int m, int n,
 
                         /* call hemm routines to be tested */
                         FPU_FIX_STOP;
-                        XBLAS::hemm(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        XBLAS::hemm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    b,
+                                    ldb,
+                                    beta,
+                                    c,
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -2619,9 +2629,20 @@ void do_test_chemm_x(int m, int n,
 
                           /* call hemm routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::hemm_x(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc, prec);
+                          XBLAS::hemm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -5032,9 +5053,20 @@ void do_test_chemm_c_s_x(int m, int n,
 
                           /* call hemm routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::hemm_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          XBLAS::hemm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */

@@ -249,8 +249,15 @@ double do_test_ddot_d_s(int n, int ntests, int *seed, double thresh,
                   r_comp = r;
 
                   FPU_FIX_STOP;
-                  XBLAS::dot(conj_type, n, alpha, x, incx_val, beta,
-                                y, incy_val, &r_comp);
+                  XBLAS::dot(conj_type,
+                             n,
+                             alpha,
+                             x,
+                             incx_val,
+                             beta,
+                             y,
+                             incy_val,
+                             &r_comp);
                   FPU_FIX_START;
 
                   /* computing the ratio */
@@ -624,8 +631,15 @@ double do_test_ddot_s_d(int n, int ntests, int *seed, double thresh,
                   r_comp = r;
 
                   FPU_FIX_STOP;
-                  XBLAS::dot(conj_type, n, alpha, x, incx_val, beta,
-                                y, incy_val, &r_comp);
+                  XBLAS::dot(conj_type,
+                             n,
+                             alpha,
+                             x,
+                             incx_val,
+                             beta,
+                             y,
+                             incy_val,
+                             &r_comp);
                   FPU_FIX_START;
 
                   /* computing the ratio */
@@ -999,8 +1013,15 @@ double do_test_ddot_s_s(int n, int ntests, int *seed, double thresh,
                   r_comp = r;
 
                   FPU_FIX_STOP;
-                  XBLAS::dot(conj_type, n, alpha, x, incx_val, beta,
-                                y, incy_val, &r_comp);
+                  XBLAS::dot(conj_type,
+                             n,
+                             alpha,
+                             x,
+                             incx_val,
+                             beta,
+                             y,
+                             incy_val,
+                             &r_comp);
                   FPU_FIX_START;
 
                   /* computing the ratio */
@@ -2517,8 +2538,15 @@ double do_test_cdot_c_s(int n, int ntests, int *seed, double thresh,
                   r_comp[1] = r[1];
 
                   FPU_FIX_STOP;
-                  XBLAS::dot(conj_type, n, alpha, x, incx_val, beta,
-                                y, incy_val, &r_comp);
+                  XBLAS::dot(conj_type,
+                             n,
+                             alpha,
+                             x,
+                             incx_val,
+                             beta,
+                             y,
+                             incy_val,
+                             &r_comp);
                   FPU_FIX_START;
 
                   /* computing the ratio */
@@ -2897,8 +2925,15 @@ double do_test_cdot_s_c(int n, int ntests, int *seed, double thresh,
                   r_comp[1] = r[1];
 
                   FPU_FIX_STOP;
-                  XBLAS::dot(conj_type, n, alpha, x, incx_val, beta,
-                                y, incy_val, &r_comp);
+                  XBLAS::dot(conj_type,
+                             n,
+                             alpha,
+                             x,
+                             incx_val,
+                             beta,
+                             y,
+                             incy_val,
+                             &r_comp);
                   FPU_FIX_START;
 
                   /* computing the ratio */
@@ -3277,8 +3312,15 @@ double do_test_cdot_s_s(int n, int ntests, int *seed, double thresh,
                   r_comp[1] = r[1];
 
                   FPU_FIX_STOP;
-                  XBLAS::dot(conj_type, n, alpha, x, incx_val, beta,
-                                y, incy_val, &r_comp);
+                  XBLAS::dot(conj_type,
+                             n,
+                             alpha,
+                             x,
+                             incx_val,
+                             beta,
+                             y,
+                             incy_val,
+                             &r_comp);
                   FPU_FIX_START;
 
                   /* computing the ratio */
@@ -4812,8 +4854,16 @@ double do_test_sdot_x(int n, int ntests, int *seed, double thresh, int debug,
                     r_comp = r;
 
                     FPU_FIX_STOP;
-                    XBLAS::dot_x(conj_type, n, alpha, x, incx_val, beta,
-                                y, incy_val, &r_comp, prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 alpha,
+                                 x,
+                                 incx_val,
+                                 beta,
+                                 y,
+                                 incy_val,
+                                 &r_comp,
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */
@@ -5206,8 +5256,16 @@ double do_test_ddot_x(int n, int ntests, int *seed, double thresh, int debug,
                     r_comp = r;
 
                     FPU_FIX_STOP;
-                    XBLAS::dot_x(conj_type, n, alpha, x, incx_val, beta,
-                                y, incy_val, &r_comp, prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 alpha,
+                                 x,
+                                 incx_val,
+                                 beta,
+                                 y,
+                                 incy_val,
+                                 &r_comp,
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */
@@ -5603,8 +5661,16 @@ double do_test_cdot_x(int n, int ntests, int *seed, double thresh, int debug,
                     r_comp[1] = r[1];
 
                     FPU_FIX_STOP;
-                    XBLAS::dot_x(conj_type, n, alpha, x, incx_val, beta,
-                                y, incy_val, &r_comp, prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 alpha,
+                                 x,
+                                 incx_val,
+                                 beta,
+                                 y,
+                                 incy_val,
+                                 &r_comp,
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */
@@ -6399,8 +6465,16 @@ double do_test_ddot_d_s_x(int n, int ntests, int *seed, double thresh,
                     r_comp = r;
 
                     FPU_FIX_STOP;
-                    XBLAS::dot_x(conj_type, n, alpha, x, incx_val, beta,
-                                    y, incy_val, &r_comp, prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 alpha,
+                                 x,
+                                 incx_val,
+                                 beta,
+                                 y,
+                                 incy_val,
+                                 &r_comp,
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */
@@ -6794,8 +6868,16 @@ double do_test_ddot_s_d_x(int n, int ntests, int *seed, double thresh,
                     r_comp = r;
 
                     FPU_FIX_STOP;
-                    XBLAS::dot_x(conj_type, n, alpha, x, incx_val, beta,
-                                    y, incy_val, &r_comp, prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 alpha,
+                                 x,
+                                 incx_val,
+                                 beta,
+                                 y,
+                                 incy_val,
+                                 &r_comp,
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */
@@ -7189,8 +7271,16 @@ double do_test_ddot_s_s_x(int n, int ntests, int *seed, double thresh,
                     r_comp = r;
 
                     FPU_FIX_STOP;
-                    XBLAS::dot_x(conj_type, n, alpha, x, incx_val, beta,
-                                    y, incy_val, &r_comp, prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 alpha,
+                                 x,
+                                 incx_val,
+                                 beta,
+                                 y,
+                                 incy_val,
+                                 &r_comp,
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */
@@ -8787,8 +8877,16 @@ double do_test_cdot_c_s_x(int n, int ntests, int *seed, double thresh,
                     r_comp[1] = r[1];
 
                     FPU_FIX_STOP;
-                    XBLAS::dot_x(conj_type, n, alpha, x, incx_val, beta,
-                                    y, incy_val, &r_comp, prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 alpha,
+                                 x,
+                                 incx_val,
+                                 beta,
+                                 y,
+                                 incy_val,
+                                 &r_comp,
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */
@@ -9187,8 +9285,16 @@ double do_test_cdot_s_c_x(int n, int ntests, int *seed, double thresh,
                     r_comp[1] = r[1];
 
                     FPU_FIX_STOP;
-                    XBLAS::dot_x(conj_type, n, alpha, x, incx_val, beta,
-                                    y, incy_val, &r_comp, prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 alpha,
+                                 x,
+                                 incx_val,
+                                 beta,
+                                 y,
+                                 incy_val,
+                                 &r_comp,
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */
@@ -9587,8 +9693,16 @@ double do_test_cdot_s_s_x(int n, int ntests, int *seed, double thresh,
                     r_comp[1] = r[1];
 
                     FPU_FIX_STOP;
-                    XBLAS::dot_x(conj_type, n, alpha, x, incx_val, beta,
-                                    y, incy_val, &r_comp, prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 alpha,
+                                 x,
+                                 incx_val,
+                                 beta,
+                                 y,
+                                 incy_val,
+                                 &r_comp,
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */

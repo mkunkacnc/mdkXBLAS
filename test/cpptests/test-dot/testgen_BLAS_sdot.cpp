@@ -247,8 +247,16 @@ testgen_BLAS_sdot(int n, int n_fix2, int n_mix, int /* norm */,
            */
           if (y_free > B / 24.0 + 1) {  /* Use scheme (1) */
             rtmps = 0.0;
-            XBLAS::dot_x(conj, k, *alpha, x, 1, 0.0F, y, 1,
-                        &rtmps, blas_prec_extra);
+            XBLAS::dot_x(conj,
+                         k,
+                         *alpha,
+                         x,
+                         1,
+                         0.0F,
+                         y,
+                         1,
+                         &rtmps,
+                         blas_prec_extra);
             rtmpd = rtmps;
             s = 100;            /* Should be random between 40 and 100. */
             y[k] = rtmpd * power(2, -s) / (*alpha * x[k]);
@@ -417,8 +425,16 @@ testgen_BLAS_sdot(int n, int n_fix2, int n_mix, int /* norm */,
        */
       if (frees > B / 24.0 + 1) {       /* Use scheme (1) */
         rtmps = 0.0;
-        XBLAS::dot_x(conj, k, *alpha, x, 1, 0.0F, y, 1,
-                    &rtmps, blas_prec_extra);
+        XBLAS::dot_x(conj,
+                     k,
+                     *alpha,
+                     x,
+                     1,
+                     0.0F,
+                     y,
+                     1,
+                     &rtmps,
+                     blas_prec_extra);
         s = 100;                /* Should be random between 40 and 100. */
         if (*alpha * x[k] == 0.0)
           y[k] = 0.;
@@ -487,7 +503,16 @@ static void gen_y_to_cancel(int k, int n, enum blas_conj_type conj,
 
   for (i = k; i < n; ++i) {
     rtmp = 0.0;
-    XBLAS::dot_x(conj, i, alpha, x, 1, 0.0F, y, 1, &rtmp, blas_prec_extra);
+    XBLAS::dot_x(conj,
+                 i,
+                 alpha,
+                 x,
+                 1,
+                 0.0F,
+                 y,
+                 1,
+                 &rtmp,
+                 blas_prec_extra);
     if (alpha * x[i] == 0.0)
       y[i] = 0.;
     else
@@ -513,7 +538,16 @@ gen_r_to_cancel(int n, enum blas_conj_type conj, float alpha,
     *r = xrand(seed);
   else {
     rtmp = 0.0;
-    XBLAS::dot_x(conj, n, alpha, x, 1, 0.0F, y, 1, &rtmp, blas_prec_extra);
+    XBLAS::dot_x(conj,
+                 n,
+                 alpha,
+                 x,
+                 1,
+                 0.0F,
+                 y,
+                 1,
+                 &rtmp,
+                 blas_prec_extra);
     *r = -rtmp / beta;
   }
 }

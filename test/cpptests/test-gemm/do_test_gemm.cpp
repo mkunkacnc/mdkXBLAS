@@ -342,9 +342,20 @@ void do_test_dgemm_d_s(int m, int n, int k, int ntests, int *seed,
 
                         /* call GEMM routines to be tested */
                         FPU_FIX_STOP;
-                        XBLAS::gemm(order, transa,
-                                       transb, m, n, k, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        XBLAS::gemm(order,
+                                    transa,
+                                    transb,
+                                    m,
+                                    n,
+                                    k,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    b,
+                                    ldb,
+                                    beta,
+                                    c,
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -813,9 +824,20 @@ void do_test_dgemm_s_d(int m, int n, int k, int ntests, int *seed,
 
                         /* call GEMM routines to be tested */
                         FPU_FIX_STOP;
-                        XBLAS::gemm(order, transa,
-                                       transb, m, n, k, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        XBLAS::gemm(order,
+                                    transa,
+                                    transb,
+                                    m,
+                                    n,
+                                    k,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    b,
+                                    ldb,
+                                    beta,
+                                    c,
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -1284,9 +1306,20 @@ void do_test_dgemm_s_s(int m, int n, int k, int ntests, int *seed,
 
                         /* call GEMM routines to be tested */
                         FPU_FIX_STOP;
-                        XBLAS::gemm(order, transa,
-                                       transb, m, n, k, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        XBLAS::gemm(order,
+                                    transa,
+                                    transb,
+                                    m,
+                                    n,
+                                    k,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    b,
+                                    ldb,
+                                    beta,
+                                    c,
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -3180,9 +3213,20 @@ void do_test_cgemm_c_s(int m, int n, int k, int ntests, int *seed,
 
                         /* call GEMM routines to be tested */
                         FPU_FIX_STOP;
-                        XBLAS::gemm(order, transa,
-                                       transb, m, n, k, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        XBLAS::gemm(order,
+                                    transa,
+                                    transb,
+                                    m,
+                                    n,
+                                    k,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    b,
+                                    ldb,
+                                    beta,
+                                    c,
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -3654,9 +3698,20 @@ void do_test_cgemm_s_c(int m, int n, int k, int ntests, int *seed,
 
                         /* call GEMM routines to be tested */
                         FPU_FIX_STOP;
-                        XBLAS::gemm(order, transa,
-                                       transb, m, n, k, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        XBLAS::gemm(order,
+                                    transa,
+                                    transb,
+                                    m,
+                                    n,
+                                    k,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    b,
+                                    ldb,
+                                    beta,
+                                    c,
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -4128,9 +4183,20 @@ void do_test_cgemm_s_s(int m, int n, int k, int ntests, int *seed,
 
                         /* call GEMM routines to be tested */
                         FPU_FIX_STOP;
-                        XBLAS::gemm(order, transa,
-                                       transb, m, n, k, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        XBLAS::gemm(order,
+                                    transa,
+                                    transb,
+                                    m,
+                                    n,
+                                    k,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    b,
+                                    ldb,
+                                    beta,
+                                    c,
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -6040,9 +6106,21 @@ void do_test_sgemm_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::gemm_x(order, transa,
-                                       transb, m, n, k, alpha, a, lda, b, ldb,
-                                       beta, c, ldc, prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -6547,9 +6625,21 @@ void do_test_dgemm_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::gemm_x(order, transa,
-                                       transb, m, n, k, alpha, a, lda, b, ldb,
-                                       beta, c, ldc, prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -7057,9 +7147,21 @@ void do_test_cgemm_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::gemm_x(order, transa,
-                                       transb, m, n, k, alpha, a, lda, b, ldb,
-                                       beta, c, ldc, prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -8076,9 +8178,21 @@ void do_test_dgemm_d_s_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::gemm_x(order, transa,
-                                           transb, m, n, k, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -8584,9 +8698,21 @@ void do_test_dgemm_s_d_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::gemm_x(order, transa,
-                                           transb, m, n, k, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -9092,9 +9218,21 @@ void do_test_dgemm_s_s_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::gemm_x(order, transa,
-                                           transb, m, n, k, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -11139,9 +11277,21 @@ void do_test_cgemm_c_s_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::gemm_x(order, transa,
-                                           transb, m, n, k, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -11650,9 +11800,21 @@ void do_test_cgemm_s_c_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::gemm_x(order, transa,
-                                           transb, m, n, k, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -12161,9 +12323,21 @@ void do_test_cgemm_s_s_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          XBLAS::gemm_x(order, transa,
-                                           transb, m, n, k, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        beta,
+                                        c,
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
