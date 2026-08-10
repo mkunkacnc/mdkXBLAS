@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <cstdio>
 #include "blas_extended.h"
 
 void che_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,

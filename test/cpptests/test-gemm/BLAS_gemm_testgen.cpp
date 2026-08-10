@@ -1,6 +1,6 @@
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include "blas_extended.h"
 #include "blas_extended_test.hpp"
 

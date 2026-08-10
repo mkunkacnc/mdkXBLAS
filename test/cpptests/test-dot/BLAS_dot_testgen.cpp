@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <cstdio>
 #include <assert.h>
 #include "blas_extended.h"
 #include "blas_extended_test.hpp"
