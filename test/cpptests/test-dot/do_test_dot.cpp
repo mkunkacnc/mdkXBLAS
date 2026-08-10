@@ -249,7 +249,7 @@ double do_test_ddot_d_s(int n, int ntests, int *seed, double thresh,
                   r_comp = r;
 
                   FPU_FIX_STOP;
-                  BLAS_ddot_d_s(conj_type, n, alpha, x, incx_val, beta,
+                  XBLAS::dot(conj_type, n, alpha, x, incx_val, beta,
                                 y, incy_val, &r_comp);
                   FPU_FIX_START;
 
@@ -624,7 +624,7 @@ double do_test_ddot_s_d(int n, int ntests, int *seed, double thresh,
                   r_comp = r;
 
                   FPU_FIX_STOP;
-                  BLAS_ddot_s_d(conj_type, n, alpha, x, incx_val, beta,
+                  XBLAS::dot(conj_type, n, alpha, x, incx_val, beta,
                                 y, incy_val, &r_comp);
                   FPU_FIX_START;
 
@@ -999,7 +999,7 @@ double do_test_ddot_s_s(int n, int ntests, int *seed, double thresh,
                   r_comp = r;
 
                   FPU_FIX_STOP;
-                  BLAS_ddot_s_s(conj_type, n, alpha, x, incx_val, beta,
+                  XBLAS::dot(conj_type, n, alpha, x, incx_val, beta,
                                 y, incy_val, &r_comp);
                   FPU_FIX_START;
 
@@ -5206,7 +5206,7 @@ double do_test_ddot_x(int n, int ntests, int *seed, double thresh, int debug,
                     r_comp = r;
 
                     FPU_FIX_STOP;
-                    BLAS_ddot_x(conj_type, n, alpha, x, incx_val, beta,
+                    XBLAS::dot_x(conj_type, n, alpha, x, incx_val, beta,
                                 y, incy_val, &r_comp, prec);
                     FPU_FIX_START;
 
@@ -6399,7 +6399,7 @@ double do_test_ddot_d_s_x(int n, int ntests, int *seed, double thresh,
                     r_comp = r;
 
                     FPU_FIX_STOP;
-                    BLAS_ddot_d_s_x(conj_type, n, alpha, x, incx_val, beta,
+                    XBLAS::dot_x(conj_type, n, alpha, x, incx_val, beta,
                                     y, incy_val, &r_comp, prec);
                     FPU_FIX_START;
 
@@ -6794,7 +6794,7 @@ double do_test_ddot_s_d_x(int n, int ntests, int *seed, double thresh,
                     r_comp = r;
 
                     FPU_FIX_STOP;
-                    BLAS_ddot_s_d_x(conj_type, n, alpha, x, incx_val, beta,
+                    XBLAS::dot_x(conj_type, n, alpha, x, incx_val, beta,
                                     y, incy_val, &r_comp, prec);
                     FPU_FIX_START;
 
@@ -7189,7 +7189,7 @@ double do_test_ddot_s_s_x(int n, int ntests, int *seed, double thresh,
                     r_comp = r;
 
                     FPU_FIX_STOP;
-                    BLAS_ddot_s_s_x(conj_type, n, alpha, x, incx_val, beta,
+                    XBLAS::dot_x(conj_type, n, alpha, x, incx_val, beta,
                                     y, incy_val, &r_comp, prec);
                     FPU_FIX_START;
 

@@ -360,7 +360,7 @@ double do_test_dtbsv_s(int n,
 
                           /* call BLAS_dtbsv_s */
                           FPU_FIX_STOP;
-                          BLAS_dtbsv_s(order_type, uplo_type, trans_type,
+                          XBLAS::tbsv(order_type, uplo_type, trans_type,
                                        diag_type, n, k, alpha, T, ldt, x,
                                        incx_unadj);
                           FPU_FIX_START;
@@ -3468,7 +3468,7 @@ double do_test_dtbsv_x(int n,
 
                             /* call BLAS_dtbsv_x */
                             FPU_FIX_STOP;
-                            BLAS_dtbsv_x(order_type, uplo_type, trans_type,
+                            XBLAS::tbsv_x(order_type, uplo_type, trans_type,
                                          diag_type, n, k, alpha, T, ldt, x,
                                          incx_unadj, prec);
                             FPU_FIX_START;
@@ -4081,7 +4081,7 @@ double do_test_dtbsv_s_x(int n,
 
                             /* call BLAS_dtbsv_s_x */
                             FPU_FIX_STOP;
-                            BLAS_dtbsv_s_x(order_type, uplo_type, trans_type,
+                            XBLAS::tbsv_x(order_type, uplo_type, trans_type,
                                            diag_type, n, k, alpha, T, ldt, x,
                                            incx_unadj, prec);
                             FPU_FIX_START;

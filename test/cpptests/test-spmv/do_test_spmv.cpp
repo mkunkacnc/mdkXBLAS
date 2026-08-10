@@ -283,7 +283,7 @@ void do_test_dspmv_d_s(int n,
 
                     /* call spmv routines to be tested */
                     FPU_FIX_STOP;
-                    BLAS_dspmv_d_s(order_type,
+                    XBLAS::spmv(order_type,
                                    uplo_type, n, alpha, a, x, incx, beta,
                                    y, incy);
                     FPU_FIX_START;
@@ -665,7 +665,7 @@ void do_test_dspmv_s_d(int n,
 
                     /* call spmv routines to be tested */
                     FPU_FIX_STOP;
-                    BLAS_dspmv_s_d(order_type,
+                    XBLAS::spmv(order_type,
                                    uplo_type, n, alpha, a, x, incx, beta,
                                    y, incy);
                     FPU_FIX_START;
@@ -1047,7 +1047,7 @@ void do_test_dspmv_s_s(int n,
 
                     /* call spmv routines to be tested */
                     FPU_FIX_STOP;
-                    BLAS_dspmv_s_s(order_type,
+                    XBLAS::spmv(order_type,
                                    uplo_type, n, alpha, a, x, incx, beta,
                                    y, incy);
                     FPU_FIX_START;
@@ -5354,7 +5354,7 @@ void do_test_dspmv_x(int n,
 
                       /* call spmv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_dspmv_x(order_type,
+                      XBLAS::spmv_x(order_type,
                                    uplo_type, n, alpha, a, x, incx, beta,
                                    y, incy, prec);
                       FPU_FIX_START;
@@ -6581,7 +6581,7 @@ void do_test_dspmv_d_s_x(int n,
 
                       /* call spmv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_dspmv_d_s_x(order_type,
+                      XBLAS::spmv_x(order_type,
                                        uplo_type, n, alpha, a, x, incx, beta,
                                        y, incy, prec);
                       FPU_FIX_START;
@@ -6986,7 +6986,7 @@ void do_test_dspmv_s_d_x(int n,
 
                       /* call spmv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_dspmv_s_d_x(order_type,
+                      XBLAS::spmv_x(order_type,
                                        uplo_type, n, alpha, a, x, incx, beta,
                                        y, incy, prec);
                       FPU_FIX_START;
@@ -7391,7 +7391,7 @@ void do_test_dspmv_s_s_x(int n,
 
                       /* call spmv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_dspmv_s_s_x(order_type,
+                      XBLAS::spmv_x(order_type,
                                        uplo_type, n, alpha, a, x, incx, beta,
                                        y, incy, prec);
                       FPU_FIX_START;

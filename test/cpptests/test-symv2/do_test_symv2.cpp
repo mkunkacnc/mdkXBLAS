@@ -305,7 +305,7 @@ void do_test_dsymv2_d_s
 
                     /* call symv2 routines to be tested */
                     FPU_FIX_STOP;
-                    BLAS_dsymv2_d_s(order_type,
+                    XBLAS::symv2(order_type,
                                     uplo_type, n, alpha, a, lda, head_x,
                                     tail_x, incx, beta, y, incy);
                     FPU_FIX_START;
@@ -699,7 +699,7 @@ void do_test_dsymv2_s_d
 
                     /* call symv2 routines to be tested */
                     FPU_FIX_STOP;
-                    BLAS_dsymv2_s_d(order_type,
+                    XBLAS::symv2(order_type,
                                     uplo_type, n, alpha, a, lda, head_x,
                                     tail_x, incx, beta, y, incy);
                     FPU_FIX_START;
@@ -1093,7 +1093,7 @@ void do_test_dsymv2_s_s
 
                     /* call symv2 routines to be tested */
                     FPU_FIX_STOP;
-                    BLAS_dsymv2_s_s(order_type,
+                    XBLAS::symv2(order_type,
                                     uplo_type, n, alpha, a, lda, head_x,
                                     tail_x, incx, beta, y, incy);
                     FPU_FIX_START;
@@ -5550,7 +5550,7 @@ void do_test_dsymv2_x
 
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_dsymv2_x(order_type,
+                      XBLAS::symv2_x(order_type,
                                     uplo_type, n, alpha, a, lda, head_x,
                                     tail_x, incx, beta, y, incy, prec);
                       FPU_FIX_START;
@@ -6816,7 +6816,7 @@ void do_test_dsymv2_d_s_x
 
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_dsymv2_d_s_x(order_type,
+                      XBLAS::symv2_x(order_type,
                                         uplo_type, n, alpha, a, lda, head_x,
                                         tail_x, incx, beta, y, incy, prec);
                       FPU_FIX_START;
@@ -7232,7 +7232,7 @@ void do_test_dsymv2_s_d_x
 
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_dsymv2_s_d_x(order_type,
+                      XBLAS::symv2_x(order_type,
                                         uplo_type, n, alpha, a, lda, head_x,
                                         tail_x, incx, beta, y, incy, prec);
                       FPU_FIX_START;
@@ -7648,7 +7648,7 @@ void do_test_dsymv2_s_s_x
 
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_dsymv2_s_s_x(order_type,
+                      XBLAS::symv2_x(order_type,
                                         uplo_type, n, alpha, a, lda, head_x,
                                         tail_x, incx, beta, y, incy, prec);
                       FPU_FIX_START;

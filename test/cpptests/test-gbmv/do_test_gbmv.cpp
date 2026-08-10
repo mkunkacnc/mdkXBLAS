@@ -372,7 +372,7 @@ double do_test_dgbmv_d_s(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_dgbmv_d_s */
                           FPU_FIX_STOP;
-                          BLAS_dgbmv_d_s(order_type, trans_type, m, n, kl, ku,
+                          XBLAS::gbmv(order_type, trans_type, m, n, kl, ku,
                                          alpha, AB, lda, x, incx_val, beta, y,
                                          incy_val);
                           FPU_FIX_START;
@@ -958,7 +958,7 @@ double do_test_dgbmv_s_d(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_dgbmv_s_d */
                           FPU_FIX_STOP;
-                          BLAS_dgbmv_s_d(order_type, trans_type, m, n, kl, ku,
+                          XBLAS::gbmv(order_type, trans_type, m, n, kl, ku,
                                          alpha, AB, lda, x, incx_val, beta, y,
                                          incy_val);
                           FPU_FIX_START;
@@ -1544,7 +1544,7 @@ double do_test_dgbmv_s_s(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_dgbmv_s_s */
                           FPU_FIX_STOP;
-                          BLAS_dgbmv_s_s(order_type, trans_type, m, n, kl, ku,
+                          XBLAS::gbmv(order_type, trans_type, m, n, kl, ku,
                                          alpha, AB, lda, x, incx_val, beta, y,
                                          incy_val);
                           FPU_FIX_START;
@@ -8126,7 +8126,7 @@ double do_test_dgbmv_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_dgbmv_x */
                             FPU_FIX_STOP;
-                            BLAS_dgbmv_x(order_type, trans_type, m, n, kl, ku,
+                            XBLAS::gbmv_x(order_type, trans_type, m, n, kl, ku,
                                          alpha, AB, lda, x, incx_val, beta, y,
                                          incy_val, prec);
                             FPU_FIX_START;
@@ -9970,7 +9970,7 @@ double do_test_dgbmv_d_s_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_dgbmv_d_s_x */
                             FPU_FIX_STOP;
-                            BLAS_dgbmv_d_s_x(order_type, trans_type, m, n, kl,
+                            XBLAS::gbmv_x(order_type, trans_type, m, n, kl,
                                              ku, alpha, AB, lda, x, incx_val,
                                              beta, y, incy_val, prec);
                             FPU_FIX_START;
@@ -10577,7 +10577,7 @@ double do_test_dgbmv_s_d_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_dgbmv_s_d_x */
                             FPU_FIX_STOP;
-                            BLAS_dgbmv_s_d_x(order_type, trans_type, m, n, kl,
+                            XBLAS::gbmv_x(order_type, trans_type, m, n, kl,
                                              ku, alpha, AB, lda, x, incx_val,
                                              beta, y, incy_val, prec);
                             FPU_FIX_START;
@@ -11184,7 +11184,7 @@ double do_test_dgbmv_s_s_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_dgbmv_s_s_x */
                             FPU_FIX_STOP;
-                            BLAS_dgbmv_s_s_x(order_type, trans_type, m, n, kl,
+                            XBLAS::gbmv_x(order_type, trans_type, m, n, kl,
                                              ku, alpha, AB, lda, x, incx_val,
                                              beta, y, incy_val, prec);
                             FPU_FIX_START;

@@ -314,7 +314,7 @@ void do_test_dsymv_d_s
 
                       /* call symv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_dsymv_d_s(order_type,
+                      XBLAS::symv(order_type,
                                      uplo_type, n, alpha, a, lda, x, incx,
                                      beta, y, incy);
                       FPU_FIX_START;
@@ -730,7 +730,7 @@ void do_test_dsymv_s_d
 
                       /* call symv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_dsymv_s_d(order_type,
+                      XBLAS::symv(order_type,
                                      uplo_type, n, alpha, a, lda, x, incx,
                                      beta, y, incy);
                       FPU_FIX_START;
@@ -1146,7 +1146,7 @@ void do_test_dsymv_s_s
 
                       /* call symv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_dsymv_s_s(order_type,
+                      XBLAS::symv(order_type,
                                      uplo_type, n, alpha, a, lda, x, incx,
                                      beta, y, incy);
                       FPU_FIX_START;
@@ -5844,7 +5844,7 @@ void do_test_dsymv_x
 
                         /* call symv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_dsymv_x(order_type,
+                        XBLAS::symv_x(order_type,
                                      uplo_type, n, alpha, a, lda, x, incx,
                                      beta, y, incy, prec);
                         FPU_FIX_START;
@@ -7173,7 +7173,7 @@ void do_test_dsymv_d_s_x
 
                         /* call symv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_dsymv_d_s_x(order_type,
+                        XBLAS::symv_x(order_type,
                                          uplo_type, n, alpha, a, lda, x, incx,
                                          beta, y, incy, prec);
                         FPU_FIX_START;
@@ -7611,7 +7611,7 @@ void do_test_dsymv_s_d_x
 
                         /* call symv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_dsymv_s_d_x(order_type,
+                        XBLAS::symv_x(order_type,
                                          uplo_type, n, alpha, a, lda, x, incx,
                                          beta, y, incy, prec);
                         FPU_FIX_START;
@@ -8049,7 +8049,7 @@ void do_test_dsymv_s_s_x
 
                         /* call symv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_dsymv_s_s_x(order_type,
+                        XBLAS::symv_x(order_type,
                                          uplo_type, n, alpha, a, lda, x, incx,
                                          beta, y, incy, prec);
                         FPU_FIX_START;

@@ -334,7 +334,7 @@ double do_test_dtrmv_s(int n, int ntests, int *seed,
 
                       /* call BLAS_dtrmv_s */
                       FPU_FIX_STOP;
-                      BLAS_dtrmv_s(order_type, uplo_type, trans_type,
+                      XBLAS::trmv(order_type, uplo_type, trans_type,
                                    diag_type, n, alpha, T, lda, x, incx_val);
                       FPU_FIX_START;
 
@@ -3083,7 +3083,7 @@ double do_test_dtrmv_x(int n, int ntests, int *seed,
 
                         /* call BLAS_dtrmv_x */
                         FPU_FIX_STOP;
-                        BLAS_dtrmv_x(order_type, uplo_type, trans_type,
+                        XBLAS::trmv_x(order_type, uplo_type, trans_type,
                                      diag_type, n, alpha, T, lda, x, incx_val,
                                      prec);
                         FPU_FIX_START;
@@ -4773,7 +4773,7 @@ double do_test_dtrmv_s_x(int n, int ntests, int *seed,
 
                         /* call BLAS_dtrmv_s_x */
                         FPU_FIX_STOP;
-                        BLAS_dtrmv_s_x(order_type, uplo_type, trans_type,
+                        XBLAS::trmv_x(order_type, uplo_type, trans_type,
                                        diag_type, n, alpha, T, lda, x,
                                        incx_val, prec);
                         FPU_FIX_START;

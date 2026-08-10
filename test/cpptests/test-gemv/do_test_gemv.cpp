@@ -352,7 +352,7 @@ double do_test_dgemv_d_s(int m, int n, int ntests, int *seed, double thresh,
                       dcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                       FPU_FIX_STOP;
-                      BLAS_dgemv_d_s(order_type, trans_type, m, n, alpha, A,
+                      XBLAS::gemv(order_type, trans_type, m, n, alpha, A,
                                      lda, x, incx_val, beta, y, incy_val);
                       FPU_FIX_START;
 
@@ -881,7 +881,7 @@ double do_test_dgemv_s_d(int m, int n, int ntests, int *seed, double thresh,
                       dcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                       FPU_FIX_STOP;
-                      BLAS_dgemv_s_d(order_type, trans_type, m, n, alpha, A,
+                      XBLAS::gemv(order_type, trans_type, m, n, alpha, A,
                                      lda, x, incx_val, beta, y, incy_val);
                       FPU_FIX_START;
 
@@ -1410,7 +1410,7 @@ double do_test_dgemv_s_s(int m, int n, int ntests, int *seed, double thresh,
                       dcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                       FPU_FIX_STOP;
-                      BLAS_dgemv_s_s(order_type, trans_type, m, n, alpha, A,
+                      XBLAS::gemv(order_type, trans_type, m, n, alpha, A,
                                      lda, x, incx_val, beta, y, incy_val);
                       FPU_FIX_START;
 
@@ -7318,7 +7318,7 @@ double do_test_dgemv_x(int m, int n, int ntests, int *seed, double thresh,
                         dcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                         FPU_FIX_STOP;
-                        BLAS_dgemv_x(order_type, trans_type, m, n, alpha, A,
+                        XBLAS::gemv_x(order_type, trans_type, m, n, alpha, A,
                                      lda, x, incx_val, beta, y, incy_val,
                                      prec);
                         FPU_FIX_START;
@@ -8983,7 +8983,7 @@ double do_test_dgemv_d_s_x(int m, int n, int ntests, int *seed, double thresh,
                         dcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                         FPU_FIX_STOP;
-                        BLAS_dgemv_d_s_x(order_type, trans_type, m, n, alpha,
+                        XBLAS::gemv_x(order_type, trans_type, m, n, alpha,
                                          A, lda, x, incx_val, beta, y,
                                          incy_val, prec);
                         FPU_FIX_START;
@@ -9533,7 +9533,7 @@ double do_test_dgemv_s_d_x(int m, int n, int ntests, int *seed, double thresh,
                         dcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                         FPU_FIX_STOP;
-                        BLAS_dgemv_s_d_x(order_type, trans_type, m, n, alpha,
+                        XBLAS::gemv_x(order_type, trans_type, m, n, alpha,
                                          A, lda, x, incx_val, beta, y,
                                          incy_val, prec);
                         FPU_FIX_START;
@@ -10083,7 +10083,7 @@ double do_test_dgemv_s_s_x(int m, int n, int ntests, int *seed, double thresh,
                         dcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                         FPU_FIX_STOP;
-                        BLAS_dgemv_s_s_x(order_type, trans_type, m, n, alpha,
+                        XBLAS::gemv_x(order_type, trans_type, m, n, alpha,
                                          A, lda, x, incx_val, beta, y,
                                          incy_val, prec);
                         FPU_FIX_START;

@@ -443,7 +443,7 @@ void do_test_dsum_x(int n, int ntests, int *seed, double thresh,
           }
 
           FPU_FIX_STOP;
-          BLAS_dsum_x(n, x, incx_val, &sum, prec);
+          XBLAS::sum_x(n, x, incx_val, &sum, prec);
           FPU_FIX_START;
 
           test_BLAS_dsum(n, sum, head_sum_true, tail_sum_true, x, incx_val,
