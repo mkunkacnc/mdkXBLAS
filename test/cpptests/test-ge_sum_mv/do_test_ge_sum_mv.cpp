@@ -3072,7 +3072,7 @@ void do_test_cge_sum_mv_c_s
                                        *reinterpret_cast<std::complex<float> *>(beta),
                                        B,
                                        ldb,
-                                       y,
+                                       reinterpret_cast<std::complex<float> *>(y),
                                        incy);
                       FPU_FIX_START;
 
@@ -3529,12 +3529,12 @@ void do_test_cge_sum_mv_s_c
                                        *reinterpret_cast<std::complex<float> *>(alpha),
                                        a,
                                        lda,
-                                       x,
+                                       reinterpret_cast<std::complex<float> *>(x),
                                        incx,
                                        *reinterpret_cast<std::complex<float> *>(beta),
                                        B,
                                        ldb,
-                                       y,
+                                       reinterpret_cast<std::complex<float> *>(y),
                                        incy);
                       FPU_FIX_START;
 
@@ -3996,7 +3996,7 @@ void do_test_cge_sum_mv_s_s
                                        *reinterpret_cast<std::complex<float> *>(beta),
                                        B,
                                        ldb,
-                                       y,
+                                       reinterpret_cast<std::complex<float> *>(y),
                                        incy);
                       FPU_FIX_START;
 
@@ -6788,12 +6788,12 @@ void do_test_cge_sum_mv_x
                                            *reinterpret_cast<std::complex<float> *>(alpha),
                                            a,
                                            lda,
-                                           x,
+                                           reinterpret_cast<std::complex<float> *>(x),
                                            incx,
                                            *reinterpret_cast<std::complex<float> *>(beta),
                                            B,
                                            ldb,
-                                           y,
+                                           reinterpret_cast<std::complex<float> *>(y),
                                            incy,
                                            prec);
                         FPU_FIX_START;
@@ -10631,7 +10631,7 @@ void do_test_cge_sum_mv_c_s_x
                                            *reinterpret_cast<std::complex<float> *>(beta),
                                            B,
                                            ldb,
-                                           y,
+                                           reinterpret_cast<std::complex<float> *>(y),
                                            incy,
                                            prec);
                         FPU_FIX_START;
@@ -11113,12 +11113,12 @@ void do_test_cge_sum_mv_s_c_x
                                            *reinterpret_cast<std::complex<float> *>(alpha),
                                            a,
                                            lda,
-                                           x,
+                                           reinterpret_cast<std::complex<float> *>(x),
                                            incx,
                                            *reinterpret_cast<std::complex<float> *>(beta),
                                            B,
                                            ldb,
-                                           y,
+                                           reinterpret_cast<std::complex<float> *>(y),
                                            incy,
                                            prec);
                         FPU_FIX_START;
@@ -11605,7 +11605,7 @@ void do_test_cge_sum_mv_s_s_x
                                            *reinterpret_cast<std::complex<float> *>(beta),
                                            B,
                                            ldb,
-                                           y,
+                                           reinterpret_cast<std::complex<float> *>(y),
                                            incy,
                                            prec);
                         FPU_FIX_START;

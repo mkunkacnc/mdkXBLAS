@@ -3590,7 +3590,7 @@ double do_test_cgemv_c_s(int m, int n, int ntests, int *seed, double thresh,
                                   x,
                                   incx_val,
                                   *reinterpret_cast<std::complex<float> *>(beta),
-                                  y,
+                                  reinterpret_cast<std::complex<float> *>(y),
                                   incy_val);
                       FPU_FIX_START;
 
@@ -4130,10 +4130,10 @@ double do_test_cgemv_s_c(int m, int n, int ntests, int *seed, double thresh,
                                   *reinterpret_cast<std::complex<float> *>(alpha),
                                   A,
                                   lda,
-                                  x,
+                                  reinterpret_cast<std::complex<float> *>(x),
                                   incx_val,
                                   *reinterpret_cast<std::complex<float> *>(beta),
-                                  y,
+                                  reinterpret_cast<std::complex<float> *>(y),
                                   incy_val);
                       FPU_FIX_START;
 
@@ -4676,7 +4676,7 @@ double do_test_cgemv_s_s(int m, int n, int ntests, int *seed, double thresh,
                                   x,
                                   incx_val,
                                   *reinterpret_cast<std::complex<float> *>(beta),
-                                  y,
+                                  reinterpret_cast<std::complex<float> *>(y),
                                   incy_val);
                       FPU_FIX_START;
 
@@ -7961,10 +7961,10 @@ double do_test_cgemv_x(int m, int n, int ntests, int *seed, double thresh,
                                       *reinterpret_cast<std::complex<float> *>(alpha),
                                       A,
                                       lda,
-                                      x,
+                                      reinterpret_cast<std::complex<float> *>(x),
                                       incx_val,
                                       *reinterpret_cast<std::complex<float> *>(beta),
-                                      y,
+                                      reinterpret_cast<std::complex<float> *>(y),
                                       incy_val,
                                       prec);
                         FPU_FIX_START;
@@ -12443,7 +12443,7 @@ double do_test_cgemv_c_s_x(int m, int n, int ntests, int *seed, double thresh,
                                       x,
                                       incx_val,
                                       *reinterpret_cast<std::complex<float> *>(beta),
-                                      y,
+                                      reinterpret_cast<std::complex<float> *>(y),
                                       incy_val,
                                       prec);
                         FPU_FIX_START;
@@ -13006,10 +13006,10 @@ double do_test_cgemv_s_c_x(int m, int n, int ntests, int *seed, double thresh,
                                       *reinterpret_cast<std::complex<float> *>(alpha),
                                       A,
                                       lda,
-                                      x,
+                                      reinterpret_cast<std::complex<float> *>(x),
                                       incx_val,
                                       *reinterpret_cast<std::complex<float> *>(beta),
-                                      y,
+                                      reinterpret_cast<std::complex<float> *>(y),
                                       incy_val,
                                       prec);
                         FPU_FIX_START;
@@ -13575,7 +13575,7 @@ double do_test_cgemv_s_s_x(int m, int n, int ntests, int *seed, double thresh,
                                       x,
                                       incx_val,
                                       *reinterpret_cast<std::complex<float> *>(beta),
-                                      y,
+                                      reinterpret_cast<std::complex<float> *>(y),
                                       incy_val,
                                       prec);
                         FPU_FIX_START;

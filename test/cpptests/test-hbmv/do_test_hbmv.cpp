@@ -1619,7 +1619,7 @@ void do_test_chbmv_c_s
                                     x,
                                     incx,
                                     *reinterpret_cast<std::complex<float> *>(beta),
-                                    y,
+                                    reinterpret_cast<std::complex<float> *>(y),
                                     incy);
                         FPU_FIX_START;
 
@@ -2503,10 +2503,10 @@ void do_test_chbmv_x
                                         *reinterpret_cast<std::complex<float> *>(alpha),
                                         a,
                                         lda,
-                                        x,
+                                        reinterpret_cast<std::complex<float> *>(x),
                                         incx,
                                         *reinterpret_cast<std::complex<float> *>(beta),
-                                        y,
+                                        reinterpret_cast<std::complex<float> *>(y),
                                         incy,
                                         prec);
                           FPU_FIX_START;
@@ -4773,7 +4773,7 @@ void do_test_chbmv_c_s_x
                                         x,
                                         incx,
                                         *reinterpret_cast<std::complex<float> *>(beta),
-                                        y,
+                                        reinterpret_cast<std::complex<float> *>(y),
                                         incy,
                                         prec);
                           FPU_FIX_START;
