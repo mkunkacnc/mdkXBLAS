@@ -5,6 +5,7 @@
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
 #include "XBLAS/dot.hpp"
+#include <complex>
 
 double do_test_ddot_d_s(int n, int ntests, int *seed, double thresh,
                         int debug, float test_prob, double *min_ratio,
@@ -2540,10 +2541,10 @@ double do_test_cdot_c_s(int n, int ntests, int *seed, double thresh,
                   FPU_FIX_STOP;
                   XBLAS::dot(conj_type,
                              n,
-                             alpha,
+                             *reinterpret_cast<std::complex<float> *>(alpha),
                              x,
                              incx_val,
-                             beta,
+                             *reinterpret_cast<std::complex<float> *>(beta),
                              y,
                              incy_val,
                              &r_comp);

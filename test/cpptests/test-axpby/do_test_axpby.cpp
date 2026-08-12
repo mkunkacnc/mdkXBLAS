@@ -2988,10 +2988,10 @@ double do_test_caxpby_x(int n, int ntests, int *seed, double thresh,
                   /* call BLAS_caxpby_x to get y_comp */
                   FPU_FIX_STOP;
                   XBLAS::axpby_x(n,
-                                 alpha,
+                                 *reinterpret_cast<std::complex<float> *>(alpha),
                                  x,
                                  incx_val,
-                                 beta,
+                                 *reinterpret_cast<std::complex<float> *>(beta),
                                  y_comp,
                                  incy_val,
                                  prec);
@@ -4828,10 +4828,10 @@ double do_test_caxpby_s_x(int n, int ntests, int *seed, double thresh,
                   /* call BLAS_caxpby_s_x to get y_comp */
                   FPU_FIX_STOP;
                   XBLAS::axpby_x(n,
-                                 alpha,
+                                 *reinterpret_cast<std::complex<float> *>(alpha),
                                  x,
                                  incx_val,
-                                 beta,
+                                 *reinterpret_cast<std::complex<float> *>(beta),
                                  y_comp,
                                  incy_val,
                                  prec);

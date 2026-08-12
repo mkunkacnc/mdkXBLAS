@@ -5,6 +5,7 @@
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
 #include "XBLAS/gemm.hpp"
+#include <complex>
 
 
 
@@ -3219,12 +3220,12 @@ void do_test_cgemm_c_s(int m, int n, int k, int ntests, int *seed,
                                     m,
                                     n,
                                     k,
-                                    alpha,
+                                    *reinterpret_cast<std::complex<float> *>(alpha),
                                     a,
                                     lda,
                                     b,
                                     ldb,
-                                    beta,
+                                    *reinterpret_cast<std::complex<float> *>(beta),
                                     c,
                                     ldc);
                         FPU_FIX_START;

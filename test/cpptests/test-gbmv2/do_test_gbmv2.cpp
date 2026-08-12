@@ -5,6 +5,7 @@
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
 #include "XBLAS/gbmv2.hpp"
+#include <complex>
 
 
 double do_test_dgbmv2_d_s(int m, int n, int ntests, int *seed, double thresh,
@@ -4105,13 +4106,13 @@ double do_test_cgbmv2_c_s(int m, int n, int ntests, int *seed, double thresh,
                                        n,
                                        kl,
                                        ku,
-                                       alpha,
+                                       *reinterpret_cast<std::complex<float> *>(alpha),
                                        AB,
                                        lda,
                                        x_head,
                                        x_tail,
                                        incx_val,
-                                       beta,
+                                       *reinterpret_cast<std::complex<float> *>(beta),
                                        y,
                                        incy_val);
                           FPU_FIX_START;
