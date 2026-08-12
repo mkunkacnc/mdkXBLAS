@@ -5,6 +5,7 @@
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
 #include "XBLAS/axpby.hpp"
+#include <complex>
 
 
 double do_test_daxpby_s(int n, int ntests, int *seed, double thresh,
@@ -736,10 +737,10 @@ double do_test_caxpby_s(int n, int ntests, int *seed, double thresh,
                 /* call BLAS_caxpby_s to get y_comp */
                 FPU_FIX_STOP;
                 XBLAS::axpby(n,
-                             alpha,
+                             *reinterpret_cast<std::complex<float> *>(alpha),
                              x,
                              incx_val,
-                             beta,
+                             *reinterpret_cast<std::complex<float> *>(beta),
                              y_comp,
                              incy_val);
                 FPU_FIX_START;

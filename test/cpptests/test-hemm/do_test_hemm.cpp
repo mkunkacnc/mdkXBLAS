@@ -5,6 +5,7 @@
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
 #include "XBLAS/hemm.hpp"
+#include <complex>
 
 #define UPLO_START 0
 #define UPLO_END   1
@@ -1689,12 +1690,12 @@ void do_test_chemm_c_s(int m, int n,
                                     uplo_type,
                                     m,
                                     n,
-                                    alpha,
+                                    *reinterpret_cast<std::complex<float> *>(alpha),
                                     a,
                                     lda,
                                     b,
                                     ldb,
-                                    beta,
+                                    *reinterpret_cast<std::complex<float> *>(beta),
                                     c,
                                     ldc);
                         FPU_FIX_START;

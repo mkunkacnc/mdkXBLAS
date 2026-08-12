@@ -5,6 +5,7 @@
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
 #include "XBLAS/tbsv.hpp"
+#include <complex>
 
 
 
@@ -1599,7 +1600,7 @@ double do_test_ctbsv_s(int n,
                                       diag_type,
                                       n,
                                       k,
-                                      alpha,
+                                      *reinterpret_cast<std::complex<float> *>(alpha),
                                       T,
                                       ldt,
                                       x,

@@ -5,6 +5,7 @@
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
 #include "XBLAS/gemv.hpp"
+#include <complex>
 
 double do_test_dgemv_d_s(int m, int n, int ntests, int *seed, double thresh,
                          int debug, float test_prob, double *min_ratio,
@@ -3583,12 +3584,12 @@ double do_test_cgemv_c_s(int m, int n, int ntests, int *seed, double thresh,
                                   trans_type,
                                   m,
                                   n,
-                                  alpha,
+                                  *reinterpret_cast<std::complex<float> *>(alpha),
                                   A,
                                   lda,
                                   x,
                                   incx_val,
-                                  beta,
+                                  *reinterpret_cast<std::complex<float> *>(beta),
                                   y,
                                   incy_val);
                       FPU_FIX_START;
