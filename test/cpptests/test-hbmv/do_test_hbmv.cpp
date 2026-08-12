@@ -5,6 +5,7 @@
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
 #include "XBLAS/hbmv.hpp"
+#include <complex>
 
 /* 0 -- 1 */
 #define UPLO_START 0
@@ -1612,12 +1613,12 @@ void do_test_chbmv_c_s
                                     uplo_type,
                                     n,
                                     k,
-                                    alpha,
+                                    *reinterpret_cast<std::complex<float> *>(alpha),
                                     a,
                                     lda,
                                     x,
                                     incx,
-                                    beta,
+                                    *reinterpret_cast<std::complex<float> *>(beta),
                                     y,
                                     incy);
                         FPU_FIX_START;

@@ -3340,12 +3340,12 @@ void do_test_csbmv_s_c
                                     uplo_type,
                                     n,
                                     k,
-                                    alpha,
+                                    *reinterpret_cast<std::complex<float> *>(alpha),
                                     a,
                                     lda,
                                     x,
                                     incx,
-                                    beta,
+                                    *reinterpret_cast<std::complex<float> *>(beta),
                                     y,
                                     incy);
                         FPU_FIX_START;
@@ -3778,12 +3778,12 @@ void do_test_csbmv_s_s
                                     uplo_type,
                                     n,
                                     k,
-                                    alpha,
+                                    *reinterpret_cast<std::complex<float> *>(alpha),
                                     a,
                                     lda,
                                     x,
                                     incx,
-                                    beta,
+                                    *reinterpret_cast<std::complex<float> *>(beta),
                                     y,
                                     incy);
                         FPU_FIX_START;
