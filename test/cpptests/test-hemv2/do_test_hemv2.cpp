@@ -5,6 +5,7 @@
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
 #include "XBLAS/hemv2.hpp"
+#include <complex>
 
 /* 0 -- 1 */
 #define UPLO_START 0
@@ -1519,13 +1520,13 @@ void do_test_chemv2_c_s
                     XBLAS::hemv2(order_type,
                                  uplo_type,
                                  n,
-                                 alpha,
+                                 *reinterpret_cast<std::complex<float> *>(alpha),
                                  a,
                                  lda,
                                  head_x,
                                  tail_x,
                                  incx,
-                                 beta,
+                                 *reinterpret_cast<std::complex<float> *>(beta),
                                  y,
                                  incy);
                     FPU_FIX_START;

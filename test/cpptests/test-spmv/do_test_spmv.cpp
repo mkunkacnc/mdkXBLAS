@@ -5,6 +5,7 @@
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
 #include "XBLAS/spmv.hpp"
+#include <complex>
 
 /* 0 -- 1 */
 #define UPLO_START 0
@@ -2623,11 +2624,11 @@ void do_test_cspmv_c_s(int n,
                     XBLAS::spmv(order_type,
                                 uplo_type,
                                 n,
-                                alpha,
+                                *reinterpret_cast<std::complex<float> *>(alpha),
                                 a,
                                 x,
                                 incx,
-                                beta,
+                                *reinterpret_cast<std::complex<float> *>(beta),
                                 y,
                                 incy);
                     FPU_FIX_START;

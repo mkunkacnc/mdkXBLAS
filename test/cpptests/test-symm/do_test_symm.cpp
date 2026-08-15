@@ -5,6 +5,7 @@
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
 #include "XBLAS/symm.hpp"
+#include <complex>
 
 /* 0 -- 1 */
 #define UPLO_START 0
@@ -3040,12 +3041,12 @@ void do_test_csymm_c_s
                                     uplo_type,
                                     m,
                                     n,
-                                    alpha,
+                                    *reinterpret_cast<std::complex<float> *>(alpha),
                                     a,
                                     lda,
                                     b,
                                     ldb,
-                                    beta,
+                                    *reinterpret_cast<std::complex<float> *>(beta),
                                     c,
                                     ldc);
                         FPU_FIX_START;
