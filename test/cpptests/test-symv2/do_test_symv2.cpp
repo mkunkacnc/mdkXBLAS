@@ -2733,13 +2733,13 @@ void do_test_csymv2_c_s
                                  uplo_type,
                                  n,
                                  *reinterpret_cast<std::complex<float> *>(alpha),
-                                 a,
+                                 reinterpret_cast<std::complex<float> *>(a),
                                  lda,
                                  head_x,
                                  tail_x,
                                  incx,
                                  *reinterpret_cast<std::complex<float> *>(beta),
-                                 y,
+                                 reinterpret_cast<std::complex<float> *>(y),
                                  incy);
                     FPU_FIX_START;
 
@@ -3147,11 +3147,11 @@ void do_test_csymv2_s_c
                                  *reinterpret_cast<std::complex<float> *>(alpha),
                                  a,
                                  lda,
-                                 head_x,
-                                 tail_x,
+                                 reinterpret_cast<std::complex<float> *>(head_x),
+                                 reinterpret_cast<std::complex<float> *>(tail_x),
                                  incx,
                                  *reinterpret_cast<std::complex<float> *>(beta),
-                                 y,
+                                 reinterpret_cast<std::complex<float> *>(y),
                                  incy);
                     FPU_FIX_START;
 
@@ -3563,7 +3563,7 @@ void do_test_csymv2_s_s
                                  tail_x,
                                  incx,
                                  *reinterpret_cast<std::complex<float> *>(beta),
-                                 y,
+                                 reinterpret_cast<std::complex<float> *>(y),
                                  incy);
                     FPU_FIX_START;
 
@@ -6050,13 +6050,13 @@ void do_test_csymv2_x
                                      uplo_type,
                                      n,
                                      *reinterpret_cast<std::complex<float> *>(alpha),
-                                     a,
+                                     reinterpret_cast<std::complex<float> *>(a),
                                      lda,
-                                     head_x,
-                                     tail_x,
+                                     reinterpret_cast<std::complex<float> *>(head_x),
+                                     reinterpret_cast<std::complex<float> *>(tail_x),
                                      incx,
                                      *reinterpret_cast<std::complex<float> *>(beta),
-                                     y,
+                                     reinterpret_cast<std::complex<float> *>(y),
                                      incy,
                                      prec);
                       FPU_FIX_START;
@@ -9463,13 +9463,13 @@ void do_test_csymv2_c_s_x
                                      uplo_type,
                                      n,
                                      *reinterpret_cast<std::complex<float> *>(alpha),
-                                     a,
+                                     reinterpret_cast<std::complex<float> *>(a),
                                      lda,
                                      head_x,
                                      tail_x,
                                      incx,
                                      *reinterpret_cast<std::complex<float> *>(beta),
-                                     y,
+                                     reinterpret_cast<std::complex<float> *>(y),
                                      incy,
                                      prec);
                       FPU_FIX_START;
@@ -9900,11 +9900,11 @@ void do_test_csymv2_s_c_x
                                      *reinterpret_cast<std::complex<float> *>(alpha),
                                      a,
                                      lda,
-                                     head_x,
-                                     tail_x,
+                                     reinterpret_cast<std::complex<float> *>(head_x),
+                                     reinterpret_cast<std::complex<float> *>(tail_x),
                                      incx,
                                      *reinterpret_cast<std::complex<float> *>(beta),
-                                     y,
+                                     reinterpret_cast<std::complex<float> *>(y),
                                      incy,
                                      prec);
                       FPU_FIX_START;
@@ -10339,7 +10339,7 @@ void do_test_csymv2_s_s_x
                                      tail_x,
                                      incx,
                                      *reinterpret_cast<std::complex<float> *>(beta),
-                                     y,
+                                     reinterpret_cast<std::complex<float> *>(y),
                                      incy,
                                      prec);
                       FPU_FIX_START;
