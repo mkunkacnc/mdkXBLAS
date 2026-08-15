@@ -2547,7 +2547,7 @@ double do_test_cdot_c_s(int n, int ntests, int *seed, double thresh,
                              *reinterpret_cast<std::complex<float> *>(beta),
                              y,
                              incy_val,
-                             &r_comp);
+                             &*reinterpret_cast<std::complex<float> *>(r_comp));
                   FPU_FIX_START;
 
                   /* computing the ratio */
@@ -2934,7 +2934,7 @@ double do_test_cdot_s_c(int n, int ntests, int *seed, double thresh,
                              *reinterpret_cast<std::complex<float> *>(beta),
                              reinterpret_cast<std::complex<float> *>(y),
                              incy_val,
-                             &r_comp);
+                             &*reinterpret_cast<std::complex<float> *>(r_comp));
                   FPU_FIX_START;
 
                   /* computing the ratio */
@@ -3321,7 +3321,7 @@ double do_test_cdot_s_s(int n, int ntests, int *seed, double thresh,
                              *reinterpret_cast<std::complex<float> *>(beta),
                              y,
                              incy_val,
-                             &r_comp);
+                             &*reinterpret_cast<std::complex<float> *>(r_comp));
                   FPU_FIX_START;
 
                   /* computing the ratio */
@@ -5670,7 +5670,7 @@ double do_test_cdot_x(int n, int ntests, int *seed, double thresh, int debug,
                                  *reinterpret_cast<std::complex<float> *>(beta),
                                  reinterpret_cast<std::complex<float> *>(y),
                                  incy_val,
-                                 &r_comp,
+                                 &*reinterpret_cast<std::complex<float> *>(r_comp),
                                  prec);
                     FPU_FIX_START;
 
@@ -8886,7 +8886,7 @@ double do_test_cdot_c_s_x(int n, int ntests, int *seed, double thresh,
                                  *reinterpret_cast<std::complex<float> *>(beta),
                                  y,
                                  incy_val,
-                                 &r_comp,
+                                 &*reinterpret_cast<std::complex<float> *>(r_comp),
                                  prec);
                     FPU_FIX_START;
 
@@ -9294,7 +9294,7 @@ double do_test_cdot_s_c_x(int n, int ntests, int *seed, double thresh,
                                  *reinterpret_cast<std::complex<float> *>(beta),
                                  reinterpret_cast<std::complex<float> *>(y),
                                  incy_val,
-                                 &r_comp,
+                                 &*reinterpret_cast<std::complex<float> *>(r_comp),
                                  prec);
                     FPU_FIX_START;
 
@@ -9702,7 +9702,7 @@ double do_test_cdot_s_s_x(int n, int ntests, int *seed, double thresh,
                                  *reinterpret_cast<std::complex<float> *>(beta),
                                  y,
                                  incy_val,
-                                 &r_comp,
+                                 &*reinterpret_cast<std::complex<float> *>(r_comp),
                                  prec);
                     FPU_FIX_START;
 
