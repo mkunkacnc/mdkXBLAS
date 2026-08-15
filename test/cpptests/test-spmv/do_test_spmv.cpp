@@ -2625,11 +2625,11 @@ void do_test_cspmv_c_s(int n,
                                 uplo_type,
                                 n,
                                 *reinterpret_cast<std::complex<float> *>(alpha),
-                                a,
+                                reinterpret_cast<std::complex<float> *>(a),
                                 x,
                                 incx,
                                 *reinterpret_cast<std::complex<float> *>(beta),
-                                y,
+                                reinterpret_cast<std::complex<float> *>(y),
                                 incy);
                     FPU_FIX_START;
 
@@ -3022,10 +3022,10 @@ void do_test_cspmv_s_c(int n,
                                 n,
                                 *reinterpret_cast<std::complex<float> *>(alpha),
                                 a,
-                                x,
+                                reinterpret_cast<std::complex<float> *>(x),
                                 incx,
                                 *reinterpret_cast<std::complex<float> *>(beta),
-                                y,
+                                reinterpret_cast<std::complex<float> *>(y),
                                 incy);
                     FPU_FIX_START;
 
@@ -3421,7 +3421,7 @@ void do_test_cspmv_s_s(int n,
                                 x,
                                 incx,
                                 *reinterpret_cast<std::complex<float> *>(beta),
-                                y,
+                                reinterpret_cast<std::complex<float> *>(y),
                                 incy);
                     FPU_FIX_START;
 
@@ -5824,11 +5824,11 @@ void do_test_cspmv_x(int n,
                                     uplo_type,
                                     n,
                                     *reinterpret_cast<std::complex<float> *>(alpha),
-                                    a,
-                                    x,
+                                    reinterpret_cast<std::complex<float> *>(a),
+                                    reinterpret_cast<std::complex<float> *>(x),
                                     incx,
                                     *reinterpret_cast<std::complex<float> *>(beta),
-                                    y,
+                                    reinterpret_cast<std::complex<float> *>(y),
                                     incy,
                                     prec);
                       FPU_FIX_START;
@@ -9130,11 +9130,11 @@ void do_test_cspmv_c_s_x(int n,
                                     uplo_type,
                                     n,
                                     *reinterpret_cast<std::complex<float> *>(alpha),
-                                    a,
+                                    reinterpret_cast<std::complex<float> *>(a),
                                     x,
                                     incx,
                                     *reinterpret_cast<std::complex<float> *>(beta),
-                                    y,
+                                    reinterpret_cast<std::complex<float> *>(y),
                                     incy,
                                     prec);
                       FPU_FIX_START;
@@ -9551,10 +9551,10 @@ void do_test_cspmv_s_c_x(int n,
                                     n,
                                     *reinterpret_cast<std::complex<float> *>(alpha),
                                     a,
-                                    x,
+                                    reinterpret_cast<std::complex<float> *>(x),
                                     incx,
                                     *reinterpret_cast<std::complex<float> *>(beta),
-                                    y,
+                                    reinterpret_cast<std::complex<float> *>(y),
                                     incy,
                                     prec);
                       FPU_FIX_START;
@@ -9974,7 +9974,7 @@ void do_test_cspmv_s_s_x(int n,
                                     x,
                                     incx,
                                     *reinterpret_cast<std::complex<float> *>(beta),
-                                    y,
+                                    reinterpret_cast<std::complex<float> *>(y),
                                     incy,
                                     prec);
                       FPU_FIX_START;
