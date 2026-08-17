@@ -5,6 +5,7 @@
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
 #include "XBLAS/waxpby.hpp"
+#include <complex>
 
 
 
@@ -3574,10 +3575,10 @@ double do_test_cwaxpby_c_s(int n,
               /* call BLAS_cwaxpby_c_s to get w */
               FPU_FIX_STOP;
               XBLAS::waxpby(n,
-                            alpha,
+                            *reinterpret_cast<std::complex<float> *>(alpha),
                             x,
                             incx_val,
-                            beta,
+                            *reinterpret_cast<std::complex<float> *>(beta),
                             y,
                             incy_val,
                             w,

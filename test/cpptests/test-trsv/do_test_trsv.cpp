@@ -5,6 +5,7 @@
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
 #include "XBLAS/trsv.hpp"
+#include <complex>
 
 
 
@@ -1525,7 +1526,7 @@ double do_test_ctrsv_s(int n,
                                     trans_type,
                                     diag_type,
                                     n,
-                                    alpha,
+                                    *reinterpret_cast<std::complex<float> *>(alpha),
                                     T,
                                     lda,
                                     x,
