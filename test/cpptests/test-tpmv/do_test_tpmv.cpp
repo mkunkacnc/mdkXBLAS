@@ -1380,7 +1380,7 @@ double do_test_ctpmv_s(int n,
                                 n,
                                 *reinterpret_cast<std::complex<float> *>(alpha),
                                 tp,
-                                x,
+                                reinterpret_cast<std::complex<float> *>(x),
                                 incx_val);
                     FPU_FIX_START;
 
@@ -3536,9 +3536,9 @@ double do_test_ctpmv_x(int n,
                                     trans_type,
                                     diag_type,
                                     n,
-                                    alpha,
-                                    tp,
-                                    x,
+                                    *reinterpret_cast<std::complex<float> *>(alpha),
+                                    reinterpret_cast<std::complex<float> *>(tp),
+                                    reinterpret_cast<std::complex<float> *>(x),
                                     incx_val,
                                     prec);
                       FPU_FIX_START;
@@ -5717,9 +5717,9 @@ double do_test_ctpmv_s_x(int n,
                                     trans_type,
                                     diag_type,
                                     n,
-                                    alpha,
+                                    *reinterpret_cast<std::complex<float> *>(alpha),
                                     tp,
-                                    x,
+                                    reinterpret_cast<std::complex<float> *>(x),
                                     incx_val,
                                     prec);
                       FPU_FIX_START;

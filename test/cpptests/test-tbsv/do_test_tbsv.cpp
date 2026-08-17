@@ -1603,7 +1603,7 @@ double do_test_ctbsv_s(int n,
                                       *reinterpret_cast<std::complex<float> *>(alpha),
                                       T,
                                       ldt,
-                                      x,
+                                      reinterpret_cast<std::complex<float> *>(x),
                                       incx_unadj);
                           FPU_FIX_START;
                           test_count++;
@@ -4747,9 +4747,9 @@ double do_test_ctbsv_x(int n,
                                           n,
                                           k,
                                           *reinterpret_cast<std::complex<float> *>(alpha),
-                                          T,
+                                          reinterpret_cast<std::complex<float> *>(T),
                                           ldt,
-                                          x,
+                                          reinterpret_cast<std::complex<float> *>(x),
                                           incx_unadj,
                                           prec);
                             FPU_FIX_START;
@@ -6712,7 +6712,7 @@ double do_test_ctbsv_s_x(int n,
                                           *reinterpret_cast<std::complex<float> *>(alpha),
                                           T,
                                           ldt,
-                                          x,
+                                          reinterpret_cast<std::complex<float> *>(x),
                                           incx_unadj,
                                           prec);
                             FPU_FIX_START;
