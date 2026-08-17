@@ -3042,12 +3042,12 @@ void do_test_csymm_c_s
                                     m,
                                     n,
                                     *reinterpret_cast<std::complex<float> *>(alpha),
-                                    a,
+                                    reinterpret_cast<std::complex<float> *>(a),
                                     lda,
                                     b,
                                     ldb,
                                     *reinterpret_cast<std::complex<float> *>(beta),
-                                    c,
+                                    reinterpret_cast<std::complex<float> *>(c),
                                     ldc);
                         FPU_FIX_START;
 
@@ -3503,10 +3503,10 @@ void do_test_csymm_s_c
                                     *reinterpret_cast<std::complex<float> *>(alpha),
                                     a,
                                     lda,
-                                    b,
+                                    reinterpret_cast<std::complex<float> *>(b),
                                     ldb,
                                     *reinterpret_cast<std::complex<float> *>(beta),
-                                    c,
+                                    reinterpret_cast<std::complex<float> *>(c),
                                     ldc);
                         FPU_FIX_START;
 
@@ -3965,7 +3965,7 @@ void do_test_csymm_s_s
                                     b,
                                     ldb,
                                     *reinterpret_cast<std::complex<float> *>(beta),
-                                    c,
+                                    reinterpret_cast<std::complex<float> *>(c),
                                     ldc);
                         FPU_FIX_START;
 
@@ -6741,12 +6741,12 @@ void do_test_csymm_x
                                         m,
                                         n,
                                         *reinterpret_cast<std::complex<float> *>(alpha),
-                                        a,
+                                        reinterpret_cast<std::complex<float> *>(a),
                                         lda,
-                                        b,
+                                        reinterpret_cast<std::complex<float> *>(b),
                                         ldb,
                                         *reinterpret_cast<std::complex<float> *>(beta),
-                                        c,
+                                        reinterpret_cast<std::complex<float> *>(c),
                                         ldc,
                                         prec);
                           FPU_FIX_START;
@@ -10552,12 +10552,12 @@ void do_test_csymm_c_s_x
                                         m,
                                         n,
                                         *reinterpret_cast<std::complex<float> *>(alpha),
-                                        a,
+                                        reinterpret_cast<std::complex<float> *>(a),
                                         lda,
                                         b,
                                         ldb,
                                         *reinterpret_cast<std::complex<float> *>(beta),
-                                        c,
+                                        reinterpret_cast<std::complex<float> *>(c),
                                         ldc,
                                         prec);
                           FPU_FIX_START;
@@ -11038,10 +11038,10 @@ void do_test_csymm_s_c_x
                                         *reinterpret_cast<std::complex<float> *>(alpha),
                                         a,
                                         lda,
-                                        b,
+                                        reinterpret_cast<std::complex<float> *>(b),
                                         ldb,
                                         *reinterpret_cast<std::complex<float> *>(beta),
-                                        c,
+                                        reinterpret_cast<std::complex<float> *>(c),
                                         ldc,
                                         prec);
                           FPU_FIX_START;
@@ -11525,7 +11525,7 @@ void do_test_csymm_s_s_x
                                         b,
                                         ldb,
                                         *reinterpret_cast<std::complex<float> *>(beta),
-                                        c,
+                                        reinterpret_cast<std::complex<float> *>(c),
                                         ldc,
                                         prec);
                           FPU_FIX_START;
