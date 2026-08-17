@@ -1529,7 +1529,7 @@ double do_test_ctrsv_s(int n,
                                     *reinterpret_cast<std::complex<float> *>(alpha),
                                     T,
                                     lda,
-                                    x,
+                                    reinterpret_cast<std::complex<float> *>(x),
                                     incx_val);
                         FPU_FIX_START;
 
@@ -4558,9 +4558,9 @@ double do_test_ctrsv_x(int n,
                                         diag_type,
                                         n,
                                         alpha,
-                                        T,
+                                        reinterpret_cast<std::complex<float> *>(T),
                                         lda,
-                                        x,
+                                        reinterpret_cast<std::complex<float> *>(x),
                                         incx_val,
                                         prec);
                           FPU_FIX_START;
@@ -6452,7 +6452,7 @@ double do_test_ctrsv_s_x(int n,
                                         alpha,
                                         T,
                                         lda,
-                                        x,
+                                        reinterpret_cast<std::complex<float> *>(x),
                                         incx_val,
                                         prec);
                           FPU_FIX_START;

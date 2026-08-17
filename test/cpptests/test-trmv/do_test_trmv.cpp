@@ -1437,7 +1437,7 @@ double do_test_ctrmv_s(int n, int ntests, int *seed,
                                   *reinterpret_cast<std::complex<float> *>(alpha),
                                   T,
                                   lda,
-                                  x,
+                                  reinterpret_cast<std::complex<float> *>(x),
                                   incx_val);
                       FPU_FIX_START;
 
@@ -3684,9 +3684,9 @@ double do_test_ctrmv_x(int n, int ntests, int *seed,
                                       diag_type,
                                       n,
                                       alpha,
-                                      T,
+                                      reinterpret_cast<std::complex<float> *>(T),
                                       lda,
-                                      x,
+                                      reinterpret_cast<std::complex<float> *>(x),
                                       incx_val,
                                       prec);
                         FPU_FIX_START;
@@ -5959,7 +5959,7 @@ double do_test_ctrmv_s_x(int n, int ntests, int *seed,
                                       alpha,
                                       T,
                                       lda,
-                                      x,
+                                      reinterpret_cast<std::complex<float> *>(x),
                                       incx_val,
                                       prec);
                         FPU_FIX_START;
