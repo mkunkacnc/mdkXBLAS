@@ -3576,12 +3576,12 @@ double do_test_cwaxpby_c_s(int n,
               FPU_FIX_STOP;
               XBLAS::waxpby(n,
                             *reinterpret_cast<std::complex<float> *>(alpha),
-                            x,
+                            reinterpret_cast<std::complex<float> *>(x),
                             incx_val,
                             *reinterpret_cast<std::complex<float> *>(beta),
                             y,
                             incy_val,
-                            w,
+                            reinterpret_cast<std::complex<float> *>(w),
                             incw_val);
               FPU_FIX_START;
 
@@ -4124,13 +4124,13 @@ double do_test_cwaxpby_s_c(int n,
               /* call BLAS_cwaxpby_s_c to get w */
               FPU_FIX_STOP;
               XBLAS::waxpby(n,
-                            alpha,
+                            *reinterpret_cast<std::complex<float> *>(alpha),
                             x,
                             incx_val,
-                            beta,
-                            y,
+                            *reinterpret_cast<std::complex<float> *>(beta),
+                            reinterpret_cast<std::complex<float> *>(y),
                             incy_val,
-                            w,
+                            reinterpret_cast<std::complex<float> *>(w),
                             incw_val);
               FPU_FIX_START;
 
@@ -4665,13 +4665,13 @@ double do_test_cwaxpby_s_s(int n,
               /* call BLAS_cwaxpby_s_s to get w */
               FPU_FIX_STOP;
               XBLAS::waxpby(n,
-                            alpha,
+                            *reinterpret_cast<std::complex<float> *>(alpha),
                             x,
                             incx_val,
-                            beta,
+                            *reinterpret_cast<std::complex<float> *>(beta),
                             y,
                             incy_val,
-                            w,
+                            reinterpret_cast<std::complex<float> *>(w),
                             incw_val);
               FPU_FIX_START;
 
@@ -7884,13 +7884,13 @@ double do_test_cwaxpby_x(int n,
                 /* call BLAS_cwaxpby_x to get w */
                 FPU_FIX_STOP;
                 XBLAS::waxpby_x(n,
-                                alpha,
-                                x,
+                                *reinterpret_cast<std::complex<float> *>(alpha),
+                                reinterpret_cast<std::complex<float> *>(x),
                                 incx_val,
-                                beta,
-                                y,
+                                *reinterpret_cast<std::complex<float> *>(beta),
+                                reinterpret_cast<std::complex<float> *>(y),
                                 incy_val,
-                                w,
+                                reinterpret_cast<std::complex<float> *>(w),
                                 incw_val,
                                 prec);
                 FPU_FIX_START;
@@ -12295,13 +12295,13 @@ double do_test_cwaxpby_c_s_x(int n,
                 /* call BLAS_cwaxpby_c_s_x to get w */
                 FPU_FIX_STOP;
                 XBLAS::waxpby_x(n,
-                                alpha,
-                                x,
+                                *reinterpret_cast<std::complex<float> *>(alpha),
+                                reinterpret_cast<std::complex<float> *>(x),
                                 incx_val,
-                                beta,
+                                *reinterpret_cast<std::complex<float> *>(beta),
                                 y,
                                 incy_val,
-                                w,
+                                reinterpret_cast<std::complex<float> *>(w),
                                 incw_val,
                                 prec);
                 FPU_FIX_START;
@@ -12865,13 +12865,13 @@ double do_test_cwaxpby_s_c_x(int n,
                 /* call BLAS_cwaxpby_s_c_x to get w */
                 FPU_FIX_STOP;
                 XBLAS::waxpby_x(n,
-                                alpha,
+                                *reinterpret_cast<std::complex<float> *>(alpha),
                                 x,
                                 incx_val,
-                                beta,
-                                y,
+                                *reinterpret_cast<std::complex<float> *>(beta),
+                                reinterpret_cast<std::complex<float> *>(y),
                                 incy_val,
-                                w,
+                                reinterpret_cast<std::complex<float> *>(w),
                                 incw_val,
                                 prec);
                 FPU_FIX_START;
@@ -13427,13 +13427,13 @@ double do_test_cwaxpby_s_s_x(int n,
                 /* call BLAS_cwaxpby_s_s_x to get w */
                 FPU_FIX_STOP;
                 XBLAS::waxpby_x(n,
-                                alpha,
+                                *reinterpret_cast<std::complex<float> *>(alpha),
                                 x,
                                 incx_val,
-                                beta,
+                                *reinterpret_cast<std::complex<float> *>(beta),
                                 y,
                                 incy_val,
-                                w,
+                                reinterpret_cast<std::complex<float> *>(w),
                                 incw_val,
                                 prec);
                 FPU_FIX_START;
