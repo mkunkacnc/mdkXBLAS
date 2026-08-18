@@ -705,9 +705,9 @@ void do_test_csum_x(int n, int ntests, int *seed, double thresh,
 
           FPU_FIX_STOP;
           XBLAS::sum_x(n,
-                       x,
+                       reinterpret_cast<std::complex<float> *>(x),
                        incx_val,
-                       sum,
+                       &*reinterpret_cast<std::complex<float> *>(sum),
                        prec);
           FPU_FIX_START;
 

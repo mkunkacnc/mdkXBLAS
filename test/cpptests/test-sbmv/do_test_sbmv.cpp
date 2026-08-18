@@ -2903,7 +2903,7 @@ void do_test_csbmv_c_s
                                     n,
                                     k,
                                     *reinterpret_cast<std::complex<float> *>(alpha),
-                                    a,
+                                    reinterpret_cast<std::complex<float> *>(a),
                                     lda,
                                     x,
                                     incx,
