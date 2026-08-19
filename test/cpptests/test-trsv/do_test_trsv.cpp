@@ -916,8 +916,15 @@ double do_test_ztrsv_c(int n,
 
                         /* call BLAS_ztrsv_c */
                         FPU_FIX_STOP;
-                        BLAS_ztrsv_c(order_type, uplo_type, trans_type,
-                                     diag_type, n, alpha, T, lda, x,
+                        BLAS_ztrsv_c(order_type,
+                                     uplo_type,
+                                     trans_type,
+                                     diag_type,
+                                     n,
+                                     alpha,
+                                     T,
+                                     lda,
+                                     x,
                                      incx_val);
                         FPU_FIX_START;
 
@@ -2131,8 +2138,15 @@ double do_test_ztrsv_d(int n,
 
                         /* call BLAS_ztrsv_d */
                         FPU_FIX_STOP;
-                        BLAS_ztrsv_d(order_type, uplo_type, trans_type,
-                                     diag_type, n, alpha, T, lda, x,
+                        BLAS_ztrsv_d(order_type,
+                                     uplo_type,
+                                     trans_type,
+                                     diag_type,
+                                     n,
+                                     alpha,
+                                     T,
+                                     lda,
+                                     x,
                                      incx_val);
                         FPU_FIX_START;
 
@@ -5186,9 +5200,17 @@ double do_test_ztrsv_x(int n,
 
                           /* call BLAS_ztrsv_x */
                           FPU_FIX_STOP;
-                          BLAS_ztrsv_x(order_type, uplo_type, trans_type,
-                                       diag_type, n, alpha, T, lda, x,
-                                       incx_val, prec);
+                          BLAS_ztrsv_x(order_type,
+                                       uplo_type,
+                                       trans_type,
+                                       diag_type,
+                                       n,
+                                       alpha,
+                                       T,
+                                       lda,
+                                       x,
+                                       incx_val,
+                                       prec);
                           FPU_FIX_START;
 
                           ix = 0;
@@ -5815,9 +5837,17 @@ double do_test_ztrsv_c_x(int n,
 
                           /* call BLAS_ztrsv_c_x */
                           FPU_FIX_STOP;
-                          BLAS_ztrsv_c_x(order_type, uplo_type, trans_type,
-                                         diag_type, n, alpha, T, lda, x,
-                                         incx_val, prec);
+                          BLAS_ztrsv_c_x(order_type,
+                                         uplo_type,
+                                         trans_type,
+                                         diag_type,
+                                         n,
+                                         alpha,
+                                         T,
+                                         lda,
+                                         x,
+                                         incx_val,
+                                         prec);
                           FPU_FIX_START;
 
                           ix = 0;
@@ -7078,9 +7108,17 @@ double do_test_ztrsv_d_x(int n,
 
                           /* call BLAS_ztrsv_d_x */
                           FPU_FIX_STOP;
-                          BLAS_ztrsv_d_x(order_type, uplo_type, trans_type,
-                                         diag_type, n, alpha, T, lda, x,
-                                         incx_val, prec);
+                          BLAS_ztrsv_d_x(order_type,
+                                         uplo_type,
+                                         trans_type,
+                                         diag_type,
+                                         n,
+                                         alpha,
+                                         T,
+                                         lda,
+                                         x,
+                                         incx_val,
+                                         prec);
                           FPU_FIX_START;
 
                           ix = 0;

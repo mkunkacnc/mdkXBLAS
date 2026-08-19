@@ -288,8 +288,15 @@ void do_test_zhpmv_z_c
                     /* call hpmv routines to be tested */
                     FPU_FIX_STOP;
                     BLAS_zhpmv_z_c(order_type,
-                                   uplo_type, n, alpha, a, x, incx, beta,
-                                   y, incy);
+                                   uplo_type,
+                                   n,
+                                   alpha,
+                                   a,
+                                   x,
+                                   incx,
+                                   beta,
+                                   y,
+                                   incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -662,8 +669,15 @@ void do_test_zhpmv_c_z
                     /* call hpmv routines to be tested */
                     FPU_FIX_STOP;
                     BLAS_zhpmv_c_z(order_type,
-                                   uplo_type, n, alpha, a, x, incx, beta,
-                                   y, incy);
+                                   uplo_type,
+                                   n,
+                                   alpha,
+                                   a,
+                                   x,
+                                   incx,
+                                   beta,
+                                   y,
+                                   incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -1036,8 +1050,15 @@ void do_test_zhpmv_c_c
                     /* call hpmv routines to be tested */
                     FPU_FIX_STOP;
                     BLAS_zhpmv_c_c(order_type,
-                                   uplo_type, n, alpha, a, x, incx, beta,
-                                   y, incy);
+                                   uplo_type,
+                                   n,
+                                   alpha,
+                                   a,
+                                   x,
+                                   incx,
+                                   beta,
+                                   y,
+                                   incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -1791,8 +1812,15 @@ void do_test_zhpmv_z_d
                     /* call hpmv routines to be tested */
                     FPU_FIX_STOP;
                     BLAS_zhpmv_z_d(order_type,
-                                   uplo_type, n, alpha, a, x, incx, beta,
-                                   y, incy);
+                                   uplo_type,
+                                   n,
+                                   alpha,
+                                   a,
+                                   x,
+                                   incx,
+                                   beta,
+                                   y,
+                                   incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -2589,8 +2617,16 @@ void do_test_zhpmv_x
                       /* call hpmv routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zhpmv_x(order_type,
-                                   uplo_type, n, alpha, a, x, incx, beta,
-                                   y, incy, prec);
+                                   uplo_type,
+                                   n,
+                                   alpha,
+                                   a,
+                                   x,
+                                   incx,
+                                   beta,
+                                   y,
+                                   incy,
+                                   prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -2985,8 +3021,16 @@ void do_test_zhpmv_z_c_x
                       /* call hpmv routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zhpmv_z_c_x(order_type,
-                                       uplo_type, n, alpha, a, x, incx, beta,
-                                       y, incy, prec);
+                                       uplo_type,
+                                       n,
+                                       alpha,
+                                       a,
+                                       x,
+                                       incx,
+                                       beta,
+                                       y,
+                                       incy,
+                                       prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -3381,8 +3425,16 @@ void do_test_zhpmv_c_z_x
                       /* call hpmv routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zhpmv_c_z_x(order_type,
-                                       uplo_type, n, alpha, a, x, incx, beta,
-                                       y, incy, prec);
+                                       uplo_type,
+                                       n,
+                                       alpha,
+                                       a,
+                                       x,
+                                       incx,
+                                       beta,
+                                       y,
+                                       incy,
+                                       prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -3777,8 +3829,16 @@ void do_test_zhpmv_c_c_x
                       /* call hpmv routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zhpmv_c_c_x(order_type,
-                                       uplo_type, n, alpha, a, x, incx, beta,
-                                       y, incy, prec);
+                                       uplo_type,
+                                       n,
+                                       alpha,
+                                       a,
+                                       x,
+                                       incx,
+                                       beta,
+                                       y,
+                                       incy,
+                                       prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -4577,8 +4637,16 @@ void do_test_zhpmv_z_d_x
                       /* call hpmv routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zhpmv_z_d_x(order_type,
-                                       uplo_type, n, alpha, a, x, incx, beta,
-                                       y, incy, prec);
+                                       uplo_type,
+                                       n,
+                                       alpha,
+                                       a,
+                                       x,
+                                       incx,
+                                       beta,
+                                       y,
+                                       incy,
+                                       prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */

@@ -314,9 +314,19 @@ void do_test_zhemm_z_c(int m, int n,
 
                         /* call hemm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zhemm_z_c(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        BLAS_zhemm_z_c(order_type,
+                                       side_type,
+                                       uplo_type,
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       b,
+                                       ldb,
+                                       beta,
+                                       c,
+                                       ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -771,9 +781,19 @@ void do_test_zhemm_c_z(int m, int n,
 
                         /* call hemm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zhemm_c_z(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        BLAS_zhemm_c_z(order_type,
+                                       side_type,
+                                       uplo_type,
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       b,
+                                       ldb,
+                                       beta,
+                                       c,
+                                       ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -1228,9 +1248,19 @@ void do_test_zhemm_c_c(int m, int n,
 
                         /* call hemm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zhemm_c_c(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        BLAS_zhemm_c_c(order_type,
+                                       side_type,
+                                       uplo_type,
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       b,
+                                       ldb,
+                                       beta,
+                                       c,
+                                       ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -2152,9 +2182,19 @@ void do_test_zhemm_z_d(int m, int n,
 
                         /* call hemm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zhemm_z_d(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        BLAS_zhemm_z_d(order_type,
+                                       side_type,
+                                       uplo_type,
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       b,
+                                       ldb,
+                                       beta,
+                                       c,
+                                       ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -3122,9 +3162,20 @@ void do_test_zhemm_x(int m, int n,
 
                           /* call hemm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zhemm_x(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc, prec);
+                          BLAS_zhemm_x(order_type,
+                                       side_type,
+                                       uplo_type,
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       b,
+                                       ldb,
+                                       beta,
+                                       c,
+                                       ldc,
+                                       prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -3605,9 +3656,20 @@ void do_test_zhemm_z_c_x(int m, int n,
 
                           /* call hemm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zhemm_z_c_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          BLAS_zhemm_z_c_x(order_type,
+                                           side_type,
+                                           uplo_type,
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           b,
+                                           ldb,
+                                           beta,
+                                           c,
+                                           ldc,
+                                           prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -4088,9 +4150,20 @@ void do_test_zhemm_c_z_x(int m, int n,
 
                           /* call hemm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zhemm_c_z_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          BLAS_zhemm_c_z_x(order_type,
+                                           side_type,
+                                           uplo_type,
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           b,
+                                           ldb,
+                                           beta,
+                                           c,
+                                           ldc,
+                                           prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -4571,9 +4644,20 @@ void do_test_zhemm_c_c_x(int m, int n,
 
                           /* call hemm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zhemm_c_c_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          BLAS_zhemm_c_c_x(order_type,
+                                           side_type,
+                                           uplo_type,
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           b,
+                                           ldb,
+                                           beta,
+                                           c,
+                                           ldc,
+                                           prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -5547,9 +5631,20 @@ void do_test_zhemm_z_d_x(int m, int n,
 
                           /* call hemm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zhemm_z_d_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          BLAS_zhemm_z_d_x(order_type,
+                                           side_type,
+                                           uplo_type,
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           b,
+                                           ldb,
+                                           beta,
+                                           c,
+                                           ldc,
+                                           prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */

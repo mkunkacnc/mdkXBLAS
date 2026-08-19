@@ -1521,8 +1521,17 @@ void do_test_zsymv2_z_c
                     /* call symv2 routines to be tested */
                     FPU_FIX_STOP;
                     BLAS_zsymv2_z_c(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    head_x,
+                                    tail_x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -1924,8 +1933,17 @@ void do_test_zsymv2_c_z
                     /* call symv2 routines to be tested */
                     FPU_FIX_STOP;
                     BLAS_zsymv2_c_z(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    head_x,
+                                    tail_x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -2327,8 +2345,17 @@ void do_test_zsymv2_c_c
                     /* call symv2 routines to be tested */
                     FPU_FIX_STOP;
                     BLAS_zsymv2_c_c(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    head_x,
+                                    tail_x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -3966,8 +3993,17 @@ void do_test_zsymv2_z_d
                     /* call symv2 routines to be tested */
                     FPU_FIX_STOP;
                     BLAS_zsymv2_z_d(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    head_x,
+                                    tail_x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -4369,8 +4405,17 @@ void do_test_zsymv2_d_z
                     /* call symv2 routines to be tested */
                     FPU_FIX_STOP;
                     BLAS_zsymv2_d_z(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    head_x,
+                                    tail_x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -4772,8 +4817,17 @@ void do_test_zsymv2_d_d
                     /* call symv2 routines to be tested */
                     FPU_FIX_STOP;
                     BLAS_zsymv2_d_d(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    head_x,
+                                    tail_x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -6482,8 +6536,18 @@ void do_test_zsymv2_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zsymv2_x(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy, prec);
+                                    uplo_type,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    head_x,
+                                    tail_x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy,
+                                    prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -8185,8 +8249,18 @@ void do_test_zsymv2_z_c_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zsymv2_z_c_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        head_x,
+                                        tail_x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -8610,8 +8684,18 @@ void do_test_zsymv2_c_z_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zsymv2_c_z_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        head_x,
+                                        tail_x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -9035,8 +9119,18 @@ void do_test_zsymv2_c_c_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zsymv2_c_c_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        head_x,
+                                        tail_x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -10765,8 +10859,18 @@ void do_test_zsymv2_z_d_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zsymv2_z_d_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        head_x,
+                                        tail_x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -11190,8 +11294,18 @@ void do_test_zsymv2_d_z_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zsymv2_d_z_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        head_x,
+                                        tail_x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -11615,8 +11729,18 @@ void do_test_zsymv2_d_d_x
                       /* call symv2 routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zsymv2_d_d_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        head_x,
+                                        tail_x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */

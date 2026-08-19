@@ -1689,9 +1689,19 @@ void do_test_zsymm_z_c
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zsymm_z_c(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        BLAS_zsymm_z_c(order_type,
+                                       side_type,
+                                       uplo_type,
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       b,
+                                       ldb,
+                                       beta,
+                                       c,
+                                       ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -2138,9 +2148,19 @@ void do_test_zsymm_c_z
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zsymm_c_z(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        BLAS_zsymm_c_z(order_type,
+                                       side_type,
+                                       uplo_type,
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       b,
+                                       ldb,
+                                       beta,
+                                       c,
+                                       ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -2587,9 +2607,19 @@ void do_test_zsymm_c_c
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zsymm_c_c(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        BLAS_zsymm_c_c(order_type,
+                                       side_type,
+                                       uplo_type,
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       b,
+                                       ldb,
+                                       beta,
+                                       c,
+                                       ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -4413,9 +4443,19 @@ void do_test_zsymm_z_d
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zsymm_z_d(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        BLAS_zsymm_z_d(order_type,
+                                       side_type,
+                                       uplo_type,
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       b,
+                                       ldb,
+                                       beta,
+                                       c,
+                                       ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -4862,9 +4902,19 @@ void do_test_zsymm_d_z
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zsymm_d_z(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        BLAS_zsymm_d_z(order_type,
+                                       side_type,
+                                       uplo_type,
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       b,
+                                       ldb,
+                                       beta,
+                                       c,
+                                       ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -5311,9 +5361,19 @@ void do_test_zsymm_d_d
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zsymm_d_d(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc);
+                        BLAS_zsymm_d_d(order_type,
+                                       side_type,
+                                       uplo_type,
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       b,
+                                       ldb,
+                                       beta,
+                                       c,
+                                       ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -7219,9 +7279,20 @@ void do_test_zsymm_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zsymm_x(order_type, side_type,
-                                       uplo_type, m, n, alpha, a, lda, b, ldb,
-                                       beta, c, ldc, prec);
+                          BLAS_zsymm_x(order_type,
+                                       side_type,
+                                       uplo_type,
+                                       m,
+                                       n,
+                                       alpha,
+                                       a,
+                                       lda,
+                                       b,
+                                       ldb,
+                                       beta,
+                                       c,
+                                       ldc,
+                                       prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -9124,9 +9195,20 @@ void do_test_zsymm_z_c_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zsymm_z_c_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          BLAS_zsymm_z_c_x(order_type,
+                                           side_type,
+                                           uplo_type,
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           b,
+                                           ldb,
+                                           beta,
+                                           c,
+                                           ldc,
+                                           prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -9598,9 +9680,20 @@ void do_test_zsymm_c_z_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zsymm_c_z_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          BLAS_zsymm_c_z_x(order_type,
+                                           side_type,
+                                           uplo_type,
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           b,
+                                           ldb,
+                                           beta,
+                                           c,
+                                           ldc,
+                                           prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -10072,9 +10165,20 @@ void do_test_zsymm_c_c_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zsymm_c_c_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          BLAS_zsymm_c_c_x(order_type,
+                                           side_type,
+                                           uplo_type,
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           b,
+                                           ldb,
+                                           beta,
+                                           c,
+                                           ldc,
+                                           prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -11998,9 +12102,20 @@ void do_test_zsymm_z_d_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zsymm_z_d_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          BLAS_zsymm_z_d_x(order_type,
+                                           side_type,
+                                           uplo_type,
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           b,
+                                           ldb,
+                                           beta,
+                                           c,
+                                           ldc,
+                                           prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -12472,9 +12587,20 @@ void do_test_zsymm_d_z_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zsymm_d_z_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          BLAS_zsymm_d_z_x(order_type,
+                                           side_type,
+                                           uplo_type,
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           b,
+                                           ldb,
+                                           beta,
+                                           c,
+                                           ldc,
+                                           prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -12946,9 +13072,20 @@ void do_test_zsymm_d_d_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zsymm_d_d_x(order_type, side_type,
-                                           uplo_type, m, n, alpha, a, lda, b,
-                                           ldb, beta, c, ldc, prec);
+                          BLAS_zsymm_d_d_x(order_type,
+                                           side_type,
+                                           uplo_type,
+                                           m,
+                                           n,
+                                           alpha,
+                                           a,
+                                           lda,
+                                           b,
+                                           ldb,
+                                           beta,
+                                           c,
+                                           ldc,
+                                           prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */

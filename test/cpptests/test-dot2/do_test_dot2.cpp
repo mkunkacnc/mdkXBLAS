@@ -1510,8 +1510,17 @@ double do_test_zdot2_x(int n, int ntests, int *seed, double thresh, int debug,
                     r_comp[1] = r[1];
 
                     FPU_FIX_STOP;
-                    BLAS_zdot2_x(conj_type, n, alpha, x, incx_val, beta,
-                                 head_y, tail_y, incy_val, &r_comp, prec);
+                    BLAS_zdot2_x(conj_type,
+                                 n,
+                                 alpha,
+                                 x,
+                                 incx_val,
+                                 beta,
+                                 head_y,
+                                 tail_y,
+                                 incy_val,
+                                 &r_comp,
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */

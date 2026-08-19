@@ -1179,7 +1179,13 @@ double do_test_zaxpby_c(int n, int ntests, int *seed, double thresh,
 
                 /* call BLAS_zaxpby_c to get y_comp */
                 FPU_FIX_STOP;
-                BLAS_zaxpby_c(n, alpha, x, incx_val, beta, y_comp, incy_val);
+                BLAS_zaxpby_c(n,
+                              alpha,
+                              x,
+                              incx_val,
+                              beta,
+                              y_comp,
+                              incy_val);
                 FPU_FIX_START;
 
 
@@ -1615,7 +1621,13 @@ double do_test_zaxpby_d(int n, int ntests, int *seed, double thresh,
 
                 /* call BLAS_zaxpby_d to get y_comp */
                 FPU_FIX_STOP;
-                BLAS_zaxpby_d(n, alpha, x, incx_val, beta, y_comp, incy_val);
+                BLAS_zaxpby_d(n,
+                              alpha,
+                              x,
+                              incx_val,
+                              beta,
+                              y_comp,
+                              incy_val);
                 FPU_FIX_START;
 
 
@@ -3449,8 +3461,14 @@ double do_test_zaxpby_x(int n, int ntests, int *seed, double thresh,
 
                   /* call BLAS_zaxpby_x to get y_comp */
                   FPU_FIX_STOP;
-                  BLAS_zaxpby_x(n, alpha, x, incx_val, beta,
-                                y_comp, incy_val, prec);
+                  BLAS_zaxpby_x(n,
+                                alpha,
+                                x,
+                                incx_val,
+                                beta,
+                                y_comp,
+                                incy_val,
+                                prec);
                   FPU_FIX_START;
 
 
@@ -4368,8 +4386,14 @@ double do_test_zaxpby_c_x(int n, int ntests, int *seed, double thresh,
 
                   /* call BLAS_zaxpby_c_x to get y_comp */
                   FPU_FIX_STOP;
-                  BLAS_zaxpby_c_x(n, alpha, x, incx_val, beta,
-                                  y_comp, incy_val, prec);
+                  BLAS_zaxpby_c_x(n,
+                                  alpha,
+                                  x,
+                                  incx_val,
+                                  beta,
+                                  y_comp,
+                                  incy_val,
+                                  prec);
                   FPU_FIX_START;
 
 
@@ -5292,8 +5316,14 @@ double do_test_zaxpby_d_x(int n, int ntests, int *seed, double thresh,
 
                   /* call BLAS_zaxpby_d_x to get y_comp */
                   FPU_FIX_STOP;
-                  BLAS_zaxpby_d_x(n, alpha, x, incx_val, beta,
-                                  y_comp, incy_val, prec);
+                  BLAS_zaxpby_d_x(n,
+                                  alpha,
+                                  x,
+                                  incx_val,
+                                  beta,
+                                  y_comp,
+                                  incy_val,
+                                  prec);
                   FPU_FIX_START;
 
 

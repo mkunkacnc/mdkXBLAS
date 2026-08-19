@@ -312,8 +312,17 @@ void do_test_zhemv2_z_c
                     /* call hemv2 routines to be tested */
                     FPU_FIX_STOP;
                     BLAS_zhemv2_z_c(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    head_x,
+                                    tail_x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -714,8 +723,17 @@ void do_test_zhemv2_c_z
                     /* call hemv2 routines to be tested */
                     FPU_FIX_STOP;
                     BLAS_zhemv2_c_z(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    head_x,
+                                    tail_x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -1116,8 +1134,17 @@ void do_test_zhemv2_c_c
                     /* call hemv2 routines to be tested */
                     FPU_FIX_STOP;
                     BLAS_zhemv2_c_c(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    head_x,
+                                    tail_x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -1929,8 +1956,17 @@ void do_test_zhemv2_z_d
                     /* call hemv2 routines to be tested */
                     FPU_FIX_STOP;
                     BLAS_zhemv2_z_d(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy);
+                                    uplo_type,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    head_x,
+                                    tail_x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -2785,8 +2821,18 @@ void do_test_zhemv2_x
                       /* call hemv2 routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zhemv2_x(order_type,
-                                    uplo_type, n, alpha, a, lda, head_x,
-                                    tail_x, incx, beta, y, incy, prec);
+                                    uplo_type,
+                                    n,
+                                    alpha,
+                                    a,
+                                    lda,
+                                    head_x,
+                                    tail_x,
+                                    incx,
+                                    beta,
+                                    y,
+                                    incy,
+                                    prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -3209,8 +3255,18 @@ void do_test_zhemv2_z_c_x
                       /* call hemv2 routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zhemv2_z_c_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        head_x,
+                                        tail_x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -3633,8 +3689,18 @@ void do_test_zhemv2_c_z_x
                       /* call hemv2 routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zhemv2_c_z_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        head_x,
+                                        tail_x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -4057,8 +4123,18 @@ void do_test_zhemv2_c_c_x
                       /* call hemv2 routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zhemv2_c_c_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        head_x,
+                                        tail_x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -4915,8 +4991,18 @@ void do_test_zhemv2_z_d_x
                       /* call hemv2 routines to be tested */
                       FPU_FIX_STOP;
                       BLAS_zhemv2_z_d_x(order_type,
-                                        uplo_type, n, alpha, a, lda, head_x,
-                                        tail_x, incx, beta, y, incy, prec);
+                                        uplo_type,
+                                        n,
+                                        alpha,
+                                        a,
+                                        lda,
+                                        head_x,
+                                        tail_x,
+                                        incx,
+                                        beta,
+                                        y,
+                                        incy,
+                                        prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */

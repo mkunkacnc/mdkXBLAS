@@ -1975,8 +1975,18 @@ double do_test_zgemv_z_c(int m, int n, int ntests, int *seed, double thresh,
                       zcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                       FPU_FIX_STOP;
-                      BLAS_zgemv_z_c(order_type, trans_type, m, n, alpha, A,
-                                     lda, x, incx_val, beta, y, incy_val);
+                      BLAS_zgemv_z_c(order_type,
+                                     trans_type,
+                                     m,
+                                     n,
+                                     alpha,
+                                     A,
+                                     lda,
+                                     x,
+                                     incx_val,
+                                     beta,
+                                     y,
+                                     incy_val);
                       FPU_FIX_START;
 
                       /* set y starting index */
@@ -2510,8 +2520,18 @@ double do_test_zgemv_c_z(int m, int n, int ntests, int *seed, double thresh,
                       zcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                       FPU_FIX_STOP;
-                      BLAS_zgemv_c_z(order_type, trans_type, m, n, alpha, A,
-                                     lda, x, incx_val, beta, y, incy_val);
+                      BLAS_zgemv_c_z(order_type,
+                                     trans_type,
+                                     m,
+                                     n,
+                                     alpha,
+                                     A,
+                                     lda,
+                                     x,
+                                     incx_val,
+                                     beta,
+                                     y,
+                                     incy_val);
                       FPU_FIX_START;
 
                       /* set y starting index */
@@ -3045,8 +3065,18 @@ double do_test_zgemv_c_c(int m, int n, int ntests, int *seed, double thresh,
                       zcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                       FPU_FIX_STOP;
-                      BLAS_zgemv_c_c(order_type, trans_type, m, n, alpha, A,
-                                     lda, x, incx_val, beta, y, incy_val);
+                      BLAS_zgemv_c_c(order_type,
+                                     trans_type,
+                                     m,
+                                     n,
+                                     alpha,
+                                     A,
+                                     lda,
+                                     x,
+                                     incx_val,
+                                     beta,
+                                     y,
+                                     incy_val);
                       FPU_FIX_START;
 
                       /* set y starting index */
@@ -5211,8 +5241,18 @@ double do_test_zgemv_z_d(int m, int n, int ntests, int *seed, double thresh,
                       zcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                       FPU_FIX_STOP;
-                      BLAS_zgemv_z_d(order_type, trans_type, m, n, alpha, A,
-                                     lda, x, incx_val, beta, y, incy_val);
+                      BLAS_zgemv_z_d(order_type,
+                                     trans_type,
+                                     m,
+                                     n,
+                                     alpha,
+                                     A,
+                                     lda,
+                                     x,
+                                     incx_val,
+                                     beta,
+                                     y,
+                                     incy_val);
                       FPU_FIX_START;
 
                       /* set y starting index */
@@ -5745,8 +5785,18 @@ double do_test_zgemv_d_z(int m, int n, int ntests, int *seed, double thresh,
                       zcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                       FPU_FIX_STOP;
-                      BLAS_zgemv_d_z(order_type, trans_type, m, n, alpha, A,
-                                     lda, x, incx_val, beta, y, incy_val);
+                      BLAS_zgemv_d_z(order_type,
+                                     trans_type,
+                                     m,
+                                     n,
+                                     alpha,
+                                     A,
+                                     lda,
+                                     x,
+                                     incx_val,
+                                     beta,
+                                     y,
+                                     incy_val);
                       FPU_FIX_START;
 
                       /* set y starting index */
@@ -6279,8 +6329,18 @@ double do_test_zgemv_d_d(int m, int n, int ntests, int *seed, double thresh,
                       zcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                       FPU_FIX_STOP;
-                      BLAS_zgemv_d_d(order_type, trans_type, m, n, alpha, A,
-                                     lda, x, incx_val, beta, y, incy_val);
+                      BLAS_zgemv_d_d(order_type,
+                                     trans_type,
+                                     m,
+                                     n,
+                                     alpha,
+                                     A,
+                                     lda,
+                                     x,
+                                     incx_val,
+                                     beta,
+                                     y,
+                                     incy_val);
                       FPU_FIX_START;
 
                       /* set y starting index */
@@ -8521,8 +8581,18 @@ double do_test_zgemv_x(int m, int n, int ntests, int *seed, double thresh,
                         zcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                         FPU_FIX_STOP;
-                        BLAS_zgemv_x(order_type, trans_type, m, n, alpha, A,
-                                     lda, x, incx_val, beta, y, incy_val,
+                        BLAS_zgemv_x(order_type,
+                                     trans_type,
+                                     m,
+                                     n,
+                                     alpha,
+                                     A,
+                                     lda,
+                                     x,
+                                     incx_val,
+                                     beta,
+                                     y,
+                                     incy_val,
                                      prec);
                         FPU_FIX_START;
 
@@ -10759,9 +10829,19 @@ double do_test_zgemv_z_c_x(int m, int n, int ntests, int *seed, double thresh,
                         zcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                         FPU_FIX_STOP;
-                        BLAS_zgemv_z_c_x(order_type, trans_type, m, n, alpha,
-                                         A, lda, x, incx_val, beta, y,
-                                         incy_val, prec);
+                        BLAS_zgemv_z_c_x(order_type,
+                                         trans_type,
+                                         m,
+                                         n,
+                                         alpha,
+                                         A,
+                                         lda,
+                                         x,
+                                         incx_val,
+                                         beta,
+                                         y,
+                                         incy_val,
+                                         prec);
                         FPU_FIX_START;
 
                         /* set y starting index */
@@ -11317,9 +11397,19 @@ double do_test_zgemv_c_z_x(int m, int n, int ntests, int *seed, double thresh,
                         zcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                         FPU_FIX_STOP;
-                        BLAS_zgemv_c_z_x(order_type, trans_type, m, n, alpha,
-                                         A, lda, x, incx_val, beta, y,
-                                         incy_val, prec);
+                        BLAS_zgemv_c_z_x(order_type,
+                                         trans_type,
+                                         m,
+                                         n,
+                                         alpha,
+                                         A,
+                                         lda,
+                                         x,
+                                         incx_val,
+                                         beta,
+                                         y,
+                                         incy_val,
+                                         prec);
                         FPU_FIX_START;
 
                         /* set y starting index */
@@ -11875,9 +11965,19 @@ double do_test_zgemv_c_c_x(int m, int n, int ntests, int *seed, double thresh,
                         zcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                         FPU_FIX_STOP;
-                        BLAS_zgemv_c_c_x(order_type, trans_type, m, n, alpha,
-                                         A, lda, x, incx_val, beta, y,
-                                         incy_val, prec);
+                        BLAS_zgemv_c_c_x(order_type,
+                                         trans_type,
+                                         m,
+                                         n,
+                                         alpha,
+                                         A,
+                                         lda,
+                                         x,
+                                         incx_val,
+                                         beta,
+                                         y,
+                                         incy_val,
+                                         prec);
                         FPU_FIX_START;
 
                         /* set y starting index */
@@ -14133,9 +14233,19 @@ double do_test_zgemv_z_d_x(int m, int n, int ntests, int *seed, double thresh,
                         zcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                         FPU_FIX_STOP;
-                        BLAS_zgemv_z_d_x(order_type, trans_type, m, n, alpha,
-                                         A, lda, x, incx_val, beta, y,
-                                         incy_val, prec);
+                        BLAS_zgemv_z_d_x(order_type,
+                                         trans_type,
+                                         m,
+                                         n,
+                                         alpha,
+                                         A,
+                                         lda,
+                                         x,
+                                         incx_val,
+                                         beta,
+                                         y,
+                                         incy_val,
+                                         prec);
                         FPU_FIX_START;
 
                         /* set y starting index */
@@ -14690,9 +14800,19 @@ double do_test_zgemv_d_z_x(int m, int n, int ntests, int *seed, double thresh,
                         zcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                         FPU_FIX_STOP;
-                        BLAS_zgemv_d_z_x(order_type, trans_type, m, n, alpha,
-                                         A, lda, x, incx_val, beta, y,
-                                         incy_val, prec);
+                        BLAS_zgemv_d_z_x(order_type,
+                                         trans_type,
+                                         m,
+                                         n,
+                                         alpha,
+                                         A,
+                                         lda,
+                                         x,
+                                         incx_val,
+                                         beta,
+                                         y,
+                                         incy_val,
+                                         prec);
                         FPU_FIX_START;
 
                         /* set y starting index */
@@ -15247,9 +15367,19 @@ double do_test_zgemv_d_d_x(int m, int n, int ntests, int *seed, double thresh,
                         zcopy_vector(y_gen, m_i, 1, y, incy_val);
 
                         FPU_FIX_STOP;
-                        BLAS_zgemv_d_d_x(order_type, trans_type, m, n, alpha,
-                                         A, lda, x, incx_val, beta, y,
-                                         incy_val, prec);
+                        BLAS_zgemv_d_d_x(order_type,
+                                         trans_type,
+                                         m,
+                                         n,
+                                         alpha,
+                                         A,
+                                         lda,
+                                         x,
+                                         incx_val,
+                                         beta,
+                                         y,
+                                         incy_val,
+                                         prec);
                         FPU_FIX_START;
 
                         /* set y starting index */

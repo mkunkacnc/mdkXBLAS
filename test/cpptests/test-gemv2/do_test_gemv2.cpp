@@ -2041,8 +2041,18 @@ double do_test_zgemv2_z_c(int m, int n, int ntests, int *seed, double thresh,
 
                       /* call BLAS_zgemv2_z_c */
                       FPU_FIX_STOP;
-                      BLAS_zgemv2_z_c(order_type, trans_type, m, n, alpha, A,
-                                      lda, head_x, tail_x, incx_val, beta, y,
+                      BLAS_zgemv2_z_c(order_type,
+                                      trans_type,
+                                      m,
+                                      n,
+                                      alpha,
+                                      A,
+                                      lda,
+                                      head_x,
+                                      tail_x,
+                                      incx_val,
+                                      beta,
+                                      y,
                                       incy_val);
                       FPU_FIX_START;
 
@@ -2595,8 +2605,18 @@ double do_test_zgemv2_c_z(int m, int n, int ntests, int *seed, double thresh,
 
                       /* call BLAS_zgemv2_c_z */
                       FPU_FIX_STOP;
-                      BLAS_zgemv2_c_z(order_type, trans_type, m, n, alpha, A,
-                                      lda, head_x, tail_x, incx_val, beta, y,
+                      BLAS_zgemv2_c_z(order_type,
+                                      trans_type,
+                                      m,
+                                      n,
+                                      alpha,
+                                      A,
+                                      lda,
+                                      head_x,
+                                      tail_x,
+                                      incx_val,
+                                      beta,
+                                      y,
                                       incy_val);
                       FPU_FIX_START;
 
@@ -3149,8 +3169,18 @@ double do_test_zgemv2_c_c(int m, int n, int ntests, int *seed, double thresh,
 
                       /* call BLAS_zgemv2_c_c */
                       FPU_FIX_STOP;
-                      BLAS_zgemv2_c_c(order_type, trans_type, m, n, alpha, A,
-                                      lda, head_x, tail_x, incx_val, beta, y,
+                      BLAS_zgemv2_c_c(order_type,
+                                      trans_type,
+                                      m,
+                                      n,
+                                      alpha,
+                                      A,
+                                      lda,
+                                      head_x,
+                                      tail_x,
+                                      incx_val,
+                                      beta,
+                                      y,
                                       incy_val);
                       FPU_FIX_START;
 
@@ -5391,8 +5421,18 @@ double do_test_zgemv2_z_d(int m, int n, int ntests, int *seed, double thresh,
 
                       /* call BLAS_zgemv2_z_d */
                       FPU_FIX_STOP;
-                      BLAS_zgemv2_z_d(order_type, trans_type, m, n, alpha, A,
-                                      lda, head_x, tail_x, incx_val, beta, y,
+                      BLAS_zgemv2_z_d(order_type,
+                                      trans_type,
+                                      m,
+                                      n,
+                                      alpha,
+                                      A,
+                                      lda,
+                                      head_x,
+                                      tail_x,
+                                      incx_val,
+                                      beta,
+                                      y,
                                       incy_val);
                       FPU_FIX_START;
 
@@ -5944,8 +5984,18 @@ double do_test_zgemv2_d_z(int m, int n, int ntests, int *seed, double thresh,
 
                       /* call BLAS_zgemv2_d_z */
                       FPU_FIX_STOP;
-                      BLAS_zgemv2_d_z(order_type, trans_type, m, n, alpha, A,
-                                      lda, head_x, tail_x, incx_val, beta, y,
+                      BLAS_zgemv2_d_z(order_type,
+                                      trans_type,
+                                      m,
+                                      n,
+                                      alpha,
+                                      A,
+                                      lda,
+                                      head_x,
+                                      tail_x,
+                                      incx_val,
+                                      beta,
+                                      y,
                                       incy_val);
                       FPU_FIX_START;
 
@@ -6497,8 +6547,18 @@ double do_test_zgemv2_d_d(int m, int n, int ntests, int *seed, double thresh,
 
                       /* call BLAS_zgemv2_d_d */
                       FPU_FIX_STOP;
-                      BLAS_zgemv2_d_d(order_type, trans_type, m, n, alpha, A,
-                                      lda, head_x, tail_x, incx_val, beta, y,
+                      BLAS_zgemv2_d_d(order_type,
+                                      trans_type,
+                                      m,
+                                      n,
+                                      alpha,
+                                      A,
+                                      lda,
+                                      head_x,
+                                      tail_x,
+                                      incx_val,
+                                      beta,
+                                      y,
                                       incy_val);
                       FPU_FIX_START;
 
@@ -8812,9 +8872,20 @@ double do_test_zgemv2_x(int m, int n, int ntests, int *seed, double thresh,
 
                         /* call BLAS_zgemv2_x */
                         FPU_FIX_STOP;
-                        BLAS_zgemv2_x(order_type, trans_type, m, n, alpha, A,
-                                      lda, head_x, tail_x, incx_val, beta, y,
-                                      incy_val, prec);
+                        BLAS_zgemv2_x(order_type,
+                                      trans_type,
+                                      m,
+                                      n,
+                                      alpha,
+                                      A,
+                                      lda,
+                                      head_x,
+                                      tail_x,
+                                      incx_val,
+                                      beta,
+                                      y,
+                                      incy_val,
+                                      prec);
                         FPU_FIX_START;
 
                         /* set y starting index */
@@ -11128,9 +11199,20 @@ double do_test_zgemv2_z_c_x(int m, int n, int ntests, int *seed,
 
                         /* call BLAS_zgemv2_z_c_x */
                         FPU_FIX_STOP;
-                        BLAS_zgemv2_z_c_x(order_type, trans_type, m, n, alpha,
-                                          A, lda, head_x, tail_x, incx_val,
-                                          beta, y, incy_val, prec);
+                        BLAS_zgemv2_z_c_x(order_type,
+                                          trans_type,
+                                          m,
+                                          n,
+                                          alpha,
+                                          A,
+                                          lda,
+                                          head_x,
+                                          tail_x,
+                                          incx_val,
+                                          beta,
+                                          y,
+                                          incy_val,
+                                          prec);
                         FPU_FIX_START;
 
                         /* set y starting index */
@@ -11704,9 +11786,20 @@ double do_test_zgemv2_c_z_x(int m, int n, int ntests, int *seed,
 
                         /* call BLAS_zgemv2_c_z_x */
                         FPU_FIX_STOP;
-                        BLAS_zgemv2_c_z_x(order_type, trans_type, m, n, alpha,
-                                          A, lda, head_x, tail_x, incx_val,
-                                          beta, y, incy_val, prec);
+                        BLAS_zgemv2_c_z_x(order_type,
+                                          trans_type,
+                                          m,
+                                          n,
+                                          alpha,
+                                          A,
+                                          lda,
+                                          head_x,
+                                          tail_x,
+                                          incx_val,
+                                          beta,
+                                          y,
+                                          incy_val,
+                                          prec);
                         FPU_FIX_START;
 
                         /* set y starting index */
@@ -12280,9 +12373,20 @@ double do_test_zgemv2_c_c_x(int m, int n, int ntests, int *seed,
 
                         /* call BLAS_zgemv2_c_c_x */
                         FPU_FIX_STOP;
-                        BLAS_zgemv2_c_c_x(order_type, trans_type, m, n, alpha,
-                                          A, lda, head_x, tail_x, incx_val,
-                                          beta, y, incy_val, prec);
+                        BLAS_zgemv2_c_c_x(order_type,
+                                          trans_type,
+                                          m,
+                                          n,
+                                          alpha,
+                                          A,
+                                          lda,
+                                          head_x,
+                                          tail_x,
+                                          incx_val,
+                                          beta,
+                                          y,
+                                          incy_val,
+                                          prec);
                         FPU_FIX_START;
 
                         /* set y starting index */
@@ -14613,9 +14717,20 @@ double do_test_zgemv2_z_d_x(int m, int n, int ntests, int *seed,
 
                         /* call BLAS_zgemv2_z_d_x */
                         FPU_FIX_STOP;
-                        BLAS_zgemv2_z_d_x(order_type, trans_type, m, n, alpha,
-                                          A, lda, head_x, tail_x, incx_val,
-                                          beta, y, incy_val, prec);
+                        BLAS_zgemv2_z_d_x(order_type,
+                                          trans_type,
+                                          m,
+                                          n,
+                                          alpha,
+                                          A,
+                                          lda,
+                                          head_x,
+                                          tail_x,
+                                          incx_val,
+                                          beta,
+                                          y,
+                                          incy_val,
+                                          prec);
                         FPU_FIX_START;
 
                         /* set y starting index */
@@ -15188,9 +15303,20 @@ double do_test_zgemv2_d_z_x(int m, int n, int ntests, int *seed,
 
                         /* call BLAS_zgemv2_d_z_x */
                         FPU_FIX_STOP;
-                        BLAS_zgemv2_d_z_x(order_type, trans_type, m, n, alpha,
-                                          A, lda, head_x, tail_x, incx_val,
-                                          beta, y, incy_val, prec);
+                        BLAS_zgemv2_d_z_x(order_type,
+                                          trans_type,
+                                          m,
+                                          n,
+                                          alpha,
+                                          A,
+                                          lda,
+                                          head_x,
+                                          tail_x,
+                                          incx_val,
+                                          beta,
+                                          y,
+                                          incy_val,
+                                          prec);
                         FPU_FIX_START;
 
                         /* set y starting index */
@@ -15763,9 +15889,20 @@ double do_test_zgemv2_d_d_x(int m, int n, int ntests, int *seed,
 
                         /* call BLAS_zgemv2_d_d_x */
                         FPU_FIX_STOP;
-                        BLAS_zgemv2_d_d_x(order_type, trans_type, m, n, alpha,
-                                          A, lda, head_x, tail_x, incx_val,
-                                          beta, y, incy_val, prec);
+                        BLAS_zgemv2_d_d_x(order_type,
+                                          trans_type,
+                                          m,
+                                          n,
+                                          alpha,
+                                          A,
+                                          lda,
+                                          head_x,
+                                          tail_x,
+                                          incx_val,
+                                          beta,
+                                          y,
+                                          incy_val,
+                                          prec);
                         FPU_FIX_START;
 
                         /* set y starting index */

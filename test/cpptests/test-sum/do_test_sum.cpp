@@ -963,7 +963,11 @@ void do_test_zsum_x(int n, int ntests, int *seed, double thresh,
           }
 
           FPU_FIX_STOP;
-          BLAS_zsum_x(n, x, incx_val, sum, prec);
+          BLAS_zsum_x(n,
+                      x,
+                      incx_val,
+                      sum,
+                      prec);
           FPU_FIX_START;
 
           test_BLAS_zsum(n, sum, head_sum_true, tail_sum_true, x, incx_val,

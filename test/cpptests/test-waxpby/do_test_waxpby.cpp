@@ -1953,8 +1953,15 @@ double do_test_zwaxpby_z_c(int n,
 
               /* call BLAS_zwaxpby_z_c to get w */
               FPU_FIX_STOP;
-              BLAS_zwaxpby_z_c(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val);
+              BLAS_zwaxpby_z_c(n,
+                               alpha,
+                               x,
+                               incx_val,
+                               beta,
+                               y,
+                               incy_val,
+                               w,
+                               incw_val);
               FPU_FIX_START;
 
               /* computing the ratio */
@@ -2484,8 +2491,15 @@ double do_test_zwaxpby_c_z(int n,
 
               /* call BLAS_zwaxpby_c_z to get w */
               FPU_FIX_STOP;
-              BLAS_zwaxpby_c_z(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val);
+              BLAS_zwaxpby_c_z(n,
+                               alpha,
+                               x,
+                               incx_val,
+                               beta,
+                               y,
+                               incy_val,
+                               w,
+                               incw_val);
               FPU_FIX_START;
 
               /* computing the ratio */
@@ -3015,8 +3029,15 @@ double do_test_zwaxpby_c_c(int n,
 
               /* call BLAS_zwaxpby_c_c to get w */
               FPU_FIX_STOP;
-              BLAS_zwaxpby_c_c(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val);
+              BLAS_zwaxpby_c_c(n,
+                               alpha,
+                               x,
+                               incx_val,
+                               beta,
+                               y,
+                               incy_val,
+                               w,
+                               incw_val);
               FPU_FIX_START;
 
               /* computing the ratio */
@@ -5211,8 +5232,15 @@ double do_test_zwaxpby_z_d(int n,
 
               /* call BLAS_zwaxpby_z_d to get w */
               FPU_FIX_STOP;
-              BLAS_zwaxpby_z_d(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val);
+              BLAS_zwaxpby_z_d(n,
+                               alpha,
+                               x,
+                               incx_val,
+                               beta,
+                               y,
+                               incy_val,
+                               w,
+                               incw_val);
               FPU_FIX_START;
 
               /* computing the ratio */
@@ -5737,8 +5765,15 @@ double do_test_zwaxpby_d_z(int n,
 
               /* call BLAS_zwaxpby_d_z to get w */
               FPU_FIX_STOP;
-              BLAS_zwaxpby_d_z(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val);
+              BLAS_zwaxpby_d_z(n,
+                               alpha,
+                               x,
+                               incx_val,
+                               beta,
+                               y,
+                               incy_val,
+                               w,
+                               incw_val);
               FPU_FIX_START;
 
               /* computing the ratio */
@@ -6258,8 +6293,15 @@ double do_test_zwaxpby_d_d(int n,
 
               /* call BLAS_zwaxpby_d_d to get w */
               FPU_FIX_STOP;
-              BLAS_zwaxpby_d_d(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val);
+              BLAS_zwaxpby_d_d(n,
+                               alpha,
+                               x,
+                               incx_val,
+                               beta,
+                               y,
+                               incy_val,
+                               w,
+                               incw_val);
               FPU_FIX_START;
 
               /* computing the ratio */
@@ -8428,8 +8470,16 @@ double do_test_zwaxpby_x(int n,
 
                 /* call BLAS_zwaxpby_x to get w */
                 FPU_FIX_STOP;
-                BLAS_zwaxpby_x(n, alpha, x, incx_val, beta, y, incy_val,
-                               w, incw_val, prec);
+                BLAS_zwaxpby_x(n,
+                               alpha,
+                               x,
+                               incx_val,
+                               beta,
+                               y,
+                               incy_val,
+                               w,
+                               incw_val,
+                               prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */
@@ -10614,8 +10664,16 @@ double do_test_zwaxpby_z_c_x(int n,
 
                 /* call BLAS_zwaxpby_z_c_x to get w */
                 FPU_FIX_STOP;
-                BLAS_zwaxpby_z_c_x(n, alpha, x, incx_val, beta, y, incy_val,
-                                   w, incw_val, prec);
+                BLAS_zwaxpby_z_c_x(n,
+                                   alpha,
+                                   x,
+                                   incx_val,
+                                   beta,
+                                   y,
+                                   incy_val,
+                                   w,
+                                   incw_val,
+                                   prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */
@@ -11165,8 +11223,16 @@ double do_test_zwaxpby_c_z_x(int n,
 
                 /* call BLAS_zwaxpby_c_z_x to get w */
                 FPU_FIX_STOP;
-                BLAS_zwaxpby_c_z_x(n, alpha, x, incx_val, beta, y, incy_val,
-                                   w, incw_val, prec);
+                BLAS_zwaxpby_c_z_x(n,
+                                   alpha,
+                                   x,
+                                   incx_val,
+                                   beta,
+                                   y,
+                                   incy_val,
+                                   w,
+                                   incw_val,
+                                   prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */
@@ -11716,8 +11782,16 @@ double do_test_zwaxpby_c_c_x(int n,
 
                 /* call BLAS_zwaxpby_c_c_x to get w */
                 FPU_FIX_STOP;
-                BLAS_zwaxpby_c_c_x(n, alpha, x, incx_val, beta, y, incy_val,
-                                   w, incw_val, prec);
+                BLAS_zwaxpby_c_c_x(n,
+                                   alpha,
+                                   x,
+                                   incx_val,
+                                   beta,
+                                   y,
+                                   incy_val,
+                                   w,
+                                   incw_val,
+                                   prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */
@@ -13993,8 +14067,16 @@ double do_test_zwaxpby_z_d_x(int n,
 
                 /* call BLAS_zwaxpby_z_d_x to get w */
                 FPU_FIX_STOP;
-                BLAS_zwaxpby_z_d_x(n, alpha, x, incx_val, beta, y, incy_val,
-                                   w, incw_val, prec);
+                BLAS_zwaxpby_z_d_x(n,
+                                   alpha,
+                                   x,
+                                   incx_val,
+                                   beta,
+                                   y,
+                                   incy_val,
+                                   w,
+                                   incw_val,
+                                   prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */
@@ -14539,8 +14621,16 @@ double do_test_zwaxpby_d_z_x(int n,
 
                 /* call BLAS_zwaxpby_d_z_x to get w */
                 FPU_FIX_STOP;
-                BLAS_zwaxpby_d_z_x(n, alpha, x, incx_val, beta, y, incy_val,
-                                   w, incw_val, prec);
+                BLAS_zwaxpby_d_z_x(n,
+                                   alpha,
+                                   x,
+                                   incx_val,
+                                   beta,
+                                   y,
+                                   incy_val,
+                                   w,
+                                   incw_val,
+                                   prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */
@@ -15080,8 +15170,16 @@ double do_test_zwaxpby_d_d_x(int n,
 
                 /* call BLAS_zwaxpby_d_d_x to get w */
                 FPU_FIX_STOP;
-                BLAS_zwaxpby_d_d_x(n, alpha, x, incx_val, beta, y, incy_val,
-                                   w, incw_val, prec);
+                BLAS_zwaxpby_d_d_x(n,
+                                   alpha,
+                                   x,
+                                   incx_val,
+                                   beta,
+                                   y,
+                                   incy_val,
+                                   w,
+                                   incw_val,
+                                   prec);
                 FPU_FIX_START;
 
                 /* computing the ratio */
