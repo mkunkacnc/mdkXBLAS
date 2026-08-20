@@ -1689,19 +1689,19 @@ void do_test_zsymm_z_c
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zsymm_z_c(order_type,
-                                       side_type,
-                                       uplo_type,
-                                       m,
-                                       n,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::symm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<double> *>(a),
+                                    lda,
+                                    reinterpret_cast<const std::complex<float> *>(b),
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -2148,19 +2148,19 @@ void do_test_zsymm_c_z
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zsymm_c_z(order_type,
-                                       side_type,
-                                       uplo_type,
-                                       m,
-                                       n,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::symm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<float> *>(a),
+                                    lda,
+                                    reinterpret_cast<const std::complex<double> *>(b),
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -2607,19 +2607,19 @@ void do_test_zsymm_c_c
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zsymm_c_c(order_type,
-                                       side_type,
-                                       uplo_type,
-                                       m,
-                                       n,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::symm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<float> *>(a),
+                                    lda,
+                                    reinterpret_cast<const std::complex<float> *>(b),
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -4443,19 +4443,19 @@ void do_test_zsymm_z_d
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zsymm_z_d(order_type,
-                                       side_type,
-                                       uplo_type,
-                                       m,
-                                       n,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::symm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<double> *>(a),
+                                    lda,
+                                    b,
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -4902,19 +4902,19 @@ void do_test_zsymm_d_z
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zsymm_d_z(order_type,
-                                       side_type,
-                                       uplo_type,
-                                       m,
-                                       n,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::symm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    a,
+                                    lda,
+                                    reinterpret_cast<const std::complex<double> *>(b),
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -5361,19 +5361,19 @@ void do_test_zsymm_d_d
 
                         /* call symm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zsymm_d_d(order_type,
-                                       side_type,
-                                       uplo_type,
-                                       m,
-                                       n,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::symm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    a,
+                                    lda,
+                                    b,
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -7279,20 +7279,20 @@ void do_test_zsymm_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zsymm_x(order_type,
-                                       side_type,
-                                       uplo_type,
-                                       m,
-                                       n,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc,
-                                       prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        reinterpret_cast<const std::complex<double> *>(a),
+                                        lda,
+                                        reinterpret_cast<const std::complex<double> *>(b),
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -9195,20 +9195,20 @@ void do_test_zsymm_z_c_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zsymm_z_c_x(order_type,
-                                           side_type,
-                                           uplo_type,
-                                           m,
-                                           n,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        reinterpret_cast<const std::complex<double> *>(a),
+                                        lda,
+                                        reinterpret_cast<const std::complex<float> *>(b),
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -9680,20 +9680,20 @@ void do_test_zsymm_c_z_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zsymm_c_z_x(order_type,
-                                           side_type,
-                                           uplo_type,
-                                           m,
-                                           n,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        reinterpret_cast<const std::complex<float> *>(a),
+                                        lda,
+                                        reinterpret_cast<const std::complex<double> *>(b),
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -10165,20 +10165,20 @@ void do_test_zsymm_c_c_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zsymm_c_c_x(order_type,
-                                           side_type,
-                                           uplo_type,
-                                           m,
-                                           n,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        reinterpret_cast<const std::complex<float> *>(a),
+                                        lda,
+                                        reinterpret_cast<const std::complex<float> *>(b),
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -12102,20 +12102,20 @@ void do_test_zsymm_z_d_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zsymm_z_d_x(order_type,
-                                           side_type,
-                                           uplo_type,
-                                           m,
-                                           n,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        reinterpret_cast<const std::complex<double> *>(a),
+                                        lda,
+                                        b,
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -12587,20 +12587,20 @@ void do_test_zsymm_d_z_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zsymm_d_z_x(order_type,
-                                           side_type,
-                                           uplo_type,
-                                           m,
-                                           n,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        a,
+                                        lda,
+                                        reinterpret_cast<const std::complex<double> *>(b),
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -13072,20 +13072,20 @@ void do_test_zsymm_d_d_x
 
                           /* call symm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zsymm_d_d_x(order_type,
-                                           side_type,
-                                           uplo_type,
-                                           m,
-                                           n,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::symm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */

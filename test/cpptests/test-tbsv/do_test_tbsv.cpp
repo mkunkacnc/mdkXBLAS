@@ -964,17 +964,17 @@ double do_test_ztbsv_c(int n,
 
                           /* call BLAS_ztbsv_c */
                           FPU_FIX_STOP;
-                          BLAS_ztbsv_c(order_type,
-                                       uplo_type,
-                                       trans_type,
-                                       diag_type,
-                                       n,
-                                       k,
-                                       alpha,
-                                       T,
-                                       ldt,
-                                       x,
-                                       incx_unadj);
+                          XBLAS::tbsv(order_type,
+                                      uplo_type,
+                                      trans_type,
+                                      diag_type,
+                                      n,
+                                      k,
+                                      *reinterpret_cast<const std::complex<double> *>(alpha),
+                                      reinterpret_cast<const std::complex<float> *>(T),
+                                      ldt,
+                                      reinterpret_cast<std::complex<double> *>(x),
+                                      incx_unadj);
                           FPU_FIX_START;
                           test_count++;
 
@@ -2236,17 +2236,17 @@ double do_test_ztbsv_d(int n,
 
                           /* call BLAS_ztbsv_d */
                           FPU_FIX_STOP;
-                          BLAS_ztbsv_d(order_type,
-                                       uplo_type,
-                                       trans_type,
-                                       diag_type,
-                                       n,
-                                       k,
-                                       alpha,
-                                       T,
-                                       ldt,
-                                       x,
-                                       incx_unadj);
+                          XBLAS::tbsv(order_type,
+                                      uplo_type,
+                                      trans_type,
+                                      diag_type,
+                                      n,
+                                      k,
+                                      *reinterpret_cast<const std::complex<double> *>(alpha),
+                                      T,
+                                      ldt,
+                                      reinterpret_cast<std::complex<double> *>(x),
+                                      incx_unadj);
                           FPU_FIX_START;
                           test_count++;
 
@@ -5415,18 +5415,18 @@ double do_test_ztbsv_x(int n,
 
                             /* call BLAS_ztbsv_x */
                             FPU_FIX_STOP;
-                            BLAS_ztbsv_x(order_type,
-                                         uplo_type,
-                                         trans_type,
-                                         diag_type,
-                                         n,
-                                         k,
-                                         alpha,
-                                         T,
-                                         ldt,
-                                         x,
-                                         incx_unadj,
-                                         prec);
+                            XBLAS::tbsv_x(order_type,
+                                          uplo_type,
+                                          trans_type,
+                                          diag_type,
+                                          n,
+                                          k,
+                                          *reinterpret_cast<const std::complex<double> *>(alpha),
+                                          reinterpret_cast<const std::complex<double> *>(T),
+                                          ldt,
+                                          reinterpret_cast<std::complex<double> *>(x),
+                                          incx_unadj,
+                                          prec);
                             FPU_FIX_START;
                             test_count++;
 
@@ -6075,18 +6075,18 @@ double do_test_ztbsv_c_x(int n,
 
                             /* call BLAS_ztbsv_c_x */
                             FPU_FIX_STOP;
-                            BLAS_ztbsv_c_x(order_type,
-                                           uplo_type,
-                                           trans_type,
-                                           diag_type,
-                                           n,
-                                           k,
-                                           alpha,
-                                           T,
-                                           ldt,
-                                           x,
-                                           incx_unadj,
-                                           prec);
+                            XBLAS::tbsv_x(order_type,
+                                          uplo_type,
+                                          trans_type,
+                                          diag_type,
+                                          n,
+                                          k,
+                                          *reinterpret_cast<const std::complex<double> *>(alpha),
+                                          reinterpret_cast<const std::complex<float> *>(T),
+                                          ldt,
+                                          reinterpret_cast<std::complex<double> *>(x),
+                                          incx_unadj,
+                                          prec);
                             FPU_FIX_START;
                             test_count++;
 
@@ -7397,18 +7397,18 @@ double do_test_ztbsv_d_x(int n,
 
                             /* call BLAS_ztbsv_d_x */
                             FPU_FIX_STOP;
-                            BLAS_ztbsv_d_x(order_type,
-                                           uplo_type,
-                                           trans_type,
-                                           diag_type,
-                                           n,
-                                           k,
-                                           alpha,
-                                           T,
-                                           ldt,
-                                           x,
-                                           incx_unadj,
-                                           prec);
+                            XBLAS::tbsv_x(order_type,
+                                          uplo_type,
+                                          trans_type,
+                                          diag_type,
+                                          n,
+                                          k,
+                                          *reinterpret_cast<const std::complex<double> *>(alpha),
+                                          T,
+                                          ldt,
+                                          reinterpret_cast<std::complex<double> *>(x),
+                                          incx_unadj,
+                                          prec);
                             FPU_FIX_START;
                             test_count++;
 

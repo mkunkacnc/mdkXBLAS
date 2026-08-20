@@ -850,15 +850,15 @@ double do_test_ztpmv_c(int n,
 
                     /* call BLAS_ztpmv_c */
                     FPU_FIX_STOP;
-                    BLAS_ztpmv_c(order_type,
-                                 uplo_type,
-                                 trans_type,
-                                 diag_type,
-                                 n,
-                                 alpha,
-                                 tp,
-                                 x,
-                                 incx_val);
+                    XBLAS::tpmv(order_type,
+                                uplo_type,
+                                trans_type,
+                                diag_type,
+                                n,
+                                *reinterpret_cast<const std::complex<double> *>(alpha),
+                                reinterpret_cast<const std::complex<float> *>(tp),
+                                reinterpret_cast<std::complex<double> *>(x),
+                                incx_val);
                     FPU_FIX_START;
 
                     /* set x starting index */
@@ -1910,15 +1910,15 @@ double do_test_ztpmv_d(int n,
 
                     /* call BLAS_ztpmv_d */
                     FPU_FIX_STOP;
-                    BLAS_ztpmv_d(order_type,
-                                 uplo_type,
-                                 trans_type,
-                                 diag_type,
-                                 n,
-                                 alpha,
-                                 tp,
-                                 x,
-                                 incx_val);
+                    XBLAS::tpmv(order_type,
+                                uplo_type,
+                                trans_type,
+                                diag_type,
+                                n,
+                                *reinterpret_cast<const std::complex<double> *>(alpha),
+                                tp,
+                                reinterpret_cast<std::complex<double> *>(x),
+                                incx_val);
                     FPU_FIX_START;
 
                     /* set x starting index */
@@ -4094,16 +4094,16 @@ double do_test_ztpmv_x(int n,
 
                       /* call BLAS_ztpmv_x */
                       FPU_FIX_STOP;
-                      BLAS_ztpmv_x(order_type,
-                                   uplo_type,
-                                   trans_type,
-                                   diag_type,
-                                   n,
-                                   alpha,
-                                   tp,
-                                   x,
-                                   incx_val,
-                                   prec);
+                      XBLAS::tpmv_x(order_type,
+                                    uplo_type,
+                                    trans_type,
+                                    diag_type,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<double> *>(tp),
+                                    reinterpret_cast<std::complex<double> *>(x),
+                                    incx_val,
+                                    prec);
                       FPU_FIX_START;
 
                       /* set x starting index */
@@ -5189,16 +5189,16 @@ double do_test_ztpmv_c_x(int n,
 
                       /* call BLAS_ztpmv_c_x */
                       FPU_FIX_STOP;
-                      BLAS_ztpmv_c_x(order_type,
-                                     uplo_type,
-                                     trans_type,
-                                     diag_type,
-                                     n,
-                                     alpha,
-                                     tp,
-                                     x,
-                                     incx_val,
-                                     prec);
+                      XBLAS::tpmv_x(order_type,
+                                    uplo_type,
+                                    trans_type,
+                                    diag_type,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<float> *>(tp),
+                                    reinterpret_cast<std::complex<double> *>(x),
+                                    incx_val,
+                                    prec);
                       FPU_FIX_START;
 
                       /* set x starting index */
@@ -6291,16 +6291,16 @@ double do_test_ztpmv_d_x(int n,
 
                       /* call BLAS_ztpmv_d_x */
                       FPU_FIX_STOP;
-                      BLAS_ztpmv_d_x(order_type,
-                                     uplo_type,
-                                     trans_type,
-                                     diag_type,
-                                     n,
-                                     alpha,
-                                     tp,
-                                     x,
-                                     incx_val,
-                                     prec);
+                      XBLAS::tpmv_x(order_type,
+                                    uplo_type,
+                                    trans_type,
+                                    diag_type,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    tp,
+                                    reinterpret_cast<std::complex<double> *>(x),
+                                    incx_val,
+                                    prec);
                       FPU_FIX_START;
 
                       /* set x starting index */

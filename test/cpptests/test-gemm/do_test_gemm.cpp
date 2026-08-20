@@ -1792,20 +1792,20 @@ void do_test_zgemm_z_c(int m, int n, int k, int ntests, int *seed,
 
                         /* call GEMM routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zgemm_z_c(order,
-                                       transa,
-                                       transb,
-                                       m,
-                                       n,
-                                       k,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::gemm(order,
+                                    transa,
+                                    transb,
+                                    m,
+                                    n,
+                                    k,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<double> *>(a),
+                                    lda,
+                                    reinterpret_cast<const std::complex<float> *>(b),
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -2277,20 +2277,20 @@ void do_test_zgemm_c_z(int m, int n, int k, int ntests, int *seed,
 
                         /* call GEMM routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zgemm_c_z(order,
-                                       transa,
-                                       transb,
-                                       m,
-                                       n,
-                                       k,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::gemm(order,
+                                    transa,
+                                    transb,
+                                    m,
+                                    n,
+                                    k,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<float> *>(a),
+                                    lda,
+                                    reinterpret_cast<const std::complex<double> *>(b),
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -2762,20 +2762,20 @@ void do_test_zgemm_c_c(int m, int n, int k, int ntests, int *seed,
 
                         /* call GEMM routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zgemm_c_c(order,
-                                       transa,
-                                       transb,
-                                       m,
-                                       n,
-                                       k,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::gemm(order,
+                                    transa,
+                                    transb,
+                                    m,
+                                    n,
+                                    k,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<float> *>(a),
+                                    lda,
+                                    reinterpret_cast<const std::complex<float> *>(b),
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -4702,20 +4702,20 @@ void do_test_zgemm_z_d(int m, int n, int k, int ntests, int *seed,
 
                         /* call GEMM routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zgemm_z_d(order,
-                                       transa,
-                                       transb,
-                                       m,
-                                       n,
-                                       k,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::gemm(order,
+                                    transa,
+                                    transb,
+                                    m,
+                                    n,
+                                    k,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<double> *>(a),
+                                    lda,
+                                    b,
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -5187,20 +5187,20 @@ void do_test_zgemm_d_z(int m, int n, int k, int ntests, int *seed,
 
                         /* call GEMM routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zgemm_d_z(order,
-                                       transa,
-                                       transb,
-                                       m,
-                                       n,
-                                       k,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::gemm(order,
+                                    transa,
+                                    transb,
+                                    m,
+                                    n,
+                                    k,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    a,
+                                    lda,
+                                    reinterpret_cast<const std::complex<double> *>(b),
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -5672,20 +5672,20 @@ void do_test_zgemm_d_d(int m, int n, int k, int ntests, int *seed,
 
                         /* call GEMM routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zgemm_d_d(order,
-                                       transa,
-                                       transb,
-                                       m,
-                                       n,
-                                       k,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::gemm(order,
+                                    transa,
+                                    transb,
+                                    m,
+                                    n,
+                                    k,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    a,
+                                    lda,
+                                    b,
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_c_xdot */
@@ -7736,21 +7736,21 @@ void do_test_zgemm_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zgemm_x(order,
-                                       transa,
-                                       transb,
-                                       m,
-                                       n,
-                                       k,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc,
-                                       prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        reinterpret_cast<const std::complex<double> *>(a),
+                                        lda,
+                                        reinterpret_cast<const std::complex<double> *>(b),
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -9820,21 +9820,21 @@ void do_test_zgemm_z_c_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zgemm_z_c_x(order,
-                                           transa,
-                                           transb,
-                                           m,
-                                           n,
-                                           k,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        reinterpret_cast<const std::complex<double> *>(a),
+                                        lda,
+                                        reinterpret_cast<const std::complex<float> *>(b),
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -10344,21 +10344,21 @@ void do_test_zgemm_c_z_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zgemm_c_z_x(order,
-                                           transa,
-                                           transb,
-                                           m,
-                                           n,
-                                           k,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        reinterpret_cast<const std::complex<float> *>(a),
+                                        lda,
+                                        reinterpret_cast<const std::complex<double> *>(b),
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -10868,21 +10868,21 @@ void do_test_zgemm_c_c_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zgemm_c_c_x(order,
-                                           transa,
-                                           transb,
-                                           m,
-                                           n,
-                                           k,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        reinterpret_cast<const std::complex<float> *>(a),
+                                        lda,
+                                        reinterpret_cast<const std::complex<float> *>(b),
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -12961,21 +12961,21 @@ void do_test_zgemm_z_d_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zgemm_z_d_x(order,
-                                           transa,
-                                           transb,
-                                           m,
-                                           n,
-                                           k,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        reinterpret_cast<const std::complex<double> *>(a),
+                                        lda,
+                                        b,
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -13485,21 +13485,21 @@ void do_test_zgemm_d_z_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zgemm_d_z_x(order,
-                                           transa,
-                                           transb,
-                                           m,
-                                           n,
-                                           k,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        a,
+                                        lda,
+                                        reinterpret_cast<const std::complex<double> *>(b),
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */
@@ -14009,21 +14009,21 @@ void do_test_zgemm_d_d_x(int m, int n, int k, int ntests, int *seed,
 
                           /* call GEMM routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zgemm_d_d_x(order,
-                                           transa,
-                                           transb,
-                                           m,
-                                           n,
-                                           k,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::gemm_x(order,
+                                        transa,
+                                        transb,
+                                        m,
+                                        n,
+                                        k,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        a,
+                                        lda,
+                                        b,
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_c_xdot */

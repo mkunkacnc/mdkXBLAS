@@ -314,19 +314,19 @@ void do_test_zhemm_z_c(int m, int n,
 
                         /* call hemm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zhemm_z_c(order_type,
-                                       side_type,
-                                       uplo_type,
-                                       m,
-                                       n,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::hemm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<double> *>(a),
+                                    lda,
+                                    reinterpret_cast<const std::complex<float> *>(b),
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -781,19 +781,19 @@ void do_test_zhemm_c_z(int m, int n,
 
                         /* call hemm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zhemm_c_z(order_type,
-                                       side_type,
-                                       uplo_type,
-                                       m,
-                                       n,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::hemm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<float> *>(a),
+                                    lda,
+                                    reinterpret_cast<const std::complex<double> *>(b),
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -1248,19 +1248,19 @@ void do_test_zhemm_c_c(int m, int n,
 
                         /* call hemm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zhemm_c_c(order_type,
-                                       side_type,
-                                       uplo_type,
-                                       m,
-                                       n,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::hemm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<float> *>(a),
+                                    lda,
+                                    reinterpret_cast<const std::complex<float> *>(b),
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -2182,19 +2182,19 @@ void do_test_zhemm_z_d(int m, int n,
 
                         /* call hemm routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zhemm_z_d(order_type,
-                                       side_type,
-                                       uplo_type,
-                                       m,
-                                       n,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc);
+                        XBLAS::hemm(order_type,
+                                    side_type,
+                                    uplo_type,
+                                    m,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<double> *>(a),
+                                    lda,
+                                    b,
+                                    ldb,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(c),
+                                    ldc);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -3162,20 +3162,20 @@ void do_test_zhemm_x(int m, int n,
 
                           /* call hemm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zhemm_x(order_type,
-                                       side_type,
-                                       uplo_type,
-                                       m,
-                                       n,
-                                       alpha,
-                                       a,
-                                       lda,
-                                       b,
-                                       ldb,
-                                       beta,
-                                       c,
-                                       ldc,
-                                       prec);
+                          XBLAS::hemm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        reinterpret_cast<const std::complex<double> *>(a),
+                                        lda,
+                                        reinterpret_cast<const std::complex<double> *>(b),
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -3656,20 +3656,20 @@ void do_test_zhemm_z_c_x(int m, int n,
 
                           /* call hemm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zhemm_z_c_x(order_type,
-                                           side_type,
-                                           uplo_type,
-                                           m,
-                                           n,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::hemm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        reinterpret_cast<const std::complex<double> *>(a),
+                                        lda,
+                                        reinterpret_cast<const std::complex<float> *>(b),
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -4150,20 +4150,20 @@ void do_test_zhemm_c_z_x(int m, int n,
 
                           /* call hemm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zhemm_c_z_x(order_type,
-                                           side_type,
-                                           uplo_type,
-                                           m,
-                                           n,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::hemm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        reinterpret_cast<const std::complex<float> *>(a),
+                                        lda,
+                                        reinterpret_cast<const std::complex<double> *>(b),
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -4644,20 +4644,20 @@ void do_test_zhemm_c_c_x(int m, int n,
 
                           /* call hemm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zhemm_c_c_x(order_type,
-                                           side_type,
-                                           uplo_type,
-                                           m,
-                                           n,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::hemm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        reinterpret_cast<const std::complex<float> *>(a),
+                                        lda,
+                                        reinterpret_cast<const std::complex<float> *>(b),
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */
@@ -5631,20 +5631,20 @@ void do_test_zhemm_z_d_x(int m, int n,
 
                           /* call hemm routines to be tested */
                           FPU_FIX_STOP;
-                          BLAS_zhemm_z_d_x(order_type,
-                                           side_type,
-                                           uplo_type,
-                                           m,
-                                           n,
-                                           alpha,
-                                           a,
-                                           lda,
-                                           b,
-                                           ldb,
-                                           beta,
-                                           c,
-                                           ldc,
-                                           prec);
+                          XBLAS::hemm_x(order_type,
+                                        side_type,
+                                        uplo_type,
+                                        m,
+                                        n,
+                                        *reinterpret_cast<const std::complex<double> *>(alpha),
+                                        reinterpret_cast<const std::complex<double> *>(a),
+                                        lda,
+                                        b,
+                                        ldb,
+                                        *reinterpret_cast<const std::complex<double> *>(beta),
+                                        reinterpret_cast<std::complex<double> *>(c),
+                                        ldc,
+                                        prec);
                           FPU_FIX_START;
 
                           /* now compute the ratio using test_BLAS_xdot */

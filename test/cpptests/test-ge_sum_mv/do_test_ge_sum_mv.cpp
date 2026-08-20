@@ -1699,19 +1699,19 @@ void do_test_zge_sum_mv_z_c
 
                       /* call ge_sum_mv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zge_sum_mv_z_c(order_type,
-                                          m,
-                                          n,
-                                          alpha,
-                                          a,
-                                          lda,
-                                          x,
-                                          incx,
-                                          beta,
-                                          B,
-                                          ldb,
-                                          y,
-                                          incy);
+                      XBLAS::ge_sum_mv(order_type,
+                                       m,
+                                       n,
+                                       *reinterpret_cast<const std::complex<double> *>(alpha),
+                                       reinterpret_cast<const std::complex<double> *>(a),
+                                       lda,
+                                       reinterpret_cast<const std::complex<float> *>(x),
+                                       incx,
+                                       *reinterpret_cast<const std::complex<double> *>(beta),
+                                       reinterpret_cast<const std::complex<double> *>(B),
+                                       ldb,
+                                       reinterpret_cast<std::complex<double> *>(y),
+                                       incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -2163,19 +2163,19 @@ void do_test_zge_sum_mv_c_z
 
                       /* call ge_sum_mv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zge_sum_mv_c_z(order_type,
-                                          m,
-                                          n,
-                                          alpha,
-                                          a,
-                                          lda,
-                                          x,
-                                          incx,
-                                          beta,
-                                          B,
-                                          ldb,
-                                          y,
-                                          incy);
+                      XBLAS::ge_sum_mv(order_type,
+                                       m,
+                                       n,
+                                       *reinterpret_cast<const std::complex<double> *>(alpha),
+                                       reinterpret_cast<const std::complex<float> *>(a),
+                                       lda,
+                                       reinterpret_cast<const std::complex<double> *>(x),
+                                       incx,
+                                       *reinterpret_cast<const std::complex<double> *>(beta),
+                                       reinterpret_cast<const std::complex<float> *>(B),
+                                       ldb,
+                                       reinterpret_cast<std::complex<double> *>(y),
+                                       incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -2627,19 +2627,19 @@ void do_test_zge_sum_mv_c_c
 
                       /* call ge_sum_mv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zge_sum_mv_c_c(order_type,
-                                          m,
-                                          n,
-                                          alpha,
-                                          a,
-                                          lda,
-                                          x,
-                                          incx,
-                                          beta,
-                                          B,
-                                          ldb,
-                                          y,
-                                          incy);
+                      XBLAS::ge_sum_mv(order_type,
+                                       m,
+                                       n,
+                                       *reinterpret_cast<const std::complex<double> *>(alpha),
+                                       reinterpret_cast<const std::complex<float> *>(a),
+                                       lda,
+                                       reinterpret_cast<const std::complex<float> *>(x),
+                                       incx,
+                                       *reinterpret_cast<const std::complex<double> *>(beta),
+                                       reinterpret_cast<const std::complex<float> *>(B),
+                                       ldb,
+                                       reinterpret_cast<std::complex<double> *>(y),
+                                       incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -4479,19 +4479,19 @@ void do_test_zge_sum_mv_z_d
 
                       /* call ge_sum_mv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zge_sum_mv_z_d(order_type,
-                                          m,
-                                          n,
-                                          alpha,
-                                          a,
-                                          lda,
-                                          x,
-                                          incx,
-                                          beta,
-                                          B,
-                                          ldb,
-                                          y,
-                                          incy);
+                      XBLAS::ge_sum_mv(order_type,
+                                       m,
+                                       n,
+                                       *reinterpret_cast<const std::complex<double> *>(alpha),
+                                       reinterpret_cast<const std::complex<double> *>(a),
+                                       lda,
+                                       x,
+                                       incx,
+                                       *reinterpret_cast<const std::complex<double> *>(beta),
+                                       reinterpret_cast<const std::complex<double> *>(B),
+                                       ldb,
+                                       reinterpret_cast<std::complex<double> *>(y),
+                                       incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -4941,19 +4941,19 @@ void do_test_zge_sum_mv_d_z
 
                       /* call ge_sum_mv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zge_sum_mv_d_z(order_type,
-                                          m,
-                                          n,
-                                          alpha,
-                                          a,
-                                          lda,
-                                          x,
-                                          incx,
-                                          beta,
-                                          B,
-                                          ldb,
-                                          y,
-                                          incy);
+                      XBLAS::ge_sum_mv(order_type,
+                                       m,
+                                       n,
+                                       *reinterpret_cast<const std::complex<double> *>(alpha),
+                                       a,
+                                       lda,
+                                       reinterpret_cast<const std::complex<double> *>(x),
+                                       incx,
+                                       *reinterpret_cast<const std::complex<double> *>(beta),
+                                       B,
+                                       ldb,
+                                       reinterpret_cast<std::complex<double> *>(y),
+                                       incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -5403,19 +5403,19 @@ void do_test_zge_sum_mv_d_d
 
                       /* call ge_sum_mv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zge_sum_mv_d_d(order_type,
-                                          m,
-                                          n,
-                                          alpha,
-                                          a,
-                                          lda,
-                                          x,
-                                          incx,
-                                          beta,
-                                          B,
-                                          ldb,
-                                          y,
-                                          incy);
+                      XBLAS::ge_sum_mv(order_type,
+                                       m,
+                                       n,
+                                       *reinterpret_cast<const std::complex<double> *>(alpha),
+                                       a,
+                                       lda,
+                                       x,
+                                       incx,
+                                       *reinterpret_cast<const std::complex<double> *>(beta),
+                                       B,
+                                       ldb,
+                                       reinterpret_cast<std::complex<double> *>(y),
+                                       incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -7329,20 +7329,20 @@ void do_test_zge_sum_mv_x
 
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zge_sum_mv_x(order_type,
-                                          m,
-                                          n,
-                                          alpha,
-                                          a,
-                                          lda,
-                                          x,
-                                          incx,
-                                          beta,
-                                          B,
-                                          ldb,
-                                          y,
-                                          incy,
-                                          prec);
+                        XBLAS::ge_sum_mv_x(order_type,
+                                           m,
+                                           n,
+                                           *reinterpret_cast<const std::complex<double> *>(alpha),
+                                           reinterpret_cast<const std::complex<double> *>(a),
+                                           lda,
+                                           reinterpret_cast<const std::complex<double> *>(x),
+                                           incx,
+                                           *reinterpret_cast<const std::complex<double> *>(beta),
+                                           reinterpret_cast<const std::complex<double> *>(B),
+                                           ldb,
+                                           reinterpret_cast<std::complex<double> *>(y),
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -9257,20 +9257,20 @@ void do_test_zge_sum_mv_z_c_x
 
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zge_sum_mv_z_c_x(order_type,
-                                              m,
-                                              n,
-                                              alpha,
-                                              a,
-                                              lda,
-                                              x,
-                                              incx,
-                                              beta,
-                                              B,
-                                              ldb,
-                                              y,
-                                              incy,
-                                              prec);
+                        XBLAS::ge_sum_mv_x(order_type,
+                                           m,
+                                           n,
+                                           *reinterpret_cast<const std::complex<double> *>(alpha),
+                                           reinterpret_cast<const std::complex<double> *>(a),
+                                           lda,
+                                           reinterpret_cast<const std::complex<float> *>(x),
+                                           incx,
+                                           *reinterpret_cast<const std::complex<double> *>(beta),
+                                           reinterpret_cast<const std::complex<double> *>(B),
+                                           ldb,
+                                           reinterpret_cast<std::complex<double> *>(y),
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -9746,20 +9746,20 @@ void do_test_zge_sum_mv_c_z_x
 
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zge_sum_mv_c_z_x(order_type,
-                                              m,
-                                              n,
-                                              alpha,
-                                              a,
-                                              lda,
-                                              x,
-                                              incx,
-                                              beta,
-                                              B,
-                                              ldb,
-                                              y,
-                                              incy,
-                                              prec);
+                        XBLAS::ge_sum_mv_x(order_type,
+                                           m,
+                                           n,
+                                           *reinterpret_cast<const std::complex<double> *>(alpha),
+                                           reinterpret_cast<const std::complex<float> *>(a),
+                                           lda,
+                                           reinterpret_cast<const std::complex<double> *>(x),
+                                           incx,
+                                           *reinterpret_cast<const std::complex<double> *>(beta),
+                                           reinterpret_cast<const std::complex<float> *>(B),
+                                           ldb,
+                                           reinterpret_cast<std::complex<double> *>(y),
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -10235,20 +10235,20 @@ void do_test_zge_sum_mv_c_c_x
 
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zge_sum_mv_c_c_x(order_type,
-                                              m,
-                                              n,
-                                              alpha,
-                                              a,
-                                              lda,
-                                              x,
-                                              incx,
-                                              beta,
-                                              B,
-                                              ldb,
-                                              y,
-                                              incy,
-                                              prec);
+                        XBLAS::ge_sum_mv_x(order_type,
+                                           m,
+                                           n,
+                                           *reinterpret_cast<const std::complex<double> *>(alpha),
+                                           reinterpret_cast<const std::complex<float> *>(a),
+                                           lda,
+                                           reinterpret_cast<const std::complex<float> *>(x),
+                                           incx,
+                                           *reinterpret_cast<const std::complex<double> *>(beta),
+                                           reinterpret_cast<const std::complex<float> *>(B),
+                                           ldb,
+                                           reinterpret_cast<std::complex<double> *>(y),
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -12187,20 +12187,20 @@ void do_test_zge_sum_mv_z_d_x
 
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zge_sum_mv_z_d_x(order_type,
-                                              m,
-                                              n,
-                                              alpha,
-                                              a,
-                                              lda,
-                                              x,
-                                              incx,
-                                              beta,
-                                              B,
-                                              ldb,
-                                              y,
-                                              incy,
-                                              prec);
+                        XBLAS::ge_sum_mv_x(order_type,
+                                           m,
+                                           n,
+                                           *reinterpret_cast<const std::complex<double> *>(alpha),
+                                           reinterpret_cast<const std::complex<double> *>(a),
+                                           lda,
+                                           x,
+                                           incx,
+                                           *reinterpret_cast<const std::complex<double> *>(beta),
+                                           reinterpret_cast<const std::complex<double> *>(B),
+                                           ldb,
+                                           reinterpret_cast<std::complex<double> *>(y),
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -12674,20 +12674,20 @@ void do_test_zge_sum_mv_d_z_x
 
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zge_sum_mv_d_z_x(order_type,
-                                              m,
-                                              n,
-                                              alpha,
-                                              a,
-                                              lda,
-                                              x,
-                                              incx,
-                                              beta,
-                                              B,
-                                              ldb,
-                                              y,
-                                              incy,
-                                              prec);
+                        XBLAS::ge_sum_mv_x(order_type,
+                                           m,
+                                           n,
+                                           *reinterpret_cast<const std::complex<double> *>(alpha),
+                                           a,
+                                           lda,
+                                           reinterpret_cast<const std::complex<double> *>(x),
+                                           incx,
+                                           *reinterpret_cast<const std::complex<double> *>(beta),
+                                           B,
+                                           ldb,
+                                           reinterpret_cast<std::complex<double> *>(y),
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -13161,20 +13161,20 @@ void do_test_zge_sum_mv_d_d_x
 
                         /* call ge_sum_mv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zge_sum_mv_d_d_x(order_type,
-                                              m,
-                                              n,
-                                              alpha,
-                                              a,
-                                              lda,
-                                              x,
-                                              incx,
-                                              beta,
-                                              B,
-                                              ldb,
-                                              y,
-                                              incy,
-                                              prec);
+                        XBLAS::ge_sum_mv_x(order_type,
+                                           m,
+                                           n,
+                                           *reinterpret_cast<const std::complex<double> *>(alpha),
+                                           a,
+                                           lda,
+                                           x,
+                                           incx,
+                                           *reinterpret_cast<const std::complex<double> *>(beta),
+                                           B,
+                                           ldb,
+                                           reinterpret_cast<std::complex<double> *>(y),
+                                           incy,
+                                           prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */

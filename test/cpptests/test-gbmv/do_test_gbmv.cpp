@@ -2168,20 +2168,20 @@ double do_test_zgbmv_z_c(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_zgbmv_z_c */
                           FPU_FIX_STOP;
-                          BLAS_zgbmv_z_c(order_type,
-                                         trans_type,
-                                         m,
-                                         n,
-                                         kl,
-                                         ku,
-                                         alpha,
-                                         AB,
-                                         lda,
-                                         x,
-                                         incx_val,
-                                         beta,
-                                         y,
-                                         incy_val);
+                          XBLAS::gbmv(order_type,
+                                      trans_type,
+                                      m,
+                                      n,
+                                      kl,
+                                      ku,
+                                      *reinterpret_cast<const std::complex<double> *>(alpha),
+                                      reinterpret_cast<const std::complex<double> *>(AB),
+                                      lda,
+                                      reinterpret_cast<const std::complex<float> *>(x),
+                                      incx_val,
+                                      *reinterpret_cast<const std::complex<double> *>(beta),
+                                      reinterpret_cast<std::complex<double> *>(y),
+                                      incy_val);
                           FPU_FIX_START;
 
                           /* set y starting index */
@@ -2777,20 +2777,20 @@ double do_test_zgbmv_c_z(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_zgbmv_c_z */
                           FPU_FIX_STOP;
-                          BLAS_zgbmv_c_z(order_type,
-                                         trans_type,
-                                         m,
-                                         n,
-                                         kl,
-                                         ku,
-                                         alpha,
-                                         AB,
-                                         lda,
-                                         x,
-                                         incx_val,
-                                         beta,
-                                         y,
-                                         incy_val);
+                          XBLAS::gbmv(order_type,
+                                      trans_type,
+                                      m,
+                                      n,
+                                      kl,
+                                      ku,
+                                      *reinterpret_cast<const std::complex<double> *>(alpha),
+                                      reinterpret_cast<const std::complex<float> *>(AB),
+                                      lda,
+                                      reinterpret_cast<const std::complex<double> *>(x),
+                                      incx_val,
+                                      *reinterpret_cast<const std::complex<double> *>(beta),
+                                      reinterpret_cast<std::complex<double> *>(y),
+                                      incy_val);
                           FPU_FIX_START;
 
                           /* set y starting index */
@@ -3386,20 +3386,20 @@ double do_test_zgbmv_c_c(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_zgbmv_c_c */
                           FPU_FIX_STOP;
-                          BLAS_zgbmv_c_c(order_type,
-                                         trans_type,
-                                         m,
-                                         n,
-                                         kl,
-                                         ku,
-                                         alpha,
-                                         AB,
-                                         lda,
-                                         x,
-                                         incx_val,
-                                         beta,
-                                         y,
-                                         incy_val);
+                          XBLAS::gbmv(order_type,
+                                      trans_type,
+                                      m,
+                                      n,
+                                      kl,
+                                      ku,
+                                      *reinterpret_cast<const std::complex<double> *>(alpha),
+                                      reinterpret_cast<const std::complex<float> *>(AB),
+                                      lda,
+                                      reinterpret_cast<const std::complex<float> *>(x),
+                                      incx_val,
+                                      *reinterpret_cast<const std::complex<double> *>(beta),
+                                      reinterpret_cast<std::complex<double> *>(y),
+                                      incy_val);
                           FPU_FIX_START;
 
                           /* set y starting index */
@@ -5815,20 +5815,20 @@ double do_test_zgbmv_z_d(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_zgbmv_z_d */
                           FPU_FIX_STOP;
-                          BLAS_zgbmv_z_d(order_type,
-                                         trans_type,
-                                         m,
-                                         n,
-                                         kl,
-                                         ku,
-                                         alpha,
-                                         AB,
-                                         lda,
-                                         x,
-                                         incx_val,
-                                         beta,
-                                         y,
-                                         incy_val);
+                          XBLAS::gbmv(order_type,
+                                      trans_type,
+                                      m,
+                                      n,
+                                      kl,
+                                      ku,
+                                      *reinterpret_cast<const std::complex<double> *>(alpha),
+                                      reinterpret_cast<const std::complex<double> *>(AB),
+                                      lda,
+                                      x,
+                                      incx_val,
+                                      *reinterpret_cast<const std::complex<double> *>(beta),
+                                      reinterpret_cast<std::complex<double> *>(y),
+                                      incy_val);
                           FPU_FIX_START;
 
                           /* set y starting index */
@@ -6422,20 +6422,20 @@ double do_test_zgbmv_d_z(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_zgbmv_d_z */
                           FPU_FIX_STOP;
-                          BLAS_zgbmv_d_z(order_type,
-                                         trans_type,
-                                         m,
-                                         n,
-                                         kl,
-                                         ku,
-                                         alpha,
-                                         AB,
-                                         lda,
-                                         x,
-                                         incx_val,
-                                         beta,
-                                         y,
-                                         incy_val);
+                          XBLAS::gbmv(order_type,
+                                      trans_type,
+                                      m,
+                                      n,
+                                      kl,
+                                      ku,
+                                      *reinterpret_cast<const std::complex<double> *>(alpha),
+                                      AB,
+                                      lda,
+                                      reinterpret_cast<const std::complex<double> *>(x),
+                                      incx_val,
+                                      *reinterpret_cast<const std::complex<double> *>(beta),
+                                      reinterpret_cast<std::complex<double> *>(y),
+                                      incy_val);
                           FPU_FIX_START;
 
                           /* set y starting index */
@@ -7030,20 +7030,20 @@ double do_test_zgbmv_d_d(int m, int n, int ntests, int *seed, double thresh,
 
                           /* call BLAS_zgbmv_d_d */
                           FPU_FIX_STOP;
-                          BLAS_zgbmv_d_d(order_type,
-                                         trans_type,
-                                         m,
-                                         n,
-                                         kl,
-                                         ku,
-                                         alpha,
-                                         AB,
-                                         lda,
-                                         x,
-                                         incx_val,
-                                         beta,
-                                         y,
-                                         incy_val);
+                          XBLAS::gbmv(order_type,
+                                      trans_type,
+                                      m,
+                                      n,
+                                      kl,
+                                      ku,
+                                      *reinterpret_cast<const std::complex<double> *>(alpha),
+                                      AB,
+                                      lda,
+                                      x,
+                                      incx_val,
+                                      *reinterpret_cast<const std::complex<double> *>(beta),
+                                      reinterpret_cast<std::complex<double> *>(y),
+                                      incy_val);
                           FPU_FIX_START;
 
                           /* set y starting index */
@@ -9523,21 +9523,21 @@ double do_test_zgbmv_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_zgbmv_x */
                             FPU_FIX_STOP;
-                            BLAS_zgbmv_x(order_type,
-                                         trans_type,
-                                         m,
-                                         n,
-                                         kl,
-                                         ku,
-                                         alpha,
-                                         AB,
-                                         lda,
-                                         x,
-                                         incx_val,
-                                         beta,
-                                         y,
-                                         incy_val,
-                                         prec);
+                            XBLAS::gbmv_x(order_type,
+                                          trans_type,
+                                          m,
+                                          n,
+                                          kl,
+                                          ku,
+                                          *reinterpret_cast<const std::complex<double> *>(alpha),
+                                          reinterpret_cast<const std::complex<double> *>(AB),
+                                          lda,
+                                          reinterpret_cast<const std::complex<double> *>(x),
+                                          incx_val,
+                                          *reinterpret_cast<const std::complex<double> *>(beta),
+                                          reinterpret_cast<std::complex<double> *>(y),
+                                          incy_val,
+                                          prec);
                             FPU_FIX_START;
 
                             /* set y starting index */
@@ -12012,21 +12012,21 @@ double do_test_zgbmv_z_c_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_zgbmv_z_c_x */
                             FPU_FIX_STOP;
-                            BLAS_zgbmv_z_c_x(order_type,
-                                             trans_type,
-                                             m,
-                                             n,
-                                             kl,
-                                             ku,
-                                             alpha,
-                                             AB,
-                                             lda,
-                                             x,
-                                             incx_val,
-                                             beta,
-                                             y,
-                                             incy_val,
-                                             prec);
+                            XBLAS::gbmv_x(order_type,
+                                          trans_type,
+                                          m,
+                                          n,
+                                          kl,
+                                          ku,
+                                          *reinterpret_cast<const std::complex<double> *>(alpha),
+                                          reinterpret_cast<const std::complex<double> *>(AB),
+                                          lda,
+                                          reinterpret_cast<const std::complex<float> *>(x),
+                                          incx_val,
+                                          *reinterpret_cast<const std::complex<double> *>(beta),
+                                          reinterpret_cast<std::complex<double> *>(y),
+                                          incy_val,
+                                          prec);
                             FPU_FIX_START;
 
                             /* set y starting index */
@@ -12644,21 +12644,21 @@ double do_test_zgbmv_c_z_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_zgbmv_c_z_x */
                             FPU_FIX_STOP;
-                            BLAS_zgbmv_c_z_x(order_type,
-                                             trans_type,
-                                             m,
-                                             n,
-                                             kl,
-                                             ku,
-                                             alpha,
-                                             AB,
-                                             lda,
-                                             x,
-                                             incx_val,
-                                             beta,
-                                             y,
-                                             incy_val,
-                                             prec);
+                            XBLAS::gbmv_x(order_type,
+                                          trans_type,
+                                          m,
+                                          n,
+                                          kl,
+                                          ku,
+                                          *reinterpret_cast<const std::complex<double> *>(alpha),
+                                          reinterpret_cast<const std::complex<float> *>(AB),
+                                          lda,
+                                          reinterpret_cast<const std::complex<double> *>(x),
+                                          incx_val,
+                                          *reinterpret_cast<const std::complex<double> *>(beta),
+                                          reinterpret_cast<std::complex<double> *>(y),
+                                          incy_val,
+                                          prec);
                             FPU_FIX_START;
 
                             /* set y starting index */
@@ -13276,21 +13276,21 @@ double do_test_zgbmv_c_c_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_zgbmv_c_c_x */
                             FPU_FIX_STOP;
-                            BLAS_zgbmv_c_c_x(order_type,
-                                             trans_type,
-                                             m,
-                                             n,
-                                             kl,
-                                             ku,
-                                             alpha,
-                                             AB,
-                                             lda,
-                                             x,
-                                             incx_val,
-                                             beta,
-                                             y,
-                                             incy_val,
-                                             prec);
+                            XBLAS::gbmv_x(order_type,
+                                          trans_type,
+                                          m,
+                                          n,
+                                          kl,
+                                          ku,
+                                          *reinterpret_cast<const std::complex<double> *>(alpha),
+                                          reinterpret_cast<const std::complex<float> *>(AB),
+                                          lda,
+                                          reinterpret_cast<const std::complex<float> *>(x),
+                                          incx_val,
+                                          *reinterpret_cast<const std::complex<double> *>(beta),
+                                          reinterpret_cast<std::complex<double> *>(y),
+                                          incy_val,
+                                          prec);
                             FPU_FIX_START;
 
                             /* set y starting index */
@@ -15797,21 +15797,21 @@ double do_test_zgbmv_z_d_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_zgbmv_z_d_x */
                             FPU_FIX_STOP;
-                            BLAS_zgbmv_z_d_x(order_type,
-                                             trans_type,
-                                             m,
-                                             n,
-                                             kl,
-                                             ku,
-                                             alpha,
-                                             AB,
-                                             lda,
-                                             x,
-                                             incx_val,
-                                             beta,
-                                             y,
-                                             incy_val,
-                                             prec);
+                            XBLAS::gbmv_x(order_type,
+                                          trans_type,
+                                          m,
+                                          n,
+                                          kl,
+                                          ku,
+                                          *reinterpret_cast<const std::complex<double> *>(alpha),
+                                          reinterpret_cast<const std::complex<double> *>(AB),
+                                          lda,
+                                          x,
+                                          incx_val,
+                                          *reinterpret_cast<const std::complex<double> *>(beta),
+                                          reinterpret_cast<std::complex<double> *>(y),
+                                          incy_val,
+                                          prec);
                             FPU_FIX_START;
 
                             /* set y starting index */
@@ -16427,21 +16427,21 @@ double do_test_zgbmv_d_z_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_zgbmv_d_z_x */
                             FPU_FIX_STOP;
-                            BLAS_zgbmv_d_z_x(order_type,
-                                             trans_type,
-                                             m,
-                                             n,
-                                             kl,
-                                             ku,
-                                             alpha,
-                                             AB,
-                                             lda,
-                                             x,
-                                             incx_val,
-                                             beta,
-                                             y,
-                                             incy_val,
-                                             prec);
+                            XBLAS::gbmv_x(order_type,
+                                          trans_type,
+                                          m,
+                                          n,
+                                          kl,
+                                          ku,
+                                          *reinterpret_cast<const std::complex<double> *>(alpha),
+                                          AB,
+                                          lda,
+                                          reinterpret_cast<const std::complex<double> *>(x),
+                                          incx_val,
+                                          *reinterpret_cast<const std::complex<double> *>(beta),
+                                          reinterpret_cast<std::complex<double> *>(y),
+                                          incy_val,
+                                          prec);
                             FPU_FIX_START;
 
                             /* set y starting index */
@@ -17058,21 +17058,21 @@ double do_test_zgbmv_d_d_x(int m, int n, int ntests, int *seed, double thresh,
 
                             /* call BLAS_zgbmv_d_d_x */
                             FPU_FIX_STOP;
-                            BLAS_zgbmv_d_d_x(order_type,
-                                             trans_type,
-                                             m,
-                                             n,
-                                             kl,
-                                             ku,
-                                             alpha,
-                                             AB,
-                                             lda,
-                                             x,
-                                             incx_val,
-                                             beta,
-                                             y,
-                                             incy_val,
-                                             prec);
+                            XBLAS::gbmv_x(order_type,
+                                          trans_type,
+                                          m,
+                                          n,
+                                          kl,
+                                          ku,
+                                          *reinterpret_cast<const std::complex<double> *>(alpha),
+                                          AB,
+                                          lda,
+                                          x,
+                                          incx_val,
+                                          *reinterpret_cast<const std::complex<double> *>(beta),
+                                          reinterpret_cast<std::complex<double> *>(y),
+                                          incy_val,
+                                          prec);
                             FPU_FIX_START;
 
                             /* set y starting index */

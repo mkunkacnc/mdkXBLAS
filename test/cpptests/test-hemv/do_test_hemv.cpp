@@ -301,17 +301,17 @@ void do_test_zhemv_z_c
 
                       /* call hemv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zhemv_z_c(order_type,
-                                     uplo_type,
-                                     n,
-                                     alpha,
-                                     a,
-                                     lda,
-                                     x,
-                                     incx,
-                                     beta,
-                                     y,
-                                     incy);
+                      XBLAS::hemv(order_type,
+                                  uplo_type,
+                                  n,
+                                  *reinterpret_cast<const std::complex<double> *>(alpha),
+                                  reinterpret_cast<const std::complex<double> *>(a),
+                                  lda,
+                                  reinterpret_cast<const std::complex<float> *>(x),
+                                  incx,
+                                  *reinterpret_cast<const std::complex<double> *>(beta),
+                                  reinterpret_cast<std::complex<double> *>(y),
+                                  incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -696,17 +696,17 @@ void do_test_zhemv_c_z
 
                       /* call hemv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zhemv_c_z(order_type,
-                                     uplo_type,
-                                     n,
-                                     alpha,
-                                     a,
-                                     lda,
-                                     x,
-                                     incx,
-                                     beta,
-                                     y,
-                                     incy);
+                      XBLAS::hemv(order_type,
+                                  uplo_type,
+                                  n,
+                                  *reinterpret_cast<const std::complex<double> *>(alpha),
+                                  reinterpret_cast<const std::complex<float> *>(a),
+                                  lda,
+                                  reinterpret_cast<const std::complex<double> *>(x),
+                                  incx,
+                                  *reinterpret_cast<const std::complex<double> *>(beta),
+                                  reinterpret_cast<std::complex<double> *>(y),
+                                  incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -1091,17 +1091,17 @@ void do_test_zhemv_c_c
 
                       /* call hemv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zhemv_c_c(order_type,
-                                     uplo_type,
-                                     n,
-                                     alpha,
-                                     a,
-                                     lda,
-                                     x,
-                                     incx,
-                                     beta,
-                                     y,
-                                     incy);
+                      XBLAS::hemv(order_type,
+                                  uplo_type,
+                                  n,
+                                  *reinterpret_cast<const std::complex<double> *>(alpha),
+                                  reinterpret_cast<const std::complex<float> *>(a),
+                                  lda,
+                                  reinterpret_cast<const std::complex<float> *>(x),
+                                  incx,
+                                  *reinterpret_cast<const std::complex<double> *>(beta),
+                                  reinterpret_cast<std::complex<double> *>(y),
+                                  incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -1881,17 +1881,17 @@ void do_test_zhemv_z_d
 
                       /* call hemv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zhemv_z_d(order_type,
-                                     uplo_type,
-                                     n,
-                                     alpha,
-                                     a,
-                                     lda,
-                                     x,
-                                     incx,
-                                     beta,
-                                     y,
-                                     incy);
+                      XBLAS::hemv(order_type,
+                                  uplo_type,
+                                  n,
+                                  *reinterpret_cast<const std::complex<double> *>(alpha),
+                                  reinterpret_cast<const std::complex<double> *>(a),
+                                  lda,
+                                  x,
+                                  incx,
+                                  *reinterpret_cast<const std::complex<double> *>(beta),
+                                  reinterpret_cast<std::complex<double> *>(y),
+                                  incy);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -2713,18 +2713,18 @@ void do_test_zhemv_x
 
                         /* call hemv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zhemv_x(order_type,
-                                     uplo_type,
-                                     n,
-                                     alpha,
-                                     a,
-                                     lda,
-                                     x,
-                                     incx,
-                                     beta,
-                                     y,
-                                     incy,
-                                     prec);
+                        XBLAS::hemv_x(order_type,
+                                      uplo_type,
+                                      n,
+                                      *reinterpret_cast<const std::complex<double> *>(alpha),
+                                      reinterpret_cast<const std::complex<double> *>(a),
+                                      lda,
+                                      reinterpret_cast<const std::complex<double> *>(x),
+                                      incx,
+                                      *reinterpret_cast<const std::complex<double> *>(beta),
+                                      reinterpret_cast<std::complex<double> *>(y),
+                                      incy,
+                                      prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -3130,18 +3130,18 @@ void do_test_zhemv_z_c_x
 
                         /* call hemv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zhemv_z_c_x(order_type,
-                                         uplo_type,
-                                         n,
-                                         alpha,
-                                         a,
-                                         lda,
-                                         x,
-                                         incx,
-                                         beta,
-                                         y,
-                                         incy,
-                                         prec);
+                        XBLAS::hemv_x(order_type,
+                                      uplo_type,
+                                      n,
+                                      *reinterpret_cast<const std::complex<double> *>(alpha),
+                                      reinterpret_cast<const std::complex<double> *>(a),
+                                      lda,
+                                      reinterpret_cast<const std::complex<float> *>(x),
+                                      incx,
+                                      *reinterpret_cast<const std::complex<double> *>(beta),
+                                      reinterpret_cast<std::complex<double> *>(y),
+                                      incy,
+                                      prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -3548,18 +3548,18 @@ void do_test_zhemv_c_z_x
 
                         /* call hemv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zhemv_c_z_x(order_type,
-                                         uplo_type,
-                                         n,
-                                         alpha,
-                                         a,
-                                         lda,
-                                         x,
-                                         incx,
-                                         beta,
-                                         y,
-                                         incy,
-                                         prec);
+                        XBLAS::hemv_x(order_type,
+                                      uplo_type,
+                                      n,
+                                      *reinterpret_cast<const std::complex<double> *>(alpha),
+                                      reinterpret_cast<const std::complex<float> *>(a),
+                                      lda,
+                                      reinterpret_cast<const std::complex<double> *>(x),
+                                      incx,
+                                      *reinterpret_cast<const std::complex<double> *>(beta),
+                                      reinterpret_cast<std::complex<double> *>(y),
+                                      incy,
+                                      prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -3966,18 +3966,18 @@ void do_test_zhemv_c_c_x
 
                         /* call hemv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zhemv_c_c_x(order_type,
-                                         uplo_type,
-                                         n,
-                                         alpha,
-                                         a,
-                                         lda,
-                                         x,
-                                         incx,
-                                         beta,
-                                         y,
-                                         incy,
-                                         prec);
+                        XBLAS::hemv_x(order_type,
+                                      uplo_type,
+                                      n,
+                                      *reinterpret_cast<const std::complex<double> *>(alpha),
+                                      reinterpret_cast<const std::complex<float> *>(a),
+                                      lda,
+                                      reinterpret_cast<const std::complex<float> *>(x),
+                                      incx,
+                                      *reinterpret_cast<const std::complex<double> *>(beta),
+                                      reinterpret_cast<std::complex<double> *>(y),
+                                      incy,
+                                      prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */
@@ -4802,18 +4802,18 @@ void do_test_zhemv_z_d_x
 
                         /* call hemv routines to be tested */
                         FPU_FIX_STOP;
-                        BLAS_zhemv_z_d_x(order_type,
-                                         uplo_type,
-                                         n,
-                                         alpha,
-                                         a,
-                                         lda,
-                                         x,
-                                         incx,
-                                         beta,
-                                         y,
-                                         incy,
-                                         prec);
+                        XBLAS::hemv_x(order_type,
+                                      uplo_type,
+                                      n,
+                                      *reinterpret_cast<const std::complex<double> *>(alpha),
+                                      reinterpret_cast<const std::complex<double> *>(a),
+                                      lda,
+                                      x,
+                                      incx,
+                                      *reinterpret_cast<const std::complex<double> *>(beta),
+                                      reinterpret_cast<std::complex<double> *>(y),
+                                      incy,
+                                      prec);
                         FPU_FIX_START;
 
                         /* now compute the ratio using test_BLAS_xdot */

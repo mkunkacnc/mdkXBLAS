@@ -1399,15 +1399,15 @@ double do_test_zdot_z_c(int n, int ntests, int *seed, double thresh,
                   r_comp[1] = r[1];
 
                   FPU_FIX_STOP;
-                  BLAS_zdot_z_c(conj_type,
-                                n,
-                                alpha,
-                                x,
-                                incx_val,
-                                beta,
-                                y,
-                                incy_val,
-                                &r_comp);
+                  XBLAS::dot(conj_type,
+                             n,
+                             *reinterpret_cast<const std::complex<double> *>(alpha),
+                             reinterpret_cast<const std::complex<double> *>(x),
+                             incx_val,
+                             *reinterpret_cast<const std::complex<double> *>(beta),
+                             reinterpret_cast<const std::complex<float> *>(y),
+                             incy_val,
+                             reinterpret_cast<std::complex<double> *>(&r_comp));
                   FPU_FIX_START;
 
                   /* computing the ratio */
@@ -1786,15 +1786,15 @@ double do_test_zdot_c_z(int n, int ntests, int *seed, double thresh,
                   r_comp[1] = r[1];
 
                   FPU_FIX_STOP;
-                  BLAS_zdot_c_z(conj_type,
-                                n,
-                                alpha,
-                                x,
-                                incx_val,
-                                beta,
-                                y,
-                                incy_val,
-                                &r_comp);
+                  XBLAS::dot(conj_type,
+                             n,
+                             *reinterpret_cast<const std::complex<double> *>(alpha),
+                             reinterpret_cast<const std::complex<float> *>(x),
+                             incx_val,
+                             *reinterpret_cast<const std::complex<double> *>(beta),
+                             reinterpret_cast<const std::complex<double> *>(y),
+                             incy_val,
+                             reinterpret_cast<std::complex<double> *>(&r_comp));
                   FPU_FIX_START;
 
                   /* computing the ratio */
@@ -2173,15 +2173,15 @@ double do_test_zdot_c_c(int n, int ntests, int *seed, double thresh,
                   r_comp[1] = r[1];
 
                   FPU_FIX_STOP;
-                  BLAS_zdot_c_c(conj_type,
-                                n,
-                                alpha,
-                                x,
-                                incx_val,
-                                beta,
-                                y,
-                                incy_val,
-                                &r_comp);
+                  XBLAS::dot(conj_type,
+                             n,
+                             *reinterpret_cast<const std::complex<double> *>(alpha),
+                             reinterpret_cast<const std::complex<float> *>(x),
+                             incx_val,
+                             *reinterpret_cast<const std::complex<double> *>(beta),
+                             reinterpret_cast<const std::complex<float> *>(y),
+                             incy_val,
+                             reinterpret_cast<std::complex<double> *>(&r_comp));
                   FPU_FIX_START;
 
                   /* computing the ratio */
@@ -3721,15 +3721,15 @@ double do_test_zdot_z_d(int n, int ntests, int *seed, double thresh,
                   r_comp[1] = r[1];
 
                   FPU_FIX_STOP;
-                  BLAS_zdot_z_d(conj_type,
-                                n,
-                                alpha,
-                                x,
-                                incx_val,
-                                beta,
-                                y,
-                                incy_val,
-                                &r_comp);
+                  XBLAS::dot(conj_type,
+                             n,
+                             *reinterpret_cast<const std::complex<double> *>(alpha),
+                             reinterpret_cast<const std::complex<double> *>(x),
+                             incx_val,
+                             *reinterpret_cast<const std::complex<double> *>(beta),
+                             y,
+                             incy_val,
+                             reinterpret_cast<std::complex<double> *>(&r_comp));
                   FPU_FIX_START;
 
                   /* computing the ratio */
@@ -4108,15 +4108,15 @@ double do_test_zdot_d_z(int n, int ntests, int *seed, double thresh,
                   r_comp[1] = r[1];
 
                   FPU_FIX_STOP;
-                  BLAS_zdot_d_z(conj_type,
-                                n,
-                                alpha,
-                                x,
-                                incx_val,
-                                beta,
-                                y,
-                                incy_val,
-                                &r_comp);
+                  XBLAS::dot(conj_type,
+                             n,
+                             *reinterpret_cast<const std::complex<double> *>(alpha),
+                             x,
+                             incx_val,
+                             *reinterpret_cast<const std::complex<double> *>(beta),
+                             reinterpret_cast<const std::complex<double> *>(y),
+                             incy_val,
+                             reinterpret_cast<std::complex<double> *>(&r_comp));
                   FPU_FIX_START;
 
                   /* computing the ratio */
@@ -4495,15 +4495,15 @@ double do_test_zdot_d_d(int n, int ntests, int *seed, double thresh,
                   r_comp[1] = r[1];
 
                   FPU_FIX_STOP;
-                  BLAS_zdot_d_d(conj_type,
-                                n,
-                                alpha,
-                                x,
-                                incx_val,
-                                beta,
-                                y,
-                                incy_val,
-                                &r_comp);
+                  XBLAS::dot(conj_type,
+                             n,
+                             *reinterpret_cast<const std::complex<double> *>(alpha),
+                             x,
+                             incx_val,
+                             *reinterpret_cast<const std::complex<double> *>(beta),
+                             y,
+                             incy_val,
+                             reinterpret_cast<std::complex<double> *>(&r_comp));
                   FPU_FIX_START;
 
                   /* computing the ratio */
@@ -6111,16 +6111,16 @@ double do_test_zdot_x(int n, int ntests, int *seed, double thresh, int debug,
                     r_comp[1] = r[1];
 
                     FPU_FIX_STOP;
-                    BLAS_zdot_x(conj_type,
-                                n,
-                                alpha,
-                                x,
-                                incx_val,
-                                beta,
-                                y,
-                                incy_val,
-                                &r_comp,
-                                prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 *reinterpret_cast<const std::complex<double> *>(alpha),
+                                 reinterpret_cast<const std::complex<double> *>(x),
+                                 incx_val,
+                                 *reinterpret_cast<const std::complex<double> *>(beta),
+                                 reinterpret_cast<const std::complex<double> *>(y),
+                                 incy_val,
+                                 reinterpret_cast<std::complex<double> *>(&r_comp),
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */
@@ -7728,16 +7728,16 @@ double do_test_zdot_z_c_x(int n, int ntests, int *seed, double thresh,
                     r_comp[1] = r[1];
 
                     FPU_FIX_STOP;
-                    BLAS_zdot_z_c_x(conj_type,
-                                    n,
-                                    alpha,
-                                    x,
-                                    incx_val,
-                                    beta,
-                                    y,
-                                    incy_val,
-                                    &r_comp,
-                                    prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 *reinterpret_cast<const std::complex<double> *>(alpha),
+                                 reinterpret_cast<const std::complex<double> *>(x),
+                                 incx_val,
+                                 *reinterpret_cast<const std::complex<double> *>(beta),
+                                 reinterpret_cast<const std::complex<float> *>(y),
+                                 incy_val,
+                                 reinterpret_cast<std::complex<double> *>(&r_comp),
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */
@@ -8136,16 +8136,16 @@ double do_test_zdot_c_z_x(int n, int ntests, int *seed, double thresh,
                     r_comp[1] = r[1];
 
                     FPU_FIX_STOP;
-                    BLAS_zdot_c_z_x(conj_type,
-                                    n,
-                                    alpha,
-                                    x,
-                                    incx_val,
-                                    beta,
-                                    y,
-                                    incy_val,
-                                    &r_comp,
-                                    prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 *reinterpret_cast<const std::complex<double> *>(alpha),
+                                 reinterpret_cast<const std::complex<float> *>(x),
+                                 incx_val,
+                                 *reinterpret_cast<const std::complex<double> *>(beta),
+                                 reinterpret_cast<const std::complex<double> *>(y),
+                                 incy_val,
+                                 reinterpret_cast<std::complex<double> *>(&r_comp),
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */
@@ -8544,16 +8544,16 @@ double do_test_zdot_c_c_x(int n, int ntests, int *seed, double thresh,
                     r_comp[1] = r[1];
 
                     FPU_FIX_STOP;
-                    BLAS_zdot_c_c_x(conj_type,
-                                    n,
-                                    alpha,
-                                    x,
-                                    incx_val,
-                                    beta,
-                                    y,
-                                    incy_val,
-                                    &r_comp,
-                                    prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 *reinterpret_cast<const std::complex<double> *>(alpha),
+                                 reinterpret_cast<const std::complex<float> *>(x),
+                                 incx_val,
+                                 *reinterpret_cast<const std::complex<double> *>(beta),
+                                 reinterpret_cast<const std::complex<float> *>(y),
+                                 incy_val,
+                                 reinterpret_cast<std::complex<double> *>(&r_comp),
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */
@@ -10176,16 +10176,16 @@ double do_test_zdot_z_d_x(int n, int ntests, int *seed, double thresh,
                     r_comp[1] = r[1];
 
                     FPU_FIX_STOP;
-                    BLAS_zdot_z_d_x(conj_type,
-                                    n,
-                                    alpha,
-                                    x,
-                                    incx_val,
-                                    beta,
-                                    y,
-                                    incy_val,
-                                    &r_comp,
-                                    prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 *reinterpret_cast<const std::complex<double> *>(alpha),
+                                 reinterpret_cast<const std::complex<double> *>(x),
+                                 incx_val,
+                                 *reinterpret_cast<const std::complex<double> *>(beta),
+                                 y,
+                                 incy_val,
+                                 reinterpret_cast<std::complex<double> *>(&r_comp),
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */
@@ -10584,16 +10584,16 @@ double do_test_zdot_d_z_x(int n, int ntests, int *seed, double thresh,
                     r_comp[1] = r[1];
 
                     FPU_FIX_STOP;
-                    BLAS_zdot_d_z_x(conj_type,
-                                    n,
-                                    alpha,
-                                    x,
-                                    incx_val,
-                                    beta,
-                                    y,
-                                    incy_val,
-                                    &r_comp,
-                                    prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 *reinterpret_cast<const std::complex<double> *>(alpha),
+                                 x,
+                                 incx_val,
+                                 *reinterpret_cast<const std::complex<double> *>(beta),
+                                 reinterpret_cast<const std::complex<double> *>(y),
+                                 incy_val,
+                                 reinterpret_cast<std::complex<double> *>(&r_comp),
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */
@@ -10992,16 +10992,16 @@ double do_test_zdot_d_d_x(int n, int ntests, int *seed, double thresh,
                     r_comp[1] = r[1];
 
                     FPU_FIX_STOP;
-                    BLAS_zdot_d_d_x(conj_type,
-                                    n,
-                                    alpha,
-                                    x,
-                                    incx_val,
-                                    beta,
-                                    y,
-                                    incy_val,
-                                    &r_comp,
-                                    prec);
+                    XBLAS::dot_x(conj_type,
+                                 n,
+                                 *reinterpret_cast<const std::complex<double> *>(alpha),
+                                 x,
+                                 incx_val,
+                                 *reinterpret_cast<const std::complex<double> *>(beta),
+                                 y,
+                                 incy_val,
+                                 reinterpret_cast<std::complex<double> *>(&r_comp),
+                                 prec);
                     FPU_FIX_START;
 
                     /* computing the ratio */

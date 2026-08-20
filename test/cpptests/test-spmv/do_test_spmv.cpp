@@ -1454,16 +1454,16 @@ void do_test_zspmv_z_c(int n,
 
                     /* call spmv routines to be tested */
                     FPU_FIX_STOP;
-                    BLAS_zspmv_z_c(order_type,
-                                   uplo_type,
-                                   n,
-                                   alpha,
-                                   a,
-                                   x,
-                                   incx,
-                                   beta,
-                                   y,
-                                   incy);
+                    XBLAS::spmv(order_type,
+                                uplo_type,
+                                n,
+                                *reinterpret_cast<const std::complex<double> *>(alpha),
+                                reinterpret_cast<const std::complex<double> *>(a),
+                                reinterpret_cast<const std::complex<float> *>(x),
+                                incx,
+                                *reinterpret_cast<const std::complex<double> *>(beta),
+                                reinterpret_cast<std::complex<double> *>(y),
+                                incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -1850,16 +1850,16 @@ void do_test_zspmv_c_z(int n,
 
                     /* call spmv routines to be tested */
                     FPU_FIX_STOP;
-                    BLAS_zspmv_c_z(order_type,
-                                   uplo_type,
-                                   n,
-                                   alpha,
-                                   a,
-                                   x,
-                                   incx,
-                                   beta,
-                                   y,
-                                   incy);
+                    XBLAS::spmv(order_type,
+                                uplo_type,
+                                n,
+                                *reinterpret_cast<const std::complex<double> *>(alpha),
+                                reinterpret_cast<const std::complex<float> *>(a),
+                                reinterpret_cast<const std::complex<double> *>(x),
+                                incx,
+                                *reinterpret_cast<const std::complex<double> *>(beta),
+                                reinterpret_cast<std::complex<double> *>(y),
+                                incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -2246,16 +2246,16 @@ void do_test_zspmv_c_c(int n,
 
                     /* call spmv routines to be tested */
                     FPU_FIX_STOP;
-                    BLAS_zspmv_c_c(order_type,
-                                   uplo_type,
-                                   n,
-                                   alpha,
-                                   a,
-                                   x,
-                                   incx,
-                                   beta,
-                                   y,
-                                   incy);
+                    XBLAS::spmv(order_type,
+                                uplo_type,
+                                n,
+                                *reinterpret_cast<const std::complex<double> *>(alpha),
+                                reinterpret_cast<const std::complex<float> *>(a),
+                                reinterpret_cast<const std::complex<float> *>(x),
+                                incx,
+                                *reinterpret_cast<const std::complex<double> *>(beta),
+                                reinterpret_cast<std::complex<double> *>(y),
+                                incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -3830,16 +3830,16 @@ void do_test_zspmv_z_d(int n,
 
                     /* call spmv routines to be tested */
                     FPU_FIX_STOP;
-                    BLAS_zspmv_z_d(order_type,
-                                   uplo_type,
-                                   n,
-                                   alpha,
-                                   a,
-                                   x,
-                                   incx,
-                                   beta,
-                                   y,
-                                   incy);
+                    XBLAS::spmv(order_type,
+                                uplo_type,
+                                n,
+                                *reinterpret_cast<const std::complex<double> *>(alpha),
+                                reinterpret_cast<const std::complex<double> *>(a),
+                                x,
+                                incx,
+                                *reinterpret_cast<const std::complex<double> *>(beta),
+                                reinterpret_cast<std::complex<double> *>(y),
+                                incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -4226,16 +4226,16 @@ void do_test_zspmv_d_z(int n,
 
                     /* call spmv routines to be tested */
                     FPU_FIX_STOP;
-                    BLAS_zspmv_d_z(order_type,
-                                   uplo_type,
-                                   n,
-                                   alpha,
-                                   a,
-                                   x,
-                                   incx,
-                                   beta,
-                                   y,
-                                   incy);
+                    XBLAS::spmv(order_type,
+                                uplo_type,
+                                n,
+                                *reinterpret_cast<const std::complex<double> *>(alpha),
+                                a,
+                                reinterpret_cast<const std::complex<double> *>(x),
+                                incx,
+                                *reinterpret_cast<const std::complex<double> *>(beta),
+                                reinterpret_cast<std::complex<double> *>(y),
+                                incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -4622,16 +4622,16 @@ void do_test_zspmv_d_d(int n,
 
                     /* call spmv routines to be tested */
                     FPU_FIX_STOP;
-                    BLAS_zspmv_d_d(order_type,
-                                   uplo_type,
-                                   n,
-                                   alpha,
-                                   a,
-                                   x,
-                                   incx,
-                                   beta,
-                                   y,
-                                   incy);
+                    XBLAS::spmv(order_type,
+                                uplo_type,
+                                n,
+                                *reinterpret_cast<const std::complex<double> *>(alpha),
+                                a,
+                                x,
+                                incx,
+                                *reinterpret_cast<const std::complex<double> *>(beta),
+                                reinterpret_cast<std::complex<double> *>(y),
+                                incy);
                     FPU_FIX_START;
 
                     /* now compute the ratio using test_BLAS_xdot */
@@ -6281,17 +6281,17 @@ void do_test_zspmv_x(int n,
 
                       /* call spmv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zspmv_x(order_type,
-                                   uplo_type,
-                                   n,
-                                   alpha,
-                                   a,
-                                   x,
-                                   incx,
-                                   beta,
-                                   y,
-                                   incy,
-                                   prec);
+                      XBLAS::spmv_x(order_type,
+                                    uplo_type,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<double> *>(a),
+                                    reinterpret_cast<const std::complex<double> *>(x),
+                                    incx,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(y),
+                                    incy,
+                                    prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -7940,17 +7940,17 @@ void do_test_zspmv_z_c_x(int n,
 
                       /* call spmv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zspmv_z_c_x(order_type,
-                                       uplo_type,
-                                       n,
-                                       alpha,
-                                       a,
-                                       x,
-                                       incx,
-                                       beta,
-                                       y,
-                                       incy,
-                                       prec);
+                      XBLAS::spmv_x(order_type,
+                                    uplo_type,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<double> *>(a),
+                                    reinterpret_cast<const std::complex<float> *>(x),
+                                    incx,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(y),
+                                    incy,
+                                    prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -8360,17 +8360,17 @@ void do_test_zspmv_c_z_x(int n,
 
                       /* call spmv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zspmv_c_z_x(order_type,
-                                       uplo_type,
-                                       n,
-                                       alpha,
-                                       a,
-                                       x,
-                                       incx,
-                                       beta,
-                                       y,
-                                       incy,
-                                       prec);
+                      XBLAS::spmv_x(order_type,
+                                    uplo_type,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<float> *>(a),
+                                    reinterpret_cast<const std::complex<double> *>(x),
+                                    incx,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(y),
+                                    incy,
+                                    prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -8780,17 +8780,17 @@ void do_test_zspmv_c_c_x(int n,
 
                       /* call spmv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zspmv_c_c_x(order_type,
-                                       uplo_type,
-                                       n,
-                                       alpha,
-                                       a,
-                                       x,
-                                       incx,
-                                       beta,
-                                       y,
-                                       incy,
-                                       prec);
+                      XBLAS::spmv_x(order_type,
+                                    uplo_type,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<float> *>(a),
+                                    reinterpret_cast<const std::complex<float> *>(x),
+                                    incx,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(y),
+                                    incy,
+                                    prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -10460,17 +10460,17 @@ void do_test_zspmv_z_d_x(int n,
 
                       /* call spmv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zspmv_z_d_x(order_type,
-                                       uplo_type,
-                                       n,
-                                       alpha,
-                                       a,
-                                       x,
-                                       incx,
-                                       beta,
-                                       y,
-                                       incy,
-                                       prec);
+                      XBLAS::spmv_x(order_type,
+                                    uplo_type,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    reinterpret_cast<const std::complex<double> *>(a),
+                                    x,
+                                    incx,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(y),
+                                    incy,
+                                    prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -10880,17 +10880,17 @@ void do_test_zspmv_d_z_x(int n,
 
                       /* call spmv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zspmv_d_z_x(order_type,
-                                       uplo_type,
-                                       n,
-                                       alpha,
-                                       a,
-                                       x,
-                                       incx,
-                                       beta,
-                                       y,
-                                       incy,
-                                       prec);
+                      XBLAS::spmv_x(order_type,
+                                    uplo_type,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    a,
+                                    reinterpret_cast<const std::complex<double> *>(x),
+                                    incx,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(y),
+                                    incy,
+                                    prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
@@ -11300,17 +11300,17 @@ void do_test_zspmv_d_d_x(int n,
 
                       /* call spmv routines to be tested */
                       FPU_FIX_STOP;
-                      BLAS_zspmv_d_d_x(order_type,
-                                       uplo_type,
-                                       n,
-                                       alpha,
-                                       a,
-                                       x,
-                                       incx,
-                                       beta,
-                                       y,
-                                       incy,
-                                       prec);
+                      XBLAS::spmv_x(order_type,
+                                    uplo_type,
+                                    n,
+                                    *reinterpret_cast<const std::complex<double> *>(alpha),
+                                    a,
+                                    x,
+                                    incx,
+                                    *reinterpret_cast<const std::complex<double> *>(beta),
+                                    reinterpret_cast<std::complex<double> *>(y),
+                                    incy,
+                                    prec);
                       FPU_FIX_START;
 
                       /* now compute the ratio using test_BLAS_xdot */
