@@ -4,7 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
-#include "XBLAS/hemm.hpp"
+#include "hemm.hpp"
 #include <complex>
 
 #define UPLO_START 0

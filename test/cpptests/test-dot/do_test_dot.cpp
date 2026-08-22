@@ -4,7 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
-#include "XBLAS/dot.hpp"
+#include "dot.hpp"
 #include <complex>
 
 double do_test_ddot_d_s(int n, int ntests, int *seed, double thresh,

@@ -4,7 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
-#include "XBLAS/gemv.hpp"
+#include "gemv.hpp"
 #include <complex>
 
 double do_test_dgemv_d_s(int m, int n, int ntests, int *seed, double thresh,

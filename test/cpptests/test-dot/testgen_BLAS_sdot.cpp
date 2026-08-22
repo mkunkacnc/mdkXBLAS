@@ -3,7 +3,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
-#include "XBLAS/dot.hpp"
+#include "dot.hpp"
 
 
 static float rand_half_1(int, int *);

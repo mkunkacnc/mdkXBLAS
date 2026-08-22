@@ -4,7 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
-#include "XBLAS/sum.hpp"
+#include "sum.hpp"
 #define NORM_START -1
 #define NORM_END    1
 #define INC_START  -2

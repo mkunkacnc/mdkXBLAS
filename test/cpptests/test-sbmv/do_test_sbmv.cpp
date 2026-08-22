@@ -4,7 +4,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
-#include "XBLAS/sbmv.hpp"
+#include "sbmv.hpp"
 #include <complex>
 
 /* 0 -- 1 */
