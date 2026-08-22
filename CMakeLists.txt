@@ -1074,6 +1074,7 @@ target_sources(xblas
         include/XBLAS/dot.hpp
         include/XBLAS/double_double.hpp
         include/XBLAS/f2c-bridge.h
+        include/XBLAS/fpinfo.hpp
         include/XBLAS/gbmv.hpp
         include/XBLAS/gbmv2.hpp
         include/XBLAS/ge_sum_mv.hpp

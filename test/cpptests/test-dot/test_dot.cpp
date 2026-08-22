@@ -3,6 +3,7 @@
 #include "blas_extended.h"
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "fpinfo.hpp"
 
 
 void test_BLAS_sdot(int n, enum blas_conj_type /* conj */, float alpha, float beta,
@@ -90,17 +91,17 @@ void test_BLAS_sdot(int n, enum blas_conj_type /* conj */, float alpha, float be
   S *= fabs(alpha);
   S += fabs(beta * rin);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
 
   eps_out = power(2, -BITS_S);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_single),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_single));
   tmp1 = fabs((rout - r_true_l) - r_true_t);
 
   /* underflow */
@@ -196,17 +197,17 @@ void test_BLAS_ddot(int n, enum blas_conj_type /* conj */, double alpha,
   S *= fabs(alpha);
   S += fabs(beta * rin);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
 
   eps_out = power(2, -BITS_D);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   tmp1 = fabs((rout - r_true_l) - r_true_t);
 
   /* underflow */
@@ -331,16 +332,16 @@ void test_BLAS_cdot(int n, enum blas_conj_type conj, const void *alpha,
 
   S += sqrt(prod[0] * prod[0] + prod[1] * prod[1]);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
   eps_out = power(2, -BITS_S);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_single),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_single));
   tmp[0] = (rout_i[0] - r_true_l[0]) - r_true_t[0];
   tmp[1] = (rout_i[1] - r_true_l[1]) - r_true_t[1];
   tmp1 = sqrt(tmp[0] * tmp[0] + tmp[1] * tmp[1]);
@@ -471,16 +472,16 @@ void test_BLAS_zdot(int n, enum blas_conj_type conj, const void *alpha,
   }
   S += sqrt(prod[0] * prod[0] + prod[1] * prod[1]);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
   eps_out = power(2, -BITS_D);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   tmp[0] = (rout_i[0] - r_true_l[0]) - r_true_t[0];
   tmp[1] = (rout_i[1] - r_true_l[1]) - r_true_t[1];
   tmp1 = sqrt(tmp[0] * tmp[0] + tmp[1] * tmp[1]);
@@ -606,16 +607,16 @@ void test_BLAS_cdot_s_s(int n, enum blas_conj_type /* conj */, const void *alpha
 
   S += sqrt(prod[0] * prod[0] + prod[1] * prod[1]);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
   eps_out = power(2, -BITS_S);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_single),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_single));
   tmp[0] = (rout_i[0] - r_true_l[0]) - r_true_t[0];
   tmp[1] = (rout_i[1] - r_true_l[1]) - r_true_t[1];
   tmp1 = sqrt(tmp[0] * tmp[0] + tmp[1] * tmp[1]);
@@ -743,16 +744,16 @@ void test_BLAS_cdot_s_c(int n, enum blas_conj_type /* conj */, const void *alpha
 
   S += sqrt(prod[0] * prod[0] + prod[1] * prod[1]);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
   eps_out = power(2, -BITS_S);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_single),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_single));
   tmp[0] = (rout_i[0] - r_true_l[0]) - r_true_t[0];
   tmp[1] = (rout_i[1] - r_true_l[1]) - r_true_t[1];
   tmp1 = sqrt(tmp[0] * tmp[0] + tmp[1] * tmp[1]);
@@ -883,16 +884,16 @@ void test_BLAS_cdot_c_s(int n, enum blas_conj_type conj, const void *alpha,
 
   S += sqrt(prod[0] * prod[0] + prod[1] * prod[1]);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
   eps_out = power(2, -BITS_S);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_single),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_single));
   tmp[0] = (rout_i[0] - r_true_l[0]) - r_true_t[0];
   tmp[1] = (rout_i[1] - r_true_l[1]) - r_true_t[1];
   tmp1 = sqrt(tmp[0] * tmp[0] + tmp[1] * tmp[1]);
@@ -1017,16 +1018,16 @@ void test_BLAS_zdot_d_d(int n, enum blas_conj_type /* conj */, const void *alpha
   }
   S += sqrt(prod[0] * prod[0] + prod[1] * prod[1]);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
   eps_out = power(2, -BITS_D);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   tmp[0] = (rout_i[0] - r_true_l[0]) - r_true_t[0];
   tmp[1] = (rout_i[1] - r_true_l[1]) - r_true_t[1];
   tmp1 = sqrt(tmp[0] * tmp[0] + tmp[1] * tmp[1]);
@@ -1153,16 +1154,16 @@ void test_BLAS_zdot_d_z(int n, enum blas_conj_type /* conj */, const void *alpha
   }
   S += sqrt(prod[0] * prod[0] + prod[1] * prod[1]);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
   eps_out = power(2, -BITS_D);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   tmp[0] = (rout_i[0] - r_true_l[0]) - r_true_t[0];
   tmp[1] = (rout_i[1] - r_true_l[1]) - r_true_t[1];
   tmp1 = sqrt(tmp[0] * tmp[0] + tmp[1] * tmp[1]);
@@ -1292,16 +1293,16 @@ void test_BLAS_zdot_z_d(int n, enum blas_conj_type conj, const void *alpha,
   }
   S += sqrt(prod[0] * prod[0] + prod[1] * prod[1]);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
   eps_out = power(2, -BITS_D);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   tmp[0] = (rout_i[0] - r_true_l[0]) - r_true_t[0];
   tmp[1] = (rout_i[1] - r_true_l[1]) - r_true_t[1];
   tmp1 = sqrt(tmp[0] * tmp[0] + tmp[1] * tmp[1]);
@@ -1406,17 +1407,17 @@ void test_BLAS_ddot_s_s(int n, enum blas_conj_type /* conj */, double alpha,
   S *= fabs(alpha);
   S += fabs(beta * rin);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
 
   eps_out = power(2, -BITS_D);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   tmp1 = fabs((rout - r_true_l) - r_true_t);
 
   /* underflow */
@@ -1513,17 +1514,17 @@ void test_BLAS_ddot_s_d(int n, enum blas_conj_type /* conj */, double alpha,
   S *= fabs(alpha);
   S += fabs(beta * rin);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
 
   eps_out = power(2, -BITS_D);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   tmp1 = fabs((rout - r_true_l) - r_true_t);
 
   /* underflow */
@@ -1620,17 +1621,17 @@ void test_BLAS_ddot_d_s(int n, enum blas_conj_type /* conj */, double alpha,
   S *= fabs(alpha);
   S += fabs(beta * rin);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
 
   eps_out = power(2, -BITS_D);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   tmp1 = fabs((rout - r_true_l) - r_true_t);
 
   /* underflow */
@@ -1753,16 +1754,16 @@ void test_BLAS_zdot_c_c(int n, enum blas_conj_type conj, const void *alpha,
   }
   S += sqrt(prod[0] * prod[0] + prod[1] * prod[1]);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
   eps_out = power(2, -BITS_D);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   tmp[0] = (rout_i[0] - r_true_l[0]) - r_true_t[0];
   tmp[1] = (rout_i[1] - r_true_l[1]) - r_true_t[1];
   tmp1 = sqrt(tmp[0] * tmp[0] + tmp[1] * tmp[1]);
@@ -1893,16 +1894,16 @@ void test_BLAS_zdot_c_z(int n, enum blas_conj_type conj, const void *alpha,
   }
   S += sqrt(prod[0] * prod[0] + prod[1] * prod[1]);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
   eps_out = power(2, -BITS_D);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   tmp[0] = (rout_i[0] - r_true_l[0]) - r_true_t[0];
   tmp[1] = (rout_i[1] - r_true_l[1]) - r_true_t[1];
   tmp1 = sqrt(tmp[0] * tmp[0] + tmp[1] * tmp[1]);
@@ -2033,16 +2034,16 @@ void test_BLAS_zdot_z_c(int n, enum blas_conj_type conj, const void *alpha,
   }
   S += sqrt(prod[0] * prod[0] + prod[1] * prod[1]);
 
-  un_d = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-             (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_d = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+             (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   S = MAX(S, un_d);
 
   eps_accurate = power(2, -BITS_E);
-  un_accurate = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                    (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+  un_accurate = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                    (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
   eps_out = power(2, -BITS_D);
-  un_out = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-               (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+  un_out = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+               (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
   tmp[0] = (rout_i[0] - r_true_l[0]) - r_true_t[0];
   tmp[1] = (rout_i[1] - r_true_l[1]) - r_true_t[1];
   tmp1 = sqrt(tmp[0] * tmp[0] + tmp[1] * tmp[1]);

@@ -1,8 +1,10 @@
 #ifndef BLAS_EXTENDED_TEST_HPP
 #define BLAS_EXTENDED_TEST_HPP
 
-#define MAX_BAD_TESTS 100
-#define TOTAL_FAILURE_THRESHOLD 1000
+#include "blas_enum.h"
+
+const int MAX_BAD_TESTS = 100;
+const int TOTAL_FAILURE_THRESHOLD = 1000;
 
 double power(int i1, int i2);
 double xrand(int *is);

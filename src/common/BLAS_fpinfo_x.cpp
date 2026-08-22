@@ -1,4 +1,5 @@
 #include "blas_extended.h"
+#include "fpinfo.hpp"
 
 int BLAS_fpinfo_x(enum blas_cmach_type cmach, enum blas_prec_type prec)
 /*
@@ -31,57 +32,5 @@ int BLAS_fpinfo_x(enum blas_cmach_type cmach, enum blas_prec_type prec)
  *
  */
 {
-  int rmach = 0;
-
-  switch (prec) {
-  case blas_prec_single:
-    if (cmach == blas_base) {
-      rmach = 2;
-    } else if (cmach == blas_t) {
-      rmach = 24;
-    } else if (cmach == blas_rnd) {
-      rmach = 1;
-    } else if (cmach == blas_ieee) {
-      rmach = 1;
-    } else if (cmach == blas_emin) {
-      rmach = -126;
-    } else if (cmach == blas_emax) {
-      rmach = 127;
-    }
-    break;
-
-  case blas_prec_indigenous:
-  case blas_prec_double:
-    if (cmach == blas_base) {
-      rmach = 2;
-    } else if (cmach == blas_t) {
-      rmach = 53;
-    } else if (cmach == blas_rnd) {
-      rmach = 1;
-    } else if (cmach == blas_ieee) {
-      rmach = 1;
-    } else if (cmach == blas_emin) {
-      rmach = -1022;
-    } else if (cmach == blas_emax) {
-      rmach = 1023;
-    }
-    break;
-  case blas_prec_extra:
-    if (cmach == blas_base) {
-      rmach = 2;
-    } else if (cmach == blas_t) {
-      rmach = 105;
-    } else if (cmach == blas_rnd) {
-      rmach = 0;
-    } else if (cmach == blas_ieee) {
-      rmach = 0;
-    } else if (cmach == blas_emin) {
-      rmach = -1022;
-    } else if (cmach == blas_emax) {
-      rmach = 1023;
-    }
-    break;
-  }
-
-  return rmach;
+  return XBLAS::fpinfo_x(cmach, prec);
 }

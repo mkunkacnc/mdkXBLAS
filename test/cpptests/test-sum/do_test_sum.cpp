@@ -5,6 +5,7 @@
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
 #include "sum.hpp"
+#include "fpinfo.hpp"
 #define NORM_START -1
 #define NORM_END    1
 #define INC_START  -2
@@ -136,21 +137,21 @@ void do_test_ssum_x(int n, int ntests, int *seed, double thresh,
     switch (prec_val) {
     case 0:
       eps_int = power(2, -BITS_S);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_single),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_single));
       prec = blas_prec_single;
       break;
     case 1:
       eps_int = power(2, -BITS_D);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
       prec = blas_prec_double;
       break;
     case 2:
     default:
       eps_int = power(2, -BITS_E);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
       prec = blas_prec_extra;
       break;
     }
@@ -391,21 +392,21 @@ void do_test_dsum_x(int n, int ntests, int *seed, double thresh,
     switch (prec_val) {
     case 0:
       eps_int = power(2, -BITS_D);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
       prec = blas_prec_double;
       break;
     case 1:
       eps_int = power(2, -BITS_D);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
       prec = blas_prec_double;
       break;
     case 2:
     default:
       eps_int = power(2, -BITS_E);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
       prec = blas_prec_extra;
       break;
     }
@@ -646,21 +647,21 @@ void do_test_csum_x(int n, int ntests, int *seed, double thresh,
     switch (prec_val) {
     case 0:
       eps_int = power(2, -BITS_S);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_single),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_single));
       prec = blas_prec_single;
       break;
     case 1:
       eps_int = power(2, -BITS_D);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
       prec = blas_prec_double;
       break;
     case 2:
     default:
       eps_int = power(2, -BITS_E);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
       prec = blas_prec_extra;
       break;
     }
@@ -905,21 +906,21 @@ void do_test_zsum_x(int n, int ntests, int *seed, double thresh,
     switch (prec_val) {
     case 0:
       eps_int = power(2, -BITS_D);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
       prec = blas_prec_double;
       break;
     case 1:
       eps_int = power(2, -BITS_D);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
       prec = blas_prec_double;
       break;
     case 2:
     default:
       eps_int = power(2, -BITS_E);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
       prec = blas_prec_extra;
       break;
     }

@@ -5,6 +5,7 @@
 #include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
 #include "tpmv.hpp"
+#include "fpinfo.hpp"
 #include <complex>
 
 
@@ -234,8 +235,8 @@ double do_test_dtpmv_s(int n,
 
 
       eps_int = power(2, -BITS_D);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
       prec = blas_prec_double;
 
       /* values near underflow, 1, or overflow */
@@ -760,8 +761,8 @@ double do_test_ztpmv_c(int n,
 
 
       eps_int = power(2, -BITS_D);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
       prec = blas_prec_double;
 
       /* values near underflow, 1, or overflow */
@@ -1290,8 +1291,8 @@ double do_test_ctpmv_s(int n,
 
 
       eps_int = power(2, -BITS_S);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_single),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_single));
       prec = blas_prec_single;
 
       /* values near underflow, 1, or overflow */
@@ -1820,8 +1821,8 @@ double do_test_ztpmv_d(int n,
 
 
       eps_int = power(2, -BITS_D);
-      un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                   (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+      un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                   (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
       prec = blas_prec_double;
 
       /* values near underflow, 1, or overflow */
@@ -2352,21 +2353,21 @@ double do_test_stpmv_x(int n,
         switch (prec_val) {
         case 0:
           eps_int = power(2, -BITS_S);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_single),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_single));
           prec = blas_prec_single;
           break;
         case 1:
           eps_int = power(2, -BITS_D);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
           prec = blas_prec_double;
           break;
         case 2:
         default:
           eps_int = power(2, -BITS_E);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
           prec = blas_prec_extra;
           break;
         }
@@ -2895,21 +2896,21 @@ double do_test_dtpmv_x(int n,
         switch (prec_val) {
         case 0:
           eps_int = power(2, -BITS_D);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
           prec = blas_prec_double;
           break;
         case 1:
           eps_int = power(2, -BITS_D);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
           prec = blas_prec_double;
           break;
         case 2:
         default:
           eps_int = power(2, -BITS_E);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
           prec = blas_prec_extra;
           break;
         }
@@ -3440,21 +3441,21 @@ double do_test_ctpmv_x(int n,
         switch (prec_val) {
         case 0:
           eps_int = power(2, -BITS_S);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_single),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_single));
           prec = blas_prec_single;
           break;
         case 1:
           eps_int = power(2, -BITS_D);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
           prec = blas_prec_double;
           break;
         case 2:
         default:
           eps_int = power(2, -BITS_E);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
           prec = blas_prec_extra;
           break;
         }
@@ -3989,21 +3990,21 @@ double do_test_ztpmv_x(int n,
         switch (prec_val) {
         case 0:
           eps_int = power(2, -BITS_D);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
           prec = blas_prec_double;
           break;
         case 1:
           eps_int = power(2, -BITS_D);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
           prec = blas_prec_double;
           break;
         case 2:
         default:
           eps_int = power(2, -BITS_E);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
           prec = blas_prec_extra;
           break;
         }
@@ -4537,21 +4538,21 @@ double do_test_dtpmv_s_x(int n,
         switch (prec_val) {
         case 0:
           eps_int = power(2, -BITS_D);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
           prec = blas_prec_double;
           break;
         case 1:
           eps_int = power(2, -BITS_D);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
           prec = blas_prec_double;
           break;
         case 2:
         default:
           eps_int = power(2, -BITS_E);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
           prec = blas_prec_extra;
           break;
         }
@@ -5084,21 +5085,21 @@ double do_test_ztpmv_c_x(int n,
         switch (prec_val) {
         case 0:
           eps_int = power(2, -BITS_D);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
           prec = blas_prec_double;
           break;
         case 1:
           eps_int = power(2, -BITS_D);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
           prec = blas_prec_double;
           break;
         case 2:
         default:
           eps_int = power(2, -BITS_E);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
           prec = blas_prec_extra;
           break;
         }
@@ -5635,21 +5636,21 @@ double do_test_ctpmv_s_x(int n,
         switch (prec_val) {
         case 0:
           eps_int = power(2, -BITS_S);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_single),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_single));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_single),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_single));
           prec = blas_prec_single;
           break;
         case 1:
           eps_int = power(2, -BITS_D);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
           prec = blas_prec_double;
           break;
         case 2:
         default:
           eps_int = power(2, -BITS_E);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
           prec = blas_prec_extra;
           break;
         }
@@ -6186,21 +6187,21 @@ double do_test_ztpmv_d_x(int n,
         switch (prec_val) {
         case 0:
           eps_int = power(2, -BITS_D);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
           prec = blas_prec_double;
           break;
         case 1:
           eps_int = power(2, -BITS_D);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_double),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_double));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_double),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_double));
           prec = blas_prec_double;
           break;
         case 2:
         default:
           eps_int = power(2, -BITS_E);
-          un_int = pow((double) BLAS_fpinfo_x(blas_base, blas_prec_extra),
-                       (double) BLAS_fpinfo_x(blas_emin, blas_prec_extra));
+          un_int = pow((double) XBLAS::fpinfo_x(blas_base, blas_prec_extra),
+                       (double) XBLAS::fpinfo_x(blas_emin, blas_prec_extra));
           prec = blas_prec_extra;
           break;
         }

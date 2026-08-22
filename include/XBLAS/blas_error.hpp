@@ -1,5 +1,5 @@
-#ifndef BLAS_ERROR_H
-#define BLAS_ERROR_H
+#ifndef BLAS_ERROR_HPP
+#define BLAS_ERROR_HPP
 
 #ifdef XBLAS_NO_INLINE
 /* function definition is in BLAS_error.cpp, client
@@ -70,4 +70,4 @@ void BLAS_error(const char *rname,
 
 #endif /* !XBLAS_NO_INLINE */
 
-#endif /* BLAS_ERROR_H */
+#endif /* BLAS_ERROR_HPP */

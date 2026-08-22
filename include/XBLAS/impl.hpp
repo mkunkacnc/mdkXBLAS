@@ -34,20 +34,20 @@ namespace XBLAS {
 struct double_double
 {
   template<typename A, typename B>
-  static double add(A a, B b) { return 0; }
+  static constexpr double add(A a, B b) { return 0; }
 
   template<typename A, typename B>
-  static double mul(A a, B b) { return 0; }
+  static constexpr double mul(A a, B b) { return 0; }
 
-  double to_double() const { return 0; }
+  constexpr double to_double() const { return 0; }
 };
 } // namespace XBLAS
 
-#else
+#else // XBLAS_USE_FLOAT128
 #include "double_double.hpp"
 
 using XBLAS_X_t = XBLAS::double_double;
-#endif
+#endif // XBLAS_USE_FLOAT128
 
 #ifdef XBLAS_USE_INT64_INTERNAL_INDEX_TYPE
 #include <cstdint>
@@ -437,35 +437,35 @@ constexpr A complex_div(A a, B b)
   }
 
   // Quotient
-  A_t q[2];
-  const inner_type_t<A_t> a_ = std::real(a);
-  const inner_type_t<A_t> b_ = std::imag(a);
-  const inner_type_t<B_t> c_ = std::real(b);
-  const inner_type_t<B_t> d_ = std::imag(b);
+  A_t qr, qi;
+  const A_t a_ = std::real(a);
+  const A_t b_ = std::imag(a);
+  const B_t c_ = std::real(b);
+  const B_t d_ = std::imag(b);
 
   if (abs_c > abs_d) {
     const B_t r = d_/c_;
     if (r == 0) {
-      q[0] = (a_ + (b_/c_)*d_) / c_;
-      q[1] = (b_ - (a_/c_)*d_) / c_;
+      qr = (a_ + (b_/c_)*d_) / c_;
+      qi = (b_ - (a_/c_)*d_) / c_;
     } else {
       const B_t t = c_ + d_ * r;
-      q[0] = (a_ + b_*r) / t;
-      q[1] = (b_ - a_*r) / t;
+      qr = (a_ + b_*r) / t;
+      qi = (b_ - a_*r) / t;
     }
   } else {
     const B_t r = c_/d_;
     if (r == 0) {
-      q[0] = ((a_/d_)*c_ + b_) / d_;
-      q[1] = ((b_/d_)*c_ - a_) / d_;
+      qr = ((a_/d_)*c_ + b_) / d_;
+      qi = ((b_/d_)*c_ - a_) / d_;
     } else {
       const B_t t = d_ + c_ * r;
-      q[0] = (a_*r + b_) / t;
-      q[1] = (b_*r - a_) / t;
+      qr = (a_*r + b_) / t;
+      qi = (b_*r - a_) / t;
     }
   }
 
-  return A(q[0] * S, q[1] * S);
+  return A(qr * S, qi * S);
 }
 
 template<typename A,
