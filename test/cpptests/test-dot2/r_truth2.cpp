@@ -1,4 +1,5 @@
 #include "blas_extended_private.h"
+#include "blas_enum.h"
 
 void s_r_truth2(enum blas_conj_type /* conj */, int n, float alpha,
                 const float *x, int incx, float beta,
