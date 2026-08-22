@@ -1,5 +1,5 @@
-#include "blas_extended.h"
 #include "blas_extended_test.hpp"
+#include "blas_enum.h"
 
 void strsv_commit(enum blas_order_type order, enum blas_uplo_type uplo,
                   enum blas_trans_type trans, int length, float *T, int lda,

@@ -1,5 +1,5 @@
 #include <cstdio>
-#include "blas_extended.h"
+#include "blas_enum.h"
 void ssy_commit_row(enum blas_order_type order, enum blas_uplo_type uplo,
                     int n, float *a, int lda, float *a_vec, int row)
 

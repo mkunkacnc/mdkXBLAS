@@ -2,8 +2,8 @@
 
 
 #include <cstdio>
-#include "blas_extended.h"
 #include "blas_extended_test.hpp"
+#include "blas_enum.h"
 
 void sge_commit_row(enum blas_order_type order, enum blas_trans_type trans,
                     int /* m */, int n, float *a, int lda, float *a_vec, int row)

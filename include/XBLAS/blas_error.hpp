@@ -34,6 +34,8 @@ void BLAS_error(const char *rname,
 #include <cstdlib>
 #include <cstring>
 
+extern "C" {
+
 inline
 void BLAS_error(const char *rname,
                 int iflag,
@@ -66,6 +68,8 @@ void BLAS_error(const char *rname,
                  iflag, rname);
   }
   std::exit(iflag);
+}
+
 }
 
 #endif /* !XBLAS_NO_INLINE */

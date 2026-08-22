@@ -1,8 +1,9 @@
 #include <cstdio>
 #include <cstdlib>
-#include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "blas_malloc.h"
 #include "blas_extended_test.hpp"
+#include "blas_error.hpp"
 
 #ifndef ALPHA_USE_IS_ALPHA
 #define ALPHA_USE_IS_ALPHA 1

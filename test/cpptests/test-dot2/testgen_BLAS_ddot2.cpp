@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <cmath>
-#include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "blas_enum.h"
 #include "blas_extended_test.hpp"
 
 

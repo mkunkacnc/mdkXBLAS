@@ -1,9 +1,11 @@
 
 #include <cstdio>
 #include <cstdlib>
-#include "blas_extended.h"
 #include "blas_extended_private.h"
+#include "blas_enum.h"
+#include "blas_malloc.h"
 #include "blas_extended_test.hpp"
+#include "blas_error.hpp"
 
 void BLAS_sskmv2_testgen(int norm, enum blas_order_type order,
                          enum blas_uplo_type uplo, int n, float *alpha,

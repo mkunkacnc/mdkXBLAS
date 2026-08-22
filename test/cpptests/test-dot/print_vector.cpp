@@ -1,5 +1,4 @@
 #include <cstdio>
-#include "blas_extended.h"
 #include "blas_extended_test.hpp"
 
 void sprint_vector(const float *x, int n, int inc, const char *name)

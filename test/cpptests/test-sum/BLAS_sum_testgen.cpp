@@ -1,6 +1,7 @@
 #include <cstdlib>
-#include "blas_extended.h"
+#include "blas_malloc.h"
 #include "blas_extended_test.hpp"
+#include "blas_error.hpp"
 
 void BLAS_ssum_testgen(int n, int norm, float *x, int *seed,
                        double *sum_true_l, double *sum_true_t)
