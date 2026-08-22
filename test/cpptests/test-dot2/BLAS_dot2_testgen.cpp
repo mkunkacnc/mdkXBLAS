@@ -91,7 +91,7 @@ void BLAS_sdot2_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_tmp = *beta_i;
 
   head_x_vec = (float *) blas_malloc(3 * n * sizeof(float));
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + inc * n;
@@ -210,7 +210,7 @@ void BLAS_ddot2_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_tmp = *beta_i;
 
   head_x_vec = (double *) blas_malloc(3 * n * sizeof(double));
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + inc * n;
@@ -331,7 +331,7 @@ void BLAS_cdot2_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_tmp[1] = beta_i[1];
   inc *= 2;
   head_x_vec = (float *) blas_malloc(3 * n * sizeof(float) * 2);
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + inc * n;
@@ -463,7 +463,7 @@ void BLAS_zdot2_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_tmp[1] = beta_i[1];
   inc *= 2;
   head_x_vec = (double *) blas_malloc(3 * n * sizeof(double) * 2);
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + inc * n;
@@ -595,7 +595,7 @@ void BLAS_cdot2_s_s_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_i_r = beta_i[0];
   beta_i_i = beta_i[1];
   head_x_vec = (float *) blas_malloc(3 * n * sizeof(float));
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + n;
@@ -786,7 +786,7 @@ void BLAS_cdot2_s_c_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_i_r = beta_i[0];
   beta_i_i = beta_i[1];
   head_x_vec = (float *) blas_malloc(3 * n * sizeof(float));
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + n;
@@ -986,7 +986,7 @@ void BLAS_cdot2_c_s_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_i_r = beta_i[0];
   beta_i_i = beta_i[1];
   head_x_vec = (float *) blas_malloc(3 * n * sizeof(float));
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + n;
@@ -1193,7 +1193,7 @@ void BLAS_zdot2_d_d_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_i_r = beta_i[0];
   beta_i_i = beta_i[1];
   head_x_vec = (double *) blas_malloc(3 * n * sizeof(double));
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + n;
@@ -1385,7 +1385,7 @@ void BLAS_zdot2_d_z_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_i_r = beta_i[0];
   beta_i_i = beta_i[1];
   head_x_vec = (double *) blas_malloc(3 * n * sizeof(double));
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + n;
@@ -1585,7 +1585,7 @@ void BLAS_zdot2_z_d_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_i_r = beta_i[0];
   beta_i_i = beta_i[1];
   head_x_vec = (double *) blas_malloc(3 * n * sizeof(double));
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + n;
@@ -1789,7 +1789,7 @@ void BLAS_ddot2_s_s_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_tmp = *beta_i;
 
   head_x_vec = (float *) blas_malloc(3 * n * sizeof(float));
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + inc * n;
@@ -1909,7 +1909,7 @@ void BLAS_ddot2_s_d_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_tmp = *beta_i;
 
   head_x_vec = (float *) blas_malloc(3 * n * sizeof(float));
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + inc * n;
@@ -2029,7 +2029,7 @@ void BLAS_ddot2_d_s_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_tmp = *beta_i;
 
   head_x_vec = (float *) blas_malloc(3 * n * sizeof(float));
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + inc * n;
@@ -2150,7 +2150,7 @@ void BLAS_zdot2_c_c_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_tmp[1] = beta_i[1];
   inc *= 2;
   head_x_vec = (float *) blas_malloc(3 * n * sizeof(float) * 2);
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + inc * n;
@@ -2282,7 +2282,7 @@ void BLAS_zdot2_c_z_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_tmp[1] = beta_i[1];
   inc *= 2;
   head_x_vec = (float *) blas_malloc(3 * n * sizeof(float) * 2);
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + inc * n;
@@ -2414,7 +2414,7 @@ void BLAS_zdot2_z_c_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_tmp[1] = beta_i[1];
   inc *= 2;
   head_x_vec = (float *) blas_malloc(3 * n * sizeof(float) * 2);
-  if (3 * n > 0 && head_x_vec == NULL) {
+  if (3 * n > 0 && head_x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_vec = head_x_vec + inc * n;

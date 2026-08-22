@@ -115,14 +115,14 @@ void BLAS_sskew_testgen_hemv(int norm, enum blas_order_type order,
 
 
   a_vec = (float *) blas_malloc(n_i * sizeof(float));
-  if (n_i > 0 && a_vec == NULL) {
+  if (n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   for (i = 0; i < n_i; i += inca_vec) {
     a_vec[i] = 0.0;
   }
   x_vec = (float *) blas_malloc(n_i * sizeof(float));
-  if (n_i > 0 && x_vec == NULL) {
+  if (n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   scopy_vector(x_i, n_i, incx, x_vec, 1);
@@ -319,14 +319,14 @@ void BLAS_dskew_testgen_hemv(int norm, enum blas_order_type order,
 
 
   a_vec = (double *) blas_malloc(n_i * sizeof(double));
-  if (n_i > 0 && a_vec == NULL) {
+  if (n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   for (i = 0; i < n_i; i += inca_vec) {
     a_vec[i] = 0.0;
   }
   x_vec = (double *) blas_malloc(n_i * sizeof(double));
-  if (n_i > 0 && x_vec == NULL) {
+  if (n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   dcopy_vector(x_i, n_i, incx, x_vec, 1);
@@ -523,14 +523,14 @@ void BLAS_dskew_testgen_hemv_d_s(int norm, enum blas_order_type order,
 
 
   a_vec = (double *) blas_malloc(n_i * sizeof(double));
-  if (n_i > 0 && a_vec == NULL) {
+  if (n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   for (i = 0; i < n_i; i += inca_vec) {
     a_vec[i] = 0.0;
   }
   x_vec = (float *) blas_malloc(n_i * sizeof(float));
-  if (n_i > 0 && x_vec == NULL) {
+  if (n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   scopy_vector(x_i, n_i, incx, x_vec, 1);
@@ -727,14 +727,14 @@ void BLAS_dskew_testgen_hemv_s_d(int norm, enum blas_order_type order,
 
 
   a_vec = (float *) blas_malloc(n_i * sizeof(float));
-  if (n_i > 0 && a_vec == NULL) {
+  if (n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   for (i = 0; i < n_i; i += inca_vec) {
     a_vec[i] = 0.0;
   }
   x_vec = (double *) blas_malloc(n_i * sizeof(double));
-  if (n_i > 0 && x_vec == NULL) {
+  if (n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   dcopy_vector(x_i, n_i, incx, x_vec, 1);
@@ -931,14 +931,14 @@ void BLAS_dskew_testgen_hemv_s_s(int norm, enum blas_order_type order,
 
 
   a_vec = (float *) blas_malloc(n_i * sizeof(float));
-  if (n_i > 0 && a_vec == NULL) {
+  if (n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   for (i = 0; i < n_i; i += inca_vec) {
     a_vec[i] = 0.0;
   }
   x_vec = (float *) blas_malloc(n_i * sizeof(float));
-  if (n_i > 0 && x_vec == NULL) {
+  if (n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   scopy_vector(x_i, n_i, incx, x_vec, 1);
@@ -1195,7 +1195,7 @@ void BLAS_chemv_testgen(int norm, enum blas_order_type order,
       incaij = 1;
     }
     if ((0 == incx) || (0 == incy)) {
-      BLAS_error(routine_name, 0, 0, NULL);
+      BLAS_error(routine_name, 0, 0, nullptr);
     }
     if (incx > 0) {
       x_starti = 0;
@@ -1221,7 +1221,7 @@ void BLAS_chemv_testgen(int norm, enum blas_order_type order,
     inca_vec *= 2;
     incx_vec *= 2;
     a_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);
-    if (n_i > 0 && a_vec == NULL) {
+    if (n_i > 0 && a_vec == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
     for (i = 0; i < n_i * inca_vec; i += inca_vec) {
@@ -1229,7 +1229,7 @@ void BLAS_chemv_testgen(int norm, enum blas_order_type order,
       a_vec[i + 1] = 0.0;
     }
     x_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);
-    if (n_i > 0 && x_vec == NULL) {
+    if (n_i > 0 && x_vec == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
     for (i = 0; i < n_i * incx_vec; i += incx_vec) {
@@ -1243,30 +1243,30 @@ void BLAS_chemv_testgen(int norm, enum blas_order_type order,
       int incy2;
       int incmi = 1;
       a1 = (float *) blas_malloc(n_i * n_i * sizeof(float));
-      if (n_i * n_i > 0 && a1 == NULL) {
+      if (n_i * n_i > 0 && a1 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       a2 = (float *) blas_malloc(n_i * n_i * sizeof(float));
-      if (n_i * n_i > 0 && a2 == NULL) {
+      if (n_i * n_i > 0 && a2 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       for (i = 0; i < n_i * n_i; ++i) {
         a1[i] = a2[i] = 0.0;
       }
       y1 = (float *) blas_malloc(n_i * sizeof(float));
-      if (n_i > 0 && y1 == NULL) {
+      if (n_i > 0 && y1 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incy1 = 1;
 
       y2 = (float *) blas_malloc(n_i * sizeof(float));
-      if (n_i > 0 && y2 == NULL) {
+      if (n_i > 0 && y2 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incy2 = 1;
 
       x0 = (float *) blas_malloc(n_i * sizeof(float));
-      if (n_i > 0 && x0 == NULL) {
+      if (n_i > 0 && x0 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incx0 = 1;
@@ -1276,12 +1276,12 @@ void BLAS_chemv_testgen(int norm, enum blas_order_type order,
       }
       head_r1_true = (double *) blas_malloc(n_i * sizeof(double));
       tail_r1_true = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && (head_r1_true == NULL || tail_r1_true == NULL)) {
+      if (n_i > 0 && (head_r1_true == nullptr || tail_r1_true == nullptr)) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       };
       head_r2_true = (double *) blas_malloc(n_i * sizeof(double));
       tail_r2_true = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && (head_r2_true == NULL || tail_r2_true == NULL)) {
+      if (n_i > 0 && (head_r2_true == nullptr || tail_r2_true == nullptr)) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       };
 
@@ -1786,7 +1786,7 @@ void BLAS_zhemv_testgen(int norm, enum blas_order_type order,
       incaij = 1;
     }
     if ((0 == incx) || (0 == incy)) {
-      BLAS_error(routine_name, 0, 0, NULL);
+      BLAS_error(routine_name, 0, 0, nullptr);
     }
     if (incx > 0) {
       x_starti = 0;
@@ -1812,7 +1812,7 @@ void BLAS_zhemv_testgen(int norm, enum blas_order_type order,
     inca_vec *= 2;
     incx_vec *= 2;
     a_vec = (double *) blas_malloc(n_i * sizeof(double) * 2);
-    if (n_i > 0 && a_vec == NULL) {
+    if (n_i > 0 && a_vec == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
     for (i = 0; i < n_i * inca_vec; i += inca_vec) {
@@ -1820,7 +1820,7 @@ void BLAS_zhemv_testgen(int norm, enum blas_order_type order,
       a_vec[i + 1] = 0.0;
     }
     x_vec = (double *) blas_malloc(n_i * sizeof(double) * 2);
-    if (n_i > 0 && x_vec == NULL) {
+    if (n_i > 0 && x_vec == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
     for (i = 0; i < n_i * incx_vec; i += incx_vec) {
@@ -1834,30 +1834,30 @@ void BLAS_zhemv_testgen(int norm, enum blas_order_type order,
       int incy2;
       int incmi = 1;
       a1 = (double *) blas_malloc(n_i * n_i * sizeof(double));
-      if (n_i * n_i > 0 && a1 == NULL) {
+      if (n_i * n_i > 0 && a1 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       a2 = (double *) blas_malloc(n_i * n_i * sizeof(double));
-      if (n_i * n_i > 0 && a2 == NULL) {
+      if (n_i * n_i > 0 && a2 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       for (i = 0; i < n_i * n_i; ++i) {
         a1[i] = a2[i] = 0.0;
       }
       y1 = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && y1 == NULL) {
+      if (n_i > 0 && y1 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incy1 = 1;
 
       y2 = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && y2 == NULL) {
+      if (n_i > 0 && y2 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incy2 = 1;
 
       x0 = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && x0 == NULL) {
+      if (n_i > 0 && x0 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incx0 = 1;
@@ -1867,12 +1867,12 @@ void BLAS_zhemv_testgen(int norm, enum blas_order_type order,
       }
       head_r1_true = (double *) blas_malloc(n_i * sizeof(double));
       tail_r1_true = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && (head_r1_true == NULL || tail_r1_true == NULL)) {
+      if (n_i > 0 && (head_r1_true == nullptr || tail_r1_true == nullptr)) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       };
       head_r2_true = (double *) blas_malloc(n_i * sizeof(double));
       tail_r2_true = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && (head_r2_true == NULL || tail_r2_true == NULL)) {
+      if (n_i > 0 && (head_r2_true == nullptr || tail_r2_true == nullptr)) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       };
 
@@ -2377,7 +2377,7 @@ void BLAS_zhemv_c_z_testgen(int norm, enum blas_order_type order,
       incaij = 1;
     }
     if ((0 == incx) || (0 == incy)) {
-      BLAS_error(routine_name, 0, 0, NULL);
+      BLAS_error(routine_name, 0, 0, nullptr);
     }
     if (incx > 0) {
       x_starti = 0;
@@ -2403,7 +2403,7 @@ void BLAS_zhemv_c_z_testgen(int norm, enum blas_order_type order,
     inca_vec *= 2;
     incx_vec *= 2;
     a_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);
-    if (n_i > 0 && a_vec == NULL) {
+    if (n_i > 0 && a_vec == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
     for (i = 0; i < n_i * inca_vec; i += inca_vec) {
@@ -2411,7 +2411,7 @@ void BLAS_zhemv_c_z_testgen(int norm, enum blas_order_type order,
       a_vec[i + 1] = 0.0;
     }
     x_vec = (double *) blas_malloc(n_i * sizeof(double) * 2);
-    if (n_i > 0 && x_vec == NULL) {
+    if (n_i > 0 && x_vec == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
     for (i = 0; i < n_i * incx_vec; i += incx_vec) {
@@ -2425,30 +2425,30 @@ void BLAS_zhemv_c_z_testgen(int norm, enum blas_order_type order,
       int incy2;
       int incmi = 1;
       a1 = (float *) blas_malloc(n_i * n_i * sizeof(float));
-      if (n_i * n_i > 0 && a1 == NULL) {
+      if (n_i * n_i > 0 && a1 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       a2 = (float *) blas_malloc(n_i * n_i * sizeof(float));
-      if (n_i * n_i > 0 && a2 == NULL) {
+      if (n_i * n_i > 0 && a2 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       for (i = 0; i < n_i * n_i; ++i) {
         a1[i] = a2[i] = 0.0;
       }
       y1 = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && y1 == NULL) {
+      if (n_i > 0 && y1 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incy1 = 1;
 
       y2 = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && y2 == NULL) {
+      if (n_i > 0 && y2 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incy2 = 1;
 
       x0 = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && x0 == NULL) {
+      if (n_i > 0 && x0 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incx0 = 1;
@@ -2458,12 +2458,12 @@ void BLAS_zhemv_c_z_testgen(int norm, enum blas_order_type order,
       }
       head_r1_true = (double *) blas_malloc(n_i * sizeof(double));
       tail_r1_true = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && (head_r1_true == NULL || tail_r1_true == NULL)) {
+      if (n_i > 0 && (head_r1_true == nullptr || tail_r1_true == nullptr)) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       };
       head_r2_true = (double *) blas_malloc(n_i * sizeof(double));
       tail_r2_true = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && (head_r2_true == NULL || tail_r2_true == NULL)) {
+      if (n_i > 0 && (head_r2_true == nullptr || tail_r2_true == nullptr)) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       };
 
@@ -2968,7 +2968,7 @@ void BLAS_zhemv_z_c_testgen(int norm, enum blas_order_type order,
       incaij = 1;
     }
     if ((0 == incx) || (0 == incy)) {
-      BLAS_error(routine_name, 0, 0, NULL);
+      BLAS_error(routine_name, 0, 0, nullptr);
     }
     if (incx > 0) {
       x_starti = 0;
@@ -2994,7 +2994,7 @@ void BLAS_zhemv_z_c_testgen(int norm, enum blas_order_type order,
     inca_vec *= 2;
     incx_vec *= 2;
     a_vec = (double *) blas_malloc(n_i * sizeof(double) * 2);
-    if (n_i > 0 && a_vec == NULL) {
+    if (n_i > 0 && a_vec == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
     for (i = 0; i < n_i * inca_vec; i += inca_vec) {
@@ -3002,7 +3002,7 @@ void BLAS_zhemv_z_c_testgen(int norm, enum blas_order_type order,
       a_vec[i + 1] = 0.0;
     }
     x_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);
-    if (n_i > 0 && x_vec == NULL) {
+    if (n_i > 0 && x_vec == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
     for (i = 0; i < n_i * incx_vec; i += incx_vec) {
@@ -3016,30 +3016,30 @@ void BLAS_zhemv_z_c_testgen(int norm, enum blas_order_type order,
       int incy2;
       int incmi = 1;
       a1 = (double *) blas_malloc(n_i * n_i * sizeof(double));
-      if (n_i * n_i > 0 && a1 == NULL) {
+      if (n_i * n_i > 0 && a1 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       a2 = (double *) blas_malloc(n_i * n_i * sizeof(double));
-      if (n_i * n_i > 0 && a2 == NULL) {
+      if (n_i * n_i > 0 && a2 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       for (i = 0; i < n_i * n_i; ++i) {
         a1[i] = a2[i] = 0.0;
       }
       y1 = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && y1 == NULL) {
+      if (n_i > 0 && y1 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incy1 = 1;
 
       y2 = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && y2 == NULL) {
+      if (n_i > 0 && y2 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incy2 = 1;
 
       x0 = (float *) blas_malloc(n_i * sizeof(float));
-      if (n_i > 0 && x0 == NULL) {
+      if (n_i > 0 && x0 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incx0 = 1;
@@ -3049,12 +3049,12 @@ void BLAS_zhemv_z_c_testgen(int norm, enum blas_order_type order,
       }
       head_r1_true = (double *) blas_malloc(n_i * sizeof(double));
       tail_r1_true = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && (head_r1_true == NULL || tail_r1_true == NULL)) {
+      if (n_i > 0 && (head_r1_true == nullptr || tail_r1_true == nullptr)) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       };
       head_r2_true = (double *) blas_malloc(n_i * sizeof(double));
       tail_r2_true = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && (head_r2_true == NULL || tail_r2_true == NULL)) {
+      if (n_i > 0 && (head_r2_true == nullptr || tail_r2_true == nullptr)) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       };
 
@@ -3559,7 +3559,7 @@ void BLAS_zhemv_c_c_testgen(int norm, enum blas_order_type order,
       incaij = 1;
     }
     if ((0 == incx) || (0 == incy)) {
-      BLAS_error(routine_name, 0, 0, NULL);
+      BLAS_error(routine_name, 0, 0, nullptr);
     }
     if (incx > 0) {
       x_starti = 0;
@@ -3585,7 +3585,7 @@ void BLAS_zhemv_c_c_testgen(int norm, enum blas_order_type order,
     inca_vec *= 2;
     incx_vec *= 2;
     a_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);
-    if (n_i > 0 && a_vec == NULL) {
+    if (n_i > 0 && a_vec == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
     for (i = 0; i < n_i * inca_vec; i += inca_vec) {
@@ -3593,7 +3593,7 @@ void BLAS_zhemv_c_c_testgen(int norm, enum blas_order_type order,
       a_vec[i + 1] = 0.0;
     }
     x_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);
-    if (n_i > 0 && x_vec == NULL) {
+    if (n_i > 0 && x_vec == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
     for (i = 0; i < n_i * incx_vec; i += incx_vec) {
@@ -3607,30 +3607,30 @@ void BLAS_zhemv_c_c_testgen(int norm, enum blas_order_type order,
       int incy2;
       int incmi = 1;
       a1 = (float *) blas_malloc(n_i * n_i * sizeof(float));
-      if (n_i * n_i > 0 && a1 == NULL) {
+      if (n_i * n_i > 0 && a1 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       a2 = (float *) blas_malloc(n_i * n_i * sizeof(float));
-      if (n_i * n_i > 0 && a2 == NULL) {
+      if (n_i * n_i > 0 && a2 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       for (i = 0; i < n_i * n_i; ++i) {
         a1[i] = a2[i] = 0.0;
       }
       y1 = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && y1 == NULL) {
+      if (n_i > 0 && y1 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incy1 = 1;
 
       y2 = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && y2 == NULL) {
+      if (n_i > 0 && y2 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incy2 = 1;
 
       x0 = (float *) blas_malloc(n_i * sizeof(float));
-      if (n_i > 0 && x0 == NULL) {
+      if (n_i > 0 && x0 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incx0 = 1;
@@ -3640,12 +3640,12 @@ void BLAS_zhemv_c_c_testgen(int norm, enum blas_order_type order,
       }
       head_r1_true = (double *) blas_malloc(n_i * sizeof(double));
       tail_r1_true = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && (head_r1_true == NULL || tail_r1_true == NULL)) {
+      if (n_i > 0 && (head_r1_true == nullptr || tail_r1_true == nullptr)) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       };
       head_r2_true = (double *) blas_malloc(n_i * sizeof(double));
       tail_r2_true = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && (head_r2_true == NULL || tail_r2_true == NULL)) {
+      if (n_i > 0 && (head_r2_true == nullptr || tail_r2_true == nullptr)) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       };
 
@@ -4150,7 +4150,7 @@ void BLAS_zhemv_z_d_testgen(int norm, enum blas_order_type order,
       incaij = 1;
     }
     if ((0 == incx) || (0 == incy)) {
-      BLAS_error(routine_name, 0, 0, NULL);
+      BLAS_error(routine_name, 0, 0, nullptr);
     }
     if (incx > 0) {
       x_starti = 0;
@@ -4176,7 +4176,7 @@ void BLAS_zhemv_z_d_testgen(int norm, enum blas_order_type order,
     inca_vec *= 2;
 
     a_vec = (double *) blas_malloc(n_i * sizeof(double) * 2);
-    if (n_i > 0 && a_vec == NULL) {
+    if (n_i > 0 && a_vec == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
     for (i = 0; i < n_i * inca_vec; i += inca_vec) {
@@ -4184,7 +4184,7 @@ void BLAS_zhemv_z_d_testgen(int norm, enum blas_order_type order,
       a_vec[i + 1] = 0.0;
     }
     x_vec = (double *) blas_malloc(n_i * sizeof(double));
-    if (n_i > 0 && x_vec == NULL) {
+    if (n_i > 0 && x_vec == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
     for (i = 0; i < n_i * incx_vec; i += incx_vec) {
@@ -4197,30 +4197,30 @@ void BLAS_zhemv_z_d_testgen(int norm, enum blas_order_type order,
       int incy2;
       int incmi = 1;
       a1 = (double *) blas_malloc(n_i * n_i * sizeof(double));
-      if (n_i * n_i > 0 && a1 == NULL) {
+      if (n_i * n_i > 0 && a1 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       a2 = (double *) blas_malloc(n_i * n_i * sizeof(double));
-      if (n_i * n_i > 0 && a2 == NULL) {
+      if (n_i * n_i > 0 && a2 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       for (i = 0; i < n_i * n_i; ++i) {
         a1[i] = a2[i] = 0.0;
       }
       y1 = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && y1 == NULL) {
+      if (n_i > 0 && y1 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incy1 = 1;
 
       y2 = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && y2 == NULL) {
+      if (n_i > 0 && y2 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incy2 = 1;
 
       x0 = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && x0 == NULL) {
+      if (n_i > 0 && x0 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incx0 = 1;
@@ -4230,12 +4230,12 @@ void BLAS_zhemv_z_d_testgen(int norm, enum blas_order_type order,
       }
       head_r1_true = (double *) blas_malloc(n_i * sizeof(double));
       tail_r1_true = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && (head_r1_true == NULL || tail_r1_true == NULL)) {
+      if (n_i > 0 && (head_r1_true == nullptr || tail_r1_true == nullptr)) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       };
       head_r2_true = (double *) blas_malloc(n_i * sizeof(double));
       tail_r2_true = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && (head_r2_true == NULL || tail_r2_true == NULL)) {
+      if (n_i > 0 && (head_r2_true == nullptr || tail_r2_true == nullptr)) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       };
 
@@ -4437,7 +4437,7 @@ void BLAS_zhemv_z_d_testgen(int norm, enum blas_order_type order,
          version if x is real (since A is always complex). */
       double *xx_vec;
       xx_vec = (double *) blas_malloc(n_i * sizeof(double) * 2);
-      if (n_i > 0 && xx_vec == NULL) {
+      if (n_i > 0 && xx_vec == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
 
@@ -4672,7 +4672,7 @@ void BLAS_chemv_c_s_testgen(int norm, enum blas_order_type order,
       incaij = 1;
     }
     if ((0 == incx) || (0 == incy)) {
-      BLAS_error(routine_name, 0, 0, NULL);
+      BLAS_error(routine_name, 0, 0, nullptr);
     }
     if (incx > 0) {
       x_starti = 0;
@@ -4698,7 +4698,7 @@ void BLAS_chemv_c_s_testgen(int norm, enum blas_order_type order,
     inca_vec *= 2;
 
     a_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);
-    if (n_i > 0 && a_vec == NULL) {
+    if (n_i > 0 && a_vec == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
     for (i = 0; i < n_i * inca_vec; i += inca_vec) {
@@ -4706,7 +4706,7 @@ void BLAS_chemv_c_s_testgen(int norm, enum blas_order_type order,
       a_vec[i + 1] = 0.0;
     }
     x_vec = (float *) blas_malloc(n_i * sizeof(float));
-    if (n_i > 0 && x_vec == NULL) {
+    if (n_i > 0 && x_vec == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
     for (i = 0; i < n_i * incx_vec; i += incx_vec) {
@@ -4719,30 +4719,30 @@ void BLAS_chemv_c_s_testgen(int norm, enum blas_order_type order,
       int incy2;
       int incmi = 1;
       a1 = (float *) blas_malloc(n_i * n_i * sizeof(float));
-      if (n_i * n_i > 0 && a1 == NULL) {
+      if (n_i * n_i > 0 && a1 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       a2 = (float *) blas_malloc(n_i * n_i * sizeof(float));
-      if (n_i * n_i > 0 && a2 == NULL) {
+      if (n_i * n_i > 0 && a2 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       for (i = 0; i < n_i * n_i; ++i) {
         a1[i] = a2[i] = 0.0;
       }
       y1 = (float *) blas_malloc(n_i * sizeof(float));
-      if (n_i > 0 && y1 == NULL) {
+      if (n_i > 0 && y1 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incy1 = 1;
 
       y2 = (float *) blas_malloc(n_i * sizeof(float));
-      if (n_i > 0 && y2 == NULL) {
+      if (n_i > 0 && y2 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incy2 = 1;
 
       x0 = (float *) blas_malloc(n_i * sizeof(float));
-      if (n_i > 0 && x0 == NULL) {
+      if (n_i > 0 && x0 == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
       incx0 = 1;
@@ -4752,12 +4752,12 @@ void BLAS_chemv_c_s_testgen(int norm, enum blas_order_type order,
       }
       head_r1_true = (double *) blas_malloc(n_i * sizeof(double));
       tail_r1_true = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && (head_r1_true == NULL || tail_r1_true == NULL)) {
+      if (n_i > 0 && (head_r1_true == nullptr || tail_r1_true == nullptr)) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       };
       head_r2_true = (double *) blas_malloc(n_i * sizeof(double));
       tail_r2_true = (double *) blas_malloc(n_i * sizeof(double));
-      if (n_i > 0 && (head_r2_true == NULL || tail_r2_true == NULL)) {
+      if (n_i > 0 && (head_r2_true == nullptr || tail_r2_true == nullptr)) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       };
 
@@ -4959,7 +4959,7 @@ void BLAS_chemv_c_s_testgen(int norm, enum blas_order_type order,
          version if x is real (since A is always complex). */
       float *xx_vec;
       xx_vec = (float *) blas_malloc(n_i * sizeof(float) * 2);
-      if (n_i > 0 && xx_vec == NULL) {
+      if (n_i > 0 && xx_vec == nullptr) {
         BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
       }
 

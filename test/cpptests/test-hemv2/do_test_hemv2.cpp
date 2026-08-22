@@ -130,9 +130,9 @@ void do_test_zhemv2_z_c
   FPU_FIX_DECL;
 
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -152,44 +152,44 @@ void do_test_zhemv2_z_c
   FPU_FIX_START;
 
   y = (double *) blas_malloc(2 * n * sizeof(double) * 2);
-  if (2 * n > 0 && y == NULL) {
+  if (2 * n > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && y_gen == NULL) {
+  if (n > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && head_x_gen == NULL) {
+  if (n > 0 && head_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && tail_x_gen == NULL) {
+  if (n > 0 && tail_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n * n * sizeof(double) * 2);
-  if (2 * n * n > 0 && a == NULL) {
+  if (2 * n * n > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x = (float *) blas_malloc(2 * n * sizeof(float) * 2);
-  if (2 * n > 0 && head_x == NULL) {
+  if (2 * n > 0 && head_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x = (float *) blas_malloc(2 * n * sizeof(float) * 2);
-  if (2 * n > 0 && tail_x == NULL) {
+  if (2 * n > 0 && tail_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_vec = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && a_vec == NULL) {
+  if (n > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -541,9 +541,9 @@ void do_test_zhemv2_c_z
   FPU_FIX_DECL;
 
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -563,44 +563,44 @@ void do_test_zhemv2_c_z
   FPU_FIX_START;
 
   y = (double *) blas_malloc(2 * n * sizeof(double) * 2);
-  if (2 * n > 0 && y == NULL) {
+  if (2 * n > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && y_gen == NULL) {
+  if (n > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && head_x_gen == NULL) {
+  if (n > 0 && head_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && tail_x_gen == NULL) {
+  if (n > 0 && tail_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n * n * sizeof(float) * 2);
-  if (2 * n * n > 0 && a == NULL) {
+  if (2 * n * n > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x = (double *) blas_malloc(2 * n * sizeof(double) * 2);
-  if (2 * n > 0 && head_x == NULL) {
+  if (2 * n > 0 && head_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x = (double *) blas_malloc(2 * n * sizeof(double) * 2);
-  if (2 * n > 0 && tail_x == NULL) {
+  if (2 * n > 0 && tail_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_vec = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && a_vec == NULL) {
+  if (n > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -952,9 +952,9 @@ void do_test_zhemv2_c_c
   FPU_FIX_DECL;
 
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -974,44 +974,44 @@ void do_test_zhemv2_c_c
   FPU_FIX_START;
 
   y = (double *) blas_malloc(2 * n * sizeof(double) * 2);
-  if (2 * n > 0 && y == NULL) {
+  if (2 * n > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && y_gen == NULL) {
+  if (n > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && head_x_gen == NULL) {
+  if (n > 0 && head_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && tail_x_gen == NULL) {
+  if (n > 0 && tail_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n * n * sizeof(float) * 2);
-  if (2 * n * n > 0 && a == NULL) {
+  if (2 * n * n > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x = (float *) blas_malloc(2 * n * sizeof(float) * 2);
-  if (2 * n > 0 && head_x == NULL) {
+  if (2 * n > 0 && head_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x = (float *) blas_malloc(2 * n * sizeof(float) * 2);
-  if (2 * n > 0 && tail_x == NULL) {
+  if (2 * n > 0 && tail_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_vec = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && a_vec == NULL) {
+  if (n > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1363,9 +1363,9 @@ void do_test_chemv2_c_s
   FPU_FIX_DECL;
 
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -1385,44 +1385,44 @@ void do_test_chemv2_c_s
   FPU_FIX_START;
 
   y = (float *) blas_malloc(2 * n * sizeof(float) * 2);
-  if (2 * n > 0 && y == NULL) {
+  if (2 * n > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && y_gen == NULL) {
+  if (n > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x_gen = (float *) blas_malloc(n * sizeof(float));
-  if (n > 0 && head_x_gen == NULL) {
+  if (n > 0 && head_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_gen = (float *) blas_malloc(n * sizeof(float));
-  if (n > 0 && tail_x_gen == NULL) {
+  if (n > 0 && tail_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n * n * sizeof(float) * 2);
-  if (2 * n * n > 0 && a == NULL) {
+  if (2 * n * n > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x = (float *) blas_malloc(2 * n * sizeof(float));
-  if (2 * n > 0 && head_x == NULL) {
+  if (2 * n > 0 && head_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x = (float *) blas_malloc(2 * n * sizeof(float));
-  if (2 * n > 0 && tail_x == NULL) {
+  if (2 * n > 0 && tail_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_vec = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && a_vec == NULL) {
+  if (n > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1774,9 +1774,9 @@ void do_test_zhemv2_z_d
   FPU_FIX_DECL;
 
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -1796,44 +1796,44 @@ void do_test_zhemv2_z_d
   FPU_FIX_START;
 
   y = (double *) blas_malloc(2 * n * sizeof(double) * 2);
-  if (2 * n > 0 && y == NULL) {
+  if (2 * n > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && y_gen == NULL) {
+  if (n > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x_gen = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && head_x_gen == NULL) {
+  if (n > 0 && head_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_gen = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && tail_x_gen == NULL) {
+  if (n > 0 && tail_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n * n * sizeof(double) * 2);
-  if (2 * n * n > 0 && a == NULL) {
+  if (2 * n * n > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x = (double *) blas_malloc(2 * n * sizeof(double));
-  if (2 * n > 0 && head_x == NULL) {
+  if (2 * n > 0 && head_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x = (double *) blas_malloc(2 * n * sizeof(double));
-  if (2 * n > 0 && tail_x == NULL) {
+  if (2 * n > 0 && tail_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_vec = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && a_vec == NULL) {
+  if (n > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -2185,9 +2185,9 @@ void do_test_chemv2_x
   FPU_FIX_DECL;
 
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -2207,44 +2207,44 @@ void do_test_chemv2_x
   FPU_FIX_START;
 
   y = (float *) blas_malloc(2 * n * sizeof(float) * 2);
-  if (2 * n > 0 && y == NULL) {
+  if (2 * n > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && y_gen == NULL) {
+  if (n > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && head_x_gen == NULL) {
+  if (n > 0 && head_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && tail_x_gen == NULL) {
+  if (n > 0 && tail_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n * n * sizeof(float) * 2);
-  if (2 * n * n > 0 && a == NULL) {
+  if (2 * n * n > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x = (float *) blas_malloc(2 * n * sizeof(float) * 2);
-  if (2 * n > 0 && head_x == NULL) {
+  if (2 * n > 0 && head_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x = (float *) blas_malloc(2 * n * sizeof(float) * 2);
-  if (2 * n > 0 && tail_x == NULL) {
+  if (2 * n > 0 && tail_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_vec = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && a_vec == NULL) {
+  if (n > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -2619,9 +2619,9 @@ void do_test_zhemv2_x
   FPU_FIX_DECL;
 
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -2641,44 +2641,44 @@ void do_test_zhemv2_x
   FPU_FIX_START;
 
   y = (double *) blas_malloc(2 * n * sizeof(double) * 2);
-  if (2 * n > 0 && y == NULL) {
+  if (2 * n > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && y_gen == NULL) {
+  if (n > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && head_x_gen == NULL) {
+  if (n > 0 && head_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && tail_x_gen == NULL) {
+  if (n > 0 && tail_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n * n * sizeof(double) * 2);
-  if (2 * n * n > 0 && a == NULL) {
+  if (2 * n * n > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x = (double *) blas_malloc(2 * n * sizeof(double) * 2);
-  if (2 * n > 0 && head_x == NULL) {
+  if (2 * n > 0 && head_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x = (double *) blas_malloc(2 * n * sizeof(double) * 2);
-  if (2 * n > 0 && tail_x == NULL) {
+  if (2 * n > 0 && tail_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_vec = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && a_vec == NULL) {
+  if (n > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -3053,9 +3053,9 @@ void do_test_zhemv2_z_c_x
   FPU_FIX_DECL;
 
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -3075,44 +3075,44 @@ void do_test_zhemv2_z_c_x
   FPU_FIX_START;
 
   y = (double *) blas_malloc(2 * n * sizeof(double) * 2);
-  if (2 * n > 0 && y == NULL) {
+  if (2 * n > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && y_gen == NULL) {
+  if (n > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && head_x_gen == NULL) {
+  if (n > 0 && head_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && tail_x_gen == NULL) {
+  if (n > 0 && tail_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n * n * sizeof(double) * 2);
-  if (2 * n * n > 0 && a == NULL) {
+  if (2 * n * n > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x = (float *) blas_malloc(2 * n * sizeof(float) * 2);
-  if (2 * n > 0 && head_x == NULL) {
+  if (2 * n > 0 && head_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x = (float *) blas_malloc(2 * n * sizeof(float) * 2);
-  if (2 * n > 0 && tail_x == NULL) {
+  if (2 * n > 0 && tail_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_vec = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && a_vec == NULL) {
+  if (n > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -3487,9 +3487,9 @@ void do_test_zhemv2_c_z_x
   FPU_FIX_DECL;
 
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -3509,44 +3509,44 @@ void do_test_zhemv2_c_z_x
   FPU_FIX_START;
 
   y = (double *) blas_malloc(2 * n * sizeof(double) * 2);
-  if (2 * n > 0 && y == NULL) {
+  if (2 * n > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && y_gen == NULL) {
+  if (n > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && head_x_gen == NULL) {
+  if (n > 0 && head_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && tail_x_gen == NULL) {
+  if (n > 0 && tail_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n * n * sizeof(float) * 2);
-  if (2 * n * n > 0 && a == NULL) {
+  if (2 * n * n > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x = (double *) blas_malloc(2 * n * sizeof(double) * 2);
-  if (2 * n > 0 && head_x == NULL) {
+  if (2 * n > 0 && head_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x = (double *) blas_malloc(2 * n * sizeof(double) * 2);
-  if (2 * n > 0 && tail_x == NULL) {
+  if (2 * n > 0 && tail_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_vec = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && a_vec == NULL) {
+  if (n > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -3921,9 +3921,9 @@ void do_test_zhemv2_c_c_x
   FPU_FIX_DECL;
 
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -3943,44 +3943,44 @@ void do_test_zhemv2_c_c_x
   FPU_FIX_START;
 
   y = (double *) blas_malloc(2 * n * sizeof(double) * 2);
-  if (2 * n > 0 && y == NULL) {
+  if (2 * n > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && y_gen == NULL) {
+  if (n > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && head_x_gen == NULL) {
+  if (n > 0 && head_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && tail_x_gen == NULL) {
+  if (n > 0 && tail_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n * n * sizeof(float) * 2);
-  if (2 * n * n > 0 && a == NULL) {
+  if (2 * n * n > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x = (float *) blas_malloc(2 * n * sizeof(float) * 2);
-  if (2 * n > 0 && head_x == NULL) {
+  if (2 * n > 0 && head_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x = (float *) blas_malloc(2 * n * sizeof(float) * 2);
-  if (2 * n > 0 && tail_x == NULL) {
+  if (2 * n > 0 && tail_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_vec = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && a_vec == NULL) {
+  if (n > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -4355,9 +4355,9 @@ void do_test_chemv2_c_s_x
   FPU_FIX_DECL;
 
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -4377,44 +4377,44 @@ void do_test_chemv2_c_s_x
   FPU_FIX_START;
 
   y = (float *) blas_malloc(2 * n * sizeof(float) * 2);
-  if (2 * n > 0 && y == NULL) {
+  if (2 * n > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && y_gen == NULL) {
+  if (n > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x_gen = (float *) blas_malloc(n * sizeof(float));
-  if (n > 0 && head_x_gen == NULL) {
+  if (n > 0 && head_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_gen = (float *) blas_malloc(n * sizeof(float));
-  if (n > 0 && tail_x_gen == NULL) {
+  if (n > 0 && tail_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n * n * sizeof(float) * 2);
-  if (2 * n * n > 0 && a == NULL) {
+  if (2 * n * n > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x = (float *) blas_malloc(2 * n * sizeof(float));
-  if (2 * n > 0 && head_x == NULL) {
+  if (2 * n > 0 && head_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x = (float *) blas_malloc(2 * n * sizeof(float));
-  if (2 * n > 0 && tail_x == NULL) {
+  if (2 * n > 0 && tail_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_vec = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && a_vec == NULL) {
+  if (n > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -4789,9 +4789,9 @@ void do_test_zhemv2_z_d_x
   FPU_FIX_DECL;
 
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -4811,44 +4811,44 @@ void do_test_zhemv2_z_d_x
   FPU_FIX_START;
 
   y = (double *) blas_malloc(2 * n * sizeof(double) * 2);
-  if (2 * n > 0 && y == NULL) {
+  if (2 * n > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && y_gen == NULL) {
+  if (n > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x_gen = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && head_x_gen == NULL) {
+  if (n > 0 && head_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x_gen = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && tail_x_gen == NULL) {
+  if (n > 0 && tail_x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n * n * sizeof(double) * 2);
-  if (2 * n * n > 0 && a == NULL) {
+  if (2 * n * n > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_x = (double *) blas_malloc(2 * n * sizeof(double));
-  if (2 * n > 0 && head_x == NULL) {
+  if (2 * n > 0 && head_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   tail_x = (double *) blas_malloc(2 * n * sizeof(double));
-  if (2 * n > 0 && tail_x == NULL) {
+  if (2 * n > 0 && tail_x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_vec = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && a_vec == NULL) {
+  if (n > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -5211,7 +5211,7 @@ int main(int argc, char **argv)
   seed = 1999;
 
   if (nsizes < 0 || ntests < 0 || debug < 0 || debug > 3)
-    BLAS_error("Testing hemv2", 0, 0, NULL);
+    BLAS_error("Testing hemv2", 0, 0, nullptr);
 
   printf("Testing %s...\n", base_routine);
   printf("INPUT: nsizes = %d, ntests = %d, thresh = %4.2f, debug = %d\n\n",
@@ -5220,7 +5220,7 @@ int main(int argc, char **argv)
 
 
   if (nsizes < 0 || nsizes > NUM_DATA)
-    BLAS_error("do_test_hemv2", -1, nsizes, NULL);
+    BLAS_error("do_test_hemv2", -1, nsizes, nullptr);
 
   fname = "BLAS_zhemv2_z_c";
   printf("Testing %s...\n", fname);

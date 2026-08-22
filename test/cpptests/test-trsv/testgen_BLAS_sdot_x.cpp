@@ -212,7 +212,7 @@ testgen_BLAS_sdot_x(int n, int n_fix2, int n_mix, int /* norm */,
   double tmp_t;
 
   if (n_fix2 + n_mix < n)
-    BLAS_error("testgen_BLAS_sdot_x", 0, 0, NULL);
+    BLAS_error("testgen_BLAS_sdot_x", 0, 0, nullptr);
 
   if (alpha_flag == 0)
     *alpha = xrand(seed);

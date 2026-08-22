@@ -101,7 +101,7 @@ void do_test_ssum_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -119,11 +119,11 @@ void do_test_ssum_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * sizeof(float));
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * sizeof(float));
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -356,7 +356,7 @@ void do_test_dsum_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -374,11 +374,11 @@ void do_test_dsum_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * sizeof(double));
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -611,7 +611,7 @@ void do_test_csum_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -629,11 +629,11 @@ void do_test_csum_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * sizeof(float) * 2);
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -870,7 +870,7 @@ void do_test_zsum_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -888,11 +888,11 @@ void do_test_zsum_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * sizeof(double) * 2);
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1100,7 +1100,7 @@ int main(int argc, char **argv)
   seed = 1999;
 
   if (nsizes < 0 || ntests < 0 || debug < 0 || debug > 3)
-    BLAS_error("Testing sum", 0, 0, NULL);
+    BLAS_error("Testing sum", 0, 0, nullptr);
 
   printf("Testing %s...\n", base_routine);
   printf("INPUT: nsizes = %d, ntests = %d, thresh = %4.2f, debug = %d\n\n",

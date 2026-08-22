@@ -666,13 +666,13 @@ void cprint_hbmv_matrix(void *a, int n, int k, int lda,
   int row;
   float *x;
   x = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && x == NULL) {
+  if (n > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   for (row = 0; row < n; row++) {
     chbmv_copy_row(order, uplo, n, a, k, lda, x, row);
-    cprint_vector(x, n, 1, NULL);
+    cprint_vector(x, n, 1, nullptr);
   }
   printf("\n");
   blas_free(x);
@@ -685,13 +685,13 @@ void zprint_hbmv_matrix(void *a, int n, int k, int lda,
   int row;
   double *x;
   x = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && x == NULL) {
+  if (n > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   for (row = 0; row < n; row++) {
     zhbmv_copy_row(order, uplo, n, a, k, lda, x, row);
-    zprint_vector(x, n, 1, NULL);
+    zprint_vector(x, n, 1, nullptr);
   }
   printf("\n");
   blas_free(x);

@@ -80,11 +80,11 @@ void BLAS_sdot2_x(enum blas_conj_type /* conj */, int n, float alpha,
 
       /* Test the input parameters. */
       if (n < 0)
-        BLAS_error(routine_name, -2, n, NULL);
+        BLAS_error(routine_name, -2, n, nullptr);
       else if (incx == 0)
-        BLAS_error(routine_name, -5, incx, NULL);
+        BLAS_error(routine_name, -5, incx, nullptr);
       else if (incy == 0)
-        BLAS_error(routine_name, -8, incy, NULL);
+        BLAS_error(routine_name, -8, incy, nullptr);
 
       /* Immediate return. */
       if ((beta_i == 1.0) && (n == 0 || (alpha_i == 0.0)))
@@ -146,11 +146,11 @@ void BLAS_sdot2_x(enum blas_conj_type /* conj */, int n, float alpha,
 
       /* Test the input parameters. */
       if (n < 0)
-        BLAS_error(routine_name, -2, n, NULL);
+        BLAS_error(routine_name, -2, n, nullptr);
       else if (incx == 0)
-        BLAS_error(routine_name, -5, incx, NULL);
+        BLAS_error(routine_name, -5, incx, nullptr);
       else if (incy == 0)
-        BLAS_error(routine_name, -8, incy, NULL);
+        BLAS_error(routine_name, -8, incy, nullptr);
 
       /* Immediate return. */
       if ((beta_i == 1.0) && (n == 0 || (alpha_i == 0.0)))
@@ -215,11 +215,11 @@ void BLAS_sdot2_x(enum blas_conj_type /* conj */, int n, float alpha,
 
       /* Test the input parameters. */
       if (n < 0)
-        BLAS_error(routine_name, -2, n, NULL);
+        BLAS_error(routine_name, -2, n, nullptr);
       else if (incx == 0)
-        BLAS_error(routine_name, -5, incx, NULL);
+        BLAS_error(routine_name, -5, incx, nullptr);
       else if (incy == 0)
-        BLAS_error(routine_name, -8, incy, NULL);
+        BLAS_error(routine_name, -8, incy, nullptr);
 
       /* Immediate return. */
       if ((beta_i == 1.0) && (n == 0 || (alpha_i == 0.0)))
@@ -463,11 +463,11 @@ void BLAS_ddot2_x(enum blas_conj_type /* conj */, int n, double alpha,
 
       /* Test the input parameters. */
       if (n < 0)
-        BLAS_error(routine_name, -2, n, NULL);
+        BLAS_error(routine_name, -2, n, nullptr);
       else if (incx == 0)
-        BLAS_error(routine_name, -5, incx, NULL);
+        BLAS_error(routine_name, -5, incx, nullptr);
       else if (incy == 0)
-        BLAS_error(routine_name, -8, incy, NULL);
+        BLAS_error(routine_name, -8, incy, nullptr);
 
       /* Immediate return. */
       if ((beta_i == 1.0) && (n == 0 || (alpha_i == 0.0)))
@@ -529,11 +529,11 @@ void BLAS_ddot2_x(enum blas_conj_type /* conj */, int n, double alpha,
 
       /* Test the input parameters. */
       if (n < 0)
-        BLAS_error(routine_name, -2, n, NULL);
+        BLAS_error(routine_name, -2, n, nullptr);
       else if (incx == 0)
-        BLAS_error(routine_name, -5, incx, NULL);
+        BLAS_error(routine_name, -5, incx, nullptr);
       else if (incy == 0)
-        BLAS_error(routine_name, -8, incy, NULL);
+        BLAS_error(routine_name, -8, incy, nullptr);
 
       /* Immediate return. */
       if ((beta_i == 1.0) && (n == 0 || (alpha_i == 0.0)))
@@ -598,11 +598,11 @@ void BLAS_ddot2_x(enum blas_conj_type /* conj */, int n, double alpha,
 
       /* Test the input parameters. */
       if (n < 0)
-        BLAS_error(routine_name, -2, n, NULL);
+        BLAS_error(routine_name, -2, n, nullptr);
       else if (incx == 0)
-        BLAS_error(routine_name, -5, incx, NULL);
+        BLAS_error(routine_name, -5, incx, nullptr);
       else if (incy == 0)
-        BLAS_error(routine_name, -8, incy, NULL);
+        BLAS_error(routine_name, -8, incy, nullptr);
 
       /* Immediate return. */
       if ((beta_i == 1.0) && (n == 0 || (alpha_i == 0.0)))
@@ -897,11 +897,11 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
 
       /* Test the input parameters. */
       if (n < 0)
-        BLAS_error(routine_name, -2, n, NULL);
+        BLAS_error(routine_name, -2, n, nullptr);
       else if (incx == 0)
-        BLAS_error(routine_name, -5, incx, NULL);
+        BLAS_error(routine_name, -5, incx, nullptr);
       else if (incy == 0)
-        BLAS_error(routine_name, -8, incy, NULL);
+        BLAS_error(routine_name, -8, incy, nullptr);
 
       /* Immediate return. */
       if (((beta_i[0] == 1.0 && beta_i[1] == 0.0))
@@ -1017,11 +1017,11 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
 
       /* Test the input parameters. */
       if (n < 0)
-        BLAS_error(routine_name, -2, n, NULL);
+        BLAS_error(routine_name, -2, n, nullptr);
       else if (incx == 0)
-        BLAS_error(routine_name, -5, incx, NULL);
+        BLAS_error(routine_name, -5, incx, nullptr);
       else if (incy == 0)
-        BLAS_error(routine_name, -8, incy, NULL);
+        BLAS_error(routine_name, -8, incy, nullptr);
 
       /* Immediate return. */
       if (((beta_i[0] == 1.0 && beta_i[1] == 0.0))
@@ -1134,11 +1134,11 @@ void BLAS_cdot2_x(enum blas_conj_type conj, int n, const void *alpha,
 
       /* Test the input parameters. */
       if (n < 0)
-        BLAS_error(routine_name, -2, n, NULL);
+        BLAS_error(routine_name, -2, n, nullptr);
       else if (incx == 0)
-        BLAS_error(routine_name, -5, incx, NULL);
+        BLAS_error(routine_name, -5, incx, nullptr);
       else if (incy == 0)
-        BLAS_error(routine_name, -8, incy, NULL);
+        BLAS_error(routine_name, -8, incy, nullptr);
 
       /* Immediate return. */
       if (((beta_i[0] == 1.0 && beta_i[1] == 0.0))
@@ -2128,11 +2128,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
 
       /* Test the input parameters. */
       if (n < 0)
-        BLAS_error(routine_name, -2, n, NULL);
+        BLAS_error(routine_name, -2, n, nullptr);
       else if (incx == 0)
-        BLAS_error(routine_name, -5, incx, NULL);
+        BLAS_error(routine_name, -5, incx, nullptr);
       else if (incy == 0)
-        BLAS_error(routine_name, -8, incy, NULL);
+        BLAS_error(routine_name, -8, incy, nullptr);
 
       /* Immediate return. */
       if (((beta_i[0] == 1.0 && beta_i[1] == 0.0))
@@ -2242,11 +2242,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
 
       /* Test the input parameters. */
       if (n < 0)
-        BLAS_error(routine_name, -2, n, NULL);
+        BLAS_error(routine_name, -2, n, nullptr);
       else if (incx == 0)
-        BLAS_error(routine_name, -5, incx, NULL);
+        BLAS_error(routine_name, -5, incx, nullptr);
       else if (incy == 0)
-        BLAS_error(routine_name, -8, incy, NULL);
+        BLAS_error(routine_name, -8, incy, nullptr);
 
       /* Immediate return. */
       if (((beta_i[0] == 1.0 && beta_i[1] == 0.0))
@@ -2359,11 +2359,11 @@ void BLAS_zdot2_x(enum blas_conj_type conj, int n, const void *alpha,
 
       /* Test the input parameters. */
       if (n < 0)
-        BLAS_error(routine_name, -2, n, NULL);
+        BLAS_error(routine_name, -2, n, nullptr);
       else if (incx == 0)
-        BLAS_error(routine_name, -5, incx, NULL);
+        BLAS_error(routine_name, -5, incx, nullptr);
       else if (incy == 0)
-        BLAS_error(routine_name, -8, incy, NULL);
+        BLAS_error(routine_name, -8, incy, nullptr);
 
       /* Immediate return. */
       if (((beta_i[0] == 1.0 && beta_i[1] == 0.0))

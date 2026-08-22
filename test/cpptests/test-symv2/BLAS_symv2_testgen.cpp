@@ -83,7 +83,7 @@ void BLAS_ssymv2_testgen(int norm, enum blas_order_type order,
 
 
   temp = (float *) blas_malloc(n * incA * sizeof(float));
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -190,7 +190,7 @@ void BLAS_dsymv2_testgen(int norm, enum blas_order_type order,
 
 
   temp = (double *) blas_malloc(n * incA * sizeof(double));
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -296,7 +296,7 @@ void BLAS_csymv2_testgen(int norm, enum blas_order_type order,
   incy *= 2;
   incA *= 2;
   temp = (float *) blas_malloc(n * incA * sizeof(float) * 2);
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -403,7 +403,7 @@ void BLAS_zsymv2_testgen(int norm, enum blas_order_type order,
   incy *= 2;
   incA *= 2;
   temp = (double *) blas_malloc(n * incA * sizeof(double) * 2);
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -511,7 +511,7 @@ void BLAS_csymv2_s_s_testgen(int norm, enum blas_order_type order,
   incy *= 2;
 
   temp = (float *) blas_malloc(n * incA * sizeof(float));
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -618,7 +618,7 @@ void BLAS_csymv2_s_c_testgen(int norm, enum blas_order_type order,
   incy *= 2;
 
   temp = (float *) blas_malloc(n * incA * sizeof(float));
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -726,7 +726,7 @@ void BLAS_csymv2_c_s_testgen(int norm, enum blas_order_type order,
   incy *= 2;
   incA *= 2;
   temp = (float *) blas_malloc(n * incA * sizeof(float) * 2);
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -834,7 +834,7 @@ void BLAS_zsymv2_d_d_testgen(int norm, enum blas_order_type order,
   incy *= 2;
 
   temp = (double *) blas_malloc(n * incA * sizeof(double));
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -941,7 +941,7 @@ void BLAS_zsymv2_d_z_testgen(int norm, enum blas_order_type order,
   incy *= 2;
 
   temp = (double *) blas_malloc(n * incA * sizeof(double));
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1049,7 +1049,7 @@ void BLAS_zsymv2_z_d_testgen(int norm, enum blas_order_type order,
   incy *= 2;
   incA *= 2;
   temp = (double *) blas_malloc(n * incA * sizeof(double) * 2);
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1157,7 +1157,7 @@ void BLAS_dsymv2_s_s_testgen(int norm, enum blas_order_type order,
 
 
   temp = (float *) blas_malloc(n * incA * sizeof(float));
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1264,7 +1264,7 @@ void BLAS_dsymv2_s_d_testgen(int norm, enum blas_order_type order,
 
 
   temp = (float *) blas_malloc(n * incA * sizeof(float));
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1371,7 +1371,7 @@ void BLAS_dsymv2_d_s_testgen(int norm, enum blas_order_type order,
 
 
   temp = (double *) blas_malloc(n * incA * sizeof(double));
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1477,7 +1477,7 @@ void BLAS_zsymv2_c_c_testgen(int norm, enum blas_order_type order,
   incy *= 2;
   incA *= 2;
   temp = (float *) blas_malloc(n * incA * sizeof(float) * 2);
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1584,7 +1584,7 @@ void BLAS_zsymv2_c_z_testgen(int norm, enum blas_order_type order,
   incy *= 2;
   incA *= 2;
   temp = (float *) blas_malloc(n * incA * sizeof(float) * 2);
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1691,7 +1691,7 @@ void BLAS_zsymv2_z_c_testgen(int norm, enum blas_order_type order,
   incy *= 2;
   incA *= 2;
   temp = (double *) blas_malloc(n * incA * sizeof(double) * 2);
-  if (n * incA > 0 && temp == NULL) {
+  if (n * incA > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 

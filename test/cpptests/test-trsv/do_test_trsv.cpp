@@ -153,7 +153,7 @@ double do_test_dtrsv_s(int n,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -169,28 +169,28 @@ double do_test_dtrsv_s(int n,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * sizeof(double));
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   T = (float *) blas_malloc(4 * n * n * sizeof(float));
-  if (4 * n * n > 0 && T == NULL) {
+  if (4 * n * n > 0 && T == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(n * sizeof(float));
-  if (n > 0 && temp == NULL) {
+  if (n > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double));
   tail_r_true = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -493,7 +493,7 @@ double do_test_dtrsv_s(int n,
 
                               if (j > 0)
                                 printf("        ");
-                              sprint_vector(temp, n, 1, NULL);
+                              sprint_vector(temp, n, 1, nullptr);
                             }
 
                             ix = 0;
@@ -731,7 +731,7 @@ double do_test_ztrsv_c(int n,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -747,28 +747,28 @@ double do_test_ztrsv_c(int n,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * sizeof(double) * 2);
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   T = (float *) blas_malloc(4 * n * n * sizeof(float) * 2);
-  if (4 * n * n > 0 && T == NULL) {
+  if (4 * n * n > 0 && T == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && temp == NULL) {
+  if (n > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1100,7 +1100,7 @@ double do_test_ztrsv_c(int n,
 
                               if (j > 0)
                                 printf("        ");
-                              cprint_vector(temp, n, 1, NULL);
+                              cprint_vector(temp, n, 1, nullptr);
                             }
 
                             ix = 0;
@@ -1343,7 +1343,7 @@ double do_test_ctrsv_s(int n,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -1359,28 +1359,28 @@ double do_test_ctrsv_s(int n,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * sizeof(float) * 2);
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   T = (float *) blas_malloc(4 * n * n * sizeof(float));
-  if (4 * n * n > 0 && T == NULL) {
+  if (4 * n * n > 0 && T == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(n * sizeof(float));
-  if (n > 0 && temp == NULL) {
+  if (n > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1711,7 +1711,7 @@ double do_test_ctrsv_s(int n,
 
                               if (j > 0)
                                 printf("        ");
-                              sprint_vector(temp, n, 1, NULL);
+                              sprint_vector(temp, n, 1, nullptr);
                             }
 
                             ix = 0;
@@ -1953,7 +1953,7 @@ double do_test_ztrsv_d(int n,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -1969,28 +1969,28 @@ double do_test_ztrsv_d(int n,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * sizeof(double) * 2);
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   T = (double *) blas_malloc(4 * n * n * sizeof(double));
-  if (4 * n * n > 0 && T == NULL) {
+  if (4 * n * n > 0 && T == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && temp == NULL) {
+  if (n > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -2321,7 +2321,7 @@ double do_test_ztrsv_d(int n,
 
                               if (j > 0)
                                 printf("        ");
-                              dprint_vector(temp, n, 1, NULL);
+                              dprint_vector(temp, n, 1, nullptr);
                             }
 
                             ix = 0;
@@ -2563,7 +2563,7 @@ double do_test_strsv_x(int n,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -2579,28 +2579,28 @@ double do_test_strsv_x(int n,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * sizeof(float));
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * sizeof(float));
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   T = (float *) blas_malloc(4 * n * n * sizeof(float));
-  if (4 * n * n > 0 && T == NULL) {
+  if (4 * n * n > 0 && T == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(n * sizeof(float));
-  if (n > 0 && temp == NULL) {
+  if (n > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double));
   tail_r_true = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -2924,7 +2924,7 @@ double do_test_strsv_x(int n,
 
                                 if (j > 0)
                                   printf("        ");
-                                sprint_vector(temp, n, 1, NULL);
+                                sprint_vector(temp, n, 1, nullptr);
                               }
 
                               ix = 0;
@@ -3162,7 +3162,7 @@ double do_test_dtrsv_x(int n,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -3178,28 +3178,28 @@ double do_test_dtrsv_x(int n,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * sizeof(double));
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   T = (double *) blas_malloc(4 * n * n * sizeof(double));
-  if (4 * n * n > 0 && T == NULL) {
+  if (4 * n * n > 0 && T == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && temp == NULL) {
+  if (n > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double));
   tail_r_true = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -3523,7 +3523,7 @@ double do_test_dtrsv_x(int n,
 
                                 if (j > 0)
                                   printf("        ");
-                                dprint_vector(temp, n, 1, NULL);
+                                dprint_vector(temp, n, 1, nullptr);
                               }
 
                               ix = 0;
@@ -3762,7 +3762,7 @@ double do_test_dtrsv_s_x(int n,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -3778,28 +3778,28 @@ double do_test_dtrsv_s_x(int n,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * sizeof(double));
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   T = (float *) blas_malloc(4 * n * n * sizeof(float));
-  if (4 * n * n > 0 && T == NULL) {
+  if (4 * n * n > 0 && T == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(n * sizeof(float));
-  if (n > 0 && temp == NULL) {
+  if (n > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double));
   tail_r_true = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -4123,7 +4123,7 @@ double do_test_dtrsv_s_x(int n,
 
                                 if (j > 0)
                                   printf("        ");
-                                sprint_vector(temp, n, 1, NULL);
+                                sprint_vector(temp, n, 1, nullptr);
                               }
 
                               ix = 0;
@@ -4362,7 +4362,7 @@ double do_test_ctrsv_x(int n,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -4378,28 +4378,28 @@ double do_test_ctrsv_x(int n,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * sizeof(float) * 2);
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   T = (float *) blas_malloc(4 * n * n * sizeof(float) * 2);
-  if (4 * n * n > 0 && T == NULL) {
+  if (4 * n * n > 0 && T == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && temp == NULL) {
+  if (n > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -4752,7 +4752,7 @@ double do_test_ctrsv_x(int n,
 
                                 if (j > 0)
                                   printf("        ");
-                                cprint_vector(temp, n, 1, NULL);
+                                cprint_vector(temp, n, 1, nullptr);
                               }
 
                               ix = 0;
@@ -4996,7 +4996,7 @@ double do_test_ztrsv_x(int n,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -5012,28 +5012,28 @@ double do_test_ztrsv_x(int n,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * sizeof(double) * 2);
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   T = (double *) blas_malloc(4 * n * n * sizeof(double) * 2);
-  if (4 * n * n > 0 && T == NULL) {
+  if (4 * n * n > 0 && T == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && temp == NULL) {
+  if (n > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -5386,7 +5386,7 @@ double do_test_ztrsv_x(int n,
 
                                 if (j > 0)
                                   printf("        ");
-                                zprint_vector(temp, n, 1, NULL);
+                                zprint_vector(temp, n, 1, nullptr);
                               }
 
                               ix = 0;
@@ -5633,7 +5633,7 @@ double do_test_ztrsv_c_x(int n,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -5649,28 +5649,28 @@ double do_test_ztrsv_c_x(int n,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * sizeof(double) * 2);
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   T = (float *) blas_malloc(4 * n * n * sizeof(float) * 2);
-  if (4 * n * n > 0 && T == NULL) {
+  if (4 * n * n > 0 && T == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && temp == NULL) {
+  if (n > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -6023,7 +6023,7 @@ double do_test_ztrsv_c_x(int n,
 
                                 if (j > 0)
                                   printf("        ");
-                                cprint_vector(temp, n, 1, NULL);
+                                cprint_vector(temp, n, 1, nullptr);
                               }
 
                               ix = 0;
@@ -6270,7 +6270,7 @@ double do_test_ctrsv_s_x(int n,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -6286,28 +6286,28 @@ double do_test_ctrsv_s_x(int n,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * sizeof(float) * 2);
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   T = (float *) blas_malloc(4 * n * n * sizeof(float));
-  if (4 * n * n > 0 && T == NULL) {
+  if (4 * n * n > 0 && T == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(n * sizeof(float));
-  if (n > 0 && temp == NULL) {
+  if (n > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -6659,7 +6659,7 @@ double do_test_ctrsv_s_x(int n,
 
                                 if (j > 0)
                                   printf("        ");
-                                sprint_vector(temp, n, 1, NULL);
+                                sprint_vector(temp, n, 1, nullptr);
                               }
 
                               ix = 0;
@@ -6904,7 +6904,7 @@ double do_test_ztrsv_d_x(int n,
 
   /* test for bad arguments */
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -6920,28 +6920,28 @@ double do_test_ztrsv_d_x(int n,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * sizeof(double) * 2);
-  if (n * 2 > 0 && x == NULL) {
+  if (n * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && x_gen == NULL) {
+  if (n > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   T = (double *) blas_malloc(4 * n * n * sizeof(double));
-  if (4 * n * n > 0 && T == NULL) {
+  if (4 * n * n > 0 && T == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && temp == NULL) {
+  if (n > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (n > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(n * sizeof(double));
-  if (n > 0 && ratios == NULL) {
+  if (n > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -7293,7 +7293,7 @@ double do_test_ztrsv_d_x(int n,
 
                                 if (j > 0)
                                   printf("        ");
-                                dprint_vector(temp, n, 1, NULL);
+                                dprint_vector(temp, n, 1, nullptr);
                               }
 
                               ix = 0;
@@ -7456,7 +7456,7 @@ int main(int argc, char **argv)
   seed = 1999;
 
   if (nsizes < 0 || ntests < 0 || debug < 0 || debug > 3)
-    BLAS_error("Testing trsv", 0, 0, NULL);
+    BLAS_error("Testing trsv", 0, 0, nullptr);
 
   printf("Testing %s...\n", base_routine);
   printf("INPUT: nsizes = %d, ntests = %d, thresh = %4.2f, debug = %d\n\n",

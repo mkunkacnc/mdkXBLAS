@@ -154,7 +154,7 @@ double do_test_dgemv_d_s(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -186,37 +186,37 @@ double do_test_dgemv_d_s(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double));
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double));
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (double *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(double));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -694,7 +694,7 @@ double do_test_dgemv_s_d(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -726,36 +726,36 @@ double do_test_dgemv_s_d(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(max_mn * 2 * sizeof(double));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double));
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double));
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A = (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1233,7 +1233,7 @@ double do_test_dgemv_s_s(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -1265,36 +1265,36 @@ double do_test_dgemv_s_s(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double));
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double));
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A = (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1773,7 +1773,7 @@ double do_test_zgemv_z_c(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -1805,38 +1805,38 @@ double do_test_zgemv_z_c(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float) * 2);
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (double *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(double) *
                            2);
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -2318,7 +2318,7 @@ double do_test_zgemv_c_z(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -2350,38 +2350,38 @@ double do_test_zgemv_c_z(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float) *
                           2);
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -2863,7 +2863,7 @@ double do_test_zgemv_c_c(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -2895,38 +2895,38 @@ double do_test_zgemv_c_c(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float) * 2);
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float) *
                           2);
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -3408,7 +3408,7 @@ double do_test_cgemv_c_s(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -3440,38 +3440,38 @@ double do_test_cgemv_c_s(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(max_mn * 2 * sizeof(float) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float) *
                           2);
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -3953,7 +3953,7 @@ double do_test_cgemv_s_c(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -3985,36 +3985,36 @@ double do_test_cgemv_s_c(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float) * 2);
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(max_mn * 2 * sizeof(float) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A = (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -4496,7 +4496,7 @@ double do_test_cgemv_s_s(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -4528,36 +4528,36 @@ double do_test_cgemv_s_s(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(max_mn * 2 * sizeof(float) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A = (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -5039,7 +5039,7 @@ double do_test_zgemv_z_d(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -5071,38 +5071,38 @@ double do_test_zgemv_z_d(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(max_mn * 2 * sizeof(double));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (double *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(double) *
                            2);
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -5584,7 +5584,7 @@ double do_test_zgemv_d_z(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -5616,37 +5616,37 @@ double do_test_zgemv_d_z(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (double *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(double));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -6128,7 +6128,7 @@ double do_test_zgemv_d_d(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -6160,37 +6160,37 @@ double do_test_zgemv_d_d(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(max_mn * 2 * sizeof(double));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (double *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(double));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -6671,7 +6671,7 @@ double do_test_sgemv_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -6703,36 +6703,36 @@ double do_test_sgemv_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(max_mn * 2 * sizeof(float));
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double));
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A = (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -7231,7 +7231,7 @@ double do_test_dgemv_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -7263,37 +7263,37 @@ double do_test_dgemv_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(max_mn * 2 * sizeof(double));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double));
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double));
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (double *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(double));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -7793,7 +7793,7 @@ double do_test_cgemv_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -7825,38 +7825,38 @@ double do_test_cgemv_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float) * 2);
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(max_mn * 2 * sizeof(float) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float) *
                           2);
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -8360,7 +8360,7 @@ double do_test_zgemv_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -8392,38 +8392,38 @@ double do_test_zgemv_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (double *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(double) *
                            2);
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -8926,7 +8926,7 @@ double do_test_dgemv_d_s_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -8958,37 +8958,37 @@ double do_test_dgemv_d_s_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double));
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double));
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (double *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(double));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -9487,7 +9487,7 @@ double do_test_dgemv_s_d_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -9519,36 +9519,36 @@ double do_test_dgemv_s_d_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(max_mn * 2 * sizeof(double));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double));
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double));
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A = (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -10047,7 +10047,7 @@ double do_test_dgemv_s_s_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -10079,36 +10079,36 @@ double do_test_dgemv_s_s_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double));
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double));
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A = (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -10608,7 +10608,7 @@ double do_test_zgemv_z_c_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -10640,38 +10640,38 @@ double do_test_zgemv_z_c_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float) * 2);
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (double *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(double) *
                            2);
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -11176,7 +11176,7 @@ double do_test_zgemv_c_z_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -11208,38 +11208,38 @@ double do_test_zgemv_c_z_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float) *
                           2);
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -11744,7 +11744,7 @@ double do_test_zgemv_c_c_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -11776,38 +11776,38 @@ double do_test_zgemv_c_c_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float) * 2);
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float) *
                           2);
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -12312,7 +12312,7 @@ double do_test_cgemv_c_s_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -12344,38 +12344,38 @@ double do_test_cgemv_c_s_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(max_mn * 2 * sizeof(float) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float) *
                           2);
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -12880,7 +12880,7 @@ double do_test_cgemv_s_c_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -12912,36 +12912,36 @@ double do_test_cgemv_s_c_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float) * 2);
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(max_mn * 2 * sizeof(float) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A = (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -13446,7 +13446,7 @@ double do_test_cgemv_s_s_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -13478,36 +13478,36 @@ double do_test_cgemv_s_s_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(max_mn * 2 * sizeof(float));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(max_mn * 2 * sizeof(float) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(max_mn * sizeof(float) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (float *) blas_malloc(max_mn * sizeof(float));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A = (float *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(float));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -14012,7 +14012,7 @@ double do_test_zgemv_z_d_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -14044,38 +14044,38 @@ double do_test_zgemv_z_d_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(max_mn * 2 * sizeof(double));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (double *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(double) *
                            2);
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -14580,7 +14580,7 @@ double do_test_zgemv_d_z_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -14612,37 +14612,37 @@ double do_test_zgemv_d_z_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (double *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(double));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -15147,7 +15147,7 @@ double do_test_zgemv_d_d_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0 || m < 0 || ntests < 0)
-    BLAS_error(fname, 0, 0, NULL);
+    BLAS_error(fname, 0, 0, nullptr);
 
   /* initialization */
   *num_bad_ratio = 0;
@@ -15179,37 +15179,37 @@ double do_test_zgemv_d_d_x(int m, int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(max_mn * 2 * sizeof(double));
-  if (max_mn * 2 > 0 && x == NULL) {
+  if (max_mn * 2 > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(max_mn * 2 * sizeof(double) * 2);
-  if (max_mn * 2 > 0 && y == NULL) {
+  if (max_mn * 2 > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && x_gen == NULL) {
+  if (max_mn > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && y_gen == NULL) {
+  if (max_mn > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   temp = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && temp == NULL) {
+  if (max_mn > 0 && temp == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(max_mn * sizeof(double) * 2);
-  if (max_mn > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (max_mn > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(max_mn * sizeof(double));
-  if (max_mn > 0 && ratios == NULL) {
+  if (max_mn > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   A =
     (double *) blas_malloc((m - 1 + n - 1 + 1) * max_mn * 2 * sizeof(double));
-  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == NULL) {
+  if ((m - 1 + n - 1 + 1) * max_mn * 2 > 0 && A == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -15632,7 +15632,7 @@ int main(int argc, char **argv)
   seed = 1999;
 
   if (nsizes < 0 || ntests < 0 || debug < 0 || debug > 3)
-    BLAS_error("Testing gemv", 0, 0, NULL);
+    BLAS_error("Testing gemv", 0, 0, nullptr);
 
   printf("Testing %s...\n", base_routine);
   printf("INPUT: nsizes = %d, ntests = %d, thresh = %4.2f, debug = %d\n\n",

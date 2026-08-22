@@ -52,7 +52,7 @@ void BLAS_ssum_testgen(int n, int norm, float *x, int *seed,
     beta = 0.0;
 
     tmp = (float *) blas_malloc(n * sizeof(float));
-    if (n > 0 && tmp == NULL) {
+    if (n > 0 && tmp == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 
@@ -120,7 +120,7 @@ void BLAS_dsum_testgen(int n, int norm, double *x, int *seed,
     beta = 0.0;
 
     tmp = (double *) blas_malloc(n * sizeof(double));
-    if (n > 0 && tmp == NULL) {
+    if (n > 0 && tmp == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 
@@ -189,7 +189,7 @@ void BLAS_csum_testgen(int n, int norm, void *x, int *seed,
     beta[0] = beta[1] = 0.0;
 
     tmp = (float *) blas_malloc(n * sizeof(float) * 2);
-    if (n > 0 && tmp == NULL) {
+    if (n > 0 && tmp == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 
@@ -260,7 +260,7 @@ void BLAS_zsum_testgen(int n, int norm, void *x, int *seed,
     beta[0] = beta[1] = 0.0;
 
     tmp = (double *) blas_malloc(n * sizeof(double) * 2);
-    if (n > 0 && tmp == NULL) {
+    if (n > 0 && tmp == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 

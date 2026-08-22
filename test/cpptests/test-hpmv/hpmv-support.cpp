@@ -319,7 +319,7 @@ void chpmv_pack_matrix(enum blas_order_type order, enum blas_uplo_type uplo,
   float *a_row;;
 
   a_row = (float *) blas_malloc(n * sizeof(float) * 2);
-  if (n > 0 && a_row == NULL) {
+  if (n > 0 && a_row == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   };
   for (row = 0; row < n; row++) {
@@ -340,7 +340,7 @@ void zhpmv_pack_matrix(enum blas_order_type order, enum blas_uplo_type uplo,
   double *a_row;;
 
   a_row = (double *) blas_malloc(n * sizeof(double) * 2);
-  if (n > 0 && a_row == NULL) {
+  if (n > 0 && a_row == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   };
   for (row = 0; row < n; row++) {
@@ -359,13 +359,13 @@ void cprint_hpmv_matrix(void *a, int n,
     int row;
     float *x;
     x = (float *) blas_malloc(n * sizeof(float) * 2);
-    if (n > 0 && x == NULL) {
+    if (n > 0 && x == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 
     for (row = 0; row < n; row++) {
       chpmv_copy_row(order, uplo, n, a, x, row);
-      cprint_vector(x, n, 1, NULL);
+      cprint_vector(x, n, 1, nullptr);
     }
     printf("\n");
     blas_free(x);
@@ -380,13 +380,13 @@ void zprint_hpmv_matrix(void *a, int n,
     int row;
     double *x;
     x = (double *) blas_malloc(n * sizeof(double) * 2);
-    if (n > 0 && x == NULL) {
+    if (n > 0 && x == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 
     for (row = 0; row < n; row++) {
       zhpmv_copy_row(order, uplo, n, a, x, row);
-      zprint_vector(x, n, 1, NULL);
+      zprint_vector(x, n, 1, nullptr);
     }
     printf("\n");
     blas_free(x);

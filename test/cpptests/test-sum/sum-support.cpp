@@ -54,7 +54,7 @@ void test_BLAS_ssum(int n, float sum_comp, double sum_true_l,
 
     float *y;
     y = (float *) blas_malloc(n * sizeof(float));
-    if (n > 0 && y == NULL) {
+    if (n > 0 && y == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 
@@ -127,7 +127,7 @@ void test_BLAS_dsum(int n, double sum_comp, double sum_true_l,
 
     double *y;
     y = (double *) blas_malloc(n * sizeof(double));
-    if (n > 0 && y == NULL) {
+    if (n > 0 && y == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 
@@ -200,7 +200,7 @@ void test_BLAS_csum(int n, const void *sum_comp, double *sum_true_l,
 
     float *y;
     y = (float *) blas_malloc(n * sizeof(float) * 2);
-    if (n > 0 && y == NULL) {
+    if (n > 0 && y == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 
@@ -276,7 +276,7 @@ void test_BLAS_zsum(int n, const void *sum_comp, double *sum_true_l,
 
     double *y;
     y = (double *) blas_malloc(n * sizeof(double) * 2);
-    if (n > 0 && y == NULL) {
+    if (n > 0 && y == nullptr) {
       BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
     }
 

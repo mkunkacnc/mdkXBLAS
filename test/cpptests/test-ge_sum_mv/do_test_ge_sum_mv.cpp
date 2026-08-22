@@ -143,7 +143,7 @@ void do_test_dge_sum_mv_d_s
   beta_zero_fake = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -173,47 +173,47 @@ void do_test_dge_sum_mv_d_s
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double));
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(double));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (double *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(double));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (double *) blas_malloc(2 * n_i * sizeof(double));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double));
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -598,7 +598,7 @@ void do_test_dge_sum_mv_s_d
   beta_zero_fake = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -628,47 +628,47 @@ void do_test_dge_sum_mv_s_d
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double));
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (double *) blas_malloc(4 * n_i * sizeof(double));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (double *) blas_malloc(2 * n_i * sizeof(double));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double));
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1053,7 +1053,7 @@ void do_test_dge_sum_mv_s_s
   beta_zero_fake = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -1083,47 +1083,47 @@ void do_test_dge_sum_mv_s_s
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double));
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double));
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1509,7 +1509,7 @@ void do_test_zge_sum_mv_z_c
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -1539,49 +1539,49 @@ void do_test_zge_sum_mv_z_c
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(double) * 2);
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use =
     (double *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(double) * 2);
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use =
     (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float) * 2);
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
   inca_veci *= 2;
   a_vec = (double *) blas_malloc(2 * n_i * sizeof(double) * 2);
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float) * 2);
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1973,7 +1973,7 @@ void do_test_zge_sum_mv_c_z
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -2003,49 +2003,49 @@ void do_test_zge_sum_mv_c_z
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float) * 2);
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use =
     (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float) * 2);
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use =
     (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (double *) blas_malloc(4 * n_i * sizeof(double) * 2);
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
   inca_veci *= 2;
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float) * 2);
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (double *) blas_malloc(2 * n_i * sizeof(double) * 2);
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -2437,7 +2437,7 @@ void do_test_zge_sum_mv_c_c
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -2467,49 +2467,49 @@ void do_test_zge_sum_mv_c_c
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float) * 2);
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use =
     (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float) * 2);
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use =
     (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float) * 2);
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
   inca_veci *= 2;
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float) * 2);
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float) * 2);
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -2901,7 +2901,7 @@ void do_test_cge_sum_mv_c_s
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -2931,49 +2931,49 @@ void do_test_cge_sum_mv_c_s
 
   /* allocate memory for arrays */
   y = (float *) blas_malloc(4 * m_i * sizeof(float) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float) * 2);
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use =
     (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float) * 2);
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use =
     (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
   inca_veci *= 2;
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float) * 2);
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -3365,7 +3365,7 @@ void do_test_cge_sum_mv_s_c
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -3395,47 +3395,47 @@ void do_test_cge_sum_mv_s_c
 
   /* allocate memory for arrays */
   y = (float *) blas_malloc(4 * m_i * sizeof(float) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float) * 2);
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float) * 2);
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -3827,7 +3827,7 @@ void do_test_cge_sum_mv_s_s
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -3857,47 +3857,47 @@ void do_test_cge_sum_mv_s_s
 
   /* allocate memory for arrays */
   y = (float *) blas_malloc(4 * m_i * sizeof(float) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -4289,7 +4289,7 @@ void do_test_zge_sum_mv_z_d
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -4319,49 +4319,49 @@ void do_test_zge_sum_mv_z_d
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(double) * 2);
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use =
     (double *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(double) * 2);
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use =
     (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (double *) blas_malloc(4 * n_i * sizeof(double));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
   inca_veci *= 2;
   a_vec = (double *) blas_malloc(2 * n_i * sizeof(double) * 2);
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (double *) blas_malloc(2 * n_i * sizeof(double));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -4753,7 +4753,7 @@ void do_test_zge_sum_mv_d_z
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -4783,47 +4783,47 @@ void do_test_zge_sum_mv_d_z
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(double));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (double *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(double));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (double *) blas_malloc(4 * n_i * sizeof(double) * 2);
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (double *) blas_malloc(2 * n_i * sizeof(double));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (double *) blas_malloc(2 * n_i * sizeof(double) * 2);
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -5215,7 +5215,7 @@ void do_test_zge_sum_mv_d_d
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -5245,47 +5245,47 @@ void do_test_zge_sum_mv_d_d
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(double));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (double *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(double));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (double *) blas_malloc(4 * n_i * sizeof(double));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (double *) blas_malloc(2 * n_i * sizeof(double));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (double *) blas_malloc(2 * n_i * sizeof(double));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -5676,7 +5676,7 @@ void do_test_sge_sum_mv_x
   beta_zero_fake = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -5706,47 +5706,47 @@ void do_test_sge_sum_mv_x
 
   /* allocate memory for arrays */
   y = (float *) blas_malloc(4 * m_i * sizeof(float));
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double));
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -6154,7 +6154,7 @@ void do_test_dge_sum_mv_x
   beta_zero_fake = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -6184,47 +6184,47 @@ void do_test_dge_sum_mv_x
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double));
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(double));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (double *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(double));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (double *) blas_malloc(4 * n_i * sizeof(double));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (double *) blas_malloc(2 * n_i * sizeof(double));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (double *) blas_malloc(2 * n_i * sizeof(double));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double));
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -6633,7 +6633,7 @@ void do_test_cge_sum_mv_x
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -6663,49 +6663,49 @@ void do_test_cge_sum_mv_x
 
   /* allocate memory for arrays */
   y = (float *) blas_malloc(4 * m_i * sizeof(float) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float) * 2);
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use =
     (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float) * 2);
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use =
     (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float) * 2);
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
   inca_veci *= 2;
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float) * 2);
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float) * 2);
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -7120,7 +7120,7 @@ void do_test_zge_sum_mv_x
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -7150,49 +7150,49 @@ void do_test_zge_sum_mv_x
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(double) * 2);
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use =
     (double *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(double) * 2);
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use =
     (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (double *) blas_malloc(4 * n_i * sizeof(double) * 2);
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
   inca_veci *= 2;
   a_vec = (double *) blas_malloc(2 * n_i * sizeof(double) * 2);
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (double *) blas_malloc(2 * n_i * sizeof(double) * 2);
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -7606,7 +7606,7 @@ void do_test_dge_sum_mv_d_s_x
   beta_zero_fake = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -7636,47 +7636,47 @@ void do_test_dge_sum_mv_d_s_x
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double));
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(double));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (double *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(double));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (double *) blas_malloc(2 * n_i * sizeof(double));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double));
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -8086,7 +8086,7 @@ void do_test_dge_sum_mv_s_d_x
   beta_zero_fake = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -8116,47 +8116,47 @@ void do_test_dge_sum_mv_s_d_x
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double));
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (double *) blas_malloc(4 * n_i * sizeof(double));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (double *) blas_malloc(2 * n_i * sizeof(double));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double));
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -8566,7 +8566,7 @@ void do_test_dge_sum_mv_s_s_x
   beta_zero_fake = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -8596,47 +8596,47 @@ void do_test_dge_sum_mv_s_s_x
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double));
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double));
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -9047,7 +9047,7 @@ void do_test_zge_sum_mv_z_c_x
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -9077,49 +9077,49 @@ void do_test_zge_sum_mv_z_c_x
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(double) * 2);
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use =
     (double *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(double) * 2);
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use =
     (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float) * 2);
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
   inca_veci *= 2;
   a_vec = (double *) blas_malloc(2 * n_i * sizeof(double) * 2);
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float) * 2);
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -9536,7 +9536,7 @@ void do_test_zge_sum_mv_c_z_x
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -9566,49 +9566,49 @@ void do_test_zge_sum_mv_c_z_x
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float) * 2);
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use =
     (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float) * 2);
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use =
     (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (double *) blas_malloc(4 * n_i * sizeof(double) * 2);
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
   inca_veci *= 2;
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float) * 2);
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (double *) blas_malloc(2 * n_i * sizeof(double) * 2);
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -10025,7 +10025,7 @@ void do_test_zge_sum_mv_c_c_x
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -10055,49 +10055,49 @@ void do_test_zge_sum_mv_c_c_x
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float) * 2);
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use =
     (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float) * 2);
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use =
     (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float) * 2);
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
   inca_veci *= 2;
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float) * 2);
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float) * 2);
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -10514,7 +10514,7 @@ void do_test_cge_sum_mv_c_s_x
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -10544,49 +10544,49 @@ void do_test_cge_sum_mv_c_s_x
 
   /* allocate memory for arrays */
   y = (float *) blas_malloc(4 * m_i * sizeof(float) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float) * 2);
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use =
     (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float) * 2);
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use =
     (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
   inca_veci *= 2;
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float) * 2);
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -11003,7 +11003,7 @@ void do_test_cge_sum_mv_s_c_x
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -11033,47 +11033,47 @@ void do_test_cge_sum_mv_s_c_x
 
   /* allocate memory for arrays */
   y = (float *) blas_malloc(4 * m_i * sizeof(float) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float) * 2);
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float) * 2);
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -11490,7 +11490,7 @@ void do_test_cge_sum_mv_s_s_x
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -11520,47 +11520,47 @@ void do_test_cge_sum_mv_s_s_x
 
   /* allocate memory for arrays */
   y = (float *) blas_malloc(4 * m_i * sizeof(float) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (float *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(float));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (float *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(float));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (float *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(float));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (float *) blas_malloc(4 * n_i * sizeof(float));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (float *) blas_malloc(2 * n_i * sizeof(float));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -11977,7 +11977,7 @@ void do_test_zge_sum_mv_z_d_x
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -12007,49 +12007,49 @@ void do_test_zge_sum_mv_z_d_x
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(double) * 2);
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use =
     (double *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(double) * 2);
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use =
     (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double) * 2);
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (double *) blas_malloc(4 * n_i * sizeof(double));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
   inca_veci *= 2;
   a_vec = (double *) blas_malloc(2 * n_i * sizeof(double) * 2);
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (double *) blas_malloc(2 * n_i * sizeof(double));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -12466,7 +12466,7 @@ void do_test_zge_sum_mv_d_z_x
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -12496,47 +12496,47 @@ void do_test_zge_sum_mv_d_z_x
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(double));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (double *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(double));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (double *) blas_malloc(4 * n_i * sizeof(double) * 2);
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (double *) blas_malloc(2 * n_i * sizeof(double));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (double *) blas_malloc(2 * n_i * sizeof(double) * 2);
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -12953,7 +12953,7 @@ void do_test_zge_sum_mv_d_d_x
   beta_zero_fake[0] = beta_zero_fake[1] = 0.0;
 
   if (n < 0 || ntests < 0)
-    BLAS_error(fname, -3, n, NULL);
+    BLAS_error(fname, -3, n, nullptr);
 
   /* initialization */
   saved_seed = *seed;
@@ -12983,47 +12983,47 @@ void do_test_zge_sum_mv_d_d_x
 
   /* allocate memory for arrays */
   y = (double *) blas_malloc(4 * m_i * sizeof(double) * 2);
-  if (4 * m_i > 0 && y == NULL) {
+  if (4 * m_i > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a = (double *) blas_malloc(2 * n_i * m_i * m_i * n_i * sizeof(double));
-  if (2 * n_i * m_i * m_i * n_i > 0 && a == NULL) {
+  if (2 * n_i * m_i * m_i * n_i > 0 && a == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   a_use = (double *) blas_malloc(2 * m_i * n_i * m_i * n_i * sizeof(double));
-  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == NULL) {
+  if (2 * m_i * n_i * m_i * n_i > 0 && a_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   B_use = (double *) blas_malloc(2 * n_i * n_i * m_i * m_i * sizeof(double));
-  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == NULL) {
+  if (2 * n_i * n_i * m_i * m_i > 0 && B_use == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x = (double *) blas_malloc(4 * n_i * sizeof(double));
-  if (4 * n_i > 0 && x == NULL) {
+  if (4 * n_i > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
   inca_veci = 1;
 
   a_vec = (double *) blas_malloc(2 * n_i * sizeof(double));
-  if (2 * n_i > 0 && a_vec == NULL) {
+  if (2 * n_i > 0 && a_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_vec = (double *) blas_malloc(2 * n_i * sizeof(double));
-  if (2 * n_i > 0 && x_vec == NULL) {
+  if (2 * n_i > 0 && x_vec == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   head_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
   tail_r_true = (double *) blas_malloc(m_i * sizeof(double) * 2);
-  if (m_i > 0 && (head_r_true == NULL || tail_r_true == NULL)) {
+  if (m_i > 0 && (head_r_true == nullptr || tail_r_true == nullptr)) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   ratios = (double *) blas_malloc(m_i * sizeof(double));
-  if (m_i > 0 && ratios == NULL) {
+  if (m_i > 0 && ratios == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -13413,7 +13413,7 @@ int main(int argc, char **argv)
   seed = 1999;
 
   if (nsizes < 0 || ntests < 0 || debug < 0 || debug > 3)
-    BLAS_error("Testing ge_sum_mv", 0, 0, NULL);
+    BLAS_error("Testing ge_sum_mv", 0, 0, nullptr);
 
   printf("Testing %s...\n", base_routine);
   printf("INPUT: nsizes = %d, ntests = %d, thresh = %4.2f, debug = %d\n\n",

@@ -116,9 +116,9 @@ double do_test_ddot_d_s(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -147,19 +147,19 @@ double do_test_ddot_d_s(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * incx_gen * sizeof(double));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * incx_gen * sizeof(double));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -498,9 +498,9 @@ double do_test_ddot_s_d(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -529,19 +529,19 @@ double do_test_ddot_s_d(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(n * 2 * incy_gen * sizeof(double));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * incy_gen * sizeof(double));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -880,9 +880,9 @@ double do_test_ddot_s_s(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -911,19 +911,19 @@ double do_test_ddot_s_s(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1262,9 +1262,9 @@ double do_test_zdot_z_c(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -1293,19 +1293,19 @@ double do_test_zdot_z_c(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * incx_gen * sizeof(double) * 2);
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float) * 2);
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * incx_gen * sizeof(double) * 2);
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float) * 2);
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -1649,9 +1649,9 @@ double do_test_zdot_c_z(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -1680,19 +1680,19 @@ double do_test_zdot_c_z(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float) * 2);
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(n * 2 * incy_gen * sizeof(double) * 2);
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float) * 2);
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * incy_gen * sizeof(double) * 2);
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -2036,9 +2036,9 @@ double do_test_zdot_c_c(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -2067,19 +2067,19 @@ double do_test_zdot_c_c(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float) * 2);
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float) * 2);
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float) * 2);
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float) * 2);
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -2423,9 +2423,9 @@ double do_test_cdot_c_s(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -2454,19 +2454,19 @@ double do_test_cdot_c_s(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float) * 2);
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float) * 2);
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -2810,9 +2810,9 @@ double do_test_cdot_s_c(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -2841,19 +2841,19 @@ double do_test_cdot_s_c(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float) * 2);
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float) * 2);
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -3197,9 +3197,9 @@ double do_test_cdot_s_s(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -3228,19 +3228,19 @@ double do_test_cdot_s_s(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -3584,9 +3584,9 @@ double do_test_zdot_z_d(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -3615,19 +3615,19 @@ double do_test_zdot_z_d(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * incx_gen * sizeof(double) * 2);
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(n * 2 * incy_gen * sizeof(double));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * incx_gen * sizeof(double) * 2);
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * incy_gen * sizeof(double));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -3971,9 +3971,9 @@ double do_test_zdot_d_z(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -4002,19 +4002,19 @@ double do_test_zdot_d_z(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * incx_gen * sizeof(double));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(n * 2 * incy_gen * sizeof(double) * 2);
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * incx_gen * sizeof(double));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * incy_gen * sizeof(double) * 2);
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -4358,9 +4358,9 @@ double do_test_zdot_d_d(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -4389,19 +4389,19 @@ double do_test_zdot_d_d(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * incx_gen * sizeof(double));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(n * 2 * incy_gen * sizeof(double));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * incx_gen * sizeof(double));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * incy_gen * sizeof(double));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -4745,9 +4745,9 @@ double do_test_sdot_x(int n, int ntests, int *seed, double thresh, int debug,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -4776,19 +4776,19 @@ double do_test_sdot_x(int n, int ntests, int *seed, double thresh, int debug,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -5147,9 +5147,9 @@ double do_test_ddot_x(int n, int ntests, int *seed, double thresh, int debug,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -5178,19 +5178,19 @@ double do_test_ddot_x(int n, int ntests, int *seed, double thresh, int debug,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * incx_gen * sizeof(double));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(n * 2 * incy_gen * sizeof(double));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * incx_gen * sizeof(double));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * incy_gen * sizeof(double));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -5549,9 +5549,9 @@ double do_test_cdot_x(int n, int ntests, int *seed, double thresh, int debug,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -5580,19 +5580,19 @@ double do_test_cdot_x(int n, int ntests, int *seed, double thresh, int debug,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float) * 2);
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float) * 2);
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float) * 2);
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float) * 2);
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -5956,9 +5956,9 @@ double do_test_zdot_x(int n, int ntests, int *seed, double thresh, int debug,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -5987,19 +5987,19 @@ double do_test_zdot_x(int n, int ntests, int *seed, double thresh, int debug,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * incx_gen * sizeof(double) * 2);
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(n * 2 * incy_gen * sizeof(double) * 2);
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * incx_gen * sizeof(double) * 2);
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * incy_gen * sizeof(double) * 2);
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -6363,9 +6363,9 @@ double do_test_ddot_d_s_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -6394,19 +6394,19 @@ double do_test_ddot_d_s_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * incx_gen * sizeof(double));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * incx_gen * sizeof(double));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -6766,9 +6766,9 @@ double do_test_ddot_s_d_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -6797,19 +6797,19 @@ double do_test_ddot_s_d_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(n * 2 * incy_gen * sizeof(double));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * incy_gen * sizeof(double));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -7169,9 +7169,9 @@ double do_test_ddot_s_s_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -7200,19 +7200,19 @@ double do_test_ddot_s_s_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -7572,9 +7572,9 @@ double do_test_zdot_z_c_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -7603,19 +7603,19 @@ double do_test_zdot_z_c_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * incx_gen * sizeof(double) * 2);
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float) * 2);
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * incx_gen * sizeof(double) * 2);
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float) * 2);
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -7980,9 +7980,9 @@ double do_test_zdot_c_z_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -8011,19 +8011,19 @@ double do_test_zdot_c_z_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float) * 2);
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(n * 2 * incy_gen * sizeof(double) * 2);
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float) * 2);
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * incy_gen * sizeof(double) * 2);
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -8388,9 +8388,9 @@ double do_test_zdot_c_c_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -8419,19 +8419,19 @@ double do_test_zdot_c_c_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float) * 2);
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float) * 2);
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float) * 2);
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float) * 2);
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -8796,9 +8796,9 @@ double do_test_cdot_c_s_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -8827,19 +8827,19 @@ double do_test_cdot_c_s_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float) * 2);
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float) * 2);
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -9204,9 +9204,9 @@ double do_test_cdot_s_c_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -9235,19 +9235,19 @@ double do_test_cdot_s_c_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float) * 2);
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float) * 2);
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -9612,9 +9612,9 @@ double do_test_cdot_s_s_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -9643,19 +9643,19 @@ double do_test_cdot_s_s_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (float *) blas_malloc(n * 2 * incx_gen * sizeof(float));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (float *) blas_malloc(n * 2 * incy_gen * sizeof(float));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (float *) blas_malloc(n * incx_gen * sizeof(float));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (float *) blas_malloc(n * incy_gen * sizeof(float));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -10020,9 +10020,9 @@ double do_test_zdot_z_d_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -10051,19 +10051,19 @@ double do_test_zdot_z_d_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * incx_gen * sizeof(double) * 2);
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(n * 2 * incy_gen * sizeof(double));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * incx_gen * sizeof(double) * 2);
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * incy_gen * sizeof(double));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -10428,9 +10428,9 @@ double do_test_zdot_d_z_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -10459,19 +10459,19 @@ double do_test_zdot_d_z_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * incx_gen * sizeof(double));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(n * 2 * incy_gen * sizeof(double) * 2);
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * incx_gen * sizeof(double));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * incy_gen * sizeof(double) * 2);
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -10836,9 +10836,9 @@ double do_test_zdot_d_d_x(int n, int ntests, int *seed, double thresh,
 
   /* test for bad arguments */
   if (n < 0)
-    BLAS_error(fname, -1, n, NULL);
+    BLAS_error(fname, -1, n, nullptr);
   else if (ntests < 0)
-    BLAS_error(fname, -2, ntests, NULL);
+    BLAS_error(fname, -2, ntests, nullptr);
 
   /* if there is nothing to test, return all zero */
   if (n == 0 || ntests == 0) {
@@ -10867,19 +10867,19 @@ double do_test_zdot_d_d_x(int n, int ntests, int *seed, double thresh,
 
   /* get space for calculation */
   x = (double *) blas_malloc(n * 2 * incx_gen * sizeof(double));
-  if (n * 2 * incx_gen > 0 && x == NULL) {
+  if (n * 2 * incx_gen > 0 && x == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y = (double *) blas_malloc(n * 2 * incy_gen * sizeof(double));
-  if (n * 2 * incy_gen > 0 && y == NULL) {
+  if (n * 2 * incy_gen > 0 && y == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   x_gen = (double *) blas_malloc(n * incx_gen * sizeof(double));
-  if (n * incx_gen > 0 && x_gen == NULL) {
+  if (n * incx_gen > 0 && x_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
   y_gen = (double *) blas_malloc(n * incy_gen * sizeof(double));
-  if (n * incy_gen > 0 && y_gen == NULL) {
+  if (n * incy_gen > 0 && y_gen == nullptr) {
     BLAS_error("blas_malloc", 0, 0, "malloc failed.\n");
   }
 
@@ -11193,7 +11193,7 @@ int main(int argc, char **argv)
   seed = 1999;
 
   if (nsizes < 0 || ntests < 0 || debug < 0 || debug > 3)
-    BLAS_error("Testing dot", 0, 0, NULL);
+    BLAS_error("Testing dot", 0, 0, nullptr);
 
   printf("Testing %s...\n", base_routine);
   printf("INPUT: nsizes = %d, ntests = %d, thresh = %4.2f, debug = %d\n\n",

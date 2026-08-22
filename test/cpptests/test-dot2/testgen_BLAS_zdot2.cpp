@@ -33,7 +33,7 @@ void z_div(double a[], double b[], double c[])
     abi = -abi;
   if (abr <= abi) {
     if (abi == 0) {
-      BLAS_error("z_div: division by zero", 0, 0, NULL);
+      BLAS_error("z_div: division by zero", 0, 0, nullptr);
     }
     ratio = b[0] / b[1];
     den = b[1] * (1 + ratio * ratio);

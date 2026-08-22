@@ -164,7 +164,7 @@ BLAS_ddot_x_testgen(int n, int n_fix2, int n_mix, int norm,
   beta_i = *beta;
 
   y_i = (float *) malloc(n * sizeof(float));
-  if (y_i == NULL) {
+  if (y_i == nullptr) {
     printf("malloc failed\n");
     exit(-1);
   }
