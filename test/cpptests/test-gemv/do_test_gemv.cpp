@@ -1,13 +1,13 @@
-#include <cstdlib>
-#include <cstdio>
-#include <cmath>
-#include "blas_extended_private.h"
-#include "blas_enum.h"
-#include "blas_malloc.h"
 #include "blas_extended_test.hpp"
 #include "gemv.hpp"
 #include "blas_error.hpp"
 #include "fpinfo.hpp"
+#include "blas_extended_private.h"
+#include "blas_enum.h"
+#include "blas_malloc.h"
+#include <cstdlib>
+#include <cstdio>
+#include <cmath>
 #include <complex>
 
 double do_test_dgemv_d_s(int m, int n, int ntests, int *seed, double thresh,

@@ -1,8 +1,8 @@
-#include <cstdlib>
-#include <cmath>
+#include "blas_extended_test.hpp"
 #include "blas_extended_private.h"
 #include "blas_enum.h"
-#include "blas_extended_test.hpp"
+#include <cstdlib>
+#include <cmath>
 
 
 static double rand_half_1(int, int *);

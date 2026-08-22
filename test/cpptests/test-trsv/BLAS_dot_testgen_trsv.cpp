@@ -1,7 +1,7 @@
-#include <cstdlib>
-#include <cstdio>
 #include "blas_extended_test.hpp"
 #include "blas_enum.h"
+#include <cstdlib>
+#include <cstdio>
 
 void
 BLAS_sdot_x_testgen(int n, int n_fix2, int n_mix, int norm,

@@ -1,12 +1,12 @@
-#include <cstdlib>
-#include <cstdio>
-#include <cmath>
-#include "blas_extended_private.h"
-#include "blas_enum.h"
-#include "blas_malloc.h"
 #include "blas_extended_test.hpp"
 #include "blas_error.hpp"
 #include "fpinfo.hpp"
+#include "blas_extended_private.h"
+#include "blas_enum.h"
+#include "blas_malloc.h"
+#include <cstdlib>
+#include <cstdio>
+#include <cmath>
 
 double do_test_sdot2_x(int n, int ntests, int *seed, double thresh, int debug,
                        float test_prob, double *min_ratio, int *num_bad_ratio,

@@ -1,7 +1,7 @@
-#include <cstdlib>
-#include "blas_malloc.h"
 #include "blas_extended_test.hpp"
 #include "blas_error.hpp"
+#include "blas_malloc.h"
+#include <cstdlib>
 
 void test_BLAS_ssum(int n, float sum_comp, double sum_true_l,
                     double sum_true_t, float *x, int incx,

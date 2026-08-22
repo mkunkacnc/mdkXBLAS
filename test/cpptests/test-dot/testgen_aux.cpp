@@ -1,6 +1,6 @@
-#include <cmath>
-#include "blas_extended_private.h"
 #include "blas_extended_test.hpp"
+#include "blas_extended_private.h"
+#include <cmath>
 
 double power(int i1, int i2)
 {

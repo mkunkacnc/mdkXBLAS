@@ -1,9 +1,9 @@
-#include <cstdlib>
-#include <cmath>
-#include "blas_extended_private.h"
-#include "blas_enum.h"
 #include "blas_extended_test.hpp"
 #include "fpinfo.hpp"
+#include "blas_extended_private.h"
+#include "blas_enum.h"
+#include <cstdlib>
+#include <cmath>
 
 
 void test_BLAS_sdot2(int n, enum blas_conj_type /* conj */, float alpha, float beta,

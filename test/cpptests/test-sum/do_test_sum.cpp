@@ -1,13 +1,13 @@
-#include <cstdlib>
-#include <cstdio>
-#include <cmath>
-#include "blas_extended_private.h"
-#include "blas_enum.h"
-#include "blas_malloc.h"
 #include "blas_extended_test.hpp"
 #include "sum.hpp"
 #include "blas_error.hpp"
 #include "fpinfo.hpp"
+#include "blas_extended_private.h"
+#include "blas_enum.h"
+#include "blas_malloc.h"
+#include <cstdlib>
+#include <cstdio>
+#include <cmath>
 #define NORM_START -1
 #define NORM_END    1
 #define INC_START  -2

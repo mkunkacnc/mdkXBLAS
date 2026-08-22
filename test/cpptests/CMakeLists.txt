@@ -102,8 +102,6 @@ if (MDKXBLAS_COMBINE_TESTS)
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
 
-  target_link_libraries(cpptests PRIVATE xblas)
-
   set_target_properties(cpptests PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -136,7 +134,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_axpby PRIVATE xblas)
   set_target_properties(cpptests_axpby PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -165,7 +162,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_dot PRIVATE xblas)
   set_target_properties(cpptests_dot PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -199,7 +195,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_dot2 PRIVATE xblas)
   set_target_properties(cpptests_dot2 PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -231,7 +226,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_gbmv PRIVATE xblas)
   set_target_properties(cpptests_gbmv PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -267,7 +261,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_gbmv2 PRIVATE xblas)
   set_target_properties(cpptests_gbmv2 PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -299,7 +292,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_ge_sum_mv PRIVATE xblas)
   set_target_properties(cpptests_ge_sum_mv PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -329,7 +321,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_gemm PRIVATE xblas)
   set_target_properties(cpptests_gemm PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -361,7 +352,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_gemv PRIVATE xblas)
   set_target_properties(cpptests_gemv PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -397,7 +387,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_gemv2 PRIVATE xblas)
   set_target_properties(cpptests_gemv2 PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -431,7 +420,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_hbmv PRIVATE xblas)
   set_target_properties(cpptests_hbmv PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -464,7 +452,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_hemm PRIVATE xblas)
   set_target_properties(cpptests_hemm PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -498,7 +485,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_hemv PRIVATE xblas)
   set_target_properties(cpptests_hemv PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -536,7 +522,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_hemv2 PRIVATE xblas)
   set_target_properties(cpptests_hemv2 PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -572,7 +557,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_hpmv PRIVATE xblas)
   set_target_properties(cpptests_hpmv PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -604,7 +588,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_sbmv PRIVATE xblas)
   set_target_properties(cpptests_sbmv PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -638,7 +621,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_spmv PRIVATE xblas)
   set_target_properties(cpptests_spmv PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -667,7 +649,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_sum PRIVATE xblas)
   set_target_properties(cpptests_sum PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -698,7 +679,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_symm PRIVATE xblas)
   set_target_properties(cpptests_symm PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -730,7 +710,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_symv PRIVATE xblas)
   set_target_properties(cpptests_symv PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -766,7 +745,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_symv2 PRIVATE xblas)
   set_target_properties(cpptests_symv2 PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -801,7 +779,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_tbsv PRIVATE xblas)
   set_target_properties(cpptests_tbsv PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -832,7 +809,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_tpmv PRIVATE xblas)
   set_target_properties(cpptests_tpmv PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -863,7 +839,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_trmv PRIVATE xblas)
   set_target_properties(cpptests_trmv PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -897,7 +872,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_trsv PRIVATE xblas)
   set_target_properties(cpptests_trsv PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )
@@ -925,7 +899,6 @@ else()
     ${CMAKE_SOURCE_DIR}/include/XBLAS
     ${CMAKE_SOURCE_DIR}/test/cpptests
   )
-  target_link_libraries(cpptests_waxpby PRIVATE xblas)
   set_target_properties(cpptests_waxpby PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/test"
   )

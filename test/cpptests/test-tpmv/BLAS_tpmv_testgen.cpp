@@ -1,8 +1,8 @@
-
-#include "blas_malloc.h"
 #include "blas_extended_test.hpp"
 #include "blas_error.hpp"
+#include "blas_malloc.h"
 #include "blas_enum.h"
+
 
 
 void BLAS_stpmv_testgen(int norm, enum blas_order_type order,

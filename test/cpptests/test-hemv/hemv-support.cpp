@@ -1,5 +1,5 @@
-#include <cstdio>
 #include "blas_enum.h"
+#include <cstdio>
 
 void che_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
                   enum blas_side_type side, int n, void *a, int lda,

@@ -1,5 +1,5 @@
-#include <cstdio>
 #include "blas_extended_test.hpp"
+#include <cstdio>
 
 void scopy_vector(const float *x, int n, int incx, float *y, int incy)
 {

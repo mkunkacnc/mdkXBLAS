@@ -1,6 +1,6 @@
+#include "blas_error.hpp"
 #include "blas_extended_private.h"
 #include "blas_enum.h"
-#include "blas_error.hpp"
 
 void BLAS_sdot2_x(enum blas_conj_type /* conj */, int n, float alpha,
                   const float *x, int incx, float beta,

@@ -1,8 +1,8 @@
+#include "blas_extended_test.hpp"
+#include "blas_error.hpp"
 #include "blas_extended_private.h"
 #include "blas_enum.h"
 #include "blas_malloc.h"
-#include "blas_extended_test.hpp"
-#include "blas_error.hpp"
 
 
 void BLAS_sgbmv_testgen(int norm, enum blas_order_type order,

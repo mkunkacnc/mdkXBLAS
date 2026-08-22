@@ -1,8 +1,8 @@
-#include <cstdio>
-#include "blas_malloc.h"
 #include "blas_extended_test.hpp"
 #include "blas_error.hpp"
+#include "blas_malloc.h"
 #include "blas_enum.h"
+#include <cstdio>
 
 void chpmv_copy_row(enum blas_order_type order, enum blas_uplo_type uplo,
                     int n, void *a, void *a_vec, int row)
