@@ -48,6 +48,14 @@ These are the original netlib tests, unchanged except I added a compile-time
 option to have one main program instead of 25. These tests call the C API,
 which in turn call the C++ code.
 
+## test/cpptests
+
+These are the original netlib tests, recompiled as C++ and modified to call the
+C++ API directly. The option to have one main program instead of 25 is available.
+It accesses the C++ API by including the relevant .hpp files and does not link to
+the xblas library. These tests check float, double, complex&lt;float&gt;, and
+complex&lt;double&gt; types.
+
 I have not yet written C++ tests that will specifically test compilation in
 constexpr contexts, or tests for long double or quadruple precision types.
 
