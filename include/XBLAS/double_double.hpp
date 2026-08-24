@@ -47,7 +47,7 @@ public:
   /* Split a double into 2 parts with at most 26 bits each. (2^27 + 1) */
   static constexpr double split = std::pow(2.0, (std::numeric_limits<double>::digits/2 + 1)) + 1; // 134217729.0
 
-  constexpr double_double() {}
+  constexpr double_double() = default;
   constexpr explicit double_double(double x);
   constexpr double_double(double h, double t);
 
