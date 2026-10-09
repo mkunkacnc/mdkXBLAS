@@ -11,7 +11,9 @@ static_assert(__STDCPP_FLOAT128_T__, "Need std::float128_t");
 
 #include <stdfloat>
 
+namespace XBLAS::impl {
 using XBLAS_X_t = std::float128_t;
+} // namespace XBLAS::impl
 
 // Dummy implementation
 #ifdef FPU_FIX_DECL
@@ -44,9 +46,13 @@ struct double_double
 } // namespace XBLAS
 
 #else // XBLAS_USE_FLOAT128
+
 #include "double_double.hpp"
 
+namespace XBLAS::impl {
 using XBLAS_X_t = XBLAS::double_double;
+} // namespace XBLAS::impl
+
 #endif // XBLAS_USE_FLOAT128
 
 #ifdef XBLAS_USE_INT64_INTERNAL_INDEX_TYPE

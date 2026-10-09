@@ -2,7 +2,7 @@
 #define XBLAS_FPINFO_HPP
 
 #include "blas_enum.h"
-#include "double_double.hpp"
+#include "impl.hpp"
 #include <limits>
 
 //---------------
@@ -107,7 +107,7 @@ constexpr int fpinfo_x(enum blas_cmach_type cmach, enum blas_prec_type prec)
     break;
 
   case blas_prec_extra:
-    rmach = impl::fpinfo<double_double>(cmach);
+    rmach = impl::fpinfo<impl::XBLAS_X_t>(cmach);
     break;
   }
 

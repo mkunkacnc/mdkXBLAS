@@ -152,12 +152,13 @@ and exits.
 
 ### MDKXBLAS_COMBINE_TESTS
 
-<b>OFF</b>: The unit tests in test/ctests are in 25 separate executables and need to
- be built and run separately. Cmake/ctests does this easily.
+<b>OFF</b>: The unit tests in test/ctests (and test/cpptests) are in 25 separate
+ executables and need to be built and run separately. Cmake/ctest does this easily.
 
-<b>ON</b>: The tests are combined into a single executable. Before I had cmake set up
- to build everything, I was using an IDE build environment and it was just easier to
- have a single project for the tests building a single executable to run every test.
+<b>ON</b>: The tests are combined into a single executable for ctests and a single
+ executable for cpptests. Before I had cmake set up to build everything, I was using
+ an IDE build environment and it was just easier to have a single project for the
+ tests building a single executable to run every test.
 
 # Using the Library
 
